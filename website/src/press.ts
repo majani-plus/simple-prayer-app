@@ -71,7 +71,8 @@ export const press = {
     ['It is free forever', 'Write "every feature is free". There is nothing to buy, and a tip unlocks nothing.'],
   ] as [string, string][],
 
-  contact: site.email,
+  // The general inbox; privacy@ stays the address the privacy policy and the stores name.
+  contact: 'hello@simpleprayer.app',
 } as const;
 
 /** The downloads `scripts/build-press-kit.ts` writes into public/press/files/. */
