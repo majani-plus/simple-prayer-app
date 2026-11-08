@@ -1,5 +1,5 @@
 ---
-import { readFileSync } from 'node:fs';
+import qrSvg from '../../public/install-qr.svg?raw';
 
 import Base from '../layouts/Base.astro';
 import StoreButtons from './StoreButtons.astro';
@@ -28,7 +28,6 @@ const d = dict.install;
  * the card stays light even at night. Nothing third-party is involved — no QR service, no image
  * host; the file is ours and is served from here.
  */
-const qrSvg = readFileSync(new URL('../../public/install-qr.svg', import.meta.url), 'utf8');
 ---
 
 <Base

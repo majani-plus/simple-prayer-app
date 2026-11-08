@@ -1,7 +1,7 @@
 ---
-import fs from 'node:fs';
-import path from 'node:path';
-import { fileURLToPath } from 'node:url';
+// `?raw`: the bundler inlines the markdown at build time (a file read relative to
+// `import.meta.url` breaks once the page is bundled into dist/).
+import source from '../../../docs/PRIVACY_POLICY.md?raw';
 import { marked } from 'marked';
 import Base from '../layouts/Base.astro';
 import { t } from '../i18n';
@@ -17,11 +17,6 @@ import { t } from '../i18n';
  *     maintainers, marked as such in the file itself) — not part of the publishable text.
  *  2. Bracketed `*[Owner: …]*` paragraphs are in-file editorial reminders, likewise not policy.
  */
-const here = path.dirname(fileURLToPath(import.meta.url));
-const source = fs.readFileSync(
-  path.resolve(here, '../../../docs/PRIVACY_POLICY.md'),
-  'utf-8',
-);
 
 const divider = source.indexOf('\n---\n');
 if (divider === -1) throw new Error('PRIVACY_POLICY.md: expected a `---` after the preamble');

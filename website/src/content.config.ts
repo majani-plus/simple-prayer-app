@@ -1,4 +1,5 @@
-import { defineCollection, z } from 'astro:content';
+import { defineCollection } from 'astro:content';
+import { z } from 'astro/zod';
 import { glob } from 'astro/loaders';
 
 /**
@@ -16,7 +17,7 @@ const blog = defineCollection({
     tags: z.array(z.string()).optional(),
     /** Reading order among articles published on the same day; lower comes first. */
     order: z.number().int().optional(),
-    canonical: z.string().url().optional(),
+    canonical: z.url().optional(),
   }),
 });
 

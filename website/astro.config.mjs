@@ -38,25 +38,15 @@ export default defineConfig({
     inlineStylesheets: 'always',
   },
   vite: {
-    esbuild: {
-      // The site imports the app's token module from OUTSIDE this directory. When esbuild
-      // transforms a file it looks for the nearest tsconfig, which for that file is the REPO
-      // ROOT tsconfig.json — and that one extends `expo/tsconfig.base`. The root's node_modules
-      // exists on a dev machine but NOT on a CI host that installs only this directory's
-      // dependencies (Cloudflare Pages with root `website/`), so the build died there with
-      // "Cannot find module 'expo/tsconfig.base/tsconfig.json'" while passing locally.
-      //
-      // Supplying the config inline stops esbuild discovering (and resolving the `extends` of)
-      // any tsconfig at all. Type-checking is unaffected: that is `astro check`'s job, and it
-      // uses this project's own tsconfig.
-      tsconfigRaw: {
-        compilerOptions: {
-          target: 'es2022',
-          useDefineForClassFields: true,
-          verbatimModuleSyntax: false,
-        },
-      },
-    },
+    // The site imports files from OUTSIDE this directory (screenshots, the privacy policy, the
+    // app's domain code via the generated copy). Left alone, Vite looks up the nearest tsconfig
+    // for each file, which for anything at the repo root is the APP's tsconfig.json — and that
+    // extends `expo/tsconfig.base`. Expo is installed on a dev machine but NOT on a host that
+    // installs only this directory (Cloudflare Pages with root `website/`), so the build died
+    // there with "Tsconfig not found expo/tsconfig.base" while passing locally. Vite 8 (Astro 7)
+    // transforms with Oxc, so the old `esbuild.tsconfigRaw` override no longer applies; this
+    // pins every file to this project's own tsconfig instead. Type-checking is `astro check`'s job.
+    tsconfig: './tsconfig.json',
     server: {
       fs: {
         // The site imports the app's design tokens, the audited privacy policy markdown, and the

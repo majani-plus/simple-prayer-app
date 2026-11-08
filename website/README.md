@@ -85,9 +85,9 @@ font CDN, embed, or analytics snippet makes the published privacy policy false.
 | Setting | Value |
 |---|---|
 | Root directory | `website` |
-| Build command | `bun run build` |
+| Build command | `bun install --frozen-lockfile && bun run build` |
 | Output directory | `dist` (relative to the root directory) |
-| Node version | 22 (pinned by `.node-version`) |
+| Node version | 24.22.2 (pinned by `.node-version`; Astro 7 needs ≥ 22.23.4) |
 
 No environment variables, no server runtime, no redirects. `dist/404.html` is picked up
 automatically, and `build.format: 'file'` plus `trailingSlash: 'never'` means `/privacy` serves
@@ -100,8 +100,10 @@ automatically, and `build.format: 'file'` plus `trailingSlash: 'never'` means `/
    file's *nearest* tsconfig — for anything at the repo root that is the app's `tsconfig.json`,
    which `extends: "expo/tsconfig.base"`. Expo is not installed there on CI, so the build fails
    with `Cannot find module 'expo/tsconfig.base/tsconfig.json'` while passing locally, where the
-   root `node_modules` happens to exist. Overriding `vite.esbuild.tsconfigRaw` does *not* help:
-   Vite resolves the `extends` chain itself, before esbuild sees it.
+   root `node_modules` happens to exist. Since Astro 7 (Vite 8, which transforms with Oxc),
+   `vite.tsconfig` in `astro.config.mjs` pins every file to this project's own tsconfig, which
+   covers files Vite merely transforms; anything Vite would have to *resolve* types from at the
+   root still must not be imported.
    The palette therefore crosses the boundary at **build** time — `scripts/generate-tokens.ts`
    runs under Bun (which reads TypeScript natively and consults no tsconfig) and writes
    `src/styles/tokens.generated.ts` inside this project. Markdown and images are safe to read

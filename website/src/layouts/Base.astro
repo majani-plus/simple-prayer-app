@@ -1,6 +1,8 @@
 ---
 import { createHash } from 'node:crypto';
-import { readFileSync } from 'node:fs';
+// `?raw`: the bundler inlines the file's text. A file read relative to `import.meta.url` breaks
+// once the page is bundled into dist/ (Astro 7 moved where that is).
+import swSource from '../../public/sw.js?raw';
 
 import { site } from '../config';
 import { themeCss } from '../styles/theme';
@@ -53,7 +55,7 @@ const {
  * cannot be answered from a stale entry.
  */
 const swVersion = createHash('sha256')
-  .update(readFileSync(new URL('../../public/sw.js', import.meta.url)))
+  .update(swSource)
   .digest('hex')
   .slice(0, 8);
 const canonical = new URL(path, Astro.site);
@@ -312,6 +314,63 @@ const jsonLdBlocks = jsonLd.map((obj) => JSON.stringify(obj).replace(/</g, '\\u0
         <p class="hint">{dict.chrome.footer.madeBy}</p>
       </div>
     </footer>
+    {/* Processed scripts go inside <body>: Astro 7 emits them exactly where they are written. */}
+<script>
+  // Mobile-menu polish. The <details> element opens and closes natively without any of this;
+  // this only makes it behave like a menu: choosing a link closes it (otherwise an in-page
+  // anchor like #features scrolls underneath an open panel), Escape closes it and returns
+  // focus, and a tap outside dismisses it. Bundled by Astro into an external module covered
+  // by the CSP's `script-src 'self'` — nothing here builds script text at runtime.
+  const menu = document.querySelector<HTMLDetailsElement>('details[data-menu]');
+  if (menu) {
+    const summary = menu.querySelector<HTMLElement>('summary');
+    menu.addEventListener('click', (e) => {
+      if ((e.target as Element).closest('a')) menu.open = false;
+    });
+    document.addEventListener('click', (e) => {
+      if (menu.open && !menu.contains(e.target as Node)) menu.open = false;
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && menu.open) {
+        menu.open = false;
+        summary?.focus();
+      }
+    });
+  }
+</script>
+
+<script>
+  /**
+   * Registers the offline worker, and tells the page when it is running as an installed app.
+   *
+   * The worker's URL arrives on <html data-sw> rather than through `define:vars`, because that
+   * directive forces the script inline and un-compiled — the TypeScript below then ships as-is and
+   * throws on the first cast, taking the registration and the standalone class down with it.
+   *
+   * The standalone rules in global.css are driven by `display-mode: standalone`, which iOS did not
+   * support for years — it reports `navigator.standalone` instead. Stamping a class covers both,
+   * and covers the case of an old iOS opening a page that would otherwise keep its full marketing
+   * chrome inside a home-screen app.
+   */
+  const standalone =
+    window.matchMedia('(display-mode: standalone)').matches ||
+    (navigator as Navigator & { standalone?: boolean }).standalone === true;
+  if (standalone) document.documentElement.classList.add('is-installed');
+
+  if ('serviceWorker' in navigator) {
+    // After load: registering during it competes with the page's own assets for the connection.
+    window.addEventListener('load', () => {
+      // `updateViaCache: 'none'` because Cloudflare's CDN overrides the `Cache-Control: no-cache`
+      // we ask for on /sw.js with its own 4-hour browser TTL. Browsers already bypass the HTTP
+      // cache for the worker script by default, but a site that cannot be updated is a bad enough
+      // failure to say so explicitly rather than lean on a default.
+      const swUrl = document.documentElement.dataset.sw ?? '/sw.js';
+      navigator.serviceWorker.register(swUrl, { updateViaCache: 'none' }).catch(() => {
+        // An unavailable worker costs offline support and nothing else. The site still works.
+      });
+    });
+  }
+</script>
   </body>
 </html>
 
@@ -585,60 +644,3 @@ const jsonLdBlocks = jsonLd.map((obj) => JSON.stringify(obj).replace(/</g, '\\u0
     padding: 7px 6px;
   }
 </style>
-
-<script>
-  // Mobile-menu polish. The <details> element opens and closes natively without any of this;
-  // this only makes it behave like a menu: choosing a link closes it (otherwise an in-page
-  // anchor like #features scrolls underneath an open panel), Escape closes it and returns
-  // focus, and a tap outside dismisses it. Bundled by Astro into an external module covered
-  // by the CSP's `script-src 'self'` — nothing here builds script text at runtime.
-  const menu = document.querySelector<HTMLDetailsElement>('details[data-menu]');
-  if (menu) {
-    const summary = menu.querySelector<HTMLElement>('summary');
-    menu.addEventListener('click', (e) => {
-      if ((e.target as Element).closest('a')) menu.open = false;
-    });
-    document.addEventListener('click', (e) => {
-      if (menu.open && !menu.contains(e.target as Node)) menu.open = false;
-    });
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && menu.open) {
-        menu.open = false;
-        summary?.focus();
-      }
-    });
-  }
-</script>
-
-<script>
-  /**
-   * Registers the offline worker, and tells the page when it is running as an installed app.
-   *
-   * The worker's URL arrives on <html data-sw> rather than through `define:vars`, because that
-   * directive forces the script inline and un-compiled — the TypeScript below then ships as-is and
-   * throws on the first cast, taking the registration and the standalone class down with it.
-   *
-   * The standalone rules in global.css are driven by `display-mode: standalone`, which iOS did not
-   * support for years — it reports `navigator.standalone` instead. Stamping a class covers both,
-   * and covers the case of an old iOS opening a page that would otherwise keep its full marketing
-   * chrome inside a home-screen app.
-   */
-  const standalone =
-    window.matchMedia('(display-mode: standalone)').matches ||
-    (navigator as Navigator & { standalone?: boolean }).standalone === true;
-  if (standalone) document.documentElement.classList.add('is-installed');
-
-  if ('serviceWorker' in navigator) {
-    // After load: registering during it competes with the page's own assets for the connection.
-    window.addEventListener('load', () => {
-      // `updateViaCache: 'none'` because Cloudflare's CDN overrides the `Cache-Control: no-cache`
-      // we ask for on /sw.js with its own 4-hour browser TTL. Browsers already bypass the HTTP
-      // cache for the worker script by default, but a site that cannot be updated is a bad enough
-      // failure to say so explicitly rather than lean on a default.
-      const swUrl = document.documentElement.dataset.sw ?? '/sw.js';
-      navigator.serviceWorker.register(swUrl, { updateViaCache: 'none' }).catch(() => {
-        // An unavailable worker costs offline support and nothing else. The site still works.
-      });
-    });
-  }
-</script>

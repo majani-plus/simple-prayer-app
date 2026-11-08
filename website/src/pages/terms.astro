@@ -1,7 +1,7 @@
 ---
-import fs from 'node:fs';
-import path from 'node:path';
-import { fileURLToPath } from 'node:url';
+// `?raw`: the bundler inlines the markdown at build time (a file read relative to
+// `import.meta.url` breaks once the page is bundled into dist/).
+import source from '../../../docs/TERMS_OF_USE.md?raw';
 import { marked } from 'marked';
 import Base from '../layouts/Base.astro';
 import { t } from '../i18n';
@@ -15,8 +15,6 @@ import { t } from '../i18n';
  * translation as the terms would be presenting something we cannot guarantee says the same
  * thing. The tr/ar pages link here, and the notices below say so in each language.
  */
-const here = path.dirname(fileURLToPath(import.meta.url));
-const source = fs.readFileSync(path.resolve(here, '../../../docs/TERMS_OF_USE.md'), 'utf-8');
 
 const divider = source.indexOf('\n---\n');
 if (divider === -1) throw new Error('TERMS_OF_USE.md: expected a `---` after the maintainer note');
