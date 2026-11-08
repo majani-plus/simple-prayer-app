@@ -260,7 +260,7 @@ export const en = {
     pledge: {
       h2: 'What we promise',
       body: "No ads, ever. No account. No tracking. Your prayer log stays on your phone. Your rough location is sent only to your phone's own map service, so it can name your city. If the app crashes, we get a report that says the app broke and nothing about who you are, and you can turn that off in Settings. The app is free and will stay free. If it helps you, you can leave a tip in Settings. That is the only money in it.",
-      more: 'says all of this in plain words, including the four cases where anything at all leaves your phone. This website keeps the same promise: no cookies, nothing that counts visitors, and nothing loaded from anyone else.',
+      more: 'says all of this in plain words, including the five cases where anything at all leaves your phone. This website keeps the same promise: no cookies, nothing that counts visitors, and nothing loaded from anyone else.',
       privacyLink: 'The privacy policy',
       openSource: {
         pre: 'You can check all of this yourself. The whole app is ',

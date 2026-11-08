@@ -246,7 +246,7 @@ export const tr: SiteDict = {
     pledge: {
       h2: 'Verdiğimiz söz',
       body: "Reklam yok, hiçbir zaman. Hesap yok. İzleme yok. Namaz kaydın telefonunda kalır. Yaklaşık konumun yalnızca telefonunun kendi harita servisine gider; o da şehrinin adını bulmak içindir. Uygulama çökerse bize yalnızca uygulamanın bozulduğunu söyleyen bir rapor gelir; senin kim olduğuna dair hiçbir şey söylemez ve bunu Ayarlar'dan kapatabilirsin. Uygulama ücretsizdir ve ücretsiz kalacak. İşine yaradıysa Ayarlar'dan bir bahşiş bırakabilirsin. İçindeki tek para budur.",
-      more: 'bunların hepsini düz bir dille anlatır; telefonundan herhangi bir şeyin çıktığı dört durum da orada yazar. Bu site de aynı sözü tutar: çerez yok, ziyaretçi sayan hiçbir şey yok, başka hiçbir yerden yüklenen bir şey yok.',
+      more: 'bunların hepsini düz bir dille anlatır; telefonundan herhangi bir şeyin çıktığı beş durum da orada yazar. Bu site de aynı sözü tutar: çerez yok, ziyaretçi sayan hiçbir şey yok, başka hiçbir yerden yüklenen bir şey yok.',
       privacyLink: 'Gizlilik politikası',
       openSource: {
         pre: 'Bunların hepsini kendin de kontrol edebilirsin. Uygulamanın tamamı ',
