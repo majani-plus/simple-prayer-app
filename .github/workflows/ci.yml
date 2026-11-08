@@ -9,10 +9,9 @@ on:
     paths-ignore:
       - 'website/**'
       - '.github/workflows/website.yml'
+  # Every pull request, with no path filter: `checks` is a required check on main, and a
+  # required check that never starts leaves the pull request waiting forever.
   pull_request:
-    paths-ignore:
-      - 'website/**'
-      - '.github/workflows/website.yml'
 
 jobs:
   checks:

@@ -20,16 +20,9 @@ on:
       - 'src/i18n/locales/**'
       - 'patches/**'
       - '.github/workflows/website.yml'
+  # Every pull request, with no path filter: `build` is a required check on main, and a
+  # required check that never starts leaves the pull request waiting forever.
   pull_request:
-    paths:
-      - 'website/**'
-      - 'docs/PRIVACY_POLICY.md'
-      - 'docs/screenshots/**'
-      - 'src/theme/tokens.ts'
-      - 'src/domain/**'
-      - 'src/i18n/locales/**'
-      - 'patches/**'
-      - '.github/workflows/website.yml'
 
 jobs:
   build:
