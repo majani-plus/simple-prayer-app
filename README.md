@@ -133,7 +133,10 @@ prayer logic in Swift or Kotlin. See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md
 
 ## Licence
 
-The code is under the MIT licence, © Majani Plus LLC (New Cairo, Egypt). See [LICENSE](LICENSE).
+Simple Prayer is made by [Ronny Majani](https://ronnymajani.com) and owned by Majani Plus LLC, his
+company in New Cairo, Egypt.
+
+The code is under the MIT licence, © Majani Plus LLC. See [LICENSE](LICENSE).
 
 The name "Simple Prayer", the mosque mark and the app's look are not covered by the licence. If
 you publish your own version, please give it your own name and icon. See

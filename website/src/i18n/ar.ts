@@ -41,7 +41,8 @@ export const ar: SiteDict = {
       source: 'الشيفرة المصدرية',
       articles: 'مقالات (بالإنجليزية)',
       press: 'للصحافة',
-      madeBy: 'من صنع مجني بلس. كل الميزات مجانية.',
+      madeBy: 'من صنع {author} في مجني بلس. كل الميزات مجانية.',
+      author: 'روني مجني',
     },
     stores: {
       downloadOn: 'حمّله من',

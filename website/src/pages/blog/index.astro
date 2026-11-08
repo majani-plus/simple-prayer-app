@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import { formatPostDate } from '../../lib/blog';
+import { site } from '../../config';
 
 // English-only (`page={null}`): no hreflang alternates and no language switcher, like the 404.
 const posts = (await getCollection('blog')).sort(
@@ -18,6 +19,9 @@ const posts = (await getCollection('blog')).sort(
 >
   <div class="section container blog">
     <h1>Articles</h1>
+    <p class="caption">
+      By <a href={site.author.url} rel="author noopener">{site.author.name}</a>, who makes Simple Prayer.
+    </p>
     <ul class="posts">
       {posts.map((p) => (
         <li>

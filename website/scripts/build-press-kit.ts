@@ -59,7 +59,7 @@ async function screenshots(lang: string): Promise<Zippable> {
       'store-screens: the App Store and Google Play images, with their captions.\n' +
       'plain: the app itself, in the light (paper) and dark (night paper) themes, with no captions.\n\n' +
       'You may use these in articles, reviews and lists about Simple Prayer. Please do not change\n' +
-      'what the screens show. Credit: Majani Plus.\n'
+      'what the screens show. Credit: Simple Prayer, by Ronny Majani.\n'
   );
   return z;
 }

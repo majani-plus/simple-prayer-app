@@ -69,6 +69,7 @@ const dict = t(locale);
 const meta = localeMeta[locale];
 const alternates = page ? alternatesFor(page) : [];
 const home = pagePath('home', locale);
+const [madeByPre, madeByPost] = dict.chrome.footer.madeBy.split('{author}');
 
 // Open Graph locale tags (Facebook's identifiers; ar_AR is its pan-Arabic locale).
 // og:locale:alternate means "this page also exists in that locale", so it is emitted only for
@@ -321,7 +322,9 @@ const jsonLdBlocks = jsonLd.map((obj) => JSON.stringify(obj).replace(/</g, '\\u0
           <li><a href={pagePath('press', locale)}>{dict.chrome.footer.press}</a></li>
           <li><a href={`mailto:${site.email}`}>{site.email}</a></li>
         </ul>
-        <p class="hint">{dict.chrome.footer.madeBy}</p>
+        <p class="hint">
+          {madeByPre}<a href={site.author.url} rel="noopener">{dict.chrome.footer.author}</a>{madeByPost}
+        </p>
       </div>
     </footer>
     {/* Processed scripts go inside <body>: Astro 7 emits them exactly where they are written. */}

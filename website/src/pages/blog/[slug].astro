@@ -2,6 +2,7 @@
 import { getCollection, render, type CollectionEntry } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import { formatPostDate } from '../../lib/blog';
+import { site } from '../../config';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog');
@@ -26,7 +27,7 @@ const jsonLd = [
     url: new URL(path, Astro.site).href,
     mainEntityOfPage: new URL(path, Astro.site).href,
     image: new URL('/og.png', Astro.site).href,
-    author: { '@type': 'Organization', name: 'Majani Plus LLC', url: 'https://majani.plus' },
+    author: { '@type': 'Person', name: site.author.name, url: site.author.url },
     publisher: {
       '@type': 'Organization',
       name: 'Majani Plus LLC',
@@ -49,7 +50,8 @@ const jsonLd = [
 >
   <article class="section container article">
     <p class="caption">
-      <a href="/blog">Articles</a> · <time datetime={date}>{formatPostDate(date)}</time>
+      <a href="/blog">Articles</a> · By <a href={site.author.url} rel="author noopener">{site.author.name}</a> ·
+      <time datetime={date}>{formatPostDate(date)}</time>
     </p>
     <h1>{title}</h1>
     <div class="article-body">

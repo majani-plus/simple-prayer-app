@@ -38,7 +38,8 @@ export const tr: SiteDict = {
       source: 'Kaynak kodu',
       articles: 'Yazılar (İngilizce)',
       press: 'Basın kiti',
-      madeBy: 'Majani Plus yaptı. Bütün özellikler ücretsiz.',
+      madeBy: 'Majani Plus’ta {author} yaptı. Bütün özellikler ücretsiz.',
+      author: 'Ronny Majani',
     },
     stores: {
       downloadOn: 'İndir:',

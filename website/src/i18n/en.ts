@@ -33,7 +33,8 @@ export const en = {
       source: 'Source code',
       articles: 'Articles',
       press: 'Press kit',
-      madeBy: 'Made by Majani Plus. Every feature is free.',
+      madeBy: 'Made by {author} at Majani Plus. Every feature is free.',
+      author: 'Ronny Majani',
     },
     stores: {
       downloadOn: 'Download on',

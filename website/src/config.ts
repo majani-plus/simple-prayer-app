@@ -6,6 +6,8 @@ export const site = {
   name: 'Simple Prayer',
   tagline: 'five a day · never missed',
   domain: 'simpleprayer.app',
+  /** The person who makes the app. Majani Plus LLC owns it; he takes the credit (owner, 2026-11-09). */
+  author: { name: 'Ronny Majani', url: 'https://ronnymajani.com' },
   /** The general inbox: support, press and anything that is not about privacy. */
   email: 'hello@simpleprayer.app',
   /** Privacy questions only. The privacy policy names it, and so do the store listings. */
