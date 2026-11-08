@@ -65,11 +65,14 @@ function hash(content) {
 function inlineHashes(html) {
   const scripts = new Set();
   const styles = new Set();
-  for (const [, attrs, body] of html.matchAll(/<script([^>]*)>([\s\S]*?)<\/script>/g)) {
-    if (/\bsrc=/.test(attrs) || body.trim() === '') continue;
+  // Case-insensitive, and tolerant of `</script >`: browsers accept both, so a hash list that
+  // missed them would block a script the page really runs. (The input is our own build output,
+  // but the match should be as loose as the HTML parser that enforces the CSP.)
+  for (const [, attrs, body] of html.matchAll(/<script\b([^>]*)>([\s\S]*?)<\/script\s*>/gi)) {
+    if (/\bsrc\s*=/i.test(attrs) || body.trim() === '') continue;
     scripts.add(hash(body));
   }
-  for (const [, , body] of html.matchAll(/<style([^>]*)>([\s\S]*?)<\/style>/g)) {
+  for (const [, , body] of html.matchAll(/<style\b([^>]*)>([\s\S]*?)<\/style\s*>/gi)) {
     if (body.trim() === '') continue;
     styles.add(hash(body));
   }

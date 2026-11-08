@@ -13,6 +13,10 @@ on:
   # required check that never starts leaves the pull request waiting forever.
   pull_request:
 
+# Read-only token: these jobs only check out and test the code.
+permissions:
+  contents: read
+
 jobs:
   checks:
     runs-on: ubuntu-latest
