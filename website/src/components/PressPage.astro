@@ -4,7 +4,7 @@ import Base from '../layouts/Base.astro';
 import Logo from './Logo.astro';
 import { site } from '../config';
 import { pagePath, type Locale } from '../i18n';
-import { pressContact, pressCopy, pressFiles } from '../press';
+import { developer, pressContact, pressCopy, pressFiles } from '../press';
 
 interface Props {
   locale: Locale;
@@ -36,7 +36,12 @@ const jsonLd = [
     name: c.title,
     inLanguage: locale,
     url: new URL(path, Astro.site).href,
-    about: { '@type': 'MobileApplication', name: site.name, url: new URL('/', Astro.site).href },
+    about: {
+      '@type': 'MobileApplication',
+      name: site.name,
+      url: new URL('/', Astro.site).href,
+      creator: { '@type': 'Person', name: developer.name, url: developer.url },
+    },
     publisher: { '@id': 'https://majani.plus/#organization' },
   },
 ];
@@ -72,10 +77,10 @@ const jsonLd = [
 
     <h2>{c.factsH2}</h2>
     <dl class="facts">
-      {c.facts.map(([k, v]) => (
+      {c.facts.map(([k, v, href]) => (
         <>
           <dt>{k}</dt>
-          <dd>{v}</dd>
+          <dd>{href ? <a href={href} rel="noopener">{v}</a> : v}</dd>
         </>
       ))}
     </dl>

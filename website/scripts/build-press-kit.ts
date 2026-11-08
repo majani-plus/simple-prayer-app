@@ -92,8 +92,8 @@ async function logos(): Promise<Zippable> {
 function factSheet(l: Locale): string {
   const c = pressCopy[l];
   const width = Math.max(...c.facts.map(([k]) => k.length)) + 2;
-  const rows = (pairs: readonly (readonly [string, string])[]) =>
-    pairs.map(([k, v]) => `${(k + ':').padEnd(width)}${v}`).join('\n');
+  const rows = (pairs: readonly (readonly [string, string, string?])[]) =>
+    pairs.map(([k, v, href]) => `${(k + ':').padEnd(width)}${v}${href ? ` (${href})` : ''}`).join('\n');
   const page = l === 'en' ? 'https://simpleprayer.app/press' : `https://simpleprayer.app/${l}/press`;
   return [
     c.sheet.title,
