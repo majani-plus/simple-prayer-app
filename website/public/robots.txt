@@ -1,3 +1,32 @@
+# Every crawler is welcome, search engines and AI assistants alike. The bots that answer people's
+# questions are named on purpose, so that a host or CDN default can never block them without
+# this file saying otherwise. /install is not blocked: it is served noindex (D156), and a
+# crawler has to fetch it to see that.
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
 User-agent: *
 Allow: /
 

@@ -180,7 +180,7 @@ def feature_graphic(width: int = 1024, height: int = 500) -> str:
     if mark_w + gap + title_w > safe:
         title_size *= (safe - mark_w - gap) / title_w
         title, title_w = text_outline(LORA["semibold"], "Simple Prayer Times", title_size)
-    tagline, tagline_w = text_outline(LORA["italic"], "Free forever. No ads.", title_size * 0.54)
+    tagline, tagline_w = text_outline(LORA["italic"], "Every feature is free. No ads.", title_size * 0.54)
 
     block_w = mark_w + gap + max(title_w, tagline_w)
     mark_x = (width - block_w) / 2

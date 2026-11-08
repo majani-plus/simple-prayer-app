@@ -24,7 +24,15 @@ const jsonLd = [
     datePublished: date,
     inLanguage: 'en',
     url: new URL(path, Astro.site).href,
+    mainEntityOfPage: new URL(path, Astro.site).href,
+    image: new URL('/og.png', Astro.site).href,
     author: { '@type': 'Organization', name: 'Majani Plus LLC', url: 'https://majani.plus' },
+    publisher: {
+      '@type': 'Organization',
+      name: 'Majani Plus LLC',
+      url: 'https://majani.plus',
+      logo: { '@type': 'ImageObject', url: new URL('/icon-512.png', Astro.site).href },
+    },
   },
 ];
 ---
@@ -36,6 +44,8 @@ const jsonLd = [
   locale="en"
   page={null}
   jsonLd={jsonLd}
+  ogType="article"
+  publishedTime={date}
 >
   <article class="section container article">
     <p class="caption">

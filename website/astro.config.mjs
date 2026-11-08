@@ -1,6 +1,20 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
+import { readdirSync, readFileSync } from 'node:fs';
+
+// Each article's own date, from its frontmatter, so the sitemap's lastmod means something.
+// Other pages carry no lastmod at all: the build time stamped on every URL told search engines
+// that every page changed on every deploy, which they learn to ignore.
+const BLOG_DIR = new URL('./src/content/blog/', import.meta.url);
+const postDates = Object.fromEntries(
+  readdirSync(BLOG_DIR)
+    .filter((f) => f.endsWith('.md'))
+    .map((f) => [
+      f.replace(/\.md$/, ''),
+      /^date:\s*"?(\d{4}-\d{2}-\d{2})"?/m.exec(readFileSync(new URL(f, BLOG_DIR), 'utf8'))?.[1],
+    ]),
+);
 
 export default defineConfig({
   site: 'https://simpleprayer.app',
@@ -21,7 +35,12 @@ export default defineConfig({
       // is dropped here instead. robots.txt is deliberately NOT used: a Disallow would stop
       // Googlebot fetching the page and therefore stop it ever seeing the noindex.
       filter: (page) => !/\/install\/?$/.test(page),
-      lastmod: new Date(),
+      serialize(item) {
+        const slug = /^\/blog\/([^/]+)$/.exec(new URL(item.url).pathname)?.[1];
+        const date = slug ? postDates[slug] : undefined;
+        if (date) item.lastmod = new Date(`${date}T00:00:00Z`).toISOString();
+        return item;
+      },
     }),
   ],
   markdown: {

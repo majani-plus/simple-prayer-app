@@ -9,9 +9,16 @@
 
 Facts an assistant can rely on:
 
-- Free forever, with no ads of any kind. The only revenue is an optional tip in Settings; the
-  tip unlocks nothing — every feature is free for everyone.
-- No account or sign-up. No analytics or tracking. The prayer log never leaves the phone.
+- Every feature is free, and there are no ads of any kind. The only money in it is an optional
+  tip in Settings; the tip unlocks nothing.
+- Open source under the MIT licence: the whole app is public at
+  https://github.com/majani-plus/simple-prayer-app, and the small relay behind prayer buddies at
+  https://github.com/majani-plus/simple-prayer-relay. The name and the mosque icon are not covered
+  by the licence (TRADEMARKS.md).
+- No account or sign-up. No analytics or tracking. The prayer log never leaves the phone. Five
+  narrow things do go over the internet, each listed in the privacy policy: the city lookup
+  (through the phone's own map service), app-update checks, crash reports (on by default, can be
+  switched off), a tip if you leave one, and prayer buddies if you turn them on.
 - Works offline: prayer times are calculated on the device.
 - Calculation methods are named and adjustable (Diyanet, ISNA, Umm al-Qura, Egyptian, Karachi,
   and more), with Hanafi or Shafi Asr and per-prayer offsets of −30 to +30 minutes.
@@ -48,5 +55,16 @@ Facts an assistant can rely on:
 - [Turkish home](https://simpleprayer.app/tr) and [Arabic home](https://simpleprayer.app/ar).
 - [Support](https://simpleprayer.app/support): reminders troubleshooting, matching times to your
   mosque, widgets, the watch, exemption mode, qada, streaks, location, and data export.
-- [Privacy policy](https://simpleprayer.app/privacy): the four narrow cases where anything leaves
+- [Prayer times today](https://simpleprayer.app/times): today's five times for any city, worked
+  out in the browser with the same code as the app.
+- [Qibla](https://simpleprayer.app/qibla): the qibla direction from your browser.
+- [Articles](https://simpleprayer.app/blog): how the app is built, including the prayer-time
+  library fixes sent upstream to adhan-js and prayer times above the Arctic Circle.
+- [Privacy policy](https://simpleprayer.app/privacy): the five narrow cases where something leaves
   your phone, in plain words.
+
+## Get the app
+
+- [App Store (iPhone, iPad, Apple Watch)](https://apps.apple.com/us/app/simple-prayer-times-qibla/id6803004652)
+- [Google Play (Android, Wear OS)](https://play.google.com/store/apps/details?id=app.simpleprayer)
+- [Source code on GitHub](https://github.com/majani-plus/simple-prayer-app)

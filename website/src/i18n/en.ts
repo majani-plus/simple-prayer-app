@@ -484,7 +484,7 @@ export const en = {
   /** The prayer-times tool: a section on the home page, and the whole of /times. */
   timesPage: {
     navLabel: 'Prayer times',
-    title: 'Prayer times today â Simple Prayer',
+    title: 'Prayer times today — Simple Prayer',
     description:
       "Today's five prayer times and the next one, worked out in your browser. No account, no ads, and your location never leaves your device.",
     heading: "Today's prayer times",
@@ -510,14 +510,14 @@ export const en = {
   /** The qibla tool at /qibla. */
   qiblaPage: {
     navLabel: 'Qibla',
-    title: 'Qibla direction â Simple Prayer',
+    title: 'Qibla direction — Simple Prayer',
     description:
       'Which way to face for prayer, and how far Makkah is, worked out in your browser. Your location never leaves your device.',
     heading: 'Which way to face',
     lead: 'The direction is worked out from where you are. It is correct on any device, whether or not the dial can turn.',
     enableCompass: 'Turn on the compass',
     compassBlocked:
-      'Your browser did not allow the compass. The direction below is still correct â turn until north on the dial matches north on your own compass.',
+      'Your browser did not allow the compass. The direction below is still correct. Turn until north on the dial matches north on your own compass.',
     faceDirection: 'Makkah is {{degrees}}° from north — {{cardinal}} on a compass.',
     flatHint: 'Lay the phone flat. A web compass has no way to correct for tilt, so a phone held upright will read wrong.',
     inApp: 'The app has a steadier compass, and it does not need the phone flat.',

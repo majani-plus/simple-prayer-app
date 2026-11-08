@@ -238,7 +238,7 @@ def build_og() -> None:
 
     mark, _ = mark_fragment(brand.GOLD, 96, 120, 120)
     title, title_w = fitted_text(brand.LORA["semibold"], "Simple Prayer", 76, 440)
-    tagline, _ = fitted_text(brand.LORA["italic"], "Free forever. No ads.", 42, 440)
+    tagline, _ = fitted_text(brand.LORA["italic"], "Every feature is free. No ads.", 42, 440)
     lockup = (
         mark
         + f'<g fill="{brand.INK}" transform="translate(96,372)">{title}</g>'
@@ -282,7 +282,7 @@ def build_play() -> None:
     mark, mark_w = mark_fragment(brand.GOLD, 0, 0, 110)
     mark = mark_fragment(brand.GOLD, cx - mark_w / 2, 116, 110)[0]
     title, title_w = fitted_text(brand.LORA["semibold"], "Simple Prayer", 44, 300)
-    tagline, tag_w = fitted_text(brand.LORA["italic"], "Free forever. No ads.", 30, 300)
+    tagline, tag_w = fitted_text(brand.LORA["italic"], "Every feature is free. No ads.", 30, 300)
     lockup = (
         mark
         + f'<g fill="{brand.INK}" transform="translate({cx - title_w / 2:.1f},296)">{title}</g>'

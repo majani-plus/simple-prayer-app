@@ -33,6 +33,10 @@ interface Props {
    * its own canonical, because canonicalising it elsewhere AND noindexing it is a contradiction.
    */
   noindex?: boolean;
+  /** Open Graph type: "article" for blog posts, which then also carry their publish date. */
+  ogType?: 'website' | 'article';
+  /** ISO date of an article's publication (YYYY-MM-DD), with ogType "article". */
+  publishedTime?: string;
 }
 
 const {
@@ -43,6 +47,8 @@ const {
   page = null,
   jsonLd = [],
   noindex = false,
+  ogType = 'website',
+  publishedTime,
 } = Astro.props;
 
 /**
@@ -74,7 +80,7 @@ const ogLocaleAlternates = (Object.keys(ogLocales) as Locale[])
   .map((l) => ogLocales[l]);
 // og.png is shared across locales and shows the app in English, so its alt stays English.
 const ogImageAlt =
-  'The Simple Prayer Today screen on warm paper: five prayer rows, each with a round gold seal.';
+  'The Simple Prayer name and mosque mark on warm paper, beside the app on a tablet, a phone showing the qibla compass, and a watch. Every feature is free. No ads.';
 // `<` escaped so no string inside the JSON can ever close the script element early.
 const jsonLdBlocks = jsonLd.map((obj) => JSON.stringify(obj).replace(/</g, '\\u003c'));
 ---
@@ -101,7 +107,10 @@ const jsonLdBlocks = jsonLd.map((obj) => JSON.stringify(obj).replace(/</g, '\\u0
     />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={ogType} />
+    {ogType === 'article' && publishedTime && (
+      <meta property="article:published_time" content={publishedTime} />
+    )}
     <meta property="og:url" content={canonical} />
     <meta property="og:site_name" content={site.name} />
     <meta property="og:locale" content={ogLocales[locale]} />
