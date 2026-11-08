@@ -65,14 +65,14 @@ function hash(content) {
 function inlineHashes(html) {
   const scripts = new Set();
   const styles = new Set();
-  // Case-insensitive, and tolerant of `</script >`: browsers accept both, so a hash list that
+  // Case-insensitive, and tolerant of anything before the closing `>` (`</script foo>`): browsers accept both, so a hash list that
   // missed them would block a script the page really runs. (The input is our own build output,
   // but the match should be as loose as the HTML parser that enforces the CSP.)
-  for (const [, attrs, body] of html.matchAll(/<script\b([^>]*)>([\s\S]*?)<\/script\s*>/gi)) {
+  for (const [, attrs, body] of html.matchAll(/<script\b([^>]*)>([\s\S]*?)<\/script\b[^>]*>/gi)) {
     if (/\bsrc\s*=/i.test(attrs) || body.trim() === '') continue;
     scripts.add(hash(body));
   }
-  for (const [, , body] of html.matchAll(/<style\b([^>]*)>([\s\S]*?)<\/style\s*>/gi)) {
+  for (const [, , body] of html.matchAll(/<style\b([^>]*)>([\s\S]*?)<\/style\b[^>]*>/gi)) {
     if (body.trim() === '') continue;
     styles.add(hash(body));
   }
