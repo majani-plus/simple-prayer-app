@@ -1,0 +1,13 @@
+# Buddy pairing links (D174).
+#
+# https://simpleprayer.app/b/ABCD2345 is an invite. On a phone with the app installed, iOS and
+# Android hand the URL straight to the app and this file is never consulted — that is what the
+# two files in .well-known/ are for. This rule is the other case: somebody who does not have the
+# app yet, or who opened the link on a computer. They get the install page, and the link works
+# when they come back to it.
+#
+# The code is deliberately dropped rather than carried through. It is a one-time pairing secret,
+# and a web page has no use for it — passing it into a query string would put it in browser
+# history, in the referrer of anything the page links to, and in any analytics the visitor's own
+# browser does. The app reads it from the URL directly.
+/b/*    /install    302

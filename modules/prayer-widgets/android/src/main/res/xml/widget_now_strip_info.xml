@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  4×1 — one row, full width (D182). Home screen ONLY: this face carries buddy badges, and D174's
+  lock-screen fence is untouched (the 2×2 Now widget keeps its keyguard flag for the seals it
+  already showed there before D177). Same update contract as widget_now_info.xml: redraws come
+  from the app and the transition alarm, plus a 30-minute system tick as a safety net (D189). Horizontal resize only —
+  one row is the whole idea.
+-->
+<appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
+  android:minWidth="250dp"
+  android:minHeight="40dp"
+  android:targetCellWidth="4"
+  android:targetCellHeight="1"
+  android:minResizeWidth="180dp"
+  android:minResizeHeight="40dp"
+  android:resizeMode="horizontal"
+  android:widgetCategory="home_screen"
+  android:updatePeriodMillis="1800000"
+  android:previewLayout="@layout/widget_now_strip_preview"
+  android:description="@string/widget_now_strip_description" />

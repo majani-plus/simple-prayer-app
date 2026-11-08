@@ -1,0 +1,526 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Schedule widget, 4×2+. All colors, texts and glyphs are set at runtime by WidgetRenderer from
+  the snapshot + WidgetPalette; the XML only fixes structure, spacing and type. Five columns are
+  written out longhand because RemoteViews cannot loop. Direction is pinned in the XML, never
+  inherited (D41: the APP language decides, and the launcher inflates under the SYSTEM locale):
+  this file pins ltr, and the DERIVED Arabic variant (widget_schedule_arabic.xml) pins rtl, so
+  each mirrors itself deterministically and Kotlin always fills children in natural order.
+  Regenerate the variant with `bun scripts/derive-arabic-layouts.ts` after editing this file;
+  never edit it by hand.
+  The current column's ring is TWO FILLED layers (gold card behind, paper card inset 1.5dp on
+  top), never a stroke-only shape: a tinted stroke drawable renders as a filled slab under the
+  launcher's renderer — the exact owner-reported bug. forceDarkAllowed pins the runtime-tinted
+  palette against OEM force-dark repainting. Column content is a CENTERED CLUSTER with fixed
+  gaps — never weight-stretched apart: extra height becomes symmetric margin around the
+  cluster, which reads as intentional space instead of emptiness (owner, 2026-08-25).
+-->
+<!-- DERIVED by scripts/derive-arabic-layouts.ts — edit the Lora original, then regenerate. -->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:id="@+id/root"
+  android:layoutDirection="rtl"
+  android:forceDarkAllowed="false"
+  tools:targetApi="q"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent">
+
+  <ImageView
+    android:id="@+id/bg"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:scaleType="fitXY"
+    android:importantForAccessibility="no"
+    android:src="@drawable/paper_shape" />
+
+  <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingStart="15dp"
+    android:paddingEnd="15dp"
+    android:paddingTop="13dp"
+    android:paddingBottom="12dp">
+
+    <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="horizontal"
+      android:gravity="center_vertical">
+      <ImageView
+        android:id="@+id/header_mark"
+        android:layout_width="22dp"
+        android:layout_height="14dp"
+        android:layout_marginEnd="7dp"
+        android:importantForAccessibility="no"
+        android:src="@drawable/glyph_mosque" />
+      <TextView
+        android:id="@+id/header_date"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:fontFamily="@font/noto_naskh_arabic_600semibold"
+        android:textSize="15.5sp"
+        android:maxLines="1"
+        android:ellipsize="end" />
+      <ImageView
+        android:id="@+id/header_sun"
+        android:layout_width="11dp"
+        android:layout_height="11dp"
+        android:layout_marginEnd="4dp"
+        android:importantForAccessibility="no"
+        android:src="@drawable/glyph_sun" />
+      <TextView
+        android:id="@+id/header_meta"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/noto_naskh_arabic_400regular"
+        android:fontFeatureSettings="tnum"
+        android:textSize="13sp"
+        android:maxLines="1" />
+    </LinearLayout>
+    <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="7dp"
+      android:paddingStart="4dp"
+      android:paddingEnd="4dp"
+      android:orientation="horizontal"
+      android:gravity="center_vertical">
+      <ImageView
+        android:id="@+id/hrule_l"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_weight="1"
+        android:scaleType="fitXY"
+        android:importantForAccessibility="no"
+        android:src="@drawable/card_shape" />
+      <TextView
+        android:id="@+id/horn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="7dp"
+        android:layout_marginEnd="7dp"
+        android:fontFamily="@font/noto_naskh_arabic_600semibold"
+        android:textSize="10.5sp"
+        android:maxLines="1" />
+      <ImageView
+        android:id="@+id/hrule_r"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_weight="1"
+        android:scaleType="fitXY"
+        android:importantForAccessibility="no"
+        android:src="@drawable/card_shape" />
+    </LinearLayout>
+
+
+    <FrameLayout
+      android:layout_width="match_parent"
+      android:layout_height="0dp"
+      android:layout_weight="1"
+      android:layout_marginTop="8dp">
+    <LinearLayout
+      android:id="@+id/columns"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center_vertical"
+      android:orientation="horizontal"
+      android:baselineAligned="false">
+
+      <FrameLayout
+        android:id="@+id/col1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_marginEnd="3dp">
+        <ImageView
+          android:id="@+id/col1_border"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:scaleType="fitXY"
+          android:visibility="gone"
+          android:importantForAccessibility="no"
+          android:src="@drawable/card_shape" />
+        <ImageView
+          android:id="@+id/col1_bg"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:layout_margin="1.5dp"
+          android:scaleType="fitXY"
+          android:importantForAccessibility="no"
+          android:src="@drawable/card_shape" />
+        <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:orientation="vertical"
+          android:gravity="center_horizontal"
+          android:paddingTop="8dp"
+          android:paddingBottom="8dp">
+          <TextView
+            android:id="@+id/col1_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/noto_naskh_arabic_600semibold"
+            android:textSize="15sp"
+            android:maxLines="1"
+            android:ellipsize="end" />
+          <FrameLayout
+            android:layout_width="34dp"
+            android:layout_height="34dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginBottom="6dp">
+            <ImageView
+              android:id="@+id/col1_seal_fill"
+              android:layout_width="34dp"
+              android:layout_height="34dp"
+              android:layout_gravity="center"
+              android:importantForAccessibility="no" />
+            <ImageView
+              android:id="@+id/col1_seal_glyph"
+              android:layout_width="17dp"
+              android:layout_height="17dp"
+              android:layout_gravity="center"
+              android:importantForAccessibility="no" />
+          </FrameLayout>
+          <TextView
+            android:id="@+id/col1_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/noto_naskh_arabic_600semibold"
+            android:fontFeatureSettings="tnum"
+            android:textSize="15sp"
+            android:autoSizeTextType="uniform"
+            android:autoSizeMinTextSize="10.5sp"
+            android:autoSizeMaxTextSize="15sp"
+            android:gravity="center"
+            android:maxLines="1" />
+          <TextView
+            android:id="@+id/col1_cap"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/noto_naskh_arabic_600semibold"
+            android:textSize="12.5sp"
+            android:maxLines="1"
+            android:ellipsize="end" />
+        </LinearLayout>
+      </FrameLayout>
+
+      <FrameLayout
+        android:id="@+id/col2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_marginStart="3dp"
+        android:layout_marginEnd="3dp">
+        <ImageView
+          android:id="@+id/col2_border"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:scaleType="fitXY"
+          android:visibility="gone"
+          android:importantForAccessibility="no"
+          android:src="@drawable/card_shape" />
+        <ImageView
+          android:id="@+id/col2_bg"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:layout_margin="1.5dp"
+          android:scaleType="fitXY"
+          android:importantForAccessibility="no"
+          android:src="@drawable/card_shape" />
+        <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:orientation="vertical"
+          android:gravity="center_horizontal"
+          android:paddingTop="8dp"
+          android:paddingBottom="8dp">
+          <TextView
+            android:id="@+id/col2_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/noto_naskh_arabic_600semibold"
+            android:textSize="15sp"
+            android:maxLines="1"
+            android:ellipsize="end" />
+          <FrameLayout
+            android:layout_width="34dp"
+            android:layout_height="34dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginBottom="6dp">
+            <ImageView
+              android:id="@+id/col2_seal_fill"
+              android:layout_width="34dp"
+              android:layout_height="34dp"
+              android:layout_gravity="center"
+              android:importantForAccessibility="no" />
+            <ImageView
+              android:id="@+id/col2_seal_glyph"
+              android:layout_width="17dp"
+              android:layout_height="17dp"
+              android:layout_gravity="center"
+              android:importantForAccessibility="no" />
+          </FrameLayout>
+          <TextView
+            android:id="@+id/col2_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/noto_naskh_arabic_600semibold"
+            android:fontFeatureSettings="tnum"
+            android:textSize="15sp"
+            android:autoSizeTextType="uniform"
+            android:autoSizeMinTextSize="10.5sp"
+            android:autoSizeMaxTextSize="15sp"
+            android:gravity="center"
+            android:maxLines="1" />
+          <TextView
+            android:id="@+id/col2_cap"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/noto_naskh_arabic_600semibold"
+            android:textSize="12.5sp"
+            android:maxLines="1"
+            android:ellipsize="end" />
+        </LinearLayout>
+      </FrameLayout>
+
+      <FrameLayout
+        android:id="@+id/col3"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_marginStart="3dp"
+        android:layout_marginEnd="3dp">
+        <ImageView
+          android:id="@+id/col3_border"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:scaleType="fitXY"
+          android:visibility="gone"
+          android:importantForAccessibility="no"
+          android:src="@drawable/card_shape" />
+        <ImageView
+          android:id="@+id/col3_bg"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:layout_margin="1.5dp"
+          android:scaleType="fitXY"
+          android:importantForAccessibility="no"
+          android:src="@drawable/card_shape" />
+        <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:orientation="vertical"
+          android:gravity="center_horizontal"
+          android:paddingTop="8dp"
+          android:paddingBottom="8dp">
+          <TextView
+            android:id="@+id/col3_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/noto_naskh_arabic_600semibold"
+            android:textSize="15sp"
+            android:maxLines="1"
+            android:ellipsize="end" />
+          <FrameLayout
+            android:layout_width="34dp"
+            android:layout_height="34dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginBottom="6dp">
+            <ImageView
+              android:id="@+id/col3_seal_fill"
+              android:layout_width="34dp"
+              android:layout_height="34dp"
+              android:layout_gravity="center"
+              android:importantForAccessibility="no" />
+            <ImageView
+              android:id="@+id/col3_seal_glyph"
+              android:layout_width="17dp"
+              android:layout_height="17dp"
+              android:layout_gravity="center"
+              android:importantForAccessibility="no" />
+          </FrameLayout>
+          <TextView
+            android:id="@+id/col3_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/noto_naskh_arabic_600semibold"
+            android:fontFeatureSettings="tnum"
+            android:textSize="15sp"
+            android:autoSizeTextType="uniform"
+            android:autoSizeMinTextSize="10.5sp"
+            android:autoSizeMaxTextSize="15sp"
+            android:gravity="center"
+            android:maxLines="1" />
+          <TextView
+            android:id="@+id/col3_cap"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/noto_naskh_arabic_600semibold"
+            android:textSize="12.5sp"
+            android:maxLines="1"
+            android:ellipsize="end" />
+        </LinearLayout>
+      </FrameLayout>
+
+      <FrameLayout
+        android:id="@+id/col4"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_marginStart="3dp"
+        android:layout_marginEnd="3dp">
+        <ImageView
+          android:id="@+id/col4_border"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:scaleType="fitXY"
+          android:visibility="gone"
+          android:importantForAccessibility="no"
+          android:src="@drawable/card_shape" />
+        <ImageView
+          android:id="@+id/col4_bg"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:layout_margin="1.5dp"
+          android:scaleType="fitXY"
+          android:importantForAccessibility="no"
+          android:src="@drawable/card_shape" />
+        <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:orientation="vertical"
+          android:gravity="center_horizontal"
+          android:paddingTop="8dp"
+          android:paddingBottom="8dp">
+          <TextView
+            android:id="@+id/col4_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/noto_naskh_arabic_600semibold"
+            android:textSize="15sp"
+            android:maxLines="1"
+            android:ellipsize="end" />
+          <FrameLayout
+            android:layout_width="34dp"
+            android:layout_height="34dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginBottom="6dp">
+            <ImageView
+              android:id="@+id/col4_seal_fill"
+              android:layout_width="34dp"
+              android:layout_height="34dp"
+              android:layout_gravity="center"
+              android:importantForAccessibility="no" />
+            <ImageView
+              android:id="@+id/col4_seal_glyph"
+              android:layout_width="17dp"
+              android:layout_height="17dp"
+              android:layout_gravity="center"
+              android:importantForAccessibility="no" />
+          </FrameLayout>
+          <TextView
+            android:id="@+id/col4_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/noto_naskh_arabic_600semibold"
+            android:fontFeatureSettings="tnum"
+            android:textSize="15sp"
+            android:autoSizeTextType="uniform"
+            android:autoSizeMinTextSize="10.5sp"
+            android:autoSizeMaxTextSize="15sp"
+            android:gravity="center"
+            android:maxLines="1" />
+          <TextView
+            android:id="@+id/col4_cap"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/noto_naskh_arabic_600semibold"
+            android:textSize="12.5sp"
+            android:maxLines="1"
+            android:ellipsize="end" />
+        </LinearLayout>
+      </FrameLayout>
+
+      <FrameLayout
+        android:id="@+id/col5"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_marginStart="3dp">
+        <ImageView
+          android:id="@+id/col5_border"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:scaleType="fitXY"
+          android:visibility="gone"
+          android:importantForAccessibility="no"
+          android:src="@drawable/card_shape" />
+        <ImageView
+          android:id="@+id/col5_bg"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:layout_margin="1.5dp"
+          android:scaleType="fitXY"
+          android:importantForAccessibility="no"
+          android:src="@drawable/card_shape" />
+        <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:orientation="vertical"
+          android:gravity="center_horizontal"
+          android:paddingTop="8dp"
+          android:paddingBottom="8dp">
+          <TextView
+            android:id="@+id/col5_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/noto_naskh_arabic_600semibold"
+            android:textSize="15sp"
+            android:maxLines="1"
+            android:ellipsize="end" />
+          <FrameLayout
+            android:layout_width="34dp"
+            android:layout_height="34dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginBottom="6dp">
+            <ImageView
+              android:id="@+id/col5_seal_fill"
+              android:layout_width="34dp"
+              android:layout_height="34dp"
+              android:layout_gravity="center"
+              android:importantForAccessibility="no" />
+            <ImageView
+              android:id="@+id/col5_seal_glyph"
+              android:layout_width="17dp"
+              android:layout_height="17dp"
+              android:layout_gravity="center"
+              android:importantForAccessibility="no" />
+          </FrameLayout>
+          <TextView
+            android:id="@+id/col5_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/noto_naskh_arabic_600semibold"
+            android:fontFeatureSettings="tnum"
+            android:textSize="15sp"
+            android:autoSizeTextType="uniform"
+            android:autoSizeMinTextSize="10.5sp"
+            android:autoSizeMaxTextSize="15sp"
+            android:gravity="center"
+            android:maxLines="1" />
+          <TextView
+            android:id="@+id/col5_cap"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/noto_naskh_arabic_600semibold"
+            android:textSize="12.5sp"
+            android:maxLines="1"
+            android:ellipsize="end" />
+        </LinearLayout>
+      </FrameLayout>
+    </LinearLayout>
+    </FrameLayout>
+  </LinearLayout>
+</FrameLayout>

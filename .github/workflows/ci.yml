@@ -1,0 +1,32 @@
+name: CI
+
+# App checks only. The website has its own workflow (website.yml) with the mirror-image path
+# filter, so site changes don't run the app's test suite and app changes don't build the site.
+# docs/ is deliberately NOT ignored: privacyClaims.test.ts reads docs/PRIVACY_POLICY.md.
+on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - 'website/**'
+      - '.github/workflows/website.yml'
+  pull_request:
+    paths-ignore:
+      - 'website/**'
+      - '.github/workflows/website.yml'
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+      - name: Typecheck
+        run: bun run typecheck
+      - name: Lint
+        run: bun run lint
+      - name: Test
+        run: bun run test --ci

@@ -1,0 +1,8 @@
+<resources>
+  <!-- The brand name stays untranslated everywhere, matching the app. -->
+  <string name="watch_face_name">Simple Prayer</string>
+  <!-- Slot names for the system watch face editor. Both slots are locked
+       (isCustomizable="FALSE"), so these appear rarely — but never untranslated. -->
+  <string name="slot_next_prayer">Next prayer</string>
+  <string name="slot_prayer_window">Time ring</string>
+</resources>

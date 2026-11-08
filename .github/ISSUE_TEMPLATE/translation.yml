@@ -1,0 +1,39 @@
+name: Translation
+description: Fix a word in a language, or offer to add a new language.
+labels: [translation]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you. Please read docs/TRANSLATING.md first. Text must be written by a fluent speaker, never by a machine translator.
+  - type: dropdown
+    id: kind
+    attributes:
+      label: What is this about?
+      options:
+        - Improve an existing language
+        - Add a new language
+    validations:
+      required: true
+  - type: input
+    id: language
+    attributes:
+      label: Language
+      placeholder: Turkish / Arabic / Urdu / ...
+    validations:
+      required: true
+  - type: textarea
+    id: details
+    attributes:
+      label: Details
+      description: For a fix, give the current text, where it appears, and what it should say. For a new language, tell us which words people use for the prayers, qada and qibla.
+    validations:
+      required: true
+  - type: checkboxes
+    id: fluent
+    attributes:
+      label: Fluency
+      options:
+        - label: I read and write this language fluently.
+          required: true
+        - label: I know a second fluent speaker who could review the text.

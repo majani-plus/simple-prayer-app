@@ -1,0 +1,1477 @@
+{
+  "app": {
+    "name": "Simple Prayer"
+  },
+  "tabs": {
+    "today": "Today",
+    "history": "History",
+    "qibla": "Qibla",
+    "settings": "Settings"
+  },
+  "common": {
+    "comingSoon": "Coming soon",
+    "on": "On",
+    "off": "Off"
+  },
+  "prayers": {
+    "fajr": "Fajr",
+    "dhuhr": "Dhuhr",
+    "asr": "Asr",
+    "maghrib": "Maghrib",
+    "isha": "Isha",
+    "jumuah": "Jumu’ah · Dhuhr",
+    "jumuahShort": "Jumaa",
+    "arabic": {
+      "fajr": "الفجر",
+      "dhuhr": "الظهر",
+      "asr": "العصر",
+      "maghrib": "المغرب",
+      "isha": "العشاء",
+      "jumuah": "الجمعة",
+      "jumuahShort": "الجمعة"
+    }
+  },
+  "hijri": {
+    "dayMonth": "{{day}} {{month}}",
+    "era": {
+      "ah": "AH"
+    },
+    "months": {
+      "muharram": "Muharram",
+      "safar": "Safar",
+      "rabiAlAwwal": "Rabiʿ al-Awwal",
+      "rabiAlThani": "Rabiʿ al-Thani",
+      "jumadaAlAwwal": "Jumada al-Awwal",
+      "jumadaAlThani": "Jumada al-Thani",
+      "rajab": "Rajab",
+      "shaban": "Shaʿban",
+      "ramadan": "Ramadan",
+      "shawwal": "Shawwal",
+      "dhuAlQidah": "Dhu al-Qiʿdah",
+      "dhuAlHijjah": "Dhu al-Hijjah"
+    }
+  },
+  "today": {
+    "dateLine": "{{hijri}} · {{gregorian}}",
+    "streakLabel_one": "day streak",
+    "streakLabel_other": "day streak",
+    "caption": {
+      "upcoming": "upcoming",
+      "next": "next",
+      "dueUntil": "now · until {{time}}",
+      "dueUntilSunrise": "now · until sunrise {{time}}",
+      "dueNow": "now"
+    },
+    "sunrise": {
+      "label": "Sunrise",
+      "a11yLabel": "Sunrise at {{time}}"
+    },
+    "footerHint": "tap the seal when you pray · tap again to undo",
+    "yesterday": {
+      "heading": "Yesterday",
+      "count_one": "{{count}} prayer not marked",
+      "count_other": "{{count}} prayers not marked",
+      "a11yLabel": "Yesterday. {{count}}",
+      "a11yHint": "Opens yesterday so you can mark its prayers"
+    },
+    "exemptNote": "These days are exempt — nothing to mark.",
+    "timesError": "Prayer times could not be calculated for this location.",
+    "noLocation": {
+      "title": "Prayer times need a location",
+      "body": "An approximate location is enough to work out today’s times and the Qibla."
+    },
+    "reminder": {
+      "on": "Reminder on",
+      "off": "Remind me",
+      "a11yLabel": "Reminder for {{prayer}}",
+      "a11yHintOn": "Turns off the reminder for this prayer",
+      "a11yHintOff": "Sends a reminder when this prayer's time arrives",
+      "needsPermission": "Reminders off — allow notifications",
+      "a11yHintAsk": "Asks the system for permission to send notifications",
+      "a11yHintBlocked": "Opens system settings, where notifications can be allowed"
+    },
+    "hero": {
+      "a11yLabel": "Next prayer: {{prayer}} at {{time}}",
+      "a11yDue": "Time to pray {{prayer}} — until {{time}}",
+      "until": "until {{time}}",
+      "leftToPray": "{{duration}} left to pray",
+      "prayedIn": "{{prayer}} prayed · next in {{duration}}"
+    },
+    "row": {
+      "a11yLabel": "{{prayer}}, {{time}}, {{caption}}"
+    },
+    "overflow": {
+      "a11y": "More",
+      "title": "More"
+    },
+    "glance": {
+      "qiblaHint": "Opens the Qibla tab"
+    }
+  },
+  "buddy": {
+    "unnamed": "Your buddy",
+    "list": {
+      "separator": ", ",
+      "last": " and "
+    },
+    "row": {
+      "prayed": "{{names}} prayed"
+    },
+    "push": {
+      "title": "Your buddy prayed {{prayer}}",
+      "titleNamed": "{{nickname}} prayed {{prayer}}"
+    },
+    "channel": {
+      "name": "Buddies",
+      "description": "When a buddy marks a prayer."
+    },
+    "icons": {
+      "initials": "Initials",
+      "crescent": "Crescent",
+      "star": "Star",
+      "mosque": "Mosque",
+      "rosette": "Rosette",
+      "leaf": "Leaf",
+      "drop": "Drop",
+      "sun": "Sun",
+      "book": "Book",
+      "heart": "Heart",
+      "dawn": "Dawn"
+    },
+    "colors": {
+      "ocean": "Ocean",
+      "brick": "Brick",
+      "violet": "Violet",
+      "teal": "Teal",
+      "rose": "Rose",
+      "stone": "Stone",
+      "plum": "Plum",
+      "clay": "Clay"
+    },
+    "picker": {
+      "icon": "Icon",
+      "color": "Colour",
+      "preview": "This is how they will look to you."
+    },
+    "settings": {
+      "title": "Buddies",
+      "back": "Back to Settings",
+      "row": {
+        "label": "Buddy mode",
+        "description": "See that a friend or someone in your family prayed, and let them see you",
+        "a11yHint": "Opens the buddies screen"
+      },
+      "enable": {
+        "label": "Buddy mode",
+        "body": "Off until you turn it on."
+      },
+      "explain": {
+        "sees": "A buddy sees that you prayed. Late counts as prayed.",
+        "never": "They never see a prayer you missed, or one you have not marked yet. An empty row means nothing arrived.",
+        "leaves": "Each prayer you mark is sent to their phone through our relay. The relay deletes it as soon as their phone has it, or after a day, whichever comes first. It holds no name, no photo and no location.",
+        "source": "Read the relay's source code"
+      },
+      "notify": {
+        "label": "Tell me when a buddy prays",
+        "body": "A quiet notification. No sound."
+      },
+      "add": "Add a buddy",
+      "haveCode": "I have a code",
+      "list": "Your buddies",
+      "remove": "Remove",
+      "removeA11y": "Remove {{name}}",
+      "full": "Five buddies is the most you can have.",
+      "permission": {
+        "title": "Notifications are off",
+        "body": "Buddy mode needs them to reach your phone. Without them, a buddy's prayers show up when you next open the app.",
+        "action": "Open settings"
+      },
+      "group": {
+        "footer": "A buddy sees that you prayed, and nothing else."
+      }
+    },
+    "invite": {
+      "title": "Share this with your buddy",
+      "body": "They can scan it, tap the link, or type the code.",
+      "share": "Share link",
+      "done": "Done",
+      "failed": "Could not make a code. Try again in a moment.",
+      "titleFor": "Share this with {{name}}",
+      "expiresIn": "Expires in {{duration}}",
+      "cancel": "Cancel invite",
+      "waiting": "Invite sent · expires in {{duration}}",
+      "pendingHint": "Opens the code again"
+    },
+    "accept": {
+      "title": "Someone wants to be your prayer buddy",
+      "body": "You will each see that the other prayed today. Nothing else.",
+      "name": "What will you call them?",
+      "placeholder": "A nickname only you see",
+      "confirm": "Add buddy",
+      "cancel": "Not now",
+      "invalid": "That code has expired, or somebody has already used it.",
+      "codeLabel": "Enter the code, like ABCD-EFGH",
+      "full": "One of you already has five buddies, which is the most."
+    },
+    "ended": {
+      "title": "A buddy link ended.",
+      "body": "You will not see each other's prayers any more."
+    },
+    "pending": {
+      "title": "Someone accepted your invite",
+      "save": "Save"
+    },
+    "accepted": {
+      "title": "{{name}} accepted",
+      "body": "You will each see that the other prayed today."
+    },
+    "naming": {
+      "title": "Who are you inviting?",
+      "body": "You choose their nickname and their colour. They never see either one.",
+      "next": "Make an invite"
+    },
+    "paired": {
+      "title": "{{name}} is your buddy now",
+      "body": "You will each see that the other prayed today. Nothing else.",
+      "done": "Done"
+    },
+    "edit": {
+      "save": "Save",
+      "remove": "Remove buddy",
+      "hint": "Change the nickname, icon or colour"
+    }
+  },
+  "exemption": {
+    "begin": {
+      "title": "Begin excused days",
+      "fromToday": "From today",
+      "fromEarlier": "From an earlier day…",
+      "notNow": "Not now",
+      "reassure": "Prayers from these days are not made up later — nothing builds up.",
+      "howLong": "For how long?",
+      "untilIEnd": "Until I end it",
+      "days_one": "{{count}} day — until {{date}}",
+      "days_other": "{{count}} days — until {{date}}",
+      "pickCount": "A number of days…",
+      "stepper_one": "{{count}} day",
+      "stepper_other": "{{count}} days",
+      "confirmCount": "Begin — until {{date}}",
+      "dayFewer": "One day fewer",
+      "dayMore": "One day more",
+      "pauseReminders": "Pause prayer reminders",
+      "pauseRemindersHint": "No adhan or reminders while the excused days last. Turn off to keep hearing the adhan.",
+      "summaryMuted": "While the excused days last, no prayer reminders will arrive.",
+      "summaryKept": "The adhan will still arrive on excused days. Only the last call stays quiet.",
+      "summaryMutedUntil": "Last excused day: {{date}}. No prayer reminders until then.",
+      "summaryKeptUntil": "Last excused day: {{date}}. The adhan still arrives; only the last call stays quiet."
+    },
+    "banner": {
+      "body": "Excused since {{date}} — no prayers are owed for these days. Reminders are paused.",
+      "end": "End",
+      "stillOn": "Still excused? End it here whenever you’re ready — there’s no rush.",
+      "bodyUntil": "Excused until {{date}} — no prayers are owed for these days. Reminders are paused."
+    },
+    "end": {
+      "title": "End excused days",
+      "question": "When was the last excused day?",
+      "yesterday": "Yesterday — today is a regular day",
+      "today": "Today",
+      "earlier": "An earlier day…"
+    },
+    "overflow": {
+      "intro": "Excused days are never counted as missed, and are never made up later. Reminders pause unless you keep them on.",
+      "begin": "Excused from today",
+      "end": "End excused days",
+      "settings": "Excused day settings"
+    },
+    "modeOff": {
+      "title": "You’re still marked excused",
+      "body": "Turn off and end it as of yesterday?",
+      "confirm": "Turn off",
+      "cancel": "Cancel"
+    },
+    "settings": {
+      "back": "Back",
+      "notActive": "Not currently excused",
+      "activeSince": "Excused since {{date}}",
+      "begin": "Begin",
+      "end": "End",
+      "periods": {
+        "label": "Past records",
+        "description": "Add, correct or remove an earlier record.",
+        "a11yHint": "Opens the list of recorded excused days",
+        "add": "Add an earlier record",
+        "empty": "Nothing recorded yet.",
+        "range": "{{start}} – {{end}}"
+      },
+      "activeUntil": "Excused until {{date}}"
+    },
+    "editor": {
+      "editTitle": "Edit record",
+      "addTitle": "Add an earlier record",
+      "firstDay": "First day",
+      "lastDay": "Last day",
+      "save": "Save",
+      "remove": "Remove this record",
+      "cancel": "Cancel",
+      "invalid": "The last day can’t come before the first."
+    }
+  },
+  "seal": {
+    "option": {
+      "prayed": "Prayed",
+      "late": "Late",
+      "missed": "Missed"
+    },
+    "status": {
+      "unlogged": "not marked",
+      "prayed": "prayed",
+      "late": "prayed late",
+      "missed": "missed",
+      "exempt": "not required"
+    },
+    "a11y": {
+      "face": "{{prayer}}, {{status}}",
+      "hintOpen": "Opens the three choices",
+      "hintMarkPrayed": "Marks {{prayer}} as prayed",
+      "hintUndo": "Clears the mark",
+      "hintUpcoming": "You can mark this once the prayer time arrives",
+      "hintExempt": "This day is exempt — there is nothing to mark",
+      "opened": "{{prayer}} choices open",
+      "closed": "Choices closed",
+      "recorded": {
+        "prayed": "{{prayer}} marked as prayed",
+        "late": "{{prayer}} marked as prayed late",
+        "missed": "{{prayer}} marked as missed"
+      },
+      "cleared": "{{prayer}} mark cleared",
+      "mark": {
+        "prayed": "Mark {{prayer}} as prayed",
+        "late": "Mark {{prayer}} as prayed late",
+        "missed": "Mark {{prayer}} as missed"
+      },
+      "clear": {
+        "prayed": "Clear “prayed” for {{prayer}}",
+        "late": "Clear “prayed late” for {{prayer}}",
+        "missed": "Clear “missed” for {{prayer}}"
+      },
+      "closeAction": "Close choices"
+    }
+  },
+  "qada": {
+    "title": "Making up prayers",
+    "back": "Back",
+    "count_one": "{{count}} prayer",
+    "count_other": "{{count}} prayers",
+    "unit_one": "prayer",
+    "unit_other": "prayers",
+    "card": {
+      "heading": "Still to make up",
+      "hint": "Tap to see all five",
+      "a11yLabel": "Making up prayers — {{total}} still to go",
+      "a11yHint": "Opens the full list"
+    },
+    "screen": {
+      "remaining": "still to make up",
+      "a11yTotal": "{{total}} still to make up",
+      "perPrayer": "one at a time",
+      "makeUp": "Made up",
+      "makeUpA11y": "Mark one {{prayer}} as made up",
+      "addA11y": "Add one {{prayer}} to make up",
+      "cleared": "cleared",
+      "clearedA11y": "{{prayer}} — nothing left to make up",
+      "footerHint": "one tap for each prayer you make up",
+      "relief": {
+        "title": "Nothing left to make up",
+        "body": "Your slate is clear. May the ones ahead be easy.",
+        "setup": "Count prayers I missed earlier"
+      }
+    },
+    "pace": {
+      "recent": "{{value}} made up in the last {{days}} days.",
+      "projected": "At this pace, you’re clear around {{date}}.",
+      "none": "One whenever you can. There is no clock on this."
+    },
+    "forgive": {
+      "action": "Start fresh",
+      "explain": "If the number weighs on you more than it helps, you can set it down.",
+      "confirmTitle": "Set this down?",
+      "confirmBody": "{{total}} will be archived, not erased — your history stays, and you can bring them back for {{days}} days.",
+      "confirm": "Yes, start fresh",
+      "cancel": "Not now",
+      "doneTitle": "Set down.",
+      "doneBody": "Your counters begin at zero from today. What you set down is kept for {{days}} days if you want it back.",
+      "undo": "Bring them back"
+    },
+    "setup": {
+      "title": "Where would you like to start?",
+      "body": "Both ways are fine. Choose the one you can live with.",
+      "skip": "Not now",
+      "back": "Back",
+      "rerun": "Set up again",
+      "backtrack": {
+        "title": "Count what I missed",
+        "body": "Give a rough stretch of time and we’ll work out a starting number you can edit."
+      },
+      "blank": {
+        "title": "Begin at zero",
+        "body": "Start from today. Only prayers you mark as missed from now on are counted."
+      },
+      "range": {
+        "title": "Which stretch of time?",
+        "body": "A rough range is enough — every number can be changed on the next step.",
+        "from": "From",
+        "to": "Until",
+        "exempt": "Leave out my excused days",
+        "exemptBody": "No prayers were owed on those days, so they aren’t counted.",
+        "daysPerMonth": {
+          "label": "Excused days each month",
+          "fromRecords": "Suggested from the days you’ve recorded — adjust it if needed.",
+          "guess": "A rough figure is enough.",
+          "decrease": "One day fewer",
+          "increase": "One day more"
+        },
+        "invalid": "The end of the range comes before its start.",
+        "pick": "Choose a day",
+        "days_one": "{{count}} day",
+        "days_other": "{{count}} days",
+        "summary": "{{days}} — about {{total}}",
+        "next": "See the estimate"
+      },
+      "estimate": {
+        "title": "A starting point",
+        "body": "This is an estimate, not a verdict. Change any number that doesn’t feel right.",
+        "total": "{{total}} in all",
+        "field": "{{prayer}} to make up",
+        "decrease": "One fewer {{prayer}}",
+        "increase": "One more {{prayer}}",
+        "save": "Save and begin"
+      }
+    }
+  },
+  "history": {
+    "monthTitle": "{{gregorian}} · {{hijri}}",
+    "monthSpanSeparator": " / ",
+    "month": {
+      "legend": {
+        "prayed": "{{count}} prayed",
+        "late": "{{count}} late",
+        "missed": "{{count}} missed",
+        "unlogged": "{{count}} not marked"
+      },
+      "join": " · "
+    },
+    "a11yPreviousMonth": "Previous month",
+    "a11yNextMonth": "Next month",
+    "footerHint": "tap a day to open it · any past day can be marked",
+    "day": {
+      "a11yLabel": "{{date}} — {{summary}}",
+      "a11yHint": "Opens this day",
+      "future": "not yet",
+      "exempt": "exempt",
+      "nothing": "nothing marked",
+      "counts": "{{prayed}} prayed, {{late}} late, {{missed}} missed"
+    },
+    "detail": {
+      "close": "Close",
+      "a11yDismiss": "Close this day",
+      "hijriLine": "{{day}} {{month}} {{year}}",
+      "future": "This day hasn’t arrived yet.",
+      "exempt": "This day is exempt — nothing to mark.",
+      "noTimes": "Set a location to see and mark this day’s times.",
+      "madeUp": {
+        "mark": "mark as made up",
+        "marked": "made up",
+        "markA11y": "Mark {{prayer}} as made up",
+        "unmarkA11y": "Undo “made up” for {{prayer}}"
+      }
+    },
+    "stats": {
+      "title": "Your record",
+      "best": "best",
+      "mode": {
+        "soft": "Relaxed",
+        "hard": "Committed"
+      },
+      "modeLine": "{{mode}} streaks",
+      "bestSince": "{{mode}} streaks · best run began {{date}}",
+      "startHint": "Mark a prayer to start one.",
+      "thisWeek": "this week",
+      "windowLabel_one": "{{days}} day",
+      "windowLabel_other": "{{days}} days",
+      "completion": "completed",
+      "onTime": "on time",
+      "completionCaption": "{{prayed}} on time · {{late}} late · {{missed}} missed · {{unlogged}} not marked",
+      "byPrayer": "By prayer",
+      "prayed": "prayed",
+      "late": "late",
+      "missed": "missed",
+      "prayerRowA11y": "{{prayer}}: {{prayed}} prayed, {{late}} late, {{missed}} missed",
+      "prayerRowCaption": "{{done}} of {{obligated}}",
+      "callouts": "most missed: {{missed}} · most often late: {{late}}",
+      "none": "—",
+      "lifetime": "All time",
+      "lifetimePrayed": "prayers marked",
+      "fullDays": "complete days",
+      "empty": "Nothing marked yet. Whatever you mark will gather here."
+    }
+  },
+  "location": {
+    "title": "Location",
+    "setLocation": "Set your location",
+    "useMyLocation": "Use my location",
+    "resolving": "Finding your location…",
+    "privacyNote": "Only your approximate location is used. It never reaches us — your phone hands it to its own map service to name your city, and nowhere else.",
+    "approximate": "Approximate",
+    "permissionDenied": "Location is off",
+    "permissionDeniedHelp": "Prayer times need a location. Choose a city instead, or turn on location for Simple Prayer in your device settings.",
+    "openSettings": "Open settings",
+    "positionUnavailable": "Couldn't find your location. Try again, or choose a city.",
+    "retry": "Try again",
+    "picker": {
+      "close": "Close"
+    },
+    "chooseCity": "Choose a city",
+    "searchPlaceholder": "Search for a city",
+    "searching": "Searching…",
+    "noResults": "No places found for \"{{query}}\".",
+    "searchUnavailable": "City search isn't available right now. Please try again."
+  },
+  "onboarding": {
+    "continue": "Continue",
+    "back": "Back",
+    "progress": "Step {{step, number}} of {{total, number}}",
+    "welcome": {
+      "title": "Assalamu alaikum",
+      "body": "This app is here to encourage prayer — to make it easy to see each prayer's time, and a small joy to mark it prayed. Everything in it is free. It will never scold you, and it will never keep asking.\n\nA few short questions first, so the app fits you. Skip any of them.",
+      "pledge": "No ads · No account · Nothing leaves your phone",
+      "start": "Get started",
+      "skip": "Skip setup"
+    },
+    "location": {
+      "title": "Where are you?",
+      "skip": "Skip for now",
+      "resolved": "Prayer times and the Qibla will be worked out from here.",
+      "change": "Choose somewhere else"
+    },
+    "theme": {
+      "title": "Light or dark?",
+      "body": "Choose whichever is easier on your eyes.",
+      "system": "Follows your phone, day and night.",
+      "light": "Warm paper.",
+      "dark": "Night paper, kinder in the dark."
+    },
+    "notifications": {
+      "title": "Prayer reminders",
+      "body": "A notification the moment each prayer time comes in.",
+      "off": "No reminders",
+      "offBody": "Nothing will be sent. You can turn them on any time.",
+      "system": "Device sound",
+      "systemBody": "Whatever sound your phone uses for notifications.",
+      "adhan": "The adhan",
+      "adhanBody": "A short call to prayer, about half a minute long.",
+      "allow": "Allow notifications",
+      "footnote": "Each prayer can have its own sound and timing later, in Settings.",
+      "refused": "Notifications stayed off just now, so no reminder can arrive. You can ask again below.",
+      "blocked": "Your phone is not letting this app send notifications, so nothing above can reach you yet.",
+      "openSettings": "Open device settings"
+    },
+    "battery": {
+      "title": "Help the reminders arrive",
+      "body": "Some phones put apps to sleep to save battery, and a sleeping app cannot sound the adhan on time. A moment in your battery settings prevents it.",
+      "bodyOem": "{{brand}} phones put apps to sleep to save battery, and a sleeping app cannot sound the adhan on time. A moment in your battery settings prevents it.",
+      "open": "Open battery settings",
+      "exactBody": "Your phone can also hold a reminder back by a few minutes to save power. Allowing alarms and reminders keeps the adhan on time.",
+      "exactOpen": "Allow alarms and reminders",
+      "footnote": "You can do this later — Settings › Reminders › Reminder reliability."
+    },
+    "tracking": {
+      "title": "How do you want to mark prayers?",
+      "body": "Pick the way that suits you.",
+      "footnote": "You can change this later in Settings. Changing it never changes the prayers you have already marked."
+    },
+    "streak": {
+      "title": "What keeps a streak going?",
+      "body": "A streak counts the days you keep in a row. Choose what a day needs.",
+      "footnote": "Change this whenever you like. Every day stays editable, so a streak can always be put right."
+    },
+    "qada": {
+      "title": "Prayers to make up?",
+      "body": "If prayers have been missed over the years, the app can count them with you and tick them off as you go. There is no clock on this.",
+      "start": "Count them with me",
+      "skip": "Not now"
+    }
+  },
+  "qibla": {
+    "header": "Qibla · {{city}}",
+    "headerNoCity": "Qibla",
+    "arabic": "القِبلة",
+    "recalibrate": "Recalibrate",
+    "recalibrateHint": "Refreshes your position and shows how to calibrate the compass",
+    "makkah": "Makkah",
+    "status": {
+      "searching": "Turn to find the Qibla",
+      "aligned": "Facing the Qibla"
+    },
+    "card": {
+      "heading": "Your heading",
+      "bearing": "Qibla bearing",
+      "distance": "Distance"
+    },
+    "value": {
+      "degrees": "{{degrees, number}}°",
+      "bearing": "{{degrees, number}}° {{cardinal}}",
+      "distance": "{{distance, number}} km",
+      "unknown": "—"
+    },
+    "guide": {
+      "turnLeft": "Turn {{degrees, number}}° to the left",
+      "turnRight": "Turn {{degrees, number}}° to the right",
+      "turnSub": "Rotate until the needle meets the Makkah marker",
+      "aligned": "Aligned — you may begin",
+      "alignedSub": "Within {{degrees, number}}° of the Kaaba",
+      "searching": "Looking for your heading",
+      "searchingSub": "Hold the phone flat and turn slowly"
+    },
+    "accuracy": {
+      "label": "Compass accuracy",
+      "high": "High",
+      "medium": "Medium",
+      "low": "Low",
+      "unavailable": "Unknown"
+    },
+    "magneticNote": "Using magnetic north — depending on where you are, this can be off by 10–20 degrees. A location fix restores true north.",
+    "noCompass": "This device has no compass, so the dial can't turn. The bearing and distance are still correct.",
+    "compassPermission": {
+      "title": "The dial needs your compass",
+      "body": "The bearing and distance are already correct. Turn on location for Simple Prayer to let the dial follow you as you turn."
+    },
+    "calibration": {
+      "title": "Calibrate the compass",
+      "body": "Move your phone in a figure 8 a few times, away from magnets and metal.",
+      "dismiss": "Dismiss"
+    },
+    "tilt": {
+      "hint": "Hold your phone flatter — the compass is steadiest lying flat.",
+      "faceDownHint": "Your screen is facing down — turn the phone over to read the compass."
+    },
+    "dial": {
+      "a11yLabel": "Compass. Your heading {{heading, number}}°, Qibla at {{bearing, number}}°.",
+      "a11yLabelNoFix": "Compass. Waiting for a heading. Qibla at {{bearing, number}}°."
+    },
+    "footerHint": "lay the phone flat for best accuracy",
+    "cardinal": {
+      "n": "N",
+      "ne": "NE",
+      "e": "E",
+      "se": "SE",
+      "s": "S",
+      "sw": "SW",
+      "w": "W",
+      "nw": "NW",
+      "unknown": "—"
+    }
+  },
+  "settings": {
+    "title": "Settings",
+    "on": "On",
+    "off": "Off",
+    "home": {
+      "location": {
+        "title": "Location",
+        "row": "Location",
+        "notSet": "Not set yet",
+        "auto": "From your device. Approximate, and never sent to us.",
+        "manual": "A city you chose.",
+        "a11yHint": "Opens location settings"
+      },
+      "prayerTimes": {
+        "title": "Prayer times",
+        "calculation": "How times are calculated",
+        "calculationDescription": "The method, Asr, long summer nights, matching your mosque, and the Hijri date.",
+        "methodAuto": "Auto ({{method}})",
+        "a11yHint": "Opens prayer time settings"
+      },
+      "tracking": {
+        "title": "Your prayer log",
+        "mode": {
+          "label": "How you mark prayers",
+          "simple": "Simple",
+          "simpleBody": "One tap marks a prayer as prayed. A prayer you do not mark shows as missed once its time has passed.",
+          "detailed": "Detailed",
+          "detailedBody": "For each prayer, choose prayed, prayed late, or missed."
+        },
+        "streak": {
+          "label": "What keeps a streak going",
+          "relaxed": "Relaxed",
+          "relaxedBody": "A day counts once you mark at least one prayer as prayed or late.",
+          "committed": "Committed",
+          "committedBody": "A day counts when all five are marked as prayed or late."
+        },
+        "exemption": {
+          "label": "Excused days",
+          "body": "For the days of menstruation and post-natal bleeding, when prayer is lifted from you. Excused days are never counted as missed, never break your streak, and their prayers are not made up later — that is the agreed ruling of all the schools. Reminders pause while they last, and you can choose to keep hearing the adhan. Illness and travel are different: those prayers are still owed, so log those days as usual. (Ramadan fasts are made up as well, but fasting is beyond this app.)",
+          "teaser": "Days when prayer is not required. Never counted as missed.",
+          "a11yHint": "Opens the excused days screen"
+        },
+        "qada": {
+          "label": "Making up prayers",
+          "description": "Count the prayers you still owe, and mark each one as you pray it.",
+          "a11yHint": "Opens the making up prayers screen"
+        }
+      },
+      "reminders": {
+        "title": "Reminders",
+        "perPrayer": "Reminders for each prayer",
+        "perPrayerDescription": "Which prayers, the sound, the adhan, and how early.",
+        "summary": "{{on, number}} of {{total, number}} prayers",
+        "summaryNone": "None yet",
+        "a11yHint": "Opens the reminders for each prayer",
+        "health": {
+          "label": "Check your reminders",
+          "description": "See what on this phone could stop them, and send yourself a test.",
+          "a11yHint": "Opens the reminder check screen"
+        }
+      },
+      "watch": {
+        "title": "Your watch",
+        "label": "Add Simple Prayer to your watch",
+        "description": "Your Apple Watch does not have the app yet. Open the Watch app on this iPhone, scroll down to Available Apps, and tap Install beside Simple Prayer.",
+        "a11yHint": "Explains how to install the app on your Apple Watch."
+      },
+      "appearance": {
+        "title": "Appearance & language",
+        "theme": {
+          "label": "Theme",
+          "system": "System",
+          "light": "Light",
+          "dark": "Dark"
+        },
+        "language": {
+          "label": "Language",
+          "system": "System",
+          "en": "English",
+          "ar": "العربية",
+          "tr": "Türkçe",
+          "direction": {
+            "title": "Reopen to turn the layout around",
+            "body": "{{language}} lays the screens out the other way round, and that only takes effect when the app starts. Reopen now, or carry on and it will be right the next time you open it. Nothing you have logged is touched.",
+            "restart": "Reopen now",
+            "later": "Later",
+            "pending": {
+              "title": "Language changed",
+              "body": "The new language is in place. The layout turns around the next time you open the app.",
+              "ok": "Got it"
+            },
+            "awaiting": {
+              "title": "The layout is still left-to-right",
+              "status": "Restart needed",
+              "body": "You changed the language, but the screens only turn around when the app starts again. Restart it whenever you like — nothing is lost.",
+              "action": "Restart now"
+            }
+          }
+        },
+        "numerals": {
+          "label": "Numerals",
+          "auto": "Automatic",
+          "arab": "٠١٢٣",
+          "latn": "0123",
+          "description": "Automatic follows your region — Arabic-Indic in Egypt and the Gulf, Western in the Maghreb."
+        }
+      },
+      "data": {
+        "csv": {
+          "label": "Export as a spreadsheet",
+          "description": "A CSV file any spreadsheet can open."
+        },
+        "json": {
+          "label": "Export as JSON",
+          "description": "The same record, exactly as it is stored."
+        },
+        "working": "Preparing… {{percent}}",
+        "a11yHint": "Builds the file, then opens the share sheet",
+        "shareTitle": "Your prayer log",
+        "footer": "An exported file is made on your phone and goes only where you send it.",
+        "result": {
+          "shared": "Sent.",
+          "cancelled": "Nothing was sent.",
+          "saved": "This device has no share sheet, so the file was left on it.",
+          "failed": "That did not finish. Please try again."
+        }
+      },
+      "support": {
+        "title": "Support",
+        "rate": {
+          "label": "Rate the app",
+          "description": "Opens your app store. Reviews are how people find an app with no ads to advertise it.",
+          "unavailable": "Available once the app is in the store.",
+          "failed": "Your device could not open the store.",
+          "a11yHint": "Opens the store listing"
+        },
+        "feedback": {
+          "label": "Send feedback",
+          "description": "Tell us what is wrong, or what you would like the app to do. See what other people have asked for, and what is planned next. No account needed.",
+          "failed": "Your device could not open that page.",
+          "a11yHint": "Opens the feedback page in your browser"
+        },
+        "about": {
+          "label": "About",
+          "description": "Version, credits and licences.",
+          "a11yHint": "Opens the about screen"
+        }
+      },
+      "privacy": {
+        "title": "Privacy"
+      }
+    },
+    "tip": {
+      "title": "Buy the developer a coffee",
+      "body": "This app is free and stays free. If it has been useful to you, you can leave a tip for the person who builds it.",
+      "noAds": "This app has no ads and never will.",
+      "oneOff": "A tip is a one-off purchase, not a subscription. It cannot be restored on another phone, so it is only ever counted here.",
+      "tier": {
+        "small": "A coffee",
+        "medium": "A burger",
+        "large": "A nice dinner",
+        "other": "A tip"
+      },
+      "a11yTier": "Leave a tip: {{label}}, {{price}}",
+      "unavailable": "Tipping is not available on this device right now.",
+      "failed": "That did not go through. Nothing was charged.",
+      "supporter": "Supporter",
+      "count_one": "You have left {{count}} tip.",
+      "count_other": "You have left {{count}} tips.",
+      "thanks": {
+        "title": "Thank you.",
+        "body": "That means a great deal. It keeps this app free, ad-free and worked on."
+      }
+    },
+    "pledge": {
+      "title": "No ads, ever",
+      "points": {
+        "ads": "No ads. Not now, not later.",
+        "account": "No account, no sign-in, no email address.",
+        "tracking": "No analytics, no ad trackers, nobody following you across apps.",
+        "device": "Your prayer log stays on this phone — unless you add a buddy, and then each prayer you mark is sent to their phone."
+      },
+      "footnote": "Four things can ever leave this phone. The city lookup — a city name you type, or your approximate position when you use your device's location; your phone asks its own map service, and neither ever reaches us. Anonymous crash reporting — whether the app crashed or ran cleanly, never who you are or what you did — which you can switch off here in Settings. A tip, if you ever leave one, which goes through the App Store or Google Play like any purchase. And, only if you add a buddy, the prayers you mark — one flag each, carried to their phone by a relay of ours that deletes it as soon as their phone has it, and holds no name, no location and no record of you.",
+      "footnoteWithoutCrashReports": "Three things can ever leave this phone. The city lookup — a city name you type, or your approximate position when you use your device's location; your phone asks its own map service, and neither ever reaches us. A tip, if you ever leave one, which goes through the App Store or Google Play like any purchase. And, only if you add a buddy, the prayers you mark — one flag each, carried to their phone by a relay of ours that deletes it as soon as their phone has it, and holds no name, no location and no record of you."
+    },
+    "diagnostics": {
+      "label": "Crash reports",
+      "body": "If the app crashes, it sends an anonymous report of where the code failed so the bug can be fixed — never your prayer log, your location, or anything that says who you are. Turning this off takes effect the next time you open the app."
+    },
+    "about": {
+      "title": "About",
+      "back": "Back",
+      "tagline": "five a day · never missed",
+      "version": "Version {{version}}",
+      "versionWithBuild": "Version {{version}} ({{build}})",
+      "versionUnknown": "Version unavailable",
+      "website": {
+        "title": "On the web",
+        "description": "Support and the privacy policy.",
+        "a11yHint": "Opens the website in your browser"
+      },
+      "source": {
+        "label": "Source code",
+        "description": "Read it, build it yourself, or copy it."
+      },
+      "audio": {
+        "title": "Adhan recordings",
+        "attribution": "Adhan recitations by Nasser Alqatami, Mufti Ismail Musa Menk and Sabah Fakhri, and a recitation from Makkah. Trimmed and level-matched for use as a notification sound.",
+        "choose": "Choose which one your reminders play in Settings → Reminders."
+      },
+      "fonts": {
+        "title": "Typefaces and icons",
+        "footer": "Lora, Amiri and Noto Naskh Arabic are used under the SIL Open Font License 1.1; the Material Symbols glyphs under the Apache License 2.0."
+      },
+      "linkFailed": "Your device could not open that link."
+    },
+    "location": {
+      "title": "Location",
+      "back": "Back",
+      "current": {
+        "none": "No location yet",
+        "noneBody": "Turn on the switch below, or search for your city.",
+        "fromDevice": "From your device",
+        "chosen": "City you chose",
+        "a11y": "Current location: {{place}}",
+        "coordinates": "{{latitude}}, {{longitude}}"
+      },
+      "auto": {
+        "label": "Use my location",
+        "description": "Works out your city from an approximate position.",
+        "a11yHint": "Asks your device for permission the first time",
+        "footer": "Approximate position only — never precise, never in the background. Your phone sends it to its own map service to name your city, and nowhere else. It never reaches us.",
+        "refresh": "Check my location again",
+        "lastChecked": "Last checked at {{time}}"
+      },
+      "denied": {
+        "title": "Location is off for this app",
+        "body": "That is completely fine — everything here works from a city you pick. Tap below only if you would rather the app found it for you.",
+        "blockedBody": "Your device will not ask again, so only its settings can change this. Searching for your city below works just as well.",
+        "settings": "Open device settings",
+        "chooseInstead": "Or simply search for your city below."
+      },
+      "unavailable": {
+        "title": "Could not find your position",
+        "body": "Your device did not return a location. Try again, or search for your city below."
+      },
+      "manual": {
+        "heading": "Search for a city",
+        "description": "Only the name you type is looked up, using your phone’s own map service. The city you choose is kept on this device.",
+        "a11yHint": "Opens the city picker"
+      },
+      "search": {
+        "clear": "Clear the search",
+        "hint": "Keep typing…",
+        "resultA11y": "Use {{place}}",
+        "selected": "in use"
+      },
+      "clock": {
+        "title": "Shown on your phone’s clock",
+        "ahead": "{{city}} runs {{offset}} ahead of your phone. These times are right for {{city}}, but written on your phone’s clock — add {{offset}} to read them the way {{city}} does.",
+        "behind": "{{city}} runs {{offset}} behind your phone. These times are right for {{city}}, but written on your phone’s clock — take {{offset}} off to read them the way {{city}} does.",
+        "estimated": "Your phone did not report that city’s time zone, so this difference is approximate."
+      }
+    },
+    "calculation": {
+      "title": "Prayer times",
+      "back": "Back",
+      "footerHint": "every change here reaches Today straight away",
+      "noLocation": "Set a location to see what these settings produce.",
+      "summary": {
+        "auto": "Chosen automatically for your country",
+        "manual": "Chosen by you",
+        "adjustedList": "Adjusted by hand: {{prayers}}"
+      },
+      "method": {
+        "title": "Calculation method",
+        "current": "Authority",
+        "description": "Whose angles the times follow.",
+        "footer": "If the app disagrees with the calendar you follow, change the authority first — then fine-tune each prayer below.",
+        "autoLabel": "Auto · {{authority}}",
+        "autoDescription": "The authority most calendars in {{country}} follow.",
+        "autoDescriptionUnknown": "Chosen from your country as soon as a location is set.",
+        "a11yHint": "Recalculates every prayer time with this authority"
+      },
+      "madhab": {
+        "title": "Asr",
+        "footer": "Both are sound. Choose the one your community follows.",
+        "a11yHint": "Changes when Asr begins",
+        "option": {
+          "shafi": "Shafi, Maliki, Hanbali",
+          "hanafi": "Hanafi"
+        },
+        "description": {
+          "shafi": "Asr begins when a shadow grows to the object’s own length.",
+          "hanafi": "Asr begins when a shadow grows to twice the object’s length — roughly an hour later."
+        }
+      },
+      "highLatitude": {
+        "title": "Long summer nights",
+        "current": "High-latitude rule",
+        "description": "What to do when the sun never dips far enough for Fajr and Isha.",
+        "relevant": "You are far enough north that this changes your times for part of the year.",
+        "notRelevant": "This changes nothing where you are — the sun dips far enough all year round.",
+        "option": {
+          "auto": "Automatic",
+          "middleOfTheNight": "Middle of the night",
+          "seventhOfTheNight": "One seventh of the night",
+          "twilightAngle": "Twilight angle"
+        },
+        "explain": {
+          "auto": "Uses the rule normally applied at your latitude.",
+          "middleOfTheNight": "Keeps Fajr and Isha within the half of the night nearest to them.",
+          "seventhOfTheNight": "Places Fajr and Isha one seventh of the night from its edges.",
+          "twilightAngle": "Divides the night in the same proportion as the method’s own angles."
+        }
+      },
+      "offsets": {
+        "title": "Match my mosque",
+        "footer": "Move each prayer until the app agrees with the calendar you follow — up to 30 minutes either way.",
+        "none": "no change",
+        "value": "{{value}} min",
+        "reset": "Clear all adjustments",
+        "resetHint": "Puts every prayer back to its calculated time",
+        "a11yLabel": "{{prayer}} adjustment",
+        "decrease": "{{prayer}} one minute earlier",
+        "increase": "{{prayer}} one minute later"
+      },
+      "hijri": {
+        "title": "Hijri date",
+        "footer": "Some communities begin the month a day before or after the calculated date.",
+        "label": "Shift the Hijri date",
+        "preview": "{{day}} {{month}} {{year}} {{era}}",
+        "none": "no change",
+        "days_one": "{{value}} day",
+        "days_other": "{{value}} days",
+        "a11yLabel": "Hijri date adjustment",
+        "decrease": "One day earlier",
+        "increase": "One day later"
+      },
+      "sign": {
+        "plus": "+{{value}}",
+        "minus": "−{{value}}"
+      }
+    },
+    "reminders": {
+      "title": "Reminders",
+      "back": "Back",
+      "intro": "Every prayer has three reminders, and each one is yours to set: when the time comes in, a while before it, and a last call before it runs out.",
+      "footerHint": "All of it is scheduled by your phone. Nothing is sent anywhere, and none of it needs a connection.",
+      "a11yRow": "{{prayer}} · {{setting}}",
+      "a11yOption": "{{option}} · {{prayer}}",
+      "permission": {
+        "title": "Notifications are switched off",
+        "body": "Your device is not letting this app notify you, so nothing below can reach you yet. One tap fixes it.",
+        "blockedBody": "Your device will not ask again, so only its settings can turn notifications back on. Everything you set below is kept, and starts working the moment you do.",
+        "allow": "Allow notifications",
+        "openSettings": "Open device settings",
+        "asking": "Asking…",
+        "a11yHint": "Asks your device for permission to send notifications",
+        "a11yHintSettings": "Opens your device settings, where notifications can be turned back on",
+        "footnote": "Reminders are local: your phone schedules them, and your prayer times never leave the device."
+      },
+      "all": {
+        "title": "All five prayers",
+        "footer": "A quick way to set the whole day. Every prayer can still be changed on its own below.",
+        "on": "Turn all on",
+        "off": "Turn all off",
+        "count": "{{on, number}} of {{total, number}} on",
+        "a11yAction": "{{action}} · {{what}}",
+        "adhan": {
+          "label": "Prayer-time reminders",
+          "description": "The notification that arrives when a prayer time comes in."
+        },
+        "nudge": {
+          "label": "Last calls",
+          "description": "The quiet reminder as a prayer’s time runs out, sent only while it is still unmarked."
+        }
+      },
+      "test": {
+        "label": "Send a test notification",
+        "description": "Arrives straight away, with the sound shown here. Press Prayed on it to try the button — a test never saves anything.",
+        "adhanLabel": "Send a test with the adhan",
+        "adhanDescription": "The same test, but it plays the adhan. Hear it as a real reminder before you choose it.",
+        "sending": "Sending…",
+        "sent": "Sent — it should be in your notifications now.",
+        "failed": "It could not be sent. Notifications are switched off for this app.",
+        "a11yHint": "Sends one notification right now"
+      },
+      "adhan": {
+        "label": "When the time comes in",
+        "description": "Arrives the moment {{prayer}} comes in."
+      },
+      "sound": {
+        "label": "Sound",
+        "silent": "Silent",
+        "system": "Device sound",
+        "adhan": "Adhan",
+        "silentBody": "No sound at all — the notification simply appears.",
+        "systemBody": "Whatever sound your device uses for notifications."
+      },
+      "pre": {
+        "label": "Before the time",
+        "description": "An earlier heads-up, so the time does not catch you in the middle of something.",
+        "fajrDescription": "The wake-up. Set it early enough that you can actually get up — this is the reminder other apps charge for.",
+        "minutesLabel": "How early",
+        "minutes_one": "{{count, number}} min",
+        "minutes_other": "{{count, number}} min",
+        "a11yOption": "{{value}} before {{prayer}}"
+      },
+      "nudge": {
+        "label": "Last call before the time ends",
+        "description": "A quiet reminder as {{prayer}}’s time is running out — sent only if you have not marked it yet.",
+        "ishaFooter": "Isha’s last call is timed to Islamic midnight, so it never arrives at three in the morning.",
+        "fajrDescription": "A quiet reminder before sunrise, when Fajr’s time is running out — sent only if you have not marked it yet."
+      },
+      "perPrayerTitle": "Each prayer",
+      "perPrayerHint": "Tap a prayer to open its reminders.",
+      "card": {
+        "a11yLabel": "{{prayer}} · {{summary}}",
+        "a11yHintExpand": "Opens this prayer’s reminders",
+        "a11yHintCollapse": "Closes this prayer’s reminders"
+      },
+      "summary": {
+        "none": "No reminders",
+        "adhan": "At the time · {{sound}}",
+        "pre": "{{value}} before",
+        "nudge": "Last call"
+      },
+      "ongoing": {
+        "title": "Always-on notification",
+        "label": "Always show the next prayer",
+        "description": "Puts one silent notification in your notification shade: the prayer whose time is in, or the next one and its time. It never makes a sound, and it stays there instead of being swiped away.",
+        "a11yHint": "Turns the always-on prayer notification on or off",
+        "footer": "It is redrawn when a prayer begins and when you open the app — never every second, so it costs no battery."
+      },
+      "liveActivity": {
+        "title": "Lock screen countdown",
+        "label": "Count down the current prayer",
+        "description": "When you open the app shortly before a prayer or while its time is in, a quiet card appears on your lock screen and counts down. Marking the prayer ends it.",
+        "a11yHint": "Turns the lock screen countdown on or off",
+        "footer": "It appears when you open the app, leaves a while after the time comes in, and never follows you to the next prayer on its own.",
+        "lead": {
+          "label": "How early it appears",
+          "description": "This long before the next prayer. It only appears while the current prayer is still unmarked.",
+          "a11yOption": "Appears {{value}} before the prayer"
+        },
+        "linger": {
+          "label": "How long it stays",
+          "description": "This long after the time comes in. Marking the prayer ends it right away.",
+          "a11yOption": "Stays {{value}} after the time comes in"
+        }
+      },
+      "nudgeTiming": {
+        "label": "How early the last call arrives",
+        "description": "Before a prayer’s time ends. Isha’s is timed to Islamic midnight instead.",
+        "a11yOption": "{{value}} before the time ends"
+      },
+      "sunriseNote": {
+        "title": "Note at sunrise",
+        "label": "Tell me when Fajr’s time has ended",
+        "description": "A silent note at sunrise, when Fajr’s time ends. It gives the next prayer and its time. It comes only if you have not marked Fajr yet.",
+        "a11yHint": "Turns the silent note at sunrise on or off",
+        "footer": "This is not the last call. The last call arrives before sunrise, while there is still time to pray. You can set that for each prayer below."
+      },
+      "adhanSection": {
+        "title": "The adhan",
+        "footer": "The preview plays in the app. It does not tell you whether your reminders will be heard — send a test for that."
+      },
+      "pauseAudio": {
+        "label": "Pause what's playing",
+        "description": "When a prayer's time comes in, music or a podcast playing on this phone is paused. It does not start again by itself. The reminder's own sound still plays.",
+        "a11yHint": "Turns pausing other sound at prayer time on or off"
+      },
+      "voice": {
+        "label": "Recitation",
+        "description": "Four recitations. Tap one to hear it.",
+        "a11yHint": "Plays it, and makes it the adhan your reminders use",
+        "playing": "Playing {{voice}} — tap it again to stop.",
+        "iosNote": "On an iPhone a reminder plays about half a minute of the adhan and then fades. Apple limits how long a notification sound can be.",
+        "makkah": "Makkah",
+        "alqatami": "Nasser Alqatami",
+        "menk": "Mufti Ismail Musa Menk",
+        "fakhry": "Sabah Fakhri"
+      },
+      "delivery": {
+        "alertsOff": "Alerts are switched off for this app, so reminders will not appear on screen.",
+        "soundOff": "Sound is switched off for this app, so reminders will arrive silently.",
+        "dndOn": "Do Not Disturb is on, so this may arrive silently.",
+        "checkRinger": "Heard nothing? Check your ringer and Focus — the app cannot see either."
+      }
+    },
+    "reminderHealth": {
+      "title": "Check your reminders",
+      "back": "Back to settings",
+      "intro": "Everything on this screen is read from your phone itself, not from what this app believes it did.",
+      "loading": "Asking your phone…",
+      "level": {
+        "ok": "All set",
+        "attention": "Needs a moment",
+        "problem": "Not working",
+        "info": "Worth knowing"
+      },
+      "verdict": {
+        "permissionMissing": {
+          "title": "Your phone has not been asked yet",
+          "body": "Notifications need your permission before any reminder can reach you.",
+          "action": "Allow reminders"
+        },
+        "permissionDenied": {
+          "title": "Notifications are switched off for this app",
+          "body": "Your phone will not ask again, so this can only be changed in the system settings.",
+          "action": "Open system settings"
+        },
+        "noReminders": {
+          "title": "No reminders are switched on yet",
+          "body": "Nothing is scheduled because no prayer has a reminder. Choose the ones you want and they are set up straight away.",
+          "action": "Choose reminders"
+        },
+        "empty": {
+          "title": "Your phone is holding no reminders",
+          "body": "Reminders are switched on, but the system is holding none of them. That usually means it cleared them — after a restart, or to save power.",
+          "action": "Reschedule now"
+        },
+        "ok": {
+          "title": "Your next reminder is scheduled",
+          "body": "Your phone has the coming days of reminders and will deliver them without the app running.",
+          "footnote_one": "{{count}} reminder is waiting on your phone right now.",
+          "footnote_other": "{{count}} reminders are waiting on your phone right now."
+        }
+      },
+      "schedule": {
+        "title": "What your phone is holding",
+        "none": "Your phone is holding none of this app’s reminders.",
+        "count_one": "{{count}} reminder scheduled",
+        "count_other": "{{count}} reminders scheduled",
+        "checkedAt": "Read from your phone at {{time}}",
+        "today": "Today",
+        "tomorrow": "Tomorrow",
+        "more_one": "and {{count}} more further ahead",
+        "more_other": "and {{count}} more further ahead",
+        "refresh": "Read again",
+        "reschedule": "Reschedule now",
+        "rowA11y": "{{prayer}}, {{kind}}, {{time}}",
+        "kind": {
+          "adhan": "At the time",
+          "preReminder": "Early reminder",
+          "nudge": "Last call",
+          "expiry": "Sunrise note"
+        }
+      },
+      "test": {
+        "send": "Send a test notification",
+        "sendAgain": "Send another",
+        "status": {
+          "idle": "Try it",
+          "sending": "Sending",
+          "sent": "Delivered",
+          "failed": "Not working"
+        },
+        "idle": {
+          "title": "Send yourself a test",
+          "body": "It arrives immediately, through the same channel a real reminder uses."
+        },
+        "sending": {
+          "title": "Sending the test",
+          "body": "Your phone is being handed the notification now."
+        },
+        "sent": {
+          "title": "The test was sent",
+          "body": "It should be in your notifications. If nothing arrived, your phone is silencing this app — the guidance below is where to look."
+        },
+        "failed": {
+          "title": "The test could not be sent",
+          "body": "Your phone refused the notification. Check the permission above first."
+        }
+      },
+      "exactAlarms": {
+        "exact": {
+          "title": "Reminders arrive at the right minute",
+          "body": "Your phone lets this app set reminders for an exact time, so the adhan is not held back."
+        },
+        "inexact": {
+          "title": "Reminders may arrive late",
+          "body": "To save power, your phone is allowed to hold this app’s reminders back. They still arrive, but the phone decides when. It can be a few minutes. At night, when the phone is not being used, it can be much longer.",
+          "action": "Allow alarms and reminders",
+          "footnote": "The button opens a screen on your phone. Turn on “Alarms & reminders” there, then come back."
+        }
+      },
+      "battery": {
+        "title": "Battery settings can stop reminders",
+        "body": "Android pauses apps it thinks you are not using, which can stop a scheduled adhan from arriving. Exempting this app from battery optimisation prevents that.",
+        "bodyOem": "{{brand}} phones pause background apps more aggressively than most, which can stop a scheduled adhan from arriving. Exempting this app from battery optimisation, and letting it start on its own, prevents that.",
+        "bodyXiaomi": "{{brand}} phones pause background apps more than most, and a paused app cannot deliver the adhan. These phones keep their own setting for it: open Settings, then Apps, then Simple Prayer, then Battery saver, and choose No restrictions. It also helps to open your recent apps and lock Simple Prayer there, so the phone does not close it.",
+        "cannotCheck": "The app cannot read this setting from the inside, so it cannot tell you whether the exemption is already in place. The screen it opens can.",
+        "exempt": "Android’s own battery limits are already switched off for this app. Your phone maker can have a separate setting of its own, which the app cannot read.",
+        "restricted": "Android’s battery limits are still on for this app, so a reminder can be held back or dropped. The button below opens the screen that changes it.",
+        "open": "Open battery settings",
+        "openAutoStart": "Open {{brand}} auto-start",
+        "oem": {
+          "xiaomi": "Xiaomi",
+          "huawei": "Huawei",
+          "oppo": "Oppo",
+          "vivo": "Vivo",
+          "samsung": "Samsung",
+          "oneplus": "OnePlus"
+        }
+      },
+      "organizer": {
+        "title": "Android may sort reminders into a group",
+        "body": "Newer Android phones can sort notifications into groups such as Promotions or Suggested. A reminder placed in one of those groups arrives without a sound. You can tell your phone to leave this app out.",
+        "cannotCheck": "The app cannot see this from the inside, so it cannot tell you whether your phone is doing it. On the screen the button opens, look for Notification organizer, then the list of apps to leave out.",
+        "open": "Open notification settings"
+      },
+      "backgroundRefresh": {
+        "available": {
+          "title": "Reminders while the app is closed",
+          "body": "The app sets reminders a few days ahead. It adds more days when the phone gives it a moment in the background. Without those moments the reminders run out.",
+          "cannotCheck": "The app cannot read this setting from the inside. The button opens this app's page in Settings. The switch there is called Background App Refresh. There is one for all apps under Settings, then General."
+        },
+        "restricted": {
+          "title": "The phone is not giving the app background time",
+          "body": "Reminders that are already set will still arrive. The app cannot add new days while it is closed, so they run out after a few days. Opening the app tops them up again."
+        },
+        "open": "Open system settings"
+      },
+      "ios": {
+        "title": "If a reminder arrives silently",
+        "body": "Focus and Do Not Disturb silence notifications while they are on, and Scheduled Summary holds them back until later. Letting this app through is done in the system settings.",
+        "open": "Open system settings"
+      },
+      "pledge": "This app schedules several days of reminders ahead and rebuilds them every time you open it. You never have to open it just to keep the adhan working."
+    }
+  },
+  "methods": {
+    "auto": "Auto",
+    "muslimWorldLeague": "Muslim World League",
+    "turkey": "Diyanet",
+    "egyptian": "Egyptian Survey Authority",
+    "ummAlQura": "Umm al-Qura",
+    "dubai": "Dubai",
+    "qatar": "Qatar",
+    "kuwait": "Kuwait",
+    "karachi": "Karachi",
+    "singapore": "Singapore",
+    "northAmerica": "ISNA",
+    "moonsightingCommittee": "Moonsighting Committee",
+    "tehran": "Tehran",
+    "jafari": "Jafari",
+    "descriptions": {
+      "auto": "Follows the authority most calendars in your country use.",
+      "muslimWorldLeague": "Muslim World League · Fajr 18° · Isha 17°",
+      "turkey": "Diyanet İşleri Başkanlığı · Fajr 18° · Isha 17°",
+      "egyptian": "Egyptian General Authority of Survey · Fajr 19.5° · Isha 17.5°",
+      "ummAlQura": "Umm al-Qura, Makkah · Fajr 18.5° · Isha 90 minutes after Maghrib",
+      "dubai": "United Arab Emirates · Fajr 18.2° · Isha 18.2°",
+      "qatar": "Qatar · Fajr 18° · Isha 90 minutes after Maghrib",
+      "kuwait": "Kuwait · Fajr 18° · Isha 17.5°",
+      "karachi": "University of Islamic Sciences, Karachi · Fajr 18° · Isha 18°",
+      "singapore": "MUIS Singapore · Fajr 20° · Isha 18°",
+      "northAmerica": "Islamic Society of North America · Fajr 15° · Isha 15°",
+      "moonsightingCommittee": "Moonsighting Committee Worldwide · seasonal high-latitude adjustment",
+      "tehran": "Institute of Geophysics, University of Tehran · Fajr 17.7° · Isha 14°",
+      "jafari": "Jafari, Leva Institute of Qum · Fajr 16° · Isha 14° · Maghrib 4°"
+    }
+  },
+  "time": {
+    "countdown": "in {{duration}}",
+    "now": "now",
+    "durationPair": "{{first}} {{second}}",
+    "unit": {
+      "hour_one": "{{value}} hour",
+      "hour_other": "{{value}} hours",
+      "minute_one": "{{value}} minute",
+      "minute_other": "{{value}} minutes",
+      "second_one": "{{value}} second",
+      "second_other": "{{value}} seconds",
+      "hourShort": "{{value}} h",
+      "minuteShort": "{{value}} m",
+      "secondShort": "{{value}} s"
+    }
+  },
+  "widgets": {
+    "leftToPray": "left to pray",
+    "startsAt": "Starts at {{time}}",
+    "untilItStarts": "until it starts",
+    "untilPrayer": "until {{prayer}}",
+    "stillToPray": "You can still pray {{prayer}}"
+  },
+  "notifications": {
+    "adhan": {
+      "title": "{{prayer}} · {{arabic}}",
+      "body": "It's time to pray · {{time}}"
+    },
+    "preReminder": {
+      "title": "{{prayer}} · {{arabic}}",
+      "body": "Starts at {{time}}"
+    },
+    "nudge": {
+      "title": "{{prayer}} · {{arabic}}",
+      "body": "You can still pray until {{time}}",
+      "bodyIsha": "The best time is ending"
+    },
+    "ongoing": {
+      "title": "Next prayer: {{prayer}} · {{time}}",
+      "titleNow": "It's time to pray {{prayer}} · {{time}}",
+      "bodyNext": "The next prayer is {{prayer}} · {{time}}",
+      "body": "Tap to see today's times",
+      "bodyRemaining": "{{remaining}} · tap to see today’s times",
+      "remaining": "About {{duration}} left",
+      "remainingSoon": "Less than a minute left",
+      "remainingNow": "It is time"
+    },
+    "test": {
+      "title": "Reminders are working",
+      "body": "This is what a prayer reminder looks like."
+    },
+    "soundNote": "The call to prayer, played by your phone as the reminder arrives.",
+    "channel": {
+      "name": "{{name}} · {{variant}}",
+      "adhan": {
+        "name": "Prayer-time reminders",
+        "description": "Arrives when a prayer's time begins."
+      },
+      "preReminder": {
+        "name": "Early reminders",
+        "description": "Arrives the chosen number of minutes before a prayer."
+      },
+      "nudge": {
+        "name": "Last-call reminders",
+        "description": "A last call, sent only while a prayer is still unmarked."
+      },
+      "ongoing": {
+        "name": "Ongoing prayer notification",
+        "description": "The silent notification that keeps the next prayer on screen."
+      },
+      "variant": {
+        "adhan": "Adhan sound",
+        "adhanVoice": "{{voice}}",
+        "system": "Device sound",
+        "silent": "Silent"
+      },
+      "expiry": {
+        "name": "Sunrise note",
+        "description": "A silent note when Fajr’s time ends, with the next prayer."
+      },
+      "marked": {
+        "name": "Prayer marked",
+        "description": "A short note after you mark a prayer from a reminder. It goes away by itself."
+      }
+    },
+    "actions": {
+      "prayed": "I prayed",
+      "undo": "Undo"
+    },
+    "marked": {
+      "title": "You marked {{prayer}} as prayed"
+    },
+    "markedTest": {
+      "title": "The button works. Nothing was saved."
+    },
+    "expiry": {
+      "title": "{{prayer}} ended at sunrise",
+      "body": "Next: {{next}} · {{time}}",
+      "bodyAlone": "Its time has passed"
+    }
+  },
+  "travel": {
+    "overflow": {
+      "begin": "I’m travelling",
+      "end": "End travelling"
+    },
+    "begin": {
+      "title": "Travelling",
+      "note": "While travelling, Dhuhr, Asr and Isha are prayed as two rakats. Dhuhr may be prayed together with Asr, and Maghrib together with Isha, in either one’s time. Prayer times do not change — mark your prayers as usual.",
+      "howLong": "How long",
+      "untilIEnd": "Until I end it",
+      "days_one": "{{count}} day — until {{date}}",
+      "days_other": "{{count}} days — until {{date}}",
+      "pickCount": "A different number of days…",
+      "stepper_one": "{{count}} day",
+      "stepper_other": "{{count}} days",
+      "confirmCount": "Start — until {{date}}",
+      "dayFewer": "One day fewer",
+      "dayMore": "One day more",
+      "notNow": "Not now"
+    },
+    "banner": {
+      "body": "Travelling — shortened and combined prayers count as on time.",
+      "bodyUntil": "Travelling until {{date}} — shortened and combined prayers count as on time.",
+      "end": "End",
+      "stillOn": "Still travelling? End it here whenever you’re back — there’s no rush."
+    }
+  },
+  "sheet": {
+    "dismiss": "Close"
+  },
+  "watch": {
+    "qibla": {
+      "toLeft": "to the left",
+      "toRight": "to the right"
+    }
+  }
+}

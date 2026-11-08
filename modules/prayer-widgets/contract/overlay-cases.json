@@ -1,0 +1,118 @@
+{
+  "description": "The widget overlay contract (D26): given a day's base statuses and the raw pending-marks queue, every implementation — TypeScript (domain/pendingMarks), Kotlin (prayer-widgets), Swift (targets/widget) — must produce these exact effective statuses. The rule is the drain's rule: a prayed entry shows only over unlogged, a clears/undo only over prayed; latest decidedAt wins per (day, prayer); entries for other days and entries that cannot be read are ignored. src/domain/pendingMarksContract.test.ts holds TypeScript to this file; the native sides are held to it by review against the same cases.",
+  "version": 1,
+  "cases": [
+    {
+      "name": "widget tap marks the current unlogged prayer",
+      "day": "2026-08-25",
+      "statuses": { "fajr": "prayed", "dhuhr": "unlogged", "asr": "unlogged", "maghrib": "unlogged", "isha": "unlogged" },
+      "entries": [{ "id": "t1", "day": "2026-08-25", "prayer": "asr", "decidedAt": 1000 }],
+      "effective": { "fajr": "prayed", "dhuhr": "unlogged", "asr": "prayed", "maghrib": "unlogged", "isha": "unlogged" }
+    },
+    {
+      "name": "tap twice: prayed then clears collapses to no visible change",
+      "day": "2026-08-25",
+      "statuses": { "fajr": "unlogged", "dhuhr": "unlogged", "asr": "unlogged", "maghrib": "unlogged", "isha": "unlogged" },
+      "entries": [
+        { "id": "t1", "day": "2026-08-25", "prayer": "asr", "decidedAt": 1000 },
+        { "id": "t2", "day": "2026-08-25", "prayer": "asr", "decidedAt": 2000, "clears": true }
+      ],
+      "effective": { "fajr": "unlogged", "dhuhr": "unlogged", "asr": "unlogged", "maghrib": "unlogged", "isha": "unlogged" }
+    },
+    {
+      "name": "clears toggles off a mark made in the app itself",
+      "day": "2026-08-25",
+      "statuses": { "fajr": "unlogged", "dhuhr": "prayed", "asr": "unlogged", "maghrib": "unlogged", "isha": "unlogged" },
+      "entries": [{ "id": "t1", "day": "2026-08-25", "prayer": "dhuhr", "decidedAt": 1000, "clears": true }],
+      "effective": { "fajr": "unlogged", "dhuhr": "unlogged", "asr": "unlogged", "maghrib": "unlogged", "isha": "unlogged" }
+    },
+    {
+      "name": "a hand-set late or missed is never repainted by the queue",
+      "day": "2026-08-25",
+      "statuses": { "fajr": "late", "dhuhr": "missed", "asr": "unlogged", "maghrib": "unlogged", "isha": "unlogged" },
+      "entries": [
+        { "id": "t1", "day": "2026-08-25", "prayer": "fajr", "decidedAt": 1000 },
+        { "id": "t2", "day": "2026-08-25", "prayer": "dhuhr", "decidedAt": 2000, "clears": true }
+      ],
+      "effective": { "fajr": "late", "dhuhr": "missed", "asr": "unlogged", "maghrib": "unlogged", "isha": "unlogged" }
+    },
+    {
+      "name": "exempt is inert: nothing in the queue touches it",
+      "day": "2026-08-25",
+      "statuses": { "fajr": "exempt", "dhuhr": "exempt", "asr": "exempt", "maghrib": "exempt", "isha": "exempt" },
+      "entries": [{ "id": "t1", "day": "2026-08-25", "prayer": "asr", "decidedAt": 1000 }],
+      "effective": { "fajr": "exempt", "dhuhr": "exempt", "asr": "exempt", "maghrib": "exempt", "isha": "exempt" }
+    },
+    {
+      "name": "three taps: prayed, clears, prayed — the last decision wins",
+      "day": "2026-08-25",
+      "statuses": { "fajr": "unlogged", "dhuhr": "unlogged", "asr": "unlogged", "maghrib": "unlogged", "isha": "unlogged" },
+      "entries": [
+        { "id": "t1", "day": "2026-08-25", "prayer": "isha", "decidedAt": 1000 },
+        { "id": "t2", "day": "2026-08-25", "prayer": "isha", "decidedAt": 2000, "clears": true },
+        { "id": "t3", "day": "2026-08-25", "prayer": "isha", "decidedAt": 3000 }
+      ],
+      "effective": { "fajr": "unlogged", "dhuhr": "unlogged", "asr": "unlogged", "maghrib": "unlogged", "isha": "prayed" }
+    },
+    {
+      "name": "the notification's undo pair (annuls) cancels out",
+      "day": "2026-08-25",
+      "statuses": { "fajr": "unlogged", "dhuhr": "unlogged", "asr": "unlogged", "maghrib": "unlogged", "isha": "unlogged" },
+      "entries": [
+        { "id": "n1", "day": "2026-08-25", "prayer": "maghrib", "decidedAt": 1000 },
+        { "id": "n2", "day": "2026-08-25", "prayer": "maghrib", "decidedAt": 2000, "annuls": "n1" }
+      ],
+      "effective": { "fajr": "unlogged", "dhuhr": "unlogged", "asr": "unlogged", "maghrib": "unlogged", "isha": "unlogged" }
+    },
+    {
+      "name": "another day's entries do not bleed in",
+      "day": "2026-08-25",
+      "statuses": { "fajr": "unlogged", "dhuhr": "unlogged", "asr": "unlogged", "maghrib": "unlogged", "isha": "unlogged" },
+      "entries": [{ "id": "t1", "day": "2026-08-24", "prayer": "asr", "decidedAt": 1000 }],
+      "effective": { "fajr": "unlogged", "dhuhr": "unlogged", "asr": "unlogged", "maghrib": "unlogged", "isha": "unlogged" }
+    },
+    {
+      "name": "an unreadable entry is ignored, never guessed at",
+      "day": "2026-08-25",
+      "statuses": { "fajr": "unlogged", "dhuhr": "unlogged", "asr": "unlogged", "maghrib": "unlogged", "isha": "unlogged" },
+      "entries": [
+        { "id": "", "prayer": "asr", "decidedAt": 1000 },
+        { "id": "t2", "day": "2026-08-25", "prayer": "sunset", "decidedAt": 2000 },
+        { "id": "t3", "day": "2026-08-25", "prayer": "maghrib", "decidedAt": 3000 }
+      ],
+      "effective": { "fajr": "unlogged", "dhuhr": "unlogged", "asr": "unlogged", "maghrib": "prayed", "isha": "unlogged" }
+    },
+    {
+      "name": "storage order is irrelevant — decidedAt orders the decisions",
+      "day": "2026-08-25",
+      "statuses": { "fajr": "unlogged", "dhuhr": "unlogged", "asr": "unlogged", "maghrib": "unlogged", "isha": "unlogged" },
+      "entries": [
+        { "id": "t2", "day": "2026-08-25", "prayer": "fajr", "decidedAt": 2000, "clears": true },
+        { "id": "t1", "day": "2026-08-25", "prayer": "fajr", "decidedAt": 1000 }
+      ],
+      "effective": { "fajr": "unlogged", "dhuhr": "unlogged", "asr": "unlogged", "maghrib": "unlogged", "isha": "unlogged" }
+    },
+    {
+      "name": "an annul pair cancels even across days — matching is by id, never day-scoped",
+      "day": "2026-08-25",
+      "statuses": { "fajr": "unlogged", "dhuhr": "unlogged", "asr": "unlogged", "maghrib": "unlogged", "isha": "prayed" },
+      "entries": [
+        { "id": "m1", "day": "2026-08-24", "prayer": "isha", "decidedAt": 1000 },
+        { "id": "u1", "day": "2026-08-25", "prayer": "isha", "decidedAt": 2000, "annuls": "m1" }
+      ],
+      "effective": { "fajr": "unlogged", "dhuhr": "unlogged", "asr": "unlogged", "maghrib": "unlogged", "isha": "prayed" }
+    },
+    {
+      "name": "a present-but-mistyped optional field makes the whole entry unreadable, everywhere",
+      "day": "2026-08-25",
+      "statuses": { "fajr": "unlogged", "dhuhr": "unlogged", "asr": "unlogged", "maghrib": "unlogged", "isha": "unlogged" },
+      "entries": [
+        { "id": "t1", "day": "2026-08-25", "prayer": "asr", "decidedAt": 1000, "clears": "yes" },
+        { "id": "t2", "day": "2026-08-25", "prayer": "dhuhr", "decidedAt": 2000, "annuls": 7 },
+        { "id": "t3", "day": "2026-08-25", "prayer": "maghrib", "decidedAt": 3000, "confirmationId": 9 },
+        { "id": "t4", "day": "2026-08-25", "prayer": "isha", "decidedAt": 4000 }
+      ],
+      "effective": { "fajr": "unlogged", "dhuhr": "unlogged", "asr": "unlogged", "maghrib": "unlogged", "isha": "prayed" }
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="widget_schedule_label">أوقات الصلاة</string>
+  <string name="widget_schedule_description">صلوات اليوم الخمس، ولمسة واحدة لتسجيلها.</string>
+  <string name="widget_schedule_list_label">أوقات الصلاة — اليوم كاملًا</string>
+  <string name="widget_schedule_list_description">صلوات اليوم كلها في قائمة، ولمسة واحدة لتسجيلها.</string>
+  <string name="widget_now_label">الصلاة القادمة</string>
+  <string name="widget_now_description">الصلاة الحالية وما يليها.</string>
+  <string name="widget_now_strip_label">الصلاة القادمة — سطر واحد</string>
+  <string name="widget_now_strip_description">الصلاة الحالية والعدّ التنازلي ورفاقك، في سطر واحد.</string>
+  <string name="widget_empty_title">أوقات الصلاة</string>
+  <string name="widget_empty_body">افتح التطبيق لإكمال الإعداد.</string>
+  <string name="widget_stale_title">الأوقات تحتاج إلى تحديث</string>
+  <string name="widget_stale_body">افتح التطبيق لتحديثها.</string>
+  <string name="preview_fajr">الفجر</string>
+  <string name="preview_dhuhr">الظهر</string>
+  <string name="preview_asr">العصر</string>
+  <string name="preview_maghrib">المغرب</string>
+  <string name="preview_isha">العشاء</string>
+  <string name="preview_t_fajr">٤:٤٤</string>
+  <string name="preview_t_dhuhr">١:٠٧</string>
+  <string name="preview_t_asr">٤:٥١</string>
+  <string name="preview_t_maghrib">٧:٤٨</string>
+  <string name="preview_t_isha">٩:٢١</string>
+  <string name="preview_countdown">١:٢٦:٠٨</string>
+  <string name="preview_arabic"></string>
+  <string name="preview_sunrise">٦:١٢</string>
+  <string name="preview_until">حتى ٧:٤٨</string>
+  <string name="preview_buddy_1">أح</string>
+  <string name="preview_buddy_2">يس</string>
+</resources>

@@ -1,0 +1,644 @@
+---
+import { createHash } from 'node:crypto';
+import { readFileSync } from 'node:fs';
+
+import { site } from '../config';
+import { themeCss } from '../styles/theme';
+import { alternatesFor, localeMeta, pagePath, t, type Locale, type PageId } from '../i18n';
+import Logo from '../components/Logo.astro';
+import ThemeSwitch from '../components/ThemeSwitch.astro';
+import LanguageSwitch from '../components/LanguageSwitch.astro';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+  /** Path for the canonical URL, e.g. "/privacy". */
+  path?: string;
+  locale?: Locale;
+  /** Which logical page this is — drives hreflang alternates and the language switcher. Null for 404. */
+  page?: PageId | null;
+  /**
+   * JSON-LD structured data for this page (schema.org objects). Serialized into
+   * `<script type="application/ld+json">` data blocks — never executed, so the CSP
+   * script hashes are irrelevant to them (generate-headers.mjs hashes them anyway, harmlessly).
+   */
+  jsonLd?: object[];
+  /**
+   * Keep this page out of search results. For a page that is a shortcut to somewhere else and
+   * never a destination — /install, which exists to send a visitor to their own store (D156).
+   * `follow` so the store links and the language alternates are still crawled; the page keeps
+   * its own canonical, because canonicalising it elsewhere AND noindexing it is a contradiction.
+   */
+  noindex?: boolean;
+}
+
+const {
+  title,
+  description,
+  path = '/',
+  locale = 'en',
+  page = null,
+  jsonLd = [],
+  noindex = false,
+} = Astro.props;
+
+/**
+ * A content hash for the service worker, used as a cache-busting query on its URL.
+ *
+ * Cloudflare's CDN replaces the `Cache-Control: no-cache` we ask for on /sw.js with its own
+ * four-hour browser TTL, and serves the cached *headers* back on revalidation. That kept a fixed
+ * `/sw.js` pinned to a stale header set for hours after a deploy — which is how the worker went on
+ * being refused its own CSP long after the fix shipped. A URL that changes when the file changes
+ * cannot be answered from a stale entry.
+ */
+const swVersion = createHash('sha256')
+  .update(readFileSync(new URL('../../public/sw.js', import.meta.url)))
+  .digest('hex')
+  .slice(0, 8);
+const canonical = new URL(path, Astro.site);
+const dict = t(locale);
+const meta = localeMeta[locale];
+const alternates = page ? alternatesFor(page) : [];
+const home = pagePath('home', locale);
+
+// Open Graph locale tags (Facebook's identifiers; ar_AR is its pan-Arabic locale).
+// og:locale:alternate means "this page also exists in that locale", so it is emitted only for
+// pages that really have translations (not English-only /privacy, not the 404).
+const ogLocales: Record<Locale, string> = { en: 'en_US', tr: 'tr_TR', ar: 'ar_AR' };
+const translatedLocales = new Set(alternates.map((a) => a.hreflang));
+const ogLocaleAlternates = (Object.keys(ogLocales) as Locale[])
+  .filter((l) => l !== locale && translatedLocales.has(localeMeta[l].htmlLang))
+  .map((l) => ogLocales[l]);
+// og.png is shared across locales and shows the app in English, so its alt stays English.
+const ogImageAlt =
+  'The Simple Prayer Today screen on warm paper: five prayer rows, each with a round gold seal.';
+// `<` escaped so no string inside the JSON can ever close the script element early.
+const jsonLdBlocks = jsonLd.map((obj) => JSON.stringify(obj).replace(/</g, '\\u003c'));
+---
+
+<!doctype html>
+<html lang={meta.htmlLang} dir={meta.dir} data-sw={`/sw.js?v=${swVersion}`}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    {noindex && <meta name="robots" content="noindex, follow" />}
+    {alternates.map((a) => (
+      <link rel="alternate" hreflang={a.hreflang} href={new URL(a.path, Astro.site)} />
+    ))}
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon.png" type="image/png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    {/* One manifest per locale, so an installed copy opens in the language it was installed from. */}
+    <link
+      rel="manifest"
+      href={locale === 'en' ? '/manifest.webmanifest' : `/${locale}/manifest.webmanifest`}
+    />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:site_name" content={site.name} />
+    <meta property="og:locale" content={ogLocales[locale]} />
+    {ogLocaleAlternates.map((l) => <meta property="og:locale:alternate" content={l} />)}
+    <meta property="og:image" content={new URL('/og.png', Astro.site)} />
+    <meta property="og:image:alt" content={ogImageAlt} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    {jsonLdBlocks.map((block) => (
+      <script is:inline type="application/ld+json" set:html={block} />
+    ))}
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ece1c5" />
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#20190e" />
+    <link
+      rel="preload"
+      href={locale === 'ar' ? '/fonts/amiri-400.woff2' : '/fonts/lora-400.woff2'}
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href={locale === 'ar' ? '/fonts/amiri-700.woff2' : '/fonts/lora-600.woff2'}
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    {/* Palette generated from the app's src/theme/tokens.ts at build time. */}
+    <style is:inline set:html={themeCss}></style>
+    {/* Re-applies a persisted theme choice BEFORE first paint (no flash of the wrong theme).
+        Must stay a static inline script: scripts/generate-headers.mjs hashes it into the CSP. */}
+    <script is:inline>
+      try {
+        var t = localStorage.getItem('theme');
+        if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t);
+      } catch (e) {}
+      /*
+       * A remembered location, applied before the first paint — the same trick the theme above
+       * uses, and for the same reason. The card is server-rendered with the "Use my location"
+       * prompt showing, because that is the honest default for someone arriving for the first
+       * time. Without this, everyone who had already chosen a place watched that prompt appear
+       * and then get replaced a moment later, which reads as the site having forgotten them.
+       * The label itself is filled in by the module script; only the swap has to beat the paint.
+       */
+      try {
+        var stored = JSON.parse(localStorage.getItem('location') || 'null');
+        if (stored && typeof stored.lat === 'number' && typeof stored.lon === 'number' && stored.tz) {
+          document.documentElement.setAttribute('data-has-location', '');
+        }
+      } catch (e) {}
+    </script>
+    {/* Language auto-detection — rendered ONLY on the English home page, so /tr, /ar, /support,
+        /privacy and the 404 can never redirect (no loops, and a shared link keeps its language).
+        A choice made in the language switcher (localStorage 'lang', LanguageSwitch.astro) wins
+        over the browser preference forever; with no stored choice, the first supported primary
+        subtag in navigator.languages wins; English is the fallback and `/` stays English for
+        crawlers and anything else that does not run JS (hreflang alternates carry x-default).
+        Must stay a static inline script: scripts/generate-headers.mjs hashes it into the CSP. */}
+    {locale === 'en' && page === 'home' && (
+      <script is:inline>
+        (function () {
+          try {
+            var supported = { en: '/', tr: '/tr', ar: '/ar' };
+            var has = function (l) {
+              return Object.prototype.hasOwnProperty.call(supported, l);
+            };
+            var target = localStorage.getItem('lang');
+            if (!has(target)) {
+              target = 'en';
+              var prefs = navigator.languages || [navigator.language || ''];
+              for (var i = 0; i < prefs.length; i++) {
+                var primary = String(prefs[i]).toLowerCase().split('-')[0];
+                if (has(primary)) {
+                  target = primary;
+                  break;
+                }
+              }
+            }
+            if (target !== 'en') {
+              // Section ids are locale-independent, so a shared /#features link keeps working.
+              location.replace(supported[target] + location.search + location.hash);
+            }
+          } catch (e) {}
+        })();
+      </script>
+    )}
+  </head>
+  <body>
+    <a class="skip-link" href="#main">{dict.chrome.skipToContent}</a>
+
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="brand" href={home}>
+          <Logo size={34} variant="medium" />
+          <span class="brand-name">{site.name}</span>
+        </a>
+        {/* The desktop bar holds four links and no more. The header is bound by the site's 1060px
+            measure, so a wider screen buys nothing, and a fifth link pushes the language and theme
+            controls onto a second row — which is what shipped and what this fixes. The full list,
+            "How it works" and "Privacy" included, is still in the menu sheet below, and both are
+            reachable from the page itself: one is the section under the hero, the other is in the
+            footer of every page. */}
+        <nav class="site-nav" aria-label={dict.chrome.nav.siteNav}>
+          <ul class="nav-list">
+            <li><a href={pagePath('times', locale)}>{dict.timesPage.navLabel}</a></li>
+            <li><a href={pagePath('qibla', locale)}>{dict.qiblaPage.navLabel}</a></li>
+            <li><a href={`${home}#features`}>{dict.chrome.nav.features}</a></li>
+            <li><a href={pagePath('support', locale)}>{dict.chrome.nav.support}</a></li>
+            <li><a class="nav-cta" href={`${home}#get`}>{dict.chrome.nav.getApp}</a></li>
+          </ul>
+        </nav>
+        <div class="header-controls">
+          {page && page !== 'privacy' && page !== 'terms' && (
+            <LanguageSwitch locale={locale} page={page} label={dict.chrome.language} />
+          )}
+          <ThemeSwitch groupLabel={dict.chrome.theme.group} labels={dict.chrome.theme} />
+        </div>
+        {/* Phone and small-laptop chrome (≤1079px): the desktop nav and switchers above are hidden and replaced by a
+            persistent CTA plus a native <details> disclosure — CSS-only, so it opens and closes
+            with no JS and nothing new for the CSP to hash. The small bundled script below only
+            adds polish (close on link tap / Escape / outside tap). One of the two navs is always
+            display:none, so assistive tech ever sees a single "Site" landmark. */}
+        {/* The two mobile CTAs go to /install, not to the #get section: on a phone "#get" is a
+            scroll to the bottom of a long page, while /install is one tap to the visitor's own
+            store (D156). The desktop `.nav-cta` above keeps `#get`, because there the buttons
+            are already on screen. Both of these are hidden under `display-mode: standalone`, so
+            an installed copy is unaffected. */}
+        <a class="nav-cta header-cta" href={pagePath('install', locale)}>{dict.chrome.nav.getApp}</a>
+        <details class="menu" data-menu>
+          <summary aria-label={dict.chrome.nav.menu} title={dict.chrome.nav.menu}>
+            <svg
+              class="icon-menu"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              aria-hidden="true"
+            >
+              <path d="M4 7h16M4 12h16M4 17h16"></path>
+            </svg>
+            <svg
+              class="icon-close"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              aria-hidden="true"
+            >
+              <path d="M6 6l12 12M18 6L6 18"></path>
+            </svg>
+          </summary>
+          <div class="menu-panel">
+            <div class="container">
+              <nav aria-label={dict.chrome.nav.siteNav}>
+                <ul class="menu-list">
+                  <li><a href={pagePath('times', locale)}>{dict.timesPage.navLabel}</a></li>
+                  <li><a href={pagePath('qibla', locale)}>{dict.qiblaPage.navLabel}</a></li>
+                  <li><a href={`${home}#features`}>{dict.chrome.nav.features}</a></li>
+                  <li><a href={`${home}#how`}>{dict.chrome.nav.how}</a></li>
+                  <li><a href={pagePath('support', locale)}>{dict.chrome.nav.support}</a></li>
+                  <li><a href="/privacy">{dict.chrome.nav.privacy}</a></li>
+                </ul>
+              </nav>
+              <a class="nav-cta menu-cta" href={pagePath('install', locale)}>
+                {dict.chrome.nav.getApp}
+              </a>
+              <div class="menu-controls">
+                {page && page !== 'privacy' && page !== 'terms' && (
+                  <LanguageSwitch locale={locale} page={page} label={dict.chrome.language} />
+                )}
+                <ThemeSwitch groupLabel={dict.chrome.theme.group} labels={dict.chrome.theme} />
+              </div>
+            </div>
+          </div>
+        </details>
+      </div>
+    </header>
+
+    <main id="main">
+      <slot />
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-mark">
+          <Logo size={26} variant="small" color="var(--faint)" />
+        </div>
+        <p class="footer-name">
+          {site.name} <span class="footer-tagline">· {site.tagline}</span>
+        </p>
+        <p class="footer-pledge">{dict.chrome.footer.pledge}</p>
+        <ul class="footer-links">
+          <li><a href="/privacy">{dict.chrome.footer.privacyPolicy}</a></li>
+          <li><a href="/terms">{dict.chrome.footer.terms}</a></li>
+          <li><a href={pagePath('support', locale)}>{dict.chrome.footer.support}</a></li>
+          {
+            /* A link out, never an embed — see the note in docs/WEBSITE.md (D87). */
+            site.feedbackUrl !== null && (
+              <li><a href={site.feedbackUrl} rel="noopener">{dict.chrome.footer.feedback}</a></li>
+            )
+          }
+          <li><a href={site.sourceUrl} rel="noopener">{dict.chrome.footer.source}</a></li>
+          {/* The articles are English-only, so tr/ar mark the link as leading to English. */}
+          <li><a href="/blog" hreflang={locale === 'en' ? undefined : 'en'}>{dict.chrome.footer.articles}</a></li>
+          <li><a href={`mailto:${site.email}`}>{site.email}</a></li>
+        </ul>
+        <p class="hint">{dict.chrome.footer.madeBy}</p>
+      </div>
+    </footer>
+  </body>
+</html>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: color-mix(in srgb, var(--bg) 82%, transparent);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--hairline);
+  }
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    min-height: 60px;
+    flex-wrap: wrap;
+    padding-block: 8px;
+  }
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: var(--ink);
+  }
+  .brand-name {
+    font-weight: 600;
+    font-size: 1.05rem;
+    letter-spacing: 0.01em;
+    white-space: nowrap;
+  }
+  .nav-list {
+    display: flex;
+    align-items: center;
+    /* 22px was tuned for four short English links. With the two tools added, Turkish
+       ("Namaz vakitleri", "Uygulamayı edin") needs the tighter end of this range or the language
+       and theme controls wrap onto a second row. */
+    gap: clamp(10px, 1.2vw, 14px);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    flex-wrap: wrap;
+  }
+  /* :not(.nav-cta) keeps these plain-link rules off the CTA pill. Astro's scoping attribute
+     gives `.nav-list a` higher specificity than `a.nav-cta`, so without it the CTA rendered
+     --header-on-gold text (a 1.12:1 contrast — Lighthouse fails it) and lost its padding. */
+  .nav-list a:not(.nav-cta) {
+    color: var(--header);
+    text-decoration: none;
+    font-size: 0.92rem;
+    padding: 4px 2px;
+  }
+  .nav-list a:not(.nav-cta):hover {
+    color: var(--accent);
+  }
+  a.nav-cta {
+    display: inline-flex;
+    background: var(--accent);
+    color: var(--seal-fg);
+    text-decoration: none;
+    border-radius: 999px;
+    padding: 8px 16px;
+    font-weight: 600;
+    font-size: 0.92rem;
+    white-space: nowrap;
+  }
+  a.nav-cta:hover {
+    background: var(--accent-deep);
+    color: var(--seal-fg);
+  }
+  .header-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  /* Phone chrome exists only under the breakpoint; the desktop row is untouched above it.
+     (a.header-cta, not .header-cta: it must outrank `a.nav-cta`'s display.) */
+  a.header-cta,
+  .menu {
+    display: none;
+  }
+
+  /* The desktop bar appears only where it genuinely fits.
+     The header is bound by the site's 1060px measure, so a wider window buys it nothing, and the
+     budget is fixed: brand 163 + controls 311 + gaps 24 leaves about 440px for the links. Turkish
+     is the longest of the three and needs 1048px of window before its five fit; below that the
+     menu sheet is not a fallback but the right answer. 999px was tuned when the bar held four
+     short English words. */
+  @media (max-width: 1079px) {
+    /* One row, always: brand on the start side, CTA + menu button pulled to the end. */
+    .header-inner {
+      flex-wrap: nowrap;
+    }
+    .site-nav,
+    .header-controls {
+      display: none;
+    }
+    a.header-cta {
+      display: inline-flex;
+      margin-inline-start: auto;
+      padding: 7px 14px;
+      font-size: 0.88rem;
+    }
+    .menu {
+      display: block;
+    }
+    .menu summary {
+      display: grid;
+      place-items: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      cursor: pointer;
+      color: var(--header);
+      list-style: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .menu summary::-webkit-details-marker {
+      display: none;
+    }
+    .menu summary:hover {
+      color: var(--accent);
+    }
+    .menu summary svg {
+      width: 22px;
+      height: 22px;
+    }
+    .menu[open] summary .icon-menu {
+      display: none;
+    }
+    .menu:not([open]) summary .icon-close {
+      display: none;
+    }
+
+    /* Full-width sheet under the header bar. Solid background: content scrolls beneath it. */
+    .menu-panel {
+      position: absolute;
+      top: 100%;
+      inset-inline: 0;
+      background-color: var(--bg);
+      border-bottom: 1px solid var(--hairline);
+      box-shadow: 0 24px 34px -26px var(--shadow-gold);
+      max-height: calc(100dvh - 80px);
+      overflow-y: auto;
+      padding-block: 4px 20px;
+    }
+    .menu-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .menu-list li + li {
+      border-top: 1px solid var(--hairline);
+    }
+    .menu-list a {
+      display: block;
+      padding: 13px 2px;
+      color: var(--header);
+      text-decoration: none;
+      font-size: 1.02rem;
+    }
+    .menu-list a:hover {
+      color: var(--accent);
+    }
+    /* The menu repeats the CTA only when the header row had no room for it — never two
+       "Get the app" pills on screen at once. */
+    a.menu-cta {
+      display: none;
+      margin-block: 14px 2px;
+    }
+    .menu-controls {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid var(--hairline);
+    }
+  }
+
+  @keyframes menu-in {
+    from {
+      opacity: 0;
+      transform: translateY(-8px);
+    }
+  }
+
+  /* Open animation, opt-in only (global.css also zeroes all animations under reduced motion). */
+  @media (prefers-reduced-motion: no-preference) {
+    .menu[open] .menu-panel {
+      animation: menu-in 160ms ease-out;
+    }
+  }
+
+  /* The narrowest phones can't fit brand + CTA + menu button on one row; the hero's store
+     buttons and the menu's own "Get the app" entry keep the action one tap away. The cutoffs
+     are measured, per locale: the row needs ~390px in English and Arabic, ~420px in Turkish
+     ("Uygulamayı edin" runs 30px wider) — below that the logo gets crushed by flex shrink. */
+  @media (max-width: 389px) {
+    a.header-cta {
+      display: none;
+    }
+    a.menu-cta {
+      display: inline-flex;
+    }
+    .menu {
+      margin-inline-start: auto;
+    }
+  }
+  @media (max-width: 419px) {
+    :global(html[lang='tr']) a.header-cta {
+      display: none;
+    }
+    :global(html[lang='tr']) a.menu-cta {
+      display: inline-flex;
+    }
+    :global(html[lang='tr']) .menu {
+      margin-inline-start: auto;
+    }
+  }
+
+
+  .site-footer {
+    border-top: 1px solid var(--hairline);
+    margin-top: clamp(2rem, 6vw, 4rem);
+    padding-block: 2.5rem 3rem;
+    text-align: center;
+  }
+  .footer-mark {
+    margin-bottom: 6px;
+  }
+  .footer-name {
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .footer-tagline {
+    font-weight: 400;
+    font-style: italic;
+    color: var(--muted);
+    font-size: 0.9em;
+  }
+  :global(html[lang='ar']) .footer-tagline {
+    font-style: normal;
+  }
+  .footer-pledge {
+    max-width: 46ch;
+    margin-inline: auto;
+    color: var(--muted);
+    font-size: 0.88rem;
+  }
+  .footer-links {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0 10px;
+    padding: 0;
+    margin: 0 0 10px;
+    font-size: 0.9rem;
+  }
+  /* Padding, not gap, provides the spacing: each link becomes a ~37px-tall touch target. */
+  .footer-links a {
+    display: inline-block;
+    padding: 7px 6px;
+  }
+</style>
+
+<script>
+  // Mobile-menu polish. The <details> element opens and closes natively without any of this;
+  // this only makes it behave like a menu: choosing a link closes it (otherwise an in-page
+  // anchor like #features scrolls underneath an open panel), Escape closes it and returns
+  // focus, and a tap outside dismisses it. Bundled by Astro into an external module covered
+  // by the CSP's `script-src 'self'` — nothing here builds script text at runtime.
+  const menu = document.querySelector<HTMLDetailsElement>('details[data-menu]');
+  if (menu) {
+    const summary = menu.querySelector<HTMLElement>('summary');
+    menu.addEventListener('click', (e) => {
+      if ((e.target as Element).closest('a')) menu.open = false;
+    });
+    document.addEventListener('click', (e) => {
+      if (menu.open && !menu.contains(e.target as Node)) menu.open = false;
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && menu.open) {
+        menu.open = false;
+        summary?.focus();
+      }
+    });
+  }
+</script>
+
+<script>
+  /**
+   * Registers the offline worker, and tells the page when it is running as an installed app.
+   *
+   * The worker's URL arrives on <html data-sw> rather than through `define:vars`, because that
+   * directive forces the script inline and un-compiled — the TypeScript below then ships as-is and
+   * throws on the first cast, taking the registration and the standalone class down with it.
+   *
+   * The standalone rules in global.css are driven by `display-mode: standalone`, which iOS did not
+   * support for years — it reports `navigator.standalone` instead. Stamping a class covers both,
+   * and covers the case of an old iOS opening a page that would otherwise keep its full marketing
+   * chrome inside a home-screen app.
+   */
+  const standalone =
+    window.matchMedia('(display-mode: standalone)').matches ||
+    (navigator as Navigator & { standalone?: boolean }).standalone === true;
+  if (standalone) document.documentElement.classList.add('is-installed');
+
+  if ('serviceWorker' in navigator) {
+    // After load: registering during it competes with the page's own assets for the connection.
+    window.addEventListener('load', () => {
+      // `updateViaCache: 'none'` because Cloudflare's CDN overrides the `Cache-Control: no-cache`
+      // we ask for on /sw.js with its own 4-hour browser TTL. Browsers already bypass the HTTP
+      // cache for the worker script by default, but a site that cannot be updated is a bad enough
+      // failure to say so explicitly rather than lean on a default.
+      const swUrl = document.documentElement.dataset.sw ?? '/sw.js';
+      navigator.serviceWorker.register(swUrl, { updateViaCache: 'none' }).catch(() => {
+        // An unavailable worker costs offline support and nothing else. The site still works.
+      });
+    });
+  }
+</script>

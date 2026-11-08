@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  The ONE sanctioned exception to "no user-facing strings outside src/i18n" (D103, extended to
+  the watch in the Milestone V docs pass): these render exactly when no envelope exists to carry
+  translated copy (first pairing, or an envelope past its horizon), plus the labels the tile and
+  complication pickers read before any envelope arrives, and the notification channel the OS
+  settings screen names. Keyed to the SYSTEM locale by resource qualifiers (values-ar,
+  values-tr). Wording mirrors targets/watch/WatchBundledStrings.swift — the fix is on the PHONE,
+  so the words say so. Authored per docs/TONE.md: short sentences, no idioms, calm — never an
+  error voice.
+-->
+<resources>
+  <string name="wear_empty_title">Prayer times</string>
+  <string name="wear_empty_body">Open Simple Prayer on your phone to set up.</string>
+  <string name="wear_stale_title">Times need a refresh</string>
+  <string name="wear_stale_body">Open Simple Prayer on your phone.</string>
+  <string name="wear_tile_label">Next prayer</string>
+  <string name="wear_complication_label">Next prayer</string>
+  <string name="wear_channel_name">Prayer-time reminders</string>
+  <string name="wear_channel_description">Arrives when a prayer\'s time begins.</string>
+  <string name="preview_prayer">Asr</string>
+  <string name="preview_countdown">1:12</string>
+</resources>

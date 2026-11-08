@@ -1,0 +1,127 @@
+# Files EAS Build must not receive.
+#
+# WHY: the upload was 218 MB. Almost none of it was app code — `docs/screenshots/` alone was 105 MB
+# of store captures, and the marketing site is a separate deployment that EAS never builds.
+#
+# HOW EAS USES THIS FILE — the semantics differ by VCS client, and getting it wrong is dangerous:
+#
+#   * Git repo (the default here): EAS makes a `git clone --depth 1` of the working copy, then
+#     deletes whatever matches this file via `git ls-files --exclude-from`. Because it starts from a
+#     clone, .gitignore has ALREADY been applied, so the "everything .gitignore covers" section
+#     below is redundant on this path — it matches nothing and costs nothing.
+#     Because this repo does not set `requireCommit`, EAS then copies the working directory over
+#     that clone so uncommitted and untracked files are included too — and THAT copy step reads
+#     only this file, never .gitignore.
+#   * Local client (`EAS_NO_VCS=1`): same rule, for everything.
+#
+# So the "everything .gitignore covers" section below is not redundant belt-and-braces: without it,
+# the working-directory copy would carry a stale local /ios and /android (EAS must generate those
+# itself with prebuild), any credential file, and dist/. It is NOT needed for node_modules or .git,
+# which EAS always ignores when copying regardless of what this file says. Keep it in sync with
+# .gitignore.
+#
+# THE `.git` LINE IS LOAD-BEARING, AND ITS EXACT SPELLING MATTERS. EAS tars the whole shallow clone,
+# `.git` included, and `git ls-files` never lists anything inside `.git` — so ignoring a large
+# committed file removes only its working copy while its blob stays in the packfile, reclaiming
+# about half its weight. EAS's one escape hatch is that it deletes the clone's `.git` outright if
+# this file ignores `.git`. It tests the literal path `.git` against these rules, and the `ignore`
+# package does not match a bare path against a directory-only pattern:
+#
+#     .git    ignores('.git') === true     <- what we need
+#     .git/   ignores('.git') === false    <- silently keeps the whole packfile
+#
+# Do not "tidy" the line below by adding a trailing slash.
+#
+# Measured on this repo: 218 MB originally; 81 MB with the exclusions but a `.git/` typo; ~7 MB
+# once `.git` matched. The screenshots were also re-encoded losslessly (105 MB -> 60 MB), which
+# still matters — it shrinks any build that does keep history, and the repo itself.
+
+# ---------------------------------------------------------------------------
+# Not needed to build the app
+# ---------------------------------------------------------------------------
+
+# Store captures: used by the marketing site and the store listings, never by
+# the app binary. This is the single biggest item in the upload.
+docs/screenshots/
+# The composed store screens: 49 MB of 1242x2688 PNGs that exist to be uploaded to a store
+# console by hand, and are no more part of the app than the captures they are built from.
+docs/store-screens/
+# Internal notes: a private repo of their own (see .gitignore), never uploaded.
+docs/internal/
+
+# The marketing site is its own project with its own dependencies, and deploys from Cloudflare
+# Pages' own Git integration — EAS has no reason to see it.
+website/
+
+# CI definitions run on GitHub, not on the build worker.
+.github/
+
+# ---------------------------------------------------------------------------
+# Everything .gitignore covers — required only for the `EAS_NO_VCS=1` path (see above), where this
+# file is the ONLY filter. Keep in sync with .gitignore.
+# ---------------------------------------------------------------------------
+
+# Deletes the shallow clone's git history from the upload. No trailing slash — see above.
+.git
+
+# dependencies
+node_modules/
+
+# Expo
+.expo/
+dist/
+web-build/
+expo-env.d.ts
+
+# Native
+.kotlin/
+*.orig.*
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+
+# EAS credentials (never upload — see docs/RELEASE.md)
+credentials.json
+google-service-account*.json
+play-service-account*.json
+
+# Metro
+.metro-health-check*
+
+# debug
+npm-debug.*
+yarn-debug.*
+yarn-error.*
+
+# macOS
+.DS_Store
+*.pem
+
+# local env files
+.env*.local
+
+# typescript
+*.tsbuildinfo
+
+# Python bytecode from scripts/
+__pycache__/
+*.pyc
+
+example
+
+# Generated native folders — EAS runs prebuild itself; uploading a stale local copy makes the build
+# use it instead.
+/ios
+/android
+
+# Playwright MCP scratch output
+.playwright-mcp/
+
+# Sentry — the auth token lives in env / EAS secrets, never in a file (see docs/RELEASE.md §11)
+sentry.properties
+.sentryclirc
+
+# Claude Worktrees
+.claude/worktrees/

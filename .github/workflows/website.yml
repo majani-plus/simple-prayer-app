@@ -1,0 +1,53 @@
+name: Website
+
+# Builds the marketing/legal site in website/. Triggers on site changes AND on the repo files the
+# site renders from — the privacy policy markdown, the design tokens, and the store screenshots —
+# so the published page can't silently drift from its audited sources (docs/DECISIONS.md D50).
+#
+# Since /times, the site vendors the app's prayer-time domain and its shared vocabulary at build
+# time (website/scripts/generate-domain.ts), so those paths belong here too. Without them a change
+# to src/domain/ would reach the published site on the next unrelated deploy, unbuilt and untested
+# — and `bun run build` runs the app-versus-site agreement check, which is what would catch it.
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'website/**'
+      - 'docs/PRIVACY_POLICY.md'
+      - 'docs/screenshots/**'
+      - 'src/theme/tokens.ts'
+      - 'src/domain/**'
+      - 'src/i18n/locales/**'
+      - 'patches/**'
+      - '.github/workflows/website.yml'
+  pull_request:
+    paths:
+      - 'website/**'
+      - 'docs/PRIVACY_POLICY.md'
+      - 'docs/screenshots/**'
+      - 'src/theme/tokens.ts'
+      - 'src/domain/**'
+      - 'src/i18n/locales/**'
+      - 'patches/**'
+      - '.github/workflows/website.yml'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: website
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+      - name: Typecheck
+        run: bun run check
+      - name: Build
+        run: bun run build
+      # Deploy is intentionally absent: the host is undecided (Cloudflare Pages likely,
+      # EAS Hosting possible — docs/DECISIONS.md D50). Both consume website/dist as-is;
+      # add the deploy step here once the owner picks one.

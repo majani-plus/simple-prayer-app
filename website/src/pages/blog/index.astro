@@ -1,0 +1,51 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import { formatPostDate } from '../../lib/blog';
+
+// English-only (`page={null}`): no hreflang alternates and no language switcher, like the 404.
+const posts = (await getCollection('blog')).sort((a, b) => b.data.date.localeCompare(a.data.date));
+---
+
+<Base
+  title="Articles — Simple Prayer"
+  description="Articles about how Simple Prayer is built, and why it works the way it does."
+  path="/blog"
+  locale="en"
+  page={null}
+>
+  <div class="section container blog">
+    <h1>Articles</h1>
+    <ul class="posts">
+      {posts.map((p) => (
+        <li>
+          <h2><a href={`/blog/${p.id}`}>{p.data.title}</a></h2>
+          <p class="caption"><time datetime={p.data.date}>{formatPostDate(p.data.date)}</time></p>
+          <p>{p.data.description}</p>
+        </li>
+      ))}
+    </ul>
+  </div>
+</Base>
+
+<style>
+  .blog {
+    max-width: 760px;
+  }
+  .posts {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .posts li {
+    padding-block: 1.4rem;
+    border-top: 1px solid var(--hairline);
+  }
+  .posts h2 {
+    font-size: 1.3rem;
+    margin: 0 0 0.2em;
+  }
+  .posts p {
+    margin: 0.3em 0 0;
+  }
+</style>

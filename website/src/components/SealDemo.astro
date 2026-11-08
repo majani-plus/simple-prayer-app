@@ -1,0 +1,392 @@
+---
+/**
+ * A working replica of the app's signature interaction: the 48px seal that morphs into a
+ * three-choice pill and collapses again. Option order is app-verified (PrayerSeal.tsx, since
+ * 2026-08-21): Missed / Late / Prayed, with Prayed trailing so it lands exactly where the
+ * closed seal was. Timings and colours are the design's own (docs/DESIGN.md §Prayer row). It
+ * demonstrates itself until touched, then it's yours: two taps to log, two taps to change,
+ * picking the current status clears it.
+ *
+ * All strings arrive localized; the client script reads them from data attributes.
+ */
+interface Props {
+  name: string;
+  arabic: string;
+  /** Hide the Arabic sidekick when the name itself is already Arabic (the /ar/ page). */
+  showArabic: boolean;
+  time: string;
+  captions: { unlogged: string; prayed: string; late: string; missed: string };
+  options: { prayed: string; late: string; missed: string };
+  hint: string;
+  ariaLabel: string;
+}
+const { name, arabic, showArabic, time, captions, options, hint, ariaLabel } = Astro.props;
+
+const icons = {
+  check:
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>',
+  clock:
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2.2"/></svg>',
+  close:
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M7 7l10 10M17 7L7 17"/></svg>',
+  // The unlogged face: the app's filled `circle` glyph reads as a ~15pt disc inside the 48pt
+  // dashed ring (Icon size 20) — r=9 in a 24 viewBox reproduces that, not a small dot.
+  dot: '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="9"/></svg>',
+};
+---
+
+<div
+  class="seal-demo"
+  data-seal-demo
+  data-state="unlogged"
+  data-captions={JSON.stringify(captions)}
+  data-aria-label={ariaLabel}
+>
+  <div class="demo-row">
+    <div class="demo-left">
+      <p class="demo-names">
+        <span class="demo-name">{name}</span>
+        {showArabic && <span class="arabic demo-arabic" lang="ar">{arabic}</span>}
+      </p>
+      <p class="demo-time">
+        {time}
+        <span class="caption" data-status-label aria-live="polite">{captions.unlogged}</span>
+      </p>
+    </div>
+
+    <div class="seal-wrap">
+      <div class="seal-pill" data-pill>
+        <div class="seal-options" data-options>
+          <button class="opt opt-missed" data-choice="missed" type="button">
+            <span class="opt-icon" set:html={icons.close} />
+            <span class="opt-label">{options.missed}</span>
+          </button>
+          <button class="opt opt-late" data-choice="late" type="button">
+            <span class="opt-icon" set:html={icons.clock} />
+            <span class="opt-label">{options.late}</span>
+          </button>
+          <button class="opt opt-prayed" data-choice="prayed" type="button">
+            <span class="opt-icon" set:html={icons.check} />
+            <span class="opt-label">{options.prayed}</span>
+          </button>
+        </div>
+        <button class="seal-face" data-face type="button" aria-expanded="false" aria-label={ariaLabel}>
+          <span class="face-icon face-unlogged" set:html={icons.dot} />
+          <span class="face-icon face-prayed" set:html={icons.check} />
+          <span class="face-icon face-late" set:html={icons.clock} />
+          <span class="face-icon face-missed" set:html={icons.close} />
+        </button>
+      </div>
+    </div>
+  </div>
+  <p class="hint demo-hint">{hint}</p>
+</div>
+
+<style>
+  .seal-demo {
+    background: var(--card-bright);
+    border: 1px solid var(--border-strong);
+    border-radius: 14px;
+    padding: 14px 16px 10px;
+    box-shadow: 0 2px 10px -4px var(--shadow-gold);
+    /* A fixed width, not max-width: the parent centres shrink-to-fit children, so a box sized by
+       its content would resize every time the caption's wording changes with the status. */
+    width: min(100%, 420px);
+  }
+  .demo-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    min-height: 56px;
+  }
+  .demo-left {
+    min-width: 0;
+  }
+  .demo-names {
+    margin: 0;
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+  }
+  .demo-name {
+    font-size: 1.15rem;
+    font-weight: 600;
+  }
+  .demo-arabic {
+    color: var(--faint);
+    font-size: 1.05rem;
+  }
+  .demo-time {
+    margin: 0;
+    font-size: 0.95rem;
+    color: var(--ink-strong);
+    font-weight: 600;
+  }
+  .demo-hint {
+    text-align: center;
+    margin: 10px 0 2px;
+  }
+
+  .seal-wrap {
+    /* Reserves the pill's full open width (SEAL_OPEN_WIDTH), so opening never reflows the row.
+       Order inside the pill is the app's own (PrayerSeal.tsx): missed → late → prayed, with
+       prayed trailing — it stays pixel-still where the closed seal was through the morph. */
+    width: 160px;
+    display: flex;
+    justify-content: flex-end;
+    flex-shrink: 0;
+  }
+  .seal-pill {
+    position: relative;
+    width: 48px;
+    height: 48px;
+    border-radius: 999px;
+    /* Keeps the 160px options row invisible while the pill is only 48px wide (app's clip). */
+    overflow: hidden;
+    transition:
+      width 240ms cubic-bezier(0.4, 0, 0.2, 1),
+      background-color 200ms,
+      border-color 200ms,
+      box-shadow 200ms;
+    border: 1.5px dashed var(--unlogged);
+    background: transparent;
+  }
+
+  /* Closed face per state — border weights straight from PrayerSeal's faceSkin. */
+  [data-state='prayed'] .seal-pill {
+    border: 1px solid transparent;
+    background: var(--accent);
+    box-shadow: 0 2px 8px -2px var(--shadow-gold);
+  }
+  [data-state='late'] .seal-pill {
+    border: 1px solid transparent;
+    background: var(--late);
+  }
+  [data-state='missed'] .seal-pill {
+    border: 1.5px solid var(--missed);
+    background: transparent;
+  }
+
+  .seal-demo[data-open] .seal-pill {
+    width: 160px; /* SEAL_OPEN_WIDTH */
+    border: 1px solid var(--border-strong);
+    border-style: solid;
+    background: var(--card-elevated);
+    box-shadow: 0 3px 12px -4px var(--shadow-gold);
+  }
+
+  .seal-face {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    background: none;
+    border: 0;
+    border-radius: 999px;
+    cursor: pointer;
+    padding: 0;
+    color: var(--unlogged);
+    transition: opacity 150ms;
+  }
+  [data-state='prayed'] .seal-face {
+    color: var(--seal-fg);
+  }
+  [data-state='late'] .seal-face {
+    color: var(--seal-fg);
+  }
+  [data-state='missed'] .seal-face {
+    color: var(--missed);
+  }
+  /* The four glyphs share one grid cell and cross-fade on state change (the app's motion.fade),
+     rather than swapping instantly. 20px is the app's face icon size. */
+  .face-icon {
+    grid-area: 1 / 1;
+    display: block;
+    width: 20px;
+    height: 20px;
+    opacity: 0;
+    transition: opacity 150ms;
+  }
+  .face-icon :global(svg) {
+    width: 100%;
+    height: 100%;
+  }
+  [data-state='unlogged'] .face-unlogged {
+    opacity: 1;
+  }
+  [data-state='prayed'] .face-prayed {
+    opacity: 1;
+  }
+  [data-state='late'] .face-late {
+    opacity: 1;
+  }
+  [data-state='missed'] .face-missed {
+    opacity: 1;
+  }
+  .seal-demo[data-open] .seal-face {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .seal-options {
+    position: absolute;
+    inset-block: 0;
+    /* Anchored at the trailing edge, like the app's options layer (PrayerSeal.tsx:754): the
+       pill grows away from the seal, so "prayed" — the last option — never moves. */
+    inset-inline-end: 0;
+    /* Fixed at the open width (like the app's options layer) so the labels never squish while
+       the pill is mid-morph; the pill's overflow clip reveals them. */
+    width: 160px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 150ms, visibility 0s 150ms;
+  }
+  .seal-demo[data-open] .seal-options {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 180ms 70ms, visibility 0s;
+  }
+  .opt {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    width: 50px;
+    height: 44px;
+    justify-content: center;
+    background: none;
+    border: 0;
+    border-radius: 10px;
+    cursor: pointer;
+    padding: 0;
+    font-family: inherit;
+    transition: transform 120ms;
+  }
+  .opt:active,
+  .opt.demo-press {
+    transform: scale(0.9);
+  }
+  .opt-icon {
+    width: 17px; /* app option icon size */
+    height: 17px;
+    display: block;
+  }
+  .opt-icon :global(svg) {
+    width: 100%;
+    height: 100%;
+  }
+  .opt-label {
+    font-size: 0.56rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+  }
+  :global(html[lang='ar']) .opt-label {
+    font-size: 0.68rem;
+    letter-spacing: 0;
+  }
+  .opt-prayed {
+    color: var(--accent-deep);
+  }
+  .opt-late {
+    color: var(--late);
+  }
+  .opt-missed {
+    color: var(--missed);
+  }
+
+  @media (max-width: 380px) {
+    .demo-row {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .seal-wrap {
+      width: 100%;
+    }
+  }
+</style>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-seal-demo]').forEach((demo) => {
+    const face = demo.querySelector<HTMLButtonElement>('[data-face]')!;
+    const label = demo.querySelector<HTMLElement>('[data-status-label]')!;
+    const options = demo.querySelectorAll<HTMLButtonElement>('[data-choice]');
+    const captions: Record<string, string> = JSON.parse(demo.dataset.captions ?? '{}');
+    const baseLabel = demo.dataset.ariaLabel ?? '';
+    let interacted = false;
+    let timers: ReturnType<typeof setTimeout>[] = [];
+
+    const state = () => demo.dataset.state ?? 'unlogged';
+    const isOpen = () => demo.hasAttribute('data-open');
+
+    function setOpen(open: boolean) {
+      demo.toggleAttribute('data-open', open);
+      face.setAttribute('aria-expanded', String(open));
+    }
+
+    function setState(next: string) {
+      demo.dataset.state = next;
+      label.textContent = captions[next] ?? '';
+      face.setAttribute('aria-label', `${baseLabel} ${captions[next] ?? ''}`);
+    }
+
+    face.addEventListener('click', () => setOpen(!isOpen()));
+
+    options.forEach((opt) => {
+      opt.addEventListener('click', () => {
+        const choice = opt.dataset.choice!;
+        // Picking the current status clears it back to unlogged — same as the app.
+        setState(choice === state() ? 'unlogged' : choice);
+        setOpen(false);
+      });
+    });
+
+    document.addEventListener('click', (e) => {
+      if (isOpen() && !demo.contains(e.target as Node)) setOpen(false);
+    });
+    demo.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && isOpen()) {
+        setOpen(false);
+        face.focus();
+      }
+    });
+
+    // Idle self-demonstration: open, pick "Prayed", settle, then clear — until first touch.
+    const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const stopAutoplay = () => {
+      interacted = true;
+      timers.forEach(clearTimeout);
+      demo.querySelector('.demo-press')?.classList.remove('demo-press');
+    };
+    demo.addEventListener('pointerdown', stopAutoplay);
+    demo.addEventListener('focusin', stopAutoplay);
+
+    if (!reduced) {
+      const at = (ms: number, fn: () => void) => timers.push(setTimeout(fn, ms));
+      const cycle = () => {
+        if (interacted) return;
+        timers = [];
+        const prayed = demo.querySelector<HTMLButtonElement>('[data-choice="prayed"]')!;
+        at(0, () => setOpen(true));
+        at(1100, () => prayed.classList.add('demo-press'));
+        at(1300, () => {
+          prayed.classList.remove('demo-press');
+          setState('prayed');
+          setOpen(false);
+        });
+        at(3600, () => setOpen(true));
+        at(4700, () => prayed.classList.add('demo-press'));
+        at(4900, () => {
+          prayed.classList.remove('demo-press');
+          setState('unlogged');
+          setOpen(false);
+        });
+        at(7400, cycle);
+      };
+      timers.push(setTimeout(cycle, 1400));
+    }
+  });
+</script>

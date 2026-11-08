@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  The ONE sanctioned exception to "no user-facing strings outside src/i18n": these render exactly
+  when no snapshot exists to carry translated copy (first install, or a snapshot past its
+  horizon), plus the picker descriptions the launcher reads before the app ever runs. Keyed to
+  the SYSTEM locale by resource qualifiers (values-ar, values-tr). Authored per docs/TONE.md:
+  short sentences, no idioms, calm — never an error voice.
+-->
+<resources>
+  <string name="widget_schedule_label">Prayer times</string>
+  <string name="widget_schedule_description">Today\'s five prayers, with a tap to mark them.</string>
+  <string name="widget_schedule_list_label">Prayer times — the full day</string>
+  <string name="widget_schedule_list_description">Every prayer of the day as a list, with a tap to mark them.</string>
+  <string name="widget_now_label">Next prayer</string>
+  <string name="widget_now_description">The current prayer and what comes next.</string>
+  <string name="widget_now_strip_label">Next prayer — one row</string>
+  <string name="widget_now_strip_description">The current prayer, the countdown and your buddies, in one row.</string>
+  <string name="widget_empty_title">Prayer times</string>
+  <string name="widget_empty_body">Open Simple Prayer to set up.</string>
+  <string name="widget_stale_title">Times need a refresh</string>
+  <string name="widget_stale_body">Open Simple Prayer to update them.</string>
+  <string name="preview_fajr">Fajr</string>
+  <string name="preview_dhuhr">Dhuhr</string>
+  <string name="preview_asr">Asr</string>
+  <string name="preview_maghrib">Maghrib</string>
+  <string name="preview_isha">Isha</string>
+  <string name="preview_t_fajr">4:44</string>
+  <string name="preview_t_dhuhr">1:07</string>
+  <string name="preview_t_asr">4:51</string>
+  <string name="preview_t_maghrib">7:48</string>
+  <string name="preview_t_isha">9:21</string>
+  <string name="preview_countdown">1:26:08</string>
+  <string name="preview_arabic">المغرب</string>
+  <string name="preview_sunrise">6:12</string>
+  <string name="preview_until">until 7:48</string>
+  <string name="preview_buddy_1">AB</string>
+  <string name="preview_buddy_2">YK</string>
+</resources>

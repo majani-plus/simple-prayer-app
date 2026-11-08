@@ -1,0 +1,1100 @@
+---
+import { getImage, Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import { site } from '../config';
+import Base from '../layouts/Base.astro';
+import Logo from './Logo.astro';
+import SealDemo from './SealDemo.astro';
+import PrayerSchedule from './PrayerSchedule.astro';
+import SealIcon from './SealIcon.astro';
+import StoreButtons from './StoreButtons.astro';
+import PhoneFrame from './PhoneFrame.astro';
+import { pagePath, t, type Locale } from '../i18n';
+
+// Real captures of the real app (docs/screenshots/README.md) — imported from the repo's audited
+// set, never copied, so the site always shows what the app actually looks like. Each locale's
+// page shows that locale's own captures, including the four feature bands.
+//
+// The set is 6.5" only now (1242x2688): the owner ships one size, and 6.1"/6.7" were deleted
+// with it. `02-today-hero` went too — it was the same picture as the seal frame at the size a
+// store thumbnails to — so the hero here is the seal frame, which shows the countdown and the
+// rows as well as the gesture.
+import heroEn from '../../../docs/screenshots/en/light/6.5/01-today-seal.png';
+import heroTr from '../../../docs/screenshots/tr/light/6.5/01-today-seal.png';
+import heroAr from '../../../docs/screenshots/ar/light/6.5/01-today-seal.png';
+// The night-paper section is "If you miss a day" — about streaks and the month behind you — so
+// it shows History, where the streak actually lives. It used to repeat the Today hero, which
+// illustrated nothing the section was talking about.
+import darkEn from '../../../docs/screenshots/en/dark/6.5/02-history.png';
+import darkTr from '../../../docs/screenshots/tr/dark/6.5/02-history.png';
+import darkAr from '../../../docs/screenshots/ar/dark/6.5/02-history.png';
+// Travel mode's band capture — the Today screen with the travel banner up (shot by the capture
+// rig's travel_on state, light theme, all three locales).
+import bandTravelEn from '../../../docs/screenshots/en/light/6.5/07-travel.png';
+import bandTravelTr from '../../../docs/screenshots/tr/light/6.5/07-travel.png';
+import bandTravelAr from '../../../docs/screenshots/ar/light/6.5/07-travel.png';
+
+// The hero family's supporting devices: the iPad two-pane Today board sits centred BEHIND the
+// phone, and the Apple Watch app overlaps in front (owner, 2026-08-28 — tablet behind, Apple
+// Watch not the round Wear shot). Decorative duplicates of the phone's content: empty alt text.
+import tabletEn from '../../../docs/screenshots/en/light/ipad13/01-today-seal.png';
+import tabletTr from '../../../docs/screenshots/tr/light/ipad13/01-today-seal.png';
+import tabletAr from '../../../docs/screenshots/ar/light/ipad13/01-today-seal.png';
+
+// The everywhere gallery (owner, 2026-08-28: "we show everything"): the live notification
+// banner crops, the Wear surfaces, and the Manuscript face. Locales missing a capture fall
+// back to the English one — a real picture in the wrong language beats a placeholder.
+import notifEn from '../../../docs/screenshots/en/crops/notification.png';
+import notifTr from '../../../docs/screenshots/tr/crops/notification.png';
+import notifAr from '../../../docs/screenshots/ar/crops/notification.png';
+import wearTodayEn from '../../../docs/screenshots/en/wear/today.png';
+import wearTodayTr from '../../../docs/screenshots/tr/wear/today.png';
+import wearTodayAr from '../../../docs/screenshots/ar/wear/today.png';
+import faceEn from '../../../docs/screenshots/en/wear/face.png';
+import tileEn from '../../../docs/screenshots/en/wear/tile.png';
+import tileAr from '../../../docs/screenshots/ar/wear/tile.png';
+import complicationEn from '../../../docs/screenshots/en/watch/complication.png';
+import complicationAr from '../../../docs/screenshots/ar/watch/complication.png';
+import smartStackEn from '../../../docs/screenshots/en/watch/smart-stack.png';
+
+// The watch capture illustrating the "everywhere" section: the watch app's Today screen
+// (416×496). Same rule as the bands — real captures only, imported from the audited set.
+import watchEn from '../../../docs/screenshots/en/watch/today.png';
+import watchTr from '../../../docs/screenshots/tr/watch/today.png';
+import watchAr from '../../../docs/screenshots/ar/watch/today.png';
+
+// The feature bands, in the order `d.features.bands` declares them: the seal, History, the qibla,
+// making up missed prayers, and travel mode. Travel has NO capture yet — its slot is `null` below
+// and renders the labelled placeholder instead. To finish it: shoot
+// `docs/screenshots/{locale}/light/6.5/07-travel.png` in all three locales, import the three files
+// here, and replace the three `null`s in `bandShots`. Nothing else needs touching — the copy and
+// the alt text are already authored (`features.bands`).
+import bandSealEn from '../../../docs/screenshots/en/light/6.5/01-today-seal.png';
+import bandSealTr from '../../../docs/screenshots/tr/light/6.5/01-today-seal.png';
+import bandSealAr from '../../../docs/screenshots/ar/light/6.5/01-today-seal.png';
+import bandHistoryEn from '../../../docs/screenshots/en/light/6.5/02-history.png';
+import bandHistoryTr from '../../../docs/screenshots/tr/light/6.5/02-history.png';
+import bandHistoryAr from '../../../docs/screenshots/ar/light/6.5/02-history.png';
+import bandQiblaEn from '../../../docs/screenshots/en/light/6.5/03-qibla.png';
+import bandQiblaTr from '../../../docs/screenshots/tr/light/6.5/03-qibla.png';
+import bandQiblaAr from '../../../docs/screenshots/ar/light/6.5/03-qibla.png';
+import bandQadaEn from '../../../docs/screenshots/en/light/6.5/05-qada.png';
+import bandQadaTr from '../../../docs/screenshots/tr/light/6.5/05-qada.png';
+import bandQadaAr from '../../../docs/screenshots/ar/light/6.5/05-qada.png';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const dict = t(locale);
+const d = dict.home;
+
+const shots: Record<Locale, Record<'hero' | 'dark', ImageMetadata>> = {
+  en: { hero: heroEn, dark: darkEn },
+  tr: { hero: heroTr, dark: darkTr },
+  ar: { hero: heroAr, dark: darkAr },
+};
+/**
+ * One capture per feature band, in the order `d.features.bands` declares them. `null` means the
+ * screenshot has not been taken yet, and the band renders the placeholder instead of an image —
+ * so a band's copy never waits on a capture.
+ */
+const bandShots: Record<Locale, readonly (ImageMetadata | null)[]> = {
+  en: [bandSealEn, bandHistoryEn, bandQiblaEn, bandQadaEn, bandTravelEn],
+  tr: [bandSealTr, bandHistoryTr, bandQiblaTr, bandQadaTr, bandTravelTr],
+  ar: [bandSealAr, bandHistoryAr, bandQiblaAr, bandQadaAr, bandTravelAr],
+};
+/**
+ * The watch capture per locale, `null` when a locale's capture does not exist yet — the slot
+ * then renders the labelled placeholder, like a band with no screenshot.
+ */
+const watchShots: Record<Locale, ImageMetadata | null> = {
+  en: watchEn,
+  tr: watchTr,
+  ar: watchAr,
+};
+
+const tabletShots: Record<Locale, ImageMetadata> = { en: tabletEn, tr: tabletTr, ar: tabletAr };
+
+const notifShots: Record<Locale, ImageMetadata> = { en: notifEn, tr: notifTr, ar: notifAr };
+const wearTodayShots: Record<Locale, ImageMetadata> = {
+  en: wearTodayEn,
+  tr: wearTodayTr,
+  ar: wearTodayAr,
+};
+const tileShots: Record<Locale, ImageMetadata> = { en: tileEn, tr: tileEn, ar: tileAr };
+const complicationShots: Record<Locale, ImageMetadata> = {
+  en: complicationEn,
+  tr: complicationEn,
+  ar: complicationAr,
+};
+
+/**
+ * Each everywhere card's evidence, in card order — the claim and its screenshot live together,
+ * the way the feature bands do. `'pending'` renders the labelled placeholder; `null` renders a
+ * text-only card. The two pending shots are hands-only: to wire
+ * one in, save it to the path below, import it statically, and swap the marker for the import.
+ *   docs/screenshots/en/watch/home-widgets.png    — widgets placed on an iPhone Home Screen
+ *   docs/screenshots/en/watch/live-activity.png   — the Lock Screen card (iPhone)
+ */
+const cardMedia: (ImageMetadata | 'pending' | null)[] = [
+  // Two of these can only be photographed by a human on a real device (a widget placed on a
+  // Home Screen, a Live Activity on a Lock Screen). Rather than
+  // show "coming soon" boxes on a finished page, those cards stay text-only until the captures
+  // land at docs/screenshots/en/watch/home-widgets.png and .../live-activity.png.
+  null, // widgets on the home screen
+  null, // lock screen + StandBy (times-only by design; nothing to show)
+  notifShots[locale], // the real adhan banner
+  null, // the Live Activity countdown
+  tabletShots[locale], // the two-pane tablet board
+];
+
+/** The wrist carousel, in the dict's caption order — all six real captures. */
+const wristShots: { img: ImageMetadata; kind: string }[] = [
+  { img: watchShots[locale] ?? complicationShots[locale], kind: 'applewatch' },
+  { img: complicationShots[locale], kind: 'applewatch' },
+  { img: smartStackEn, kind: 'applewatch' },
+  { img: wearTodayShots[locale], kind: 'round' },
+  { img: tileShots[locale], kind: 'round' },
+  { img: faceEn, kind: 'round' },
+];
+const s = shots[locale];
+// The languages section demonstrates "the other" script: Arabic to Latin readers, and vice versa.
+const accessShot = locale === 'ar' ? heroEn : heroAr;
+/**
+ * One Arabic word per feature band, in the order the dict declares them: the seal, History, the
+ * qibla, making up missed prayers, travel. Ornament rather than information — the same register the
+ * app uses above its own hero, and the store screens above their captions — so it is the same word
+ * in every locale and hidden from screen readers, which would otherwise read it as a stray heading.
+ *
+ * These are set in the full-range Amiri subset (`.band-arabic` in the CSS below), so a new word
+ * needs no font rebuild — unlike the text-pinned `Amiri CTA` face.
+ */
+const BAND_ARABIC = ['الخَتْم', 'السِّجِلّ', 'القِبْلَة', 'القَضاء', 'السَّفَر'] as const;
+
+// Icons for the compact cards, in the same order as the dict's iconCards. Not translatable.
+const cardIcons = ['mosque', 'bell', 'calendar', 'export', 'grid'] as const;
+// Icons for the "everywhere" surface cards, in the dict's order: widgets, lock screen,
+// notifications, the lock-screen countdown, the watch, tablets.
+const evIcons = ['grid', 'lock', 'bell', 'countdown', 'tablet'] as const;
+
+// JSON-LD (spec-website §7.2). The app is a free MobileApplication (a SoftwareApplication
+// subtype); price 0 and isAccessibleForFree state plainly that it costs nothing. The screenshot
+// is this locale's real hero capture at its built URL. installUrl appears only once config.ts
+// has the real store links. Never add aggregateRating.
+const heroBuilt = await getImage({ src: s.hero, width: 680, format: 'webp' });
+const storeUrls = [site.appStoreUrl, site.playStoreUrl].filter(
+  (u): u is string => u !== null,
+);
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'MobileApplication',
+    name: site.name,
+    operatingSystem: 'iOS, Android',
+    applicationCategory: 'LifestyleApplication',
+    description: d.description,
+    inLanguage: ['en', 'tr', 'ar'],
+    isAccessibleForFree: true,
+    offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+    url: new URL('/', Astro.site).href,
+    author: { '@type': 'Organization', name: 'Majani Plus LLC', url: 'https://majani.plus' },
+    screenshot: [new URL(heroBuilt.src, Astro.site).href],
+    ...(storeUrls.length > 0 && { installUrl: storeUrls }),
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: site.name,
+    url: new URL('/', Astro.site).href,
+    inLanguage: ['en', 'tr', 'ar'],
+  },
+  // The visible FAQ below, verbatim — built from the same dict, so schema and page can never
+  // diverge. One FAQPage per page: /support has its own, with different (post-install) questions.
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    inLanguage: locale,
+    mainEntity: d.faq.qas.map((qa) => ({
+      '@type': 'Question',
+      name: qa.q,
+      acceptedAnswer: { '@type': 'Answer', text: qa.a },
+    })),
+  },
+];
+---
+
+<Base
+  title={d.title}
+  description={d.description}
+  path={pagePath('home', locale)}
+  locale={locale}
+  page="home"
+  jsonLd={jsonLd}
+>
+  {/* ——— Hero ——— */}
+  <section class="section hero">
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <h1>{d.hero.h1Pre}<span class="hero-accent">{d.hero.h1Accent}</span>{d.hero.h1Post}</h1>
+        <p class="hero-sub">{d.hero.sub}</p>
+        <ul class="chips" aria-label={d.hero.chipsLabel}>
+          {d.hero.chips.map((chip) => <li class="pill">{chip}</li>)}
+        </ul>
+        <StoreButtons labels={dict.chrome.stores} />
+        {/* The second path, and a real one (owner, 2026-08-31): plenty of people want the times
+            and the qibla and nothing else, and sending them to a store first is friction for its
+            own sake. Styled as a secondary control so the store buttons still lead. */}
+        <p class="hero-browser">
+          <a class="hero-browser-link" href={pagePath('times', locale)}>{d.hero.heroBrowser}</a>
+          <span class="hint hero-browser-hint">{d.hero.heroBrowserHint}</span>
+        </p>
+        <p class="hint hero-hint">{d.hero.storeHint}</p>
+      </div>
+      <div class="hero-shot hero-family">
+        <div class="hero-tablet" aria-hidden="true">
+          <Image
+            src={tabletShots[locale]}
+            alt=""
+            width={520}
+            widths={[400, 520, 800, 1040]}
+            sizes="(max-width: 820px) 0px, 470px"
+            format="webp"
+            loading="eager"
+          />
+        </div>
+        <div class="hero-phone">
+          <PhoneFrame>
+            <Image
+              src={s.hero}
+              alt={d.hero.shotAlt}
+              width={340}
+              widths={[280, 340, 560, 680]}
+              sizes="(max-width: 820px) 270px, 230px"
+              format="webp"
+              loading="eager"
+              fetchpriority="high"
+            />
+          </PhoneFrame>
+        </div>
+        {watchShots[locale] && (
+          <div class="hero-watch" aria-hidden="true">
+            <Image
+              src={watchShots[locale]!}
+              alt=""
+              width={140}
+              widths={[140, 280]}
+              sizes="140px"
+              format="webp"
+              loading="eager"
+            />
+          </div>
+        )}
+      </div>
+    </div>
+  </section>
+
+  <div class="container"><div class="ornament" aria-hidden="true"><span>◆</span></div></div>
+
+  {/* ——— The times, live ———
+       Directly under the hero on purpose. The hero shows a photograph of the Today screen; this
+       is the same thing, true, with the reader's own times in it. It is also the whole product for
+       anyone who only ever wanted to know when Maghrib is, and they are welcome to stop here. ——— */}
+  <PrayerSchedule locale={locale} variant="section" />
+
+  <div class="container"><div class="ornament" aria-hidden="true"><span>◆</span></div></div>
+
+  {/* ——— How it works — the signature interaction first, then the three steps ——— */}
+  <section class="section" id="how" aria-labelledby="how-title">
+    <div class="container">
+      <p class="eyebrow">{d.how.eyebrow}</p>
+      <h2 id="how-title">{d.how.h2}</h2>
+
+      <div class="demo-stage">
+        <SealDemo {...d.sealDemo} />
+        <p class="caption demo-caption">{d.how.demoCaption}</p>
+      </div>
+
+      <ol class="steps">
+        {d.how.steps.map((step, i) => (
+          <li class="card step">
+            <span class="step-num" aria-hidden="true">{i + 1}</span>
+            <h3>{step.title}</h3>
+            <p>{step.body}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <div class="container"><div class="ornament" aria-hidden="true"><span>◆</span></div></div>
+
+  {/* ——— Features: bands with screenshot slots, then four compact cards ——— */}
+  <section class="section" id="features" aria-labelledby="features-title">
+    <div class="container">
+      <p class="eyebrow">{d.features.eyebrow}</p>
+      <h2 id="features-title">{d.features.h2}</h2>
+      <p class="prose">{d.features.lead}</p>
+
+      {d.features.bands.map((band, i) => (
+        <section class:list={['band', i % 2 === 1 && 'band--flip']}>
+          <div class="band-copy">
+            <p class="band-arabic" aria-hidden="true">{BAND_ARABIC[i]}</p>
+            <h3>{band.title}</h3>
+            <p>{band.body}</p>
+          </div>
+          <div class="band-shot">
+            <PhoneFrame>
+              {bandShots[locale][i] ? (
+                <Image
+                  src={bandShots[locale][i]!}
+                  alt={band.alt}
+                  widths={[320, 480, 640]}
+                  sizes="(max-width: 900px) 70vw, 340px"
+                  format="webp"
+                  loading="lazy"
+                  decoding="async"
+                />
+              ) : (
+                /* No capture yet. The slot says so plainly rather than leaving a hole or, worse,
+                   standing in a screenshot of something else. `band.alt` is already written. */
+                <div class="shot-pending">
+                  <span class="shot-pending-mark" aria-hidden="true">◆</span>
+                  <span class="shot-pending-label">{d.features.shotPending}</span>
+                </div>
+              )}
+            </PhoneFrame>
+          </div>
+        </section>
+      ))}
+
+      <div class="icon-grid">
+        {d.features.iconCards.map((card, i) => (
+          <article class="card icon-card">
+            <SealIcon name={cardIcons[i]!} />
+            <h3>{card.title}</h3>
+            <p>{card.body}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <div class="container"><div class="ornament" aria-hidden="true"><span>◆</span></div></div>
+
+  {/* ——— Everywhere: the app's surfaces beyond the app itself ——— */}
+  <section class="section" id="everywhere" aria-labelledby="everywhere-title">
+    <div class="container">
+      <p class="eyebrow">{d.everywhere.eyebrow}</p>
+      <h2 id="everywhere-title">{d.everywhere.h2}</h2>
+      <p class="prose ev-lead">{d.everywhere.lead}</p>
+      <div class="ev-grid">
+        {d.everywhere.cards.map((card, i) => (
+          <article class="card icon-card">
+            <SealIcon name={evIcons[i]!} />
+            <h3>{card.title}</h3>
+            <p class="plat-pill">{card.plat}</p>
+            <p>{card.body}</p>
+            {cardMedia[i] === 'pending' ? (
+              <div class="shot-pending card-media-pending">
+                <span class="shot-pending-mark" aria-hidden="true">◆</span>
+                <span class="shot-pending-label">{d.features.shotPending}</span>
+              </div>
+            ) : cardMedia[i] ? (
+              <div class="card-media">
+                <Image
+                  src={cardMedia[i] as ImageMetadata}
+                  alt=""
+                  width={420}
+                  widths={[320, 420, 640]}
+                  sizes="(max-width: 820px) 84vw, 320px"
+                  format="webp"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+            ) : null}
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <div class="container"><div class="ornament" aria-hidden="true"><span>◆</span></div></div>
+
+  {/* ——— The wrist: the watch family, browsable — every capture is the real thing ——— */}
+  <section class="section" id="wrist" aria-labelledby="wrist-title">
+    <div class="container">
+      <p class="eyebrow">{d.wrist.eyebrow}</p>
+      <h2 id="wrist-title">{d.wrist.h2}</h2>
+      <p class="prose ev-lead">{d.wrist.lead}</p>
+    </div>
+    <div class="wrist-row" tabindex="0" aria-label={d.wrist.h2}>
+      {d.wrist.items.map((caption, i) => (
+        <figure class="wrist-item">
+          <div class:list={['gal-shot', `gal-${wristShots[i]!.kind}`]}>
+            <Image
+              src={wristShots[i]!.img}
+              alt=""
+              width={360}
+              widths={[280, 360, 560]}
+              sizes="220px"
+              format="webp"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+          <figcaption class="caption">{caption}</figcaption>
+        </figure>
+      ))}
+    </div>
+    <p class="hint wrist-hint">{d.wrist.hint}</p>
+  </section>
+
+  <div class="container"><div class="ornament" aria-hidden="true"><span>◆</span></div></div>
+
+  {/* ——— Tracking, gently — night paper band ——— */}
+  <section class="section night-scope night-band" aria-labelledby="gentle-title">
+    <div class="container night-grid">
+      <div>
+        <h2 id="gentle-title">{d.gentle.h2}</h2>
+        <p>
+          {d.gentle.p1.map((seg) => (seg.b ? <strong>{seg.t}</strong> : seg.t))}
+        </p>
+        <p>{d.gentle.p2}</p>
+        <p class="night-note caption">{d.gentle.note}</p>
+      </div>
+      <div class="night-shot">
+        <PhoneFrame>
+          <Image
+            src={s.dark}
+            alt={d.gentle.shotAlt}
+            width={300}
+            widths={[280, 300, 560, 600]}
+            sizes="(max-width: 820px) 270px, 300px"
+            format="webp"
+            loading="lazy"
+          />
+        </PhoneFrame>
+      </div>
+    </div>
+  </section>
+
+  {/* ——— Tracking is optional: the one thing a visitor cannot infer from the screenshots ——— */}
+  <section class="section" aria-labelledby="optional-title">
+    <div class="container">
+      <h2 id="optional-title">{d.optional.h2}</h2>
+      <p>{d.optional.p1}</p>
+      <p>{d.optional.p2}</p>
+    </div>
+  </section>
+
+  {/* ——— Languages & accessibility ——— */}
+  <section class="section" aria-labelledby="access-title">
+    <div class="container night-grid">
+      <div>
+        <h2 id="access-title">{d.access.h2}</h2>
+        <p>{d.access.lead}</p>
+        <p>
+          {d.access.langs}{' '}
+          {d.access.translate.pre}<a href={site.translatingUrl} rel="noopener">{d.access.translate.linkText}</a>{d.access.translate.post}
+        </p>
+        <ul class="access-list">
+          {d.access.bullets.map((b) => <li>{b}</li>)}
+        </ul>
+      </div>
+      <div class="night-shot">
+        <PhoneFrame>
+          <Image
+            src={accessShot}
+            alt={d.access.shotAlt}
+            width={300}
+            widths={[280, 300, 560, 600]}
+            sizes="(max-width: 820px) 270px, 300px"
+            format="webp"
+            loading="lazy"
+          />
+        </PhoneFrame>
+      </div>
+    </div>
+  </section>
+
+  <div class="container"><div class="ornament" aria-hidden="true"><span>◆</span></div></div>
+
+  {/* ——— The pledge ——— */}
+  <section class="section" id="pledge" aria-labelledby="pledge-title">
+    <div class="container">
+      <div class="card card--bright pledge-card">
+        <Logo size={44} />
+        <h2 id="pledge-title">{d.pledge.h2}</h2>
+        <p class="prose pledge-text">{d.pledge.body}</p>
+        <p>
+          <a href="/privacy">{d.pledge.privacyLink}</a> {d.pledge.more}
+        </p>
+        <p>
+          {d.pledge.openSource.pre}<a href={site.sourceUrl} rel="noopener">{d.pledge.openSource.linkText}</a>{d.pledge.openSource.post}
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <div class="container"><div class="ornament" aria-hidden="true"><span>◆</span></div></div>
+
+  {/* ——— Common questions — the visible half of the FAQPage JSON-LD above ——— */}
+  <section class="section" id="faq" aria-labelledby="faq-title">
+    <div class="container faq">
+      <h2 id="faq-title">{d.faq.h2}</h2>
+      {d.faq.qas.map((qa) => (
+        <div class="faq-item">
+          <h3>{qa.q}</h3>
+          <p>
+            {qa.a}
+            {qa.links?.map((l) => (
+              <>
+                {' '}
+                <a href={l.href} rel={l.href.startsWith('http') ? 'noopener' : undefined}>{l.text}</a>
+              </>
+            ))}
+          </p>
+        </div>
+      ))}
+      <p class="faq-more">
+        {d.faq.more.pre}<a href={pagePath('support', locale)}>{d.faq.more.linkText}</a>{d.faq.more.post}
+      </p>
+    </div>
+  </section>
+
+  {/* ——— Calligraphy CTA ——— */}
+  <section class="section cta" id="get" aria-labelledby="cta-title">
+    <div class="container cta-inner">
+      <p class="arabic cta-arabic" lang="ar" aria-hidden="true">{d.cta.arabic}</p>
+      {d.cta.showTranslation && <p class="caption cta-translation">{d.cta.translation}</p>}
+      <h2 id="cta-title" class="cta-title">{d.cta.h2}</h2>
+      <p class="cta-sub">{d.cta.sub}</p>
+      <StoreButtons align="center" labels={dict.chrome.stores} />
+      <p class="hint">{d.cta.langsLine}</p>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .hero {
+    padding-top: clamp(2rem, 5vw, 4rem);
+  }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 7fr) minmax(0, 4fr);
+    gap: clamp(24px, 5vw, 64px);
+    align-items: center;
+  }
+  .hero-accent {
+    color: var(--accent);
+  }
+  .hero-sub {
+    font-size: 1.1rem;
+    max-width: 54ch;
+    color: var(--ink);
+  }
+  .chips {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 0;
+    margin: 0 0 22px;
+  }
+  .hero-browser {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.5rem 0.75rem;
+    margin: 0.85rem 0 0;
+  }
+
+  .hero-browser-link {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 8px 18px;
+    border: 1px solid var(--border-mid);
+    border-radius: 999px;
+    background: var(--card);
+    color: var(--accent-deep);
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .hero-browser-link:hover,
+  .hero-browser-link:focus-visible {
+    border-color: var(--border-strong);
+    background: var(--card-bright);
+  }
+
+  .hero-browser-hint {
+    margin: 0;
+  }
+
+  .hero-hint {
+    margin-top: 10px;
+  }
+  .hero-shot {
+    max-width: 340px;
+    justify-self: center;
+    width: 100%;
+  }
+
+  /* The hero family: the tablet centred BEHIND, the phone overlapping it in front, the Apple
+     Watch at its shoulder — the same warm-dark case and gold hairline the store screens draw,
+     so the site and the listings frame devices in one language. Below 820px only the phone
+     remains; the family needs the room. */
+  .hero-family {
+    position: relative;
+    max-width: 520px;
+    padding-top: 64px;
+    padding-bottom: 34px;
+  }
+  .hero-tablet {
+    width: 100%;
+    border-radius: 20px;
+    background: #0f0c08;
+    padding: 6px;
+    outline: 1px solid var(--border-strong);
+    box-shadow: 0 24px 60px -26px var(--shadow-gold);
+    line-height: 0;
+    transform: rotate(1.6deg);
+  }
+  .hero-tablet img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 15px;
+  }
+  /* The phone is the feature image — the main screen at full presence; the tablet and watch
+     are the "we also live here" chorus behind and beside it (owner, 2026-08-28). */
+  .hero-phone {
+    position: absolute;
+    z-index: 1;
+    width: 42%;
+    inset-inline-start: 1%;
+    bottom: -22px;
+    transform: rotate(-1.2deg);
+  }
+  .hero-watch {
+    position: absolute;
+    z-index: 2;
+    inset-inline-end: 3%;
+    bottom: -30px;
+    width: 29%;
+    border-radius: 27%;
+    background: #0f0c08;
+    padding: 4px;
+    outline: 1px solid var(--border-strong);
+    box-shadow: 0 16px 44px -20px var(--shadow-gold);
+    line-height: 0;
+  }
+  /* The crown and side button, on the physical right whatever the reading direction. */
+  .hero-watch::before,
+  .hero-watch::after {
+    content: '';
+    position: absolute;
+    right: -4px;
+    width: 5px;
+    border-radius: 3px;
+    background: #0f0c08;
+    box-shadow: 0 0 0 1px var(--border-strong);
+  }
+  /* Crown above (short), side button below (long) — the real Apple Watch order. */
+  .hero-watch::before {
+    top: 22%;
+    height: 15%;
+  }
+  .hero-watch::after {
+    top: 48%;
+    height: 27%;
+  }
+  .hero-watch img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 24%;
+  }
+
+  /* A card's evidence: the claim's own screenshot, seated at the card's foot. */
+  .card-media {
+    margin-top: 12px;
+    border-radius: 12px;
+    overflow: hidden;
+    outline: 1px solid var(--border-mid);
+    line-height: 0;
+  }
+  .card-media :global(img) {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  /* Two-class selector on purpose: it must outrank .shot-pending's phone aspect-ratio,
+     which is declared later in this sheet. */
+  .icon-card .card-media-pending {
+    margin: 12px 0 0;
+    aspect-ratio: auto;
+    height: 110px;
+    min-height: 110px;
+    width: 100%;
+  }
+
+  /* The wrist carousel: one family, browsable. Pure CSS scroll-snap — no script. */
+  .wrist-row {
+    display: flex;
+    gap: 26px;
+    overflow-x: auto;
+    scroll-snap-type: x proximity;
+    padding: clamp(1.2rem, 3vw, 2rem) max(24px, calc((100vw - 1080px) / 2)) 10px;
+    align-items: end;
+    scrollbar-width: thin;
+  }
+  .wrist-item {
+    margin: 0;
+    flex: 0 0 auto;
+    width: 210px;
+    scroll-snap-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+  .wrist-hint {
+    text-align: center;
+    margin-top: 2px;
+  }
+  .gal-shot {
+    line-height: 0;
+    outline: 1px solid var(--border-strong);
+    box-shadow: 0 12px 34px -18px var(--shadow-gold);
+  }
+  .gal-shot img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  .gal-applewatch {
+    border-radius: 24%;
+    background: #0f0c08;
+    padding: 4px;
+    overflow: hidden;
+    width: 170px;
+  }
+  .gal-applewatch img {
+    border-radius: 21%;
+  }
+  .gal-round {
+    border-radius: 50%;
+    background: #0f0c08;
+    padding: 3px;
+    overflow: hidden;
+    width: 185px;
+  }
+  .gal-round img {
+    border-radius: 50%;
+  }
+  .plat-pill {
+    display: inline-block;
+    margin: 6px 0 2px;
+    padding: 2px 12px;
+    border: 1px solid var(--border-strong);
+    border-radius: 999px;
+    font-size: 0.78rem;
+    color: var(--muted);
+  }
+
+  .demo-stage {
+    margin-top: clamp(1.2rem, 3vw, 2rem);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+  }
+  .demo-caption {
+    max-width: 52ch;
+    text-align: center;
+  }
+  .steps {
+    list-style: none;
+    counter-reset: step;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+    padding: 0;
+    margin: clamp(1.8rem, 4vw, 3rem) 0 0;
+  }
+  .step {
+    position: relative;
+    padding-top: 58px;
+  }
+  .step-num {
+    position: absolute;
+    top: 16px;
+    inset-inline-start: 20px;
+    width: 34px;
+    height: 34px;
+    border-radius: 999px;
+    border: 1px solid var(--border-strong);
+    background: var(--card-elevated);
+    color: var(--accent);
+    font-weight: 700;
+    display: grid;
+    place-items: center;
+  }
+
+  /* Alternating text-beside-phone bands. Flipping swaps grid areas (never `direction`), so the
+     RTL Arabic page mirrors naturally without double-flipping. */
+  .band {
+    display: grid;
+    grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+    grid-template-areas: 'copy shot';
+    gap: clamp(24px, 5vw, 56px);
+    align-items: center;
+    margin-top: clamp(2.4rem, 6vw, 4rem);
+  }
+  .band--flip {
+    grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+    grid-template-areas: 'shot copy';
+  }
+  .band-copy {
+    grid-area: copy;
+  }
+  .band-copy h3 {
+    font-size: 1.35rem;
+  }
+  /*
+   * The Arabic word above a band's title: ornament in the accent, set in the app's Arabic face
+   * and always right-to-left whatever the page's direction, because the word is Arabic even when
+   * the page is not. `aria-hidden` in the markup keeps it out of the reading order.
+   */
+  .band-arabic {
+    margin: 0 0 2px;
+    font-family: 'Amiri', 'Geeza Pro', 'Segoe UI', Tahoma, Georgia, serif;
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: var(--accent);
+    direction: rtl;
+    unicode-bidi: isolate;
+  }
+  .band-copy p {
+    margin: 0;
+    max-width: 46ch;
+  }
+  /* The empty screenshot slot: unmistakably a placeholder, in the page's own materials. */
+  .shot-pending {
+    margin: 12px;
+    aspect-ratio: 1290 / 2796;
+    border: 1px dashed var(--border-mid);
+    border-radius: 22px;
+    background: var(--card);
+    display: grid;
+    place-content: center;
+    justify-items: center;
+    gap: 10px;
+    line-height: 1.5;
+    padding: 16px;
+  }
+  .shot-pending-mark {
+    color: var(--diamond);
+    font-size: 14px;
+  }
+  .shot-pending-label {
+    font-style: italic;
+    font-size: 0.82rem;
+    color: var(--muted);
+    text-align: center;
+  }
+  .band-shot {
+    grid-area: shot;
+    max-width: 280px;
+    justify-self: center;
+    width: 100%;
+  }
+
+  /* ——— Everywhere ——— */
+  .ev-head {
+    display: grid;
+    grid-template-columns: minmax(0, 3fr) minmax(0, 1fr);
+    gap: clamp(24px, 5vw, 56px);
+    align-items: center;
+    margin-top: 0.6rem;
+  }
+  .ev-lead {
+    margin: 0;
+  }
+  .watch-shot {
+    max-width: 210px;
+    justify-self: center;
+    width: 100%;
+  }
+  /* The watch bezel: the phone frame's materials on a squarer body. No vendor hardware. */
+  .watch-frame {
+    border-radius: clamp(24px, 16%, 42px);
+    border: 3px solid var(--ink);
+    outline: 1px solid var(--border-strong);
+    outline-offset: 2px;
+    overflow: hidden;
+    box-shadow: 0 18px 50px -22px var(--shadow-gold);
+    line-height: 0;
+    background: var(--bg);
+  }
+  .watch-frame :global(img) {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  /* The watch capture's own aspect (416×496), so an empty slot holds the same space. */
+  .watch-pending {
+    aspect-ratio: 416 / 496;
+  }
+  .ev-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 16px;
+    margin-top: clamp(1.8rem, 4vw, 2.6rem);
+  }
+
+  .icon-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 16px;
+    margin-top: clamp(2.4rem, 6vw, 4rem);
+  }
+  .icon-card h3 {
+    margin-top: 14px;
+  }
+  .icon-card p {
+    margin: 0;
+    font-size: 0.95rem;
+    color: var(--ink);
+  }
+
+  .night-band {
+    background-color: var(--bg);
+    background-image:
+      var(--paper-noise),
+      repeating-linear-gradient(180deg, var(--paper-rule) 0 1px, transparent 1px 4px);
+    background-size: 240px 240px, auto;
+    color: var(--ink);
+    border-block: 1px solid var(--hairline);
+    margin-block: clamp(2rem, 5vw, 4rem);
+  }
+  .night-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+    gap: clamp(24px, 5vw, 56px);
+    align-items: center;
+  }
+  .night-shot {
+    max-width: 300px;
+    justify-self: center;
+    width: 100%;
+  }
+  .night-note {
+    margin-top: 1.2rem;
+  }
+  .access-list {
+    padding-inline-start: 1.2em;
+    display: grid;
+    gap: 10px;
+  }
+
+  .pledge-card {
+    text-align: center;
+    padding: clamp(24px, 5vw, 48px);
+  }
+  .pledge-card .prose {
+    margin-inline: auto;
+  }
+  .pledge-text {
+    font-size: 1.08rem;
+  }
+
+  .faq {
+    max-width: 720px;
+  }
+  .faq-item {
+    padding-block: 1.1rem;
+    border-top: 1px solid var(--hairline);
+  }
+  .faq-item h3 {
+    font-size: 1.08rem;
+    margin-bottom: 0.35em;
+  }
+  .faq-item p {
+    margin: 0;
+  }
+  .faq-more {
+    margin-top: 1.4rem;
+    font-size: 0.92rem;
+    color: var(--muted);
+  }
+
+  .cta {
+    text-align: center;
+  }
+  .cta-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+  }
+  .cta-arabic {
+    font-size: clamp(2.6rem, 8vw, 4rem);
+    color: var(--accent);
+    margin: 0;
+    line-height: 1.4;
+  }
+  .cta-translation {
+    margin-bottom: 1rem;
+  }
+  .cta-title {
+    margin-bottom: 0.2rem;
+  }
+  .cta-sub {
+    color: var(--muted);
+    margin-bottom: 1.2rem;
+  }
+
+  @media (max-width: 820px) {
+    .hero-grid,
+    .night-grid,
+    .ev-head {
+      grid-template-columns: 1fr;
+    }
+    .watch-shot {
+      max-width: 180px;
+    }
+    .hero-shot,
+    .night-shot {
+      max-width: 270px;
+    }
+    .hero-family {
+      padding-bottom: 0;
+      max-width: 270px;
+    }
+    .hero-tablet,
+    .hero-watch {
+      display: none;
+    }
+    .hero-phone {
+      position: static;
+      width: 100%;
+      max-width: 270px;
+      transform: none;
+    }
+    .steps {
+      grid-template-columns: 1fr;
+    }
+    .band,
+    .band--flip {
+      grid-template-columns: 1fr;
+      grid-template-areas: 'copy' 'shot';
+    }
+    .band-shot {
+      max-width: 240px;
+    }
+  }
+</style>

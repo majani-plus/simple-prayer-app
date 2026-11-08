@@ -1,0 +1,22 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+  <application>
+    <!--
+      Receives the watch's pending marks with the app's process possibly gone: Play services
+      binds and starts this service itself, which is why it MUST be manifest-declared and
+      exported (the intent filter is how the system routes wear data to it; only Play services,
+      checked by signature, ever binds a WearableListenerService).
+
+      The name is fully qualified on purpose — a leading-dot name in a library manifest expands
+      against the merged application's package, not this module's namespace (the prayer-marks
+      manifest records the same lesson).
+    -->
+    <service
+      android:name="expo.modules.watchsync.WatchSyncListenerService"
+      android:exported="true">
+      <intent-filter>
+        <action android:name="com.google.android.gms.wearable.DATA_CHANGED" />
+        <data android:scheme="wear" android:host="*" android:pathPrefix="/simpleprayer/marks" />
+      </intent-filter>
+    </service>
+  </application>
+</manifest>

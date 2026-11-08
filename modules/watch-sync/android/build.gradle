@@ -1,0 +1,23 @@
+plugins {
+  id 'com.android.library'
+  id 'expo-module-gradle-plugin'
+}
+
+group = 'expo.modules.watchsync'
+version = '1.0.0'
+
+android {
+  namespace "expo.modules.watchsync"
+  defaultConfig {
+    versionCode 1
+    versionName "1.0.0"
+  }
+}
+
+dependencies {
+  // The Wearable Data Layer: DataClient (the envelope down, marks up) and NodeClient (the
+  // phone-away check is the WATCH's job; here it only powers the hasWatch hint). On a device
+  // without Play services every call fails with an ApiException — caught, because a watch is an
+  // enhancement, never a dependency.
+  implementation 'com.google.android.gms:play-services-wearable:19.0.0'
+}

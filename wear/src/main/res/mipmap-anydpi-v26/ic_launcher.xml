@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  The watch's launcher mark — WO-V6 ("correctly represent app icon and name in app launcher") and
+  WO-V15 (the startup icon "must match app launcher icon"). Before this the manifest pointed at
+  `ic_mosque`, a 24dp white stroke vector on a transparent ground, authored for the notification
+  and complication slots that tint their own icon: on the round Wear launcher it was a thin white
+  glyph with no ground, and it was not the mark the phone app shows.
+
+  The three layers are the phone app's own (assets/images/android-icon-*.png, downsampled to the
+  432px adaptive-icon square), so wrist and phone now show one mark. minSdk here is 30, so every
+  device this ships to reads the v26 qualifier; there is no pre-adaptive fallback to keep.
+
+  `ic_mosque` stays exactly where it was, for the slots that need a tintable monochrome.
+-->
+<adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
+    <background android:drawable="@mipmap/ic_launcher_background"/>
+    <foreground android:drawable="@mipmap/ic_launcher_foreground"/>
+    <monochrome android:drawable="@mipmap/ic_launcher_monochrome"/>
+</adaptive-icon>

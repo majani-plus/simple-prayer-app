@@ -1,0 +1,25 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+  <!-- A watch face, installable only on watches. -->
+  <uses-feature android:name="android.hardware.type.watch" />
+
+  <application
+    android:label="@string/watch_face_name"
+    android:hasCode="false">
+
+    <!-- The face works without the phone app installed (the complication slots fall back to
+         system data); the Simple Prayer wear app is what fills them with prayer data. -->
+    <meta-data
+      android:name="com.google.android.wearable.standalone"
+      android:value="true" />
+
+    <!-- Watch Face Format version 1 (Wear OS 4 baseline), which is what `minSdk 33` in
+         wear-face/build.gradle asks for. Everything this face uses — ComplicationSlot, Arc +
+         Transform, Variant AMBIENT, Localization, icuText — has been in the format since
+         version 1, so nothing here wants a higher floor. (The comment used to say 2 while the
+         value said 1: the VALUE was right and the comment was stale.) -->
+    <property
+      android:name="com.google.wear.watchface.format.version"
+      android:value="1" />
+  </application>
+</manifest>

@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Now widget, ~2×2 — a miniature of the app's own Today hero, which is CENTERED MANUSCRIPT:
+  the mark and the prayer's name as a centered eyebrow, the app's signature hairline-and-◆
+  ornament rules framing a centered hero band (the live Chronometer; the static @+id/big line
+  stands in for the states that are not a countdown), and the day's seals centered at the foot.
+  The two weight-spacers live INSIDE the framed band, so extra height becomes breathing room
+  around the hero — structured by the rules, never a ragged corner void (owner, 2026-08-25:
+  the earlier left-anchored list "doesn't feel like intentional space"). Colors/texts/glyphs
+  are set at runtime by WidgetRenderer; structure only here. forceDarkAllowed pins the
+  runtime-tinted palette against OEM force-dark repainting. The Arabic variant
+  (widget_now_arabic.xml) is DERIVED — regenerate with `bun scripts/derive-arabic-layouts.ts`.
+-->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:id="@+id/root"
+  android:layoutDirection="ltr"
+  android:forceDarkAllowed="false"
+  tools:targetApi="q"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent">
+
+  <ImageView
+    android:id="@+id/bg"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:scaleType="fitXY"
+    android:importantForAccessibility="no"
+    android:src="@drawable/paper_shape" />
+
+  <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:paddingStart="14dp"
+    android:paddingEnd="14dp"
+    android:paddingTop="10dp"
+    android:paddingBottom="9dp">
+
+    <LinearLayout
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:orientation="horizontal"
+      android:gravity="center_vertical">
+      <ImageView
+        android:id="@+id/mark"
+        android:layout_width="30dp"
+        android:layout_height="19dp"
+        android:layout_marginEnd="8dp"
+        android:importantForAccessibility="no"
+        android:src="@drawable/glyph_mosque" />
+      <TextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxWidth="94dp"
+        android:fontFamily="@font/lora_600semibold"
+        android:textSize="23dp"
+        android:autoSizeTextType="uniform"
+        android:autoSizeMinTextSize="16dp"
+        android:autoSizeMaxTextSize="23dp"
+        android:includeFontPadding="false"
+        android:maxLines="1"
+        android:ellipsize="end" />
+      <TextView
+        android:id="@+id/arabic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="7dp"
+        android:maxWidth="56dp"
+        android:fontFamily="@font/amiri_400regular"
+        android:textSize="19dp"
+        android:autoSizeTextType="uniform"
+        android:autoSizeMinTextSize="13dp"
+        android:autoSizeMaxTextSize="19dp"
+        android:includeFontPadding="false"
+        android:maxLines="1" />
+    </LinearLayout>
+
+    <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="0dp"
+      android:layout_weight="1"
+      android:orientation="vertical"
+      android:gravity="center"
+      android:clipChildren="true">
+    <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="8dp"
+      android:paddingStart="6dp"
+      android:paddingEnd="6dp"
+      android:orientation="horizontal"
+      android:gravity="center_vertical">
+      <ImageView
+        android:id="@+id/orn1_l"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_weight="1"
+        android:scaleType="fitXY"
+        android:importantForAccessibility="no"
+        android:src="@drawable/card_shape" />
+      <TextView
+        android:id="@+id/orn1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="7dp"
+        android:layout_marginEnd="7dp"
+        android:fontFamily="@font/lora_400regular"
+        android:textSize="9sp"
+        android:maxLines="1" />
+      <ImageView
+        android:id="@+id/orn1_r"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_weight="1"
+        android:scaleType="fitXY"
+        android:importantForAccessibility="no"
+        android:src="@drawable/card_shape" />
+    </LinearLayout>
+
+    <FrameLayout
+      android:layout_width="match_parent"
+      android:layout_height="0dp"
+      android:layout_weight="1" />
+
+    <LinearLayout
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:orientation="horizontal"
+      android:gravity="center_vertical">
+      <ImageView
+        android:id="@+id/big_glyph"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginEnd="8dp"
+        android:visibility="gone"
+        android:importantForAccessibility="no" />
+      <Chronometer
+        android:id="@+id/countdown"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:countDown="true"
+        android:fontFamily="@font/lora_700bold"
+        android:fontFeatureSettings="tnum"
+        android:textSize="32dp"
+        android:visibility="gone"
+        android:includeFontPadding="false"
+        android:maxLines="1" />
+      <!-- The calm countdown (D198): H:MM, no seconds, redrawn each minute by TransitionAlarms. -->
+      <TextView
+        android:id="@+id/calm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/lora_700bold"
+        android:fontFeatureSettings="tnum"
+        android:textSize="32dp"
+        android:visibility="gone"
+        android:includeFontPadding="false"
+        android:maxLines="1" />
+      <TextView
+        android:id="@+id/big"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/lora_600semibold"
+        android:textSize="22dp"
+        android:includeFontPadding="false"
+        android:maxLines="1"
+        android:ellipsize="end" />
+    </LinearLayout>
+    <LinearLayout
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="3dp"
+      android:orientation="horizontal"
+      android:gravity="center_vertical">
+      <TextView
+        android:id="@+id/cap"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/lora_400regular_italic"
+        android:textSize="13.5sp"
+        android:includeFontPadding="false"
+        android:maxLines="1"
+        android:ellipsize="end" />
+      <FrameLayout
+        android:id="@+id/now_seal"
+        android:layout_width="34dp"
+        android:layout_height="34dp"
+        android:layout_marginStart="9dp"
+        android:visibility="gone">
+        <ImageView
+          android:id="@+id/now_seal_fill"
+          android:layout_width="34dp"
+          android:layout_height="34dp"
+          android:importantForAccessibility="no" />
+        <ImageView
+          android:id="@+id/now_seal_glyph"
+          android:layout_width="17dp"
+          android:layout_height="17dp"
+          android:layout_gravity="center"
+          android:importantForAccessibility="no" />
+      </FrameLayout>
+    </LinearLayout>
+
+    <FrameLayout
+      android:layout_width="match_parent"
+      android:layout_height="0dp"
+      android:layout_weight="1" />
+
+    <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginBottom="8dp"
+      android:paddingStart="6dp"
+      android:paddingEnd="6dp"
+      android:orientation="horizontal"
+      android:gravity="center_vertical">
+      <ImageView
+        android:id="@+id/orn2_l"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_weight="1"
+        android:scaleType="fitXY"
+        android:importantForAccessibility="no"
+        android:src="@drawable/card_shape" />
+      <TextView
+        android:id="@+id/orn2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="7dp"
+        android:layout_marginEnd="7dp"
+        android:fontFamily="@font/lora_400regular"
+        android:textSize="9sp"
+        android:maxLines="1" />
+      <ImageView
+        android:id="@+id/orn2_r"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_weight="1"
+        android:scaleType="fitXY"
+        android:importantForAccessibility="no"
+        android:src="@drawable/card_shape" />
+    </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+      android:id="@+id/dots"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:orientation="horizontal">
+      <FrameLayout
+        android:layout_width="19dp"
+        android:layout_height="19dp"
+        android:layout_marginEnd="9dp">
+        <ImageView
+          android:id="@+id/d1_fill"
+          android:layout_width="19dp"
+          android:layout_height="19dp"
+          android:importantForAccessibility="no" />
+        <ImageView
+          android:id="@+id/d1_glyph"
+          android:layout_width="10dp"
+          android:layout_height="10dp"
+          android:layout_gravity="center"
+          android:importantForAccessibility="no" />
+      </FrameLayout>
+      <FrameLayout
+        android:layout_width="19dp"
+        android:layout_height="19dp"
+        android:layout_marginEnd="9dp">
+        <ImageView
+          android:id="@+id/d2_fill"
+          android:layout_width="19dp"
+          android:layout_height="19dp"
+          android:importantForAccessibility="no" />
+        <ImageView
+          android:id="@+id/d2_glyph"
+          android:layout_width="10dp"
+          android:layout_height="10dp"
+          android:layout_gravity="center"
+          android:importantForAccessibility="no" />
+      </FrameLayout>
+      <FrameLayout
+        android:layout_width="19dp"
+        android:layout_height="19dp"
+        android:layout_marginEnd="9dp">
+        <ImageView
+          android:id="@+id/d3_fill"
+          android:layout_width="19dp"
+          android:layout_height="19dp"
+          android:importantForAccessibility="no" />
+        <ImageView
+          android:id="@+id/d3_glyph"
+          android:layout_width="10dp"
+          android:layout_height="10dp"
+          android:layout_gravity="center"
+          android:importantForAccessibility="no" />
+      </FrameLayout>
+      <FrameLayout
+        android:layout_width="19dp"
+        android:layout_height="19dp"
+        android:layout_marginEnd="9dp">
+        <ImageView
+          android:id="@+id/d4_fill"
+          android:layout_width="19dp"
+          android:layout_height="19dp"
+          android:importantForAccessibility="no" />
+        <ImageView
+          android:id="@+id/d4_glyph"
+          android:layout_width="10dp"
+          android:layout_height="10dp"
+          android:layout_gravity="center"
+          android:importantForAccessibility="no" />
+      </FrameLayout>
+      <FrameLayout
+        android:layout_width="19dp"
+        android:layout_height="19dp">
+        <ImageView
+          android:id="@+id/d5_fill"
+          android:layout_width="19dp"
+          android:layout_height="19dp"
+          android:importantForAccessibility="no" />
+        <ImageView
+          android:id="@+id/d5_glyph"
+          android:layout_width="10dp"
+          android:layout_height="10dp"
+          android:layout_gravity="center"
+          android:importantForAccessibility="no" />
+      </FrameLayout>
+    </LinearLayout>
+  </LinearLayout>
+</FrameLayout>

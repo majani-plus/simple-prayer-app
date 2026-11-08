@@ -1,0 +1,140 @@
+// The Wear OS app (Milestone V) — a SEPARATE application module, not a library: Wear ships its
+// own APK/AAB on Play's "Wear OS only" track under the SAME applicationId as the phone app
+// (Play's pairing rule), with a versionCode range that can never collide with the phone's.
+// The module lives at the repo root, outside the regenerated android/ directory;
+// plugins/withWearApp.js wires it into settings.gradle at prebuild (CNG survives --clean).
+//
+// Signing (V7): EAS Build's remote signing injection only ever patches android/app/build.gradle
+// — it has no knowledge of this module, so a release build here would ship unsigned unless wired
+// up ourselves. This reads the SAME credentials.json EAS drops at the repo root during a cloud
+// build (the EAS-managed keystore), exactly like the injected android/app/eas-build.gradle does.
+// Play requires this module signed with the SAME upload key as the phone app anyway (shared
+// applicationId), so reusing that keystore is correct, not just convenient. Absent locally, so
+// local prebuilds/dev builds fall back to unsigned release rather than failing.
+
+plugins {
+  id 'com.android.application'
+  id 'org.jetbrains.kotlin.android'
+  // Kotlin 2.x Compose compiler — the classpath entry is injected into the ROOT build.gradle by
+  // plugins/withWearApp.js (the easy-to-miss root-level detail the prior art warns about).
+  id 'org.jetbrains.kotlin.plugin.compose'
+}
+
+import java.nio.file.Paths
+
+def credentialsJsonFile = rootProject.file('../credentials.json')
+def hasEasCredentials = credentialsJsonFile.exists()
+
+// versionName tracks app.json's `expo.version` — the phone app's own source of truth — so this
+// module can never silently drift to a stale "1.0.0" while the phone ships 1.1.0, 1.2.0, etc.
+def appVersion = new groovy.json.JsonSlurper().parse(rootProject.file('../app.json')).expo.version
+
+android {
+  namespace 'app.simpleprayer.wear'
+  compileSdk rootProject.ext.has('compileSdkVersion') ? rootProject.ext.compileSdkVersion : 36
+
+  defaultConfig {
+    // Same applicationId as the phone app — mandatory for Play to pair the listings.
+    applicationId 'app.simpleprayer'
+    minSdk 30
+    targetSdk rootProject.ext.has('targetSdkVersion') ? rootProject.ext.targetSdkVersion : 36
+    // Disjoint from the phone's EAS-remote versionCodes forever: the 9xx-million block is Wear's.
+    // This must NOT be made to match the phone's versionCode: Play requires unique, strictly
+    // increasing versionCodes across every artifact sharing this applicationId (phone + wear
+    // both ship as `app.simpleprayer`), and the phone's is auto-incremented remotely by EAS
+    // (`appVersionSource: remote`) — a shared/matching number here would either collide with a
+    // future phone build or require coordinating two independently-building EAS profiles against
+    // one counter. versionName has no such constraint, so it tracks the phone's.
+    versionCode 900000015
+    versionName appVersion
+  }
+
+  buildFeatures {
+    compose true
+  }
+
+  compileOptions {
+    sourceCompatibility JavaVersion.VERSION_17
+    targetCompatibility JavaVersion.VERSION_17
+  }
+  kotlinOptions {
+    jvmTarget = '17'
+  }
+
+  signingConfigs {
+    if (hasEasCredentials) {
+      release {
+        def credentials = new groovy.json.JsonSlurper().parse(credentialsJsonFile)
+        def keystorePath = Paths.get(credentials.android.keystore.keystorePath)
+        def storeFilePath = keystorePath.isAbsolute()
+          ? keystorePath
+          : rootProject.file('../').toPath().resolve(keystorePath)
+        storeFile storeFilePath.toFile()
+        storePassword credentials.android.keystore.keystorePassword
+        keyAlias credentials.android.keystore.keyAlias
+        keyPassword credentials.android.keystore.containsKey('keyPassword')
+          ? credentials.android.keystore.keyPassword
+          : credentials.android.keystore.keystorePassword
+      }
+    }
+  }
+
+  buildTypes {
+    release {
+      minifyEnabled true
+      if (hasEasCredentials) {
+        signingConfig signingConfigs.release
+      }
+      // Falls back to unsigned when credentials.json is absent (local/non-EAS builds).
+    }
+  }
+
+  lint {
+    // `lintVitalRelease` flags InvalidFragmentVersionForActivityResult on any
+    // registerForActivityResult caller whose classpath carries no modern androidx.fragment —
+    // but this app HAS no fragments (Compose-only, ComponentActivity), which is exactly the
+    // situation the check cannot see. The check stays disabled; the fragment *version* is now
+    // raised anyway by the constraint in `dependencies` below, for Play's sake, not lint's.
+    disable += 'InvalidFragmentVersionForActivityResult'
+  }
+}
+
+dependencies {
+  // androidx.fragment is not used here — no fragments, Compose only — but 1.1.0 rides in
+  // transitively (play-services / activity) and Google Play flagged exactly that on the first
+  // upload ("androidx.fragment:fragment 1.1.0 is outdated", 2026-08-30, version 900000001).
+  // A constraint raises whatever is already in the graph to a current release without adding
+  // a direct dependency: the library ships either way, so this is a few KB, not dead weight.
+  constraints {
+    implementation('androidx.fragment:fragment:1.9.0') {
+      because 'Google Play SDK notice: 1.1.0 (transitive) is outdated'
+    }
+  }
+
+  // Compose for Wear OS — the app surfaces (Today twin + qibla, V6).
+  //
+  // 1.5.x, not the 1.4.1 this shipped on, and the reason is a quality requirement rather than
+  // housekeeping: WO-V3 ("swipe to close from almost all screens") needs
+  // `androidx.wear.compose.foundation.pager.HorizontalPager`, whose default gestureInclusion
+  // hands the left edge of page 0 back to the system's dismiss gesture. That package does not
+  // exist in 1.4.1 — the module was using the PHONE pager, which consumes the whole horizontal
+  // drag and can leave the app unclosable. Also brings the Scaffold's PositionIndicator into use
+  // for WO-V8. Pulls androidx.compose 1.8.x transitively.
+  implementation 'androidx.wear.compose:compose-material:1.5.6'
+  implementation 'androidx.wear.compose:compose-foundation:1.5.6'
+  implementation 'androidx.activity:activity-compose:1.10.1'
+
+  // Tiles + ProtoLayout — the "Now" tile (V6).
+  implementation 'androidx.wear.tiles:tiles:1.6.2'
+  implementation 'androidx.wear.protolayout:protolayout:1.4.2'
+  implementation 'androidx.wear.protolayout:protolayout-material:1.4.2'
+
+  // The Data Layer — envelope down from the phone, marks up (twin of modules/watch-sync).
+  implementation 'com.google.android.gms:play-services-wearable:19.0.0'
+
+  // Complication data source service (V6).
+  implementation 'androidx.wear.watchface:watchface-complications-data-source-ktx:1.2.1'
+
+  // TileService speaks ListenableFuture; this is the adapter that answers one immediately.
+  implementation 'androidx.concurrent:concurrent-futures:1.2.0'
+}

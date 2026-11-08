@@ -1,0 +1,491 @@
+---
+/**
+ * Today's prayer times, worked out in the visitor's browser.
+ *
+ * Used twice: as a section under the home page hero, and as the whole of /times. The maths is the
+ * app's, vendored at build time (scripts/generate-domain.ts), so the two never disagree — a
+ * verification step in the build proves it over 1300 values before anything ships.
+ *
+ * ## What this is not
+ *
+ * There is no seal. The app's round mark is a thing you press, and pressing it records a prayer;
+ * a page that cannot record anything must not draw one. So the rows carry name, time and caption,
+ * the current and next tiers are the design's, and marking is named as the app's job exactly once,
+ * at the foot of the card (D147).
+ *
+ * ## Why the whole card renders on the server
+ *
+ * The five names, the Arabic names and the sunrise divider never change, so they are here in the
+ * HTML. Only the times, the captions and the emphasis arrive from script. That means no layout
+ * shift when it fills, a card that looks like itself before any JavaScript runs, and something
+ * honest to show when JavaScript never arrives.
+ */
+import LocationPicker from './LocationPicker.astro';
+import { appStrings } from '../lib/appStrings.generated';
+import { t, type Locale } from '../i18n';
+import { PRAYERS } from '../lib/schedule';
+
+interface Props {
+  locale: Locale;
+  /** `section` sits under the hero and keeps its heading at h2; `page` owns /times. */
+  variant: 'section' | 'page';
+}
+const { locale, variant } = Astro.props;
+const dict = t(locale).timesPage;
+const app = appStrings[locale];
+const Heading = variant === 'page' ? 'h1' : 'h2';
+
+/** On the Arabic page the calligraphic name would only repeat the Latin column. */
+const showArabic = locale !== 'ar';
+
+/**
+ * Everything the client script needs to speak this page's language, handed over in the HTML.
+ *
+ * The alternative — importing the dictionaries in the script — pulls all three languages into the
+ * bundle, which cost 48 KB of marketing copy on the first build of this component. The page already
+ * knows its locale; the script should not have to.
+ */
+const strings = JSON.stringify({
+  app,
+  ui: {
+    denied: dict.denied,
+    unavailable: dict.unavailable,
+    unsupported: dict.unsupported,
+    calculatedWith: dict.calculatedWith,
+    zoneNote: dict.zoneNote,
+  },
+});
+---
+
+<section class:list={["section", "times", { "times--page": variant === "page" }]} id="times" data-times data-locale={locale} data-strings={strings}>
+  <div class="container times-wrap">
+    <Heading class="times-heading">{dict.heading}</Heading>
+    <p class="times-lead">{dict.lead}</p>
+
+    <div class="card times-card">
+      <LocationPicker locale={locale} idPrefix="times" />
+
+      <p class="times-date" data-date></p>
+
+      <ol class="times-rows" data-rows>
+        {
+          PRAYERS.map((prayer) => (
+            <>
+              <li class="times-row" data-row={prayer} data-tier="rest">
+                <div class="times-row-text">
+                  <span class="times-row-head">
+                    <span class="times-row-name" data-name>
+                      {app.prayers[prayer]}
+                    </span>
+                    {showArabic && (
+                      <span class="times-row-arabic arabic" aria-hidden="true">
+                        {app.prayersArabic[prayer]}
+                      </span>
+                    )}
+                  </span>
+                  <span class="times-row-meta">
+                    <span class="times-row-time" data-time></span>
+                    <span class="times-row-caption" data-caption></span>
+                  </span>
+                </div>
+              </li>
+              {prayer === 'fajr' && (
+                <li class="times-sunrise" data-sunrise-row>
+                  <span class="times-sunrise-rule" aria-hidden="true" />
+                  <span class="times-sunrise-mid">
+                    <svg class="times-sunrise-icon" viewBox="0 0 24 24" aria-hidden="true">
+                      <circle cx="12" cy="12" r="4.2" fill="currentColor" />
+                      <g stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+                        <path d="M12 3.2v2.1M12 18.7v2.1M3.2 12h2.1M18.7 12h2.1" />
+                        <path d="M5.8 5.8l1.5 1.5M16.7 16.7l1.5 1.5M18.2 5.8l-1.5 1.5M7.3 16.7l-1.5 1.5" />
+                      </g>
+                    </svg>
+                    <span>{app.sunrise}</span>
+                    <span class="times-sunrise-time" data-sunrise></span>
+                  </span>
+                  <span class="times-sunrise-rule" aria-hidden="true" />
+                </li>
+              )}
+            </>
+          ))
+        }
+      </ol>
+
+      <p class="times-zone hint" data-zone hidden></p>
+
+      <p class="times-method hint" data-method hidden>
+        <span data-method-text></span>{' '}
+        <a href={locale === 'en' ? '/support#times' : `/${locale}/support#times`}>{dict.howCalculated}</a>
+      </p>
+
+      <noscript>
+        <p class="times-noscript">{dict.noScript}</p>
+      </noscript>
+    </div>
+
+    <p class="times-app hint">{dict.inApp}</p>
+    <p class="times-credit hint">{dict.credit}</p>
+  </div>
+</section>
+
+<style>
+  /* The column is bound the way the app binds it (D123): a wide window gets more paper, never a
+     wider line of type. 600px is `maxContentWidth` from src/theme/layout.ts. */
+  .times-wrap {
+    max-width: 640px;
+  }
+
+  /* On /times the tool tabs above have already opened the page. */
+  .times--page {
+    padding-block-start: 1rem;
+  }
+
+  .times-heading {
+    margin-bottom: 0.35em;
+  }
+
+  .times-lead {
+    margin: 0 0 1.25rem;
+    color: var(--muted);
+  }
+
+  .times-card {
+    padding: clamp(14px, 3vw, 20px);
+  }
+
+  /* `display` on a class beats the UA stylesheet's `[hidden] { display: none }`, so toggling
+     `hidden` on the flex containers below did nothing until this rule existed. */
+  .times [hidden] {
+    display: none !important;
+  }
+
+  /* ---- the date line ----------------------------------------------------------------------- */
+
+  .times-date {
+    margin: 0 0 0.75rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: 0.28px;
+    color: var(--header);
+    min-height: 1.4em; /* reserved, so filling it moves nothing */
+  }
+  :global(html[lang='ar']) .times-date {
+    letter-spacing: 0; /* tracking severs Arabic joins */
+  }
+
+  /* ---- rows -------------------------------------------------------------------------------- */
+
+  .times-rows {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 9px; /* the app's ROW_GAP — deliberately tighter than the section rhythm */
+  }
+
+  .times-row {
+    border-radius: 14px;
+    border: 1px solid var(--border-faint);
+    background: var(--card-quiet);
+    padding: 10px 14px;
+    transition:
+      background-color 200ms cubic-bezier(0.4, 0, 0.2, 1),
+      border-color 200ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .times-row-text {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+  }
+
+  .times-row-head,
+  .times-row-meta {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .times-row-name {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--ink);
+  }
+
+  .times-row-arabic {
+    font-size: 16px;
+    color: var(--faint);
+  }
+
+  .times-row-time {
+    font-size: 15.5px;
+    color: var(--muted);
+    font-variant-numeric: tabular-nums;
+    min-width: 4.5ch; /* holds the line's width before the time arrives */
+  }
+
+  .times-row-caption {
+    font-size: 15px;
+    font-style: italic;
+    color: var(--muted);
+  }
+  :global(html[lang='ar']) .times-row-caption {
+    font-style: normal; /* no synthetic italic on Arabic */
+    font-weight: 500;
+  }
+
+  /* CURRENT — the window containing now. Brighter fill, gold border, a soft glow, larger type. */
+  .times-row[data-tier='current'] {
+    background: var(--card-bright);
+    border-color: var(--border-strong);
+    box-shadow: 0 2px 10px -4px var(--shadow-gold);
+    padding: 14px;
+  }
+  .times-row[data-tier='current'] .times-row-name {
+    font-size: 20px;
+  }
+  .times-row[data-tier='current'] .times-row-time {
+    font-size: 19px;
+    font-weight: 700;
+    color: var(--ink-strong);
+  }
+
+  /* NEXT — never the bright card, so the two emphasised rows can never be confused. A ring only. */
+  .times-row[data-tier='next'] {
+    border-color: var(--border-mid);
+  }
+
+  .times-row-caption[data-live='true'] {
+    color: var(--accent);
+  }
+
+  /* ---- sunrise ----------------------------------------------------------------------------- */
+
+  /* No card, no fill, nothing tappable — it can never read as a sixth prayer. */
+  .times-sunrise {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 2px 4px;
+  }
+
+  .times-sunrise-rule {
+    flex: 1;
+    height: 1px;
+    background: var(--hairline);
+  }
+
+  .times-sunrise-mid {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 15px;
+    font-style: italic;
+    color: var(--faint);
+  }
+  :global(html[lang='ar']) .times-sunrise-mid {
+    font-style: normal;
+  }
+
+  .times-sunrise-icon {
+    width: 13px;
+    height: 13px;
+    color: var(--faint);
+    flex: none;
+  }
+
+  .times-sunrise-time {
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* ---- footnotes --------------------------------------------------------------------------- */
+
+  .times-zone,
+  .times-method {
+    margin: 0.85rem 0 0;
+  }
+
+  .times-noscript {
+    margin: 0.85rem 0 0;
+    font-size: 0.9rem;
+    color: var(--muted);
+  }
+
+  .times-app {
+    margin: 1rem 0 0;
+  }
+
+  /* CC BY 4.0 asks for attribution wherever the data is used, and the card is used on the home
+     page as well as on /times — so the line belongs to the component, not to either page. */
+  .times-credit {
+    margin: 0.35rem 0 0;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .times-row {
+      transition: none;
+    }
+  }
+</style>
+
+<script>
+  /**
+   * Hydrates the times card.
+   *
+   * CSP note: Astro bundles this into an external module covered by `script-src 'self'`. Nothing
+   * here builds script text at runtime, and nothing here makes a network request — the city list
+   * arrives by dynamic `import()`, which is `script-src`; `connect-src` stays `'none'`.
+   */
+  import { buildSchedule } from '../lib/schedule';
+  import { loadLocation, type StoredLocation } from '../lib/location';
+  import { setupLocationPicker } from '../lib/locationUi';
+  import type { AppStrings } from '../lib/appStrings.generated';
+  import { fill, type Locale } from '../lib/format';
+
+  const root = document.querySelector<HTMLElement>('[data-times]');
+  if (root) setup(root);
+
+  function setup(root: HTMLElement) {
+    const locale = (root.dataset.locale ?? 'en') as Locale;
+    const { app, ui } = JSON.parse(root.dataset.strings!) as {
+      app: AppStrings;
+      ui: Record<'denied' | 'unavailable' | 'unsupported' | 'calculatedWith' | 'zoneNote', string>;
+    };
+
+    const el = {
+      date: root.querySelector<HTMLElement>('[data-date]')!,
+      sunrise: root.querySelector<HTMLElement>('[data-sunrise]')!,
+      zone: root.querySelector<HTMLElement>('[data-zone]')!,
+      method: root.querySelector<HTMLElement>('[data-method]')!,
+      methodText: root.querySelector<HTMLElement>('[data-method-text]')!,
+    };
+
+    let timer: number | undefined;
+    let boundary: number | undefined;
+
+    function stop() {
+      window.clearInterval(timer);
+      window.clearTimeout(boundary);
+      el.method.hidden = true;
+      el.zone.hidden = true;
+      el.date.textContent = '';
+      for (const node of root.querySelectorAll<HTMLElement>('[data-row]')) {
+        node.dataset.tier = 'rest';
+        node.querySelector<HTMLElement>('[data-time]')!.textContent = '';
+        node.querySelector<HTMLElement>('[data-caption]')!.textContent = '';
+      }
+      el.sunrise.textContent = '';
+    }
+
+    const picker = setupLocationPicker(root.querySelector<HTMLElement>('[data-loc]')!, {
+      locale,
+      app,
+      strings: ui,
+      onLocation: render,
+      onCleared: stop,
+    });
+
+    function render(loc: StoredLocation) {
+      const now = new Date();
+      let s;
+      try {
+        s = buildSchedule(loc, locale, app, now);
+      } catch {
+        // The domain throws rather than answering wrongly (a latitude with no true Asr, say).
+        // Better to hand the visitor the choice back than to show a card of nothing.
+        stop();
+        picker.showChooser();
+        picker.setStatus(ui.unavailable);
+        return;
+      }
+
+      el.date.textContent = s.dateLine;
+      el.sunrise.textContent = s.sunrise;
+
+      for (const row of s.rows) {
+        const node = root.querySelector<HTMLElement>(`[data-row="${row.prayer}"]`);
+        if (!node) continue;
+        node.dataset.tier = row.tier;
+        node.querySelector<HTMLElement>('[data-name]')!.textContent = row.name;
+        node.querySelector<HTMLElement>('[data-time]')!.textContent = row.time;
+        const caption = node.querySelector<HTMLElement>('[data-caption]')!;
+        caption.textContent = row.caption;
+        caption.dataset.live = String(row.captionIsLive);
+      }
+
+      el.methodText.textContent = fill(ui.calculatedWith, {
+        method: app.methods[s.method] ?? s.method,
+      });
+      el.method.hidden = false;
+
+      // The city's clock, not the visitor's (D148) — say so when they differ, the way the app's
+      // ClockZoneNote does. Compared by actual offset: two zones can share an offset today and
+      // differ in a month, and only what is on screen right now matters.
+      const here = offsetMinutes(now, Intl.DateTimeFormat().resolvedOptions().timeZone);
+      const there = offsetMinutes(now, loc.tz);
+      if (here !== there) {
+        el.zone.textContent = fill(ui.zoneNote, { city: loc.city || loc.label });
+        el.zone.hidden = false;
+      } else {
+        el.zone.hidden = true;
+      }
+
+      picker.showChosen(loc);
+      void picker.relabelIfNeeded(loc);
+
+      // Recompute when the next boundary lands, and never more than ten minutes out, so a laptop
+      // waking from sleep corrects itself quickly.
+      window.clearTimeout(boundary);
+      const untilBoundary = Math.max(500, s.nextBoundary.getTime() - Date.now() + 500);
+      boundary = window.setTimeout(() => render(loc), Math.min(untilBoundary, 10 * 60 * 1000));
+
+      // The countdown is the only thing that ticks, and it only writes when the text changes.
+      window.clearInterval(timer);
+      timer = window.setInterval(() => {
+        const fresh = buildSchedule(loc, locale, app, new Date());
+        for (const row of fresh.rows) {
+          if (!row.captionIsLive) continue;
+          const caption = root.querySelector<HTMLElement>(`[data-row="${row.prayer}"] [data-caption]`);
+          if (caption && caption.textContent !== row.caption) caption.textContent = row.caption;
+        }
+      }, 1000);
+    }
+
+    /** A zone's offset from UTC in minutes, at a given instant. */
+    function offsetMinutes(at: Date, timeZone: string): number {
+      const parts = new Intl.DateTimeFormat('en-US', {
+        timeZone,
+        hour12: false,
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+        hour: '2-digit',
+        minute: '2-digit',
+      }).formatToParts(at);
+      const get = (type: string) => Number(parts.find((p) => p.type === type)?.value);
+      const asUTC = Date.UTC(
+        get('year'),
+        get('month') - 1,
+        get('day'),
+        get('hour') % 24,
+        get('minute')
+      );
+      // Both sides floored to the minute: the formatted parts carry no seconds, so comparing them
+      // against a millisecond clock leaves a stray minute of error in every answer.
+      return Math.round((asUTC - Math.floor(at.getTime() / 60000) * 60000) / 60000);
+    }
+
+    const stored = loadLocation();
+    if (stored) render(stored);
+    else picker.showChooser();
+
+    // A phone that has been in a pocket since Dhuhr comes back to a stale card otherwise.
+    document.addEventListener('visibilitychange', () => {
+      if (document.visibilityState !== 'visible') return;
+      const current = loadLocation();
+      if (current) render(current);
+    });
+  }
+</script>

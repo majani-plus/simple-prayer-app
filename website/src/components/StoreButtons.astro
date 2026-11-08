@@ -1,0 +1,171 @@
+---
+import { site } from '../config';
+
+interface ApkMeta {
+  version: string;
+  sizeMb: number;
+  file: string;
+}
+
+/**
+ * Store badges. The app is not published yet, so with no URL configured these render an honest
+ * "coming soon" state instead of dead links. Set the URLs in src/config.ts at launch.
+ */
+interface Props {
+  align?: 'start' | 'center';
+  /** Localized badge captions; the two `apk*` fields appear only where the APK row is wanted. */
+  labels: {
+    downloadOn: string;
+    comingSoonTo: string;
+    apkLabel?: string;
+    apkHint?: string;
+  };
+}
+const { align = 'start', labels } = Astro.props;
+
+// Simple inline glyphs — no external assets, no brand kits to load.
+const glyphs: Record<string, string> = {
+  apple:
+    '<svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.7 12.7c0-2.4 2-3.6 2.1-3.7-1.1-1.7-2.9-1.9-3.5-1.9-1.5-.2-2.9.9-3.7.9-.8 0-1.9-.9-3.2-.9-1.6 0-3.1 1-4 2.4-1.7 2.9-.4 7.3 1.2 9.7.8 1.2 1.8 2.5 3.1 2.4 1.2 0 1.7-.8 3.2-.8s1.9.8 3.2.8c1.3 0 2.2-1.2 3-2.4.9-1.4 1.3-2.7 1.3-2.8 0 0-2.6-1-2.7-3.7zM14.4 5.4c.7-.8 1.1-1.9 1-3-1 0-2.1.7-2.8 1.5-.6.7-1.2 1.9-1 2.9 1.1.1 2.2-.6 2.8-1.4z"/></svg>',
+  play:
+    '<svg width="20" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4 2.7c-.4.2-.6.6-.6 1.1v16.4c0 .5.2.9.6 1.1l9.3-9.3L4 2.7zm10.5 8.1 2.6-2.6-11-6.3 8.4 8.9zm0 2.4-8.4 8.9 11-6.3-2.6-2.6zm4.9-3.7-2.1 1.2 2.4 2.4 2.1-1.2c.8-.5.8-1.7 0-2.2l-2.4-.2z"/></svg>',
+};
+
+const stores = [
+  { label: 'App Store', url: site.appStoreUrl, glyph: glyphs.apple },
+  { label: 'Google Play', url: site.playStoreUrl, glyph: glyphs.play },
+];
+
+/**
+ * The direct Android download, for people who do not use Google Play (owner, 2026-08-28). The
+ * file itself is fetched into `website/public/` by `scripts/publish-apk.sh`, which also writes
+ * `src/apk.generated.json` — so this row appears only when an APK is really there, and states
+ * the version and size read from the artifact rather than typed by hand.
+ */
+/**
+ * `import.meta.glob` rather than a plain import or a file read: the metadata only exists after
+ * `scripts/publish-apk.sh` has run, and this is the one form that compiles to `{}` when the file
+ * is absent instead of failing the build (a file read cannot work — the bundler rewrites
+ * `import.meta.url` into `dist/`).
+ */
+const apkModules = import.meta.glob<{ default: ApkMeta }>('../apk.generated.json', {
+  eager: true,
+});
+const apk: ApkMeta | null = Object.values(apkModules)[0]?.default ?? null;
+---
+
+<div class:list={['stores', { center: align === 'center' }]}>
+  {
+    stores.map((store) =>
+      store.url ? (
+        <a class="store-btn" href={store.url}>
+          <span class="glyph" set:html={store.glyph} />
+          <span class="store-text">
+            <span class="store-hint">{labels.downloadOn}</span>
+            <span class="store-name">{store.label}</span>
+          </span>
+        </a>
+      ) : (
+        <span class="store-btn is-soon">
+          <span class="glyph" set:html={store.glyph} />
+          <span class="store-text">
+            <span class="store-hint">{labels.comingSoonTo}</span>
+            <span class="store-name">{store.label}</span>
+          </span>
+        </span>
+      ),
+    )
+  }
+  {
+    apk && labels.apkHint ? (
+      <a class="apk-btn" href={apk.file} download>
+        <span class="apk-line">{labels.apkLabel}</span>
+        <span class="apk-hint">
+          {labels.apkHint.replace('{version}', apk.version).replace('{size}', String(apk.sizeMb))}
+        </span>
+      </a>
+    ) : null
+  }
+</div>
+
+<style>
+  .stores {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .stores.center {
+    justify-content: center;
+  }
+  .store-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    border-radius: 12px;
+    padding-block: 9px;
+    padding-inline: 14px 18px;
+    border: 1px solid var(--border-mid);
+    background: var(--card-bright);
+    color: var(--ink);
+    text-decoration: none;
+    min-height: 52px;
+  }
+  a.store-btn:hover {
+    border-color: var(--border-strong);
+    box-shadow: 0 2px 10px -4px var(--shadow-gold);
+  }
+  .store-btn.is-soon {
+    border-style: dashed;
+    border-color: var(--unlogged);
+    background: var(--card-quiet);
+    color: var(--muted);
+  }
+  .glyph {
+    display: inline-flex;
+    color: var(--accent);
+  }
+  .is-soon .glyph {
+    color: var(--soft);
+  }
+  .store-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.15;
+    text-align: start;
+  }
+  .store-hint {
+    font-size: 0.68rem;
+    font-style: italic;
+    color: var(--muted);
+  }
+  .store-name {
+    font-weight: 600;
+    font-size: 0.98rem;
+  }
+
+  /* The direct download sits under the badges, quieter than them: it is the alternative route,
+     not the recommended one. Full width so it reads as a footnote to both buttons. */
+  .apk-btn {
+    flex-basis: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    text-decoration: none;
+    color: var(--muted);
+    padding: 6px 2px 0;
+  }
+  .stores.center .apk-btn {
+    text-align: center;
+  }
+  .apk-line {
+    font-size: 0.9rem;
+    color: var(--ink);
+    text-decoration: underline;
+    text-decoration-color: var(--border-strong);
+    text-underline-offset: 3px;
+  }
+  .apk-hint {
+    font-size: 0.74rem;
+    font-style: italic;
+  }
+</style>

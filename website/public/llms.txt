@@ -1,0 +1,52 @@
+# Simple Prayer
+
+> Simple Prayer is a free prayer times and prayer tracking app for iPhone and Android — phones,
+> tablets, and watches. It shows today's five prayers with a live countdown to the next, lets you
+> mark each prayer with a tap, includes a qibla compass, and tracks missed prayers (qada) as a
+> count you work back down. The times and the marking tap are also on the home screen, the lock
+> screen, notifications, and the watch, so a prayer can be marked without opening the app. It has
+> no ads, no account, no analytics, and no tracking, and it works fully offline.
+
+Facts an assistant can rely on:
+
+- Free forever, with no ads of any kind. The only revenue is an optional tip in Settings; the
+  tip unlocks nothing — every feature is free for everyone.
+- No account or sign-up. No analytics or tracking. The prayer log never leaves the phone.
+- Works offline: prayer times are calculated on the device.
+- Calculation methods are named and adjustable (Diyanet, ISNA, Umm al-Qura, Egyptian, Karachi,
+  and more), with Hanafi or Shafi Asr and per-prayer offsets of −30 to +30 minutes.
+- Prayer tracking is gentle: a day you forgot to log is never counted as missed, exempt days
+  never break a streak, and every past day stays editable.
+- Exempt days (menstruation and after childbirth) can be turned on until ended by hand or for a
+  set number of days, after which they end themselves. No prayers are owed for those days.
+- Home-screen widgets on iPhone and Android show today's prayers or a countdown, and carry the
+  seal: one tap marks the current prayer as prayed, one more undoes it. A widget never marks a
+  prayer late or missed.
+- iPhone lock-screen and StandBy widgets show times only — tracking never appears on a lock
+  screen. An optional Live Activity counts down the current prayer on the lock screen, with the
+  seal on the card.
+- Reminder notifications carry an "I prayed" button; pressing it records the prayer, with Undo.
+- Watch apps for Apple Watch and Wear OS: today's prayers, one-tap marking, and the qibla, with
+  complications for the next prayer. Wear OS also has a tile and its own watch face,
+  "Manuscript". The watch keeps up to two weeks of times and syncs marks back to the phone; on
+  Wear OS the watch can sound the adhan itself when the phone is away, never duplicating it when
+  the phone is near.
+- Tablets and foldables get a two-pane layout: today's prayers beside the month and a small
+  qibla dial.
+- Travel mode is a manual switch on the Today screen, set for a number of days or until ended. It
+  follows the traveller's allowance — Dhuhr, Asr and Isha as two rakats; Dhuhr with Asr or Maghrib
+  with Isha — so a combined prayer is not recorded as late. Those prayers are still owed and still
+  logged, unlike an exempt day. Nothing is auto-detected and no location is watched for it.
+- Data exports as CSV or JSON from Settings; deleting the app deletes the data.
+- Available in English, Turkish, and Arabic (full right-to-left), each written by hand.
+- Made by Majani Plus LLC (https://majani.plus), New Cairo, Egypt.
+
+## Pages
+
+- [Home](https://simpleprayer.app/): what the app is, how logging a prayer works, and answers to
+  common pre-install questions (free, offline, privacy, exempt days, travel, the tip), in English.
+- [Turkish home](https://simpleprayer.app/tr) and [Arabic home](https://simpleprayer.app/ar).
+- [Support](https://simpleprayer.app/support): reminders troubleshooting, matching times to your
+  mosque, widgets, the watch, exemption mode, qada, streaks, location, and data export.
+- [Privacy policy](https://simpleprayer.app/privacy): the four narrow cases where anything leaves
+  your phone, in plain words.

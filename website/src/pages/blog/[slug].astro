@@ -1,0 +1,93 @@
+---
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import { formatPostDate } from '../../lib/blog';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map((post) => ({ params: { slug: post.id }, props: { post } }));
+}
+
+const { post } = Astro.props as { post: CollectionEntry<'blog'> };
+const { Content } = await render(post);
+const { title, description, date, canonical } = post.data;
+// Each article is its own canonical (dev.to cross-posts point back here), unless the frontmatter
+// says it was first published elsewhere. English-only, so `page={null}`: no hreflang alternates
+// and no language switcher, like the 404.
+const path = canonical ?? `/blog/${post.id}`;
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: title,
+    description,
+    datePublished: date,
+    inLanguage: 'en',
+    url: new URL(path, Astro.site).href,
+    author: { '@type': 'Organization', name: 'Majani Plus LLC', url: 'https://majani.plus' },
+  },
+];
+---
+
+<Base
+  title={`${title} — Simple Prayer`}
+  description={description}
+  path={path}
+  locale="en"
+  page={null}
+  jsonLd={jsonLd}
+>
+  <article class="section container article">
+    <p class="caption">
+      <a href="/blog">Articles</a> · <time datetime={date}>{formatPostDate(date)}</time>
+    </p>
+    <h1>{title}</h1>
+    <div class="article-body">
+      <Content />
+    </div>
+  </article>
+</Base>
+
+<style>
+  .article {
+    max-width: 760px;
+  }
+  .article h1 {
+    margin-bottom: 1.2rem;
+  }
+  .article-body :global(h2) {
+    font-size: 1.4rem;
+    margin-top: 2em;
+  }
+  .article-body :global(h3) {
+    font-size: 1.1rem;
+    margin-top: 1.6em;
+  }
+  .article-body :global(li) {
+    margin-bottom: 0.45em;
+  }
+  .article-body :global(strong) {
+    color: var(--ink-strong);
+  }
+  .article-body :global(pre) {
+    overflow-x: auto;
+    padding: 0.9em 1em;
+    background: var(--card);
+    border: 1px solid var(--border-faint);
+    border-radius: 10px;
+  }
+  .article-body :global(pre code) {
+    background: none;
+    padding: 0;
+  }
+  .article-body :global(img) {
+    max-width: 100%;
+    height: auto;
+  }
+  .article-body :global(blockquote) {
+    margin-inline: 0;
+    padding-inline-start: 1em;
+    border-inline-start: 3px solid var(--hairline);
+    color: var(--muted);
+  }
+</style>

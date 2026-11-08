@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- The mark's "small" optical variant (heavier strokes, no finial) so it stays legible at
+       tab size — geometry from src/components/Logo.tsx. Gold on paper, cream on gold in dark. -->
+  <rect width="64" height="64" rx="14" fill="#ece1c5"/>
+  <g stroke="#8a6420" stroke-width="6" stroke-linecap="round" fill="none">
+    <path d="M18 42A14 14 0 0 1 46 42"/>
+    <path d="M11 42V30M53 42V30"/>
+    <path d="M8 47h48"/>
+  </g>
+  <style>
+    @media (prefers-color-scheme: dark) {
+      rect { fill: #8a6420; }
+      g { stroke: #f3e7c8; }
+    }
+  </style>
+</svg>

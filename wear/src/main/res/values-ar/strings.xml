@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="wear_empty_title">أوقات الصلاة</string>
+  <string name="wear_empty_body">افتح التطبيق على هاتفك لإكمال الإعداد.</string>
+  <string name="wear_stale_title">الأوقات تحتاج إلى تحديث</string>
+  <string name="wear_stale_body">افتح التطبيق على هاتفك لتحديثها.</string>
+  <string name="wear_tile_label">الصلاة القادمة</string>
+  <string name="wear_complication_label">الصلاة القادمة</string>
+  <string name="wear_channel_name">تذكيرات دخول الوقت</string>
+  <string name="wear_channel_description">تصل عند دخول وقت الصلاة.</string>
+  <string name="preview_prayer">العصر</string>
+  <string name="preview_countdown">١:١٢</string>
+</resources>

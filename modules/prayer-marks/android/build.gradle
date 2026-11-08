@@ -1,0 +1,47 @@
+import groovy.json.JsonSlurper
+
+plugins {
+  id 'com.android.library'
+  id 'expo-module-gradle-plugin'
+}
+
+group = 'expo.modules.prayermarks'
+version = '1.0.0'
+
+android {
+  namespace "expo.modules.prayermarks"
+  defaultConfig {
+    versionCode 1
+    versionName "1.0.0"
+  }
+}
+
+dependencies {
+  // Pressing Prayed on a notification tells the buddies from here (D180), and the sender — with
+  // the relay secret, the outbox and the ledger behind it — lives in `modules/buddy-nicknames`,
+  // the module that already owns everything buddy mode leaves for processes with no JS in them.
+  implementation project(':buddy-nicknames')
+
+  // `NotificationCompat` for the confirmation. Available transitively through expo-modules-core,
+  // but declared because this module uses it directly — the same version expo-notifications pins.
+  implementation 'androidx.core:core:1.17.0'
+
+  // The action button belongs to `expo-notifications`, and the press arrives through its own
+  // NotificationManager — see PrayerMarkResponder for why that is the extension point rather than
+  // a broadcast receiver of our own. Only the classes are needed: the app already ships the
+  // library, so `compileOnly` borrows the types and contributes nothing at runtime.
+  //
+  // How it is reached depends on how autolinking resolved the library. Normally it is consumed as
+  // a published AAR from expo's local maven repository, which pins one exact version, so the
+  // version is read from the installed package rather than written here where an SDK upgrade
+  // would leave it stale. When the library is built from source instead (`buildFromSource`, and
+  // some EAS configurations) the gradle project exists and is used directly.
+  def notifications = rootProject.findProject(':expo-notifications')
+  if (notifications != null) {
+    compileOnly notifications
+  } else {
+    def packageJson = file("${projectDir}/../../../node_modules/expo-notifications/package.json")
+    def notificationsVersion = new JsonSlurper().parse(packageJson).version
+    compileOnly "host.exp.exponent:expo.modules.notifications:${notificationsVersion}"
+  }
+}

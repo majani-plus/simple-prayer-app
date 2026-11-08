@@ -1,0 +1,83 @@
+---
+/**
+ * The one-tap switch between the two tools.
+ *
+ * On the site as well as in an installed copy, not only in standalone: the header nav collapses to
+ * a hamburger under 1080px, which is far too much work for the single move these two pages need
+ * from each other.
+ */
+import { pagePath, t, type Locale, type PageId } from '../i18n';
+
+interface Props {
+  locale: Locale;
+  current: Extract<PageId, 'times' | 'qibla'>;
+}
+const { locale, current } = Astro.props;
+const dict = t(locale).qiblaPage;
+const tabs = [
+  { id: 'times' as const, label: dict.tabTimes },
+  { id: 'qibla' as const, label: dict.tabQibla },
+];
+---
+
+<nav class="tool-tabs" aria-label={dict.toolNav}>
+  {
+    tabs.map((tab) => (
+      <a
+        href={pagePath(tab.id, locale)}
+        class="tool-tab"
+        aria-current={tab.id === current ? 'page' : undefined}
+      >
+        {tab.label}
+      </a>
+    ))
+  }
+</nav>
+
+<style>
+  .tool-tabs {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 1.25rem;
+    padding: 4px;
+    border: 1px solid var(--border-faint);
+    border-radius: 999px;
+    background: var(--card-quiet);
+    width: fit-content;
+    max-width: 100%;
+  }
+
+  .tool-tab {
+    flex: 1;
+    text-align: center;
+    white-space: nowrap;
+    padding: 8px 18px;
+    min-height: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    color: var(--header);
+    text-decoration: none;
+    font-size: 0.95rem;
+  }
+
+  .tool-tab[aria-current='page'] {
+    background: var(--card-elevated);
+    border: 1px solid var(--border-strong);
+    color: var(--ink-strong);
+    font-weight: 600;
+  }
+
+  .tool-tab:hover:not([aria-current='page']) {
+    color: var(--ink);
+  }
+
+  /* Turkish is the long one here ("Namaz vakitleri"), and it is the first thing to overflow. */
+  @media (max-width: 380px) {
+    .tool-tab {
+      padding: 8px 12px;
+      font-size: 0.88rem;
+    }
+  }
+</style>

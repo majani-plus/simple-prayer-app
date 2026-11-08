@@ -1,0 +1,1477 @@
+{
+  "app": {
+    "name": "Namaz Vakitleri"
+  },
+  "tabs": {
+    "today": "Bugün",
+    "history": "Geçmiş",
+    "qibla": "Kıble",
+    "settings": "Ayarlar"
+  },
+  "common": {
+    "comingSoon": "Yakında",
+    "on": "Açık",
+    "off": "Kapalı"
+  },
+  "prayers": {
+    "fajr": "Sabah",
+    "dhuhr": "Öğle",
+    "asr": "İkindi",
+    "maghrib": "Akşam",
+    "isha": "Yatsı",
+    "jumuah": "Cuma · Öğle",
+    "jumuahShort": "Cuma",
+    "arabic": {
+      "fajr": "الفجر",
+      "dhuhr": "الظهر",
+      "asr": "العصر",
+      "maghrib": "المغرب",
+      "isha": "العشاء",
+      "jumuah": "الجمعة",
+      "jumuahShort": "الجمعة"
+    }
+  },
+  "hijri": {
+    "dayMonth": "{{day}} {{month}}",
+    "era": {
+      "ah": "H"
+    },
+    "months": {
+      "muharram": "Muharrem",
+      "safar": "Safer",
+      "rabiAlAwwal": "Rebiülevvel",
+      "rabiAlThani": "Rebiülahir",
+      "jumadaAlAwwal": "Cemaziyelevvel",
+      "jumadaAlThani": "Cemaziyelahir",
+      "rajab": "Recep",
+      "shaban": "Şaban",
+      "ramadan": "Ramazan",
+      "shawwal": "Şevval",
+      "dhuAlQidah": "Zilkade",
+      "dhuAlHijjah": "Zilhicce"
+    }
+  },
+  "today": {
+    "dateLine": "{{hijri}} · {{gregorian}}",
+    "streakLabel_one": "günlük seri",
+    "streakLabel_other": "günlük seri",
+    "caption": {
+      "upcoming": "yaklaşıyor",
+      "next": "sırada",
+      "dueUntil": "şimdi · son vakit {{time}}",
+      "dueUntilSunrise": "şimdi · gün doğumuna kadar ({{time}})",
+      "dueNow": "şimdi"
+    },
+    "sunrise": {
+      "label": "Güneş",
+      "a11yLabel": "Güneşin doğuşu: {{time}}"
+    },
+    "footerHint": "namazı kılınca mühre dokun · geri almak için tekrar dokun",
+    "yesterday": {
+      "heading": "Dün",
+      "count_one": "{{count}} namaz işaretlenmedi",
+      "count_other": "{{count}} namaz işaretlenmedi",
+      "a11yLabel": "Dün. {{count}}",
+      "a11yHint": "Dünü açar; namazlarını oradan işaretleyebilirsin"
+    },
+    "exemptNote": "Bu günlerde namaz gerekmiyor — işaretlenecek bir şey yok.",
+    "timesError": "Bu konum için namaz vakitleri hesaplanamadı.",
+    "noLocation": {
+      "title": "Namaz vakitleri için konum gerekli",
+      "body": "Bugünün vakitlerini ve kıble yönünü bulmak için yaklaşık bir konum yeterli."
+    },
+    "reminder": {
+      "on": "Hatırlatma açık",
+      "off": "Bana hatırlat",
+      "a11yLabel": "{{prayer}} hatırlatması",
+      "a11yHintOn": "Bu namaz için hatırlatmayı kapatır",
+      "a11yHintOff": "Bu namazın vakti girince hatırlatma gönderir",
+      "needsPermission": "Hatırlatmalar kapalı — bildirimlere izin verin",
+      "a11yHintAsk": "Bildirim göndermek için sistemden izin ister",
+      "a11yHintBlocked": "Bildirimlere izin verebileceğiniz sistem ayarlarını açar"
+    },
+    "hero": {
+      "a11yLabel": "Sıradaki namaz: {{prayer}}, {{time}}",
+      "a11yDue": "{{prayer}} vakti girdi — son vakit {{time}}",
+      "until": "son vakit {{time}}",
+      "leftToPray": "vaktin çıkmasına {{duration}} var",
+      "prayedIn": "{{prayer}} kılındı · {{duration}} sonra"
+    },
+    "row": {
+      "a11yLabel": "{{prayer}}, {{time}}, {{caption}}"
+    },
+    "overflow": {
+      "a11y": "Daha fazla",
+      "title": "Daha fazla"
+    },
+    "glance": {
+      "qiblaHint": "Kıble sekmesini açar"
+    }
+  },
+  "buddy": {
+    "unnamed": "Arkadaşın",
+    "list": {
+      "separator": ", ",
+      "last": " ve "
+    },
+    "row": {
+      "prayed": "{{names}} kıldı"
+    },
+    "push": {
+      "title": "Arkadaşın {{prayer}} namazını kıldı",
+      "titleNamed": "{{nickname}} {{prayer}} namazını kıldı"
+    },
+    "channel": {
+      "name": "Arkadaşlar",
+      "description": "Bir arkadaşın namaz işaretlediğinde."
+    },
+    "icons": {
+      "initials": "Baş harfler",
+      "crescent": "Hilal",
+      "star": "Yıldız",
+      "mosque": "Cami",
+      "rosette": "Gül motifi",
+      "leaf": "Yaprak",
+      "drop": "Damla",
+      "sun": "Güneş",
+      "book": "Kitap",
+      "heart": "Kalp",
+      "dawn": "Şafak"
+    },
+    "colors": {
+      "ocean": "Okyanus",
+      "brick": "Tuğla",
+      "violet": "Menekşe",
+      "teal": "Deniz mavisi",
+      "rose": "Gül",
+      "stone": "Taş",
+      "plum": "Erik",
+      "clay": "Kil"
+    },
+    "picker": {
+      "icon": "Simge",
+      "color": "Renk",
+      "preview": "Sana böyle görünecek."
+    },
+    "settings": {
+      "title": "Arkadaşlar",
+      "back": "Ayarlara dön",
+      "row": {
+        "label": "Arkadaş modu",
+        "description": "Ailenden ya da arkadaşlarından birinin kıldığını gör, o da senin kıldığını görsün",
+        "a11yHint": "Arkadaşlar ekranını açar"
+      },
+      "enable": {
+        "label": "Arkadaş modu",
+        "body": "Sen açana kadar kapalı."
+      },
+      "explain": {
+        "sees": "Arkadaşın namazını kıldığını görür. Geç kılınan da kılınmış sayılır.",
+        "never": "Kaçırdığın bir namazı ya da henüz işaretlemediğin bir namazı görmez. Boş bir satır hiçbir şey demek değildir.",
+        "leaves": "İşaretlediğin her namaz, sunucumuz üzerinden arkadaşının telefonuna gönderilir. Sunucu, telefonu aldığı anda ya da en geç bir gün sonra siler. İsim, fotoğraf ve konum tutmaz.",
+        "source": "Sunucunun kaynak kodunu oku"
+      },
+      "notify": {
+        "label": "Bir arkadaşım kılınca haber ver",
+        "body": "Sessiz bir bildirim. Ses yok."
+      },
+      "add": "Arkadaş ekle",
+      "haveCode": "Kodum var",
+      "list": "Arkadaşların",
+      "remove": "Kaldır",
+      "removeA11y": "{{name}} kişisini kaldır",
+      "full": "En fazla beş arkadaş ekleyebilirsin.",
+      "permission": {
+        "title": "Bildirimler kapalı",
+        "body": "Arkadaş modunun telefonuna ulaşması için gerekli. Bildirimler olmadan arkadaşının namazları uygulamayı bir sonraki açışında görünür.",
+        "action": "Ayarları aç"
+      },
+      "group": {
+        "footer": "Arkadaşın namazını kıldığını görür, başka hiçbir şeyi."
+      }
+    },
+    "invite": {
+      "title": "Bunu arkadaşınla paylaş",
+      "body": "Tarayabilir, bağlantıya dokunabilir ya da kodu yazabilir.",
+      "share": "Bağlantıyı paylaş",
+      "done": "Tamam",
+      "failed": "Kod oluşturulamadı. Birazdan tekrar dene.",
+      "titleFor": "Bunu {{name}} ile paylaş",
+      "expiresIn": "{{duration}} sonra geçersiz olur",
+      "cancel": "Daveti iptal et",
+      "waiting": "Davet gönderildi · {{duration}} sonra geçersiz olur",
+      "pendingHint": "Kodu yeniden açar"
+    },
+    "accept": {
+      "title": "Biri namaz arkadaşın olmak istiyor",
+      "body": "İkiniz de diğerinin bugün namazını kıldığını göreceksiniz. Başka hiçbir şeyi.",
+      "name": "Ona ne diyeceksin?",
+      "placeholder": "Yalnızca senin gördüğün bir takma ad",
+      "confirm": "Arkadaşı ekle",
+      "cancel": "Şimdi değil",
+      "invalid": "Bu kodun süresi dolmuş ya da biri onu zaten kullanmış.",
+      "codeLabel": "Kodu gir, örneğin ABCD-EFGH",
+      "full": "İkinizden birinin zaten beş arkadaşı var; bu da en fazlası."
+    },
+    "ended": {
+      "title": "Bir arkadaş bağlantısı sona erdi.",
+      "body": "Artık birbirinizin namazlarını görmeyeceksiniz."
+    },
+    "pending": {
+      "title": "Biri davetini kabul etti",
+      "save": "Kaydet"
+    },
+    "accepted": {
+      "title": "{{name}} kabul etti",
+      "body": "İkiniz de diğerinin bugün namazını kıldığını göreceksiniz."
+    },
+    "naming": {
+      "title": "Kimi davet ediyorsun?",
+      "body": "Takma adını ve rengini sen seçersin; o ikisini de hiç görmez.",
+      "next": "Davet oluştur"
+    },
+    "paired": {
+      "title": "{{name}} artık arkadaşın",
+      "body": "İkiniz de diğerinin bugün namazını kıldığını göreceksiniz. Başka hiçbir şeyi.",
+      "done": "Tamam"
+    },
+    "edit": {
+      "save": "Kaydet",
+      "remove": "Arkadaşı kaldır",
+      "hint": "Takma adı, simgeyi ya da rengi değiştir"
+    }
+  },
+  "exemption": {
+    "begin": {
+      "title": "Özel günleri başlat",
+      "fromToday": "Bugünden itibaren",
+      "fromEarlier": "Daha önceki bir günden…",
+      "notNow": "Şimdi değil",
+      "reassure": "Bu günlerin namazları sonradan kaza edilmez — hiçbir şey birikmez.",
+      "howLong": "Ne kadar sürecek?",
+      "untilIEnd": "Ben bitirene kadar",
+      "days_one": "{{count}} gün — {{date}} tarihine kadar",
+      "days_other": "{{count}} gün — {{date}} tarihine kadar",
+      "pickCount": "Farklı bir gün sayısı…",
+      "stepper_one": "{{count}} gün",
+      "stepper_other": "{{count}} gün",
+      "confirmCount": "Başlat — {{date}} tarihine kadar",
+      "dayFewer": "Bir gün azalt",
+      "dayMore": "Bir gün artır",
+      "pauseReminders": "Namaz hatırlatmalarını durdur",
+      "pauseRemindersHint": "Özel günler boyunca ezan ve hatırlatma gelmez. Ezanı duymaya devam etmek için kapat.",
+      "summaryMuted": "Özel günler boyunca hiçbir namaz hatırlatması gelmez.",
+      "summaryKept": "Özel günlerde ezan gelmeye devam eder; yalnızca son hatırlatma susar.",
+      "summaryMutedUntil": "Son özel gün: {{date}}. O güne kadar hatırlatma gelmez.",
+      "summaryKeptUntil": "Son özel gün: {{date}}. Ezan gelmeye devam eder; yalnızca son hatırlatma susar."
+    },
+    "banner": {
+      "body": "{{date}} tarihinden beri özel günler — bu günlerde namaz gerekmiyor, hatırlatmalar duraklatıldı.",
+      "end": "Bitir",
+      "stillOn": "Özel günler sürüyor mu? Hazır olduğunda buradan bitirebilirsin — acele yok.",
+      "bodyUntil": "{{date}} tarihine kadar özel günler — bu günlerde namaz gerekmiyor, hatırlatmalar duraklatıldı."
+    },
+    "end": {
+      "title": "Özel günleri bitir",
+      "question": "Son özel gün hangisiydi?",
+      "yesterday": "Dün — bugün normal bir gün",
+      "today": "Bugün",
+      "earlier": "Daha önceki bir gün…"
+    },
+    "overflow": {
+      "intro": "Özel günler kaçırılmış sayılmaz ve sonradan kaza edilmez. Hatırlatmalar, sen açık bırakmadıkça durur.",
+      "begin": "Bugünden itibaren özel gün",
+      "end": "Özel günleri bitir",
+      "settings": "Özel gün ayarları"
+    },
+    "modeOff": {
+      "title": "Özel günler hâlâ sürüyor",
+      "body": "Kapatıp dünden itibaren bitirilsin mi?",
+      "confirm": "Kapat",
+      "cancel": "Vazgeç"
+    },
+    "settings": {
+      "back": "Geri",
+      "notActive": "Şu anda özel gün yok",
+      "activeSince": "{{date}} tarihinden beri özel günler",
+      "begin": "Başlat",
+      "end": "Bitir",
+      "periods": {
+        "label": "Geçmiş kayıtlar",
+        "description": "Daha önceki bir kaydı ekle, düzelt veya kaldır.",
+        "a11yHint": "Kayıtlı özel gün dönemlerinin listesini açar",
+        "add": "Daha önceki bir kayıt ekle",
+        "empty": "Henüz kayıt yok.",
+        "range": "{{start}} – {{end}}"
+      },
+      "activeUntil": "{{date}} tarihine kadar özel günler"
+    },
+    "editor": {
+      "editTitle": "Kaydı düzenle",
+      "addTitle": "Daha önceki bir kayıt ekle",
+      "firstDay": "İlk gün",
+      "lastDay": "Son gün",
+      "save": "Kaydet",
+      "remove": "Bu kaydı kaldır",
+      "cancel": "Vazgeç",
+      "invalid": "Son gün ilk günden önce olamaz."
+    }
+  },
+  "seal": {
+    "option": {
+      "prayed": "Kılındı",
+      "late": "Geç",
+      "missed": "Kaçtı"
+    },
+    "status": {
+      "unlogged": "işaretlenmedi",
+      "prayed": "kılındı",
+      "late": "geç kılındı",
+      "missed": "kaçırıldı",
+      "exempt": "gerekmiyor"
+    },
+    "a11y": {
+      "face": "{{prayer}}, {{status}}",
+      "hintOpen": "Üç seçeneği açar",
+      "hintMarkPrayed": "{{prayer}} namazını kılındı olarak işaretler",
+      "hintUndo": "İşareti kaldırır",
+      "hintUpcoming": "Namaz vakti girince işaretleyebilirsin",
+      "hintExempt": "Bu gün namaz gerekmiyor — işaretlenecek bir şey yok",
+      "opened": "{{prayer}} seçenekleri açık",
+      "closed": "Seçenekler kapandı",
+      "recorded": {
+        "prayed": "{{prayer}} namazı kılındı olarak işaretlendi",
+        "late": "{{prayer}} namazı geç kılındı olarak işaretlendi",
+        "missed": "{{prayer}} namazı kaçırıldı olarak işaretlendi"
+      },
+      "cleared": "{{prayer}} namazının işareti kaldırıldı",
+      "mark": {
+        "prayed": "{{prayer}} namazını kılındı olarak işaretle",
+        "late": "{{prayer}} namazını geç kılındı olarak işaretle",
+        "missed": "{{prayer}} namazını kaçırıldı olarak işaretle"
+      },
+      "clear": {
+        "prayed": "{{prayer}} için “kılındı” işaretini kaldır",
+        "late": "{{prayer}} için “geç kılındı” işaretini kaldır",
+        "missed": "{{prayer}} için “kaçırıldı” işaretini kaldır"
+      },
+      "closeAction": "Seçenekleri kapat"
+    }
+  },
+  "qada": {
+    "title": "Kaza namazları",
+    "back": "Geri",
+    "count_one": "{{count}} namaz",
+    "count_other": "{{count}} namaz",
+    "unit_one": "namaz",
+    "unit_other": "namaz",
+    "card": {
+      "heading": "Kazası kalan",
+      "hint": "Beşini de görmek için dokun",
+      "a11yLabel": "Kaza namazları — {{total}} kaldı",
+      "a11yHint": "Tüm listeyi açar"
+    },
+    "screen": {
+      "remaining": "kazası kalan",
+      "a11yTotal": "{{total}} kazası kaldı",
+      "perPrayer": "birer birer",
+      "makeUp": "Kaza ettim",
+      "makeUpA11y": "Bir {{prayer}} namazını kaza edildi olarak işaretle",
+      "addA11y": "Kazaya bir {{prayer}} namazı ekle",
+      "cleared": "tamamlandı",
+      "clearedA11y": "{{prayer}} — kazası kalmadı",
+      "footerHint": "kaza ettiğin her namaz için bir dokunuş",
+      "relief": {
+        "title": "Kazası kalan namaz yok",
+        "body": "Defterin temiz. Bundan sonrası da kolay olsun.",
+        "setup": "Daha önce kaçırdıklarımı hesapla"
+      }
+    },
+    "pace": {
+      "recent": "Son {{days}} günde {{value}} namaz kaza ettin.",
+      "projected": "Bu hızla {{date}} civarında bitirmiş olursun.",
+      "none": "Fırsat buldukça birer birer. Seni kovalayan bir saat yok."
+    },
+    "forgive": {
+      "action": "Sıfırdan başla",
+      "explain": "Bu sayı sana yardım etmekten çok yük oluyorsa, bırakabilirsin.",
+      "confirmTitle": "Bırakalım mı?",
+      "confirmBody": "{{total}} silinmez, arşivlenir — geçmişin kalır ve {{days}} gün boyunca geri getirebilirsin.",
+      "confirm": "Evet, sıfırdan başla",
+      "cancel": "Şimdi değil",
+      "doneTitle": "Bırakıldı.",
+      "doneBody": "Sayaçların bugünden sıfırdan başlıyor. Bıraktıkların {{days}} gün saklanır, geri istersen diye.",
+      "undo": "Geri getir"
+    },
+    "setup": {
+      "title": "Nereden başlamak istersin?",
+      "body": "İkisi de doğru. İçine hangisi siniyorsa onu seç.",
+      "skip": "Şimdi değil",
+      "back": "Geri",
+      "rerun": "Yeniden kur",
+      "backtrack": {
+        "title": "Kaçırdıklarımı hesapla",
+        "body": "Yaklaşık bir zaman aralığı ver, düzenleyebileceğin bir başlangıç sayısı çıkaralım."
+      },
+      "blank": {
+        "title": "Bugünden başla",
+        "body": "Bugünden itibaren say. Yalnızca bundan sonra kaçırdı olarak işaretlediklerin sayılır."
+      },
+      "range": {
+        "title": "Hangi zaman aralığı?",
+        "body": "Yaklaşık bir aralık yeter — her sayıyı sonraki adımda değiştirebilirsin.",
+        "from": "Başlangıç",
+        "to": "Bitiş",
+        "exempt": "Özel günlerimi hariç tut",
+        "exemptBody": "O günlerde namaz gerekmiyordu; tahmine katılmaz.",
+        "daysPerMonth": {
+          "label": "Ayda özel gün sayısı",
+          "fromRecords": "Kayıtlı günlerinden hesaplandı — gerekirse değiştirebilirsin.",
+          "guess": "Yaklaşık bir sayı yeter.",
+          "decrease": "Bir gün azalt",
+          "increase": "Bir gün artır"
+        },
+        "invalid": "Aralığın bitişi başlangıcından önce.",
+        "pick": "Bir gün seç",
+        "days_one": "{{count}} gün",
+        "days_other": "{{count}} gün",
+        "summary": "{{days}} — yaklaşık {{total}}",
+        "next": "Tahmini gör"
+      },
+      "estimate": {
+        "title": "Bir başlangıç noktası",
+        "body": "Bu bir tahmin, bir hüküm değil. Doğru gelmeyen her sayıyı değiştirebilirsin.",
+        "total": "toplam {{total}}",
+        "field": "kazası kalan {{prayer}}",
+        "decrease": "Bir {{prayer}} eksilt",
+        "increase": "Bir {{prayer}} ekle",
+        "save": "Kaydet ve başla"
+      }
+    }
+  },
+  "history": {
+    "monthTitle": "{{gregorian}} · {{hijri}}",
+    "monthSpanSeparator": " / ",
+    "month": {
+      "legend": {
+        "prayed": "{{count}} kılındı",
+        "late": "{{count}} geç",
+        "missed": "{{count}} kaçtı",
+        "unlogged": "{{count}} işaretlenmemiş"
+      },
+      "join": " · "
+    },
+    "a11yPreviousMonth": "Önceki ay",
+    "a11yNextMonth": "Sonraki ay",
+    "footerHint": "açmak için bir güne dokun · geçmiş her gün işaretlenebilir",
+    "day": {
+      "a11yLabel": "{{date}} — {{summary}}",
+      "a11yHint": "Bu günü açar",
+      "future": "henüz değil",
+      "exempt": "özel gün",
+      "nothing": "işaretlenmemiş",
+      "counts": "{{prayed}} kılındı, {{late}} geç, {{missed}} kaçtı"
+    },
+    "detail": {
+      "close": "Kapat",
+      "a11yDismiss": "Bu günü kapat",
+      "hijriLine": "{{day}} {{month}} {{year}}",
+      "future": "Bu gün henüz gelmedi.",
+      "exempt": "Bu gün namaz gerekmiyor — işaretlenecek bir şey yok.",
+      "noTimes": "Bu günün vakitlerini görmek ve işaretlemek için bir konum belirle.",
+      "madeUp": {
+        "mark": "kaza edildi olarak işaretle",
+        "marked": "kaza edildi",
+        "markA11y": "{{prayer}} namazını kaza edildi olarak işaretle",
+        "unmarkA11y": "{{prayer}} için “kaza edildi” işaretini geri al"
+      }
+    },
+    "stats": {
+      "title": "Kaydın",
+      "best": "en iyi",
+      "mode": {
+        "soft": "Esnek",
+        "hard": "Kararlı"
+      },
+      "modeLine": "{{mode}} seri",
+      "bestSince": "{{mode}} seri · en uzun seri {{date}} tarihinde başladı",
+      "startHint": "Bir seri başlatmak için bir namaz işaretle.",
+      "thisWeek": "bu hafta",
+      "windowLabel_one": "{{days}} gün",
+      "windowLabel_other": "{{days}} gün",
+      "completion": "tamamlandı",
+      "onTime": "vaktinde",
+      "completionCaption": "{{prayed}} vaktinde · {{late}} geç · {{missed}} kaçtı · {{unlogged}} işaretlenmemiş",
+      "byPrayer": "Namaza göre",
+      "prayed": "kılındı",
+      "late": "geç",
+      "missed": "kaçtı",
+      "prayerRowA11y": "{{prayer}}: {{prayed}} kılındı, {{late}} geç, {{missed}} kaçtı",
+      "prayerRowCaption": "{{obligated}} vakitten {{done}}",
+      "callouts": "en çok kaçan: {{missed}} · en çok geciken: {{late}}",
+      "none": "—",
+      "lifetime": "Tüm zamanlar",
+      "lifetimePrayed": "işaretlenen namaz",
+      "fullDays": "tam gün",
+      "empty": "Henüz bir şey işaretlenmedi. İşaretlediklerin burada birikecek."
+    }
+  },
+  "location": {
+    "title": "Konum",
+    "setLocation": "Konumunu belirle",
+    "useMyLocation": "Konumumu kullan",
+    "resolving": "Konumun bulunuyor…",
+    "privacyNote": "Yalnızca yaklaşık konumun kullanılır. Bize asla ulaşmaz; telefonun şehrinin adını bulmak için onu kendi harita servisine verir, başka hiçbir yere gitmez.",
+    "approximate": "Yaklaşık",
+    "permissionDenied": "Konum izni kapalı",
+    "permissionDeniedHelp": "Namaz vakitleri için bir konum gerekir. Bunun yerine bir şehir seçebilir ya da cihaz ayarlarından uygulamaya konum izni verebilirsin.",
+    "openSettings": "Ayarları aç",
+    "positionUnavailable": "Konumun bulunamadı. Tekrar dene ya da bir şehir seç.",
+    "retry": "Tekrar dene",
+    "picker": {
+      "close": "Kapat"
+    },
+    "chooseCity": "Şehir seç",
+    "searchPlaceholder": "Şehir ara",
+    "searching": "Aranıyor…",
+    "noResults": "“{{query}}” için sonuç bulunamadı.",
+    "searchUnavailable": "Şehir arama şu anda kullanılamıyor. Lütfen tekrar dene."
+  },
+  "onboarding": {
+    "continue": "Devam",
+    "back": "Geri",
+    "progress": "Adım {{step, number}} / {{total, number}}",
+    "welcome": {
+      "title": "Selamün aleyküm",
+      "body": "Bu uygulama namaza teşvik etmek için var: her namazın vaktini kolayca görürsün, kıldığını tek dokunuşla işaretlersin — o küçük sevinç de senin olur. Her şey ücretsiz. Seni hiç azarlamaz, ısrar da etmez.\n\nÖnce birkaç kısa soru, uygulama sana uysun diye. Dilediğini atla.",
+      "pledge": "Reklam yok · Hesap yok · Hiçbir şey telefonundan çıkmaz",
+      "start": "Başlayalım",
+      "skip": "Kurulumu atla"
+    },
+    "location": {
+      "title": "Neredesin?",
+      "skip": "Şimdilik atla",
+      "resolved": "Namaz vakitleri ve kıble buraya göre hesaplanacak.",
+      "change": "Başka bir yer seç"
+    },
+    "theme": {
+      "title": "Aydınlık mı, karanlık mı?",
+      "body": "Gözünü hangisi daha az yoruyorsa onu seç.",
+      "system": "Telefonunu izler, gece ve gündüz.",
+      "light": "Sıcak kâğıt.",
+      "dark": "Gece kâğıdı, karanlıkta daha yumuşak."
+    },
+    "notifications": {
+      "title": "Namaz hatırlatmaları",
+      "body": "Her vakit girdiği anda bir bildirim.",
+      "off": "Hatırlatma yok",
+      "offBody": "Hiçbir şey gönderilmez. İstediğin zaman açabilirsin.",
+      "system": "Cihaz sesi",
+      "systemBody": "Telefonunun bildirimler için kullandığı ses.",
+      "adhan": "Ezan",
+      "adhanBody": "Kısa bir ezan kaydı, yarım dakika kadar.",
+      "allow": "Bildirimlere izin ver",
+      "footnote": "Her vaktin sesini ve zamanlamasını sonradan Ayarlar'dan tek tek belirleyebilirsin.",
+      "refused": "Bildirimler az önce kapalı kaldı, bu yüzden hatırlatma gelemez. Aşağıdan yeniden izin isteyebilirsin.",
+      "blocked": "Telefonun bu uygulamanın bildirim göndermesine izin vermiyor, bu yüzden yukarıdakiler sana henüz ulaşamaz.",
+      "openSettings": "Cihaz ayarlarını aç"
+    },
+    "battery": {
+      "title": "Hatırlatmalar zamanında gelsin",
+      "body": "Bazı telefonlar pilden tasarruf için uygulamaları uykuya alır; uyuyan bir uygulama ezanı vaktinde okuyamaz. Pil ayarlarında bir dakika bunu önler.",
+      "bodyOem": "{{brand}} telefonlar pilden tasarruf için uygulamaları uykuya alır; uyuyan bir uygulama ezanı vaktinde okuyamaz. Pil ayarlarında bir dakika bunu önler.",
+      "open": "Pil ayarlarını aç",
+      "exactBody": "Telefonun ayrıca pilden tasarruf için hatırlatmayı birkaç dakika bekletebilir. Alarm ve hatırlatmalara izin vermek ezanı vaktinde tutar.",
+      "exactOpen": "Alarm ve hatırlatmalara izin ver",
+      "footnote": "Bunu sonra da yapabilirsin — Ayarlar › Hatırlatmalar › Hatırlatma güvenilirliği."
+    },
+    "tracking": {
+      "title": "Namazları nasıl işaretlemek istersin?",
+      "body": "Sana uyan yolu seç.",
+      "footnote": "Bunu daha sonra Ayarlar'dan değiştirebilirsin. Değiştirmek, işaretlediğin namazları değiştirmez."
+    },
+    "streak": {
+      "title": "Seriyi ne sürdürür?",
+      "body": "Seri, üst üste koruduğun günleri sayar. Bir günün neye ihtiyacı olduğunu seç.",
+      "footnote": "İstediğin zaman değiştir. Her gün düzenlenebilir kalır, yani seri her zaman düzeltilebilir."
+    },
+    "qada": {
+      "title": "Kaza namazın var mı?",
+      "body": "Yıllar içinde kaçan namazlar varsa, uygulama onları seninle birlikte sayabilir ve tek tek işaretlemene yardım eder. Bunun bir saati yok.",
+      "start": "Birlikte sayalım",
+      "skip": "Şimdi değil"
+    }
+  },
+  "qibla": {
+    "header": "Kıble · {{city}}",
+    "headerNoCity": "Kıble",
+    "arabic": "القِبلة",
+    "recalibrate": "Yeniden ayarla",
+    "recalibrateHint": "Konumunu yeniler ve pusulanın nasıl ayarlanacağını gösterir",
+    "makkah": "Mekke",
+    "status": {
+      "searching": "Kıbleyi bulmak için dön",
+      "aligned": "Kıbleye dönüksün"
+    },
+    "card": {
+      "heading": "Yönün",
+      "bearing": "Kıble açısı",
+      "distance": "Uzaklık"
+    },
+    "value": {
+      "degrees": "{{degrees, number}}°",
+      "bearing": "{{degrees, number}}° {{cardinal}}",
+      "distance": "{{distance, number}} km",
+      "unknown": "—"
+    },
+    "guide": {
+      "turnLeft": "{{degrees, number}}° sola dön",
+      "turnRight": "{{degrees, number}}° sağa dön",
+      "turnSub": "İbre Mekke işaretiyle buluşana kadar telefonu döndür",
+      "aligned": "Hizalandın — başlayabilirsin",
+      "alignedSub": "Kâbe yönünden {{degrees, number}}° içinde",
+      "searching": "Yönün bulunuyor",
+      "searchingSub": "Telefonu düz tut ve yavaşça dön"
+    },
+    "accuracy": {
+      "label": "Pusula doğruluğu",
+      "high": "Yüksek",
+      "medium": "Orta",
+      "low": "Düşük",
+      "unavailable": "Bilinmiyor"
+    },
+    "magneticNote": "Manyetik kuzey kullanılıyor — bulunduğunuz yere göre yön 10–20 derece sapabilir. Konum alınınca gerçek kuzey kullanılır.",
+    "noCompass": "Bu cihazda pusula yok, bu yüzden kadran dönmüyor. Açı ve uzaklık yine de doğru.",
+    "compassPermission": {
+      "title": "Kadran pusulaya ihtiyaç duyuyor",
+      "body": "Açı ve uzaklık zaten doğru. Kadranın sen döndükçe seni takip etmesi için uygulamaya konum izni ver."
+    },
+    "calibration": {
+      "title": "Pusulayı ayarla",
+      "body": "Telefonu mıknatıs ve metalden uzakta birkaç kez 8 çizerek hareket ettir.",
+      "dismiss": "Kapat"
+    },
+    "tilt": {
+      "hint": "Telefonu biraz daha düz tut — pusula düz dururken en iyi çalışır.",
+      "faceDownHint": "Ekran aşağı bakıyor — pusulayı okumak için telefonu çevir."
+    },
+    "dial": {
+      "a11yLabel": "Pusula. Yönün {{heading, number}}°, Kıble {{bearing, number}}°.",
+      "a11yLabelNoFix": "Pusula. Yön bekleniyor. Kıble {{bearing, number}}°."
+    },
+    "footerHint": "en iyi sonuç için telefonu düz tut",
+    "cardinal": {
+      "n": "K",
+      "ne": "KD",
+      "e": "D",
+      "se": "GD",
+      "s": "G",
+      "sw": "GB",
+      "w": "B",
+      "nw": "KB",
+      "unknown": "—"
+    }
+  },
+  "settings": {
+    "title": "Ayarlar",
+    "on": "Açık",
+    "off": "Kapalı",
+    "home": {
+      "location": {
+        "title": "Konum",
+        "row": "Konum",
+        "notSet": "Henüz belirlenmedi",
+        "auto": "Cihazından. Yaklaşık konum, bize asla gönderilmez.",
+        "manual": "Kendi seçtiğin şehir.",
+        "a11yHint": "Konum ayarlarını açar"
+      },
+      "prayerTimes": {
+        "title": "Namaz vakitleri",
+        "calculation": "Vakitler nasıl hesaplanır",
+        "calculationDescription": "Yöntem, ikindi, uzun yaz geceleri, camimin takvimine uydurma ve hicri tarih.",
+        "methodAuto": "Otomatik ({{method}})",
+        "a11yHint": "Namaz vakti ayarlarını açar"
+      },
+      "tracking": {
+        "title": "Namaz kaydın",
+        "mode": {
+          "label": "Namazları nasıl işaretlersin",
+          "simple": "Basit",
+          "simpleBody": "Tek dokunuş namazı kılındı olarak işaretler. İşaretlemediğin bir namaz, vakti çıkınca kaçırıldı olarak görünür.",
+          "detailed": "Ayrıntılı",
+          "detailedBody": "Her namaz için seç: kılındı, geç kılındı ya da kaçırıldı."
+        },
+        "streak": {
+          "label": "Seriyi ne sürdürür",
+          "relaxed": "Esnek",
+          "relaxedBody": "En az bir vakti kılındı ya da geç kılındı olarak işaretlediğinde gün sayılır.",
+          "committed": "Kararlı",
+          "committedBody": "Beş vaktin tamamı kılındı ya da geç kılındı olarak işaretlendiğinde gün sayılır."
+        },
+        "exemption": {
+          "label": "Özel günler",
+          "body": "Adet ve lohusalık günleri içindir; o günlerde namaz senden kaldırılmıştır. Özel günler kaçırılmış sayılmaz, seriyi bozmaz ve o günlerin namazları sonradan kaza edilmez — bütün mezheplerin ortak hükmüdür. Hatırlatmalar bu günler boyunca durur; istersen ezanı duymaya devam edebilirsin. Hastalık ve yolculuk ise farklıdır: o namazlar hâlâ borcundur, o günleri her zamanki gibi işaretle. (Kaçırılan Ramazan oruçları da kaza edilir; oruç bu uygulamanın kapsamı dışındadır.)",
+          "teaser": "Namazın gerekmediği günler. Asla kaçırılmış sayılmaz.",
+          "a11yHint": "Özel günler ekranını açar"
+        },
+        "qada": {
+          "label": "Kaza namazları",
+          "description": "Hâlâ borcun olan namazları say, her birini kıldıkça işaretle.",
+          "a11yHint": "Kaza namazları ekranını açar"
+        }
+      },
+      "reminders": {
+        "title": "Hatırlatmalar",
+        "perPrayer": "Her vakit için hatırlatmalar",
+        "perPrayerDescription": "Hangi vakitler, ses, ezan ve ne kadar önce.",
+        "summary": "{{total, number}} vakitten {{on, number}} tanesi",
+        "summaryNone": "Henüz yok",
+        "a11yHint": "Her vaktin hatırlatmalarını açar",
+        "health": {
+          "label": "Hatırlatmalarını kontrol et",
+          "description": "Bu telefonda onları neyin durdurabileceğini gör, kendine bir deneme gönder.",
+          "a11yHint": "Hatırlatma kontrol ekranını açar"
+        }
+      },
+      "watch": {
+        "title": "Saatin",
+        "label": "Simple Prayer’ı saatine ekle",
+        "description": "Apple Watch’unda uygulama henüz yok. Bu iPhone’da Watch uygulamasını aç, aşağı kaydırıp Mevcut Uygulamalar’a gel ve Simple Prayer’ın yanındaki Yükle’ye dokun.",
+        "a11yHint": "Uygulamanın Apple Watch’a nasıl yükleneceğini anlatır."
+      },
+      "appearance": {
+        "title": "Görünüm ve dil",
+        "theme": {
+          "label": "Tema",
+          "system": "Sistem",
+          "light": "Aydınlık",
+          "dark": "Karanlık"
+        },
+        "language": {
+          "label": "Dil",
+          "system": "Sistem",
+          "en": "English",
+          "ar": "العربية",
+          "tr": "Türkçe",
+          "direction": {
+            "title": "Düzenin dönmesi için yeniden aç",
+            "body": "{{language}} dilinde ekranlar ters yönde dizilir ve bu ancak uygulama açılırken geçerli olur. Şimdi yeniden aç ya da devam et; bir dahaki açışında yerli yerinde olacak. Kaydettiğin hiçbir şeye dokunulmaz.",
+            "restart": "Şimdi yeniden aç",
+            "later": "Sonra",
+            "pending": {
+              "title": "Dil değişti",
+              "body": "Yeni dil geçerli. Düzen, uygulamayı bir dahaki açışında dönecek.",
+              "ok": "Anladım"
+            },
+            "awaiting": {
+              "title": "Ekran düzeni hâlâ soldan sağa",
+              "status": "Yeniden başlatma gerekiyor",
+              "body": "Dili değiştirdin, ama ekranların yönü ancak uygulama yeniden açıldığında döner. İstediğin zaman yeniden başlat; hiçbir şey kaybolmaz.",
+              "action": "Şimdi yeniden başlat"
+            }
+          }
+        },
+        "numerals": {
+          "label": "Rakamlar",
+          "auto": "Otomatik",
+          "arab": "٠١٢٣",
+          "latn": "0123",
+          "description": "Otomatik, bölgeni izler: Mısır ve Körfez’de Arap rakamları, Mağrip’te Batı rakamları."
+        }
+      },
+      "data": {
+        "csv": {
+          "label": "E-tablo olarak dışa aktar",
+          "description": "Her e-tablo uygulamasının açabileceği bir CSV dosyası."
+        },
+        "json": {
+          "label": "JSON olarak dışa aktar",
+          "description": "Aynı kayıt, saklandığı biçimiyle."
+        },
+        "working": "Hazırlanıyor… {{percent}}",
+        "a11yHint": "Dosyayı oluşturur, sonra paylaşım penceresini açar",
+        "shareTitle": "Namaz kaydın",
+        "footer": "Dışa aktarılan dosya telefonunda oluşturulur ve yalnızca senin gönderdiğin yere gider.",
+        "result": {
+          "shared": "Gönderildi.",
+          "cancelled": "Hiçbir şey gönderilmedi.",
+          "saved": "Bu cihazda paylaşım penceresi yok, dosya cihazda bırakıldı.",
+          "failed": "Tamamlanamadı. Lütfen tekrar dene."
+        }
+      },
+      "support": {
+        "title": "Destek",
+        "rate": {
+          "label": "Uygulamayı değerlendir",
+          "description": "Uygulama mağazanı açar. Reklamı olmayan bir uygulama ancak değerlendirmelerle bulunur.",
+          "unavailable": "Uygulama mağazaya girdiğinde kullanılabilir.",
+          "failed": "Cihazın mağazayı açamadı.",
+          "a11yHint": "Mağaza sayfasını açar"
+        },
+        "feedback": {
+          "label": "Geri bildirim gönder",
+          "description": "Neyin ters gittiğini ya da uygulamanın ne yapmasını istediğini yaz. Başkalarının ne istediğini ve sırada ne olduğunu gör. Hesap gerekmez.",
+          "failed": "Cihazın o sayfayı açamadı.",
+          "a11yHint": "Geri bildirim sayfasını tarayıcında açar"
+        },
+        "about": {
+          "label": "Hakkında",
+          "description": "Sürüm, katkılar ve lisanslar.",
+          "a11yHint": "Hakkında ekranını açar"
+        }
+      },
+      "privacy": {
+        "title": "Gizlilik"
+      }
+    },
+    "tip": {
+      "title": "Geliştiriciye bir kahve ısmarla",
+      "body": "Bu uygulama ücretsiz ve ücretsiz kalacak. İşine yaradıysa, onu yazan kişiye bir bahşiş bırakabilirsin.",
+      "noAds": "Bu uygulamada reklam yok ve hiçbir zaman olmayacak.",
+      "oneOff": "Bahşiş tek seferlik bir satın almadır, abonelik değildir. Başka bir telefonda geri yüklenemez, bu yüzden yalnızca burada sayılır.",
+      "tier": {
+        "small": "Bir kahve",
+        "medium": "Bir dürüm",
+        "large": "Bir akşam yemeği",
+        "other": "Bahşiş"
+      },
+      "a11yTier": "Bahşiş bırak: {{label}}, {{price}}",
+      "unavailable": "Bu cihazda şu anda bahşiş bırakılamıyor.",
+      "failed": "İşlem tamamlanmadı. Hiçbir ücret alınmadı.",
+      "supporter": "Destekçi",
+      "count_one": "{{count}} bahşiş bıraktın.",
+      "count_other": "{{count}} bahşiş bıraktın.",
+      "thanks": {
+        "title": "Teşekkürler.",
+        "body": "Bu çok şey ifade ediyor. Uygulamayı ücretsiz, reklamsız ve gelişmeye devam eder halde tutuyor."
+      }
+    },
+    "pledge": {
+      "title": "Reklam yok, hiçbir zaman",
+      "points": {
+        "ads": "Reklam yok. Ne şimdi ne sonra.",
+        "account": "Hesap yok, giriş yok, e-posta adresi yok.",
+        "tracking": "Analiz yok, izleyici yok, seni uygulamalar arasında izleyen kimse yok.",
+        "device": "Namaz kaydın bu telefonda kalır — bir arkadaş eklemediğin sürece; eklersen işaretlediğin her namaz onun telefonuna gönderilir."
+      },
+      "footnote": "Bu telefondan yalnızca dört şey çıkabilir. Şehir araması: yazdığın şehir adı ya da cihaz konumunu kullanırsan yaklaşık konumun — telefonun kendi harita servisine sorar, ikisi de bize asla ulaşmaz. Kimliksiz çökme raporları — uygulama çöktü mü yoksa sorunsuz mu çalıştı, kim olduğunu ya da ne yaptığını asla söylemez — bunları buradan, Ayarlar'dan kapatabilirsin. Bir de günün birinde bırakırsan bahşişin — o da her satın alma gibi mağaza üzerinden gider. Son olarak, yalnızca bir arkadaş eklersen: işaretlediğin namazlar. Her biri tek bir işaret olarak, bize ait bir aktarıcı üzerinden arkadaşının telefonuna gider; aktarıcı telefonu aldığı anda siler, isim ve konum tutmaz, senin hakkında hiçbir kayıt tutmaz.",
+      "footnoteWithoutCrashReports": "Bu telefondan yalnızca üç şey çıkabilir. Şehir araması: yazdığın şehir adı ya da cihaz konumunu kullanırsan yaklaşık konumun — telefonun kendi harita servisine sorar, ikisi de bize asla ulaşmaz. Bir de günün birinde bırakırsan bahşişin — o da her satın alma gibi mağaza üzerinden gider. Son olarak, yalnızca bir arkadaş eklersen: işaretlediğin namazlar. Her biri tek bir işaret olarak, bize ait bir aktarıcı üzerinden arkadaşının telefonuna gider; aktarıcı telefonu aldığı anda siler, isim ve konum tutmaz, senin hakkında hiçbir kayıt tutmaz."
+    },
+    "diagnostics": {
+      "label": "Çökme raporları",
+      "body": "Uygulama çökerse, hatanın giderilebilmesi için kodun nerede başarısız olduğunu gösteren kimliksiz bir rapor gönderilir — namaz kaydın, konumun ya da kim olduğunu söyleyen hiçbir şey asla gönderilmez. Kapatman, uygulamayı bir sonraki açışında geçerli olur."
+    },
+    "about": {
+      "title": "Hakkında",
+      "back": "Geri",
+      "tagline": "günde beş vakit · hiçbiri kaçmadan",
+      "version": "Sürüm {{version}}",
+      "versionWithBuild": "Sürüm {{version}} ({{build}})",
+      "versionUnknown": "Sürüm bilgisi yok",
+      "website": {
+        "title": "İnternette",
+        "description": "Destek ve gizlilik politikası.",
+        "a11yHint": "Web sitesini tarayıcında açar"
+      },
+      "source": {
+        "label": "Kaynak kodu",
+        "description": "Kodu oku, uygulamayı kendin derle ya da kopyala."
+      },
+      "audio": {
+        "title": "Ezan kayıtları",
+        "attribution": "Ezan kayıtları Nasser Alqatami, Mufti Ismail Musa Menk ve Sabah Fakhri’ye ait; bir kayıt da Mekke’den. Bildirim sesi olarak kullanılmak üzere kısaltıldı ve ses düzeyleri eşitlendi.",
+        "choose": "Hatırlatmalarının hangisini çalacağını Ayarlar → Hatırlatmalar’dan seçersin."
+      },
+      "fonts": {
+        "title": "Yazı tipleri ve simgeler",
+        "footer": "Lora, Amiri ve Noto Naskh Arabic, SIL Open Font License 1.1 ile; Material Symbols simgeleri Apache License 2.0 ile kullanılır."
+      },
+      "linkFailed": "Cihazın bu bağlantıyı açamadı."
+    },
+    "location": {
+      "title": "Konum",
+      "back": "Geri",
+      "current": {
+        "none": "Henüz konum yok",
+        "noneBody": "Aşağıdaki anahtarı aç ya da şehrini ara.",
+        "fromDevice": "Cihazından",
+        "chosen": "Seçtiğin şehir",
+        "a11y": "Geçerli konum: {{place}}",
+        "coordinates": "{{latitude}}, {{longitude}}"
+      },
+      "auto": {
+        "label": "Konumumu kullan",
+        "description": "Yaklaşık bir konumdan şehrini bulur.",
+        "a11yHint": "İlk seferinde cihazından izin ister",
+        "footer": "Yalnızca yaklaşık konum — hiçbir zaman hassas değil, arka planda değil. Telefonun, şehrinin adını bulmak için onu kendi harita servisine gönderir, başka hiçbir yere. Bize asla ulaşmaz.",
+        "refresh": "Konumumu yeniden denetle",
+        "lastChecked": "Son denetim: {{time}}"
+      },
+      "denied": {
+        "title": "Bu uygulama için konum kapalı",
+        "body": "Bunda hiçbir sakınca yok — buradaki her şey seçtiğin bir şehirle çalışır. Uygulamanın kendisi bulsun istiyorsan aşağıya dokun.",
+        "blockedBody": "Cihazın bir daha sormayacak; bunu yalnızca cihaz ayarlarından değiştirebilirsin. Aşağıdan şehrini aramak da aynı işi görür.",
+        "settings": "Cihaz ayarlarını aç",
+        "chooseInstead": "Ya da aşağıdan şehrini aramak yeterli."
+      },
+      "unavailable": {
+        "title": "Konumun bulunamadı",
+        "body": "Cihazın bir konum döndürmedi. Yeniden dene ya da aşağıdan şehrini ara."
+      },
+      "manual": {
+        "heading": "Şehir ara",
+        "description": "Yalnızca yazdığın ad, telefonunun kendi harita servisiyle aranır. Seçtiğin şehir bu cihazda kalır.",
+        "a11yHint": "Şehir seçme ekranını açar"
+      },
+      "search": {
+        "clear": "Aramayı temizle",
+        "hint": "Yazmayı sürdür…",
+        "resultA11y": "{{place}} kullan",
+        "selected": "kullanımda"
+      },
+      "clock": {
+        "title": "Telefonunun saatiyle gösteriliyor",
+        "ahead": "{{city}}, telefonundan {{offset}} ileride. Bu vakitler {{city}} için doğru ama telefonunun saatiyle yazılmış — {{city}} gibi okumak için {{offset}} ekle.",
+        "behind": "{{city}}, telefonundan {{offset}} geride. Bu vakitler {{city}} için doğru ama telefonunun saatiyle yazılmış — {{city}} gibi okumak için {{offset}} çıkar.",
+        "estimated": "Telefonun o şehrin saat dilimini bildirmedi, bu yüzden fark yaklaşıktır."
+      }
+    },
+    "calculation": {
+      "title": "Namaz vakitleri",
+      "back": "Geri",
+      "footerHint": "buradaki her değişiklik Bugün’e anında yansır",
+      "noLocation": "Bu ayarların ne ürettiğini görmek için bir konum belirle.",
+      "summary": {
+        "auto": "Ülkene göre otomatik seçildi",
+        "manual": "Senin seçtiğin",
+        "adjustedList": "Elle ayarlananlar: {{prayers}}"
+      },
+      "method": {
+        "title": "Hesaplama yöntemi",
+        "current": "Kurum",
+        "description": "Vakitlerin hangi açılara göre hesaplandığı.",
+        "footer": "Uygulama izlediğin takvimle uyuşmuyorsa önce kurumu değiştir — sonra aşağıdan her vakti ince ayarla.",
+        "autoLabel": "Otomatik · {{authority}}",
+        "autoDescription": "Takvimlerin çoğunun izlediği kurum ({{country}}).",
+        "autoDescriptionUnknown": "Konum belirlenir belirlenmez ülkene göre seçilecek.",
+        "a11yHint": "Tüm namaz vakitlerini bu kuruma göre yeniden hesaplar"
+      },
+      "madhab": {
+        "title": "İkindi",
+        "footer": "İkisi de sahihtir. Mezhebine uygun olanı seç.",
+        "a11yHint": "İkindinin başlangıç vaktini değiştirir",
+        "option": {
+          "shafi": "Şâfiî, Mâlikî, Hanbelî",
+          "hanafi": "Hanefî"
+        },
+        "description": {
+          "shafi": "İkindi, bir şeyin gölgesi kendi boyuna ulaştığında girer.",
+          "hanafi": "İkindi, gölge kendi boyunun iki katına ulaştığında girer — yaklaşık bir saat sonra."
+        }
+      },
+      "highLatitude": {
+        "title": "Uzun yaz geceleri",
+        "current": "Yüksek enlem kuralı",
+        "description": "Güneş, imsak ve yatsı için yeterince alçalmadığında ne yapılacağı.",
+        "relevant": "Yılın bir bölümünde vakitlerini değiştirecek kadar kuzeydesin.",
+        "notRelevant": "Bulunduğun yerde hiçbir şeyi değiştirmez — güneş yıl boyu yeterince alçalıyor.",
+        "option": {
+          "auto": "Otomatik",
+          "middleOfTheNight": "Gecenin ortası",
+          "seventhOfTheNight": "Gecenin yedide biri",
+          "twilightAngle": "Şafak açısı"
+        },
+        "explain": {
+          "auto": "Enlemin için alışılmış kuralı kullanır.",
+          "middleOfTheNight": "İmsak ve yatsıyı gecenin kendilerine yakın yarısı içinde tutar.",
+          "seventhOfTheNight": "İmsak ve yatsıyı gecenin uçlarından yedide bir uzağa koyar.",
+          "twilightAngle": "Geceyi, yöntemin kendi açılarıyla aynı oranda böler."
+        }
+      },
+      "offsets": {
+        "title": "Camimin takvimine uydur",
+        "footer": "Uygulama izlediğin takvimle uyuşana dek her vakti kaydır — her iki yönde 30 dakikaya kadar.",
+        "none": "değişiklik yok",
+        "value": "{{value}} dk",
+        "reset": "Tüm ayarlamaları sıfırla",
+        "resetHint": "Her vakti hesaplanan saatine döndürür",
+        "a11yLabel": "{{prayer}} ayarı",
+        "decrease": "{{prayer}} bir dakika erken",
+        "increase": "{{prayer}} bir dakika geç"
+      },
+      "hijri": {
+        "title": "Hicri tarih",
+        "footer": "Bazı topluluklar hicri ayı, hesaplanan tarihten bir gün önce ya da sonra başlatır.",
+        "label": "Hicri tarihi kaydır",
+        "preview": "{{day}} {{month}} {{year}} {{era}}",
+        "none": "değişiklik yok",
+        "days_one": "{{value}} gün",
+        "days_other": "{{value}} gün",
+        "a11yLabel": "Hicri tarih ayarı",
+        "decrease": "Bir gün erken",
+        "increase": "Bir gün geç"
+      },
+      "sign": {
+        "plus": "+{{value}}",
+        "minus": "−{{value}}"
+      }
+    },
+    "reminders": {
+      "title": "Hatırlatmalar",
+      "back": "Geri",
+      "intro": "Her vaktin üç ayrı hatırlatması var ve hepsi senin elinde: vakit girdiğinde, bir süre öncesinde ve vakit dolmadan son bir kez.",
+      "footerHint": "Hepsini telefonun planlar. Hiçbir şey dışarı gönderilmez, bağlantı da gerekmez.",
+      "a11yRow": "{{prayer}} · {{setting}}",
+      "a11yOption": "{{option}} · {{prayer}}",
+      "permission": {
+        "title": "Bildirimler kapalı",
+        "body": "Cihazın bu uygulamanın bildirim göndermesine izin vermiyor, bu yüzden aşağıdakilerin hiçbiri sana ulaşamaz. Tek dokunuş yeter.",
+        "blockedBody": "Cihazın bir daha sormayacak; bildirimleri yalnızca cihaz ayarlarından açabilirsin. Burada yaptığın her ayar saklanır ve izni verdiğin anda çalışmaya başlar.",
+        "allow": "Bildirimlere izin ver",
+        "openSettings": "Cihaz ayarlarını aç",
+        "asking": "Soruluyor…",
+        "a11yHint": "Cihazından bildirim gönderme izni ister",
+        "a11yHintSettings": "Bildirimlerin yeniden açılabileceği cihaz ayarlarını açar",
+        "footnote": "Hatırlatmalar tamamen yereldir: telefonun planlar, vakitlerin cihazdan hiç çıkmaz."
+      },
+      "all": {
+        "title": "Beş vaktin tamamı",
+        "footer": "Günün tamamını tek seferde ayarlamanın yolu. Her vakit aşağıda ayrı ayrı da değiştirilebilir.",
+        "on": "Tümünü aç",
+        "off": "Tümünü kapat",
+        "count": "{{total, number}} vakitten {{on, number}} tanesi",
+        "a11yAction": "{{action}} · {{what}}",
+        "adhan": {
+          "label": "Vakit hatırlatmaları",
+          "description": "Namaz vakti girdiğinde gelen bildirim."
+        },
+        "nudge": {
+          "label": "Son hatırlatmalar",
+          "description": "Vakit dolmak üzereyken gelen sessiz hatırlatma; yalnızca namaz hâlâ işaretlenmemişse gönderilir."
+        }
+      },
+      "test": {
+        "label": "Deneme bildirimi gönder",
+        "description": "Burada görünen sesle hemen gelir. Üzerindeki \"Kılındı\" düğmesine basıp deneyebilirsin — deneme hiçbir şey kaydetmez.",
+        "adhanLabel": "Ezanla bir deneme gönder",
+        "adhanDescription": "Aynı deneme, ama ezan sesiyle. Seçmeden önce onu gerçek bir hatırlatma olarak duy.",
+        "sending": "Gönderiliyor…",
+        "sent": "Gönderildi — şu anda bildirimlerinde olmalı.",
+        "failed": "Gönderilemedi. Bu uygulama için bildirimler kapalı.",
+        "a11yHint": "Şimdi tek bir bildirim gönderir"
+      },
+      "adhan": {
+        "label": "Vakit girdiğinde",
+        "description": "{{prayer}} vakti girer girmez gelir."
+      },
+      "sound": {
+        "label": "Ses",
+        "silent": "Sessiz",
+        "system": "Cihaz sesi",
+        "adhan": "Ezan",
+        "silentBody": "Hiç ses yok — bildirim yalnızca görünür.",
+        "systemBody": "Cihazının bildirimler için kullandığı ses."
+      },
+      "pre": {
+        "label": "Vakitten önce",
+        "description": "Vaktin seni bir işin ortasında yakalamaması için erken bir uyarı.",
+        "fajrDescription": "Uyandıran hatırlatma. Gerçekten kalkabileceğin kadar erkene al — başka uygulamaların parayla sattığı özellik budur.",
+        "minutesLabel": "Ne kadar önce",
+        "minutes_one": "{{count, number}} dk",
+        "minutes_other": "{{count, number}} dk",
+        "a11yOption": "{{prayer}} vaktinden {{value}} önce"
+      },
+      "nudge": {
+        "label": "Vakit çıkmadan son hatırlatma",
+        "description": "{{prayer}} vakti dolmak üzereyken gelen sessiz bir hatırlatma — yalnızca henüz işaretlemediysen gönderilir.",
+        "ishaFooter": "Yatsının son hatırlatması şer’î gece yarısına göre ayarlanır; gecenin üçünde gelmez.",
+        "fajrDescription": "Güneş doğmadan önce, sabah vakti dolmak üzereyken gelen sessiz bir hatırlatma — yalnızca henüz işaretlemediysen gönderilir."
+      },
+      "perPrayerTitle": "Her vakit ayrı ayrı",
+      "perPrayerHint": "Hatırlatmalarını açmak için bir vakte dokun.",
+      "card": {
+        "a11yLabel": "{{prayer}} · {{summary}}",
+        "a11yHintExpand": "Bu vaktin hatırlatmalarını açar",
+        "a11yHintCollapse": "Bu vaktin hatırlatmalarını kapatır"
+      },
+      "summary": {
+        "none": "Hatırlatma yok",
+        "adhan": "Vaktinde · {{sound}}",
+        "pre": "{{value}} önce",
+        "nudge": "Son hatırlatma"
+      },
+      "ongoing": {
+        "title": "Kalıcı bildirim",
+        "label": "Sıradaki vakti her zaman göster",
+        "description": "Bildirim paneline tek bir sessiz bildirim koyar: vakti giren namazı ya da sıradaki vakti ve saatini. Hiç ses çıkarmaz ve kaydırınca kapanmaz, orada kalır.",
+        "a11yHint": "Kalıcı namaz bildirimini açar veya kapatır",
+        "footer": "Bir vakit girdiğinde ve uygulamayı açtığında yenilenir — her saniye değil, bu yüzden pil tüketmez."
+      },
+      "liveActivity": {
+        "title": "Kilit ekranı sayacı",
+        "label": "Şu anki vakit için geri sayım",
+        "description": "Bir vaktin az öncesinde ya da içindeyken uygulamayı açarsan kilit ekranında sessiz bir kart belirir ve geri sayar. Namazı işaretlemek kartı kapatır.",
+        "a11yHint": "Kilit ekranı geri sayımını açar veya kapatır",
+        "footer": "Uygulamayı açtığında belirir, vakit girdikten bir süre sonra ayrılır; sıradaki vakte kendiliğinden geçmez.",
+        "lead": {
+          "label": "Ne kadar erken belirsin",
+          "description": "Sıradaki vakitten bu kadar önce belirir; yalnızca şu anki namaz henüz işaretlenmemişse.",
+          "a11yOption": "Vakitten {{value}} önce belirir"
+        },
+        "linger": {
+          "label": "Ne kadar kalsın",
+          "description": "Vakit girdikten sonra bu kadar kalır. Namazı işaretlemek kartı hemen kapatır.",
+          "a11yOption": "Vakit girdikten sonra {{value}} kalır"
+        }
+      },
+      "nudgeTiming": {
+        "label": "Son hatırlatma ne kadar önce gelsin",
+        "description": "Vakit çıkmadan önce. Yatsınınki bunun yerine şer’î gece yarısına göre ayarlanır.",
+        "a11yOption": "Vakit çıkmadan {{value}} önce"
+      },
+      "sunriseNote": {
+        "title": "Güneş doğuşu bildirimi",
+        "label": "Sabah vakti çıkınca haber ver",
+        "description": "Güneş doğduğunda, yani sabah vakti çıktığında gelen sessiz bir bildirim. Sıradaki vakti ve saatini yazar. Yalnızca sabahı henüz işaretlemediysen gelir.",
+        "a11yHint": "Güneş doğuşundaki sessiz bildirimi açar veya kapatır",
+        "footer": "Bu, son hatırlatma değildir. Son hatırlatma güneş doğmadan önce, namaz için hâlâ vakit varken gelir. Onu her vakit için aşağıdan ayrı ayrı ayarlayabilirsin."
+      },
+      "adhanSection": {
+        "title": "Ezan",
+        "footer": "Buradaki dinleme uygulama içindedir. Hatırlatmalarının duyulup duyulmayacağını göstermez — onun için test gönder."
+      },
+      "pauseAudio": {
+        "label": "Çalanı duraklat",
+        "description": "Namaz vakti girdiğinde bu telefonda çalan müzik ya da podcast duraklatılır. Kendiliğinden yeniden başlamaz. Hatırlatmanın kendi sesi yine çalar.",
+        "a11yHint": "Namaz vaktinde diğer sesleri duraklatmayı açar veya kapatır"
+      },
+      "voice": {
+        "label": "Okuyuş",
+        "description": "Dört kayıt. Dinlemek için birine bas.",
+        "a11yHint": "Kaydı çalar ve hatırlatmalarının ezanı yapar",
+        "playing": "{{voice}} çalıyor — durdurmak için tekrar bas.",
+        "iosNote": "iPhone’da bir hatırlatma ezanın yaklaşık yarım dakikasını çalar, sonra kısılır. Apple, bildirim sesinin uzunluğunu sınırlıyor.",
+        "makkah": "Mekke",
+        "alqatami": "Nasser Alqatami",
+        "menk": "Mufti Ismail Musa Menk",
+        "fakhry": "Sabah Fakhri"
+      },
+      "delivery": {
+        "alertsOff": "Bu uygulamanın bildirimleri kapalı; hatırlatmalar ekranda görünmez.",
+        "soundOff": "Bu uygulamanın sesi kapalı; hatırlatmalar sessiz gelir.",
+        "dndOn": "Rahatsız Etmeyin açık; bu sessiz gelebilir.",
+        "checkRinger": "Ses duymadın mı? Zil anahtarını ve Odak modunu kontrol et — uygulama ikisini de göremiyor."
+      }
+    },
+    "reminderHealth": {
+      "title": "Hatırlatmalarını kontrol et",
+      "back": "Ayarlara dön",
+      "intro": "Bu ekrandaki her şey doğrudan telefonundan okunur; uygulamanın yaptığını sandığı şeyden değil.",
+      "loading": "Telefonuna soruluyor…",
+      "level": {
+        "ok": "Her şey hazır",
+        "attention": "Dikkat gerekiyor",
+        "problem": "Çalışmıyor",
+        "info": "Bilmekte fayda var"
+      },
+      "verdict": {
+        "permissionMissing": {
+          "title": "Telefonundan henüz izin istenmedi",
+          "body": "Bildirimlerin sana ulaşabilmesi için önce izin vermen gerekir.",
+          "action": "Hatırlatmalara izin ver"
+        },
+        "permissionDenied": {
+          "title": "Bu uygulama için bildirimler kapalı",
+          "body": "Telefonun bir daha sormayacak; bu yalnızca sistem ayarlarından değiştirilebilir.",
+          "action": "Sistem ayarlarını aç"
+        },
+        "noReminders": {
+          "title": "Henüz açık bir hatırlatma yok",
+          "body": "Hiçbir vakit için hatırlatma ayarlanmadığından hiçbir şey planlanmadı. İstediklerini seç, hemen kurulsun.",
+          "action": "Hatırlatmaları seç"
+        },
+        "empty": {
+          "title": "Telefonun hiçbir hatırlatma tutmuyor",
+          "body": "Hatırlatmalar açık ama sistemde hiçbiri yok. Bu genellikle sistemin onları sildiği anlamına gelir — yeniden başlatmadan sonra ya da pil tasarrufu için.",
+          "action": "Şimdi yeniden planla"
+        },
+        "ok": {
+          "title": "Sıradaki hatırlatman planlandı",
+          "body": "Telefonunda önümüzdeki günlerin hatırlatmaları var; uygulama açık olmadan da ulaştıracak.",
+          "footnote_one": "Şu anda telefonunda {{count}} hatırlatma bekliyor.",
+          "footnote_other": "Şu anda telefonunda {{count}} hatırlatma bekliyor."
+        }
+      },
+      "schedule": {
+        "title": "Telefonunun tuttukları",
+        "none": "Telefonun bu uygulamanın hiçbir hatırlatmasını tutmuyor.",
+        "count_one": "{{count}} hatırlatma planlandı",
+        "count_other": "{{count}} hatırlatma planlandı",
+        "checkedAt": "{{time}} itibarıyla telefonundan okundu",
+        "today": "Bugün",
+        "tomorrow": "Yarın",
+        "more_one": "ve ileride {{count}} tane daha",
+        "more_other": "ve ileride {{count}} tane daha",
+        "refresh": "Yeniden oku",
+        "reschedule": "Şimdi yeniden planla",
+        "rowA11y": "{{prayer}}, {{kind}}, {{time}}",
+        "kind": {
+          "adhan": "Vaktinde",
+          "preReminder": "Erken hatırlatma",
+          "nudge": "Son hatırlatma",
+          "expiry": "Güneş doğdu"
+        }
+      },
+      "test": {
+        "send": "Deneme bildirimi gönder",
+        "sendAgain": "Bir tane daha gönder",
+        "status": {
+          "idle": "Dene",
+          "sending": "Gönderiliyor",
+          "sent": "Ulaştı",
+          "failed": "Çalışmıyor"
+        },
+        "idle": {
+          "title": "Kendine bir deneme gönder",
+          "body": "Gerçek bir hatırlatmanın kullandığı kanaldan, anında gelir."
+        },
+        "sending": {
+          "title": "Deneme gönderiliyor",
+          "body": "Bildirim şu anda telefonuna teslim ediliyor."
+        },
+        "sent": {
+          "title": "Deneme gönderildi",
+          "body": "Bildirimlerinin arasında olmalı. Hiçbir şey gelmediyse telefonun bu uygulamayı susturuyordur — aşağıdaki yönlendirmelere bak."
+        },
+        "failed": {
+          "title": "Deneme gönderilemedi",
+          "body": "Telefonun bildirimi reddetti. Önce yukarıdaki izni kontrol et."
+        }
+      },
+      "exactAlarms": {
+        "exact": {
+          "title": "Hatırlatmalar tam dakikasında geliyor",
+          "body": "Telefonun bu uygulamanın hatırlatmalarını tam saate kurmasına izin veriyor; ezan bekletilmiyor."
+        },
+        "inexact": {
+          "title": "Hatırlatmalar geç gelebilir",
+          "body": "Telefonun, pilden tasarruf için bu uygulamanın hatırlatmalarını bekletebilir. Hatırlatmalar yine gelir ama zamanına telefon karar verir. Bu birkaç dakika olabilir. Geceleri, telefon kullanılmazken, çok daha uzun sürebilir.",
+          "action": "Alarm ve hatırlatmalara izin ver",
+          "footnote": "Düğme telefonunda bir ekran açar. Orada “Alarmlar ve hatırlatıcılar” iznini aç, sonra geri dön."
+        }
+      },
+      "battery": {
+        "title": "Pil ayarları hatırlatmaları durdurabilir",
+        "body": "Android, kullanmadığını düşündüğü uygulamaları duraklatır; bu da planlanmış ezanın gelmemesine yol açabilir. Uygulamayı pil optimizasyonundan muaf tutmak bunu önler.",
+        "bodyOem": "{{brand}} telefonlar arka plandaki uygulamaları çoğundan daha sert biçimde duraklatır; bu da planlanmış ezanın gelmemesine yol açabilir. Uygulamayı pil optimizasyonundan muaf tutmak ve kendi başına başlamasına izin vermek bunu önler.",
+        "bodyXiaomi": "{{brand}} telefonlar arka plandaki uygulamaları çoğundan daha çok duraklatır ve duraklatılan bir uygulama ezanı iletemez. Bu telefonların kendi ayarı vardır: Ayarlar, sonra Uygulamalar, sonra Simple Prayer, sonra Pil tasarrufu yolunu izle ve Kısıtlama yok seçeneğini seç. Son kullanılan uygulamalar ekranını açıp Simple Prayer’ı orada kilitlemek de yardımcı olur; böylece telefon uygulamayı kapatmaz.",
+        "cannotCheck": "Uygulama bu ayarı içeriden okuyamaz, bu yüzden muafiyetin zaten var olup olmadığını söyleyemez. Açtığı ekran söyleyebilir.",
+        "exempt": "Android’in kendi pil sınırlamaları bu uygulama için kapalı. Telefonunu üreten firmanın ayrı bir ayarı olabilir; uygulama onu okuyamaz.",
+        "restricted": "Android’in pil sınırlamaları bu uygulama için hâlâ açık; bu yüzden bir hatırlatma bekletilebilir ya da hiç gelmeyebilir. Aşağıdaki düğme bunu değiştiren ekranı açar.",
+        "open": "Pil ayarlarını aç",
+        "openAutoStart": "{{brand}} otomatik başlatmayı aç",
+        "oem": {
+          "xiaomi": "Xiaomi",
+          "huawei": "Huawei",
+          "oppo": "Oppo",
+          "vivo": "Vivo",
+          "samsung": "Samsung",
+          "oneplus": "OnePlus"
+        }
+      },
+      "organizer": {
+        "title": "Android hatırlatmaları bir gruba koyabilir",
+        "body": "Yeni Android telefonlar bildirimleri Promosyonlar veya Öneriler gibi gruplara ayırabilir. Bir gruba konan hatırlatma sessiz gelir. Telefonuna bu uygulamayı grupların dışında bırakmasını söyleyebilirsin.",
+        "cannotCheck": "Uygulama bunu içeriden göremez, bu yüzden telefonunun böyle yapıp yapmadığını söyleyemez. Düğmenin açtığı ekranda Bildirim düzenleyici’yi, sonra grup dışında bırakılacak uygulamalar listesini ara.",
+        "open": "Bildirim ayarlarını aç"
+      },
+      "backgroundRefresh": {
+        "available": {
+          "title": "Uygulama kapalıyken hatırlatmalar",
+          "body": "Uygulama hatırlatmaları birkaç gün öncesinden kurar. Telefon arka planda ona kısa bir an verdiğinde yeni günler ekler. O anlar hiç gelmezse hatırlatmalar biter.",
+          "cannotCheck": "Uygulama bu ayarı içeriden okuyamaz. Düğme bu uygulamanın Ayarlar’daki sayfasını açar. Oradaki seçeneğin adı Arka Planda Yenileme’dir. Tüm uygulamalar için olanı Ayarlar, sonra Genel içinde bulursun."
+        },
+        "restricted": {
+          "title": "Telefon uygulamaya arka planda zaman vermiyor",
+          "body": "Kurulmuş hatırlatmalar yine gelir. Ama uygulama kapalıyken yeni gün ekleyemez, bu yüzden birkaç gün sonra biterler. Uygulamayı açmak onları yeniler."
+        },
+        "open": "Sistem ayarlarını aç"
+      },
+      "ios": {
+        "title": "Hatırlatma sessiz geliyorsa",
+        "body": "Odak ve Rahatsız Etmeyin açıkken bildirimleri susturur, Planlı Özet ise onları sonraya bırakır. Bu uygulamanın geçmesine izin vermek sistem ayarlarından yapılır.",
+        "open": "Sistem ayarlarını aç"
+      },
+      "pledge": "Bu uygulama günler öncesinden hatırlatma planlar ve her açtığında onları yeniden kurar. Ezanın çalışmaya devam etmesi için uygulamayı açman gerekmez."
+    }
+  },
+  "methods": {
+    "auto": "Otomatik",
+    "muslimWorldLeague": "Dünya İslam Birliği",
+    "turkey": "Diyanet İşleri Başkanlığı",
+    "egyptian": "Mısır Genel Ölçüm Kurumu",
+    "ummAlQura": "Ümmü’l-Kurâ",
+    "dubai": "Dubai, BAE",
+    "qatar": "Katar",
+    "kuwait": "Kuveyt",
+    "karachi": "Karaçi",
+    "singapore": "Singapur",
+    "northAmerica": "ISNA, Kuzey Amerika",
+    "moonsightingCommittee": "Hilal Gözlem Komitesi",
+    "tehran": "Tahran",
+    "jafari": "Caferî",
+    "descriptions": {
+      "auto": "Ülkendeki takvimlerin çoğunun uyduğu kurumu izler.",
+      "muslimWorldLeague": "Dünya İslam Birliği · İmsak 18° · Yatsı 17°",
+      "turkey": "Diyanet İşleri Başkanlığı · İmsak 18° · Yatsı 17°",
+      "egyptian": "Mısır Genel Ölçüm Kurumu · İmsak 19,5° · Yatsı 17,5°",
+      "ummAlQura": "Mekke Ümmü’l-Kurâ · İmsak 18,5° · Yatsı akşamdan 90 dakika sonra",
+      "dubai": "Birleşik Arap Emirlikleri · İmsak 18,2° · Yatsı 18,2°",
+      "qatar": "Katar · İmsak 18° · Yatsı akşamdan 90 dakika sonra",
+      "kuwait": "Kuveyt · İmsak 18° · Yatsı 17,5°",
+      "karachi": "Karaçi İslami İlimler Üniversitesi · İmsak 18° · Yatsı 18°",
+      "singapore": "Singapur MUIS · İmsak 20° · Yatsı 18°",
+      "northAmerica": "Kuzey Amerika İslam Cemiyeti · İmsak 15° · Yatsı 15°",
+      "moonsightingCommittee": "Dünya Hilal Gözlem Komitesi · mevsimlik yüksek enlem düzeltmesi",
+      "tehran": "Tahran Üniversitesi Jeofizik Enstitüsü · İmsak 17,7° · Yatsı 14°",
+      "jafari": "Caferî, Kum Leva Enstitüsü · İmsak 16° · Yatsı 14° · Akşam 4°"
+    }
+  },
+  "time": {
+    "countdown": "{{duration}} sonra",
+    "now": "şimdi",
+    "durationPair": "{{first}} {{second}}",
+    "unit": {
+      "hour_one": "{{value}} saat",
+      "hour_other": "{{value}} saat",
+      "minute_one": "{{value}} dakika",
+      "minute_other": "{{value}} dakika",
+      "second_one": "{{value}} saniye",
+      "second_other": "{{value}} saniye",
+      "hourShort": "{{value}} sa",
+      "minuteShort": "{{value}} dk",
+      "secondShort": "{{value}} sn"
+    }
+  },
+  "widgets": {
+    "leftToPray": "kalan süre",
+    "startsAt": "Vakit giriyor · {{time}}",
+    "untilItStarts": "vakte kalan",
+    "untilPrayer": "{{prayer}} vaktine",
+    "stillToPray": "{{prayer}} namazını hâlâ kılabilirsin"
+  },
+  "notifications": {
+    "adhan": {
+      "title": "{{prayer}} · {{arabic}}",
+      "body": "Vakit girdi · {{time}}"
+    },
+    "preReminder": {
+      "title": "{{prayer}} · {{arabic}}",
+      "body": "Vakit giriyor · {{time}}"
+    },
+    "nudge": {
+      "title": "{{prayer}} · {{arabic}}",
+      "body": "Vakit çıkıyor · {{time}}",
+      "bodyIsha": "Vaktin efdal kısmı bitiyor"
+    },
+    "ongoing": {
+      "title": "Sıradaki namaz: {{prayer}} · {{time}}",
+      "titleNow": "{{prayer}} vakti girdi · {{time}}",
+      "bodyNext": "Sıradaki namaz: {{prayer}} · {{time}}",
+      "body": "Bugünün vakitleri için dokun",
+      "bodyRemaining": "{{remaining}} · bugünün vakitleri için dokun",
+      "remaining": "Yaklaşık {{duration}} kaldı",
+      "remainingSoon": "Bir dakikadan az kaldı",
+      "remainingNow": "Vakit girdi"
+    },
+    "test": {
+      "title": "Hatırlatmalar çalışıyor",
+      "body": "Namaz hatırlatması işte böyle görünür."
+    },
+    "soundNote": "Hatırlatma geldiğinde telefonunun okuduğu ezan.",
+    "channel": {
+      "name": "{{name}} · {{variant}}",
+      "adhan": {
+        "name": "Vakit hatırlatmaları",
+        "description": "Namaz vakti girdiğinde gelir."
+      },
+      "preReminder": {
+        "name": "Erken hatırlatmalar",
+        "description": "Vakitten, seçtiğin dakika kadar önce gelir."
+      },
+      "nudge": {
+        "name": "Son hatırlatmalar",
+        "description": "Namaz hâlâ işaretlenmemişse gelen son hatırlatma."
+      },
+      "ongoing": {
+        "name": "Kalıcı namaz bildirimi",
+        "description": "Sıradaki namazı ekranda tutan sessiz bildirim."
+      },
+      "variant": {
+        "adhan": "Ezan sesi",
+        "adhanVoice": "{{voice}}",
+        "system": "Cihaz sesi",
+        "silent": "Sessiz"
+      },
+      "expiry": {
+        "name": "Güneş doğdu bildirimi",
+        "description": "Sabah vakti çıkınca gelen sessiz bildirim; sıradaki vakti gösterir."
+      },
+      "marked": {
+        "name": "İşaretleme onayı",
+        "description": "Bir hatırlatmadan namazı işaretledikten sonra gelen kısa not. Kendiliğinden kaybolur."
+      }
+    },
+    "actions": {
+      "prayed": "Kıldım",
+      "undo": "Geri al"
+    },
+    "marked": {
+      "title": "{{prayer}} kılındı olarak işaretlendi"
+    },
+    "markedTest": {
+      "title": "Düğme çalışıyor. Hiçbir şey kaydedilmedi."
+    },
+    "expiry": {
+      "title": "Güneş doğdu · {{prayer}} vakti çıktı",
+      "body": "Sıradaki: {{next}} · {{time}}",
+      "bodyAlone": "Vakti geçti"
+    }
+  },
+  "travel": {
+    "overflow": {
+      "begin": "Yolculuktayım",
+      "end": "Yolculuğu bitir"
+    },
+    "begin": {
+      "title": "Yolculuk",
+      "note": "Yolculukta öğle, ikindi ve yatsı iki rekât kılınır. Öğle ile ikindi, akşam ile yatsı, ikisinin vaktinden birinde birlikte kılınabilir. Namaz vakitleri değişmez — namazlarını her zamanki gibi işaretle.",
+      "howLong": "Ne kadar",
+      "untilIEnd": "Ben bitirene kadar",
+      "days_one": "{{count}} gün — {{date}} tarihine kadar",
+      "days_other": "{{count}} gün — {{date}} tarihine kadar",
+      "pickCount": "Farklı bir gün sayısı…",
+      "stepper_one": "{{count}} gün",
+      "stepper_other": "{{count}} gün",
+      "confirmCount": "Başlat — {{date}} tarihine kadar",
+      "dayFewer": "Bir gün azalt",
+      "dayMore": "Bir gün artır",
+      "notNow": "Şimdi değil"
+    },
+    "banner": {
+      "body": "Yolculuk — kısaltılan ve birleştirilen namazlar vaktinde sayılır.",
+      "bodyUntil": "{{date}} tarihine kadar yolculuk — kısaltılan ve birleştirilen namazlar vaktinde sayılır.",
+      "end": "Bitir",
+      "stillOn": "Yolculuk sürüyor mu? Döndüğünde buradan bitirebilirsin — acele yok."
+    }
+  },
+  "sheet": {
+    "dismiss": "Kapat"
+  },
+  "watch": {
+    "qibla": {
+      "toLeft": "sola",
+      "toRight": "sağa"
+    }
+  }
+}

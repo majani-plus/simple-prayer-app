@@ -1,0 +1,590 @@
+---
+/**
+ * Which way to face, and how far Makkah is.
+ *
+ * ## The honesty rule governs this page
+ *
+ * A wrong qibla is the case where being wrong does harm, so the page separates what it *knows*
+ * from what it is *measuring*. The bearing and the distance are pure geometry from the app's own
+ * `qibla.ts` — correct on a desktop with no sensors at all — and they are always shown. The dial
+ * only turns when the browser reports a real absolute heading. When it does not, the dial is drawn
+ * fixed to true north and the page says so, in the app's own words: "This device has no compass,
+ * so the dial can't turn. The bearing and distance are still correct."
+ *
+ * There is no idling needle. A needle that looks authoritative while reading nothing is exactly
+ * the failure this page must not have.
+ *
+ * Per DESIGN.md the dial is **never mirrored in RTL** — compass labels stay geographic.
+ */
+import Base from '../layouts/Base.astro';
+import LocationPicker from './LocationPicker.astro';
+import ToolTabs from './ToolTabs.astro';
+import { appStrings } from '../lib/appStrings.generated';
+import { pagePath, t, type Locale } from '../i18n';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const dict = t(locale).qiblaPage;
+const times = t(locale).timesPage;
+const app = appStrings[locale];
+
+const strings = JSON.stringify({
+  app,
+  ui: {
+    denied: times.denied,
+    unavailable: times.unavailable,
+    unsupported: times.unsupported,
+    compassBlocked: dict.compassBlocked,
+    faceDirection: dict.faceDirection,
+  },
+});
+
+/** The eight letters, at their geographic angles. */
+const CARDINALS = [
+  { key: 'n', deg: 0 },
+  { key: 'ne', deg: 45 },
+  { key: 'e', deg: 90 },
+  { key: 'se', deg: 135 },
+  { key: 's', deg: 180 },
+  { key: 'sw', deg: 225 },
+  { key: 'w', deg: 270 },
+  { key: 'nw', deg: 315 },
+];
+const R = 100;
+const LABEL_R = 82;
+const pos = (deg: number, radius: number) => ({
+  x: R + radius * Math.sin((deg * Math.PI) / 180),
+  y: R - radius * Math.cos((deg * Math.PI) / 180),
+});
+---
+
+<Base
+  title={dict.title}
+  description={dict.description}
+  path={pagePath('qibla', locale)}
+  locale={locale}
+  page="qibla"
+>
+  <section class="section qibla" data-qibla data-locale={locale} data-strings={strings}>
+    <div class="container qibla-wrap">
+      <ToolTabs locale={locale} current="qibla" />
+      <h1>{dict.heading}</h1>
+      <p class="qibla-lead">{dict.lead}</p>
+
+      <div class="card qibla-card">
+        <LocationPicker locale={locale} idPrefix="qibla" />
+
+        <div class="qibla-stage" data-stage hidden>
+          <svg
+            class="dial"
+            viewBox="0 0 200 200"
+            role="img"
+            aria-label={app.qibla.dial.a11yLabelNoFix}
+            data-dial-svg
+          >
+            <circle class="dial-face" cx="100" cy="100" r="96" />
+            <circle class="dial-ring" cx="100" cy="100" r="72" />
+
+            {/* The compass rose turns to match the device; with no heading it stays north-up. */}
+            <g data-rotor>
+              {
+                CARDINALS.map((c) => {
+                  const p = pos(c.deg, LABEL_R);
+                  return (
+                    <text
+                      class={`dial-cardinal${c.key === 'n' ? ' is-north' : ''}`}
+                      x={p.x}
+                      y={p.y}
+                      text-anchor="middle"
+                      dominant-baseline="central"
+                    >
+                      {app.qibla.cardinal[c.key]}
+                    </text>
+                  );
+                })
+              }
+            </g>
+
+            {/* The qibla marker sits outside the rose and is turned to the angle you must face,
+                so it is on the dial in every state — with a live heading it points where to turn,
+                and without one it points to the qibla's true bearing against a north-up rose. */}
+            <g data-marker>
+              <line class="dial-spoke" x1="100" y1="100" x2="100" y2="34" />
+              <circle class="dial-kaaba" cx="100" cy="30" r="9" />
+            </g>
+
+            {/* Positioned rather than rotated, so it never hangs upside down. */}
+            <text class="dial-makkah" text-anchor="middle" dominant-baseline="central" data-makkah>
+              {app.qibla.makkah}
+            </text>
+
+            {/* The needle is the direction you are facing. It is not drawn at all without a live
+                heading — an idling needle is the one thing this page must never show. */}
+            <g data-needle>
+              <path class="dial-needle" d="M100 18 L108 44 L100 38 L92 44 Z" />
+            </g>
+            <circle class="dial-hub" cx="100" cy="100" r="4" />
+          </svg>
+
+          <p class="qibla-status" data-status hidden></p>
+
+          <dl class="qibla-facts">
+            <div>
+              <dt>{app.qibla.card.bearing}</dt>
+              <dd data-bearing>—</dd>
+            </div>
+            <div>
+              <dt>{app.qibla.card.distance}</dt>
+              <dd data-distance>—</dd>
+            </div>
+          </dl>
+
+          <button type="button" class="btn-compass" data-enable-compass hidden>
+            {dict.enableCompass}
+          </button>
+          <p class="qibla-note hint" data-note hidden></p>
+          <p class="qibla-flat hint" data-flat hidden>{dict.flatHint}</p>
+        </div>
+
+        <noscript>
+          <p class="qibla-noscript">{times.noScript}</p>
+        </noscript>
+      </div>
+
+      <p class="qibla-app hint">{dict.inApp}</p>
+      <p class="qibla-credit hint">{times.credit}</p>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .qibla-wrap {
+    max-width: 640px;
+  }
+
+  .qibla-lead {
+    margin: 0 0 1.25rem;
+    color: var(--muted);
+  }
+
+  .qibla-card {
+    padding: clamp(14px, 3vw, 20px);
+  }
+
+  .qibla [hidden] {
+    display: none !important;
+  }
+
+  .qibla-stage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.9rem;
+  }
+
+  /* The dial keeps its geographic orientation in both directions — DESIGN.md §RTL is explicit
+     that compass labels are never mirrored. */
+  .dial {
+    width: min(280px, 78vw);
+    height: auto;
+    direction: ltr;
+  }
+
+  .dial-face {
+    fill: var(--card-quiet);
+    stroke: var(--border-faint);
+    stroke-width: 1;
+  }
+
+  .dial-ring {
+    fill: none;
+    stroke: var(--hairline);
+    stroke-width: 1;
+  }
+
+  .dial-cardinal {
+    fill: var(--muted);
+    font-size: 15px;
+    font-weight: 600;
+  }
+
+  .dial-cardinal.is-north {
+    fill: var(--ink-strong);
+  }
+
+  .dial-spoke {
+    stroke: var(--accent);
+    stroke-width: 2;
+    stroke-dasharray: 4 5;
+    opacity: 0.65;
+  }
+
+  .dial-kaaba {
+    fill: var(--accent);
+    stroke: var(--seal-fg);
+    stroke-width: 2;
+  }
+
+  .dial-needle {
+    fill: var(--ink-strong);
+  }
+
+  .dial-hub {
+    fill: var(--ink-strong);
+  }
+
+  /* Aligned is a colour AND a word AND a glyph, never colour alone. */
+  .qibla-stage[data-aligned='true'] .dial-kaaba {
+    fill: var(--aligned);
+  }
+  .qibla-stage[data-aligned='true'] .dial-spoke {
+    stroke: var(--aligned);
+    stroke-dasharray: none;
+    opacity: 1;
+  }
+
+  [data-rotor],
+  [data-marker],
+  [data-needle] {
+    transform-origin: 100px 100px;
+  }
+
+  .dial-makkah {
+    fill: var(--accent-deep);
+    font-size: 12px;
+    font-weight: 600;
+    /* The label sits on the spoke, so it is drawn with a halo of the dial's own fill first.
+       `paint-order` is what makes the stroke go under the glyphs rather than over them. */
+    paint-order: stroke;
+    stroke: var(--bg);
+    stroke-width: 3px;
+    stroke-linejoin: round;
+  }
+  .qibla-stage[data-aligned='true'] .dial-makkah {
+    fill: var(--aligned);
+  }
+
+  /* `hidden` is an HTML attribute; SVG elements do not honour it, so the needle's presence is
+     driven by the stage's state instead. */
+  .qibla-stage:not([data-heading='true']) [data-needle] {
+    display: none;
+  }
+
+  .qibla-status {
+    margin: 0;
+    font-weight: 600;
+    color: var(--header);
+    text-align: center;
+  }
+  .qibla-stage[data-aligned='true'] .qibla-status {
+    color: var(--aligned);
+  }
+
+  .qibla-facts {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+    margin: 0;
+  }
+
+  .qibla-facts div {
+    text-align: center;
+  }
+
+  .qibla-facts dt {
+    font-size: 0.8rem;
+    color: var(--header);
+    margin-bottom: 2px;
+  }
+
+  .qibla-facts dd {
+    margin: 0;
+    font-size: 19px;
+    font-weight: 700;
+    color: var(--ink-strong);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .btn-compass {
+    font: inherit;
+    font-weight: 600;
+    color: var(--accent-deep);
+    background: var(--card-elevated);
+    border: 1px solid var(--border-strong);
+    border-radius: 999px;
+    padding: 10px 20px;
+    min-height: 48px;
+    cursor: pointer;
+  }
+  .btn-compass:active {
+    transform: scale(0.95);
+  }
+
+  .qibla-note,
+  .qibla-flat {
+    margin: 0;
+    text-align: center;
+    max-width: 34rem;
+  }
+
+  .qibla-noscript {
+    margin: 0.85rem 0 0;
+    font-size: 0.9rem;
+    color: var(--muted);
+  }
+
+  .qibla-app {
+    margin: 1rem 0 0;
+  }
+
+  .qibla-credit {
+    margin: 0.35rem 0 0;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    [data-rotor],
+    [data-needle] {
+      transition: transform 120ms linear;
+    }
+  }
+</style>
+
+<script>
+  /**
+   * The dial.
+   *
+   * Three states, and the difference between them must be unmistakable, because a needle that
+   * looks authoritative while reading nothing points people the wrong way to pray:
+   *
+   *   1. A real absolute heading  — the dial turns under a fixed needle, and alignment is called.
+   *   2. No heading available     — the dial is pinned to true north, no needle, and the page says
+   *                                 so. The bearing and distance are correct either way.
+   *   3. Permission refused       — as 2, with a way to ask again.
+   *
+   * iOS needs `DeviceOrientationEvent.requestPermission()` from a user gesture and reports
+   * `webkitCompassHeading`, already referenced to true north. Everywhere else the signal is
+   * `deviceorientationabsolute`, whose `alpha` is counter-clockwise from north and has to be
+   * corrected for the screen's own rotation.
+   */
+  import { qiblaBearing, distanceToKaabaKm, cardinalKey, isAligned, shortestAngleDelta, smoothHeading } from '../lib/domain/qibla';
+  import { loadLocation, type StoredLocation } from '../lib/location';
+  import { setupLocationPicker } from '../lib/locationUi';
+  import type { AppStrings } from '../lib/appStrings.generated';
+  import { fill, formatNumber, localeTag, type Locale } from '../lib/format';
+
+  const root = document.querySelector<HTMLElement>('[data-qibla]');
+  if (root) setup(root);
+
+  function setup(root: HTMLElement) {
+    const locale = (root.dataset.locale ?? 'en') as Locale;
+    const { app, ui } = JSON.parse(root.dataset.strings!) as {
+      app: AppStrings;
+      ui: Record<'denied' | 'unavailable' | 'unsupported' | 'compassBlocked' | 'faceDirection', string>;
+    };
+    const tag = localeTag(locale);
+    const q = app.qibla as any;
+
+    const el = {
+      stage: root.querySelector<HTMLElement>('[data-stage]')!,
+      svg: root.querySelector<SVGElement>('[data-dial-svg]')!,
+      rotor: root.querySelector<SVGGElement>('[data-rotor]')!,
+      marker: root.querySelector<SVGGElement>('[data-marker]')!,
+      makkah: root.querySelector<SVGTextElement>('[data-makkah]')!,
+      status: root.querySelector<HTMLElement>('[data-status]')!,
+      bearing: root.querySelector<HTMLElement>('[data-bearing]')!,
+      distance: root.querySelector<HTMLElement>('[data-distance]')!,
+      enable: root.querySelector<HTMLButtonElement>('[data-enable-compass]')!,
+      note: root.querySelector<HTMLElement>('[data-note]')!,
+      flat: root.querySelector<HTMLElement>('[data-flat]')!,
+    };
+
+    let bearing = 0;
+    let heading: number | null = null;
+    let listening = false;
+
+    const picker = setupLocationPicker(root.querySelector<HTMLElement>('[data-loc]')!, {
+      locale,
+      app,
+      strings: ui,
+      onLocation: render,
+      onCleared: () => {
+        el.stage.hidden = true;
+      },
+    });
+
+    function render(loc: StoredLocation) {
+      const from = { latitude: loc.lat, longitude: loc.lon };
+      bearing = qiblaBearing(from);
+      const km = distanceToKaabaKm(from);
+
+      el.bearing.textContent = fill(q.value.bearing, {
+        degrees: formatNumber(Math.round(bearing), locale),
+        cardinal: q.cardinal[cardinalKey(bearing).replace('qibla.cardinal.', '')] ?? '',
+      });
+      el.distance.textContent = fill(q.value.distance, {
+        distance: new Intl.NumberFormat(tag, { maximumFractionDigits: 0 }).format(km),
+      });
+
+      el.stage.hidden = false;
+      picker.showChosen(loc);
+      void picker.relabelIfNeeded(loc);
+      paint();
+
+      // Asking for the compass is a separate, later decision than naming a place, and on iOS it
+      // must come from its own tap.
+      if (!listening) offerCompass();
+    }
+
+    /**
+     * Turns the marker to an angle and puts its label where the marker now is.
+     *
+     * The label is positioned rather than rotated with the group: carried round by the rotation it
+     * would hang upside down through half the circle, which is exactly the half someone facing
+     * away from the qibla is looking at.
+     */
+    function placeMarker(angleDeg: number) {
+      el.marker.style.transform = `rotate(${angleDeg}deg)`;
+      const rad = (angleDeg * Math.PI) / 180;
+      const radius = 52;
+      el.makkah.setAttribute('x', String(100 + radius * Math.sin(rad)));
+      el.makkah.setAttribute('y', String(100 - radius * Math.cos(rad)));
+    }
+
+    /** Draws whatever we currently know. Safe to call with no heading at all. */
+    function paint() {
+      if (heading === null) {
+        // North-up rose and no needle — but the marker still sits at the qibla's true bearing, so
+        // the dial answers "which way is it?" even on a device that cannot say which way you face.
+        el.rotor.style.transform = 'rotate(0deg)';
+        placeMarker(bearing);
+        el.stage.dataset.heading = 'false';
+        el.stage.dataset.aligned = 'false';
+        // And say it in words. A gold dot on a dial is only obvious to someone who already knows
+        // what it means; the bearing in degrees and its compass letter are what you can act on.
+        el.status.hidden = false;
+        el.status.textContent = fill(ui.faceDirection, {
+          degrees: formatNumber(Math.round(bearing), locale),
+          cardinal: q.cardinal[cardinalKey(bearing).replace('qibla.cardinal.', '')] ?? '',
+        });
+        el.svg.setAttribute(
+          'aria-label',
+          fill(q.dial.a11yLabelNoFix, { bearing: formatNumber(Math.round(bearing), locale) })
+        );
+        return;
+      }
+
+      el.rotor.style.transform = `rotate(${-heading}deg)`;
+      // The marker lives outside the rose now, so it carries the whole angle itself rather than
+      // inheriting the rose's rotation: where to turn, relative to where you are pointing.
+      placeMarker(bearing - heading);
+      el.stage.dataset.heading = 'true';
+
+      // `isAligned` takes the DELTA, not two bearings — passing (heading, bearing) makes the
+      // qibla bearing the tolerance, which reads as "aligned" almost everywhere. The one bug on
+      // this page that would actually point someone the wrong way.
+      const delta = shortestAngleDelta(heading, bearing);
+      const aligned = isAligned(delta);
+      el.stage.dataset.aligned = String(aligned);
+      el.status.hidden = false;
+
+      if (aligned) {
+        el.status.textContent = q.guide.aligned;
+      } else {
+        const degrees = formatNumber(Math.round(Math.abs(delta)), locale);
+        el.status.textContent =
+          delta > 0 ? fill(q.guide.turnRight, { degrees }) : fill(q.guide.turnLeft, { degrees });
+      }
+
+      el.svg.setAttribute(
+        'aria-label',
+        fill(q.dial.a11yLabel, {
+          heading: formatNumber(Math.round(heading), locale),
+          bearing: formatNumber(Math.round(bearing), locale),
+        })
+      );
+    }
+
+    /** A reading is only used if the browser says it is referenced to true/magnetic north. */
+    function readHeading(event: DeviceOrientationEvent): number | null {
+      const webkit = (event as any).webkitCompassHeading;
+      if (typeof webkit === 'number' && !Number.isNaN(webkit)) return webkit;
+      if (event.absolute && typeof event.alpha === 'number') {
+        const screenAngle =
+          (typeof screen !== 'undefined' && screen.orientation && screen.orientation.angle) || 0;
+        return (360 - event.alpha + screenAngle) % 360;
+      }
+      return null;
+    }
+
+    function onOrientation(event: DeviceOrientationEvent) {
+      const next = readHeading(event);
+      if (next === null) return;
+      // The app smooths the same way; a raw magnetometer jitters several degrees at rest.
+      heading = heading === null ? next : smoothHeading(heading, next, 0.25);
+      el.note.hidden = true;
+      el.flat.hidden = false;
+      paint();
+    }
+
+    function listen() {
+      if (listening) return;
+      listening = true;
+      window.addEventListener('deviceorientationabsolute', onOrientation as EventListener);
+      window.addEventListener('deviceorientation', onOrientation as EventListener);
+
+      // If nothing referenced to north arrives shortly, say so rather than leaving a dead dial.
+      window.setTimeout(() => {
+        if (heading === null) noCompass(q.noCompass);
+      }, 2500);
+    }
+
+    function noCompass(message: string) {
+      heading = null;
+      el.note.textContent = message;
+      el.note.hidden = false;
+      el.flat.hidden = true;
+      paint();
+    }
+
+    /**
+     * iOS gates orientation behind a permission that must be requested from a gesture, so it gets
+     * a button. Everywhere else we can just listen, and only speak up if nothing turns up.
+     */
+    function offerCompass() {
+      const needsGesture =
+        typeof (DeviceOrientationEvent as any)?.requestPermission === 'function';
+
+      if (!needsGesture) {
+        if (!('ondeviceorientationabsolute' in window) && !('ondeviceorientation' in window)) {
+          noCompass(q.noCompass);
+          return;
+        }
+        listen();
+        return;
+      }
+
+      el.enable.hidden = false;
+      el.enable.addEventListener(
+        'click',
+        async () => {
+          el.enable.hidden = true;
+          try {
+            const result = await (DeviceOrientationEvent as any).requestPermission();
+            if (result === 'granted') listen();
+            else noCompass(ui.compassBlocked);
+          } catch {
+            noCompass(ui.compassBlocked);
+          }
+        },
+        { once: true }
+      );
+    }
+
+    const stored = loadLocation();
+    if (stored) render(stored);
+    else picker.showChooser();
+  }
+</script>

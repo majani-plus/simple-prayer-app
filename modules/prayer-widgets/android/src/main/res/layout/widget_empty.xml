@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  The bundled state for when there is no snapshot to draw (first install before the app ever
+  opened, or a snapshot past its horizon). Its strings are the ONE sanctioned exception to
+  "everything travels pre-translated in the snapshot": they exist precisely when no snapshot
+  does, so they live in this module's resources, keyed to the SYSTEM locale (values-ar/values-tr).
+  Calm by design — never an error voice, never a wrong time.
+  The Arabic variant (widget_empty_arabic.xml) is DERIVED — regenerate with
+  `bun scripts/derive-arabic-layouts.ts`; the renderer picks it off the same system locale
+  that resolved the strings above, so the sentence and the face can never disagree.
+-->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  android:id="@+id/root"
+  android:layoutDirection="ltr"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent">
+
+  <ImageView
+    android:id="@+id/bg"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:scaleType="fitXY"
+    android:importantForAccessibility="no"
+    android:src="@drawable/paper_shape" />
+
+  <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="16dp">
+
+    <FrameLayout
+      android:layout_width="38dp"
+      android:layout_height="38dp">
+      <ImageView
+        android:id="@+id/empty_seal_fill"
+        android:layout_width="38dp"
+        android:layout_height="38dp"
+        android:importantForAccessibility="no" />
+      <ImageView
+        android:id="@+id/empty_seal_glyph"
+        android:layout_width="17dp"
+        android:layout_height="17dp"
+        android:layout_gravity="center"
+        android:importantForAccessibility="no" />
+    </FrameLayout>
+
+    <TextView
+      android:id="@+id/empty_title"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="8dp"
+      android:fontFamily="@font/lora_600semibold"
+      android:textSize="14sp"
+      android:gravity="center"
+      android:maxLines="1"
+      android:ellipsize="end" />
+
+    <TextView
+      android:id="@+id/empty_body"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="2dp"
+      android:fontFamily="@font/lora_400regular_italic"
+      android:textSize="12sp"
+      android:gravity="center"
+      android:maxLines="2"
+      android:ellipsize="end" />
+  </LinearLayout>
+</FrameLayout>

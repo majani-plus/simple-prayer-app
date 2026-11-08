@@ -1,0 +1,99 @@
+# Learn more https://docs.github.com/en/get-started/getting-started-with-git/ignoring-files
+
+# dependencies
+node_modules/
+
+# Expo
+.expo/
+dist/
+web-build/
+expo-env.d.ts
+
+# Native
+.kotlin/
+*.orig.*
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+
+# EAS credentials (never commit — see docs/RELEASE.md)
+credentials.json
+google-service-account*.json
+play-service-account*.json
+
+# Metro
+.metro-health-check*
+
+# debug
+npm-debug.*
+yarn-debug.*
+yarn-error.*
+
+# macOS
+.DS_Store
+*.pem
+
+# local env files
+.env*.local
+
+# typescript
+*.tsbuildinfo
+
+example
+
+# generated native folders
+/ios
+/android
+
+# Python bytecode from scripts/
+__pycache__/
+*.pyc
+
+# Playwright MCP scratch output
+.playwright-mcp/
+
+# Sentry — the auth token lives in env / EAS secrets, never in a file (see docs/RELEASE.md §11)
+sentry.properties
+.sentryclirc
+
+# Adhan audition set — review material, never shipped (see assets/audio/CREDITS.md)
+assets/audio/candidates/
+
+# Untouched source recordings — the shipped adhan_*.mp3/.caf are derived from these
+# per assets/audio/CREDITS.md. Kept locally so cuts can be redone; not shipped.
+assets/audio/originals/
+
+# local expo modules — gradle outputs
+modules/*/android/build/
+
+.claude/worktrees/
+
+# Wear OS module build output (the module itself is checked in; see plugins/withWearApp.js)
+/wear/build/
+/wear-face/build/
+/wear/.cxx/
+
+# The side-loadable APK and its generated metadata (scripts/publish-apk.sh writes both).
+/website/public/simple-prayer.apk
+/website/src/apk.generated.json
+
+# Generated into the website at build time from the app (scripts/generate-domain.ts,
+# scripts/generate-cities.ts). Committing them would put a second, editable copy of the
+# app's domain code in the history. `bun run build` regenerates both.
+/website/src/lib/domain/
+/website/src/lib/cities/
+/website/src/lib/appStrings.generated.ts
+
+# Argent (agent device tooling): screen recordings and other local artefacts
+.argent/*
+!.argent/config.json
+
+# Store upload credentials (fastlane). Secrets — never commit.
+fastlane/play_service_account.json
+fastlane/asc_api_key.json
+
+# Internal notes (task board, research, release handoff, design records). A separate private
+# git repo of its own; never part of the public app repo.
+/docs/internal/

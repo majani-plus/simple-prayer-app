@@ -1,0 +1,43 @@
+---
+import Base from '../layouts/Base.astro';
+import Logo from '../components/Logo.astro';
+---
+
+<Base
+  title="Page not found — Simple Prayer"
+  description="This page does not exist."
+  path="/404"
+  locale="en"
+  page={null}
+>
+  <section class="section container nf">
+    <Logo size={56} color="var(--faint)" />
+    <h1>Page not found</h1>
+    <p class="caption">There's nothing at this address.</p>
+    <nav aria-label="Helpful places">
+      <ul class="nf-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/support">Support</a></li>
+        <li><a href="/privacy">Privacy policy</a></li>
+      </ul>
+    </nav>
+  </section>
+</Base>
+
+<style>
+  .nf {
+    text-align: center;
+    padding-block: clamp(4rem, 14vh, 9rem);
+  }
+  .nf h1 {
+    margin-top: 0.6em;
+  }
+  .nf-links {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+</style>

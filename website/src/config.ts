@@ -1,0 +1,29 @@
+/**
+ * Site-wide facts that will change at launch. Everything else on the site is derived from the
+ * repo's audited sources (docs/PRIVACY_POLICY.md, src/theme/tokens.ts, docs/screenshots).
+ */
+export const site = {
+  name: 'Simple Prayer',
+  tagline: 'five a day · never missed',
+  domain: 'simpleprayer.app',
+  /** Support + privacy mailbox (docs/STORE_LISTINGS.md — Play verifies it). */
+  email: 'privacy@simpleprayer.app',
+  /**
+   * The public feedback board (docs/DECISIONS.md D87). Linked to, never embedded: the rules in
+   * docs/WEBSITE.md forbid third-party embeds and forms, and the deployed CSP enforces it.
+   */
+  feedbackUrl: 'https://simpleprayer.featurebase.app/' as string | null,
+  /** The app's source code: MIT, © Majani Plus LLC. */
+  sourceUrl: 'https://github.com/majani-plus/simple-prayer-app',
+  /** The buddy relay's source code. */
+  relayUrl: 'https://github.com/majani-plus/simple-prayer-relay',
+  /** The guide for people who want to help translate the app. */
+  translatingUrl: 'https://github.com/majani-plus/simple-prayer-app/blob/main/docs/TRANSLATING.md',
+  /**
+   * Store URLs. Both listings are live. `null` is still honoured everywhere it is read — it
+   * renders the dashed "coming soon" badge in StoreButtons.astro, and /install simply does not
+   * redirect for that platform — so a store can be taken down by setting one field back to null.
+   */
+  appStoreUrl: 'https://apps.apple.com/us/app/simple-prayer-times-qibla/id6803004652' as string | null,
+  playStoreUrl: 'https://play.google.com/store/apps/details?id=app.simpleprayer' as string | null,
+} as const;

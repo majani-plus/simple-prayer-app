@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="wear_empty_title">Namaz vakitleri</string>
+  <string name="wear_empty_body">Kurulum için telefonunuzda Simple Prayer\'ı açın.</string>
+  <string name="wear_stale_title">Vakitler güncellenmeli</string>
+  <string name="wear_stale_body">Güncellemek için telefonunuzda Simple Prayer\'ı açın.</string>
+  <string name="wear_tile_label">Sıradaki namaz</string>
+  <string name="wear_complication_label">Sıradaki namaz</string>
+  <string name="wear_channel_name">Vakit hatırlatmaları</string>
+  <string name="wear_channel_description">Namaz vakti girdiğinde gelir.</string>
+  <string name="preview_prayer">İkindi</string>
+  <string name="preview_countdown">1:12</string>
+</resources>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  The mosque mark (src/components/Logo.tsx, 'small' variant) as the monochromatic icon the
+  notification and complication slots require. White by design: these slots tint the icon
+  themselves, so this is the one drawable exempt from the palette rule (there is no palette to
+  obey — the face's own theme paints it).
+-->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+  android:width="24dp"
+  android:height="24dp"
+  android:viewportWidth="64"
+  android:viewportHeight="64">
+  <path
+    android:pathData="M18,42A14,14 0 0 1 46,42"
+    android:strokeColor="#FFFFFFFF"
+    android:strokeWidth="6"
+    android:strokeLineCap="round" />
+  <path
+    android:pathData="M11,42V30M53,42V30"
+    android:strokeColor="#FFFFFFFF"
+    android:strokeWidth="6"
+    android:strokeLineCap="round" />
+  <path
+    android:pathData="M8,47h48"
+    android:strokeColor="#FFFFFFFF"
+    android:strokeWidth="6"
+    android:strokeLineCap="round" />
+</vector>

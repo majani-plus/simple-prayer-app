@@ -1,0 +1,191 @@
+---
+/**
+ * Choosing a place: the prompt before a choice is made, the label after.
+ *
+ * Shared by the times card and the qibla dial, which store the same location under the same key —
+ * so choosing a city on one page means the other already knows it. The behaviour lives in
+ * `src/lib/locationUi.ts`; this is only the markup.
+ */
+import { appStrings } from '../lib/appStrings.generated';
+import { t, type Locale } from '../i18n';
+
+interface Props {
+  locale: Locale;
+  /** Distinguishes the input's id when two pickers could ever share a document. */
+  idPrefix: string;
+}
+const { locale, idPrefix } = Astro.props;
+const app = appStrings[locale];
+const dict = t(locale).timesPage;
+const inputId = `${idPrefix}-city-input`;
+const statusId = `${idPrefix}-city-status`;
+---
+
+<div class="loc" data-loc>
+  <div class="loc-choose" data-loc-choose>
+    <button type="button" class="btn-locate" data-locate>{app.location.useMyLocation}</button>
+    <div class="loc-city">
+      <label class="loc-label" for={inputId}>{dict.orChooseCity}</label>
+      <input
+        id={inputId}
+        class="loc-input"
+        type="text"
+        autocomplete="off"
+        spellcheck="false"
+        placeholder={app.location.searchPlaceholder}
+        aria-describedby={statusId}
+        data-city-input
+      />
+      <p class="loc-status hint" id={statusId} role="status" aria-live="polite" data-city-status></p>
+      <ul class="loc-results" data-city-results></ul>
+    </div>
+  </div>
+  <p class="loc-chosen" data-loc-chosen hidden>
+    <span class="loc-name" data-loc-name></span>
+    <button type="button" class="loc-change" data-loc-change>{dict.change}</button>
+  </p>
+</div>
+
+<style>
+  /* `display` on a class beats the UA stylesheet's `[hidden] { display: none }`, so toggling
+     `hidden` on the flex containers below did nothing until this rule existed. */
+  .loc [hidden],
+  .loc[hidden] {
+    display: none !important;
+  }
+
+  /* Someone who has already chosen a place should never see the prompt again, not even for the
+     frame before the script runs. `data-has-location` is stamped in <head> before the first paint
+     (Base.astro); the script still does the real work, this only stops the flash. */
+  :global(html[data-has-location]) .loc-choose {
+    display: none !important;
+  }
+  :global(html[data-has-location]) .loc-chosen {
+    display: flex !important;
+  }
+
+  .loc {
+    margin-bottom: 1rem;
+  }
+
+  .loc-choose {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+  }
+
+  .btn-locate {
+    align-self: start;
+    font: inherit;
+    font-weight: 600;
+    color: var(--seal-fg);
+    background: var(--accent);
+    border: 1px solid var(--accent);
+    border-radius: 999px;
+    padding: 10px 20px;
+    min-height: 48px; /* the app's touch floor (D55) */
+    cursor: pointer;
+    transition: transform 120ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .btn-locate:active {
+    transform: scale(0.95); /* compact controls scale; full-width rows do not (D74) */
+  }
+  .btn-locate[disabled] {
+    opacity: 0.65;
+    cursor: default;
+  }
+
+  .loc-label {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--header);
+    margin-bottom: 0.3rem;
+  }
+
+  .loc-input {
+    font: inherit;
+    width: 100%;
+    max-width: 22rem;
+    min-height: 48px;
+    padding: 8px 12px;
+    color: var(--ink);
+    background: var(--card-elevated);
+    border: 1px solid var(--border-mid);
+    border-radius: 12px;
+  }
+  .loc-input:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 1px;
+  }
+
+  .loc-status:empty {
+    display: none;
+  }
+
+  .loc-results {
+    list-style: none;
+    margin: 0.5rem 0 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    max-width: 22rem;
+  }
+  .loc-results:empty {
+    display: none;
+  }
+  /* Every tappable row in a sheet wears a card with a hairline (D143) — without one, a menu is a
+     paragraph that happens to respond. */
+  .loc-results button {
+    font: inherit;
+    text-align: start;
+    width: 100%;
+    min-height: 48px;
+    padding: 8px 12px;
+    color: var(--ink);
+    background: var(--card-quiet);
+    border: 1px solid var(--border-faint);
+    border-radius: 14px;
+    cursor: pointer;
+  }
+  .loc-results button:hover,
+  .loc-results button:focus-visible {
+    border-color: var(--border-strong);
+    background: var(--card-bright);
+  }
+
+  .loc-chosen {
+    display: flex;
+    align-items: baseline;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+    margin: 0;
+  }
+
+  .loc-name {
+    font-weight: 600;
+    color: var(--header);
+  }
+
+  .loc-change {
+    font: inherit;
+    font-size: 0.85rem;
+    font-style: italic;
+    color: var(--accent);
+    background: none;
+    border: 0;
+    padding: 4px;
+    cursor: pointer;
+    text-decoration: underline;
+  }
+
+  :global(html[lang='ar']) .loc-change {
+    font-style: normal;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .btn-locate {
+      transition: none;
+    }
+  }
+</style>

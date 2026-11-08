@@ -1,0 +1,82 @@
+---
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { marked } from 'marked';
+import Base from '../layouts/Base.astro';
+import { t } from '../i18n';
+
+/**
+ * Rendered from `docs/TERMS_OF_USE.md` at build time — never retyped, exactly like `/privacy`
+ * (D50). One mechanical transform: everything above the first `---` is the file's maintainer
+ * note, marked as such in the file itself, and is not part of the published text.
+ *
+ * English-only for the same reason the policy is: this is the operative text, and presenting a
+ * translation as the terms would be presenting something we cannot guarantee says the same
+ * thing. The tr/ar pages link here, and the notices below say so in each language.
+ */
+const here = path.dirname(fileURLToPath(import.meta.url));
+const source = fs.readFileSync(path.resolve(here, '../../../docs/TERMS_OF_USE.md'), 'utf-8');
+
+const divider = source.indexOf('\n---\n');
+if (divider === -1) throw new Error('TERMS_OF_USE.md: expected a `---` after the maintainer note');
+const publishable = source.slice(divider + '\n---\n'.length).trim();
+
+const html = marked.parse(publishable, { async: false });
+
+const title = 'Terms of Use — Simple Prayer';
+const description =
+  'The terms for using Simple Prayer on your phone, your watch, and as a watch face — in plain words: free, no account, a tool you check against your mosque.';
+
+const notices = [
+  { lang: 'tr', dir: 'ltr' as const, text: t('tr').termsNotice! },
+  { lang: 'ar', dir: 'rtl' as const, text: t('ar').termsNotice! },
+];
+---
+
+<Base title={title} description={description} path="/terms" locale="en" page="terms">
+  <article class="section container policy">
+    <h1>Terms of Use</h1>
+    {notices.map((n) => (
+      <p class="caption policy-notice" lang={n.lang} dir={n.dir}>{n.text}</p>
+    ))}
+    <div class="policy-body" set:html={html} />
+  </article>
+</Base>
+
+<style>
+  .policy {
+    max-width: 760px;
+  }
+  .policy h1 {
+    margin-bottom: 1.2rem;
+  }
+  .policy-notice {
+    margin: 0 0 0.4em;
+  }
+  .policy-notice[lang='ar'] {
+    font-style: normal;
+    font-family: 'Amiri', 'Geeza Pro', 'Segoe UI', Tahoma, 'Lora', serif;
+  }
+  .policy-body :global(h2) {
+    font-size: 1.4rem;
+    margin-top: 2.2em;
+    padding-top: 1.2em;
+    border-top: 1px solid var(--hairline);
+  }
+  .policy-body :global(h3) {
+    font-size: 1.1rem;
+    margin-top: 1.6em;
+  }
+  .policy-body :global(li) {
+    margin-bottom: 0.45em;
+  }
+  .policy-body :global(strong) {
+    color: var(--ink-strong);
+  }
+  .policy-body :global(hr) {
+    border: 0;
+    border-top: 1px solid var(--hairline);
+    margin: 2.5em 0;
+  }
+</style>

@@ -1,0 +1,77 @@
+---
+/**
+ * The real brand mark: mosque silhouette (dome, finial, two minarets, ground line), geometry
+ * copied 1:1 from src/components/Logo.tsx at the repo root. Same four optical sizes — heavier
+ * strokes and fewer details as it shrinks (docs/DESIGN.md).
+ */
+type Variant = 'full' | 'medium' | 'small' | 'tiny';
+
+interface Props {
+  size?: number;
+  /** CSS colour; defaults to the accent token. */
+  color?: string;
+  variant?: Variant;
+  class?: string;
+}
+
+const { size = 40, color = 'var(--accent)', variant, class: className } = Astro.props;
+
+function variantForSize(s: number): Variant {
+  if (s >= 40) return 'full';
+  if (s >= 28) return 'medium';
+  if (s >= 20) return 'small';
+  return 'tiny';
+}
+const optical = variant ?? variantForSize(size);
+---
+
+<svg
+  width={size}
+  height={size}
+  viewBox="0 0 64 64"
+  fill="none"
+  aria-hidden="true"
+  class={className}
+>
+  {
+    optical === 'full' && (
+      <>
+        <path d="M18 42A14 14 0 0 1 46 42" stroke={color} stroke-width="3.4" stroke-linecap="round" />
+        <path d="M32 26v-5" stroke={color} stroke-width="2.6" stroke-linecap="round" />
+        <circle cx="32" cy="18" r="2.6" fill={color} />
+        <path d="M10.5 42V29M53.5 42V29" stroke={color} stroke-width="3.4" stroke-linecap="round" />
+        <circle cx="10.5" cy="25" r="2.6" fill={color} />
+        <circle cx="53.5" cy="25" r="2.6" fill={color} />
+        <path d="M7 46h50" stroke={color} stroke-width="3.4" stroke-linecap="round" />
+      </>
+    )
+  }
+  {
+    optical === 'medium' && (
+      <>
+        <path d="M18 42A14 14 0 0 1 46 42" stroke={color} stroke-width="4.2" stroke-linecap="round" />
+        <path d="M32 26v-4" stroke={color} stroke-width="3.2" stroke-linecap="round" />
+        <circle cx="32" cy="18" r="3" fill={color} />
+        <path d="M10.5 42V29M53.5 42V29" stroke={color} stroke-width="4.2" stroke-linecap="round" />
+        <path d="M7 46h50" stroke={color} stroke-width="4.2" stroke-linecap="round" />
+      </>
+    )
+  }
+  {
+    optical === 'small' && (
+      <>
+        <path d="M18 42A14 14 0 0 1 46 42" stroke={color} stroke-width="6" stroke-linecap="round" />
+        <path d="M11 42V30M53 42V30" stroke={color} stroke-width="6" stroke-linecap="round" />
+        <path d="M8 47h48" stroke={color} stroke-width="6" stroke-linecap="round" />
+      </>
+    )
+  }
+  {
+    optical === 'tiny' && (
+      <>
+        <path d="M19 41A13 13 0 0 1 45 41" stroke={color} stroke-width="8" stroke-linecap="round" />
+        <path d="M9 48h46" stroke={color} stroke-width="8" stroke-linecap="round" />
+      </>
+    )
+  }
+</svg>

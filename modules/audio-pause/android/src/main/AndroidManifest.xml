@@ -1,0 +1,19 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+  <application>
+    <!--
+      The receiver the pause alarm targets. It MUST be declared here rather than registered at
+      runtime: the whole point is that it runs when the app's process is gone, and a runtime-
+      registered receiver dies with the process.
+
+      The name is fully qualified on purpose. A leading-dot name in a *library* manifest is
+      expanded against the merged application's package, not this module's namespace, which would
+      silently point at a class that does not exist.
+
+      Not exported: only our own PendingIntent, held by AlarmManager, ever targets it.
+    -->
+    <receiver
+      android:name="expo.modules.audiopause.AudioPauseReceiver"
+      android:enabled="true"
+      android:exported="false" />
+  </application>
+</manifest>

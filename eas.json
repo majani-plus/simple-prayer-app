@@ -1,0 +1,99 @@
+{
+  "cli": {
+    "version": ">= 20.0.0",
+    "appVersionSource": "remote",
+    "promptToConfigurePushNotifications": false
+  },
+  "build": {
+    "development": {
+      "developmentClient": true,
+      "distribution": "internal",
+      "environment": "development",
+      "ios": {
+        "simulator": true
+      },
+      "android": {
+        "buildType": "apk"
+      }
+    },
+    "development-device": {
+      "extends": "development",
+      "ios": {
+        "simulator": false
+      }
+    },
+    "preview": {
+      "distribution": "internal",
+      "environment": "preview",
+      "channel": "preview",
+      "ios": {
+        "simulator": false,
+        "buildConfiguration": "Release"
+      },
+      "android": {
+        "buildType": "apk"
+      }
+    },
+    "production": {
+      "distribution": "store",
+      "environment": "production",
+      "channel": "production",
+      "autoIncrement": true,
+      "ios": {
+        "buildConfiguration": "Release"
+      },
+      "android": {
+        "buildType": "app-bundle"
+      }
+    },
+    "production-wear": {
+      "extends": "production",
+      "autoIncrement": false,
+      "android": {
+        "gradleCommand": ":wear:bundleRelease",
+        "applicationArchivePath": "wear/build/outputs/**/*.aab"
+      }
+    },
+    "production-wear-face": {
+      "extends": "production",
+      "autoIncrement": false,
+      "android": {
+        "gradleCommand": ":wear-face:bundleRelease",
+        "applicationArchivePath": "wear-face/build/outputs/**/*.aab"
+      }
+    },
+    "production-apk": {
+      "extends": "production",
+      "autoIncrement": false,
+      "android": {
+        "buildType": "apk"
+      }
+    }
+  },
+  "submit": {
+    "draft": {
+      "android": {
+        "track": "internal",
+        "releaseStatus": "draft"
+      }
+    },
+    "production": {
+      "ios": {
+        "ascAppId": "6803004652"
+      },
+      "android": {
+        "track": "alpha"
+      }
+    },
+    "production-wear": {
+      "android": {
+        "track": "wear:internal"
+      }
+    },
+    "production-wear-face": {
+      "android": {
+        "track": "wear:internal"
+      }
+    }
+  }
+}

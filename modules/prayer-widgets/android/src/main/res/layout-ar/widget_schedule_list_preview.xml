@@ -1,0 +1,427 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Widget-picker preview ONLY — a faithful miniature of the list face with sample content,
+     self-tinted in the light palette (the sample strings are module resources, D103).
+     The Arabic twin in res/layout-ar/ (same basename, so previewLayout needs no edit) is
+     DERIVED — regenerate with `bun scripts/derive-arabic-layouts.ts`; never edit it by hand. -->
+<!-- DERIVED by scripts/derive-arabic-layouts.ts — edit the Lora original, then regenerate. -->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layoutDirection="locale"
+  tools:ignore="HardcodedText"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent">
+
+  <ImageView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:scaleType="fitXY"
+    android:importantForAccessibility="no"
+    android:src="@drawable/paper_shape"
+    android:tint="#ECE1C5" />
+
+  <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingStart="15dp"
+    android:paddingEnd="15dp"
+    android:paddingTop="13dp"
+    android:paddingBottom="12dp">
+
+    <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="horizontal"
+      android:gravity="center_vertical">
+      <ImageView
+        android:layout_width="22dp"
+        android:layout_height="14dp"
+        android:layout_marginEnd="7dp"
+        android:importantForAccessibility="no"
+        android:src="@drawable/glyph_mosque"
+        android:tint="#8A6420" />
+      <FrameLayout
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_weight="1" />
+      <ImageView
+        android:layout_width="11dp"
+        android:layout_height="11dp"
+        android:layout_marginEnd="4dp"
+        android:importantForAccessibility="no"
+        android:src="@drawable/glyph_sun"
+        android:tint="#75623B" />
+      <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/noto_naskh_arabic_400regular"
+        android:textSize="13sp"
+        android:textColor="#75623B"
+        android:text="@string/preview_sunrise" />
+    </LinearLayout>
+    <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="6dp"
+      android:layout_marginBottom="6dp"
+      android:paddingStart="4dp"
+      android:paddingEnd="4dp"
+      android:orientation="horizontal"
+      android:gravity="center_vertical">
+      <ImageView
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_weight="1"
+        android:scaleType="fitXY"
+        android:importantForAccessibility="no"
+        android:src="@drawable/card_shape"
+        android:tint="#59A67C2E" />
+      <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="7dp"
+        android:layout_marginEnd="7dp"
+        android:textSize="10.5sp"
+        android:textColor="#A2792C"
+        android:text="◆" />
+      <ImageView
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_weight="1"
+        android:scaleType="fitXY"
+        android:importantForAccessibility="no"
+        android:src="@drawable/card_shape"
+        android:tint="#59A67C2E" />
+    </LinearLayout>
+
+      <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="2dp">
+        <ImageView
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:layout_margin="0dp"
+          android:scaleType="fitXY"
+          android:importantForAccessibility="no"
+          android:src="@drawable/card_shape"
+          android:tint="#F4EDD9" />
+        <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:orientation="horizontal"
+          android:gravity="center_vertical"
+          android:paddingStart="13dp"
+          android:paddingEnd="13dp">
+          <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/noto_naskh_arabic_600semibold"
+            android:textSize="17.5sp"
+            android:textColor="#2B2115"
+            android:text="@string/preview_fajr" />
+          <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="8dp"
+            android:fontFamily="@font/noto_naskh_arabic_400regular"
+            android:textSize="15sp"
+            android:textColor="#716241"
+            android:text="@string/preview_t_fajr" />
+          <FrameLayout
+            android:layout_width="32dp"
+            android:layout_height="32dp">
+            <ImageView
+              android:layout_width="32dp"
+              android:layout_height="32dp"
+              android:importantForAccessibility="no"
+              android:src="@drawable/seal_fill"
+              android:tint="#8A6420" />
+            <ImageView
+              android:layout_width="16dp"
+              android:layout_height="16dp"
+              android:layout_gravity="center"
+              android:importantForAccessibility="no"
+              android:src="@drawable/glyph_check"
+              android:tint="#FAF4E4" />
+          </FrameLayout>
+        </LinearLayout>
+      </FrameLayout>
+      <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="2dp"
+        android:paddingStart="6dp"
+        android:paddingEnd="6dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+        <ImageView
+          android:layout_width="0dp"
+          android:layout_height="1dp"
+          android:layout_weight="1"
+          android:scaleType="fitXY"
+          android:importantForAccessibility="no"
+          android:src="@drawable/card_shape"
+          android:tint="#CDB98A" />
+        <ImageView
+          android:layout_width="11dp"
+          android:layout_height="11dp"
+          android:layout_marginStart="7dp"
+          android:importantForAccessibility="no"
+          android:src="@drawable/glyph_sun"
+          android:tint="#75623B" />
+        <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="5dp"
+          android:fontFamily="@font/noto_naskh_arabic_600semibold"
+          android:textSize="12.5sp"
+          android:textColor="#75623B"
+          android:text="@string/preview_sunrise" />
+        <ImageView
+          android:layout_width="0dp"
+          android:layout_height="1dp"
+          android:layout_weight="1"
+          android:layout_marginStart="7dp"
+          android:scaleType="fitXY"
+          android:importantForAccessibility="no"
+          android:src="@drawable/card_shape"
+          android:tint="#CDB98A" />
+      </LinearLayout>
+      <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="2dp">
+        <ImageView
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:layout_margin="0dp"
+          android:scaleType="fitXY"
+          android:importantForAccessibility="no"
+          android:src="@drawable/card_shape"
+          android:tint="#F4EDD9" />
+        <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:orientation="horizontal"
+          android:gravity="center_vertical"
+          android:paddingStart="13dp"
+          android:paddingEnd="13dp">
+          <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/noto_naskh_arabic_600semibold"
+            android:textSize="17.5sp"
+            android:textColor="#2B2115"
+            android:text="@string/preview_dhuhr" />
+          <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="8dp"
+            android:fontFamily="@font/noto_naskh_arabic_400regular"
+            android:textSize="15sp"
+            android:textColor="#716241"
+            android:text="@string/preview_t_dhuhr" />
+          <FrameLayout
+            android:layout_width="32dp"
+            android:layout_height="32dp">
+            <ImageView
+              android:layout_width="32dp"
+              android:layout_height="32dp"
+              android:importantForAccessibility="no"
+              android:src="@drawable/seal_fill"
+              android:tint="#8A6420" />
+            <ImageView
+              android:layout_width="16dp"
+              android:layout_height="16dp"
+              android:layout_gravity="center"
+              android:importantForAccessibility="no"
+              android:src="@drawable/glyph_check"
+              android:tint="#FAF4E4" />
+          </FrameLayout>
+        </LinearLayout>
+      </FrameLayout>
+      <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="2dp">
+        <ImageView
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:scaleType="fitXY"
+          android:importantForAccessibility="no"
+          android:src="@drawable/card_shape"
+          android:tint="#C9A75C" />
+        <ImageView
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:layout_margin="1.5dp"
+          android:scaleType="fitXY"
+          android:importantForAccessibility="no"
+          android:src="@drawable/card_shape"
+          android:tint="#FCF8EB" />
+        <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:orientation="horizontal"
+          android:gravity="center_vertical"
+          android:paddingStart="13dp"
+          android:paddingEnd="13dp">
+          <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/noto_naskh_arabic_600semibold"
+            android:textSize="17.5sp"
+            android:textColor="#2B2115"
+            android:text="@string/preview_asr" />
+          <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="8dp"
+            android:fontFamily="@font/noto_naskh_arabic_400regular"
+            android:textSize="15sp"
+            android:textColor="#5A4413"
+            android:text="@string/preview_t_asr" />
+          <FrameLayout
+            android:layout_width="32dp"
+            android:layout_height="32dp">
+            <ImageView
+              android:layout_width="32dp"
+              android:layout_height="32dp"
+              android:importantForAccessibility="no"
+              android:src="@drawable/seal_ring_dashed"
+              android:tint="#8A6420" />
+            <ImageView
+              android:layout_width="16dp"
+              android:layout_height="16dp"
+              android:layout_gravity="center"
+              android:importantForAccessibility="no"
+              android:src="@drawable/glyph_check"
+              android:tint="#B38A4F" />
+          </FrameLayout>
+        </LinearLayout>
+      </FrameLayout>
+      <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="2dp">
+        <ImageView
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:layout_margin="0dp"
+          android:scaleType="fitXY"
+          android:importantForAccessibility="no"
+          android:src="@drawable/card_shape"
+          android:tint="#F4EDD9" />
+        <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:orientation="horizontal"
+          android:gravity="center_vertical"
+          android:paddingStart="13dp"
+          android:paddingEnd="13dp">
+          <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/noto_naskh_arabic_600semibold"
+            android:textSize="17.5sp"
+            android:textColor="#2B2115"
+            android:text="@string/preview_maghrib" />
+          <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="8dp"
+            android:fontFamily="@font/noto_naskh_arabic_400regular"
+            android:textSize="15sp"
+            android:textColor="#716241"
+            android:text="@string/preview_t_maghrib" />
+          <FrameLayout
+            android:layout_width="32dp"
+            android:layout_height="32dp">
+            <ImageView
+              android:layout_width="32dp"
+              android:layout_height="32dp"
+              android:importantForAccessibility="no"
+              android:src="@drawable/seal_ring_thin"
+              android:tint="#CDB98A" />
+            <ImageView
+              android:layout_width="16dp"
+              android:layout_height="16dp"
+              android:layout_gravity="center"
+              android:importantForAccessibility="no"
+              android:src="@drawable/glyph_dot"
+              android:tint="#716345" />
+          </FrameLayout>
+        </LinearLayout>
+      </FrameLayout>
+      <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="2dp">
+        <ImageView
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:layout_margin="0dp"
+          android:scaleType="fitXY"
+          android:importantForAccessibility="no"
+          android:src="@drawable/card_shape"
+          android:tint="#F4EDD9" />
+        <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:orientation="horizontal"
+          android:gravity="center_vertical"
+          android:paddingStart="13dp"
+          android:paddingEnd="13dp">
+          <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/noto_naskh_arabic_600semibold"
+            android:textSize="17.5sp"
+            android:textColor="#2B2115"
+            android:text="@string/preview_isha" />
+          <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="8dp"
+            android:fontFamily="@font/noto_naskh_arabic_400regular"
+            android:textSize="15sp"
+            android:textColor="#716241"
+            android:text="@string/preview_t_isha" />
+          <FrameLayout
+            android:layout_width="32dp"
+            android:layout_height="32dp">
+            <ImageView
+              android:layout_width="32dp"
+              android:layout_height="32dp"
+              android:importantForAccessibility="no"
+              android:src="@drawable/seal_ring_thin"
+              android:tint="#CDB98A" />
+            <ImageView
+              android:layout_width="16dp"
+              android:layout_height="16dp"
+              android:layout_gravity="center"
+              android:importantForAccessibility="no"
+              android:src="@drawable/glyph_dot"
+              android:tint="#716345" />
+          </FrameLayout>
+        </LinearLayout>
+      </FrameLayout>
+  </LinearLayout>
+</FrameLayout>

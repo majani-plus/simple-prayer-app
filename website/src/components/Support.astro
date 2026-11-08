@@ -1,0 +1,270 @@
+---
+import Base from '../layouts/Base.astro';
+import { site } from '../config';
+import { pagePath, t, type Locale } from '../i18n';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const dict = t(locale);
+const d = dict.support;
+
+const tocIds = [
+  'reminders',
+  'times',
+  'widgets',
+  'watch',
+  'exemption',
+  'qada',
+  'streaks',
+  'location',
+  'export',
+  'contact',
+] as const;
+
+// The intro and contact paragraphs carry an inline link/email; split at the placeholder.
+const [introPre, introPost] = splitOnce(d.intro, d.introLinkText);
+const [contactPre, contactPost] = d.contact.p1.split('{email}');
+const [locPre, locPost] = splitOnce(d.location.bullets[2]!, d.location.privacyLink);
+
+function splitOnce(text: string, marker: string): [string, string] {
+  const i = text.indexOf(marker);
+  if (i === -1) return [text, ''];
+  return [text.slice(0, i), text.slice(i + marker.length)];
+}
+
+// FAQPage JSON-LD (spec-website §7.2), generated from the same dict the page renders, so the
+// schema and the visible copy can never diverge. Questions are the section headings; each answer
+// is that section's opening text (bullet-only sections join their bullets).
+type TocId = (typeof tocIds)[number];
+const faqAnswers: Record<TocId, string> = {
+  reminders: d.reminders.p1,
+  times: d.times.p1,
+  widgets: d.widgets.p1,
+  watch: d.watch.p1,
+  exemption: d.exemption.p1,
+  qada: d.qada.p1,
+  streaks: d.streaks.bullets.join(' '),
+  location: d.location.bullets.join(' '),
+  // Quoted/bracketed: the Astro compiler's hoister treats any bare `export` token in the
+  // frontmatter as an export statement and rips the line to module scope (build breaks).
+  // String forms are skipped by its scanner, so d['export'] is the safe spelling here.
+  'export': d['export'].p1,
+  contact: d.contact.p1.replace('{email}', site.email),
+};
+// Names and links are not translated; what each one is for is (d.credits.items).
+const credits = [
+  { id: 'adhan', name: 'adhan-js', url: 'https://github.com/batoulapps/adhan-js' },
+  { id: 'amiri', name: 'Amiri', url: 'https://github.com/aliftype/amiri' },
+  { id: 'naskh', name: 'Noto Naskh Arabic', url: 'https://fonts.google.com/noto/specimen/Noto+Naskh+Arabic' },
+  { id: 'lora', name: 'Lora', url: 'https://github.com/cyrealtype/Lora-Cyrillic' },
+  { id: 'icu', name: 'ICU', url: 'https://icu.unicode.org/' },
+  { id: 'geonames', name: 'GeoNames', url: 'https://www.geonames.org/' },
+  { id: 'expo', name: 'Expo', url: 'https://expo.dev/' },
+] as const;
+
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    inLanguage: locale,
+    mainEntity: tocIds.map((id) => ({
+      '@type': 'Question',
+      name: d.toc[id],
+      acceptedAnswer: { '@type': 'Answer', text: faqAnswers[id] },
+    })),
+  },
+];
+---
+
+<Base
+  title={d.title}
+  description={d.description}
+  path={pagePath('support', locale)}
+  locale={locale}
+  page="support"
+  jsonLd={jsonLd}
+>
+  <div class="section container support">
+    <h1>{d.h1}</h1>
+    <p class="prose">
+      {introPre}<a href={`mailto:${site.email}`}>{d.introLinkText}</a>{introPost}
+    </p>
+
+    <nav aria-label={d.onThisPage} class="card toc">
+      <h2 class="toc-title">{d.onThisPage}</h2>
+      <ul>
+        {tocIds.map((id) => <li><a href={`#${id}`}>{d.toc[id]}</a></li>)}
+      </ul>
+    </nav>
+
+    <section id="reminders" aria-labelledby="reminders-h">
+      <h2 id="reminders-h">{d.toc.reminders}</h2>
+      <p>{d.reminders.p1}</p>
+      <p>{d.reminders.kindsIntro}</p>
+      <ul>
+        {d.reminders.kinds.map((k) => <li>{k}</li>)}
+      </ul>
+      <p>{d.reminders.scheduling}</p>
+      <h3>{d.reminders.healthH}</h3>
+      <p>{d.reminders.health}</p>
+      <h3>{d.reminders.iosH}</h3>
+      <ul>
+        {d.reminders.ios.map((k) => <li>{k}</li>)}
+      </ul>
+      <h3>{d.reminders.androidH}</h3>
+      <ul>
+        {d.reminders.android.map((k) => <li>{k}</li>)}
+      </ul>
+    </section>
+
+    <section id="times" aria-labelledby="times-h">
+      <h2 id="times-h">{d.toc.times}</h2>
+      <p>{d.times.p1}</p>
+      <ol>
+        {d.times.steps.map((k) => <li>{k}</li>)}
+      </ol>
+      <p class="caption">{d.times.note}</p>
+    </section>
+
+    <section id="widgets" aria-labelledby="widgets-h">
+      <h2 id="widgets-h">{d.toc.widgets}</h2>
+      <p>{d.widgets.p1}</p>
+      <ul>
+        {d.widgets.bullets.map((k) => <li>{k}</li>)}
+      </ul>
+    </section>
+
+    <section id="watch" aria-labelledby="watch-h">
+      <h2 id="watch-h">{d.toc.watch}</h2>
+      <p>{d.watch.p1}</p>
+      <ul>
+        {d.watch.bullets.map((k) => <li>{k}</li>)}
+      </ul>
+    </section>
+
+    <section id="exemption" aria-labelledby="exemption-h">
+      <h2 id="exemption-h">{d.toc.exemption}</h2>
+      <p>{d.exemption.p1}</p>
+      <ul>
+        {d.exemption.bullets.map((k) => <li>{k}</li>)}
+      </ul>
+    </section>
+
+    <section id="qada" aria-labelledby="qada-h">
+      <h2 id="qada-h">{d.toc.qada}</h2>
+      <p>{d.qada.p1}</p>
+      <ul>
+        {d.qada.bullets.map((k) => <li>{k}</li>)}
+      </ul>
+    </section>
+
+    <section id="streaks" aria-labelledby="streaks-h">
+      <h2 id="streaks-h">{d.toc.streaks}</h2>
+      <ul>
+        {d.streaks.bullets.map((k) => <li>{k}</li>)}
+      </ul>
+    </section>
+
+    <section id="location" aria-labelledby="location-h">
+      <h2 id="location-h">{d.toc.location}</h2>
+      <ul>
+        <li>{d.location.bullets[0]}</li>
+        <li>{d.location.bullets[1]}</li>
+        <li>
+          {locPre}<a href="/privacy">{d.location.privacyLink}</a>{locPost}
+        </li>
+      </ul>
+    </section>
+
+    <section id="export" aria-labelledby="export-h">
+      <h2 id="export-h">{d.toc.export}</h2>
+      <p>{d.export.p1}</p>
+    </section>
+
+    <section id="contact" aria-labelledby="contact-h">
+      <h2 id="contact-h">{d.toc.contact}</h2>
+      <p>
+        {contactPre}<a href={`mailto:${site.email}`}><strong>{site.email}</strong></a>{contactPost}
+      </p>
+      {
+        /*
+          A link, never an embed. docs/WEBSITE.md forbids third-party embeds, forms and cookies,
+          and the generated CSP (`default-src 'none'; connect-src 'none'; form-action 'none'`)
+          enforces that — so the board lives on somebody else's domain and this page points at it.
+          An outbound anchor changes nothing about what this site knows, which is still nothing.
+        */
+        site.feedbackUrl !== null && (
+          <p>
+            <a href={site.feedbackUrl} rel="noopener">
+              <strong>{d.contact.feedbackLink}</strong>
+            </a>
+            {d.contact.feedbackAfter}
+          </p>
+        )
+      }
+    </section>
+
+    {/* Credits. Not a question, so it stays out of the table of contents and the FAQPage JSON-LD. */}
+    <section id="credits" aria-labelledby="credits-h">
+      <h2 id="credits-h">{d.credits.h2}</h2>
+      <p>{d.credits.intro}</p>
+      <ul>
+        {credits.map((c) => (
+          <li><a href={c.url} rel="noopener"><strong>{c.name}</strong></a> — {d.credits.items[c.id]}</li>
+        ))}
+      </ul>
+    </section>
+  </div>
+</Base>
+
+<style>
+  .support {
+    max-width: 760px;
+  }
+  .support section {
+    margin-top: 2.5rem;
+  }
+  .support h2 {
+    font-size: 1.4rem;
+    padding-top: 1.2em;
+    border-top: 1px solid var(--hairline);
+  }
+  .support h3 {
+    margin-top: 1.4em;
+  }
+  .support li {
+    margin-bottom: 0.5em;
+  }
+  .toc {
+    margin-top: 1.5rem;
+  }
+  .toc-title {
+    font-size: 0.95rem;
+    margin-bottom: 0.4em;
+    color: var(--header);
+    border: 0;
+    padding: 0;
+  }
+  .toc ul {
+    margin: 0;
+    padding-inline-start: 1.2em;
+    columns: 2;
+    column-gap: 2em;
+  }
+  .toc li {
+    margin-bottom: 0.35em;
+  }
+  .toc a {
+    text-decoration: none;
+  }
+  .toc a:hover {
+    text-decoration: underline;
+  }
+  @media (max-width: 560px) {
+    .toc ul {
+      columns: 1;
+    }
+  }
+</style>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WatchFaceInfo>
+  <Preview value="@drawable/preview" />
+  <Category value="CATEGORY_EMPTY" />
+  <AvailableInRetail value="false" />
+  <MultipleInstancesAllowed value="false" />
+  <!-- Both complication slots are locked to the app's own data source and there are no user
+       configurations in v1, so there is nothing to edit. -->
+  <Editable value="false" />
+</WatchFaceInfo>

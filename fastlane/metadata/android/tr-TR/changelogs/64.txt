@@ -1,0 +1,5 @@
+• Namazları nasıl işaretleyeceğini seç: Basit (tek dokunuş) ya da Ayrıntılı (kılındı, geç, kaçırıldı). Ayarlar'dan değiştirebilirsin.
+• Widget hep geri sayıyor: güneş doğunca Öğle'ye (cuma günü Cuma'ya), bir namazı işaretleyince sakince sonrakine.
+• Widget artık sıfırın altına inmiyor; metni büyük yazı boyutunda da sığıyor.
+• Dokunuşlar hemen yanıt veriyor. Bugün ekranı sabah namazında yeni güne geçiyor.
+• Arkadaşının namazları daha hızlı ulaşıyor ve bildirim şeridinde görünüyor.

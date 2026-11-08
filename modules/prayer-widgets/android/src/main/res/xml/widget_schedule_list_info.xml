@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 4×4 default. Same update contract as widget_schedule_info.xml: redraws come from the app
+     and the transition alarm, plus a 30-minute system tick as a safety net (D189). -->
+<appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
+  android:minWidth="250dp"
+  android:minHeight="250dp"
+  android:targetCellWidth="4"
+  android:targetCellHeight="4"
+  android:minResizeWidth="250dp"
+  android:minResizeHeight="180dp"
+  android:resizeMode="horizontal|vertical"
+  android:widgetCategory="home_screen"
+  android:updatePeriodMillis="1800000"
+  android:previewLayout="@layout/widget_schedule_list_preview"
+  android:description="@string/widget_schedule_list_description" />

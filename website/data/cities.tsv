@@ -1,0 +1,2536 @@
+# Cities the website offers for manual location choice.
+#
+# Source: GeoNames (https://www.geonames.org/), cities15000 + alternateNamesV2,
+# licensed CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/). The site credits
+# GeoNames on /support, which is what the licence asks for.
+#
+# Selection: every national capital, the five largest places in every country, and the
+# 2000 largest places worldwide. That mix keeps small countries usable without letting
+# the file grow past what a phone should download.
+#
+# Regenerate with scripts/fetch-cities.py (needs network); the build only reads this file,
+# so a Cloudflare build never depends on GeoNames being up.
+#
+# Columns: geonameid, name (local), ascii, country, lat, lon, tz, name_ar, name_tr
+# Empty ar/tr means no distinct localized name exists; the site falls back to `name`.
+# Retrieved 2026-08-31 — 2520 cities.
+1814906	Chongqing	Chongqing	CN	29.5603	106.5577	Asia/Shanghai	تشونغتشينغ	Çongçing
+1796236	Shanghai	Shanghai	CN	31.2222	121.4581	Asia/Shanghai	شانغهاي	Şanghay
+1815286	Chengdu	Chengdu	CN	30.6667	104.0667	Asia/Shanghai	تشنغدو	Çengdu
+1816670	Beijing	Beijing	CN	39.9075	116.3972	Asia/Shanghai	بكين	Pekin
+1809858	Guangzhou	Guangzhou	CN	23.1167	113.2500	Asia/Shanghai	غوانزو	Guangzhou
+1795565	Shenzhen	Shenzhen	CN	22.5455	114.0683	Asia/Shanghai	شينزين	
+2314302	Kinshasa	Kinshasa	CD	-4.3276	15.3136	Africa/Kinshasa	كينشاسا	Kinşasa
+745044	Istanbul	Istanbul	TR	41.0138	28.9497	Europe/Istanbul	اسطنبول	İstanbul
+2332459	Lagos	Lagos	NG	6.4541	3.3947	Africa/Lagos	لاغوس	Lagos
+1566083	Ho Chi Minh City	Ho Chi Minh City	VN	10.8230	106.6296	Asia/Ho_Chi_Minh	مدينة هو تشي مينه	
+1792947	Tianjin	Tianjin	CN	39.1422	117.1767	Asia/Shanghai	تيانجين	Tianjin
+1791247	Wuhan	Wuhan	CN	30.5833	114.2667	Asia/Shanghai	ووهان	Vuhan
+1172451	Lahore	Lahore	PK	31.5580	74.3507	Asia/Karachi	لاهور	Lahor
+1790630	Xi’an	Xi'an	CN	34.2583	108.9286	Asia/Shanghai	شيآن	Xi'an
+1275339	Mumbai	Mumbai	IN	19.0728	72.8826	Asia/Kolkata	مومباي	Mumbai
+1784658	Zhengzhou	Zhengzhou	CN	34.7578	113.6486	Asia/Shanghai	تشنغتشو	Çengçou
+3448439	São Paulo	Sao Paulo	BR	-23.5475	-46.6361	America/Sao_Paulo	ساو باولو	Sao Paulo
+3530597	Mexico City	Mexico City	MX	19.4285	-99.1277	America/Mexico_City	مدينة مكسيكو	Ciudad de Mexico
+1808926	Hangzhou	Hangzhou	CN	30.2936	120.1614	Asia/Shanghai	هانغتشو	Hangzhou
+1174872	Karachi	Karachi	PK	24.8608	67.0104	Asia/Karachi	كراتشي	Karaçi
+1795270	Shijiazhuang	Shijiazhuang	CN	38.0414	114.4786	Asia/Shanghai	شيجياتشوانغ	Shijiazhuang
+1273294	Delhi	Delhi	IN	28.6519	77.2315	Asia/Kolkata	دلهي	
+524901	Moscow	Moscow	RU	55.7520	37.6178	Europe/Moscow	موسكو	Moskova
+1185241	Dhaka	Dhaka	BD	23.7104	90.4074	Asia/Dhaka	دكا	Dakka
+1835848	Seoul	Seoul	KR	37.5660	126.9784	Asia/Seoul	سيول	Seul
+2037013	Harbin	Harbin	CN	45.7500	126.6500	Asia/Shanghai	هاربن	Harbin
+1850147	Tokyo	Tokyo	JP	35.6895	139.6917	Asia/Tokyo	طوكيو	Tokyo
+1812545	Dongguan	Dongguan	CN	23.0180	113.7487	Asia/Shanghai	دونغقوان	
+360630	Cairo	Cairo	EG	30.0626	31.2497	Africa/Cairo	القاهرة	Kahire
+1808722	Hefei	Hefei	CN	31.8639	117.2808	Asia/Shanghai	خفي	Hefei
+993800	Johannesburg	Johannesburg	ZA	-26.2023	28.0436	Africa/Johannesburg	جوهانسبرغ	Johannesburg
+1791681	Weifang	Weifang	CN	36.7100	119.1019	Asia/Shanghai		
+1799962	Nanjing	Nanjing	CN	32.0617	118.7778	Asia/Shanghai	نانجينغ	Nankin
+1805753	Jinan	Jinan	CN	36.6683	116.9972	Asia/Shanghai	جينان	Jinan
+2034937	Shenyang	Shenyang	CN	41.7922	123.4328	Asia/Shanghai	شنيانغ	Shenyang
+2038180	Changchun	Changchun	CN	43.8800	125.3228	Asia/Shanghai	تشانغتشون	Çangçun
+1811103	Foshan	Foshan	CN	23.0268	113.1315	Asia/Shanghai	فوشان	
+2643743	London	London	GB	51.5085	-0.1257	Europe/London	لندن	Londra
+5128581	New York City	New York City	US	40.7143	-74.0060	America/New_York	نيويورك	New York
+1799869	Nanning	Nanning	CN	22.8167	108.3167	Asia/Shanghai	نانينغ	Nanning
+1642911	Jakarta	Jakarta	ID	-6.2146	106.8451	Asia/Jakarta	جاكارتا	Jakarta
+1277333	Bengaluru	Bengaluru	IN	12.9719	77.5937	Asia/Kolkata	بنغالور	Bengaluru
+1804651	Kunming	Kunming	CN	25.0389	102.7183	Asia/Shanghai	كونمينغ	Kunming
+1810821	Fuzhou	Fuzhou	CN	26.0614	119.3061	Asia/Shanghai	فوزهو	Fuzhou
+1581130	Hanoi	Hanoi	VN	21.0245	105.8412	Asia/Bangkok	هانوي	Hanoi
+1668341	Taipei	Taipei	TW	25.0531	121.5264	Asia/Taipei	تايبيه	Taipei
+3936456	Lima	Lima	PE	-12.0432	-77.0282	America/Lima	ليما	Lima
+3688689	Bogotá	Bogota	CO	4.6097	-74.0817	America/Bogota	بوغوتا	Bogota
+1814087	Dalian	Dalian	CN	38.9122	121.6022	Asia/Shanghai	داليان	
+1819729	Hong Kong	Hong Kong	HK	22.2783	114.1747	Asia/Hong_Kong	هونغ كونغ	Hong Kong
+98182	Baghdad	Baghdad	IQ	33.3406	44.4009	Asia/Baghdad	بغداد	Bağdat
+1790842	Wuzhong	Wuzhong	CN	37.9867	106.2010	Asia/Shanghai		
+1797929	Qingdao	Qingdao	CN	36.0649	120.3804	Asia/Shanghai	تشينغداو	
+112931	Tehran	Tehran	IR	35.6944	51.4215	Asia/Tehran	طهران	Tahran
+1787093	Yantai	Yantai	CN	37.4765	121.4408	Asia/Shanghai		
+1269843	Hyderabad	Hyderabad	IN	17.3840	78.4564	Asia/Kolkata	حیدر آباد	
+3451190	Rio de Janeiro	Rio de Janeiro	BR	-22.9064	-43.1822	America/Sao_Paulo	ريو دي جانيرو	Rio de Janeiro
+1886760	Suzhou	Suzhou	CN	31.3041	120.5954	Asia/Shanghai	سوجو	
+11072148	Puxi	Puxi	CN	31.2441	121.4659	Asia/Shanghai		
+1279233	Ahmedabad	Ahmedabad	IN	23.0258	72.5873	Asia/Kolkata	أحمد آباد	Ahmedabad
+2293538	Abidjan	Abidjan	CI	5.3544	-4.0017	Africa/Abidjan	أبيدجان	Abidjan
+1788534	Xinyang	Xinyang	CN	32.1228	114.0656	Asia/Shanghai	شينيانج	
+1809461	Guiyang	Guiyang	CN	26.5833	106.7167	Asia/Shanghai	غوييانغ	Guiyang
+1798524	Pudong	Pudong	CN	31.2400	121.5009	Asia/Shanghai		
+2147714	Sydney	Sydney	AU	-33.8678	151.2073	Australia/Sydney	سيدني	Sidney
+1880252	Singapore	Singapore	SG	1.2897	103.8501	Asia/Singapore	سنغافورة	
+2158177	Melbourne	Melbourne	AU	-37.8140	144.9633	Australia/Melbourne	ملبورن	Melbourne
+160263	Dar es Salaam	Dar es Salaam	TZ	-6.8235	39.2695	Africa/Dar_es_Salaam	دار السلام	Darüsselam
+498817	Saint Petersburg	Saint Petersburg	RU	59.9386	30.3141	Europe/Moscow	سانت بطرسبرغ	Sankt Peterburg
+1793511	Taiyuan	Taiyuan	CN	37.8694	112.5603	Asia/Shanghai	تاي يوان	Taiyuan
+361058	Alexandria	Alexandria	EG	31.2018	29.9158	Africa/Cairo	الإسكندرية	İskenderiye
+1609350	Bangkok	Bangkok	TH	13.7540	100.5014	Asia/Bangkok	بانكوك	Bangkok
+2335204	Kano	Kano	NG	12.0001	8.5167	Africa/Lagos	كانو	Kano
+3871336	Santiago	Santiago	CL	-33.4569	-70.6483	America/Santiago	سانتياغو	Santiago
+3369157	Cape Town	Cape Town	ZA	-33.9258	18.4232	Africa/Johannesburg	كيب تاون	Cape Town
+1168197	Peshawar	Peshawar	PK	34.0080	71.5785	Asia/Karachi	بيشاور	Peşaver
+1785286	Zibo	Zibo	CN	36.7906	118.0633	Asia/Shanghai	زيبو	
+105343	Jeddah	Jeddah	SA	21.4901	39.1862	Asia/Riyadh	جدة	Cidde
+1264527	Chennai	Chennai	IN	13.0878	80.2785	Asia/Kolkata	تشيناي	
+1275004	Kolkata	Kolkata	IN	22.5626	88.3630	Asia/Kolkata	كلكتا	Kalküta
+1790645	Xiamen	Xiamen	CN	24.4798	118.0819	Asia/Shanghai	شيامن	
+1255364	Surat	Surat	IN	21.1959	72.8302	Asia/Kolkata		
+1787227	Yangzhou	Yangzhou	CN	32.3972	119.4358	Asia/Shanghai	يانغتشو	
+1797873	Huai'an	Huai'an	CN	33.5886	119.0192	Asia/Shanghai		
+1298824	Yangon	Yangon	MM	16.8053	96.1561	Asia/Yangon	يانغون	Yangon
+13308620	Bao'an	Bao'an	CN	22.5521	113.8829	Asia/Shanghai		
+1138958	Kabul	Kabul	AF	34.5281	69.1723	Asia/Kabul	كابل	Kâbil
+184745	Nairobi	Nairobi	KE	-1.2833	36.8167	Africa/Nairobi	نيروبي	Nairobi
+1790923	Wuxi	Wuxi	CN	31.5689	120.2886	Asia/Shanghai	ووشي	
+360995	Giza	Giza	EG	30.0094	31.2086	Africa/Cairo	الجيزة	
+1804430	Lanzhou	Lanzhou	CN	36.0570	103.8399	Asia/Shanghai	لانتشو	Lanzhou
+2460596	Bamako	Bamako	ML	12.6091	-7.9752	Africa/Bamako	باماكو	Bamako
+108410	Riyadh	Riyadh	SA	24.6877	46.7219	Asia/Riyadh	الرياض	Riyad
+1529102	Ürümqi	UEruemqi	CN	43.8010	87.6005	Asia/Urumqi	أورومتشي	Urumçi
+12908892	New Taipei City	New Taipei City	TW	25.0620	121.4570	Asia/Taipei		Yeni Taipei
+12747063	New Territories	New Territories	HK	22.4244	114.1110	Asia/Hong_Kong		
+1205733	Chattogram	Chattogram	BD	22.3384	91.8317	Asia/Dhaka	شيتاغونغ	Chattogram
+344979	Addis Ababa	Addis Ababa	ET	9.0250	38.7469	Africa/Addis_Ababa	أديس أبابا	Addis Ababa
+1785453	Zaozhuang	Zaozhuang	CN	34.8647	117.5542	Asia/Shanghai		
+6986104	Zhongshan	Zhongshan	CN	22.5231	113.3791	Asia/Shanghai		
+1795940	Shantou	Shantou	CN	23.3549	116.6788	Asia/Shanghai	شانتو	
+5368361	Los Angeles	Los Angeles	US	34.0522	-118.2437	America/Los_Angeles	لوس أنجلوس	Los Angeles
+1179400	Faisalabad	Faisalabad	PK	31.4155	73.0897	Asia/Karachi	فيصل آباد	
+292223	Dubai	Dubai	AE	25.0772	55.3093	Asia/Dubai	دبي	Dubai
+1848354	Yokohama	Yokohama	JP	35.4333	139.6500	Asia/Tokyo	يوكوهاما	
+1799397	Ningbo	Ningbo	CN	29.8782	121.5494	Asia/Shanghai	نينغبو	
+1912214	Nanhai	Nanhai	CN	23.0219	113.1428	Asia/Shanghai		
+2553604	Casablanca	Casablanca	MA	33.5883	-7.6114	Africa/Casablanca	الدار البيضاء	Dâr-ül-Beydâ
+2339354	Ibadan	Ibadan	NG	7.3776	3.9059	Africa/Lagos	إبادان	İbadan
+1798425	Puyang	Puyang	CN	29.4568	119.8887	Asia/Shanghai		
+323786	Ankara	Ankara	TR	39.9199	32.8543	Europe/Istanbul	أنقرة	Ankara
+2038087	Chengde	Chengde	CN	40.9519	117.9588	Asia/Shanghai		
+1794903	Shiyan	Shiyan	CN	32.6475	110.7781	Asia/Shanghai		
+2036892	Hohhot	Hohhot	CN	40.8106	111.6522	Asia/Shanghai	هوهوت	Huhhot
+2950159	Berlin	Berlin	DE	52.5244	13.4105	Europe/Berlin	برلين	Berlin
+1793346	Tangshan	Tangshan	CN	39.6438	118.1832	Asia/Shanghai		
+1166993	Rawalpindi	Rawalpindi	PK	33.5973	73.0479	Asia/Karachi	راولبندي	Ravalpindi
+13512505	Lüliang	Lueliang	CN	37.5192	111.1444	Asia/Shanghai		
+1007311	Durban	Durban	ZA	-29.8579	31.0292	Africa/Johannesburg	ديربان	
+2038632	Anshan	Anshan	CN	41.1236	122.9900	Asia/Shanghai		
+1815456	Changzhou	Changzhou	CN	31.7736	119.9540	Asia/Shanghai		
+1838524	Busan	Busan	KR	35.1017	129.0300	Asia/Seoul	بوسان	Pusan
+3117735	Madrid	Madrid	ES	40.4165	-3.7026	Europe/Madrid	مدريد	Madrid
+1871859	Pyongyang	Pyongyang	KP	39.0339	125.7543	Asia/Pyongyang	بيونغيانغ	Pyongyang
+1259229	Pune	Pune	IN	18.5196	73.8554	Asia/Kolkata	بونه	Pune
+2037799	Datong	Datong	CN	40.0936	113.2914	Asia/Shanghai		
+750269	Bursa	Bursa	TR	40.1956	29.0601	Europe/Istanbul	بورصة	Bursa
+1815577	Changsha	Changsha	CN	28.1987	112.9709	Asia/Shanghai	تشانغشا	Changsha
+1692192	Quezon City	Quezon City	PH	14.6488	121.0509	Asia/Manila		
+1269515	Jaipur	Jaipur	IN	26.9196	75.7878	Asia/Kolkata	جايبور	Jaipur
+1807681	Huainan	Huainan	CN	32.6264	116.9969	Asia/Shanghai		
+1625822	Surabaya	Surabaya	ID	-7.2492	112.7508	Asia/Jakarta	سورابايا	
+1843564	Incheon	Incheon	KR	37.4565	126.7052	Asia/Seoul	إنتشون	İncheon
+1809078	Haikou	Haikou	CN	20.0342	110.3465	Asia/Shanghai	هايكو	Haikou
+3646738	Caracas	Caracas	VE	10.4880	-66.8792	America/Caracas	كاراكاس	Karakas
+703448	Kyiv	Kyiv	UA	50.4547	30.5238	Europe/Kyiv	كييف	Kiev
+311046	İzmir	Izmir	TR	38.4127	27.1384	Europe/Istanbul	إزمير	İzmir
+1806776	Huizhou	Huizhou	CN	23.1115	114.4152	Asia/Shanghai		
+3435910	Buenos Aires	Buenos Aires	AR	-34.6131	-58.3772	America/Argentina/Buenos_Aires	بوينس آيرس	
+1786657	Yinchuan	Yinchuan	CN	38.4681	106.2731	Asia/Shanghai	مدينة ينشوان	Yinchuan
+1668399	Taichung	Taichung	TW	24.1469	120.6839	Asia/Taipei	تاي شانغ	
+1267995	Kanpur	Kanpur	IN	26.4652	80.3498	Asia/Kolkata		
+6167865	Toronto	Toronto	CA	43.7064	-79.3986	America/Toronto	تورونتو	Toronto
+3652462	Quito	Quito	EC	-0.2298	-78.5250	America/Guayaquil	كيتو	Quito
+2174003	Brisbane	Brisbane	AU	-27.4679	153.0281	Australia/Brisbane	بريزبن	Brisbane
+2240449	Luanda	Luanda	AO	-8.8368	13.2343	Africa/Luanda	لواندا	
+2038432	Baotou	Baotou	CN	40.6516	109.8439	Asia/Shanghai		
+1853909	Osaka	Osaka	JP	34.6938	135.5011	Asia/Tokyo	أوساكا	Osaka
+1803318	Linyi	Linyi	CN	35.0631	118.3428	Asia/Shanghai		
+1816971	Baoding	Baoding	CN	38.8729	115.4625	Asia/Shanghai		
+1673820	Kaohsiung	Kaohsiung	TW	22.6163	120.3133	Asia/Taipei	كاوهسيونغ	Kaohsiung
+5110302	Brooklyn	Brooklyn	US	40.6501	-73.9496	America/New_York	بروكلين	Brooklyn
+3657509	Guayaquil	Guayaquil	EC	-2.1962	-79.8862	America/Guayaquil	غواياكيل	
+3470127	Belo Horizonte	Belo Horizonte	BR	-19.9208	-43.9378	America/Sao_Paulo	بيلو هوريزونتي	Belo Horizonte
+1800480	Minhang	Minhang	CN	31.1088	121.3747	Asia/Shanghai		
+11995100	Bazhong	Bazhong	CN	31.8694	106.7443	Asia/Shanghai	باتشونغ	
+3450554	Salvador	Salvador	BR	-12.9756	-38.4910	America/Bahia	سالفادور، باهيا	Salvador
+2036427	Jinzhou	Jinzhou	CN	41.1078	121.1417	Asia/Shanghai		
+2352778	Abuja	Abuja	NG	9.0579	7.4951	Africa/Lagos	أبوجا	
+1200109	Gazipur	Gazipur	BD	23.9984	90.4223	Asia/Dhaka	غازيبور	Gazipur
+4887398	Chicago	Chicago	US	41.8500	-87.6500	America/Chicago	شيكاغو	Şikago
+1791388	Wenzhou	Wenzhou	CN	27.9994	120.6668	Asia/Shanghai	ونتشو	
+1649378	Bekasi	Bekasi	ID	-6.2349	106.9896	Asia/Jakarta	بيكاسي	
+2253354	Dakar	Dakar	SN	14.6937	-17.4441	Africa/Dakar	داكار	
+1581298	Haiphong	Haiphong	VN	20.8648	106.6834	Asia/Bangkok	هايفونغ	Haiphong
+1785725	Yunfu	Yunfu	CN	22.9279	112.0381	Asia/Shanghai		
+6619347	Navi Mumbai	Navi Mumbai	IN	19.0368	73.0158	Asia/Kolkata		
+53654	Mogadishu	Mogadishu	SO	2.0371	45.3438	Africa/Mogadishu	مقديشو	Mogadişu
+2298890	Kumasi	Kumasi	GH	6.6885	-1.6244	Africa/Accra	كوماسي	
+1650357	Bandung	Bandung	ID	-6.9222	107.6069	Asia/Jakarta	باندونج	
+1177662	Gujranwala	Gujranwala	PK	32.1557	74.1870	Asia/Karachi		
+1214520	Medan	Medan	ID	3.5833	98.6667	Asia/Jakarta	ميدان	
+1264733	Lucknow	Lucknow	IN	26.8393	80.9231	Asia/Kolkata	لكهنؤ	
+1788852	Xining	Xining	CN	36.6255	101.7574	Asia/Shanghai	شينينغ	Xining
+2357048	Ouagadougou	Ouagadougou	BF	12.3657	-1.5339	Africa/Ouagadougou	واغادوغو	
+1262180	Nagpur	Nagpur	IN	21.1463	79.0849	Asia/Kolkata	ناغبور	
+3399415	Fortaleza	Fortaleza	BR	-3.7172	-38.5431	America/Fortaleza	فورتاليزا	Fortaleza
+3687925	Cali	Cali	CO	3.4305	-76.5199	America/Bogota	كالي	Cali
+2034439	Tieling	Tieling	CN	42.2931	123.8414	Asia/Shanghai		
+2063523	Perth	Perth	AU	-31.9522	115.8614	Australia/Perth	بيرث	Perth
+1835329	Daegu	Daegu	KR	35.8703	128.5911	Asia/Seoul	ديغو	Daegu
+2507480	Algiers	Algiers	DZ	36.7323	3.0875	Africa/Algiers	الجزائر	Cezayir
+1800163	Nanchang	Nanchang	CN	28.6840	115.8531	Asia/Shanghai	نانتشانغ	Nanchang
+587084	Baku	Baku	AZ	40.3777	49.8920	Asia/Baku	باكو	Bakü
+1856057	Nagoya	Nagoya	JP	35.1815	136.9064	Asia/Tokyo	ناغويا	
+3169070	Rome	Rome	IT	41.8919	12.5113	Europe/Rome	روما	Roma
+5133273	Queens	Queens	US	40.6815	-73.8365	America/New_York		
+4699066	Houston	Houston	US	29.7633	-95.3633	America/Chicago	هيوستن	Houston
+124665	Mashhad	Mashhad	IR	36.2981	59.6057	Asia/Tehran	مشهد	Meşhed
+1795855	Shaoxing	Shaoxing	CN	30.0024	120.5786	Asia/Shanghai	شاوكسينج	
+1799722	Nantong	Nantong	CN	32.0303	120.8747	Asia/Shanghai		
+1816917	Baoshan	Baoshan	CN	31.4084	121.4896	Asia/Shanghai		
+1819609	Kowloon	Kowloon	HK	22.3167	114.1833	Asia/Hong_Kong		
+314830	Gaziantep	Gaziantep	TR	37.0594	37.3825	Europe/Istanbul	عنتاب	Gaziantep
+922704	Lubumbashi	Lubumbashi	CD	-11.6609	27.4794	Africa/Lubumbashi	لوبومباشي	Lubumbashi
+3663517	Manaus	Manaus	BR	-3.1019	-60.0250	America/Manaus	ماناوس	Manaus
+909137	Lusaka	Lusaka	ZM	-15.4067	28.2871	Africa/Lusaka	لوساكا	
+3469058	Brasília	Brasilia	BR	-15.7797	-47.9297	America/Sao_Paulo	برازيليا	Brasília
+1790437	Zhuhai	Zhuhai	CN	22.2769	113.5678	Asia/Shanghai	زوهاي	
+3492908	Santo Domingo	Santo Domingo	DO	18.4719	-69.8923	America/Santo_Domingo		
+2037886	Dandong	Dandong	CN	40.1292	124.3947	Asia/Shanghai	داندونغ	
+2365267	Lomé	Lome	TG	6.1287	1.2215	Africa/Lome	لومي	
+1169825	Multan	Multan	PK	30.1968	71.4782	Asia/Karachi		Multan
+3553478	Havana	Havana	CU	23.1330	-82.3830	America/Havana	هافانا	Havana
+1645524	Depok	Depok	ID	-6.4000	106.8186	Asia/Jakarta		
+8347664	Ordos	Ordos	CN	39.6086	109.7816	Asia/Shanghai		
+2988507	Paris	Paris	FR	48.8534	2.3488	Europe/Paris	باريس	Paris
+1273865	Coimbatore	Coimbatore	IN	11.0055	76.9661	Asia/Kolkata	كويمباتور	
+12359313	Qingyang	Qingyang	CN	35.7098	107.6445	Asia/Shanghai		
+2324774	Port Harcourt	Port Harcourt	NG	4.7774	7.0134	Africa/Lagos	بورت هاركورت	Port Harcourt
+964137	Pretoria	Pretoria	ZA	-25.7449	28.1878	Africa/Johannesburg	بريتوريا	Pretoria
+3860259	Córdoba	Cordoba	AR	-31.4065	-64.1885	America/Argentina/Cordoba	كوردوبا	Córdoba
+209228	Mbuji-Mayi	Mbuji-Mayi	CD	-6.1360	23.5898	Africa/Lubumbashi	مبوجي ماي	Mbuji-Mayi
+170063	Aleppo	Aleppo	SY	36.2012	37.1612	Asia/Damascus	حلب	Halep
+1785623	Kunshan	Kunshan	CN	31.3776	120.9543	Asia/Shanghai		
+99071	Al Mawşil al Jadīdah	Al Mawsil al Jadidah	IQ	36.3327	43.1056	Asia/Baghdad	الموصل الجديدة	
+1783621	Zunyi	Zunyi	CN	27.6867	106.9072	Asia/Shanghai		
+3911925	La Paz	La Paz	BO	-16.5000	-68.1500	America/La_Paz	لاباز	La Paz
+10859300	Lianyungang	Lianyungang	CN	34.5984	119.2156	Asia/Shanghai		
+3674962	Medellín	Medellin	CO	6.2450	-75.5715	America/Bogota	ميديلين	Medellin
+1802940	Puning	Puning	CN	23.3107	116.1687	Asia/Shanghai		
+1269743	Indore	Indore	IN	22.7179	75.8333	Asia/Kolkata	إندور	
+2260535	Brazzaville	Brazzaville	CG	-4.2661	15.2832	Africa/Brazzaville	برازافيل	Brazavil
+1512569	Tashkent	Tashkent	UZ	41.2647	69.2163	Asia/Tashkent	طشقند	Taşkent
+1810638	Ganzhou	Ganzhou	CN	25.8466	114.9326	Asia/Shanghai		
+1526384	Almaty	Almaty	KZ	43.2525	76.9115	Asia/Almaty	ألماتي	Almatı
+379252	Khartoum	Khartoum	SD	15.5518	32.5324	Africa/Khartoum	خرطوم	Hartum
+2911298	Hamburg	Hamburg	DE	53.5507	9.9930	Europe/Berlin	هامبورغ	Hamburg
+2128295	Sapporo	Sapporo	JP	43.0667	141.3500	Asia/Tokyo	سابورو	
+1794035	Songjiang	Songjiang	CN	31.0344	121.2233	Asia/Shanghai		
+2306104	Accra	Accra	GH	5.5560	-0.1969	Africa/Accra	أكرا	Accra
+3464975	Curitiba	Curitiba	BR	-25.4278	-49.2731	America/Sao_Paulo	كوريتيبا	Curitiba
+71137	Sanaa	Sanaa	YE	15.3545	44.2065	Asia/Aden	صنعاء	San'a
+2422465	Conakry	Conakry	GN	9.5380	-13.6773	Africa/Conakry		
+1625084	Tangerang	Tangerang	ID	-6.1781	106.6300	Asia/Jakarta		
+3981609	Tijuana	Tijuana	MX	32.5027	-117.0037	America/Tijuana	تيخوانا	Tijuana
+1176734	Hyderabad	Hyderabad	PK	25.3969	68.3772	Asia/Karachi	حيدر آباد	Haydarabad
+276781	Beirut	Beirut	LB	33.8933	35.5016	Asia/Beirut	بيروت	Beyrut
+1797121	Jieyang	Jieyang	CN	23.5418	116.3658	Asia/Shanghai		
+2036502	Jilin	Jilin	CN	43.8465	126.5608	Asia/Shanghai		
+1806508	Jiading	Jiading	CN	31.3858	121.2446	Asia/Shanghai		
+683506	Bucharest	Bucharest	RO	44.4323	26.1063	Europe/Bucharest	بوخارست	Bükreş
+2422488	Camayenne	Camayenne	GN	9.5350	-13.6878	Africa/Conakry		
+195272	Kakamega	Kakamega	KE	0.2842	34.7523	Africa/Nairobi		
+1796134	Shangqiu	Shangqiu	CN	34.4143	115.6561	Asia/Shanghai		
+1800146	Nanchong	Nanchong	CN	30.7951	106.0847	Asia/Shanghai		
+1668355	Tainan	Tainan	TW	22.9908	120.2133	Asia/Taipei	تاينان	
+2335727	Kaduna	Kaduna	NG	10.5264	7.4388	Africa/Lagos	كادونا	Kaduna
+365137	Omdurman	Omdurman	SD	15.6445	32.4777	Africa/Khartoum	أم درمان	Omdurman
+1715348	Davao	Davao	PH	7.0731	125.6128	Asia/Manila	دافاو	Davao
+1254661	Thāne	Thane	IN	19.1970	72.9635	Asia/Kolkata	تاني	Thane
+3526683	Iztapalapa	Iztapalapa	MX	19.3553	-99.0622	America/Mexico_City		
+316541	Diyarbakır	Diyarbakir	TR	37.9136	40.2172	Europe/Istanbul	ديار بكر	Diyarbakır
+3904906	Santa Cruz de la Sierra	Santa Cruz de la Sierra	BO	-17.7863	-63.1812	America/La_Paz	سانتا كروز دي لا سيرا	Santa Cruz de la Sierra
+1253573	Vadodara	Vadodara	IN	22.2994	73.2081	Asia/Kolkata	فادودارا	Vadodara
+325363	Adana	Adana	TR	36.9862	35.3253	Europe/Istanbul	أضنة	Adana
+2034714	Siping	Siping	CN	43.1614	124.3778	Asia/Shanghai		
+1799629	Nanyang	Nanyang	CN	33.0052	112.5466	Asia/Shanghai		
+292968	Abu Dhabi	Abu Dhabi	AE	24.4512	54.3970	Asia/Dubai	أبوظبي	Abu Dabi
+1633070	Palembang	Palembang	ID	-2.9167	104.7458	Asia/Jakarta	باليمبانج	
+292672	Sharjah	Sharjah	AE	25.3342	55.4122	Asia/Dubai	إمارة الشارقة	Şarika
+1275841	Bhopal	Bhopal	IN	23.2547	77.4029	Asia/Kolkata	بوبال	
+7001398	Nanshan Residential	Nanshan Residential	CN	22.5333	113.9298	Asia/Shanghai		
+1806299	Jiangmen	Jiangmen	CN	22.5833	113.0833	Asia/Shanghai		
+2347283	Benin City	Benin City	NG	6.3381	5.6258	Africa/Lagos	بنين	Benin City
+1815251	Jiangyin	Jiangyin	CN	31.9110	120.2630	Asia/Shanghai		
+1810845	Fuyang	Fuyang	CN	32.9000	115.8167	Asia/Shanghai		
+6077243	Montréal	Montreal	CA	45.5088	-73.5878	America/Toronto	مونتريال	Montreal
+11838258	Bayan Nur	Bayan Nur	CN	40.7414	107.3860	Asia/Shanghai		
+1793036	Chengtangcun	Chengtangcun	CN	35.0836	117.1907	Asia/Shanghai		
+3633009	Maracaibo	Maracaibo	VE	10.6423	-71.6109	America/Caracas	ماراكايبو	Maracaibo
+1815395	Chaozhou	Chaozhou	CN	23.6540	116.6226	Asia/Shanghai		
+625144	Minsk	Minsk	BY	53.9002	27.5665	Europe/Minsk	مينسك	Minsk
+3054643	Budapest	Budapest	HU	47.4984	19.0404	Europe/Budapest	بودابست	Budapeşte
+1797945	Qingyuan	Qingyuan	CN	23.7000	113.0333	Asia/Shanghai		
+1793724	Tai’an	Tai'an	CN	36.1853	117.1200	Asia/Shanghai		
+1258393	Rasapūdipalem	Rasapudipalem	IN	17.7331	83.3162	Asia/Kolkata		
+7626690	Pimpri-Chinchwad	Pimpri-Chinchwad	IN	18.6187	73.8037	Asia/Kolkata		
+1720151	Caloocan	Caloocan	PH	14.6495	120.9679	Asia/Manila		
+756135	Warsaw	Warsaw	PL	52.2298	21.0118	Europe/Warsaw	وارسو	Varşova
+953781	Soweto	Soweto	ZA	-26.2678	27.8585	Africa/Johannesburg	سويتو	Soweto
+1627896	Semarang	Semarang	ID	-6.9931	110.4208	Asia/Jakarta	سيمارانج	
+3521081	Puebla	Puebla	MX	19.0478	-98.2072	America/Mexico_City	بويبلا	Puebla
+2761369	Vienna	Vienna	AT	48.2085	16.3721	Europe/Vienna	فيينا	Viyana
+3128760	Barcelona	Barcelona	ES	41.3888	2.1590	Europe/Madrid	برشلونة	Barselona
+1260086	Patna	Patna	IN	25.5941	85.1356	Asia/Kolkata	باتنا	
+99072	Mosul	Mosul	IQ	36.3350	43.1189	Asia/Baghdad	الموصل	Musul
+12165956	Kallakurichi	Kallakurichi	IN	11.7338	78.9592	Asia/Kolkata		
+232422	Kampala	Kampala	UG	0.3163	32.5822	Africa/Kampala	كمبالا	Kampala
+7283386	Changshu	Changshu	CN	31.6461	120.7422	Asia/Shanghai		
+1789289	Ximeicun	Ximeicun	CN	24.9877	118.3858	Asia/Shanghai		
+2538475	Rabat	Rabat	MA	34.0132	-6.8326	Africa/Casablanca	رباط	Rabat
+3390760	Recife	Recife	BR	-8.0539	-34.8811	America/Recife	ريسيفي	Recife
+5308655	Phoenix	Phoenix	US	33.4484	-112.0740	America/Phoenix	فينيكس	Phoenix
+1793743	Suzhou	Suzhou	CN	33.6361	116.9789	Asia/Shanghai		
+3529612	Ecatepec de Morelos	Ecatepec de Morelos	MX	19.6049	-99.0606	America/Mexico_City		
+1802206	Lu’an	Lu'an	CN	31.7356	116.5169	Asia/Shanghai		
+3625549	Valencia	Valencia	VE	10.1615	-68.0004	America/Caracas	بلنسية	Valencia
+1264728	Ludhiana	Ludhiana	IN	30.9120	75.8538	Asia/Kolkata		
+1787746	Yancheng	Yancheng	CN	33.3575	120.1573	Asia/Shanghai		
+1496747	Novosibirsk	Novosibirsk	RU	55.0226	82.9317	Asia/Novosibirsk	نوفوسيبيرسك	Novosibirsk
+95446	Erbil	Erbil	IQ	36.1912	44.0094	Asia/Baghdad	أربيل	Erbil
+1863967	Fukuoka	Fukuoka	JP	33.6000	130.4167	Asia/Tokyo	فوكوكا	
+1793505	Taizhou	Taizhou	CN	32.4907	119.9081	Asia/Shanghai		
+2037860	Daqing	Daqing	CN	46.5833	125.0000	Asia/Shanghai		
+1701668	Manila	Manila	PH	14.6042	120.9822	Asia/Manila	مانيلا	Manila
+1791236	Wuhu	Wuhu	CN	31.3526	118.4295	Asia/Shanghai		
+3991164	Santiago de Querétaro	Santiago de Queretaro	MX	20.5881	-100.3881	America/Mexico_City	سانتياغو دي كويريتارو	Santiago de Querétaro
+1813325	Dazhou	Dazhou	CN	31.2106	107.4631	Asia/Shanghai		
+3998655	León de los Aldama	Leon de los Aldama	MX	21.1218	-101.6825	America/Mexico_City		
+104515	Makkah	Makkah	SA	21.4266	39.8256	Asia/Riyadh	مكة المكرمة	Mekke
+4560349	Philadelphia	Philadelphia	US	39.9524	-75.1636	America/New_York	فيلادلفيا	Philadelphia
+1821306	Phnom Penh	Phnom Penh	KH	11.5625	104.9160	Asia/Phnom_Penh	بنوم بنه	Phnom Penh
+1809498	Guilin	Guilin	CN	25.2802	110.2964	Asia/Shanghai		
+170654	Damascus	Damascus	SY	33.5102	36.2913	Asia/Damascus	دمشق	Şam
+1167528	Quetta	Quetta	PK	30.1841	67.0014	Asia/Karachi	كويته	Ketta
+1784853	Zhaoqing	Zhaoqing	CN	23.0489	112.4609	Asia/Shanghai		
+2326016	Onitsha	Onitsha	NG	6.1498	6.7857	Africa/Lagos		
+1800627	Mianyang	Mianyang	CN	31.4678	104.6817	Asia/Shanghai		
+2193733	Auckland	Auckland	NZ	-36.8485	174.7635	Pacific/Auckland	أوكلاند	Auckland
+418863	Isfahan	Isfahan	IR	32.6525	51.6746	Asia/Tehran	أصفهان	İsfahan
+12358576	Wanzhou	Wanzhou	CN	30.7645	108.3959	Asia/Shanghai		
+1526273	Astana	Astana	KZ	51.1801	71.4460	Asia/Almaty		Astana
+890299	Harare	Harare	ZW	-17.8277	31.0534	Africa/Harare	هراري	
+2274895	Monrovia	Monrovia	LR	6.3005	-10.7969	Africa/Monrovia	مونروفيا	
+1798449	Putian	Putian	CN	25.4394	119.0103	Asia/Shanghai		
+1859642	Kawasaki	Kawasaki	JP	35.5206	139.7172	Asia/Tokyo	كاواساكي	
+3462377	Goiânia	Goiania	BR	-16.6786	-49.2539	America/Sao_Paulo	غويانيا	Goiânia
+4726206	San Antonio	San Antonio	US	29.4241	-98.4936	America/Chicago	سان أنطونيو	San Antonio
+1859171	Kobe	Kobe	JP	34.6913	135.1830	Asia/Tokyo	كوبه	Kobe
+2673730	Stockholm	Stockholm	SE	59.3294	18.0687	Europe/Stockholm	ستوكهولم	Stockholm
+4013708	Ciudad Juárez	Ciudad Juarez	MX	31.7202	-106.4608	America/Ciudad_Juarez	سيوداد خواريز	Ciudad Juarez
+1586203	Cần Thơ	Can Tho	VN	10.0371	105.7883	Asia/Ho_Chi_Minh	كان ثو	Can Tho
+2867714	Munich	Munich	DE	48.1374	11.5755	Europe/Berlin	ميونخ	Münih
+1336135	Khulna	Khulna	BD	22.8098	89.5644	Asia/Dhaka	خولنا	Khulna
+3405870	Belém	Belem	BR	-1.4558	-48.5044	America/Belem	بيليم	Belém
+1486209	Yekaterinburg	Yekaterinburg	RU	56.8573	60.6153	Asia/Yekaterinburg	يكاترينبرج	Yekaterinburg
+3452925	Porto Alegre	Porto Alegre	BR	-30.0328	-51.2302	America/Sao_Paulo	بورتو أليغري	Porto Alegre
+5125771	Manhattan	Manhattan	US	40.7834	-73.9663	America/New_York	مانهاتن	
+1261731	Nashik	Nashik	IN	19.9973	73.7910	Asia/Kolkata		
+8400694	Taizhou	Taizhou	CN	28.6627	121.4331	Asia/Shanghai		
+3439389	Asunción	Asuncion	PY	-25.2865	-57.6470	America/Asuncion	أسونسيون	Asuncion
+1814870	Yiwu	Yiwu	CN	29.3151	120.0768	Asia/Shanghai		
+3979770	Zapopan	Zapopan	MX	20.7211	-103.3874	America/Mexico_City	سابوبان، خاليسكو	
+1622786	Makassar	Makassar	ID	-5.1486	119.4319	Asia/Makassar		
+2078025	Adelaide	Adelaide	AU	-34.9287	138.5986	Australia/Adelaide	أديليد	Adelaide
+1797353	Quanzhou	Quanzhou	CN	24.9139	118.5858	Asia/Shanghai	تشوانتشو	
+1264521	Madurai	Madurai	IN	9.9190	78.1195	Asia/Kolkata	مادوراي	
+1805528	Jinhua	Jinhua	CN	29.1068	119.6442	Asia/Shanghai	جينهوا	
+1857910	Kyoto	Kyoto	JP	35.0211	135.7538	Asia/Tokyo	كيوتو	Kyoto
+1806602	Cixi	Cixi	CN	30.1764	121.2457	Asia/Shanghai		
+1791121	Changde	Changde	CN	29.0321	111.6984	Asia/Shanghai		
+1735161	Kuala Lumpur	Kuala Lumpur	MY	3.1412	101.6865	Asia/Kuala_Lumpur	كوالالمبور	Kuala Lumpur
+308464	Kayseri	Kayseri	TR	38.7322	35.4853	Europe/Istanbul	قيصرية	Kayseri
+1804879	Kaifeng	Kaifeng	CN	34.7986	114.3074	Asia/Shanghai	كايفنغ	
+128747	Karaj	Karaj	IR	35.8327	50.9915	Asia/Tehran		Kerec
+1283240	Kathmandu	Kathmandu	NP	27.7017	85.3206	Asia/Kathmandu	كاتماندو	Katmandu
+1835235	Daejeon	Daejeon	KR	36.3491	127.3849	Asia/Seoul	دايجيون	Daejeon
+10942359	Baoji	Baoji	CN	34.3678	107.2370	Asia/Shanghai		
+1793771	Suqian	Suqian	CN	33.9492	118.2958	Asia/Shanghai		
+1803300	Liuzhou	Liuzhou	CN	24.3240	109.4070	Asia/Shanghai	ليوشو	
+1254361	Tirunelveli	Tirunelveli	IN	8.7274	77.6838	Asia/Kolkata	تيرونلفلي	
+306571	Konya	Konya	TR	37.8713	32.4846	Europe/Istanbul	قونية	Konya
+1787331	Zhangjiagang	Zhangjiagang	CN	31.8650	120.5389	Asia/Shanghai		
+1279259	Agra	Agra	IN	27.1833	78.0167	Asia/Kolkata		
+8581443	South Tangerang	South Tangerang	ID	-6.2886	106.7179	Asia/Jakarta		
+113646	Tabriz	Tabriz	IR	38.0800	46.2919	Asia/Tehran	تبريز	Tebriz
+706483	Kharkiv	Kharkiv	UA	49.9818	36.2548	Europe/Kyiv	خاركوف	Kharkov
+1797658	Jinjiang	Jinjiang	CN	24.8198	118.5742	Asia/Shanghai		
+1271951	Faridabad	Faridabad	IN	28.4112	77.3132	Asia/Kolkata		
+1816234	Bozhou	Bozhou	CN	33.8772	115.7703	Asia/Shanghai		
+1797318	Qujing	Qujing	CN	25.4833	103.7833	Asia/Shanghai		
+5391811	San Diego	San Diego	US	32.7157	-117.1647	America/Los_Angeles	سان دييغو	San Diego
+1841811	Gwangju	Gwangju	KR	35.1547	126.9156	Asia/Seoul	غوانغجو	Gwangju
+1784990	Zhanjiang	Zhanjiang	CN	21.2339	110.3875	Asia/Shanghai		
+2037355	Fushun	Fushun	CN	41.8867	123.9436	Asia/Shanghai		
+1258847	Rājkot	Rajkot	IN	22.2916	70.7932	Asia/Kolkata		
+1801792	Luoyang	Luoyang	CN	34.6735	112.4368	Asia/Shanghai	لويانغ	
+4005539	Guadalajara	Guadalajara	MX	20.6774	-103.3475	America/Mexico_City	غوادالاخارا	Guadalajara
+5110266	The Bronx	The Bronx	US	40.8499	-73.8664	America/New_York		
+1802875	Guankou	Guankou	CN	28.1586	113.6271	Asia/Shanghai		
+1580240	Huế	Hue	VN	16.4619	107.5955	Asia/Bangkok	هيو	Hué
+3173435	Milan	Milan	IT	45.4643	9.1895	Europe/Rome	ميلان	Milano
+1791464	Wenling	Wenling	CN	28.3752	121.3842	Asia/Shanghai		
+1262111	Najafgarh	Najafgarh	IN	28.6092	76.9798	Asia/Kolkata		
+1804120	Lianjiang	Lianjiang	CN	21.6467	110.2817	Asia/Shanghai		
+2427123	N'Djamena	N'Djamena	TD	12.1067	15.0444	Africa/Ndjamena	انجمينا	
+1808963	Handan	Handan	CN	36.6100	114.4876	Asia/Shanghai		
+1183460	Bannu	Bannu	PK	32.9853	70.6040	Asia/Karachi		
+1786764	Yichang	Yichang	CN	30.7144	111.2847	Asia/Shanghai		
+1070940	Antananarivo	Antananarivo	MG	-18.9137	47.5361	Indian/Antananarivo	أنتاناناريفو	Antananarivo
+1808198	Heze	Heze	CN	35.2393	115.4736	Asia/Shanghai		
+3461786	Guarulhos	Guarulhos	BR	-23.4628	-46.5333	America/Sao_Paulo		
+2293521	Abobo	Abobo	CI	5.4161	-4.0159	Africa/Abidjan		
+1269300	Jamshedpur	Jamshedpur	IN	22.8028	86.1855	Asia/Kolkata	جمشيدبور	Cemşidpur
+2232593	Douala	Douala	CM	4.0483	9.7043	Africa/Douala	دوالا	Douala
+323777	Antalya	Antalya	TR	36.9081	30.6956	Europe/Istanbul	أنطاليا	Antalya
+1810295	Gaozhou	Gaozhou	CN	21.9197	110.8568	Asia/Shanghai		
+99532	Basrah	Basrah	IQ	30.5085	47.7804	Asia/Baghdad	بصرة	Basra
+4684888	Dallas	Dallas	US	32.7831	-96.8067	America/Chicago	دالاس	Dallas
+2038300	Benxi	Benxi	CN	41.2886	123.7650	Asia/Shanghai		
+6940394	Saitama	Saitama	JP	35.9081	139.6566	Asia/Tokyo	سايتاما	
+2440485	Niamey	Niamey	NE	13.5137	2.1098	Africa/Niamey	نيامي	
+8533133	Liupanshui	Liupanshui	CN	26.5944	104.8333	Asia/Shanghai	ليوبانشيو	
+1684308	Taguig	Taguig	PH	14.5243	121.0792	Asia/Manila		
+1801180	Maoming	Maoming	CN	21.6663	110.9136	Asia/Shanghai		
+5913490	Calgary	Calgary	CA	51.0501	-114.0853	America/Edmonton	كالغاري	Calgary
+2210247	Tripoli	Tripoli	LY	32.8874	13.1873	Africa/Tripoli	طَرَابُلُس	Trablus
+109223	Madinah	Madinah	SA	24.4686	39.6142	Asia/Riyadh	المدينة	Medine
+2220957	Yaoundé	Yaounde	CM	3.8667	11.5167	Africa/Douala	ياوندي	Yaunde
+6295587	Batam	Batam	ID	1.1494	104.0249	Asia/Jakarta	باتام	
+1797551	Qinzhou	Qinzhou	CN	21.9825	108.6506	Asia/Shanghai		
+1801934	Luohe	Luohe	CN	33.5742	114.0326	Asia/Shanghai		
+1790587	Xiangyang	Xiangyang	CN	32.0422	112.1448	Asia/Shanghai		
+1806408	Yangjiang	Yangjiang	CN	21.8556	111.9627	Asia/Shanghai		
+1806960	Huazhou	Huazhou	CN	21.6333	110.5833	Asia/Shanghai		
+1786760	Yixing	Yixing	CN	31.3606	119.8202	Asia/Shanghai		
+1259652	Pimpri	Pimpri	IN	18.6229	73.8070	Asia/Kolkata		
+1583992	Da Nang	Da Nang	VN	16.0678	108.2208	Asia/Ho_Chi_Minh	دا نانج	Da Nang
+250441	Amman	Amman	JO	31.9552	35.9450	Asia/Amman	عمّان	Amman
+1723510	Budta	Budta	PH	7.2042	124.4397	Asia/Manila		
+792680	Belgrade	Belgrade	RS	44.8040	20.4651	Europe/Belgrade	بلغراد	Belgrad
+1587923	Biên Hòa	Bien Hoa	VN	10.9447	106.8243	Asia/Ho_Chi_Minh	بيان هوا	Bien Hoa
+1797798	Qingpu	Qingpu	CN	31.1539	121.1141	Asia/Shanghai		
+3441575	Montevideo	Montevideo	UY	-34.9033	-56.1882	America/Montevideo	مونتفيدو	Montevideo
+1790371	Xiantao	Xiantao	CN	30.3708	113.4429	Asia/Shanghai		
+1788046	Xuchang	Xuchang	CN	34.0319	113.8630	Asia/Shanghai		
+1268295	Kalyān	Kalyan	IN	19.2437	73.1355	Asia/Kolkata		
+1783745	Zigong	Zigong	CN	29.3416	104.7769	Asia/Shanghai	زيجونج	
+520555	Nizhniy Novgorod	Nizhniy Novgorod	RU	56.3287	44.0020	Europe/Moscow	نيجني نوفغورود	Nijni Novgorod
+1642548	Jepara	Jepara	ID	-6.5924	110.6710	Asia/Jakarta	جيبارا	
+1040652	Maputo	Maputo	MZ	-25.9655	32.5832	Africa/Maputo	مابوتو	
+10630003	Xuzhou	Xuzhou	CN	34.2044	117.2839	Asia/Shanghai		
+110336	Dammam	Dammam	SA	26.4344	50.1033	Asia/Riyadh	الدمام	Ed Dammam
+268743	Ra’s Bayrūt	Ra's Bayrut	LB	33.9000	35.4833	Asia/Beirut		
+1799491	Neijiang	Neijiang	CN	29.5835	105.0622	Asia/Shanghai		
+115019	Shiraz	Shiraz	IR	29.6103	52.5311	Asia/Tehran	شيراز	Şiraz
+1808316	Heshan	Heshan	CN	28.5694	112.3473	Asia/Shanghai		
+1272423	Dombivali	Dombivali	IN	19.2167	73.0833	Asia/Kolkata		
+214481	Kananga	Kananga	CD	-5.8962	22.4166	Africa/Lubumbashi	كانانغا	Kananga
+1808212	Hechuan	Hechuan	CN	29.9923	106.2646	Asia/Shanghai		
+551487	Kazan	Kazan	RU	55.7887	49.1221	Europe/Moscow	قازان	Kazan
+1805518	Jining	Jining	CN	35.4050	116.5814	Asia/Shanghai		
+3648522	Barquisimeto	Barquisimeto	VE	10.0647	-69.3570	America/Caracas	باركيسيميتو	Barquisimeto
+349076	Shubrā al Khaymah	Shubra al Khaymah	EG	30.1251	31.2505	Africa/Cairo	شبرا الخيمة	
+1798439	Putuo	Putuo	CN	31.2510	121.3897	Asia/Shanghai		
+3718426	Port-au-Prince	Port-au-Prince	HT	18.5435	-72.3388	America/Port-au-Prince	بورت أو برانس	
+1835553	Suwon	Suwon	KR	37.2911	127.0089	Asia/Seoul	سوون	Suwon
+1803834	Liaocheng	Liaocheng	CN	36.4506	116.0025	Asia/Shanghai		
+10942283	Jinzhong	Jinzhong	CN	37.6840	112.7547	Asia/Shanghai		
+3946083	Callao	Callao	PE	-12.0516	-77.1345	America/Lima	كاياو	Callao
+1263214	Meerut	Meerut	IN	28.9800	77.7064	Asia/Kolkata	ميروت	
+1253133	Virār	Virar	IN	19.4559	72.8114	Asia/Kolkata		
+1261162	Nowrangapur	Nowrangapur	IN	19.2311	82.5483	Asia/Kolkata		
+94824	Karbala	Karbala	IQ	32.6160	44.0249	Asia/Baghdad	كربلاء	Kerbela
+1808956	Changzhi	Changzhi	CN	36.1839	113.1053	Asia/Shanghai		
+1792892	Tianshui	Tianshui	CN	34.5795	105.7424	Asia/Shanghai		
+7802746	Sadr City	Sadr City	IQ	33.3889	44.4583	Asia/Baghdad	مدينة الصدر	
+1787375	Yangpu	Yangpu	CN	31.2619	121.5190	Asia/Shanghai		
+186301	Mombasa	Mombasa	KE	-4.0547	39.6636	Africa/Nairobi	مومباسا	
+1311874	Mandalay	Mandalay	MM	21.9747	96.0836	Asia/Yangon	ماندالاي	Mandalay
+1255634	Srinagar	Srinagar	IN	34.0857	74.8055	Asia/Kolkata	سرينغر	
+3689147	Barranquilla	Barranquilla	CO	10.9685	-74.7813	America/Bogota	بارانكويلا	Barranquilla
+1508291	Chelyabinsk	Chelyabinsk	RU	55.1611	61.4288	Asia/Yekaterinburg	تشيليابنسك	Çelyabinsk
+3523349	Mérida	Merida	MX	20.9670	-89.6232	America/Merida	ماردة	Merida
+1862415	Hiroshima	Hiroshima	JP	34.4000	132.4500	Asia/Tokyo	هيروشيما	Hiroşima
+3492914	Santiago de los Caballeros	Santiago de los Caballeros	DO	19.4504	-70.6908	America/Santo_Domingo	سانتياغو دي لوس كابالييروس	Santiago de los Caballeros
+1518980	Shymkent	Shymkent	KZ	42.3099	69.6004	Asia/Almaty	شيمكنت	Çimkent
+1791636	Weinan	Weinan	CN	34.5035	109.5089	Asia/Shanghai		
+1271308	Ghāziābād	Ghaziabad	IN	28.6654	77.4391	Asia/Kolkata		
+1039854	Matola	Matola	MZ	-25.9622	32.4589	Africa/Maputo	ماتولا	Matola
+1272979	Dhanbad	Dhanbad	IN	23.7976	86.4299	Asia/Kolkata	دنباد	
+3947322	Arequipa	Arequipa	PE	-16.3990	-71.5375	America/Lima	أريكيبا	Arequipa
+12747064	Hong Kong Island	Hong Kong Island	HK	22.2630	114.1842	Asia/Hong_Kong		
+2548885	Fes	Fes	MA	34.0331	-5.0003	Africa/Casablanca	فاس	Fes
+3514674	Gustavo Adolfo Madero	Gustavo Adolfo Madero	MX	19.4939	-99.1107	America/Mexico_City		
+2377450	Nouakchott	Nouakchott	MR	18.0858	-15.9785	Africa/Nouakchott	نواكشوط	Nuakşot
+212730	Kisangani	Kisangani	CD	0.5153	25.1910	Africa/Lubumbashi	كيسانجاني	Kisangani
+1805953	Jiaxing	Jiaxing	CN	30.7522	120.7500	Asia/Shanghai		
+1278149	Aurangabad	Aurangabad	IN	19.8776	75.3423	Asia/Kolkata	أورنك آباد	
+1784285	Zhongwei	Zhongwei	CN	37.5113	105.1907	Asia/Shanghai		
+1496153	Omsk	Omsk	RU	54.9924	73.3686	Asia/Omsk	أومسك	Omsk
+2246678	Pikine	Pikine	SN	14.7646	-17.3907	Africa/Dakar		
+1631761	Pekanbaru	Pekanbaru	ID	0.5167	101.4417	Asia/Jakarta		
+10794003	Panjin	Panjin	CN	41.1210	122.0739	Asia/Shanghai		
+1624917	Bandar Lampung	Bandar Lampung	ID	-5.4292	105.2611	Asia/Jakarta		
+3067696	Prague	Prague	CZ	50.0880	14.4208	Europe/Prague	براغ	Prag
+1253405	Varanasi	Varanasi	IN	25.3167	83.0104	Asia/Kolkata	وارانسي	
+1805179	Jiujiang	Jiujiang	CN	29.7048	116.0021	Asia/Shanghai		Ciuciang
+499099	Samara	Samara	RU	53.2077	50.1355	Europe/Samara	سامارا	Samara
+2353151	Aba	Aba	NG	5.1066	7.3667	Africa/Lagos	آبا	
+1278710	Amritsar	Amritsar	IN	31.6223	74.8753	Asia/Kolkata	أمريتسار	Amritsar
+2655603	Birmingham	Birmingham	GB	52.4814	-1.8998	Europe/London	برمينغهام	Birmingham
+1783633	Zoucheng	Zoucheng	CN	35.4006	116.9656	Asia/Shanghai		
+2618425	Copenhagen	Copenhagen	DK	55.6759	12.5655	Europe/Copenhagen	كوبنهاغن	Kopenhag
+1787646	Yangcun	Yangcun	CN	39.3639	117.0603	Asia/Shanghai		
+727011	Sofia	Sofia	BG	42.6975	23.3241	Europe/Sofia	صوفيا	Sofya
+1785294	Anyang	Anyang	CN	36.0960	114.3828	Asia/Shanghai	انيانغ	
+616052	Yerevan	Yerevan	AM	40.1776	44.5126	Asia/Yerevan	يريفان	Erivan
+13405906	Luohu District	Luohu District	CN	22.5472	114.1315	Asia/Shanghai		
+1253184	Vijayawada	Vijayawada	IN	16.5074	80.6466	Asia/Kolkata	فجاياوادا	
+13608002	Fengxiang	Fengxiang	CN	30.8584	121.4678	Asia/Shanghai		
+1816373	Bijie	Bijie	CN	27.3019	105.2863	Asia/Shanghai		
+3995465	Monterrey	Monterrey	MX	25.6843	-100.3172	America/Monterrey	مونتيري	Monterrey
+202061	Kigali	Kigali	RW	-1.9500	30.0588	Africa/Kigali	كيغالي	Kigali
+501175	Rostov-on-Don	Rostov-on-Don	RU	47.2200	39.7077	Europe/Moscow	روستوف-نا-دونو	Rostov-na-Donu
+1783763	Zhuzhou	Zhuzhou	CN	27.8333	113.1500	Asia/Shanghai		
+1797063	Rui’an	Rui'an	CN	27.7761	120.6586	Asia/Shanghai		
+1978681	Malingao	Malingao	PH	7.1608	124.4750	Asia/Manila		
+2244322	Touba	Touba	SN	14.8623	-15.8753	Africa/Dakar		
+479561	Ufa	Ufa	RU	54.7431	55.9678	Asia/Yekaterinburg	أوفا	Ufa
+1258526	Ranchi	Ranchi	IN	23.3432	85.3094	Asia/Kolkata	رانشي	
+1787858	Shangrao	Shangrao	CN	28.4518	117.9429	Asia/Shanghai		
+927967	Lilongwe	Lilongwe	MW	-13.9669	33.7873	Africa/Blantyre	ليلونغوي	
+1807700	Huaibei	Huaibei	CN	33.9744	116.7917	Asia/Shanghai		
+2331447	Maiduguri	Maiduguri	NG	11.8469	13.1571	Africa/Lagos	ميدغري	Maiduguri
+1787957	Xuhui	Xuhui	CN	31.1959	121.4471	Asia/Shanghai		
+1800818	Meishan	Meishan	CN	30.0439	103.8370	Asia/Shanghai		
+152224	Mwanza	Mwanza	TZ	-2.5167	32.9000	Africa/Dar_es_Salaam	موانزا	Mwanza
+1794794	Shouguang	Shouguang	CN	36.8800	118.7375	Asia/Shanghai		
+1791351	Wuchang	Wuchang	CN	30.5431	114.3007	Asia/Shanghai		
+1809003	Haizhou	Haizhou	CN	34.5817	119.1289	Asia/Shanghai		
+1833747	Ulsan	Ulsan	KR	35.5372	129.3167	Asia/Seoul	ألسان	Ulsan
+2111149	Sendai	Sendai	JP	38.2667	140.8667	Asia/Tokyo		
+1502026	Krasnoyarsk	Krasnoyarsk	RU	56.0374	92.9314	Asia/Krasnoyarsk	كراسنويارسك	Krasnoyarsk
+1810820	Fuzhou	Fuzhou	CN	27.9600	116.3333	Asia/Shanghai		
+1809532	Guigang	Guigang	CN	23.1160	109.5947	Asia/Shanghai		
+3143244	Oslo	Oslo	NO	59.9127	10.7461	Europe/Oslo	أوسلو	Oslo
+1269633	Jabalpur	Jabalpur	IN	23.1670	79.9501	Asia/Kolkata	جبلبور	
+2337639	Ilorin	Ilorin	NG	8.4966	4.5421	Africa/Lagos	إيلورين	Ilorin
+415189	Aden	Aden	YE	12.7796	45.0385	Asia/Aden	عدن	Aden
+1648473	Bogor	Bogor	ID	-6.5944	106.7892	Asia/Jakarta	بوكور	
+3530589	Ciudad Nezahualcoyotl	Ciudad Nezahualcoyotl	MX	19.4006	-99.0148	America/Mexico_City		
+1808370	Hengyang	Hengyang	CN	26.8895	112.6189	Asia/Shanghai		
+1278994	Prayagraj	Prayagraj	IN	25.4448	81.8432	Asia/Kolkata		
+2037222	Gongzhuling	Gongzhuling	CN	43.5007	124.8198	Asia/Shanghai		
+3691175	Trujillo	Trujillo	PE	-8.1160	-79.0300	America/Lima	تروخيو، بيرو	Trujillo
+1253102	Visakhapatnam	Visakhapatnam	IN	17.6801	83.2016	Asia/Kolkata	فشاكاباتنم	
+1842485	Goyang-si	Goyang-si	KR	37.6564	126.8350	Asia/Seoul		
+1785781	Yulin	Yulin	CN	22.6305	110.1469	Asia/Shanghai		
+1268865	Jodhpur	Jodhpur	IN	26.2684	73.0059	Asia/Kolkata	جودبور	
+1270583	Gwalior	Gwalior	IN	26.2298	78.1734	Asia/Kolkata		
+1805540	Jingzhou	Jingzhou	CN	30.3503	112.1903	Asia/Shanghai		
+964420	Gqeberha	Gqeberha	ZA	-33.9611	25.6149	Africa/Johannesburg	بورت إليزابيث	
+611717	Tbilisi	Tbilisi	GE	41.6914	44.8341	Asia/Tbilisi	تبليسي	Tiflis
+472045	Voronezh	Voronezh	RU	51.6683	39.1920	Europe/Moscow		
+1788572	Xinxiang	Xinxiang	CN	35.1903	113.8015	Asia/Shanghai		
+1786746	Yichun	Yichun	CN	27.8333	114.4000	Asia/Shanghai		
+2335953	Jos	Jos	NG	9.9285	8.8921	Africa/Lagos	جوس	Jos
+2322911	Sokoto	Sokoto	NG	13.0627	5.2432	Africa/Lagos	سوكوتو	Sokoto
+2530335	Tangier	Tangier	MA	35.7673	-5.7998	Africa/Casablanca	طنجة	Tanca
+1254745	Teni	Teni	IN	10.0112	77.4777	Asia/Kolkata		
+1790353	Xianyang	Xianyang	CN	34.3378	108.7026	Asia/Shanghai		
+3996069	Mexicali	Mexicali	MX	32.6278	-115.4545	America/Tijuana	مكسيكالي	Mexicali
+2255414	Pointe-Noire	Pointe-Noire	CG	-4.7761	11.8635	Africa/Brazzaville	بوانت نوار	Pointe-Noire
+3395981	Maceió	Maceio	BR	-9.6658	-35.7353	America/Maceio	ماسايو	Maceio
+3467865	Campinas	Campinas	BR	-22.9056	-47.0608	America/Sao_Paulo	كامبيناس	
+1796556	Sanya	Sanya	CN	18.2543	109.5095	Asia/Shanghai	سانيا	
+1185188	Rangpur	Rangpur	BD	25.7466	89.2517	Asia/Dhaka	رانجبور	Rangpur
+94787	Kirkuk	Kirkuk	IQ	35.4681	44.3922	Asia/Baghdad	كركوك	Kerkük
+162183	Ashgabat	Ashgabat	TM	37.9500	58.3833	Asia/Ashgabat	عشق آباد	Aşkabat
+1795874	Shaoguan	Shaoguan	CN	24.8000	113.5833	Asia/Shanghai		
+1270396	Howrah	Howrah	IN	22.5769	88.3186	Asia/Kolkata		
+1258980	Raipur	Raipur	IN	21.2333	81.6333	Asia/Kolkata	رايبور	
+1846326	Changwon	Changwon	KR	35.2281	128.6811	Asia/Seoul	تشانغوون	Changwon
+1802276	Longyan	Longyan	CN	25.0749	117.0178	Asia/Shanghai	لونغيان	
+2886242	Köln	Koeln	DE	50.9333	6.9500	Europe/Berlin	قلونية	Köln
+2964574	Dublin	Dublin	IE	53.3331	-6.2489	Europe/Dublin	دبلن	Dublin
+1254388	Tiruchirappalli	Tiruchirappalli	IN	10.8155	78.6965	Asia/Kolkata		
+1786217	Yongzhou	Yongzhou	CN	26.4239	111.6131	Asia/Shanghai		
+2800866	Brussels	Brussels	BE	50.8505	4.3488	Europe/Brussels	بروكسل	Brüksel
+1679432	Zamboanga	Zamboanga	PH	6.9103	122.0739	Asia/Manila		
+6094817	Ottawa	Ottawa	CA	45.4112	-75.6981	America/Toronto	أوتاوا	Ottawa
+1806535	Huzhou	Huzhou	CN	30.8703	120.0933	Asia/Shanghai		
+1812057	Xinyi	Xinyi	CN	22.3730	110.9475	Asia/Shanghai		
+472757	Volgograd	Volgograd	RU	48.7138	44.4976	Europe/Volgograd	فولغوغراد	
+379251	Khartoum North	Khartoum North	SD	15.6493	32.5346	Africa/Khartoum	بحري	
+5946768	Edmonton	Edmonton	CA	53.5501	-113.4687	America/Edmonton	إدمونتون	Edmonton
+698740	Odesa	Odesa	UA	46.4857	30.7438	Europe/Kyiv	أوديسا	Odessa
+1803936	Wuwei	Wuwei	CN	37.9267	102.6320	Asia/Shanghai		
+4160021	Jacksonville	Jacksonville	US	30.3322	-81.6556	America/New_York	جاكسونفيل	Jacksonville
+4691930	Fort Worth	Fort Worth	US	32.7254	-97.3208	America/Chicago	فورت وورث	Fort Worth
+1786455	Yishui	Yishui	CN	35.7847	118.6281	Asia/Shanghai		
+1808857	Hanzhong	Hanzhong	CN	33.0751	107.0221	Asia/Shanghai		
+7576887	Hezhou	Hezhou	CN	24.4036	111.5667	Asia/Shanghai		
+3046446	Pest	Pest	HU	47.5000	19.0833	Europe/Budapest	بشت	Peşte
+1266049	Kota	Kota	IN	25.1825	75.8391	Asia/Kolkata		
+6943660	Shivaji Nagar	Shivaji Nagar	IN	18.5302	73.8526	Asia/Kolkata		
+7602670	Zhu Cheng City	Zhu Cheng City	CN	35.9950	119.4026	Asia/Shanghai		
+1812101	Dongying	Dongying	CN	37.4627	118.4917	Asia/Shanghai		
+1801640	Luzhou	Luzhou	CN	28.8903	105.4257	Asia/Shanghai		
+5392171	San Jose	San Jose	US	37.3394	-121.8950	America/Los_Angeles	سان هوزيه	San Jose
+1256436	Sholapur	Sholapur	IN	17.6715	75.9104	Asia/Kolkata		
+2542997	Marrakesh	Marrakesh	MA	31.6342	-7.9999	Africa/Casablanca	مراكش	Marakeş
+3598132	Guatemala City	Guatemala City	GT	14.6407	-90.5133	America/Guatemala	مدينة غواتيمالا	
+1800779	Meizhou	Meizhou	CN	24.2886	116.1177	Asia/Shanghai		
+1927639	Yueyang	Yueyang	CN	29.3745	113.0948	Asia/Shanghai		
+1804591	Laiwu	Laiwu	CN	36.1928	117.6569	Asia/Shanghai		
+747323	Esenyurt	Esenyurt	TR	41.0270	28.6773	Europe/Istanbul		
+511196	Perm	Perm	RU	58.0105	56.2502	Asia/Yekaterinburg	بيرم	Perm
+2317765	Zaria	Zaria	NG	11.1113	7.7227	Africa/Lagos	زاريا	
+7033318	Kennedy	Kennedy	CO	4.6165	-74.1460	America/Bogota		
+2113015	Chiba	Chiba	JP	35.6000	140.1167	Asia/Tokyo	تشيبا	
+1798827	Pingdingshan	Pingdingshan	CN	33.7309	113.3155	Asia/Shanghai		
+3645528	Ciudad Guayana	Ciudad Guayana	VE	8.3512	-62.6410	America/Caracas		
+1166000	Sargodha	Sargodha	PK	32.0859	72.6742	Asia/Karachi		
+4671654	Austin	Austin	US	30.2672	-97.7431	America/Chicago	أوستن	Austin
+3617763	Managua	Managua	NI	12.1328	-86.2504	America/Managua	ماناغوا	Managua
+1816440	Bengbu	Bengbu	CN	32.9408	117.3608	Asia/Shanghai		
+2537763	Salé	Sale	MA	34.0531	-6.7985	Africa/Casablanca	سلا	
+281184	Jerusalem	Jerusalem	IL	31.7690	35.2163	Asia/Jerusalem	القدس	Kudüs
+1274746	Chandigarh	Chandigarh	IN	30.7363	76.7884	Asia/Kolkata		
+709930	Dnipro	Dnipro	UA	48.4666	35.0407	Europe/Kyiv	دنيبرو	Dnipro
+1789176	Feicheng	Feicheng	CN	36.2486	116.7658	Asia/Shanghai		
+1717512	Cebu City	Cebu City	PH	10.3167	123.8907	Asia/Manila	مدينة سيبو	Cebu Şehri
+1796823	Sanhe	Sanhe	CN	39.9805	117.0689	Asia/Shanghai		
+1809412	Guli	Guli	CN	28.8816	120.0331	Asia/Shanghai		
+1786731	Qingzhou	Qingzhou	CN	36.6967	118.4797	Asia/Shanghai		
+1254348	Tiruppur	Tiruppur	IN	11.1154	77.3546	Asia/Kolkata		
+1271476	Guwahati	Guwahati	IN	26.1844	91.7458	Asia/Kolkata	جواهاتي	
+1817990	Anqiu	Anqiu	CN	36.4342	119.1925	Asia/Shanghai		
+1790492	Xiangtan	Xiangtan	CN	27.8500	112.9000	Asia/Shanghai		
+1803567	Linfen	Linfen	CN	36.0889	111.5189	Asia/Shanghai		
+1931681	Victoria	Victoria	HK	22.2875	114.1442	Asia/Hong_Kong		
+1784642	Zhenjiang	Zhenjiang	CN	32.2109	119.4551	Asia/Shanghai		
+2343279	Enugu	Enugu	NG	6.4413	7.4988	Africa/Lagos	إنوغو	Enugu
+3838583	Rosario	Rosario	AR	-32.9468	-60.6393	America/Argentina/Cordoba	روساريو	Rosario
+101760	Sulţānah	Sultanah	SA	24.4926	39.5857	Asia/Riyadh		
+1790471	Xiangxiang	Xiangxiang	CN	27.7333	112.5333	Asia/Shanghai		
+2036662	Huludao	Huludao	CN	40.7524	120.8355	Asia/Shanghai		
+1269920	Hubballi	Hubballi	IN	15.3478	75.1338	Asia/Kolkata		
+1633419	Padang	Padang	ID	-0.9492	100.3543	Asia/Jakarta	بادانغ	
+1859307	Kitakyushu	Kitakyushu	JP	33.8518	130.8503	Asia/Tokyo	كيتاكيوشو	
+70225	Taiz	Taiz	YE	13.5795	44.0209	Asia/Aden	تعز	Taiz
+11790342	Setagaya	Setagaya	JP	35.6419	139.6472	Asia/Tokyo		
+3489854	Kingston	Kingston	JM	17.9970	-76.7936	America/Jamaica		
+1805701	Jing’an	Jing'an	CN	31.2200	121.4158	Asia/Shanghai		
+1281673	Baoshan	Baoshan	CN	25.1163	99.1637	Asia/Shanghai		
+4014338	Chihuahua	Chihuahua	MX	28.6353	-106.0889	America/Chihuahua	تشيواوا	Chihuahua
+6611854	Nay Pyi Taw	Nay Pyi Taw	MM	19.7450	96.1297	Asia/Yangon		
+315202	Eskişehir	Eskisehir	TR	39.7767	30.5206	Europe/Istanbul	أسكي شهر	Eskişehir
+1262321	Mysuru	Mysuru	IN	12.2979	76.6393	Asia/Kolkata	مايسور	Maisur
+1257629	Salem	Salem	IN	11.6538	78.1554	Asia/Kolkata	سالم	
+3388368	São Luís	Sao Luis	BR	-2.5297	-44.3028	America/Fortaleza	ساو لويز	Sao Luis
+1897000	Seongnam-si	Seongnam-si	KR	37.4386	127.1378	Asia/Seoul		
+3687238	Cartagena	Cartagena	CO	10.3982	-75.4933	America/Bogota	قرطاجنة، كولومبيا	Cartagena
+1730501	Antipolo	Antipolo	PH	14.6258	121.1225	Asia/Manila		
+4509177	Columbus	Columbus	US	39.9612	-82.9988	America/New_York	كولومبوس	Columbus
+1164909	Sialkot	Sialkot	PK	32.4927	74.5313	Asia/Karachi		
+4460243	Charlotte	Charlotte	US	35.2271	-80.8431	America/New_York	تشارلوت	
+1804609	Laibin	Laibin	CN	23.7474	109.2222	Asia/Shanghai		
+2319133	Warri	Warri	NG	5.5174	5.7501	Africa/Lagos	واري	
+3172394	Naples	Naples	IT	40.8522	14.2681	Europe/Rome	نابولي	Napoli
+1790254	Xiaogan	Xiaogan	CN	30.9269	113.9222	Asia/Shanghai		
+1800829	Wuchuan	Wuchuan	CN	21.4571	110.7659	Asia/Shanghai		
+3467747	Campo Grande	Campo Grande	BR	-20.4428	-54.6464	America/Campo_Grande	كامبو غراندي	Campo Grande
+1783683	Ziyang	Ziyang	CN	30.1211	104.6481	Asia/Shanghai		
+2362344	Bobo-Dioulasso	Bobo-Dioulasso	BF	11.1806	-4.2949	Africa/Ouagadougou	بوبوديولاسو	Bobo-Dioulasso
+1183880	Bahawalpur	Bahawalpur	PK	29.3978	71.6752	Asia/Karachi		
+1797264	Quzhou	Quzhou	CN	28.9594	118.8686	Asia/Shanghai	كو زهو	
+931755	Blantyre	Blantyre	MW	-15.7850	35.0085	Africa/Blantyre	بلانتاير	Blantyre
+709717	Donetsk	Donetsk	UA	48.0230	37.8022	Europe/Kyiv	دونيتسك	
+100077	Abū Ghurayb	Abu Ghurayb	IQ	33.3056	44.1848	Asia/Baghdad	أبو غريب	
+1528675	Bishkek	Bishkek	KG	42.8700	74.5900	Asia/Bishkek	بيشكك	Bişkek
+119208	Qom	Qom	IR	34.6401	50.8764	Asia/Tehran	قم	Kum
+542420	Krasnodar	Krasnodar	RU	45.0453	38.9818	Europe/Moscow	كراسنودار	Krasnodar
+3394023	Natal	Natal	BR	-5.7950	-35.2094	America/Fortaleza	ناتال	Natal
+1801582	Macheng	Macheng	CN	31.1801	115.0221	Asia/Shanghai		
+1798654	Pingxiang	Pingxiang	CN	27.6167	113.8535	Asia/Shanghai		
+1636722	Malang	Malang	ID	-7.9797	112.6304	Asia/Jakarta	مالانغ	
+3531673	Cancún	Cancun	MX	21.1743	-86.8466	America/Cancun	كانكون	
+1785462	Zaoyang	Zaoyang	CN	32.1272	112.7542	Asia/Shanghai		
+4259418	Indianapolis	Indianapolis	US	39.7684	-86.1580	America/Indiana/Indianapolis	إنديانابوليس	Indianapolis
+1270642	Gurugram	Gurugram	IN	28.4601	77.0263	Asia/Kolkata	جورجاون	Gurgaon
+1275817	Bhubaneswar	Bhubaneswar	IN	20.2724	85.8338	Asia/Kolkata		
+1886762	Zhoushan	Zhoushan	CN	29.9887	122.2049	Asia/Shanghai		
+2035265	Qiqihar	Qiqihar	CN	47.3392	123.9615	Asia/Shanghai		
+8307074	Mulenvos	Mulenvos	AO	-8.8669	13.3344	Africa/Luanda		
+98463	Sulaymaniyah	Sulaymaniyah	IQ	35.5650	45.4329	Asia/Baghdad	السليمانية	Süleymaniye
+2995469	Marseille	Marseille	FR	43.2970	5.3811	Europe/Paris	مرسيليا	Marsilya
+1275901	Bhiwandi	Bhiwandi	IN	19.3002	73.0588	Asia/Kolkata		
+954013	Soshanguve	Soshanguve	ZA	-25.4729	28.0992	Africa/Johannesburg		
+1804586	Laiyang	Laiyang	CN	36.9758	120.7136	Asia/Shanghai		
+1813206	Daye	Daye	CN	30.0833	114.9500	Asia/Shanghai		
+3386496	Teresina	Teresina	BR	-5.0892	-42.8019	America/Fortaleza	تيريسينا	Teresina
+1789065	Ankang	Ankang	CN	32.6800	109.0172	Asia/Shanghai		
+1268782	Jalandhar	Jalandhar	IN	31.3256	75.5792	Asia/Kolkata	جالاندهار	Jalandhar
+1786546	Zhongxiang	Zhongxiang	CN	31.1661	112.5831	Asia/Shanghai		
+2747891	Rotterdam	Rotterdam	NL	51.9225	4.4792	Europe/Amsterdam	روتردام	Rotterdam
+1804540	Langfang	Langfang	CN	39.5208	116.7147	Asia/Shanghai		
+1280737	Lhasa	Lhasa	CN	29.6500	91.1000	Asia/Shanghai	لاسا	Lhasa
+3464374	Duque de Caxias	Duque de Caxias	BR	-22.7856	-43.3117	America/Sao_Paulo	دوق دي كاكسياس	
+2236500	Viana	Viana	AO	-8.9055	13.3750	Africa/Luanda		
+1805987	Jiaozuo	Jiaozuo	CN	35.2392	113.2391	Asia/Shanghai		
+1629001	Samarinda	Samarinda	ID	-0.4917	117.1458	Asia/Makassar	ساماريندا	
+12069922	Rohini	Rohini	IN	28.7432	77.0678	Asia/Kolkata		
+1791748	Wanxian	Wanxian	CN	30.8160	108.3741	Asia/Shanghai		
+1799194	Guang’an	Guang'an	CN	30.4741	106.6370	Asia/Shanghai		
+1732752	Johor Bahru	Johor Bahru	MY	1.4655	103.7578	Asia/Kuala_Lumpur	جوهر بهرو	Johor Bahru
+1184370	Arifwala	Arifwala	PK	30.2906	73.0657	Asia/Karachi		
+7290466	Pasig City	Pasig City	PH	14.5869	121.0614	Asia/Manila		
+1845604	Cheongju-si	Cheongju-si	KR	36.6372	127.4897	Asia/Seoul	تشيونغجو	Cheongju-si
+12501153	Kanayannur	Kanayannur	IN	9.9667	76.2667	Asia/Kolkata		
+3600949	Tegucigalpa	Tegucigalpa	HN	14.0818	-87.2068	America/Tegucigalpa	تيغوسيغالبا	
+1838716	Bucheon-si	Bucheon-si	KR	37.4989	126.7831	Asia/Seoul		
+1566166	Thanh Hóa	Thanh Hoa	VN	19.8000	105.7667	Asia/Bangkok	تانه هوا	Thanh Hoa
+3165524	Turin	Turin	IT	45.0705	7.6868	Europe/Rome	تورينو	Torino
+292913	Al Ain City	Al Ain City	AE	24.1917	55.7606	Asia/Dubai	العين	
+2399697	Libreville	Libreville	GA	0.3924	9.4536	Africa/Libreville	ليبرفيل	
+498677	Saratov	Saratov	RU	51.5405	45.9901	Europe/Saratov	ساراتوف	Saratov
+2028462	Ulan Bator	Ulan Bator	MN	47.9077	106.8832	Asia/Ulaanbaatar	أولان باتور	Ulan Batur
+1791673	Weihai	Weihai	CN	37.5091	122.1136	Asia/Shanghai		
+1821940	Takeo	Takeo	KH	10.9908	104.7850	Asia/Phnom_Penh	تاكيو	Takeo
+3456160	Nova Iguaçu	Nova Iguacu	BR	-22.7592	-43.4511	America/Sao_Paulo		
+3919968	Cochabamba	Cochabamba	BO	-17.3819	-66.1599	America/La_Paz	كوتشابامبا	Cochabamba
+144448	Ahvaz	Ahvaz	IR	31.3190	48.6842	Asia/Tehran	الأهواز	
+1651944	Vientiane	Vientiane	LA	17.9667	102.6000	Asia/Vientiane	فيينتيان	
+3449344	São Bernardo do Campo	Sao Bernardo do Campo	BR	-23.6939	-46.5650	America/Sao_Paulo		
+1785412	Zhabei	Zhabei	CN	31.2586	121.4597	Asia/Shanghai		
+1817720	Shangyu	Shangyu	CN	30.0156	120.8711	Asia/Shanghai		
+1788508	Xinyu	Xinyu	CN	27.8043	114.9334	Asia/Shanghai		
+965301	Pietermaritzburg	Pietermaritzburg	ZA	-29.6168	30.3928	Africa/Johannesburg	بيترماريتزبرغ	Pietermaritzburg
+1786770	Yibin	Yibin	CN	28.7593	104.6399	Asia/Shanghai		
+3522790	Naucalpan de Juárez	Naucalpan de Juarez	MX	19.4785	-99.2396	America/Mexico_City	ناوكالبان دي خواريز	
+1805844	Jieshou	Jieshou	CN	33.2634	115.3611	Asia/Shanghai		
+1771023	Kampung Baru Subang	Kampung Baru Subang	MY	3.1500	101.5333	Asia/Kuala_Lumpur		
+2290956	Bouaké	Bouake	CI	7.6939	-5.0303	Africa/Abidjan	بواكي	Bouake
+1793703	Taicang	Taicang	CN	31.4478	121.0939	Asia/Shanghai		
+1784253	Zhongxing	Zhongxing	CN	33.7039	118.6792	Asia/Shanghai		
+5391959	San Francisco	San Francisco	US	37.7749	-122.4194	America/Los_Angeles	سان فرانسيسكو	San Francisco
+1853195	Sakai	Sakai	JP	34.5822	135.4665	Asia/Tokyo		
+1809061	Jiaojiang	Jiaojiang	CN	28.6984	121.4733	Asia/Shanghai		
+1791428	Wenshang	Wenshang	CN	35.7275	116.4961	Asia/Shanghai		
+2509954	Valencia	Valencia	ES	39.4739	-0.3797	Europe/Madrid	بلنسية	Valensiya
+13608000	Jinshan	Jinshan	CN	30.8356	121.2937	Asia/Shanghai		
+1815059	Chenzhou	Chenzhou	CN	25.8000	113.0333	Asia/Shanghai		
+3397277	João Pessoa	Joao Pessoa	BR	-7.1150	-34.8631	America/Fortaleza	جواو بيسوا	João Pessoa
+217831	Bukavu	Bukavu	CD	-2.4908	28.8428	Africa/Lubumbashi	بوكافو	Bukavu
+3094802	Kraków	Krakow	PL	50.0614	19.9366	Europe/Warsaw	كراكوف	Kraków
+3648559	Barcelona	Barcelona	VE	10.1384	-64.6877	America/Caracas	برشلونة	Barselona
+2389853	Bangui	Bangui	CF	4.3612	18.5550	Africa/Bangui		
+4004898	Hermosillo	Hermosillo	MX	29.0887	-110.9668	America/Hermosillo	ارموسييو سونورا	Hermosillo
+1276014	Bhayandar	Bhayandar	IN	19.3016	72.8511	Asia/Kolkata	بياندار	
+4012176	Culiacán	Culiacan	MX	24.8021	-107.3942	America/Mazatlan	كوليتاكان	Culiacán
+1735158	Petaling Jaya	Petaling Jaya	MY	3.1073	101.6067	Asia/Kuala_Lumpur	بيتالينغ جايا	
+1817993	Anqing	Anqing	CN	30.5136	117.0472	Asia/Shanghai		
+2485926	Oran	Oran	DZ	35.6991	-0.6359	Africa/Algiers	وهران	Oran
+1789273	Sanshui	Sanshui	CN	23.1549	112.8916	Asia/Shanghai		
+2409306	Freetown	Freetown	SL	8.4871	-13.2356	Africa/Freetown	فريتون	
+3601782	San Pedro Sula	San Pedro Sula	HN	15.5059	-88.0259	America/Tegucigalpa	سان بيدرو سولا	
+1261809	Narela	Narela	IN	28.8527	77.0929	Asia/Kolkata		
+1788927	Xingtai	Xingtai	CN	37.0622	114.4927	Asia/Shanghai		
+1855431	Niigata	Niigata	JP	37.9226	139.0412	Asia/Tokyo		
+287286	Muscat	Muscat	OM	23.5841	58.4078	Asia/Muscat	مسقط	Maskat
+250090	Zarqa	Zarqa	JO	32.0727	36.0880	Asia/Amman	زرقاء	
+6955677	Çankaya	Cankaya	TR	39.9179	32.8627	Europe/Istanbul		Çankaya
+742394	Küçükçekmece	Kuecuekcekmece	TR	40.9910	28.7712	Europe/Istanbul		
+1863289	Hamamatsu	Hamamatsu	JP	34.7000	137.7333	Asia/Tokyo	هاماماتسو	
+922773	Kolwezi	Kolwezi	CD	-10.7148	25.4667	Africa/Lubumbashi		
+1562798	Vinh	Vinh	VN	18.6734	105.6923	Asia/Bangkok	فينه	Vinh
+1254163	Thiruvananthapuram	Thiruvananthapuram	IN	8.4855	76.9492	Asia/Kolkata	ثيروفانانثابورام	
+1784841	Zhaotong	Zhaotong	CN	27.3167	103.7167	Asia/Shanghai		
+2050970	Hondlon	Hondlon	CN	40.6483	109.7939	Asia/Shanghai		
+6929460	Panzhihua	Panzhihua	CN	26.5851	101.7128	Asia/Shanghai		
+1814757	Chuzhou	Chuzhou	CN	32.3219	118.2978	Asia/Shanghai		
+5809844	Seattle	Seattle	US	47.6062	-122.3321	America/Los_Angeles	سياتل	Seattle
+358619	Port Said	Port Said	EG	31.2653	32.3019	Africa/Cairo	بورسعيد	
+3685533	Cúcuta	Cucuta	CO	7.9074	-72.5049	America/Bogota	كوكوتا	Cucuta
+169577	Homs	Homs	SY	34.7240	36.7256	Asia/Damascus	حمص	Humus
+1788081	Xuancheng	Xuancheng	CN	30.9525	118.7553	Asia/Shanghai		
+74477	Ibb	Ibb	YE	13.9667	44.1833	Asia/Aden	إب	İbb
+1624647	Tasikmalaya	Tasikmalaya	ID	-7.3274	108.2207	Asia/Jakarta		
+1033356	Nampula	Nampula	MZ	-15.1165	39.2666	Africa/Maputo	نامبولا	Nampula
+425378	Bujumbura	Bujumbura	BI	-3.3819	29.3614	Africa/Bujumbura	بوجومبورا	Bujumbura
+1488754	Tyumen	Tyumen	RU	57.1522	65.5272	Asia/Yekaterinburg	تيومين	Tümen
+315368	Erzurum	Erzurum	TR	39.9086	41.2769	Europe/Istanbul	أرضروم	Erzurum
+1817968	Anshun	Anshun	CN	26.2500	105.9333	Asia/Shanghai		
+160196	Dodoma	Dodoma	TZ	-6.1722	35.7395	Africa/Dar_es_Salaam	دودوما	Dodoma
+1185128	Rajshahi	Rajshahi	BD	24.3740	88.6011	Asia/Dhaka	راجشاهي	Rajshahi
+1180281	Dera Ismail Khan	Dera Ismail Khan	PK	31.8313	70.9017	Asia/Karachi		
+3447399	Sorocaba	Sorocaba	BR	-23.5017	-47.4581	America/Sao_Paulo		
+1790840	Wuzhou	Wuzhou	CN	23.4805	111.2885	Asia/Shanghai		
+1734634	Ipoh	Ipoh	MY	4.5841	101.0829	Asia/Kuala_Lumpur	ايبوه	Ipoh
+1797595	Qinhuangdao	Qinhuangdao	CN	39.9410	119.5894	Asia/Shanghai	تشنهوانغداو	
+88319	Benghazi	Benghazi	LY	32.1149	20.0686	Africa/Tripoli	بنغازي	Bingazi
+3445831	Uberlândia	Uberlandia	BR	-18.9186	-48.2772	America/Sao_Paulo		
+1279017	Alīgarh	Aligarh	IN	27.8815	78.0746	Asia/Kolkata		
+1816920	Shaoyang	Shaoyang	CN	27.2382	111.4621	Asia/Shanghai		
+304922	Malatya	Malatya	TR	38.3502	38.3167	Europe/Istanbul	ملطية	Malatya
+6183235	Winnipeg	Winnipeg	CA	49.8844	-97.1470	America/Winnipeg	وينيبيغ	Vinnipeg
+8469289	Ōta	Ota	JP	35.5613	139.7160	Asia/Tokyo		
+1514588	Andijon	Andijon	UZ	40.7834	72.3507	Asia/Tashkent	أندیجان	Andican
+1277013	Bareilly	Bareilly	IN	28.3668	79.4317	Asia/Kolkata		
+107304	Buraydah	Buraydah	SA	26.3260	43.9750	Asia/Riyadh	بُرَيدَة	Burayda
+2036986	Hegang	Hegang	CN	47.3473	130.2903	Asia/Shanghai	هيغانغ	
+3995402	Morelia	Morelia	MX	19.7008	-101.1844	America/Mexico_City	موريليا	Morelia
+456172	Riga	Riga	LV	56.9460	24.1059	Europe/Riga	ريغا	Riga
+1784055	Zhuanghe	Zhuanghe	CN	39.7008	122.9911	Asia/Shanghai		
+2759794	Amsterdam	Amsterdam	NL	52.3740	4.8897	Europe/Amsterdam	أمستردام	Amsterdam
+1721080	Cagayan de Oro	Cagayan de Oro	PH	8.4822	124.6472	Asia/Manila		
+1801620	Ma’anshan	Ma'anshan	CN	31.6858	118.5101	Asia/Shanghai		
+1798490	Pulandian	Pulandian	CN	39.3953	121.9669	Asia/Shanghai		
+1732903	Shah Alam	Shah Alam	MY	3.0851	101.5328	Asia/Kuala_Lumpur	شاه عالم	Shah Alam
+751324	Bağcılar	Bagcilar	TR	41.0390	28.8567	Europe/Istanbul		
+12324556	Shizuishan	Shizuishan	CN	38.9808	106.3892	Asia/Shanghai		
+1858421	Kumamoto	Kumamoto	JP	32.8059	130.6918	Asia/Tokyo		
+2325200	Oyo	Oyo	NG	7.8537	3.9324	Africa/Lagos		
+1627549	Serang	Serang	ID	-6.1153	106.1542	Asia/Jakarta		
+3981254	Torreón	Torreon	MX	25.5439	-103.4190	America/Monterrey		
+1812961	Deyang	Deyang	CN	31.1302	104.3820	Asia/Shanghai		
+2352947	Abeokuta	Abeokuta	NG	7.1557	3.3451	Africa/Lagos	أبيوكوتا	Abeokuta
+79415	Al Ḩudaydah	Al Hudaydah	YE	14.7978	42.9545	Asia/Aden	الحديدة	El Hudeyda
+1787351	Yangquan	Yangquan	CN	37.8575	113.5633	Asia/Shanghai		
+2350841	Akure	Akure	NG	7.2526	5.1931	Africa/Lagos	أكوري	Akure
+5419384	Denver	Denver	US	39.7392	-104.9847	America/Denver	دنفر	Denver
+3455775	Osasco	Osasco	BR	-23.5325	-46.7917	America/Sao_Paulo		
+7758790	Kikolo	Kikolo	AO	-8.7815	13.3338	Africa/Luanda		
+2239888	Maianga	Maianga	AO	-8.8469	13.2370	Africa/Luanda		
+1815427	Chaohu	Chaohu	CN	31.6000	117.8667	Asia/Shanghai		
+3448636	São José dos Campos	Sao Jose dos Campos	BR	-23.1794	-45.8869	America/Sao_Paulo		
+3514663	Álvaro Obregón	Alvaro Obregon	MX	19.3587	-99.2033	America/Mexico_City		
+1865689	Aihara	Aihara	JP	35.6000	139.3167	Asia/Tokyo		
+1004866	Evaton	Evaton	ZA	-26.5333	27.8500	Africa/Johannesburg		
+1680102	Valenzuela	Valenzuela	PH	14.7000	120.9667	Asia/Manila		
+1169607	Muzaffarābād	Muzaffarabad	PK	34.3700	73.4708	Asia/Karachi	مظفر آباد	Muzaffarabad
+1854383	Okayama	Okayama	JP	34.6500	133.9333	Asia/Tokyo		
+3985606	San Luis Potosí	San Luis Potosi	MX	22.1523	-100.9714	America/Monterrey	سان لويس بوتوسي	San Luis Potosí
+4019233	Aguascalientes	Aguascalientes	MX	21.8826	-102.2843	America/Mexico_City	أغواسكاليينتس	Aguascalientes
+1713022	General Santos	General Santos	PH	6.1128	125.1717	Asia/Manila		
+1783873	Zhumadian	Zhumadian	CN	32.9838	114.0259	Asia/Shanghai		
+1262801	Morādābād	Moradabad	IN	28.8389	78.7768	Asia/Kolkata		
+11611609	Sagamihara	Sagamihara	JP	35.5671	139.2417	Asia/Tokyo	ساغاميهارا	
+2050971	Qingshan	Qingshan	CN	40.6631	109.8817	Asia/Shanghai		
+6075357	Mississauga	Mississauga	CA	43.5789	-79.6583	America/Toronto	ميسيساغا	
+702550	Lviv	Lviv	UA	49.8383	24.0232	Europe/Kyiv	لفيف	
+1513157	Namangan	Namangan	UZ	40.9983	71.6726	Asia/Tashkent	نمنكان	Nemengan
+687700	Zaporizhzhya	Zaporizhzhya	UA	47.8517	35.1171	Europe/Kyiv	زاباروجيا	Zaporijjia
+148730	Zanzibar	Zanzibar	TZ	-6.1639	39.1979	Africa/Dar_es_Salaam	مدينة زنجبار	Zanzibar
+3988086	Saltillo	Saltillo	MX	25.4260	-100.9796	America/Monterrey	سالتيو	Saltillo
+173576	Latakia	Latakia	SY	35.5312	35.7909	Asia/Damascus	لاذقية	Lazkiye
+8504423	Subang Jaya	Subang Jaya	MY	3.0438	101.5806	Asia/Kuala_Lumpur	سوبانغ جايا	
+1252948	Warangal	Warangal	IN	18.0000	79.5833	Asia/Kolkata	ورنجل	
+1694781	Paranaque City	Paranaque City	PH	14.4816	121.0175	Asia/Manila		
+482283	Tolyatti	Tolyatti	RU	53.5303	49.3461	Europe/Samara	تولياتي	
+7874116	Santo Domingo Oeste	Santo Domingo Oeste	DO	18.5000	-70.0000	America/Santo_Domingo		
+1183105	Battagram	Battagram	PK	34.6772	73.0233	Asia/Karachi		
+1272866	Dhārāvi	Dharavi	IN	19.0500	72.8667	Asia/Kolkata		
+8601412	Santo Domingo Este	Santo Domingo Este	DO	18.4851	-69.8476	America/Santo_Domingo	سانتو دومينغو إيسте	Santo Domingo Este
+359796	Suez	Suez	EG	29.9737	32.5263	Africa/Cairo	سويس	Süveyş
+1815463	Changzhi	Changzhi	CN	35.2089	111.7386	Asia/Shanghai		
+3451328	Ribeirão Preto	Ribeirao Preto	BR	-21.1775	-47.8103	America/Sao_Paulo		
+2561668	Agadir	Agadir	MA	30.4202	-9.5982	Africa/Casablanca	أكادير	Ağadir
+11071717	Edogawe	Edogawe	JP	35.6923	139.8731	Asia/Tokyo		
+3191281	Sarajevo	Sarajevo	BA	43.8486	18.3564	Europe/Sarajevo	سراييفو	Saraybosna
+1650527	Balikpapan	Balikpapan	ID	-1.2675	116.8289	Asia/Makassar		
+10987897	Adachi	Adachi	JP	35.7632	139.8076	Asia/Tokyo		
+1815611	Changning	Changning	CN	31.2174	121.4210	Asia/Shanghai		
+2347470	Bauchi	Bauchi	NG	10.3103	9.8439	Africa/Lagos	باوتشي	Bauchi
+1851717	Shizuoka	Shizuoka	JP	34.9833	138.3833	Asia/Tokyo	شيزوكا	
+2464470	Tunis	Tunis	TN	36.8190	10.1658	Africa/Tunis	تونس	Tunus
+2033196	Zhangjiakou	Zhangjiakou	CN	40.7834	114.8714	Asia/Shanghai		
+4140963	Washington	Washington	US	38.8951	-77.0364	America/New_York		
+4644585	Nashville	Nashville	US	36.1659	-86.7844	America/Chicago	ناشفيل	Nashville
+2037346	Fuxin	Fuxin	CN	42.0156	121.6589	Asia/Shanghai		
+107968	Ta’if	Ta'if	SA	21.2703	40.4158	Asia/Riyadh	الطائف	Taif
+1796989	Changsha	Changsha	CN	22.3812	112.6849	Asia/Shanghai		
+1807234	Huangshi	Huangshi	CN	30.2471	115.0481	Asia/Shanghai		
+2036113	Liaoyang	Liaoyang	CN	41.2719	123.1731	Asia/Shanghai		
+8740157	Hlaingthaya	Hlaingthaya	MM	16.8500	96.0667	Asia/Yangon		
+1052373	Beira	Beira	MZ	-19.8436	34.8389	Africa/Maputo	بيرا	Beira
+1808090	Hongkou	Hongkou	CN	31.2500	121.4892	Asia/Shanghai		
+3104324	Zaragoza	Zaragoza	ES	41.6561	-0.8773	Europe/Madrid	سرقسطة	Zaragoza
+2510911	Sevilla	Sevilla	ES	37.3828	-5.9732	Europe/Madrid	إشبيلية	Sevilla
+1816269	Baise	Baise	CN	23.8901	106.6268	Asia/Shanghai		
+1630789	Pontianak	Pontianak	ID	-0.0319	109.3250	Asia/Pontianak	بونتياناك	
+1626801	Situbondo	Situbondo	ID	-7.7062	114.0098	Asia/Jakarta		
+2351943	Agege	Agege	NG	6.6156	3.3334	Africa/Lagos		
+1816336	Binzhou	Binzhou	CN	37.3667	118.0167	Asia/Shanghai		
+4544349	Oklahoma City	Oklahoma City	US	35.4676	-97.5164	America/Chicago	أوكلاهوما سيتي	Oklahoma City
+1785738	Yuncheng	Yuncheng	CN	35.0231	110.9928	Asia/Shanghai		
+1812955	Dezhou	Dezhou	CN	37.4466	116.3671	Asia/Shanghai		
+1221874	Dushanbe	Dushanbe	TJ	38.5358	68.7790	Asia/Dushanbe		Duşanbe
+2394819	Cotonou	Cotonou	BJ	6.3654	2.4183	Africa/Porto-Novo	كوتونو	
+5520993	El Paso	El Paso	US	31.7587	-106.4869	America/Denver	إل باسو	El Paso
+1270927	Gorakhpur	Gorakhpur	IN	26.7663	83.3689	Asia/Kolkata	غوراخبور	
+4005492	Guadalupe	Guadalupe	MX	25.6766	-100.2591	America/Monterrey		
+1529484	Hami	Hami	CN	42.8339	93.5060	Asia/Urumqi		
+3081368	Wrocław	Wroclaw	PL	51.1029	17.0301	Europe/Warsaw	فروتسواف	Wroclaw
+1645528	Denpasar	Denpasar	ID	-8.6500	115.2167	Asia/Makassar		
+1270668	Guntur	Guntur	IN	16.2997	80.4573	Asia/Kolkata	غنتور	Guntur
+2334802	Katsina	Katsina	NG	12.9908	7.6018	Africa/Lagos	كاتسينا	Katsina
+1796669	Sanmenxia	Sanmenxia	CN	34.7808	111.1929	Asia/Shanghai		
+6642286	E’zhou	E'zhou	CN	30.3961	114.8865	Asia/Shanghai		
+353225	Madīnat an Naşr	Madinat an Nasr	EG	30.0667	31.3000	Africa/Cairo		
+2591957	Camama	Camama	AO	-8.9361	13.2652	Africa/Luanda		
+101628	Tabuk	Tabuk	SA	28.3998	36.5715	Asia/Riyadh	تبوك	Tebük
+911148	Kitwe	Kitwe	ZM	-12.8024	28.2132	Africa/Lusaka	كيتوي	
+894701	Bulawayo	Bulawayo	ZW	-20.1500	28.5833	Africa/Harare	بولاوايو	Bulawayo
+2035715	Mudanjiang	Mudanjiang	CN	44.5480	129.6259	Asia/Shanghai		
+3471872	Aracaju	Aracaju	BR	-10.9111	-37.0717	America/Maceio	أراكاجو	Aracaju
+3459712	Joinville	Joinville	BR	-26.3044	-48.8456	America/Sao_Paulo		
+264371	Athens	Athens	GR	37.9838	23.7278	Europe/Athens	أثينا	Atina
+3186886	Zagreb	Zagreb	HR	45.8144	15.9780	Europe/Zagreb	زغرب	Zagreb
+1804153	Leshan	Leshan	CN	29.5623	103.7639	Asia/Shanghai		
+3449701	Santo André	Santo Andre	BR	-23.6639	-46.5383	America/Sao_Paulo		
+6173331	Vancouver	Vancouver	CA	49.2497	-123.1193	America/Vancouver	فانكوفر	Vancouver
+9072919	Rizhao	Rizhao	CN	35.4141	119.5291	Asia/Shanghai		
+658225	Helsinki	Helsinki	FI	60.1695	24.9354	Europe/Helsinki	هلسنكي	Helsinki
+1845759	Cheonan	Cheonan	KR	36.8065	127.1522	Asia/Seoul	تشونان	
+3533462	Acapulco de Juárez	Acapulco de Juarez	MX	16.8494	-99.9089	America/Mexico_City	أكابولكو	Acapulco
+1812621	Dongcun	Dongcun	CN	36.7767	121.1597	Asia/Shanghai		
+1650213	Banjarmasin	Banjarmasin	ID	-3.3199	114.5907	Asia/Makassar		
+1259425	Puducherry	Puducherry	IN	11.9338	79.8298	Asia/Kolkata		
+1793900	Suining	Suining	CN	30.5080	105.5733	Asia/Shanghai		
+5907364	Brampton	Brampton	CA	43.6834	-79.7663	America/Toronto	برامبتون	
+8307452	Huangpu	Huangpu	CN	31.2378	121.4781	Asia/Shanghai		
+2591953	Golfe	Golfe	AO	-8.8664	13.2617	Africa/Luanda		
+9181182	Puyang	Puyang	CN	35.7564	115.0436	Asia/Shanghai		
+3667905	Soacha	Soacha	CO	4.5794	-74.2168	America/Bogota		
+4930956	Boston	Boston	US	42.3584	-71.0598	America/New_York	بوسطن	Boston
+3515431	Tlalnepantla	Tlalnepantla	MX	19.5401	-99.1954	America/Mexico_City		
+10581114	Jājmau	Jajmau	IN	26.4304	80.4095	Asia/Kolkata		
+5746545	Portland	Portland	US	45.5234	-122.6762	America/Los_Angeles	بورتلاند، أوريغون	Portland
+2242906	Calumbo	Calumbo	AO	-9.1469	13.4194	Africa/Luanda		
+3981461	Tlaquepaque	Tlaquepaque	MX	20.6412	-103.2934	America/Mexico_City		
+2925533	Frankfurt am Main	Frankfurt am Main	DE	50.1155	8.6842	Europe/Berlin	فرانكفورت	Frankfurt
+1821274	Macau	Macau	MO	22.2006	113.5461	Asia/Macau	ماكاو	Makao
+2523920	Palermo	Palermo	IT	38.1166	13.3636	Europe/Rome	بلرم	Palermo
+554840	Izhevsk	Izhevsk	RU	56.8522	53.1986	Europe/Samara	إيجيفسك	İjevsk
+1248991	Colombo	Colombo	LK	6.9355	79.8487	Asia/Colombo	كولمبو	Kolombo
+3778045	Maturín	Maturin	VE	9.7457	-63.1832	America/Caracas	ماتورين	Maturin
+1278718	Amravati	Amravati	IN	20.9333	77.7500	Asia/Kolkata		
+2036075	Lingyuan	Lingyuan	CN	41.2400	119.4011	Asia/Shanghai		
+4990729	Detroit	Detroit	US	42.3314	-83.0457	America/Detroit	ديترويت	Detroit
+1800519	Mingguang	Mingguang	CN	32.7802	117.9638	Asia/Shanghai		
+2325590	Osogbo	Osogbo	NG	7.7710	4.5570	Africa/Lagos	أوسوجبو	Osogbo
+1863905	Honchō	Honcho	JP	35.7013	139.9865	Asia/Tokyo	فوناباشي	
+1275665	Bikaner	Bikaner	IN	28.0176	73.3149	Asia/Kolkata		
+6317344	Jaboatão dos Guararapes	Jaboatao dos Guararapes	BR	-8.1128	-35.0147	America/Recife		
+13631351	Hoji ya Henda	Hoji ya Henda	AO	-8.8052	13.2897	Africa/Luanda		
+5506956	Las Vegas	Las Vegas	US	36.1750	-115.1372	America/Los_Angeles	لاس فيغاس	Las Vegas
+4645421	New South Memphis	New South Memphis	US	35.0868	-90.0568	America/Chicago		
+1843847	Hwaseong-si	Hwaseong-si	KR	37.2068	126.8169	Asia/Seoul		
+2165087	Gold Coast	Gold Coast	AU	-28.0003	153.4309	Australia/Brisbane		
+3093133	Łódź	Lodz	PL	51.7706	19.4739	Europe/Warsaw	وودج	Łódź
+1845457	Jeonju	Jeonju	KR	35.8219	127.1489	Asia/Seoul	جونجو	Jeonju
+13608003	Chongming	Chongming	CN	31.6185	121.6962	Asia/Shanghai		
+285839	Al Aḩmadī	Al Ahmadi	KW	29.0769	48.0839	Asia/Kuwait	اَلأَحْمَدِي	El Ahmedi
+3658666	Cuenca	Cuenca	EC	-2.8953	-78.9963	America/Guayaquil		
+618426	Chisinau	Chisinau	MD	47.0090	28.8594	Europe/Chisinau	كيشيناو	Kişinev
+922741	Likasi	Likasi	CD	-10.9830	26.7384	Africa/Lubumbashi	ليكاسي	Likasi
+1642858	Jambi City	Jambi City	ID	-1.6000	103.6167	Asia/Jakarta	جامبي	
+1808770	Hebi	Hebi	CN	35.7323	114.2862	Asia/Shanghai		
+1185186	Comilla	Comilla	BD	23.4619	91.1850	Asia/Dhaka		
+204953	Tshikapa	Tshikapa	CD	-6.4162	20.7999	Africa/Lubumbashi	تشيكابا	
+1180942	Chunian	Chunian	PK	30.9662	73.9791	Asia/Karachi		
+1273874	Kochi	Kochi	IN	9.9399	76.2602	Asia/Kolkata		
+4641239	Memphis	Memphis	US	35.1495	-90.0490	America/Chicago	ممفيس	Memphis
+1805611	Jingmen	Jingmen	CN	31.0336	112.2047	Asia/Shanghai		
+1510853	Barnaul	Barnaul	RU	53.3620	83.7279	Asia/Barnaul	بارناول	Barnaul
+3693528	Piura	Piura	PE	-5.1819	-80.6572	America/Lima	بيورا	Piura
+1275971	Bhilai	Bhilai	IN	21.2092	81.4285	Asia/Kolkata		
+901344	Ndola	Ndola	ZM	-12.9587	28.6366	Africa/Lusaka	ندولا	Ndola
+3465624	Contagem	Contagem	BR	-19.9317	-44.0536	America/Sao_Paulo		
+1789693	Xiazhuang	Xiazhuang	CN	34.9161	118.6389	Asia/Shanghai		
+479123	Ulyanovsk	Ulyanovsk	RU	54.3282	48.3866	Europe/Ulyanovsk	أوليانوفسك	
+223817	Djibouti	Djibouti	DJ	11.5890	43.1450	Africa/Djibouti	جيبوتي	Cibuti
+2648579	Glasgow	Glasgow	GB	55.8651	-4.2576	Europe/London	غلاسكو	
+2035513	Panshan	Panshan	CN	41.1881	122.0494	Asia/Shanghai		
+4299276	Louisville	Louisville	US	38.2542	-85.7594	America/Kentucky/Louisville	لويفيل	Louisville
+2023469	Irkutsk	Irkutsk	RU	52.2957	104.2908	Asia/Irkutsk	إيركوتسك	İrkutsk
+1846918	Ansan-si	Ansan-si	KR	37.3236	126.8219	Asia/Seoul		
+360761	Al Mansurah	Al Mansurah	EG	31.0364	31.3807	Africa/Cairo	منصورة	Mansura
+128226	Kermanshah	Kermanshah	IR	34.3142	47.0650	Asia/Tehran	كرمانشاه	Kirmanşah
+1806096	Jiaozhou	Jiaozhou	CN	36.2839	120.0033	Asia/Shanghai		
+2934246	Düsseldorf	Duesseldorf	DE	51.2232	6.7793	Europe/Berlin	دوسلدورف	Düsseldorf
+1793879	Suizhou	Suizhou	CN	31.7111	113.3631	Asia/Shanghai		
+3587902	Villa Nueva	Villa Nueva	GT	14.5251	-90.5854	America/Guatemala		
+2022890	Khabarovsk	Khabarovsk	RU	48.4620	135.0971	Asia/Vladivostok	خاباروفسك	Habarovsk
+3465038	Cuiabá	Cuiaba	BR	-15.5961	-56.0967	America/Cuiaba	كويابا	Cuiabá
+161325	Arusha	Arusha	TZ	-3.3667	36.6833	Africa/Dar_es_Salaam	أروشا	Arusha
+3463478	Feira de Santana	Feira de Santana	BR	-12.2667	-38.9667	America/Bahia		
+1707174	Las Piñas	Las Pinas	PH	14.4506	120.9828	Asia/Manila		
+1814934	Chizhou	Chizhou	CN	30.6613	117.4778	Asia/Shanghai		
+3530139	Coyoacán	Coyoacan	MX	19.3467	-99.1617	America/Mexico_City		
+2825297	Stuttgart	Stuttgart	DE	48.7823	9.1770	Europe/Berlin	شتوتغارت	Stuttgart
+1787816	Ya'an	Ya'an	CN	29.9852	102.9990	Asia/Shanghai		
+1273780	Cuttack	Cuttack	IN	20.4650	85.8793	Asia/Kolkata		
+1275248	Borivli	Borivli	IN	19.2350	72.8598	Asia/Kolkata		
+3698350	Chiclayo	Chiclayo	PE	-6.7701	-79.8550	America/Lima	تشيكلايو	Chiclayo
+468902	Yaroslavl	Yaroslavl	RU	57.6299	39.8737	Europe/Moscow	ياروسلافل	
+2711537	Gothenburg	Gothenburg	SE	57.7072	11.9668	Europe/Stockholm	غوتنبرغ	Göteborg
+1859730	Kawaguchi	Kawaguchi	JP	35.8052	139.7107	Asia/Tokyo	كاواغوتشي	
+13118225	Bukit Rahman Putra	Bukit Rahman Putra	MY	3.2173	101.5608	Asia/Kuala_Lumpur		
+1175892	Jhang Sadr	Jhang Sadr	PK	31.2698	72.3169	Asia/Karachi	جانغ صدر	Jhang Sadar
+106281	Ha'il	Ha'il	SA	27.5219	41.6907	Asia/Riyadh	حائل	Hail
+1276032	Bhavnagar	Bhavnagar	IN	21.7629	72.1533	Asia/Kolkata		
+1020098	Benoni	Benoni	ZA	-26.1885	28.3208	Africa/Johannesburg	بينوني	
+2013348	Vladivostok	Vladivostok	RU	43.1056	131.8735	Asia/Vladivostok	فلاديفوستوك	Vladivostok
+3515001	Tuxtla	Tuxtla	MX	16.7536	-93.1158	America/Merida	توكستلا غوتيريز	Tuxtla
+703845	Kryvyy Rih	Kryvyy Rih	UA	47.9057	33.3940	Europe/Kyiv	كريفي ريه	
+1796663	Sanming	Sanming	CN	26.2486	117.6186	Asia/Shanghai		
+1176615	Islamabad	Islamabad	PK	33.7215	73.0433	Asia/Karachi	إسلام آباد	İslamabad
+1257416	Sāngli	Sangli	IN	16.8544	74.5642	Asia/Kolkata		
+1269317	Jamnagar	Jamnagar	IN	22.4729	70.0667	Asia/Kolkata	جام نجر	Jamnagar
+3347762	Lubango	Lubango	AO	-14.9172	13.4925	Africa/Luanda	لوبانغو	Lubango
+1282898	Pokhara	Pokhara	NP	28.2669	83.9685	Asia/Kathmandu	بوخارا	Pokhara
+2034786	Shuangyashan	Shuangyashan	CN	46.6769	131.1327	Asia/Shanghai		
+64021	Borama	Borama	SO	9.9361	43.1828	Africa/Mogadishu	بوراما‎	Boorama
+7696679	Pallabi	Pallabi	BD	23.8250	90.3700	Asia/Dhaka		
+1802204	Luancheng	Luancheng	CN	37.8845	114.6463	Asia/Shanghai		
+532096	Makhachkala	Makhachkala	RU	42.9778	47.5003	Europe/Moscow	ماخاتشكالا	Mahçkale
+1846898	Anyang-si	Anyang-si	KR	37.3925	126.9269	Asia/Seoul		
+3348313	Huambo	Huambo	AO	-12.7761	15.7392	Africa/Luanda	هوامبو	Huambo
+1216265	Samarkand	Samarkand	UZ	39.6546	66.9644	Asia/Samarkand	سمرقند	Semerkant
+13512502	Mengzi	Mengzi	CN	23.3678	103.3821	Asia/Shanghai		
+1860827	Kagoshima	Kagoshima	JP	31.5667	130.5500	Asia/Tokyo	كاغوشيما	
+78754	Mukalla	Mukalla	YE	14.5425	49.1242	Asia/Aden	المكلا	Mukalla
+118743	Rasht	Rasht	IR	37.2761	49.5886	Asia/Tehran		Reşt
+3430863	Mar del Plata	Mar del Plata	AR	-38.0004	-57.5562	America/Argentina/Buenos_Aires	ماريه ديل بلاتا	Mar del Plata
+2928810	Essen	Essen	DE	51.4566	7.0123	Europe/Berlin	أسن	Essen
+360829	Al Maḩallah al Kubrá	Al Mahallah al Kubra	EG	30.9706	31.1669	Africa/Cairo	المحلة الكبرى	
+2514256	Málaga	Malaga	ES	36.7202	-4.4203	Europe/Madrid	مالقة	Malaga
+1165221	Shekhupura	Shekhupura	PK	31.7129	73.9856	Asia/Karachi		
+2033370	Yingkou	Yingkou	CN	40.6647	122.2318	Asia/Shanghai		
+1785018	Zhangzhou	Zhangzhou	CN	24.5133	117.6556	Asia/Shanghai		
+3520339	Reynosa	Reynosa	MX	26.0800	-98.2846	America/Matamoros		
+12382296	Thuận An	Thuan An	VN	10.9239	106.7143	Asia/Ho_Chi_Minh		
+2935517	Dortmund	Dortmund	DE	51.5149	7.4660	Europe/Berlin	دورتموند	Dortmund
+11836117	Suginami	Suginami	JP	36.2013	140.2841	Asia/Tokyo		
+4347778	Baltimore	Baltimore	US	39.2904	-76.6122	America/New_York	بالتيمور	Baltimore
+1861321	Itabashi	Itabashi	JP	35.7489	139.7150	Asia/Tokyo		
+3489297	New Kingston	New Kingston	JM	18.0075	-76.7832	America/Jamaica		
+1732747	Pelentong	Pelentong	MY	1.5243	103.8240	Asia/Kuala_Lumpur		
+1646448	Cimahi	Cimahi	ID	-6.8722	107.5425	Asia/Jakarta		
+3458449	Londrina	Londrina	BR	-23.3103	-51.1628	America/Sao_Paulo	لوندرينا	
+3688465	Bucaramanga	Bucaramanga	CO	7.1250	-73.1189	America/Bogota	بوكاراميانجا	Bucaramanga
+3176219	Genoa	Genoa	IT	44.4048	8.9444	Europe/Rome	جنوة	Cenova
+2037411	Fengcheng	Fengcheng	CN	40.4536	124.0717	Asia/Shanghai		
+1863440	Hachiōji	Hachioji	JP	35.6558	139.3239	Asia/Tokyo	هاتشيؤوجي	
+1734759	Malacca	Malacca	MY	2.1960	102.2405	Asia/Kuala_Lumpur	ملقا	Malakka
+1572151	Nha Trang	Nha Trang	VN	12.2451	109.1943	Asia/Ho_Chi_Minh	نها ترانج	Nha Trang
+128234	Kerman	Kerman	IR	30.2832	57.0788	Asia/Tehran	كرمان	
+121801	Orūmīyeh	Orumiyeh	IR	37.5527	45.0761	Asia/Tehran	أرومية	Urmiye
+7627067	Bahçelievler	Bahcelievler	TR	41.0023	28.8598	Europe/Istanbul		
+347497	Tanta	Tanta	EG	30.7885	31.0019	Africa/Cairo	طنطا	
+1269321	Jammu	Jammu	IN	32.7353	74.8617	Asia/Kolkata		
+10063567	Iskandar Puteri	Iskandar Puteri	MY	1.3932	103.6232	Asia/Kuala_Lumpur		
+1720681	Calamba	Calamba	PH	14.2117	121.1653	Asia/Manila	كالامبا	Calamba
+1804442	Lanxi	Lanxi	CN	29.2159	119.4716	Asia/Shanghai		
+3515428	Tlalpan	Tlalpan	MX	19.2951	-99.1621	America/Mexico_City		
+1140026	Herāt	Herat	AF	34.3482	62.1997	Asia/Kabul	هراة	Herat
+1812256	Dongsheng	Dongsheng	CN	39.8161	109.9776	Asia/Shanghai		
+1177654	Gujrat	Gujrat	PK	32.5742	74.0754	Asia/Karachi		
+1489425	Tomsk	Tomsk	RU	56.5005	84.9822	Asia/Tomsk	تومسك	Tomsk
+738377	Umraniye	Umraniye	TR	41.0164	29.1248	Europe/Istanbul		
+1529195	Shihezi	Shihezi	CN	44.3023	86.0369	Asia/Urumqi		
+4951305	South Boston	South Boston	US	42.3334	-71.0495	America/New_York		
+184622	Nakuru	Nakuru	KE	-0.3072	36.0722	Africa/Nairobi		
+5969782	Hamilton	Hamilton	CA	43.2501	-79.8496	America/Toronto	هاميلتون	
+248946	Irbid	Irbid	JO	32.5556	35.8500	Asia/Amman	إربد	İrbid
+2643123	Manchester	Manchester	GB	53.4809	-2.2374	Europe/London	مانشستر	Manchester
+1736376	Kota Bharu	Kota Bharu	MY	6.1236	102.2433	Asia/Kuala_Lumpur	كوتا بهارو	Kota Bharu
+6159905	Surrey	Surrey	CA	49.1063	-122.8251	America/Vancouver	سوري، كولومبيا البريطانية	
+2542715	Meknes	Meknes	MA	33.8935	-5.5473	Africa/Casablanca	مكناس	
+3875024	Puente Alto	Puente Alto	CL	-33.6117	-70.5758	America/Santiago		
+369004	Nyala	Nyala	SD	12.0489	24.8807	Africa/Khartoum	نيالا	Nyala
+2033675	Xinmin	Xinmin	CN	41.9908	122.8253	Asia/Shanghai		
+2935022	Dresden	Dresden	DE	51.0509	13.7383	Europe/Berlin	دريسدن	Dresden
+515003	Orenburg	Orenburg	RU	51.7671	55.0988	Asia/Yekaterinburg	أورنبرغ	Orenburg
+5454711	Albuquerque	Albuquerque	US	35.0845	-106.6511	America/Denver	ألباكركي	
+1275362	Bokāro	Bokaro	IN	23.6693	86.1516	Asia/Kolkata		
+343300	Asmara	Asmara	ER	15.3381	38.9318	Africa/Asmara	أسمرة	Asmara
+1164408	Sukkur	Sukkur	PK	27.7032	68.8589	Asia/Karachi		
+5263045	Milwaukee	Milwaukee	US	43.0389	-87.9065	America/Chicago	ميلواكي	Milwaukee
+1585330	Chợ Lớn	Cho Lon	VN	10.7500	106.6500	Asia/Ho_Chi_Minh		
+1791544	Wenchang	Wenchang	CN	19.5516	110.8028	Asia/Shanghai		
+2340451	Gombe	Gombe	NG	10.2897	11.1673	Africa/Lagos	جومبي	Gombe
+2338900	Ile-Ife	Ile-Ife	NG	7.4824	4.5603	Africa/Lagos		
+1877449	Hamhŭng	Hamhung	KP	39.9183	127.5364	Asia/Pyongyang	هامهونغ	Hamhung
+1503901	Kemerovo	Kemerovo	RU	55.3542	86.1043	Asia/Novokuznetsk	كيميروفو	Kemerovo
+98854	Nasiriyah	Nasiriyah	IQ	31.0580	46.2573	Asia/Baghdad	الناصرية	
+1018725	Bloemfontein	Bloemfontein	ZA	-29.1211	26.2140	Africa/Johannesburg	بلومفونتين	Bloemfontein
+2638077	Sheffield	Sheffield	GB	53.3830	-1.4659	Europe/London	شفيلد	Sheffield
+3536729	Santiago de Cuba	Santiago de Cuba	CU	20.0229	-75.8217	America/Havana	سانتياغو دي كوبا	Santiago de Cuba
+3515807	Cuautitlán Izcalli	Cuautitlan Izcalli	MX	19.6439	-99.2160	America/Mexico_City		
+3351663	Benguela	Benguela	AO	-12.5767	13.4027	Africa/Luanda	بنغيلا	Benguela
+1814760	Chuxiong	Chuxiong	CN	25.0364	101.5456	Asia/Shanghai		
+7648070	Balbala	Balbala	DJ	11.5619	43.1067	Africa/Djibouti	بلبالا	
+1787031	Yanzhou	Yanzhou	CN	35.5528	116.8286	Asia/Shanghai		
+1807689	Huaihua	Huaihua	CN	27.5634	110.0040	Asia/Shanghai		
+1794140	Sishui	Sishui	CN	35.6489	117.2758	Asia/Shanghai		
+1699076	Muntinlupa	Muntinlupa	PH	14.3903	121.0475	Asia/Manila		
+1904564	Bình Thạnh	Binh Thanh	VN	10.8110	106.7060	Asia/Ho_Chi_Minh		
+1159301	Zahedan	Zahedan	IR	29.4963	60.8629	Asia/Tehran	زاهدان	
+1670029	Banqiao	Banqiao	TW	25.0143	121.4672	Asia/Taipei		
+1261977	Nanded	Nanded	IN	19.1602	77.3150	Asia/Kolkata		
+1265873	Kozhikode	Kozhikode	IN	11.2480	75.7804	Asia/Kolkata		
+8335361	Ulanqab	Ulanqab	CN	40.9930	113.1330	Asia/Shanghai		
+2566636	Ajegunle	Ajegunle	NG	6.4520	3.3312	Africa/Lagos		
+2243271	Cabinda	Cabinda	AO	-5.5620	12.1948	Africa/Luanda	كابيندا	Cabinda
+786714	Pristina	Pristina	XK	42.6727	21.1669	Europe/Belgrade	بريشتينا	Priştine
+2036581	Jiamusi	Jiamusi	CN	46.7971	130.3112	Asia/Shanghai		
+1529376	Korla	Korla	CN	41.7606	86.1523	Asia/Urumqi		
+1266285	Kolhāpur	Kolhapur	IN	16.6956	74.2317	Asia/Kolkata		
+3662762	Porto Velho	Porto Velho	BR	-8.7619	-63.9039	America/Porto_Velho	بورتو فاليو	Porto Velho
+3836873	San Miguel de Tucumán	San Miguel de Tucuman	AR	-26.8160	-65.2105	America/Argentina/Tucuman	سان ميغيل دي توكومان	San Miguel de Tucuman
+1735227	Kuantan	Kuantan	MY	3.8077	103.3260	Asia/Kuala_Lumpur	كوانتان	Kuantan
+694423	Sevastopol	Sevastopol	UA	44.6080	33.5213	Europe/Simferopol	سيفاستوبول	Akyar
+1261529	Nellore	Nellore	IN	14.4499	79.9870	Asia/Kolkata	نيلور	
+11395976	Mirpur Model Thana	Mirpur Model Thana	BD	23.8093	90.3609	Asia/Dhaka		
+2944388	Bremen	Bremen	DE	53.0758	8.8072	Europe/Berlin	بريمن	Bremen
+1791779	Wanning	Wanning	CN	18.7993	110.3841	Asia/Shanghai		
+2325330	Owerri	Owerri	NG	5.4836	7.0332	Africa/Lagos	أويري	Owerri
+6847550	Kota Kuala Muda	Kota Kuala Muda	MY	5.5882	100.3709	Asia/Kuala_Lumpur		
+1735498	Sungai Petani	Sungai Petani	MY	5.6470	100.4877	Asia/Kuala_Lumpur		
+1788450	Xinzhou	Xinzhou	CN	38.4092	112.7333	Asia/Shanghai		
+11209896	Kotō	Koto	JP	32.7786	130.7454	Asia/Tokyo		
+1270752	Kalaburagi	Kalaburagi	IN	17.3358	76.8376	Asia/Kolkata	كلبركة	
+5318313	Tucson	Tucson	US	32.2217	-110.9265	America/Phoenix	توسون	
+7795834	Selayang Baru Utara	Selayang Baru Utara	MY	3.2549	101.6668	Asia/Kuala_Lumpur		
+593116	Vilnius	Vilnius	LT	54.6892	25.2798	Europe/Vilnius	فيلنيوس	Vilnüs
+1279159	Ajmer	Ajmer	IN	26.4521	74.6387	Asia/Kolkata	أجمير	
+1798821	Pingdu	Pingdu	CN	36.7844	119.9464	Asia/Shanghai		
+5350937	Fresno	Fresno	US	36.7477	-119.7724	America/Los_Angeles	فريسنو	
+154380	Mbeya	Mbeya	TZ	-8.9000	33.4500	Africa/Dar_es_Salaam	مبيا	Mbeya
+3459505	Juiz de Fora	Juiz de Fora	BR	-21.7642	-43.3503	America/Sao_Paulo		
+2346229	Calabar	Calabar	NG	4.9589	8.3270	Africa/Lagos	كالابار	Calabar
+2540483	Oujda	Oujda	MA	34.6814	-1.9086	Africa/Casablanca	وجدة	Ucda
+1496990	Novokuznetsk	Novokuznetsk	RU	53.7575	87.1360	Asia/Novokuznetsk	نوفوكوزنتسك	
+500096	Ryazan’	Ryazan'	RU	54.6270	39.7041	Europe/Moscow	ريازان	Ryazan
+1806445	Ji’an	Ji'an	CN	27.1172	114.9793	Asia/Shanghai		
+1166547	Sahiwal	Sahiwal	PK	31.9739	72.3311	Asia/Karachi		
+1166548	Sahiwal	Sahiwal	PK	30.6659	73.1019	Asia/Karachi		
+304531	Mersin	Mersin	TR	36.8120	34.6389	Europe/Istanbul		Mersin
+10346824	Nilüfer	Niluefer	TR	40.2140	28.9157	Europe/Istanbul		Nilüfer
+2644688	Leeds	Leeds	GB	53.7965	-1.5478	Europe/London	ليدز	Leeds
+3088171	Poznań	Poznan	PL	52.4069	16.9299	Europe/Warsaw	بوزنان	Poznan
+1529660	Aqsu	Aqsu	CN	41.1842	80.2792	Asia/Urumqi	أقسو	
+2344082	Ebute Ikorodu	Ebute Ikorodu	NG	6.6009	3.4882	Africa/Lagos		
+3407669	Ananindeua	Ananindeua	BR	-1.3656	-48.3722	America/Belem		
+1793424	Tanggu	Tanggu	CN	39.0211	117.6469	Asia/Shanghai		
+1732722	Pasir Gudang	Pasir Gudang	MY	1.4620	103.9053	Asia/Kuala_Lumpur		
+580497	Astrakhan	Astrakhan	RU	46.3497	48.0408	Europe/Astrakhan	أستراخان	Astrahan
+1168718	Okara	Okara	PK	30.8103	73.4515	Asia/Karachi		
+10943053	Nansana	Nansana	UG	0.3639	32.5286	Africa/Kampala		
+1842943	Kimhae	Kimhae	KR	35.2342	128.8811	Asia/Seoul		
+172955	Ar Raqqah	Ar Raqqah	SY	35.9528	39.0079	Asia/Damascus	الرقة	Rakka
+6325494	Québec	Quebec	CA	46.8123	-71.2145	America/Toronto	مدينة كيبك	Quebec
+3827409	Cuauhtémoc	Cuauhtemoc	MX	19.4451	-99.1461	America/Mexico_City		
+1796068	Shangluo	Shangluo	CN	33.8667	109.9306	Asia/Shanghai		
+1862627	Himeji	Himeji	JP	34.8167	134.7000	Asia/Tokyo	هيميجي	
+1811764	Duyun	Duyun	CN	26.2667	107.5167	Asia/Shanghai		
+3680656	Ibagué	Ibague	CO	4.4357	-75.2029	America/Bogota	أباجي	Ibague
+2803138	Antwerp	Antwerp	BE	51.2205	4.4003	Europe/Brussels	أنتويرب	Antwerp
+359783	Assiut	Assiut	EG	27.1810	31.1837	Africa/Cairo	أسيوط	
+132144	Hamadān	Hamadan	IR	34.7992	48.5146	Asia/Tehran		
+1806488	Qionghai	Qionghai	CN	19.2425	110.4642	Asia/Shanghai		
+6316406	Aparecida de Goiânia	Aparecida de Goiania	BR	-16.8233	-49.2439	America/Sao_Paulo		
+1816080	Cangzhou	Cangzhou	CN	38.3112	116.8533	Asia/Shanghai		
+1194041	Mohammadpur	Mohammadpur	BD	24.8984	88.5284	Asia/Dhaka		
+1625812	Surakarta	Surakarta	ID	-7.5561	110.8317	Asia/Jakarta	سوراكارتا	
+1786060	Yuanping	Yuanping	CN	38.7153	112.7575	Asia/Shanghai		
+3583361	San Salvador	San Salvador	SV	13.6893	-89.1872	America/El_Salvador	سان سلفادور	San Salvador
+1816705	Beihai	Beihai	CN	21.4835	109.1155	Asia/Shanghai		
+298117	Van	Van	TR	38.4946	43.3832	Europe/Istanbul	وان	Van
+5389489	Sacramento	Sacramento	US	38.5816	-121.4944	America/Los_Angeles	ساكرامنتو	Sacramento
+1565019	Thủ Đức	Thu GJuc	VN	10.8486	106.7721	Asia/Ho_Chi_Minh		
+738329	Üsküdar	UEskuedar	TR	41.0227	29.0137	Europe/Istanbul		
+511565	Penza	Penza	RU	53.1957	45.0108	Europe/Moscow	بينزا	Penza
+1138336	Kandahār	Kandahar	AF	31.6133	65.7101	Asia/Kabul	قندهار	Kandehar
+1133616	Mazār-e Sharīf	Mazar-e Sharif	AF	36.7090	67.1109	Asia/Kabul	مزار شريف	Mezirek-i Şerif
+1808392	Hengshui	Hengshui	CN	37.7391	115.6835	Asia/Shanghai		
+1273313	Dehradun	Dehradun	IN	30.3244	78.0339	Asia/Kolkata		Dehra Dun
+1272013	Erode	Erode	IN	11.3428	77.7274	Asia/Kolkata		
+2996944	Lyon	Lyon	FR	45.7491	4.8479	Europe/Paris	ليون	Lyon
+3838233	Salta	Salta	AR	-24.8065	-65.4200	America/Argentina/Salta	سالتا	Salta
+3447779	Serra	Serra	BR	-20.1286	-40.3078	America/Sao_Paulo		
+747340	Esenler	Esenler	TR	41.0435	28.8762	Europe/Istanbul		
+12446699	Daxing’anling	Daxing'anling	CN	52.3338	124.7124	Asia/Shanghai		
+1568574	Qui Nhon	Qui Nhon	VN	13.7765	109.2237	Asia/Ho_Chi_Minh	كويه نهون	Qui Nhon
+361320	Al Fayyum	Al Fayyum	EG	29.3100	30.8418	Africa/Cairo	الفيوم	
+1272175	Durgapur	Durgapur	IN	23.5158	87.3080	Asia/Kolkata		
+1849053	Utsunomiya	Utsunomiya	JP	36.5667	139.8833	Asia/Tokyo		
+4011743	Victoria de Durango	Victoria de Durango	MX	24.0203	-104.6576	America/Monterrey		
+3470142	Belford Roxo	Belford Roxo	BR	-22.7642	-43.3994	America/Sao_Paulo		
+2267057	Lisbon	Lisbon	PT	38.7251	-9.1498	Europe/Lisbon	لشبونة	Lizbon
+1167460	Rahim Yar Khan	Rahim Yar Khan	PK	28.4199	70.3034	Asia/Karachi	رحيم يار خان	
+1253894	Ulhasnagar	Ulhasnagar	IN	19.2167	73.1500	Asia/Kolkata	أولهاسنغر	Ulhasnagar
+1806466	Guangyuan	Guangyuan	CN	32.4420	105.8230	Asia/Shanghai		
+1264773	Loni	Loni	IN	28.7514	77.2902	Asia/Kolkata		
+1256525	Siliguri	Siliguri	IN	26.7100	88.4285	Asia/Kolkata		
+2861650	Nuremberg	Nuremberg	DE	49.4542	11.0775	Europe/Berlin	نورنبيرغ	Nuremberg
+3456283	Niterói	Niteroi	BR	-22.8833	-43.1036	America/Sao_Paulo		
+1253914	Ujjain	Ujjain	IN	23.1824	75.7764	Asia/Kolkata	أوجاين	Ujjain
+2910831	Hannover	Hannover	DE	52.3705	9.7332	Europe/Berlin	هانوفر	Hannover
+2650225	Edinburgh	Edinburgh	GB	55.9521	-3.1965	Europe/London	إدنبرة	Edinburgh
+3396016	Macapá	Macapa	BR	0.0389	-51.0664	America/Belem	ماكابا	Macapa
+1790396	Xianning	Xianning	CN	29.8435	114.3220	Asia/Shanghai		
+2972315	Toulouse	Toulouse	FR	43.6043	1.4437	Europe/Paris	تولوز	
+949880	Thembisa	Thembisa	ZA	-25.9964	28.2268	Africa/Johannesburg		
+6201369	Carrefour	Carrefour	HT	18.5333	-72.4000	America/Port-au-Prince		
+1926099	Matsuyama	Matsuyama	JP	33.8392	132.7657	Asia/Tokyo	ماتسوياما	
+1275610	Bilimora	Bilimora	IN	20.7696	72.9613	Asia/Kolkata		
+1174625	Kasur	Kasur	PK	31.1187	74.4502	Asia/Karachi		
+4180439	Atlanta	Atlanta	US	33.7490	-84.3880	America/New_York	أتلانتا	Atlanta
+3523466	Heroica Matamoros	Heroica Matamoros	MX	25.8797	-97.5042	America/Matamoros		
+1703417	Makati City	Makati City	PH	14.5503	121.0327	Asia/Manila		
+3054667	Buda	Buda	HU	47.5000	19.0333	Europe/Budapest	بودا	Budin
+12492662	Mianzhu, Deyang, Sichuan	Mianzhu, Deyang, Sichuan	CN	31.3379	104.2206	Asia/Shanghai		
+2034414	Tonghua	Tonghua	CN	41.7197	125.9264	Asia/Shanghai		
+523750	Naberezhnyye Chelny	Naberezhnyye Chelny	RU	55.7372	52.4196	Europe/Moscow		
+535121	Lipetsk	Lipetsk	RU	52.5876	39.5515	Europe/Moscow	ليبيتسك	Lipetsk
+2314705	Kikwit	Kikwit	CD	-5.0410	18.8162	Africa/Kinshasa	كيكويت	Kikwit
+3463237	Florianópolis	Florianopolis	BR	-27.5967	-48.5492	America/Sao_Paulo	فلوريانوبوليس	Florianópolis
+1909733	Banan	Banan	CN	29.3786	106.5400	Asia/Shanghai		
+2155472	Newcastle	Newcastle	AU	-32.9295	151.7801	Australia/Sydney	نيوكاسل	Newcastle
+1818446	Tuen Mun	Tuen Mun	HK	22.3917	113.9716	Asia/Hong_Kong		
+1785036	Zhangye	Zhangye	CN	38.9342	100.4517	Asia/Shanghai		
+548408	Kirov	Kirov	RU	58.5981	49.6578	Europe/Kirov	كيروف	Kirov
+1280849	Kashgar	Kashgar	CN	39.4672	75.9868	Asia/Urumqi	كاشغر	Kaşgar
+12750654	Mukim Pulai	Mukim Pulai	MY	1.5333	103.6667	Asia/Kuala_Lumpur		
+103630	Najrān	Najran	SA	17.4933	44.1277	Asia/Riyadh	نجران	Necran
+1267696	Karol Bāgh	Karol Bagh	IN	28.6514	77.1907	Asia/Kolkata		
+1784130	Zhoukou	Zhoukou	CN	33.6333	114.6333	Asia/Shanghai	زهوكو	
+2879139	Leipzig	Leipzig	DE	51.3396	12.3713	Europe/Berlin	لايبزيغ	Leipzig
+1798760	Pingliang	Pingliang	CN	35.5392	106.6861	Asia/Shanghai		
+8504951	Kalininskiy	Kalininskiy	RU	59.9967	30.3899	Europe/Moscow		
+2934691	Duisburg	Duisburg	DE	51.4325	6.7652	Europe/Berlin	دويسبورغ	Duisburg
+1278314	Āsansol	Asansol	IN	23.6833	86.9833	Asia/Kolkata		
+143127	Arāk	Arak	IR	34.0949	49.6981	Asia/Tehran		
+3880980	Maipú	Maipu	CL	-33.5142	-70.7651	America/Santiago		
+627907	Homyel'	Homyel'	BY	52.4345	30.9754	Europe/Minsk	غوميل	Gomel
+610611	Aktobe	Aktobe	KZ	50.2797	57.2072	Asia/Aqtobe	أكتوبي	Aktöbe
+1733432	Kota Kinabalu	Kota Kinabalu	MY	5.9749	116.0724	Asia/Kuching	كوتا كينابالو	Kota Kinabalu
+1176358	Jalalpur Pirwala	Jalalpur Pirwala	PK	29.5051	71.2220	Asia/Karachi		
+1732724	Kampung Larkin Lama	Kampung Larkin Lama	MY	1.5024	103.7440	Asia/Kuala_Lumpur		
+12514556	Kota Damansara	Kota Damansara	MY	3.1545	101.5802	Asia/Kuala_Lumpur		
+2591976	Talatona	Talatona	AO	-8.9178	13.1856	Africa/Luanda		
+1263780	Mangaluru	Mangaluru	IN	12.9172	74.8560	Asia/Kolkata	مانغلور	
+1783988	Zhucheng	Zhucheng	CN	35.9947	119.3975	Asia/Shanghai		
+3668605	Santa Marta	Santa Marta	CO	11.2386	-74.1943	America/Bogota	سانتا مارتا	Santa Marta
+1857553	Matsudo	Matsudo	JP	35.7799	139.9014	Asia/Tokyo	ماتسودو	
+1462674	Hāthazāri	Hathazari	BD	22.5052	91.8134	Asia/Dhaka		
+1707267	Lapu-Lapu City	Lapu-Lapu City	PH	10.3103	123.9494	Asia/Manila		
+609655	Karagandy	Karagandy	KZ	49.8019	73.1021	Asia/Almaty	قراغندة	Karaganda
+1802238	Loudi	Loudi	CN	27.7344	111.9944	Asia/Shanghai		
+2644210	Liverpool	Liverpool	GB	53.4106	-2.9779	Europe/London	ليفربول	Liverpool
+11837657	Ichikawa	Ichikawa	JP	35.7341	139.9065	Asia/Tokyo	ايشيكاوا	
+1185270	Bāndarban	Bandarban	BD	22.1953	92.2195	Asia/Dhaka		
+1818920	Sha Tin	Sha Tin	HK	22.3833	114.1833	Asia/Hong_Kong		
+1180289	Dera Ghazi Khan	Dera Ghazi Khan	PK	30.0459	70.6403	Asia/Karachi		
+1808747	Hecun	Hecun	CN	36.5333	114.1111	Asia/Shanghai		
+1862752	Higashiosaka	Higashiosaka	JP	34.6667	135.5833	Asia/Tokyo	هيغاشيوساكا، أوساكا	
+1168021	Pindi Bhattian	Pindi Bhattian	PK	31.8984	73.2734	Asia/Karachi		
+569696	Cheboksary	Cheboksary	RU	56.1322	47.2460	Europe/Moscow	تشيبوكساري	Şupaşkar
+1839071	Pohang	Pohang	KR	36.0292	129.3648	Asia/Seoul		
+1795928	Shanwei	Shanwei	CN	22.7820	115.3475	Asia/Shanghai		
+3674453	Montería	Monteria	CO	8.7508	-75.8782	America/Bogota	مونتيريا	Monteria
+181032	Ruiru	Ruiru	KE	-1.1466	36.9609	Africa/Nairobi		
+3666304	Valledupar	Valledupar	CO	10.4654	-73.2531	America/Bogota	توربو	Valledupar
+1276533	Belagavi	Belagavi	IN	15.8521	74.5045	Asia/Kolkata		
+292932	Ajman	Ajman	AE	25.4018	55.4788	Asia/Dubai	عجمان	Acman
+9931406	Jianshui	Jianshui	CN	24.2774	101.2240	Asia/Shanghai		
+7628420	Sancaktepe	Sancaktepe	TR	41.0024	29.2319	Europe/Istanbul		
+377039	Port Sudan	Port Sudan	SD	19.6175	37.2164	Africa/Khartoum	بورتسودان	Port Sudan
+3515302	Toluca	Toluca	MX	19.2879	-99.6532	America/Mexico_City	تولوكا	Toluca
+3532624	Ciudad López Mateos	Ciudad Lopez Mateos	MX	19.5579	-99.2567	America/Mexico_City		
+360890	Al Khuşūş	Al Khusus	EG	30.1529	31.3150	Africa/Cairo		
+1846266	Jeju City	Jeju City	KR	33.5097	126.5219	Asia/Seoul	جيجو	Jeju Şehri
+3099434	Gdańsk	Gdansk	PL	54.3523	18.6491	Europe/Warsaw	غدانسك	Gdansk
+4164138	Miami	Miami	US	25.7743	-80.1937	America/New_York	ميامي	Miami
+5074472	Omaha	Omaha	US	41.2563	-95.9404	America/Chicago	أوماها	Omaha
+1855207	Nishinomiya	Nishinomiya	JP	34.7156	135.3320	Asia/Tokyo		
+2593460	Masina	Masina	CD	-4.3836	15.3914	Africa/Kinshasa		
+1257806	Sahāranpur	Saharanpur	IN	29.9679	77.5452	Asia/Kolkata		
+1253286	Vellore	Vellore	IN	12.9184	79.1325	Asia/Kolkata		
+2037643	Donghe	Donghe	CN	40.5661	110.0197	Asia/Shanghai		
+1858311	Kurashiki	Kurashiki	JP	34.5833	133.7667	Asia/Tokyo	كوراشيكي، أوكاياما	
+3467693	Campos dos Goytacazes	Campos dos Goytacazes	BR	-21.7523	-41.3304	America/Sao_Paulo		
+1730737	Angeles City	Angeles City	PH	15.1500	120.5833	Asia/Manila		
+1276058	Bhātpāra	Bhatpara	IN	22.8664	88.4011	Asia/Kolkata		
+333795	Jijiga	Jijiga	ET	9.3500	42.8000	Africa/Addis_Ababa		
+480562	Tula	Tula	RU	54.1961	37.6182	Europe/Moscow	تولا	
+98860	Najaf	Najaf	IQ	32.0259	44.3462	Asia/Baghdad	النجف	Necef
+4487042	Raleigh	Raleigh	US	35.7721	-78.6386	America/New_York	رالي	Raleigh
+1710914	Imus	Imus	PH	14.4297	120.9367	Asia/Manila		
+1789647	Xichang	Xichang	CN	27.8964	102.2634	Asia/Shanghai		
+1264115	Malegaon	Malegaon	IN	20.5497	74.5346	Asia/Kolkata		
+3448639	São José do Rio Preto	Sao Jose do Rio Preto	BR	-20.8197	-49.3794	America/Sao_Paulo		
+3466537	Caxias do Sul	Caxias do Sul	BR	-29.1681	-51.1794	America/Sao_Paulo		
+7701384	Karabağlar	Karabaglar	TR	38.3820	27.1320	Europe/Istanbul		
+2327220	Okene	Okene	NG	7.5512	6.2359	Africa/Lagos		
+1833788	Uijeongbu-si	Uijeongbu-si	KR	37.7415	127.0474	Asia/Seoul		
+2654675	Bristol	Bristol	GB	51.4552	-2.5966	Europe/London	بريستول	Bristol
+1006984	East London	East London	ZA	-33.0153	27.9116	Africa/Johannesburg	إيست لندن	
+13527052	Chéngguān Qū	Chengguan Qu	CN	29.6384	91.0444	Asia/Shanghai		
+111822	Yazd	Yazd	IR	31.8972	54.3675	Asia/Tehran	يزد	
+57289	Hargeysa	Hargeysa	SO	9.5600	44.0650	Africa/Mogadishu	هرجيسة	Hargeisa
+1854487	Ōita	Oita	JP	33.2333	131.6000	Asia/Tokyo		
+1805741	Jincheng	Jincheng	CN	35.5022	112.8328	Asia/Shanghai		
+1808106	Hongjiang	Hongjiang	CN	27.1100	109.9956	Asia/Shanghai		
+8440756	Modīnagar	Modinagar	IN	28.8306	77.5730	Asia/Kolkata		
+6696918	Taoyuan	Taoyuan	TW	24.9937	121.2970	Asia/Taipei		
+198629	Eldoret	Eldoret	KE	0.5204	35.2699	Africa/Nairobi		
+4393217	Kansas City	Kansas City	US	39.0997	-94.5786	America/Chicago	كانساس سيتي	Kansas City
+1787765	Yan’an	Yan'an	CN	36.5989	109.4917	Asia/Shanghai	يانان	
+554234	Kaliningrad	Kaliningrad	RU	54.7064	20.5110	Europe/Kaliningrad	كالينينغراد	Kaliningrad
+785842	Skopje	Skopje	MK	41.9965	21.4314	Europe/Skopje	إسكوبية	Üsküp
+2057087	Kupang	Kupang	ID	-10.1708	123.6069	Asia/Makassar		
+944385	Vereeniging	Vereeniging	ZA	-26.6731	27.9261	Africa/Johannesburg	فيرينخن	
+2747373	The Hague	The Hague	NL	52.0767	4.2986	Europe/Amsterdam	لاهاي	Lahey
+5367929	Long Beach	Long Beach	US	33.7670	-118.1892	America/Los_Angeles	لونغ بيتش	
+1271439	Gaya	Gaya	IN	24.7969	85.0038	Asia/Kolkata		
+1711005	Iloilo	Iloilo	PH	10.6969	122.5644	Asia/Manila		
+1788268	Xiulin	Xiulin	CN	29.7167	112.4000	Asia/Shanghai		
+1805680	Jingdezhen	Jingdezhen	CN	29.2947	117.2079	Asia/Shanghai		
+2513416	Murcia	Murcia	ES	37.9870	-1.1300	Europe/Madrid	مرسية	Murcia
+5304391	Mesa	Mesa	US	33.4223	-111.8226	America/Phoenix	ميسا	
+6324729	Halifax	Halifax	CA	44.6427	-63.5769	America/Halifax	هاليفاكس	Halifax
+153220	Morogoro	Morogoro	TZ	-6.8210	37.6612	Africa/Dar_es_Salaam	موروغورو	Morogoro
+1700925	Marikina City	Marikina City	PH	14.6481	121.1133	Asia/Manila		
+2544571	Kenitra	Kenitra	MA	34.2610	-6.5802	Africa/Casablanca	القنيطرة	Kenitre
+288967	Seeb	Seeb	OM	23.6703	58.1891	Asia/Muscat	السيب الجديدة	
+1646511	Cilegon	Cilegon	ID	-6.0144	106.0542	Asia/Jakarta		
+700569	Mykolayiv	Mykolayiv	UA	46.9763	31.9930	Europe/Kyiv		
+1863917	Fukuyama	Fukuyama	JP	34.4833	133.3667	Asia/Tokyo	فوکویاما	
+5139568	Staten Island	Staten Island	US	40.5623	-74.1399	America/New_York		
+1799846	Nanping	Nanping	CN	26.6450	118.1736	Asia/Shanghai		
+3672486	Pereira	Pereira	CO	4.8143	-75.6949	America/Bogota	بيريرا	Pereira
+4018390	Ciudad Apodaca	Ciudad Apodaca	MX	25.7814	-100.1891	America/Monterrey		
+3448877	São João de Meriti	Sao Joao de Meriti	BR	-22.8039	-43.3722	America/Sao_Paulo		
+1278840	Ambattur	Ambattur	IN	13.0982	80.1615	Asia/Kolkata		
+1860243	Kanazawa	Kanazawa	JP	36.6000	136.6167	Asia/Tokyo		
+336014	Gonder	Gonder	ET	12.6000	37.4667	Africa/Addis_Ababa		
+1701966	Mandaluyong City	Mandaluyong City	PH	14.5832	121.0409	Asia/Manila	ماندالويونغ	Mandaluyong
+3592519	Mixco	Mixco	GT	14.6308	-90.6071	America/Guatemala		
+2036109	Longshan	Longshan	CN	42.8854	125.1367	Asia/Shanghai		
+2338325	Ikare	Ikare	NG	7.5259	5.7534	Africa/Lagos		
+11592397	Nova Vida	Nova Vida	AO	-8.9055	13.2221	Africa/Luanda		
+1562414	Vũng Tàu	Vung Tau	VN	10.3460	107.0843	Asia/Ho_Chi_Minh		
+3632998	Maracay	Maracay	VE	10.2497	-67.5948	America/Caracas	ماراكاي	Maracay
+2294877	Tamale	Tamale	GH	9.4008	-0.8393	Africa/Accra		
+1786112	Heyuan	Heyuan	CN	23.7333	114.6833	Asia/Shanghai		
+1583518	Dĩ An	Di An	VN	10.9068	106.7694	Asia/Ho_Chi_Minh		
+231165	Kira	Kira	UG	0.4000	32.6333	Africa/Kampala		
+355449	Esna	Esna	EG	25.2934	32.5540	Africa/Cairo	إسنا	
+1792359	Huangshan	Huangshan	CN	29.7114	118.3125	Asia/Shanghai		
+170017	Ḩamāh	Hamah	SY	35.1318	36.7578	Asia/Damascus	حماة	Hama
+1269407	Jalgaon	Jalgaon	IN	21.0029	75.5660	Asia/Kolkata		
+1265491	Kurnool	Kurnool	IN	15.8289	78.0360	Asia/Kolkata	كرنول	Kurnool
+2318044	Yola	Yola	NG	9.2084	12.4815	Africa/Lagos	يولا	Yola
+1568510	Rạch Giá	Rach Gia	VN	10.0124	105.0809	Asia/Ho_Chi_Minh	راتش جيا	Rach Gia
+1865387	Amagasaki	Amagasaki	JP	34.7167	135.4167	Asia/Tokyo		
+1636544	Manado	Manado	ID	1.4822	124.8489	Asia/Makassar		
+3651297	Santo Domingo de los Colorados	Santo Domingo de los Colorados	EC	-0.2537	-79.1763	America/Guayaquil	سانتو دومينغو دي لوس كولورادوس	Santo Domingo de los Colorados
+163345	Ţarţūs	Tartus	SY	34.8890	35.8866	Asia/Damascus	طرطوس	Tartus
+331180	Mek'ele	Mek'ele	ET	13.4967	39.4753	Africa/Addis_Ababa		
+330186	Nazrēt	Nazret	ET	8.5500	39.2667	Africa/Addis_Ababa		
+5417598	Colorado Springs	Colorado Springs	US	38.8339	-104.8214	America/Denver	كولورادو سبرينغس	
+3939459	Huancayo	Huancayo	PE	-12.0687	-75.2103	America/Lima	وانكاشو	Huancayo
+99347	Al Hillah	Al Hillah	IQ	32.4637	44.4196	Asia/Baghdad	الحلة	El-Hille
+2312895	Mbandaka	Mbandaka	CD	0.0486	18.2603	Africa/Kinshasa	مباندكا	Mbandaka
+2239862	Malanje	Malanje	AO	-9.5402	16.3410	Africa/Luanda	مالانجي	Malanje
+1873757	Namp’o	Namp'o	KP	38.7375	125.4078	Asia/Pyongyang	نامبو	Nampo
+4005867	Ciudad General Escobedo	Ciudad General Escobedo	MX	25.7966	-100.3177	America/Monterrey		
+1729564	Bacolod City	Bacolod City	PH	10.6667	122.9500	Asia/Manila		
+4791259	Virginia Beach	Virginia Beach	US	36.8529	-75.9780	America/New_York	فرجينيا بيتش	
+1792260	Wafangdian	Wafangdian	CN	39.6183	122.0081	Asia/Shanghai		
+1701500	Mansilingan	Mansilingan	PH	10.6311	122.9789	Asia/Manila		
+158597	Kahama	Kahama	TZ	-3.8333	32.6000	Africa/Dar_es_Salaam	كاهاما	
+1675151	Hsinchu	Hsinchu	TW	24.8036	120.9686	Asia/Taipei	سين شو	
+8469284	Katsushika	Katsushika	JP	35.7333	139.8500	Asia/Tokyo		
+1258662	Rāmgundam	Ramgundam	IN	18.8008	79.4521	Asia/Kolkata		
+321836	Batman	Batman	TR	37.8874	41.1322	Europe/Istanbul	بطمان	Batman
+1784818	Yongji	Yongji	CN	34.8661	110.4403	Asia/Shanghai		
+1803245	Lishui	Lishui	CN	28.4604	119.9103	Asia/Shanghai	ليشوي	
+1253986	Udaipur	Udaipur	IN	24.5858	73.7135	Asia/Kolkata		
+326282	Warder	Warder	ET	6.9744	45.3408	Africa/Addis_Ababa		
+1591527	Bắc Giang	Bac Giang	VN	21.2731	106.1946	Asia/Bangkok		
+449504	Eslamshahr	Eslamshahr	IR	35.5522	51.2350	Asia/Tehran		
+373303	Juba	Juba	SS	4.8517	31.5825	Africa/Juba	جوبا	
+8074174	Muratpaşa	Muratpasa	TR	36.8916	30.7650	Europe/Istanbul		Muratpaşa
+8505006	Wenshan City	Wenshan City	CN	23.3631	104.2505	Asia/Shanghai		
+298333	Şanlıurfa	Sanliurfa	TR	37.1671	38.7939	Europe/Istanbul	شانلي أورفة	Şanlıurfa
+538560	Kursk	Kursk	RU	51.7269	36.1846	Europe/Moscow	كورسك	Kursk
+1348843	Maheshtala	Maheshtala	IN	22.5086	88.2532	Asia/Kolkata		
+1573517	Nam Định	Nam GJinh	VN	20.4339	106.1773	Asia/Bangkok	نام ديه	Nam Dinh
+2501152	Constantine	Constantine	DZ	36.3650	6.6147	Africa/Algiers	قسنطينة	Constantine
+1260107	Patiāla	Patiala	IN	30.3362	76.3922	Asia/Kolkata		
+1017780	Boksburg	Boksburg	ZA	-26.2120	28.2596	Africa/Johannesburg		
+1816858	Basuo	Basuo	CN	19.1027	108.6656	Asia/Shanghai		
+3403642	Campina Grande	Campina Grande	BR	-7.2306	-35.8811	America/Fortaleza		
+4006702	Ensenada	Ensenada	MX	31.8715	-116.6007	America/Tijuana	إنسينادا	
+315808	Elazığ	Elazig	TR	38.6743	39.2232	Europe/Istanbul	معمورة العزيز	Elâzığ
+3459462	Jundiaí	Jundiai	BR	-23.1864	-46.8842	America/Sao_Paulo	جوندياي	
+3514450	Xochimilco	Xochimilco	MX	19.2547	-99.1036	America/Mexico_City		
+1256409	Shyamnagar	Shyamnagar	IN	22.8333	88.3667	Asia/Kolkata		
+1715430	Dasmariñas	Dasmarinas	PH	14.3294	120.9367	Asia/Manila		
+1813171	Zhangjiajie	Zhangjiajie	CN	29.1294	110.4783	Asia/Shanghai	زانغجياجي	
+1635882	Mataram	Mataram	ID	-8.5833	116.1167	Asia/Makassar	ماتارام	
+2286304	Korhogo	Korhogo	CI	9.4580	-5.6296	Africa/Abidjan	كوروغو	Korhogo
+3453643	Piracicaba	Piracicaba	BR	-22.7253	-47.6492	America/Sao_Paulo		
+2038342	Beipiao	Beipiao	CN	41.7919	120.7792	Asia/Shanghai		
+1864092	Fujisawa	Fujisawa	JP	35.3493	139.4767	Asia/Tokyo	فوجيساوا	
+2374775	Bissau	Bissau	GW	11.8636	-15.5977	Africa/Bissau	بيساو	
+1734052	Sandakan	Sandakan	MY	5.8402	118.1179	Asia/Kuching	سانداكان	
+1308465	Mawlamyine	Mawlamyine	MM	16.4905	97.6282	Asia/Yangon	مولمين	Mawlamyine
+6050610	Laval	Laval	CA	45.5699	-73.6920	America/Toronto	لافال	
+2512989	Palma	Palma	ES	39.5694	2.6502	Europe/Madrid	ميورقة	Palma de Mallorca
+3456814	Montes Claros	Montes Claros	BR	-16.7350	-43.8617	America/Sao_Paulo		
+1805833	Jiexiu	Jiexiu	CN	37.0244	111.9125	Asia/Shanghai		
+1869012	Sunch’ŏn	Sunch'on	KP	39.4317	125.9328	Asia/Pyongyang		
+7628416	Sultangazi	Sultangazi	TR	41.1065	28.8685	Europe/Istanbul		
+2319480	Uyo	Uyo	NG	5.0513	7.9335	Africa/Lagos	أويو	Uyo
+2038365	Bei’an	Bei'an	CN	48.2667	126.6000	Asia/Shanghai		
+1273368	Davangere	Davangere	IN	14.4669	75.9269	Asia/Kolkata		
+2352379	Ado-Ekiti	Ado-Ekiti	NG	7.6233	5.2209	Africa/Lagos	أدو إكيتي	Ado-Ekiti
+3675443	Manizales	Manizales	CO	5.0668	-75.5068	America/Bogota	مانيزاليس	Manizales
+1841246	Masan	Masan	KR	35.1272	126.8315	Asia/Seoul		
+1586896	Buôn Ma Thuột	Buon Ma Thuot	VN	12.6675	108.0378	Asia/Ho_Chi_Minh	بوون ما ثوت	Buon Ma Thuot
+487846	Stavropol	Stavropol	RU	45.0344	41.9642	Europe/Moscow	ستافروبول	Stavropol
+1794328	Shuozhou	Shuozhou	CN	39.3158	112.4225	Asia/Shanghai		
+1859924	Kashiwa	Kashiwa	JP	35.8622	139.9773	Asia/Tokyo	كاشيوا	
+2327735	Ogbomoso	Ogbomoso	NG	8.1337	4.2401	Africa/Lagos		
+293397	Tel Aviv	Tel Aviv	IL	32.0809	34.7806	Asia/Jerusalem	تل أبيب	Tel Aviv
+216281	Goma	Goma	CD	-1.6741	29.2284	Africa/Lubumbashi	غوما	Goma
+3688452	Buenaventura	Buenaventura	CO	3.5833	-77.0000	America/Bogota		
+940909	Welkom	Welkom	ZA	-27.9774	26.7351	Africa/Johannesburg		
+1818953	Sham Shui Po	Sham Shui Po	HK	22.3302	114.1595	Asia/Hong_Kong		
+1857871	Machida	Machida	JP	35.5403	139.4508	Asia/Tokyo	ماتشيدا	
+3827407	Venustiano Carranza	Venustiano Carranza	MX	19.4436	-99.1050	America/Mexico_City		
+359493	Zagazig	Zagazig	EG	30.5877	31.5020	Africa/Cairo	الزقازيق	
+689558	Vinnytsya	Vinnytsya	UA	49.2322	28.4687	Europe/Kyiv	فينيتسا	
+361055	Ismailia	Ismailia	EG	30.6043	32.2722	Africa/Cairo	مدينة الإسماعيلية	İsmailiye
+1806097	Ningde	Ningde	CN	26.6617	119.5228	Asia/Shanghai		
+1279105	Akola	Akola	IN	20.7096	76.9981	Asia/Kolkata		
+13608165	Kima Kieza	Kima Kieza	AO	-8.8341	13.2952	Africa/Luanda		
+3941584	Cusco	Cusco	PE	-13.5319	-71.9670	America/Lima	قوسقو	Cusco
+1279945	Jiuquan	Jiuquan	CN	39.7432	98.5174	Asia/Shanghai		
+3514783	Veracruz	Veracruz	MX	19.1809	-96.1429	America/Mexico_City		
+7303419	East Jerusalem	East Jerusalem	PS	31.7834	35.2339	Asia/Hebron	القدس الشرقية	Doğu Kudüs
+571476	Bryansk	Bryansk	RU	53.2710	34.3214	Europe/Moscow	بريانسك	Bryansk
+741763	Maltepe	Maltepe	TR	40.9357	29.1551	Europe/Istanbul		
+584923	Sumgayit	Sumgayit	AZ	40.5897	49.6686	Asia/Baku	سومغايت	Sumgayıt
+1163964	Tando Bago	Tando Bago	PK	24.7891	68.9654	Asia/Karachi		
+1734705	Kuala Terengganu	Kuala Terengganu	MY	5.3302	103.1408	Asia/Kuala_Lumpur	كوالا ترنغانو	Kuala Terengganu
+1849814	Toyota	Toyota	JP	35.0833	137.1500	Asia/Tokyo	تويوتا	
+2313002	Matadi	Matadi	CD	-5.8386	13.4631	Africa/Kinshasa	ماتادي	Matadi
+109353	Al Kharj	Al Kharj	SA	24.1554	47.3346	Asia/Riyadh	الخرج	El-Harc
+1818304	Wong Tai Sin	Wong Tai Sin	HK	22.3500	114.1833	Asia/Hong_Kong		
+13118244	Mandaluyong	Mandaluyong	PH	14.5784	121.0352	Asia/Manila		
+2330100	Minna	Minna	NG	9.6152	6.5478	Africa/Lagos	مينا	Minna
+3526617	Xalapa de Enríquez	Xalapa de Enriquez	MX	19.5312	-96.9159	America/Mexico_City	خالابا دي انريكيز	Xalapa de Enriquez
+1255783	Rajpur Sonarpur	Rajpur Sonarpur	IN	22.4382	88.4321	Asia/Kolkata		
+3060972	Bratislava	Bratislava	SK	48.1482	17.1067	Europe/Bratislava	براتيسلافا	Bratislava
+12557764	Taman Petaling	Taman Petaling	MY	3.1992	101.6498	Asia/Kuala_Lumpur		
+1852139	Shinagawa	Shinagawa	JP	33.6363	133.0057	Asia/Tokyo		
+173811	Al Ḩasakah	Al Hasakah	SY	36.5024	40.7477	Asia/Damascus	الحسكة	Haseke
+360502	Luxor	Luxor	EG	25.6989	32.6421	Africa/Cairo	الأقصر	El-Uksur
+6058560	London	London	CA	42.9834	-81.2330	America/Toronto	لندن	
+2037201	Beining	Beining	CN	41.5956	121.7928	Asia/Shanghai		
+343137	Awasa	Awasa	ET	7.0621	38.4763	Africa/Addis_Ababa		
+1049261	Chimoio	Chimoio	MZ	-19.1164	33.4833	Africa/Maputo	تشيموايو	Chimoio
+1163965	Tando Allahyar	Tando Allahyar	PK	25.4605	68.7174	Asia/Karachi		
+2290486	Daloa	Daloa	CI	6.8773	-6.4502	Africa/Abidjan	دالوا	Daloa
+7290718	Barra da Tijuca	Barra da Tijuca	BR	-22.9983	-43.3655	America/Sao_Paulo	بارا دا تيجوكا	Barra da Tijuca
+1812749	Dingxi	Dingxi	CN	35.5709	104.6230	Asia/Shanghai		
+1804386	Laohekou	Laohekou	CN	32.3858	111.6678	Asia/Shanghai		
+2234974	Bamenda	Bamenda	CM	5.9597	10.1460	Africa/Douala	بامندا	Bamenda
+480060	Tver	Tver	RU	56.8584	35.9006	Europe/Moscow	تفير	
+1566319	Thái Nguyên	Thai Nguyen	VN	21.5942	105.8482	Asia/Bangkok	تاي نجوين	Thai Nguyen
+3664980	Boa Vista	Boa Vista	BR	2.8197	-60.6733	America/Boa_Vista	بوا فيستا	Boa Vista
+3662574	Rio Branco	Rio Branco	BR	-9.9747	-67.8100	America/Rio_Branco	ريو برانكو	Rio Branco
+5378538	Oakland	Oakland	US	37.8044	-122.2708	America/Los_Angeles	أوكلاند	
+2192362	Christchurch	Christchurch	NZ	-43.5333	172.6333	Pacific/Auckland	كرايستشرش	Christchurch
+1266122	Korba	Korba	IN	22.3458	82.6963	Asia/Kolkata		
+1851100	Takamatsu	Takamatsu	JP	34.3333	134.0500	Asia/Tokyo	تاكاماتسو	
+1819607	Kowloon City	Kowloon City	HK	22.3305	114.1922	Asia/Hong_Kong		
+3449433	Santos	Santos	BR	-23.9608	-46.3336	America/Sao_Paulo	سانتوس	
+3183875	Tirana	Tirana	AL	41.3274	19.8187	Europe/Tirane	تيرانا	Tiran
+3392242	Petrolina	Petrolina	BR	-9.3986	-40.5008	America/Recife		
+3457381	Mauá	Maua	BR	-23.6678	-46.4614	America/Sao_Paulo		
+4568127	San Juan	San Juan	PR	18.4663	-66.1057	America/Puerto_Rico	سان خوان	San Juan
+1736309	Alor Setar	Alor Setar	MY	6.1210	100.3601	Asia/Kuala_Lumpur	ألور ستار	Alor Setar
+7064006	Tongchuan	Tongchuan	CN	34.8988	108.9506	Asia/Shanghai		
+1694611	Pasay	Pasay	PH	14.5375	121.0014	Asia/Manila		
+3522551	Nuevo Laredo	Nuevo Laredo	MX	27.4763	-99.5164	America/Matamoros		
+1849876	Toyama	Toyama	JP	36.7000	137.2167	Asia/Tokyo		
+2528910	Tétouan	Tetouan	MA	35.5784	-5.3684	Africa/Casablanca	تطوان	Tetuan
+2657896	Zürich	Zuerich	CH	47.3667	8.5500	Europe/Zurich	زيورخ	Zürih
+6947640	Beylikdüzü	Beylikduezue	TR	40.9820	28.6399	Europe/Istanbul		
+1562820	Việt Trì	Viet Tri	VN	21.3227	105.4020	Asia/Bangkok	فيت تري	Viet Tri
+3532497	Azcapotzalco	Azcapotzalco	MX	19.4870	-99.1859	America/Mexico_City		
+4174757	Tampa	Tampa	US	27.9475	-82.4584	America/New_York	تامبا	
+234179	Bunamwaya	Bunamwaya	UG	0.2534	32.5572	Africa/Kampala		
+532288	Magnitogorsk	Magnitogorsk	RU	53.3981	59.0066	Asia/Yekaterinburg	مغنيتاغورسك	
+4553433	Tulsa	Tulsa	US	36.1540	-95.9928	America/Chicago		
+1269006	Jhānsi	Jhansi	IN	25.4589	78.5799	Asia/Kolkata		
+1818506	Tseung Kwan O	Tseung Kwan O	HK	22.3279	114.2499	Asia/Hong_Kong		
+3645532	Ciudad Bolívar	Ciudad Bolivar	VE	8.1237	-63.5469	America/Caracas	سيوداد بوليفار	Ciudad Bolivar
+1762110	Kampung Kangkar Teberau	Kampung Kangkar Teberau	MY	1.5320	103.7549	Asia/Kuala_Lumpur		
+2285853	Koumassi	Koumassi	CI	5.2972	-3.9675	Africa/Abidjan		
+3985241	San Nicolás de los Garza	San Nicolas de los Garza	MX	25.7417	-100.3022	America/Monterrey		
+1809152	Guyuan	Guyuan	CN	36.0067	106.2808	Asia/Shanghai		
+2911285	Wandsbek	Wandsbek	DE	53.5833	10.0831	Europe/Berlin		
+5037649	Minneapolis	Minneapolis	US	44.9800	-93.2638	America/Chicago	مينيابولس	Minneapolis
+2082600	Jayapura	Jayapura	ID	-2.5337	140.7181	Asia/Jayapura		
+8629640	Thoothukudi	Thoothukudi	IN	8.7674	78.1342	Asia/Kolkata		
+143083	Ardabīl	Ardabil	IR	38.2498	48.2933	Asia/Tehran		Erdebil
+1276509	Ballari	Ballari	IN	15.1420	76.9240	Asia/Kolkata		
+2038120	Chaoyang	Chaoyang	CN	41.5703	120.4586	Asia/Shanghai		
+281133	Gaza	Gaza	PS	31.5016	34.4667	Asia/Gaza	غزة	Gazze
+3457671	Maringá	Maringa	BR	-23.4253	-51.9386	America/Sao_Paulo		
+1848313	Yokosuka	Yokosuka	JP	35.2836	139.6672	Asia/Tokyo	يوكوسوكا	
+353802	Kom Ombo	Kom Ombo	EG	24.4767	32.9463	Africa/Cairo		
+6722148	Saltivka	Saltivka	UA	50.0221	36.3490	Europe/Kyiv		
+1856177	Nagasaki	Nagasaki	JP	32.7500	129.8833	Asia/Tokyo	ناغاساكي	
+1281019	Gujangbagh	Gujangbagh	CN	37.1093	79.9343	Asia/Urumqi		
+3981369	Tonalá	Tonala	MX	20.6226	-103.2417	America/Mexico_City		
+1801455	Zhijiang	Zhijiang	CN	30.4214	111.7533	Asia/Shanghai		
+3703443	Panama City	Panama City	PA	8.9936	-79.5197	America/Panama		
+204405	Uvira	Uvira	CD	-3.3953	29.1378	Africa/Lubumbashi		
+1804169	Lengshuijiang	Lengshuijiang	CN	27.6881	111.4294	Asia/Shanghai		
+1862540	Hirakata	Hirakata	JP	34.8135	135.6491	Asia/Tokyo	هيراكاتا، أوساكا	
+555312	Ivanovo	Ivanovo	RU	56.9999	40.9726	Europe/Moscow	إيفانوفو	İvanovo
+3644768	Cumaná	Cumana	VE	10.4639	-64.1786	America/Caracas	كومانا	Cumana
+971421	Newcastle	Newcastle	ZA	-27.7580	29.9318	Africa/Johannesburg		
+1842225	Gumi	Gumi	KR	36.1136	128.3360	Asia/Seoul		
+2036389	Jixi	Jixi	CN	45.2932	130.9622	Asia/Shanghai	جيشي	
+3464739	Diadema	Diadema	BR	-23.6861	-46.6228	America/Sao_Paulo		
+1735634	Kuching	Kuching	MY	1.5500	110.3333	Asia/Kuching	كوتشينغ	Kuching
+1863641	Gifu	Gifu	JP	35.4229	136.7604	Asia/Tokyo		
+3402655	Caruaru	Caruaru	BR	-8.2833	-35.9761	America/Recife		
+1792621	Tongling	Tongling	CN	30.9500	117.7833	Asia/Shanghai		
+1682812	Tarlac City	Tarlac City	PH	15.4802	120.5979	Asia/Manila		
+1849837	Toyonaka	Toyonaka	JP	34.7824	135.4693	Asia/Tokyo		
+372753	Kassala	Kassala	SD	15.4510	36.4000	Africa/Khartoum	كسلا	Kassala
+1856717	Miyazaki	Miyazaki	JP	31.9167	131.4167	Asia/Tokyo		
+7732748	Lekki	Lekki	NG	6.4463	3.4772	Africa/Lagos		
+3899539	Antofagasta	Antofagasta	CL	-23.6509	-70.3975	America/Santiago	أنتوفاغاستا	Antofagasta
+11785389	Wah Cantt	Wah Cantt	PK	33.7709	72.7512	Asia/Karachi		
+1276300	Bhāgalpur	Bhagalpur	IN	25.2445	86.9718	Asia/Kolkata		
+1279290	Agartala	Agartala	IN	23.8361	91.2794	Asia/Kolkata		
+2347209	Bida	Bida	NG	9.0804	6.0099	Africa/Lagos		
+292261	Dayrah	Dayrah	AE	25.2714	55.3021	Asia/Dubai	ديرة	
+7498240	West Jerusalem	West Jerusalem	IL	31.7820	35.2196	Asia/Jerusalem		
+217695	Bunia	Bunia	CD	1.5594	30.2522	Africa/Lubumbashi	بونيا	Bunia
+323779	Antakya	Antakya	TR	36.2066	36.1572	Europe/Istanbul	أنطاكية	Antakya
+9645085	Quận Mười	Quan Muoi	VN	10.7682	106.6663	Asia/Ho_Chi_Minh		
+10630449	Sunshine Coast	Sunshine Coast	AU	-26.6568	153.0796	Australia/Brisbane	ساحل الشمس	Sunshine Coast
+1801722	Lüshun	Lueshun	CN	38.8000	121.2667	Asia/Shanghai		
+191245	Kisumu	Kisumu	KE	-0.1022	34.7617	Africa/Nairobi	كيزيمو	
+702658	Luhansk	Luhansk	UA	48.5681	39.3055	Europe/Kyiv	لوهانسك	
+1649150	Bengkulu	Bengkulu	ID	-3.8004	102.2655	Asia/Jakarta	بنجكولو	
+3648546	Barinas	Barinas	VE	8.6206	-70.2310	America/Caracas	باريناس	Barinas
+1808981	Hancheng	Hancheng	CN	35.4603	110.4292	Asia/Shanghai		
+3444914	Vitória da Conquista	Vitoria da Conquista	BR	-14.8661	-40.8394	America/Bahia		
+4281730	Wichita	Wichita	US	37.6922	-97.3375	America/Chicago	ويتشيتا	
+2558545	Al Hoceïma	Al Hoceima	MA	35.2516	-3.9372	Africa/Casablanca	الحسيمة	
+3083829	Szczecin	Szczecin	PL	53.4289	14.5530	Europe/Warsaw	شتتين	Szczecin
+3726786	Delmas	Delmas	HT	18.5448	-72.3004	America/Port-au-Prince		
+2036106	Liaozhong	Liaozhong	CN	41.5061	122.7242	Asia/Shanghai		
+3445026	Vila Velha	Vila Velha	BR	-20.3297	-40.2925	America/Sao_Paulo		
+3181928	Bologna	Bologna	IT	44.4938	11.3387	Europe/Rome	بولونيا	Bolonya
+11523293	Sejong	Sejong	KR	36.5924	127.2922	Asia/Seoul	سيجونغ	Sejong
+2591949	Cazenga	Cazenga	AO	-8.8380	13.2840	Africa/Luanda		
+740264	Samsun	Samsun	TR	41.2798	36.3361	Europe/Istanbul	سامسون	Samsun
+588409	Tallinn	Tallinn	EE	59.4370	24.7535	Europe/Tallinn	تالين	Tallinn
+149606	Tanga	Tanga	TZ	-5.0689	39.0988	Africa/Dar_es_Salaam	تنجا	Tanga
+379003	El Obeid	El Obeid	SD	13.1842	30.2167	Africa/Khartoum	الأبي	El Obeid
+3347939	Lobito	Lobito	AO	-12.3644	13.5360	Africa/Luanda	وبيتو	Lobito
+145531	Saurimo	Saurimo	AO	-9.6608	20.3915	Africa/Luanda	سأوريمو	Saurimo
+3470279	Bauru	Bauru	BR	-22.3147	-49.0606	America/Sao_Paulo		
+3688928	Bello	Bello	CO	6.3373	-75.5580	America/Bogota		
+3672778	Pasto	Pasto	CO	1.2146	-77.2785	America/Bogota	باستو	Pasto
+1810458	Gaomi	Gaomi	CN	36.3833	119.7528	Asia/Shanghai		
+3836277	Santa Fe	Santa Fe	AR	-31.6488	-60.7087	America/Argentina/Cordoba	سانتا فيه	Santa Fe
+2282006	San-Pédro	San-Pedro	CI	4.7485	-6.6363	Africa/Abidjan	سان بيدرو	San-Pedro
+2331140	Makurdi	Makurdi	NG	7.7337	8.5214	Africa/Lagos	ماكوردي	Makurdi
+1633034	Palu	Palu	ID	-0.9083	119.8708	Asia/Makassar		
+2294915	Takoradi	Takoradi	GH	4.8982	-1.7603	Africa/Accra		
+1606590	Samut Prakan	Samut Prakan	TH	13.5976	100.5972	Asia/Bangkok	سامت براكان	Samut Prakan
+4671240	Arlington	Arlington	US	32.7357	-97.1081	America/Chicago	أرلينغتون	
+105072	Khamis Mushait	Khamis Mushait	SA	18.3000	42.7333	Asia/Riyadh	خميس مشيط	Hamis Muşayt
+3660689	Ambato	Ambato	EC	-1.2491	-78.6167	America/Guayaquil	أمباتو	
+3466998	Carapicuíba	Carapicuiba	BR	-23.5227	-46.8350	America/Sao_Paulo		
+3827598	Ojo de Agua	Ojo de Agua	MX	19.6803	-99.0100	America/Mexico_City		
+3352136	Windhoek	Windhoek	NA	-22.5594	17.0832	Africa/Windhoek	ويندهوك	
+2395914	Abomey-Calavi	Abomey-Calavi	BJ	6.4485	2.3557	Africa/Porto-Novo		
+2947416	Bochum	Bochum	DE	51.4817	7.2165	Europe/Berlin	بوخوم	Bochum
+1851483	Suita	Suita	JP	34.7614	135.5157	Asia/Tokyo	سويتا، أوساكا	
+6957079	Benito Juárez	Benito Juarez	MX	19.3727	-99.1564	America/Mexico_City		
+11048319	Sector 3	Sector 3	RO	44.4234	26.1687	Europe/Bucharest		
+1175748	Chak Jhumra	Chak Jhumra	PK	31.5681	73.1832	Asia/Karachi		
+310859	Kahramanmaraş	Kahramanmaras	TR	37.5847	36.9264	Europe/Istanbul	مرعش	Kahramanmaraş
+12159964	Chongzuo	Chongzuo	CN	22.3816	107.3683	Asia/Shanghai		
+11962371	Grajaú	Grajau	BR	-23.7698	-46.6711	America/Sao_Paulo		
+1854376	Okazaki	Okazaki	JP	34.9500	137.1667	Asia/Tokyo	أوكازاكي	
+3514519	Xico	Xico	MX	19.2703	-98.9509	America/Mexico_City		
+3526700	Iztacalco	Iztacalco	MX	19.3953	-99.0978	America/Mexico_City		
+1268561	Kākināda	Kakinada	IN	16.9604	82.2381	Asia/Kolkata		
+3470044	Betim	Betim	BR	-19.9678	-44.1983	America/Sao_Paulo		
+2515270	Las Palmas de Gran Canaria	Las Palmas de Gran Canaria	ES	28.1018	-15.4157	Atlantic/Canary		
+1716771	Cotabato	Cotabato	PH	7.2236	124.2464	Asia/Manila	كوتابايتو	Cotabato
+288764	Bawshar	Bawshar	OM	23.5777	58.3998	Asia/Muscat	بوشر	
+1265014	Latur	Latur	IN	18.3972	76.5678	Asia/Kolkata		
+1913154	Tanzhou	Tanzhou	CN	22.2550	113.4669	Asia/Shanghai		
+2179537	Wellington	Wellington	NZ	-41.2866	174.7756	Pacific/Auckland	ويلينغتون	
+3996322	Mazatlán	Mazatlan	MX	23.2216	-106.4189	America/Mazatlan		
+520494	Nizhny Tagil	Nizhny Tagil	RU	57.9194	59.9650	Asia/Yekaterinburg		
+4004330	Irapuato	Irapuato	MX	20.6710	-101.3558	America/Mexico_City	ايرابواتو	
+1861949	Ichinomiya	Ichinomiya	JP	35.3000	136.8000	Asia/Tokyo	إيتشينوميا	
+359792	Aswān	Aswan	EG	24.0908	32.8994	Africa/Cairo	أسوان	Asvan
+3078610	Brno	Brno	CZ	49.1952	16.6080	Europe/Prague	برنو	Brno
+675810	Iaşi	Iasi	RO	47.1667	27.6000	Europe/Bucharest	ياش	Yaş
+986822	Krugersdorp	Krugersdorp	ZA	-26.0858	27.7752	Africa/Johannesburg		
+1260482	Pānihāti	Panihati	IN	22.6909	88.3740	Asia/Kolkata		
+1185107	Shibganj	Shibganj	BD	25.0015	89.3227	Asia/Dhaka		
+3402429	Caucaia	Caucaia	BR	-3.7361	-38.6531	America/Fortaleza		
+3696183	Iquitos	Iquitos	PE	-3.7481	-73.2529	America/Lima	إكيتوس	Iquitos
+1849846	Toyohashi	Toyohashi	JP	34.7667	137.3833	Asia/Tokyo	تويوهاشي، آيتشي	
+3719028	Pétionville	Petionville	HT	18.5125	-72.2853	America/Port-au-Prince		
+2745912	Utrecht	Utrecht	NL	52.0908	5.1222	Europe/Amsterdam	أوترخت	Utrecht
+1258932	Rajamahendravaram	Rajamahendravaram	IN	17.0052	81.7778	Asia/Kolkata		
+3466954	Cariacica	Cariacica	BR	-20.2639	-40.4200	America/Sao_Paulo		
+1621177	Yogyakarta	Yogyakarta	ID	-7.8014	110.3647	Asia/Jakarta	يوجياكرتا	
+1272691	Dhule	Dhule	IN	20.9013	74.7774	Asia/Kolkata		
+1852383	Minato	Minato	JP	34.2152	135.1501	Asia/Tokyo		
+1749822	Puchong	Puchong	MY	3.0000	101.6167	Asia/Kuala_Lumpur		
+2326171	Ondo	Ondo	NG	7.0932	4.8353	Africa/Lagos		
+1798632	Pingyin	Pingyin	CN	36.2831	116.4453	Asia/Shanghai		
+1258076	Rohtak	Rohtak	IN	28.8945	76.5892	Asia/Kolkata	روهتاك	
+1182682	Bhawana	Bhawana	PK	31.5688	72.6492	Asia/Karachi	بهاونا	Bhanawa
+958724	Rustenburg	Rustenburg	ZA	-25.6676	27.2421	Africa/Johannesburg	روستنبرغ	
+5325738	Bakersfield	Bakersfield	US	35.3733	-119.0187	America/Los_Angeles	بيكرسفيلد	
+2033574	Xuanhua	Xuanhua	CN	40.6121	115.0646	Asia/Shanghai		
+939270	Emalahleni	Emalahleni	ZA	-25.8713	29.2332	Africa/Johannesburg		
+2235189	Bafoussam	Bafoussam	CM	5.4778	10.4176	Africa/Douala	بافوسام	Bafoussam
+1565022	Thủ Dầu Một	Thu Dau Mot	VN	10.9804	106.6519	Asia/Ho_Chi_Minh	ثو داو موت	Thu Dau Mot
+1851002	Takasaki	Takasaki	JP	36.3333	139.0167	Asia/Tokyo	تاكاساكي	
+1734810	Seremban	Seremban	MY	2.7297	101.9381	Asia/Kuala_Lumpur	سرمبان	Seremban
+3827408	Miguel Hidalgo	Miguel Hidalgo	MX	19.4341	-99.2002	America/Mexico_City		
+1856215	Nagano	Nagano	JP	36.6500	138.1833	Asia/Tokyo		
+1734199	Tawau	Tawau	MY	4.2448	117.8911	Asia/Kuching		
+2653822	Cardiff	Cardiff	GB	51.4800	-3.1800	Europe/London	كارديف	
+1814544	Dachang	Dachang	CN	31.3087	121.4153	Asia/Shanghai		
+8616121	Đống Đa	GJong GJa	VN	21.0130	105.8250	Asia/Bangkok		
+1106542	Chitungwiza	Chitungwiza	ZW	-18.0127	31.0755	Africa/Harare		
+7304020	Fenghuang	Fenghuang	CN	27.9356	109.5996	Asia/Shanghai		
+3629672	Puerto La Cruz	Puerto La Cruz	VE	10.2138	-64.6328	America/Caracas	بويرتو لا كروز	
+2320576	Umuahia	Umuahia	NG	5.5249	7.4946	Africa/Lagos	أوموأهيا	Umuahia
+298299	Uşak	Usak	TR	38.6735	29.4058	Europe/Istanbul	أوشاك	Uşak
+1283613	Bharatpur	Bharatpur	NP	27.6803	84.4365	Asia/Kathmandu		Bharatpur
+3460644	Itaquaquecetuba	Itaquaquecetuba	BR	-23.4861	-46.3483	America/Sao_Paulo		
+7483813	Natore	Natore	BD	24.4111	88.9867	Asia/Dhaka		
+353219	6th of October City	6th of October City	EG	29.8167	31.0500	Africa/Cairo		
+2644668	Leicester	Leicester	GB	52.6386	-1.1317	Europe/London	لايستر	Leicester
+13546519	Desna	Desna	UA	50.5221	30.6823	Europe/Kyiv		
+3466779	Cascavel	Cascavel	BR	-24.9558	-53.4553	America/Sao_Paulo	الأفعى ذات الجرس	
+11048323	Sector 6	Sector 6	RO	44.4358	26.0165	Europe/Bucharest		
+2172517	Canberra	Canberra	AU	-35.2835	149.1281	Australia/Sydney	كانبرا	Kanberra
+7535637	Avellaneda	Avellaneda	AR	-34.6602	-58.3674	America/Argentina/Buenos_Aires	أفيانيدا	Avellaneda
+3452465	Praia Grande	Praia Grande	BR	-24.0058	-46.4028	America/Sao_Paulo		
+1855612	Nara-shi	Nara-shi	JP	34.6850	135.8048	Asia/Tokyo	نارا	
+3176959	Florence	Florence	IT	43.7792	11.2463	Europe/Rome	فلورنسا	Floransa
+1279228	Ahilyanagar	Ahilyanagar	IN	19.0946	74.7384	Asia/Kolkata	أحمد نغر	
+1259091	Kollam	Kollam	IN	8.8811	76.5847	Asia/Kolkata		
+8537264	Huanggang	Huanggang	CN	30.4514	114.8704	Asia/Shanghai		
+2654993	Bradford	Bradford	GB	53.7939	-1.7521	Europe/London	برادفورد	Bradford
+1626381	Sukabumi	Sukabumi	ID	-6.9181	106.9267	Asia/Jakarta		
+1275637	Bilāspur	Bilaspur	IN	22.0800	82.1554	Asia/Kolkata		
+1703320	Malabon	Malabon	PH	14.6733	120.9397	Asia/Manila		
+3463011	Franca	Franca	BR	-20.5386	-47.4008	America/Sao_Paulo		
+5150529	Cleveland	Cleveland	US	41.4995	-81.6954	America/New_York	كليفلاند	Cleveland
+2337181	Iseyin	Iseyin	NG	7.9702	3.5963	Africa/Lagos		
+5950268	Etobicoke	Etobicoke	CA	43.6442	-79.5699	America/Toronto		
+2341374	Gboko	Gboko	NG	7.3228	9.0011	Africa/Lagos		
+2318123	Yenagoa	Yenagoa	NG	4.9268	6.2676	Africa/Lagos	ينагوا	Yenagoa
+13546342	Samba	Samba	AO	-8.8800	13.1962	Africa/Luanda		
+3393536	Olinda	Olinda	BR	-8.0089	-34.8553	America/Recife		
+1838343	Pyeongtaek	Pyeongtaek	KR	36.9947	127.0889	Asia/Seoul		
+3630297	Petare	Petare	VE	10.4768	-66.8079	America/Caracas		
+1588060	Bến Cát	Ben Cat	VN	11.1500	106.6000	Asia/Ho_Chi_Minh		
+324190	Alanya	Alanya	TR	36.5438	31.9998	Europe/Istanbul	ألانيا	Alanya
+1172128	Larkana	Larkana	PK	27.5590	68.2120	Asia/Karachi		
+379062	Al Qadarif	Al Qadarif	SD	14.0349	35.3834	Africa/Khartoum	القضارف	El-Gadarif
+627904	Hrodna	Hrodna	BY	53.6758	23.8289	Europe/Minsk	غرودنو	Grodno
+1647003	Cibinong	Cibinong	ID	-6.4817	106.8542	Asia/Jakarta		
+1169116	Nawabshah	Nawabshah	PK	26.2394	68.4037	Asia/Karachi		
+4335045	New Orleans	New Orleans	US	29.9547	-90.0751	America/Chicago	نيو أورلينز	
+1678228	Keelung	Keelung	TW	25.1309	121.7409	Asia/Taipei	كي لنغ	
+2692969	Malmö	Malmoe	SE	55.6059	13.0007	Europe/Stockholm	مالمو	Malmö
+1805029	Jizhou	Jizhou	CN	37.5505	115.5687	Asia/Shanghai		
+2187404	Manukau City	Manukau City	NZ	-36.9928	174.8799	Pacific/Auckland		
+2441291	Maradi	Maradi	NE	13.5000	7.1017	Africa/Niamey	مرادي	Maradi
+1182092	Burewala	Burewala	PK	30.1667	72.6500	Asia/Karachi		
+6947637	Ataşehir	Atasehir	TR	40.9833	29.1167	Europe/Istanbul		
+3469968	Blumenau	Blumenau	BR	-26.9194	-49.0661	America/Sao_Paulo	بلوميناو	
+1799823	Nanqiao	Nanqiao	CN	30.9161	121.4494	Asia/Shanghai		
+1170395	Mingora	Mingora	PK	34.7795	72.3627	Asia/Karachi	مينجورا	Mingora
+3389353	Santarém	Santarem	BR	-2.4431	-54.7083	America/Santarem		
+2805753	Wuppertal	Wuppertal	DE	51.2563	7.1482	Europe/Berlin	فوبرتال	
+2014407	Ulan-Ude	Ulan-Ude	RU	51.8265	107.5998	Asia/Irkutsk	أولان أودا	Ulan Ude
+11694038	Huocheng	Huocheng	CN	44.0530	80.8717	Asia/Urumqi		
+2338400	Ijebu Ode	Ijebu Ode	NG	6.8194	3.9173	Africa/Lagos		
+932505	Maseru	Maseru	LS	-29.3167	27.4833	Africa/Maseru	ماسيرو	
+1275960	Bhilwara	Bhilwara	IN	25.3471	74.6408	Asia/Kolkata		
+5412347	Aurora	Aurora	US	39.7294	-104.8319	America/Denver	أورورا	
+620127	Vitebsk	Vitebsk	BY	55.1904	30.2049	Europe/Minsk	فيتيبسك	Vitebsk
+7628419	Sultanbeyli	Sultanbeyli	TR	40.9607	29.2707	Europe/Istanbul		
+1516905	Taraz	Taraz	KZ	42.8980	71.3733	Asia/Almaty	طراز	Taraz
+1832828	Yangsan	Yangsan	KR	35.3420	129.0336	Asia/Seoul		
+13546518	Dniprovskyi	Dniprovskyi	UA	50.4537	30.6015	Europe/Kyiv		
+1689395	San Jose del Monte	San Jose del Monte	PH	14.8139	121.0453	Asia/Manila		
+13631407	Abū al-Kahṣīb	Abu al-Kahsib	IQ	30.4431	47.8780	Asia/Baghdad		
+1948005	Gwangmyeong	Gwangmyeong	KR	37.4772	126.8664	Asia/Seoul		
+111453	Zanjan	Zanjan	IR	36.6764	48.4963	Asia/Tehran		
+3673899	Neiva	Neiva	CO	2.9300	-75.2797	America/Bogota	نيفا	Neiva
+2112539	Iwaki	Iwaki	JP	37.0500	140.8833	Asia/Tokyo	لواكي	
+473247	Vladimir	Vladimir	RU	56.1385	40.3998	Europe/Moscow	فلاديمير	
+1026014	Tete	Tete	MZ	-16.1564	33.5867	Africa/Maputo	تيتي	Tete
+1729524	Bacoor	Bacoor	PH	14.4590	120.9385	Asia/Manila		
+3445839	Uberaba	Uberaba	BR	-19.7483	-47.9319	America/Sao_Paulo		
+1926004	Wakayama	Wakayama	JP	34.2333	135.1667	Asia/Tokyo		
+1275198	Brahmapur	Brahmapur	IN	19.3115	84.7929	Asia/Kolkata		
+1673816	Fengshan	Fengshan	TW	22.6266	120.3613	Asia/Taipei		
+2034312	Ulanhot	Ulanhot	CN	46.0833	122.0833	Asia/Shanghai	أولان هوت	
+747158	Fatih	Fatih	TR	41.0225	28.9408	Europe/Istanbul		
+2214846	Misratah	Misratah	LY	32.3753	15.0925	Africa/Tripoli	مصراتة	Misrata
+3348078	Cuíto	Cuito	AO	-12.3833	16.9333	Africa/Luanda	كويتو	Cuito
+3827406	Benito Juarez	Benito Juarez	MX	19.3984	-99.1577	America/Mexico_City		
+1519922	Kyzylorda	Kyzylorda	KZ	44.8528	65.5092	Asia/Qyzylorda	كيزيلوردا	Kızılorda
+1164776	Sinjhoro	Sinjhoro	PK	26.0301	68.8087	Asia/Karachi		
+1859740	Kawagoe	Kawagoe	JP	35.9086	139.4853	Asia/Tokyo	كاواغويه	
+1850910	Takatsuki	Takatsuki	JP	34.8483	135.6168	Asia/Tokyo		
+1262330	Muzaffarpur	Muzaffarpur	IN	26.1226	85.3906	Asia/Kolkata	مظفربور	Muzaffarpur
+3516266	Tapachula	Tapachula	MX	14.9054	-92.2589	America/Merida		
+8067345	Lhoka	Lhoka	CN	29.2430	91.7724	Asia/Shanghai		
+3514670	Villahermosa	Villahermosa	MX	17.9862	-92.9393	America/Merida	فيلاهيرموسا	Villahermosa
+1735162	Setapak	Setapak	MY	3.2070	101.7270	Asia/Kuala_Lumpur		
+625665	Mahilyow	Mahilyow	BY	53.9088	30.3404	Europe/Minsk	موغيليف	Mogilev
+141681	Bandar Abbas	Bandar Abbas	IR	27.1865	56.2808	Asia/Tehran	بندر عباس	Bender Abbas
+13580034	Pravyi Bereh	Pravyi Bereh	UA	47.1150	37.5852	Europe/Kyiv		
+1512296	Yunusobod	Yunusobod	UZ	41.3714	69.2794	Asia/Tashkent		
+291074	Ras Al Khaimah	Ras Al Khaimah	AE	25.7895	55.9432	Asia/Dubai	رَأْس ٱلْخَيْمَة	Resü'l-Hayme
+3647651	Cabimas	Cabimas	VE	10.3991	-71.4521	America/Caracas	كابيماس	
+1640344	Kendari	Kendari	ID	-3.9778	122.5151	Asia/Makassar		
+5856195	Honolulu	Honolulu	US	21.3069	-157.8583	Pacific/Honolulu	هونولولو	Honolulu
+5323810	Anaheim	Anaheim	US	33.8353	-117.9145	America/Los_Angeles	آناهايم	
+299817	Tarsus	Tarsus	TR	36.9177	34.8928	Europe/Istanbul	طرسوس	Tarsus
+99100	Al Maḩmūdīyah	Al Mahmudiyah	IQ	33.0622	44.3656	Asia/Baghdad	المحمودية	
+342884	Bahir Dar	Bahir Dar	ET	11.5936	37.3908	Africa/Addis_Ababa	بحر دار	
+8764562	Diepsloot	Diepsloot	ZA	-25.9331	28.0121	Africa/Johannesburg		
+1798900	Pengze	Pengze	CN	29.8988	116.5457	Asia/Shanghai		
+1259239	Punāsa	Punasa	IN	22.2351	76.3933	Asia/Kolkata		
+2033824	Xilin Hot	Xilin Hot	CN	43.9667	116.0333	Asia/Shanghai		
+8054802	Xilinhot	Xilinhot	CN	43.9389	116.0702	Asia/Shanghai		
+3448632	São José dos Pinhais	Sao Jose dos Pinhais	BR	-25.5302	-49.2084	America/Sao_Paulo		
+1028434	Quelimane	Quelimane	MZ	-17.8786	36.8883	Africa/Maputo	كويليمان	Quelimane
+581049	Arkhangel’sk	Arkhangel'sk	RU	64.5461	40.5518	Europe/Moscow	أرخانجلسك	Arkhangelsk
+1262332	Muzaffarnagar	Muzaffarnagar	IN	29.4709	77.7033	Asia/Kolkata		
+12548253	Hulunbuir	Hulunbuir	CN	49.2114	119.7558	Asia/Shanghai		
+1645133	Dumai	Dumai	ID	1.6671	101.4432	Asia/Jakarta		
+11790353	Shinjuku	Shinjuku	JP	35.6912	139.7085	Asia/Tokyo		
+2451185	Sikasso	Sikasso	ML	11.3176	-5.6665	Africa/Bamako	سيكاسو	Sikasso
+117574	Sanandaj	Sanandaj	IR	35.3150	46.9988	Asia/Tehran		Senendec
+2025339	Chita	Chita	RU	52.0431	113.4917	Asia/Chita	تشيتا	Çita
+1688749	San Pedro	San Pedro	PH	14.3595	121.0473	Asia/Manila		
+2521978	Alicante	Alicante	ES	38.3452	-0.4815	Europe/Madrid	ألَلَقَنْت	
+2388873	Bimbo	Bimbo	CF	4.2567	18.4158	Africa/Bangui	بيمبو	Bimbo
+1321218	Kalemyo	Kalemyo	MM	23.1901	94.0640	Asia/Yangon		
+2655984	Belfast	Belfast	GB	54.5968	-5.9254	Europe/London	بلفاست	Belfast
+1564064	Long Bien	Long Bien	VN	21.0333	105.9000	Asia/Bangkok		
+3566067	Camagüey	Camagueey	CU	21.3808	-77.9169	America/Havana	كاماغويه	Camagüey
+3128026	Bilbao	Bilbao	ES	43.2627	-2.9253	Europe/Madrid	بلباو	
+1651531	Ambon	Ambon	ID	-3.6958	128.1833	Asia/Jayapura	أمبون	
+629634	Brest	Brest	BY	52.1089	23.7175	Europe/Minsk	برست	Brest
+3451353	Ribeirão das Neves	Ribeirao das Neves	BR	-19.7669	-44.0867	America/Sao_Paulo		
+2038067	Chifeng	Chifeng	CN	42.2683	118.9636	Asia/Shanghai		
+8310663	Central Coast	Central Coast	AU	-33.4298	151.3714	Australia/Sydney		
+3435217	Corrientes	Corrientes	AR	-27.4678	-58.8344	America/Argentina/Cordoba	كورينتس	Corrientes
+1877030	Hŭngnam	Hungnam	KP	39.8420	127.6321	Asia/Pyongyang		
+1278130	Avadi	Avadi	IN	13.1147	80.1098	Asia/Kolkata		
+12277239	Yunlong	Yunlong	CN	34.2528	117.2517	Asia/Shanghai		
+1858729	Koshigaya	Koshigaya	JP	35.8903	139.7892	Asia/Tokyo	كوشيغايا	
+2652221	Coventry	Coventry	GB	52.4066	-1.5122	Europe/London	كوفنتري	Coventry
+578072	Belgorod	Belgorod	RU	50.6034	36.5809	Europe/Moscow	بيلغورود	Belgorod
+1053384	Toamasina	Toamasina	MG	-18.1492	49.4023	Indian/Antananarivo	توماسينا	Toamasina
+7281838	Logan City	Logan City	AU	-27.6392	153.1094	Australia/Brisbane	لوغان سيتي	
+1853574	Ōtsu	Otsu	JP	35.0000	135.8667	Asia/Tokyo	أوتسو	
+371760	Kosti	Kosti	SD	13.1629	32.6635	Africa/Khartoum	ربك	
+2035261	Qitaihe	Qitaihe	CN	45.7680	130.9953	Asia/Shanghai		
+290030	Doha	Doha	QA	25.2855	51.5310	Asia/Qatar	الدوحة	Doha
+1273800	Kadapa	Kadapa	IN	14.4800	78.8235	Asia/Kolkata		
+8715035	Nakano	Nakano	JP	35.7045	139.6695	Asia/Tokyo	ناكانو	
+1646170	Cirebon	Cirebon	ID	-6.7063	108.5570	Asia/Jakarta	سيريبون	
+3625829	Turmero	Turmero	VE	10.2286	-67.4742	America/Caracas		
+1850181	Tokorozawa	Tokorozawa	JP	35.7992	139.4690	Asia/Tokyo	توكوروزاوا	
+1721906	Cabanatuan City	Cabanatuan City	PH	15.4859	120.9665	Asia/Manila		
+1785716	Pizhou	Pizhou	CN	34.3114	117.9503	Asia/Shanghai		
+13580095	Darnytsya	Darnytsya	UA	50.4160	30.6953	Europe/Kyiv		
+338832	Dire Dawa	Dire Dawa	ET	9.5931	41.8661	Africa/Addis_Ababa	ديرة داوا	
+2506999	Annaba	Annaba	DZ	36.9000	7.7667	Africa/Algiers	عنابة	Annaba
+2990440	Nice	Nice	FR	43.7031	7.2661	Europe/Paris	نيس	
+1711084	Iligan	Iligan	PH	8.2289	124.2434	Asia/Manila		
+3667849	Soledad	Soledad	CO	10.9184	-74.7646	America/Bogota		
+2529013	Temara	Temara	MA	33.9287	-6.9066	Africa/Casablanca		
+3392740	Paulista	Paulista	BR	-7.9408	-34.8731	America/Recife		
+2566633	Obalende	Obalende	NG	6.4469	3.4153	Africa/Lagos		
+1265767	Kukatpally	Kukatpally	IN	17.4849	78.4138	Asia/Kolkata		
+1794479	Laixi	Laixi	CN	36.8592	120.5269	Asia/Shanghai		
+96994	Dihok	Dihok	IQ	36.8661	42.9879	Asia/Baghdad	دهوك	Duhok
+553915	Kaluga	Kaluga	RU	54.5306	36.2700	Europe/Moscow	كالوغا	Kaluga
+13405933	Bắc Từ Liêm	Bac Tu Liem	VN	21.0653	105.7466	Asia/Ho_Chi_Minh		
+4014875	Celaya	Celaya	MX	20.5218	-100.8140	America/Mexico_City	سيلايا	
+2411989	Serekunda	Serekunda	GM	13.4383	-16.6781	Africa/Banjul	سيريكوندا	
+1199503	Kafrul	Kafrul	BD	23.7882	90.3736	Asia/Dhaka		
+308988	Karşıyaka	Karsiyaka	TR	38.4577	27.1142	Europe/Istanbul		
+356436	Ḩadā’iq al Qubbah	Hada'iq al Qubbah	EG	30.0884	31.2835	Africa/Cairo	حدائق القبة	
+702320	Makiyivka	Makiyivka	UA	48.0478	37.9258	Europe/Kyiv		
+4498303	West Raleigh	West Raleigh	US	35.7868	-78.6639	America/New_York		
+3529947	Cuernavaca	Cuernavaca	MX	18.9261	-99.2308	America/Mexico_City	كويرنافاكا	Cuernavaca
+6066513	Markham	Markham	CA	43.8668	-79.2663	America/Toronto	ماركام	
+3448136	São Vicente	Sao Vicente	BR	-23.9631	-46.3919	America/Sao_Paulo		
+1876373	Kaesŏng	Kaesong	KP	37.9708	126.5544	Asia/Pyongyang	كايسونغ	Kaesong
+1185098	Tungi	Tungi	BD	23.8915	90.4023	Asia/Dhaka		
+8504952	Krasnogvargeisky	Krasnogvargeisky	RU	59.9731	30.4761	Europe/Moscow		
+963241	Randburg	Randburg	ZA	-26.0941	28.0012	Africa/Johannesburg	راندبورغ	Rendburg
+2537881	Safi	Safi	MA	32.2994	-9.2372	Africa/Casablanca	آسفي	
+693805	Simferopol	Simferopol	UA	44.9572	34.1108	Europe/Simferopol	سيمفروبول	Akmescit
+765876	Lublin	Lublin	PL	51.2506	22.5701	Europe/Warsaw	لوبلين	Lublin
+3454244	Pelotas	Pelotas	BR	-31.7700	-52.3410	America/Sao_Paulo		
+3621849	San José	San Jose	CR	9.9339	-84.0849	America/Costa_Rica	سان خوسيه	
+4167147	Orlando	Orlando	US	28.5383	-81.3792	America/New_York	أورلاندو	
+3868121	Viña del Mar	Vina del Mar	CL	-33.0246	-71.5518	America/Santiago	فينيا ديل مار	
+119505	Qazvin	Qazvin	IR	36.2688	50.0041	Asia/Tehran	قزوين	
+2130629	Asahikawa	Asahikawa	JP	43.7706	142.3649	Asia/Tokyo	أساهيكاوا	
+1268257	Kāmārhāti	Kamarhati	IN	22.6711	88.3747	Asia/Kolkata		
+3981941	Tepic	Tepic	MX	21.5073	-104.8933	America/Mazatlan	تيبيك	Tepic
+1833105	Wŏnju	Wonju	KR	37.3514	127.9453	Asia/Seoul		
+364103	Wad Medani	Wad Medani	SD	14.4012	33.5199	Africa/Khartoum		Vad Medeni
+9645084	Quận Mười Một	Quan Muoi Mot	VN	10.7638	106.6436	Asia/Ho_Chi_Minh		
+601294	Nukus	Nukus	UZ	42.4586	59.6058	Asia/Samarkand	نوكاث	Nukus
+306641	Konak	Konak	TR	38.4000	27.1000	Europe/Istanbul		
+1857843	Maebashi	Maebashi	JP	36.4000	139.0833	Asia/Tokyo		
+8469285	Kita	Kita	JP	35.7526	139.7335	Asia/Tokyo		
+3530580	Ciudad Victoria	Ciudad Victoria	MX	23.7406	-99.1436	America/Monterrey	سيوداد فيكتوريا	Ciudad Victoria
+3982912	Soledad de Graciano Sánchez	Soledad de Graciano Sanchez	MX	22.1891	-100.9379	America/Mexico_City		
+1859146	Kochi	Kochi	JP	33.5500	133.5333	Asia/Tokyo		
+2949186	Bielefeld	Bielefeld	DE	52.0333	8.5333	Europe/Berlin	بيليفيلد	Bielefeld
+2503769	Blida	Blida	DZ	36.4700	2.8277	Africa/Algiers	البليدة	Buleyde
+1819595	Kwai Chung	Kwai Chung	HK	22.3683	114.1388	Asia/Hong_Kong		
+1701947	Mandaue City	Mandaue City	PH	10.3236	123.9222	Asia/Manila		
+586523	Ganja	Ganja	AZ	40.6816	46.3613	Asia/Baku	كنجه	Ganca
+127319	Khorramshahr	Khorramshahr	IR	30.4408	48.1843	Asia/Tehran	الخرمشهر	Hürremşehr
+2946447	Bonn	Bonn	DE	50.7344	7.0955	Europe/Berlin	بون	
+1263364	Mathura	Mathura	IN	27.5035	77.6722	Asia/Kolkata		
+12358476	Hechi	Hechi	CN	24.6928	108.0838	Asia/Shanghai		
+3102014	Bydgoszcz	Bydgoszcz	PL	53.1235	18.0076	Europe/Warsaw	بيدغوشتش	Bydgoszcz
+491687	Smolensk	Smolensk	RU	54.7783	32.0509	Europe/Moscow	سمولينسك	Smolensk
+608668	Oral	Oral	KZ	51.2460	51.4256	Asia/Oral	أورال	Oral
+127349	Khorramabad	Khorramabad	IR	33.4878	48.3558	Asia/Tehran		
+3583096	Soyapango	Soyapango	SV	13.7102	-89.1399	America/El_Salvador		
+1787824	Tongshan	Tongshan	CN	34.1805	117.1571	Asia/Shanghai		
+2595778	Guédiawaye	Guediawaye	SN	14.7745	-17.4021	Africa/Dakar		
+728193	Plovdiv	Plovdiv	BG	42.1539	24.7500	Europe/Sofia	بلوفديف	Filibe
+4013704	Ciudad Obregón	Ciudad Obregon	MX	27.4864	-109.9408	America/Hermosillo		
+1866923	Wŏnsan	Wonsan	KP	39.1528	127.4436	Asia/Pyongyang	ونسان	Wonsan
+2654789	Brent	Brent	GB	51.5531	-0.3023	Europe/London		
+1520240	Pavlodar	Pavlodar	KZ	52.2760	76.9688	Asia/Almaty	بافلودار	Pavlodar
+1274693	Chānda	Chanda	IN	19.9508	79.2952	Asia/Kolkata	شاندرابور	Chandrapur
+3467467	Canoas	Canoas	BR	-29.9178	-51.1836	America/Sao_Paulo		
+2112141	Kōriyama	Koriyama	JP	37.4000	140.3833	Asia/Tokyo	كورياما	
+491422	Sochi	Sochi	RU	43.5970	39.7248	Europe/Moscow		
+324496	Aksaray	Aksaray	TR	38.3725	34.0254	Europe/Istanbul	آق سراي	Aksaray
+1275701	Vijayapura	Vijayapura	IN	16.8244	75.7154	Asia/Kolkata		
+918702	Chipata	Chipata	ZM	-13.6333	32.6500	Africa/Lusaka	تشيباتا	Chipata
+2044757	Chongjin	Chongjin	KP	41.7956	129.7758	Asia/Pyongyang	تشونغجين	Chongjin
+2033467	Yanji	Yanji	CN	42.8882	129.5024	Asia/Shanghai	يانجي	
+936374	Roodepoort	Roodepoort	ZA	-26.1625	27.8725	Africa/Johannesburg	روديبورت	Roodepoort
+3693345	Pucallpa	Pucallpa	PE	-8.3791	-74.5539	America/Lima	بوكالبا	Pucallpa
+3457001	Mogi das Cruzes	Mogi das Cruzes	BR	-23.5228	-46.1883	America/Sao_Paulo		
+2519240	Córdoba	Cordoba	ES	37.8916	-4.7728	Europe/Madrid	قرطبة	Córdoba
+2655613	Birkenhead	Birkenhead	GB	53.3934	-3.0148	Europe/London		
+2990969	Nantes	Nantes	FR	47.2172	-1.5534	Europe/Paris	نانت	Nantes
+2337704	Ilesa	Ilesa	NG	7.6279	4.7416	Africa/Lagos		
+1631766	Pekalongan	Pekalongan	ID	-6.8886	109.6753	Asia/Jakarta		
+1209106	Bhatara	Bhatara	BD	23.8000	90.4500	Asia/Dhaka		
+660158	Espoo	Espoo	FI	60.2052	24.6522	Europe/Helsinki		
+192126	Kikuyu	Kikuyu	KE	-1.2463	36.6629	Africa/Nairobi		
+1732811	Kluang	Kluang	MY	2.0305	103.3169	Asia/Kuala_Lumpur		
+1803590	Lincang	Lincang	CN	23.8797	100.0945	Asia/Shanghai		
+2641170	Nottingham	Nottingham	GB	52.9536	-1.1505	Europe/London	نوتنغهام	Nottingham
+13631350	Ramiros	Ramiros	AO	-9.0626	13.0456	Africa/Luanda		
+99608	Al ‘Amārah	Al 'Amarah	IQ	31.8356	47.1448	Asia/Baghdad	العماره	
+472231	Volzhsky	Volzhsky	RU	48.7858	44.7797	Europe/Volgograd		
+6173577	Vaughan	Vaughan	CA	43.8361	-79.4983	America/Toronto	فاوجان	
+1807566	Xingyi	Xingyi	CN	25.0962	104.9064	Asia/Shanghai		
+1256515	Shivamogga	Shivamogga	IN	13.9316	75.5679	Asia/Kolkata		
+1278946	Alwar	Alwar	IN	27.5625	76.6250	Asia/Kolkata	الوار	Alwar
+2236568	Uíge	Uige	AO	-7.6087	15.0613	Africa/Luanda	ويغ	Uige
+3446682	Taubaté	Taubate	BR	-23.0264	-45.5553	America/Sao_Paulo		
+3526682	Ixtapaluca	Ixtapaluca	MX	19.3156	-98.8828	America/Mexico_City		
+1527534	Osh	Osh	KG	40.5283	72.7985	Asia/Bishkek	أوش	Oş
+3652941	Portoviejo	Portoviejo	EC	-1.0576	-80.4514	America/Guayaquil	بورتوفييخو	Portoviejo
+3665900	Villavicencio	Villavicencio	CO	4.1324	-73.6256	America/Bogota	فيللافيسينسيو	Villavicencio
+1874533	Man’gyŏngdae-ri	Man'gyongdae-ri	KP	38.9918	125.6587	Asia/Pyongyang		
+3468031	Camaçari	Camacari	BR	-12.6975	-38.3242	America/Bahia		
+3701329	San Miguelito	San Miguelito	PA	9.0503	-79.4707	America/Panama		
+1256728	Shāhjānpur	Shahjanpur	IN	27.8817	79.9092	Asia/Kolkata		
+4297983	Lexington	Lexington	US	37.9887	-84.4777	America/New_York	ليكسينغتون	
+6958518	Tantou	Tantou	CN	22.7512	113.8350	Asia/Shanghai		
+3447212	Suzano	Suzano	BR	-23.5425	-46.3108	America/Sao_Paulo		
+3472287	Anápolis	Anapolis	BR	-16.3267	-48.9528	America/Sao_Paulo		
+1876401	Kaech’ŏn	Kaech'on	KP	39.7006	125.8933	Asia/Pyongyang		
+1268773	Jūnāgadh	Junagadh	IN	21.5197	70.4598	Asia/Kolkata		
+2646003	Islington	Islington	GB	51.5362	-0.1030	Europe/London		
+3556969	Holguín	Holguin	CU	20.8872	-76.2631	America/Havana	هولغوين	Holguín
+1520316	Ust-Kamenogorsk	Ust-Kamenogorsk	KZ	49.9714	82.6059	Asia/Almaty	أوست-كامينوغورسك	Öskemen
+1818209	Tsuen Wan	Tsuen Wan	HK	22.3714	114.1133	Asia/Hong_Kong		
+2437798	Zinder	Zinder	NE	13.8072	8.9881	Africa/Niamey	زيندر	Zinder
+498698	Saransk	Saransk	RU	54.1848	45.1717	Europe/Moscow	سارانسك	Saransk
+99762	Al Diwaniyah	Al Diwaniyah	IQ	31.9929	44.9255	Asia/Baghdad	الديوانية	Ed-Divaniye
+726050	Varna	Varna	BG	43.2191	27.9102	Europe/Sofia	فارنا	Varna
+1177384	Hafizabad	Hafizabad	PK	32.0710	73.6880	Asia/Karachi		
+12278193	Marne La Vallée	Marne La Vallee	FR	48.8358	2.6424	Europe/Paris		
+1633118	Palangkaraya	Palangkaraya	ID	-2.2083	113.9167	Asia/Pontianak		
+358448	Damanhur	Damanhur	EG	31.0341	30.4682	Africa/Cairo	دمنهور	
+1181096	Chiniot	Chiniot	PK	31.7209	72.9784	Asia/Karachi		
+3671916	Popayán	Popayan	CO	2.4382	-76.6132	America/Bogota	بوبايان	Popayan
+2639577	Reading	Reading	GB	51.4562	-0.9711	Europe/London		
+159908	Geita	Geita	TZ	-2.8725	32.2325	Africa/Dar_es_Salaam	جيتا	Geita
+680963	Constanţa	Constanta	RO	44.1807	28.6343	Europe/Bucharest	كونستانتسا	Köstence
+1261481	New Delhi	New Delhi	IN	28.6214	77.2148	Asia/Kolkata	دلهي الجديدة	Yeni Delhi
+734077	Thessaloníki	Thessaloniki	GR	40.6407	22.9349	Europe/Athens	سالونيك	Selânik
+2244802	Thiès	Thies	SN	14.7894	-16.9260	Africa/Dakar		
+1856035	Naha	Naha	JP	26.2130	127.6785	Asia/Tokyo		
+5387877	Riverside	Riverside	US	33.9534	-117.3962	America/Los_Angeles	ريفرسايد	
+2038569	Baicheng	Baicheng	CN	45.6175	122.8330	Asia/Shanghai		
+3698304	Chimbote	Chimbote	PE	-9.0751	-78.5937	America/Lima		
+3182351	Bari	Bari	IT	41.1207	16.8698	Europe/Rome	باري	
+3470353	Barueri	Barueri	BR	-23.5106	-46.8761	America/Sao_Paulo		
+4683416	Corpus Christi	Corpus Christi	US	27.8006	-97.3964	America/Chicago	كوربوس كريستي	
+1254187	Thrissur	Thrissur	IN	10.5167	76.2167	Asia/Kolkata		
+569223	Cherepovets	Cherepovets	RU	59.1333	37.9000	Europe/Moscow	تشيريبوفيتس	Çerepovets
+3658192	Eloy Alfaro	Eloy Alfaro	EC	-2.1692	-79.8399	America/Guayaquil		
+8354626	Hamburg-Nord	Hamburg-Nord	DE	53.5894	9.9840	Europe/Berlin		
+99131	Al-Kut	Al-Kut	IQ	32.5128	45.8182	Asia/Baghdad	الكوت	Kut
+1732869	Muar	Muar	MY	2.0442	102.5689	Asia/Kuala_Lumpur		
+739549	Şişli	Sisli	TR	41.0605	28.9872	Europe/Istanbul		
+4297999	Lexington-Fayette	Lexington-Fayette	US	38.0498	-84.4586	America/New_York		
+2228373	Maroua	Maroua	CM	10.5909	14.3159	Africa/Douala	مارووا	Maroua
+2645425	Kingston upon Hull	Kingston upon Hull	GB	53.7446	-0.3352	Europe/London		Kingston upon Hull
+2639912	Preston	Preston	GB	53.7628	-2.7045	Europe/London	برستون	Preston
+2036434	Lianshan	Lianshan	CN	40.7643	120.8533	Asia/Shanghai		
+317109	Denizli	Denizli	TR	37.7742	29.0875	Europe/Istanbul	دنيزلي	Denizli
+2338313	Ikeja	Ikeja	NG	6.5965	3.3420	Africa/Lagos	إيكيجا	Ikeja
+8134081	Al Qāhirah al Jadīdah	Al Qahirah al Jadidah	EG	30.0421	31.4445	Africa/Cairo	القاهرة الجديدة	
+7799991	New Cairo	New Cairo	EG	30.0300	31.4700	Africa/Cairo	القاهرة الجديدة	
+3444924	Vitória	Vitoria	BR	-20.3194	-40.3378	America/Sao_Paulo	فيتوريا	Vitória
+3673164	Palmira	Palmira	CO	3.5394	-76.3036	America/Bogota		
+472459	Vologda	Vologda	RU	59.2239	39.8840	Europe/Moscow	فولوغدا	
+1711082	Iligan City	Iligan City	PH	8.2500	124.4000	Asia/Manila		
+2525068	Catania	Catania	IT	37.4922	15.0704	Europe/Rome	كاتانيا	
+11962408	Jardim Angela	Jardim Angela	BR	-23.7164	-46.7687	America/Sao_Paulo		
+1261258	Nizāmābād	Nizamabad	IN	18.6715	78.0988	Asia/Kolkata		
+4508722	Cincinnati	Cincinnati	US	39.1271	-84.5144	America/New_York	سينسيناتي	Cincinnati
+1214189	Percut	Percut	ID	3.6253	98.8640	Asia/Jakarta		
+3530517	Coatzacoalcos	Coatzacoalcos	MX	18.1490	-94.4447	America/Mexico_City		
+5392900	Santa Ana	Santa Ana	US	33.7456	-117.8678	America/Los_Angeles	سانتا أنا	
+1870883	Sariwŏn-si	Sariwon-si	KP	38.5072	125.7558	Asia/Pyongyang	ساريون	Sariwon
+1016670	Botshabelo	Botshabelo	ZA	-29.2674	26.7260	Africa/Johannesburg		
+1722186	Butuan	Butuan	PH	8.9492	125.5436	Asia/Manila	بوتوان	Butuan
+143860	Shahrīār	Shahriar	IR	35.6588	51.0577	Asia/Tehran		
+120292	Qods	Qods	IR	35.7214	51.1090	Asia/Tehran		
+9871722	Gia Lâm	Gia Lam	VN	21.0200	105.9390	Asia/Bangkok		
+1501321	Kurgan	Kurgan	RU	55.4490	65.3434	Asia/Yekaterinburg	كورغان	Kurgan
+3516355	Tampico	Tampico	MX	22.2852	-97.8778	America/Monterrey	تامبيكو	
+2566696	Akowonjo	Akowonjo	NG	6.6101	3.3097	Africa/Lagos		
+1721281	Cabuyao	Cabuyao	PH	14.2726	121.1262	Asia/Manila		
+149658	Tabora	Tabora	TZ	-5.0162	32.8266	Africa/Dar_es_Salaam	تابورا	Tabora
+1859891	Kasugai	Kasugai	JP	35.2476	136.9723	Asia/Tokyo	كاسوغاي	
+1594308	An Nhơn	An Nhon	VN	13.8858	109.1082	Asia/Ho_Chi_Minh		
+2566676	Alimosho	Alimosho	NG	6.6066	3.3024	Africa/Lagos		
+4003757	Ciudad Benito Juárez	Ciudad Benito Juarez	MX	25.6466	-100.0914	America/Monterrey		
+2867543	Münster	Muenster	DE	51.9624	7.6257	Europe/Berlin	مونستر	Münster
+2873891	Mannheim	Mannheim	DE	49.4891	8.4669	Europe/Berlin	مانهايم	Mannheim
+1641134	Karawang	Karawang	ID	-6.3053	107.3197	Asia/Jakarta		
+2113126	Akita	Akita	JP	39.7167	140.1167	Asia/Tokyo	أكيتا	
+1254089	Tumkūr	Tumkur	IN	13.3414	77.1022	Asia/Kolkata		
+1846052	Chinju	Chinju	KR	35.1928	128.0847	Asia/Seoul		
+1260341	Parbhani	Parbhani	IN	19.2686	76.7708	Asia/Kolkata		
+1270022	Hisar	Hisar	IN	29.1539	75.7229	Asia/Kolkata		
+1843491	Iksan	Iksan	KR	35.9439	126.9544	Asia/Seoul		
+1271885	Fīrozābād	Firozabad	IN	27.1509	78.3978	Asia/Kolkata		
+3474574	Palmas	Palmas	BR	-10.1675	-48.3277	America/Araguaina	بالماس	Palmas
+473249	Vladikavkaz	Vladikavkaz	RU	43.0410	44.6699	Europe/Moscow	فلاديقوقاز	
+3718420	Port-de-Paix	Port-de-Paix	HT	19.9398	-72.8304	America/Port-au-Prince		
+358048	Damietta	Damietta	EG	31.4165	31.8133	Africa/Cairo	دمياط	Dimyat
+2778067	Graz	Graz	AT	47.0673	15.4420	Europe/Vienna	غراتس	Graz
+3439101	Ciudad del Este	Ciudad del Este	PY	-25.5036	-54.6507	America/Asuncion	سيوداد ديل إسته	Ciudad del Este
+897045	Solwezi	Solwezi	ZM	-12.1688	26.3894	Africa/Lusaka	سولويزي	Solwezi
+6697759	South Dublin	South Dublin	IE	53.2903	-6.3415	Europe/Dublin		
+363807	Winejok	Winejok	SS	9.0122	27.5708	Africa/Juba		
+1282931	Pātan	Patan	NP	27.6766	85.3142	Asia/Kathmandu		
+3161732	Bergen	Bergen	NO	60.3930	5.3242	Europe/Oslo	برغن	Bergen
+598316	Kaunas	Kaunas	LT	54.9016	23.9091	Europe/Vilnius	كاوناس	Kaunas
+11808941	Sekondi	Sekondi	GH	4.9342	-1.7145	Africa/Accra		
+10858926	Kyengera	Kyengera	UG	0.2952	32.5016	Africa/Kampala		
+294801	Haifa	Haifa	IL	32.8130	34.9993	Asia/Jerusalem	حيفا	Hayfa
+2624652	Århus	Arhus	DK	56.1567	10.2108	Europe/Copenhagen		Århus
+2088122	Port Moresby	Port Moresby	PG	-9.4772	147.1509	Pacific/Port_Moresby	بورت مورسبي	
+2467454	Sfax	Sfax	TN	34.7406	10.7603	Africa/Tunis	صفاقس	Safakes
+3068799	Ostrava	Ostrava	CZ	49.8347	18.2820	Europe/Prague	أوسترافا	Ostrava
+1884382	Bedok New Town	Bedok New Town	SG	1.3264	103.9417	Asia/Singapore		
+1880159	Ulu Bedok	Ulu Bedok	SG	1.3333	103.9333	Asia/Singapore		
+2279755	Yamoussoukro	Yamoussoukro	CI	6.8205	-5.2767	Africa/Abidjan	ياموسوكرو	Yamoussoukro
+1514896	Isfara	Isfara	TJ	40.1265	70.6253	Asia/Dushanbe	اسفرة	
+1220253	Istaravshan	Istaravshan	TJ	39.9142	69.0033	Asia/Dushanbe		
+3557689	Guantánamo	Guantanamo	CU	20.1444	-75.2092	America/Havana	غوانتانامو	Guantanamo
+289888	Ar Rayyān	Ar Rayyan	QA	25.2919	51.4244	Asia/Qatar	الريان	Ar Rayyan
+3196359	Ljubljana	Ljubljana	SI	46.0511	14.5051	Europe/Ljubljana	ليوبليانا	Ljubljana
+1139715	Jalālābād	Jalalabad	AF	34.4265	70.4515	Asia/Kabul	جلال آباد	Celalabad
+1283581	Birgañj	Birganj	NP	27.0174	84.8805	Asia/Kathmandu	برغنج	
+7838895	Russeifa	Russeifa	JO	32.0178	36.0464	Asia/Amman	الرصيفة	Ruseyfa
+7289760	Sengkang New Town	Sengkang New Town	SG	1.3917	103.8944	Asia/Singapore		
+1880216	Tampines Estate	Tampines Estate	SG	1.3581	103.9403	Asia/Singapore		
+2797656	Gent	Gent	BE	51.0500	3.7167	Europe/Brussels	غنت	Gent
+2392087	Porto-Novo	Porto-Novo	BJ	6.4965	2.6036	Africa/Porto-Novo	بورتو نوفو	
+2389422	Bégoua	Begoua	CF	4.4544	18.5347	Africa/Bangui		
+1069166	Antsirabe	Antsirabe	MG	-19.8659	47.0333	Indian/Antananarivo	أنتسيرابي	Antsirabe
+363619	Yei	Yei	SS	4.0944	30.6764	Africa/Juba	ياي	
+634963	Tampere	Tampere	FI	61.4991	23.7871	Europe/Helsinki	تامبيري	
+1062663	Mahajanga	Mahajanga	MG	-15.7167	46.3167	Indian/Antananarivo	ماجنكا	Mahajanga
+2185964	North Shore	North Shore	NZ	-36.8000	174.7500	Pacific/Auckland		
+293703	Rishon LeTsiyyon	Rishon LeTsiyyon	IL	31.9710	34.7894	Asia/Jerusalem		
+2392204	Parakou	Parakou	BJ	9.3372	2.6303	Africa/Porto-Novo	باراكو	Parakou
+2407790	Kenema	Kenema	SL	7.8769	-11.1903	Africa/Freetown	كينيما	Kenema
+1608133	Mueang Nonthaburi	Mueang Nonthaburi	TH	13.8607	100.5148	Asia/Bangkok	موانج نونتابوري	Mueang Nonthaburi
+2394092	Godomè	Godome	BJ	6.3895	2.3458	Africa/Porto-Novo		
+632453	Vantaa	Vantaa	FI	60.2941	25.0410	Europe/Helsinki	فانتا	
+2735943	Porto	Porto	PT	41.1485	-8.6110	Europe/Lisbon	بورتو	Porto
+248583	Ḩayy Khildā	Hayy Khilda	JO	31.9920	35.8400	Asia/Amman	حي خلدا	
+787657	Niš	Nis	RS	43.3247	21.9033	Europe/Belgrade		
+925475	Mzuzu	Mzuzu	MW	-11.4656	34.0207	Africa/Blantyre	مزوزو	Mzuzu
+3583446	San Miguel	San Miguel	SV	13.4826	-88.1821	America/El_Salvador	سان ميغيل	San Miguel
+933773	Gaborone	Gaborone	BW	-24.6545	25.9086	Africa/Gaborone	جابورون	Gaborone
+2755251	Groningen	Groningen	NL	53.2192	6.5667	Europe/Amsterdam	غرونينغن	Groningen
+64435	Berbera	Berbera	SO	10.4396	45.0143	Africa/Mogadishu	بربرة	
+3193044	Podgorica	Podgorica	ME	42.4412	19.2631	Europe/Podgorica	بودغوريتسا	Podgorica
+3378644	Georgetown	Georgetown	GY	6.8045	-58.1553	America/Guyana	جورج توغن	
+55671	Kismayo	Kismayo	SO	-0.3582	42.5454	Africa/Mogadishu	كسمايو	Kismayo
+3612907	Danlí	Danli	HN	14.0333	-86.5833	America/Tegucigalpa		
+2410048	Bo	Bo	SL	7.9647	-11.7383	Africa/Freetown	بو	Bo
+1219649	Türkmenabat	Tuerkmenabat	TM	39.0733	63.5786	Asia/Ashgabat	تركمينابات	Türkmenabat
+266826	Tripoli	Tripoli	LB	34.4335	35.8441	Asia/Beirut	طرابلس	Trablusşam
+3571824	Nassau	Nassau	BS	25.0582	-77.3431	America/Nassau	ناساو	
+3437056	San Lorenzo	San Lorenzo	PY	-25.3397	-57.5088	America/Asuncion	سان لورينزو	
+2416969	Nzérékoré	Nzerekore	GN	7.7562	-8.8179	Africa/Conakry		
+724443	Košice	Kosice	SK	48.7144	21.2580	Europe/Bratislava	كوشيتسه	Kösice
+3903987	Sucre	Sucre	BO	-19.0333	-65.2627	America/La_Paz	سوكري	Sucre
+884979	Mutare	Mutare	ZW	-18.9707	32.6709	Africa/Harare	موتاري	Mutare
+2965140	Cork	Cork	IE	51.8980	-8.4706	Europe/Dublin	كورك	
+3383330	Paramaribo	Paramaribo	SR	5.8664	-55.1668	America/Paramaribo	باراماريبو	Paramaribo
+3608248	La Ceiba	La Ceiba	HN	15.7597	-86.7822	America/Tegucigalpa		
+2464915	Sousse	Sousse	TN	35.8254	10.6370	Africa/Tunis	سوسة	Sousse
+2419992	Kankan	Kankan	GN	10.3854	-9.3057	Africa/Conakry		
+3204541	Banja Luka	Banja Luka	BA	44.7788	17.2063	Europe/Sarajevo	بانيا لوكا	Banya Luka
+1234569	Dehiwala-Mount Lavinia	Dehiwala-Mount Lavinia	LK	6.8402	79.8712	Asia/Colombo		
+1611110	Chon Buri	Chon Buri	TH	13.3622	100.9835	Asia/Bangkok	شون بوري	Chon Buri
+2454268	Koutiala	Koutiala	ML	12.3872	-5.4651	Africa/Bamako		
+3493032	San Pedro de Macorís	San Pedro de Macoris	DO	18.4539	-69.3086	America/Santo_Domingo	سان بيدرو دي ماكوريس	San Pedro de Macoris
+3133880	Trondheim	Trondheim	NO	63.4305	10.3951	Europe/Oslo	تروندهايم	
+643492	Oulu	Oulu	FI	65.0124	25.4682	Europe/Helsinki	أولو	Oulu
+8556321	La Ceiba	La Ceiba	HN	15.7667	-86.8333	America/Tegucigalpa		
+3194360	Novi Sad	Novi Sad	RS	45.2517	19.8369	Europe/Belgrade	نوفي ساد	
+1221194	Kŭlob	Kulob	TJ	37.9146	69.7845	Asia/Dushanbe		
+3598119	Cobán	Coban	GT	15.4703	-90.3745	America/Guatemala		
+1514891	Konibodom	Konibodom	TJ	40.2941	70.4312	Asia/Dushanbe		
+732770	Burgas	Burgas	BG	42.5065	27.4689	Europe/Sofia	بورغاس	Burgaz
+787607	Novi Beograd	Novi Beograd	RS	44.8056	20.4242	Europe/Belgrade		Yeni Belgrad
+3909234	Oruro	Oruro	BO	-17.9715	-67.0932	America/La_Paz	أورورو	Oruro
+1085510	Epworth	Epworth	ZW	-17.8900	31.1475	Africa/Harare		
+2451478	Ségou	Segou	ML	13.4403	-6.2595	Africa/Bamako	سيغو	Segou
+2772400	Linz	Linz	AT	48.3064	14.2861	Europe/Vienna	لينتز	Linz
+2208485	Zliten	Zliten	LY	32.4674	14.5687	Africa/Tripoli	زليتن	
+4562831	Bayamón	Bayamon	PR	18.3986	-66.1557	America/Puerto_Rico	بايامون	Bayamon
+1064890	Fianarantsoa	Fianarantsoa	MG	-21.4527	47.0857	Indian/Antananarivo	فيانارانتسوا	Fianarantsoa
+721472	Debrecen	Debrecen	HU	47.5317	21.6244	Europe/Budapest	دبرتسن	
+2219905	Al Khums	Al Khums	LY	32.6486	14.2619	Africa/Tripoli	المرقب	El Hums
+8063098	Favoriten	Favoriten	AT	48.1612	16.3823	Europe/Vienna		
+2660646	Geneva	Geneva	CH	46.2022	6.1457	Europe/Zurich	جنيف	Cenevre
+601734	Daşoguz	Dasoguz	TM	41.8362	59.9666	Asia/Ashgabat	داسوغوز	Daşoğuz
+146268	Nicosia	Nicosia	CY	35.1728	33.3540	Asia/Nicosia	نيقوسيا	Lefkoşa
+2800481	Charleroi	Charleroi	BE	50.4114	4.4445	Europe/Brussels	شارلوروا	
+13512674	Lusail	Lusail	QA	25.4175	51.5075	Asia/Qatar		
+3439214	Capiatá	Capiata	PY	-25.3552	-57.4455	America/Asuncion		
+2462881	Laayoune	Laayoune	EH	27.1418	-13.1880	Africa/El_Aaiun	العيون	
+585915	Khirdalan	Khirdalan	AZ	40.4481	49.7550	Asia/Baku	خيردالان	Hırdalan
+1607508	Phra Pradaeng	Phra Pradaeng	TH	13.6585	100.5336	Asia/Bangkok		
+2427455	Moundou	Moundou	TD	8.5744	16.0772	Africa/Ndjamena	موندو	Moundou
+3185728	Durrës	Durres	AL	41.3235	19.4547	Europe/Tirane	دراس	Durrës
+1236854	Maharagama	Maharagama	LK	6.8480	79.9265	Asia/Colombo		
+2792413	Liège	Liege	BE	50.6337	5.5675	Europe/Brussels	لييج	
+2455518	Kayes	Kayes	ML	14.4478	-11.4439	Africa/Bamako	كايس	Kayes
+2417786	Manéah	Maneah	GN	9.7333	-13.4167	Africa/Conakry		
+2742032	Braga	Braga	PT	41.5514	-8.4231	Europe/Lisbon	براغا	Braga
+11903636	Donaustadt	Donaustadt	AT	48.2333	16.4600	Europe/Vienna		
+615532	Batumi	Batumi	GE	41.6408	41.6306	Asia/Tbilisi	باطومي	Batum
+2615876	Odense	Odense	DK	55.3959	10.3883	Europe/Copenhagen	أودنسه	Odense
+3590979	Quetzaltenango	Quetzaltenango	GT	14.8446	-91.5232	America/Guatemala		
+2271772	Amadora	Amadora	PT	38.7538	-9.2308	Europe/Lisbon		Amadora
+2661604	Basel	Basel	CH	47.5584	7.5733	Europe/Zurich	بازل	Basel
+2666199	Uppsala	Uppsala	SE	59.8588	17.6389	Europe/Stockholm	أوبسالا	Uppsala
+3583334	Santa Ana	Santa Ana	SV	13.9883	-89.5568	America/El_Salvador	سانتا آنا	Santa Ana
+290332	Al Muharraq	Al Muharraq	BH	26.2572	50.6119	Asia/Bahrain	اَلْمُحَرَّق	
+281124	Khān Yūnis	Khan Yunis	PS	31.3402	34.3063	Asia/Gaza	خان يونس	
+2310046	Bata	Bata	GQ	1.8639	9.7658	Africa/Malabo	باتا	
+202905	Gisenyi	Gisenyi	RW	-1.7028	29.2564	Africa/Kigali	جيسايني	
+598098	Klaipėda	Klaipeda	LT	55.7068	21.1391	Europe/Vilnius	كلايبيدا	Klaipėda
+786712	Prizren	Prizren	XK	42.2139	20.7397	Europe/Belgrade	بريزرن	Prizren
+4563243	Carolina	Carolina	PR	18.3808	-65.9574	America/Puerto_Rico	كارولينا	Carolina
+1242833	Jaffna	Jaffna	LK	9.6684	80.0074	Asia/Colombo	جافنا	Jaffna
+3068160	Pilsen	Pilsen	CZ	49.7475	13.3776	Europe/Prague	بلزن	Pilsen
+281129	Jabālyā	Jabalya	PS	31.5272	34.4835	Asia/Gaza	جباليا	
+1234633	Moratuwa	Moratuwa	LK	6.7730	79.8816	Asia/Colombo		
+255683	Pátra	Patra	GR	38.2462	21.7351	Europe/Athens		Patras
+1218667	Mary	Mary	TM	37.5938	61.8303	Asia/Ashgabat	ماري	Mary
+2694762	Linköping	Linkoeping	SE	58.4109	15.6216	Europe/Stockholm	لينشوبينغ	Linköping
+3186573	Zenica	Zenica	BA	44.2017	17.9040	Europe/Sarajevo	زينيتسا	Zenica
+285629	Ḩawallī	Hawalli	KW	29.3328	48.0286	Asia/Kuwait	حَوَلِّي	Havalli
+2396518	Port-Gentil	Port-Gentil	GA	-0.7193	8.7815	Africa/Libreville	بورت جنتيل	
+255274	Piraeus	Piraeus	GR	37.9420	23.6462	Europe/Athens	بيرايوس	Pire
+268064	Sidon	Sidon	LB	33.5575	35.3715	Asia/Beirut	صيدا	Sayda
+287830	‘Ibrī	'Ibri	OM	23.2257	56.5157	Asia/Muscat	‘Ibrī	
+286621	Şalālah	Salalah	OM	17.0150	54.0924	Asia/Muscat	صلالة	Salalah
+715429	Szeged	Szeged	HU	46.2530	20.1482	Europe/Budapest		
+370737	Malakal	Malakal	SS	9.5334	31.6605	Africa/Juba	ملكال	Malakal
+285066	Hebron	Hebron	PS	31.5294	35.0938	Asia/Hebron	الخليل	El Halil
+3584399	Mejicanos	Mejicanos	SV	13.7240	-89.1880	America/El_Salvador		
+2358946	Koudougou	Koudougou	BF	12.2519	-2.3669	Africa/Ouagadougou	كودوغو	Koudougou
+2464960	Sukrah	Sukrah	TN	36.8774	10.2468	Africa/Tunis	سكرة	
+2439376	Tahoua	Tahoua	NE	14.8888	5.2692	Africa/Niamey	تاهوا	Tahoua
+617239	Tiraspol	Tiraspol	MD	46.8428	29.6284	Europe/Chisinau	تيراسبول	Tiraspol
+2309527	Malabo	Malabo	GQ	3.7558	8.7817	Africa/Malabo	مالابو	
+783920	Zemun	Zemun	RS	44.8458	20.4012	Europe/Belgrade		
+934154	Port Louis	Port Louis	MU	-20.1619	57.4989	Indian/Mauritius	بور لويس	
+935264	Saint-Denis	Saint-Denis	RE	-20.8823	55.4504	Indian/Reunion		
+146384	Limassol	Limassol	CY	34.6841	33.0379	Asia/Nicosia	ليماسول	Limasol
+201521	Musanze	Musanze	RW	-1.4998	29.6350	Africa/Kigali		
+3137115	Stavanger	Stavanger	NO	58.9701	5.7333	Europe/Oslo	ستافانجر	Stavanger
+7670934	Malatia-Sebastia	Malatia-Sebastia	AM	40.1740	44.4457	Asia/Yerevan		
+1645457	Dili	Dili	TL	-8.5586	125.5736	Asia/Dili	ديلي	Dili
+3190261	Split	Split	HR	43.5089	16.4392	Europe/Zagreb	سبليت	
+2448085	Agadez	Agadez	NE	16.9733	7.9911	Africa/Niamey	أغاديس	Agadez
+285704	As Sālimīyah	As Salimiyah	KW	29.3339	48.0761	Asia/Kuwait	اَلسَّالِمِيَّة	
+290340	Manama	Manama	BH	26.2279	50.5857	Asia/Bahrain	المنامة	Manama
+258576	Lárisa	Larisa	GR	39.6285	22.4211	Europe/Athens		Yenişehir
+2377457	Nouadhibou	Nouadhibou	MR	20.9419	-17.0384	Africa/Nouakchott	نواذيبو	Nouadhibou
+3488465	Spanish Town	Spanish Town	JM	17.9911	-76.9574	America/Jamaica	سبانيش تاون	
+3618030	León	Leon	NI	12.4353	-86.8786	America/Managua	ليون	Leon
+2624886	Aalborg	Aalborg	DK	57.0480	9.9187	Europe/Copenhagen	آلبورغ	Aalborg
+3188582	Tuzla	Tuzla	BA	44.5384	18.6671	Europe/Sarajevo	توزلا	Tuzla
+2740637	Coimbra	Coimbra	PT	40.2069	-8.4200	Europe/Lisbon	كويمبرا	Coimbra
+11111027	Shengavit	Shengavit	AM	40.1557	44.4779	Asia/Yerevan		
+245785	Abéché	Abeche	TD	13.8292	20.8324	Africa/Ndjamena	أبشي	Abeche
+1822214	Siem Reap	Siem Reap	KH	13.3618	103.8606	Asia/Phnom_Penh	سيام ريب	Siem Reap
+412800	Şabāḩ as Sālim	Sabah as Salim	KW	29.2572	48.0572	Asia/Kuwait	صَبَاح اَلسَّالِم	
+2659994	Lausanne	Lausanne	CH	46.5160	6.6328	Europe/Zurich	لوزان	Lozan
+2473449	Kairouan	Kairouan	TN	35.6781	10.0963	Africa/Tunis	القيروان	Kayravan
+2425791	Sarh	Sarh	TD	9.1456	18.3833	Africa/Ndjamena	صارح	Sarh
+3374333	Praia	Praia	CV	14.9315	-23.5125	Atlantic/Cape_Verde	برايا	
+4566880	Ponce	Ponce	PR	18.0103	-66.6240	America/Puerto_Rico	بونثي	Ponce
+866153	Nor Nork	Nor Nork	AM	40.1966	44.5669	Asia/Yerevan		
+2356157	Saaba	Saaba	BF	12.3714	-1.4147	Africa/Ouagadougou		
+267008	Tyre	Tyre	LB	33.2733	35.1939	Asia/Beirut	Şūr	Sur
+613607	Kutaisi	Kutaisi	GE	42.2679	42.6946	Asia/Tbilisi		Kutaisi
+290247	Madīnat Ḩamad	Madinat Hamad	BH	26.1153	50.5069	Asia/Bahrain	مَدِينَة حَمَد	Hamad Town
+7670941	Kentron	Kentron	AM	40.1781	44.5130	Asia/Yerevan	مقاطعة كينترون	Kentron
+2400555	Franceville	Franceville	GA	-1.6333	13.5836	Africa/Libreville	فرانسفيل	
+3617723	Masaya	Masaya	NI	11.9732	-86.0959	America/Managua	ماسايا	Masaya
+2387495	Carnot	Carnot	CF	4.9427	15.8773	Africa/Bangui	كارنو	Carnot
+612287	Rustavi	Rustavi	GE	41.5627	44.9787	Asia/Tbilisi		Rustavi
+2407656	Koidu	Koidu	SL	8.6439	-10.9714	Africa/Freetown	كويدو	Koidu
+584649	Yevlakh	Yevlakh	AZ	40.6183	47.1501	Asia/Baku	يفلاخ	Evlak
+363885	Wau	Wau	SS	7.7011	27.9897	Africa/Juba	واو	Wau
+3620381	Chinandega	Chinandega	NI	12.6295	-87.1313	America/Managua	تشينانديجا	Chinandega
+3437863	Lambaré	Lambare	PY	-25.3468	-57.6065	America/Asuncion		
+1653316	Savannakhet	Savannakhet	LA	16.5703	104.7622	Asia/Vientiane	سافان ناخيت	Savannakhet
+618605	Bălţi	Balti	MD	47.7629	27.9285	Europe/Chisinau	بالتي	Balti
+3513090	Willemstad	Willemstad	CW	12.1225	-68.8864	America/Curacao	ويلمستاد	Willemstad
+2357043	Ouahigouya	Ouahigouya	BF	13.5769	-2.4179	Africa/Ouagadougou	واهيغويا	Ouahigouya
+1528249	Manas	Manas	KG	40.9450	72.9931	Asia/Bishkek	جلال آباد	Celal-Abad
+2661552	Bern	Bern	CH	46.9481	7.4474	Europe/Zurich	برن	Bern
+726848	Stara Zagora	Stara Zagora	BG	42.4320	25.6426	Europe/Sofia	ستارا زاغورا	Eski Zağra
+2258261	Dolisie	Dolisie	CG	-4.1983	12.6666	Africa/Brazzaville	دوليسي	Dolisie
+1831797	Battambang	Battambang	KH	13.1027	103.1982	Asia/Phnom_Penh	باتامبانج	Battambang
+3413829	Reykjavík	Reykjavik	IS	64.1355	-21.8954	Atlantic/Reykjavik	ريكيافيك	Reykjavik
+923295	Zomba	Zomba	MW	-15.3860	35.3188	Africa/Blantyre		
+2364104	Sokodé	Sokode	TG	8.9833	1.1333	Africa/Lome	سوكوديه	Sokode
+3149318	Kristiansand	Kristiansand	NO	58.1467	7.9956	Europe/Oslo	كريستيانساند	Kristiansand
+385038	Ar Rifā‘	Ar Rifa'	BH	26.1300	50.5550	Asia/Bahrain	اَلرِّفَاع	Er Rifaa
+933945	Vacoas	Vacoas	MU	-20.2981	57.4783	Indian/Mauritius		
+3183719	Vlorë	Vlore	AL	40.4696	19.4838	Europe/Tirane	فلوره	Vlora
+590775	Lasnamäe	Lasnamaee	EE	59.4336	24.8602	Europe/Tallinn		
+3440714	Salto	Salto	UY	-31.3881	-57.9598	America/Montevideo	سالتو، أوروغواي	Salto
+3058213	Petržalka	Petrzalka	SK	48.1233	17.1287	Europe/Bratislava		
+1821263	Taipa	Taipa	MO	22.1558	113.5569	Asia/Macau		
+934765	Beau Bassin-Rose Hill	Beau Bassin-Rose Hill	MU	-20.2333	57.4661	Indian/Mauritius	بو باسين - روز هيل	Beau Bassin-Rose Hill
+934995	Manzini	Manzini	SZ	-26.4988	31.3800	Africa/Mbabane	مانزيني	Manzini
+618577	Bender	Bender	MD	46.8316	29.4767	Europe/Chisinau	بيندر	Bender
+3617708	Matagalpa	Matagalpa	NI	12.9279	-85.9191	America/Managua	ماتاجالبا	Matagalpa
+3191648	Rijeka	Rijeka	HR	45.3267	14.4424	Europe/Zagreb		
+789225	Mitrovicë	Mitrovice	XK	42.8833	20.8667	Europe/Belgrade	ميتروفيتسا	Mitroviça
+2463447	Dakhla	Dakhla	EH	23.6848	-15.9580	Africa/El_Aaiun	الداخلة	
+935221	Saint-Paul	Saint-Paul	RE	-21.0096	55.2713	Indian/Reunion		
+3194828	Mostar	Mostar	BA	43.3433	17.8081	Europe/Sarajevo	موستار	Mostar
+2366152	Kara	Kara	TG	9.5511	1.1861	Africa/Lome	كارا	Kara
+2389086	Berbérati	Berberati	CF	4.2612	15.7922	Africa/Bangui	بربيراتي	Berberati
+1282027	Male	Male	MV	4.1752	73.5092	Indian/Maldives		Male
+933778	Francistown	Francistown	BW	-21.1700	27.5078	Africa/Gaborone	فرانسيستاون	Francistown
+8521334	Nkayi	Nkayi	CG	-4.1840	13.2859	Africa/Brazzaville		
+3071961	Liberec	Liberec	CZ	50.7671	15.0562	Europe/Prague	ليبيريتس	Liberec
+3488981	Portmore	Portmore	JM	17.9710	-76.8869	America/Jamaica		
+2962943	Limerick	Limerick	IE	52.6647	-8.6231	Europe/Dublin		
+3441894	Maldonado	Maldonado	UY	-34.8979	-54.9502	America/Montevideo	مالدونادو	Maldonado
+783263	Elbasan	Elbasan	AL	41.1114	20.0822	Europe/Tirane	البصان	Elbasan
+3708306	Juan Díaz	Juan Diaz	PA	9.0406	-79.4408	America/Panama		
+201650	Nyagatare	Nyagatare	RW	-1.2952	30.3226	Africa/Kigali		
+594739	Šiauliai	Siauliai	LT	55.9333	23.3167	Europe/Vilnius	شياولياي	Şiauliai
+1830194	Paoy Paet	Paoy Paet	KH	13.6580	102.5636	Asia/Phnom_Penh		
+1252416	Thimphu	Thimphu	BT	27.4661	89.6419	Asia/Thimphu	تيمفو	
+3374036	Bridgetown	Bridgetown	BB	13.1073	-59.6202	America/Barbados	بريدج تاون	
+2031405	Erdenet	Erdenet	MN	49.0333	104.0833	Asia/Ulaanbaatar	إردنيت	Erdenet
+2413753	Brikama	Brikama	GM	13.2714	-16.6494	Africa/Banjul		
+3195506	Maribor	Maribor	SI	46.5558	15.6459	Europe/Ljubljana	ماريبور	Maribor
+3184081	Shkodër	Shkoder	AL	42.0683	19.5126	Europe/Tirane	سكوتاري	İşkodra
+2396657	Owendo	Owendo	GA	0.2912	9.5046	Africa/Libreville		
+2621942	Frederiksberg	Frederiksberg	DK	55.6794	12.5346	Europe/Copenhagen	فريدريكسبرغ	
+791646	Gjakovë	Gjakove	XK	42.3803	20.4308	Europe/Belgrade	جاكوفا	Gjakovë
+2139521	Nouméa	Noumea	NC	-22.2741	166.4488	Pacific/Noumea	نوميا	
+8740209	Nasinu	Nasinu	FJ	-18.0705	178.5131	Pacific/Fiji		
+601594	Türkmenbaşy	Tuerkmenbasy	TM	40.0222	52.9552	Asia/Ashgabat	تركمانباشي	
+588335	Tartu	Tartu	EE	58.3806	26.7251	Europe/Tallinn		Tartu
+1655199	Thakhèk	Thakhek	LA	17.4103	104.8307	Asia/Vientiane	ثاخيك	Thakhek
+3570675	Fort-de-France	Fort-de-France	MQ	14.6037	-61.0742	America/Martinique	فور دو فرانس	
+933331	Mogoditshane	Mogoditshane	BW	-24.6269	25.8656	Africa/Gaborone		Mogoditshane
+4562635	Arecibo	Arecibo	PR	18.4724	-66.7157	America/Puerto_Rico	أريسيبو	Arecibo
+202217	Gitarama	Gitarama	RW	-2.0744	29.7567	Africa/Kigali		
+285815	Al Farwānīyah	Al Farwaniyah	KW	29.2775	47.9586	Asia/Kuwait	اَلْفَرْوَانِيَّة	El Farvaniye
+3058531	Nitra	Nitra	SK	48.3076	18.0845	Europe/Bratislava	نيترا	Nitra
+2277060	Gbarnga	Gbarnga	LR	6.9954	-9.4712	Africa/Monrovia	غبارنغا	Gbarnga
+2964180	Galway	Galway	IE	53.2724	-9.0510	Europe/Dublin		Galway
+596128	Panevėžys	Panevezys	LT	55.7319	24.3598	Europe/Vilnius	بانيفيزيس	Panevėžys
+933366	Maun	Maun	BW	-19.9833	23.4167	Africa/Gaborone	ماون	Maun
+2406407	Makeni	Makeni	SL	8.8860	-12.0442	Africa/Freetown	ماكيني	Makeni
+3440781	Rivera	Rivera	UY	-30.9053	-55.5508	America/Montevideo	ريفيرا	Rivera
+1528121	Karakol	Karakol	KG	42.4905	78.3920	Asia/Bishkek	قره قول	Karakol
+935214	Saint-Pierre	Saint-Pierre	RE	-21.3393	55.4781	Indian/Reunion		
+2031964	Darhan	Darhan	MN	49.4867	105.9228	Asia/Ulaanbaatar	دارخان	Darhan
+723819	Prešov	Presov	SK	48.9992	21.2355	Europe/Bratislava	بريشوف	Presov
+3711668	David	David	PA	8.4273	-82.4309	America/Panama	داويد	David
+3489460	Montego Bay	Montego Bay	JM	18.4712	-77.9188	America/Jamaica	مونتيغو باي	
+2430506	Kelo	Kelo	TD	9.3086	15.8066	Africa/Ndjamena		
+935582	Le Tampon	Le Tampon	RE	-21.2766	55.5177	Indian/Reunion		
+3441243	Paysandú	Paysandu	UY	-32.3171	-58.0807	America/Montevideo	بايساندو	Paysandu
+2367886	Atakpamé	Atakpame	TG	7.5333	1.1333	Africa/Lome	أتاكبامي	Atakpamé
+934570	Curepipe	Curepipe	MU	-20.3163	57.5259	Indian/Mauritius	كوريبيب	
+460413	Daugavpils	Daugavpils	LV	55.8833	26.5333	Europe/Riga	داوغافبيلس	Daugavpils
+3712076	Colón	Colon	PA	9.3603	-79.9002	America/Panama	كولون	Colon
+1654379	Pakse	Pakse	LA	15.1202	105.7990	Asia/Vientiane	باكسي	Pakse
+2198148	Suva	Suva	FJ	-18.1368	178.4253	Pacific/Fiji	سوفا	
+934131	Quatre Bornes	Quatre Bornes	MU	-20.2638	57.4791	Indian/Mauritius		
+12242643	Al Maţār al ‘Atīq	Al Matar al 'Atiq	QA	25.2514	51.5557	Asia/Qatar	المطار العتيق	
+2960316	Luxembourg	Luxembourg	LU	49.6098	6.1327	Europe/Luxembourg	لوكسمبورغ	Lüksemburg
+2092740	Lae	Lae	PG	-6.7233	146.9961	Pacific/Port_Moresby	لاي	Lae
+934985	Mbabane	Mbabane	SZ	-26.3167	31.1333	Africa/Mbabane	مبابان	
+2278158	Buchanan	Buchanan	LR	5.8769	-10.0496	Africa/Monrovia	بوخانان	Buchanan
+3193935	Osijek	Osijek	HR	45.5507	18.6942	Europe/Zagreb		
+3353383	Rundu	Rundu	NA	-17.9180	19.7731	Africa/Windhoek	رونdu	Rundu
+2365560	Kpalimé	Kpalime	TG	6.9000	0.6333	Africa/Lome		
+788886	Kumanovo	Kumanovo	MK	42.1328	21.7158	Europe/Skopje	كومانوفو	Kumanova
+933305	Molepolole	Molepolole	BW	-24.4066	25.4951	Africa/Gaborone	مولبولول	Molepolole
+333287	Keren	Keren	ER	15.7779	38.4511	Africa/Asmara	كرن	
+921772	Moroni	Moroni	KM	-11.7022	43.2551	Indian/Comoro	موروني	Moroni
+786735	Prilep	Prilep	MK	41.3456	21.5537	Europe/Skopje	بريليب	pirlepe
+3359638	Walvis Bay	Walvis Bay	NA	-22.9575	14.5053	Africa/Windhoek	ولفس بي	
+2396646	Oyem	Oyem	GA	1.5995	11.5793	Africa/Libreville		
+290104	Sitrah	Sitrah	BH	26.1547	50.6206	Asia/Bahrain	سِتْرَة	
+785238	Suva Reka	Suva Reka	XK	42.3586	20.8250	Europe/Belgrade		
+146400	Larnaca	Larnaca	CY	34.9221	33.6279	Asia/Nicosia	لارنكا	Larnaka
+1527199	Tokmok	Tokmok	KG	42.8419	75.3015	Asia/Bishkek	توكموك	
+235715	Karonga	Karonga	MW	-9.9333	33.9333	Africa/Blantyre		
+792578	Bitola	Bitola	MK	41.0323	21.3355	Europe/Skopje	بيتولا	Manastır
+3374462	Mindelo	Mindelo	CV	16.8901	-24.9804	Atlantic/Cape_Verde	مينديلو	Mindelo
+794965	Mustamäe	Mustamaee	EE	59.4048	24.6812	Europe/Tallinn		
+146054	Stróvolos	Strovolos	CY	35.1487	33.3338	Asia/Nicosia		
+795155	Kesklinn	Kesklinn	EE	59.4355	24.7575	Europe/Tallinn		
+3574810	Chaguanas	Chaguanas	TT	10.5167	-61.4167	America/Port_of_Spain	تشاغوانياس	Chaguanas
+457954	Liepāja	Liepaja	LV	56.5047	21.0109	Europe/Riga	ليبايا	Liepaja
+3186952	Zadar	Zadar	HR	44.1158	15.2251	Europe/Zagreb	زادار	
+2413709	Bununka Kunda	Bununka Kunda	GM	13.4272	-16.6853	Africa/Banjul		
+411759	Al Manşūrah	Al Mansurah	QA	25.2681	51.5322	Asia/Qatar	اَلْمَنْصُورَة	
+611847	Sokhumi	Sokhumi	GE	43.0070	40.9893	Europe/Moscow		Sohumi
+11244752	Ban Khoan	Ban Khoan	LA	20.3501	100.0902	Asia/Vientiane		
+13645741	Bairro Militar	Bairro Militar	GW	11.8746	-15.6158	Africa/Bissau		
+3582677	Belize City	Belize City	BZ	17.4995	-88.1976	America/Belize	مدينة بليز	Belize City
+426272	Gitega	Gitega	BI	-3.4271	29.9246	Africa/Bujumbura		
+833262	Čair	Cair	MK	42.0153	21.4411	Europe/Skopje		
+1820906	Bandar Seri Begawan	Bandar Seri Begawan	BN	4.8903	114.9401	Asia/Brunei	بندر سري بكاوان	Bandar Seri Begavan
+2277241	Ganta	Ganta	LR	7.2350	-8.9844	Africa/Monrovia		
+3622247	Limón	Limon	CR	9.9907	-83.0360	America/Costa_Rica	ليمون	Limón
+2378538	Kiffa	Kiffa	MR	16.6207	-11.4021	Africa/Nouakchott	كيفة	Kiffa
+932521	Maputsoe	Maputsoe	LS	-28.8866	27.8991	Africa/Maseru		
+430569	Ngozi	Ngozi	BI	-2.9075	29.8306	Africa/Bujumbura	نقوزي	Ngozi
+3382160	Cayenne	Cayenne	GF	4.9381	-52.3346	America/Cayenne	كايين	
+11496397	Dar Naim	Dar Naim	MR	18.1081	-15.9267	Africa/Nouakchott	دار النعيم	Dar Naim
+285787	Kuwait City	Kuwait City	KW	29.3670	47.9743	Asia/Kuwait	مدينة الكويت	
+2377539	Néma	Nema	MR	16.6170	-7.2565	Africa/Nouakchott	النعمة	Nema
+428632	Mpanda	Mpanda	BI	-3.1703	29.4026	Africa/Bujumbura		
+2259383	Kayes	Kayes	CG	-4.2049	13.2861	Africa/Brazzaville		
+3194494	Nikšić	Niksic	ME	42.7731	18.9445	Europe/Podgorica		
+935268	Saint-André	Saint-Andre	RE	-20.9633	55.6503	Indian/Reunion		
+2411880	Sukuta	Sukuta	GM	13.4103	-16.7081	Africa/Banjul		
+3574116	Mon Repos	Mon Repos	TT	10.2798	-61.4459	America/Port_of_Spain		
+2108502	Honiara	Honiara	SB	-9.4333	159.9500	Pacific/Guadalcanal	هونيارا	
+3621911	San Francisco	San Francisco	CR	9.9938	-84.1274	America/Costa_Rica		
+423549	Rumonge	Rumonge	BI	-3.9736	29.4386	Africa/Bujumbura	رومونجي	Rumonge
+617486	Rîbniţa	Ribnita	MD	47.7682	29.0100	Europe/Chisinau		
+3573738	San Fernando	San Fernando	TT	10.2797	-61.4684	America/Port_of_Spain	سان فرناندو	San Fernando
+459279	Jelgava	Jelgava	LV	56.6500	23.7128	Europe/Riga	يلجافا	Jelgava
+921815	Mamoudzou	Mamoudzou	YT	-12.7823	45.2288	Indian/Mayotte		
+3578959	Les Abymes	Les Abymes	GP	16.2730	-61.5051	America/Guadeloupe	لزابيم	
+2410763	São Tomé	Sao Tome	ST	0.3376	6.7299	Africa/Sao_Tome	ساو تومي	
+3352844	Swakopmund	Swakopmund	NA	-22.6784	14.5266	Africa/Windhoek	سواكوبموند	Swakopmund
+2204506	Lautoka	Lautoka	FJ	-17.6169	177.4505	Pacific/Fiji	لاوتوكا	
+2276086	Kakata	Kakata	LR	6.5310	-10.3537	Africa/Monrovia	كاكاتا	Kakata
+13527317	Sé	Se	MO	22.1909	113.5473	Asia/Macau		
+459201	Jūrmala	Jurmala	LV	56.9680	23.7704	Europe/Riga	جورمالا	Jurmala
+3576022	Saint John’s	Saint John's	AG	17.1210	-61.8433	America/Antigua		
+4796512	Saint Croix	Saint Croix	VI	17.7275	-64.7470	America/St_Thomas	سانت كروا	Saint Croix
+225284	Ali Sabih	Ali Sabih	DJ	11.1558	42.7125	Africa/Djibouti	علي صبيح	Ali Sabih
+2372532	Gabú	Gabu	GW	12.2800	-14.2222	Africa/Bissau		
+3573890	Port of Spain	Port of Spain	TT	10.6667	-61.5189	America/Port_of_Spain	بورت أوف سبين	
+12640502	Talinding	Talinding	GM	13.4256	-16.6726	Africa/Banjul		
+7828758	Saipan	Saipan	MP	15.2123	145.7545	Pacific/Saipan		
+3624955	Alajuela	Alajuela	CR	10.0172	-84.2127	America/Costa_Rica	ألاخويلا	Alajuela
+932438	Mohale's Hoek	Mohale's Hoek	LS	-30.1514	27.4769	Africa/Maseru	مهالي هوك	Mohale's Hoek
+3571971	Lucaya	Lucaya	BS	26.5333	-78.6667	America/Nassau		
+334717	Himora	Himora	ER	14.3043	36.6060	Africa/Asmara		
+2373235	Contumo	Contumo	GW	11.8500	-15.6167	Africa/Bissau		
+3623076	Liberia	Liberia	CR	10.6352	-85.4378	America/Costa_Rica	ليبيريا	Liberya
+932614	Mafeteng	Mafeteng	LS	-29.8230	27.2374	Africa/Maseru	مافيتينج	Mafeteng
+4043909	Dededo Village	Dededo Village	GU	13.5178	144.8391	Pacific/Guam		
+2032054	Choibalsan	Choibalsan	MN	48.0726	114.5326	Asia/Ulaanbaatar	تشويبالسان	Choibalsan
+2370317	Reino de Bandim	Reino de Bandim	GW	11.8500	-15.6000	Africa/Bissau		
+3377408	Linden	Linden	GY	6.0081	-58.3072	America/Guyana		
+932698	Hlotse	Hlotse	LS	-28.8718	28.0450	Africa/Maseru	هلوتسي	Hlotse
+3354021	Oshakati	Oshakati	NA	-17.7883	15.7044	Africa/Windhoek	أوشاكاتي	Oshakati
+2463029	Boujdour	Boujdour	EH	26.1307	-14.4851	Africa/El_Aaiun	بوجدور	
+146617	Famagusta	Famagusta	CY	35.1249	33.9413	Asia/Famagusta	فاماغوستا	Gazimağusa
+2202064	Nadi	Nadi	FJ	-17.8031	177.4162	Pacific/Fiji	نادي	
+1820575	Sengkurong	Sengkurong	BN	4.8833	114.8333	Asia/Brunei		
+3570428	Le Lamentin	Le Lamentin	MQ	14.6134	-60.9996	America/Martinique		
+4035413	Apia	Apia	WS	-13.8333	-171.7667	Pacific/Apia	أبيا	
+2110257	Tarawa	Tarawa	KI	1.3278	172.9770	Pacific/Tarawa		
+2100633	Arawa	Arawa	PG	-6.2298	155.5660	Pacific/Bougainville		
+3415212	Kópavogur	Kopavogur	IS	64.1123	-21.9130	Atlantic/Reykjavik	كوبافوغور	
+2029901	Nalayh	Nalayh	MN	47.7667	107.2833	Asia/Ulaanbaatar		
+1820635	Mentiri	Mentiri	BN	4.9706	115.0208	Asia/Brunei		
+3202781	Celje	Celje	SI	46.2309	15.2604	Europe/Ljubljana	تسليي	Celje
+3197378	Kranj	Kranj	SI	46.2389	14.3556	Europe/Ljubljana	كرانج	Kranj
+2413876	Banjul	Banjul	GM	13.4527	-16.5780	Africa/Banjul	بانجول	Banjul
+2960596	Esch-sur-Alzette	Esch-sur-Alzette	LU	49.4958	5.9806	Europe/Luxembourg		
+1821292	Luhuan	Luhuan	MO	22.1181	113.5519	Asia/Macau		
+2135171	Port-Vila	Port-Vila	VU	-17.7365	168.3137	Pacific/Efate		
+344783	Af’abet	Af'abet	ER	16.1883	38.6873	Africa/Asmara		
+3573840	Rio Claro	Rio Claro	TT	10.3059	-61.1756	America/Port_of_Spain	ريو كلارو	Rio Claro
+3376762	New Amsterdam	New Amsterdam	GY	6.2492	-57.5158	America/Guyana		
+2090409	Mount Hagen	Mount Hagen	PG	-5.8575	144.2306	Pacific/Port_Moresby	جبل هاجن	Mount Hagen
+2993458	Monaco	Monaco	MC	43.7372	7.4215	Europe/Monaco		
+223890	Dikhil	Dikhil	DJ	11.1045	42.3697	Africa/Djibouti	دخيل	Dikhil
+2104533	Panatina	Panatina	SB	-9.4322	160.0061	Pacific/Guadalcanal		
+2562541	San Pawl il-Baħar	San Pawl il-Bahar	MT	35.9506	14.4156	Europe/Malta	سان باول إل بحر	San Pawl il-Bahar
+3416706	Hafnarfjörður	Hafnarfjoerdur	IS	64.0671	-21.9377	Atlantic/Reykjavik	هافنارفيوردور	
+3384562	Blauwgrond	Blauwgrond	SR	5.8434	-55.1193	America/Paramaribo		
+1820491	Kuala Belait	Kuala Belait	BN	4.5836	114.2312	Asia/Brunei	كوالا بيلايت	Kuala Belait
+3579767	Baie-Mahault	Baie-Mahault	GP	16.2674	-61.5854	America/Guadeloupe	باي-ماؤو	
+3577154	Oranjestad	Oranjestad	AW	12.5240	-70.0270	America/Aruba	أورنجستاد	
+4034561	Faaa	Faaa	PF	-17.5593	-149.6035	Pacific/Tahiti		
+13607831	Latour	Latour	SR	5.7967	-55.2086	America/Paramaribo		
+3580661	George Town	George Town	KY	19.2866	-81.3744	America/Cayman	جورج تاون	
+2461993	El Marsa	El Marsa	EH	27.0961	-13.4158	Africa/El_Aaiun	المرسى	
+3578978	Le Gosier	Le Gosier	GP	16.2062	-61.4931	America/Guadeloupe	لو غوسييه	
+2088163	Popondetta	Popondetta	PG	-8.7654	148.2325	Pacific/Port_Moresby	بوبونديتا	Popondetta
+3042091	Saint Helier	Saint Helier	JE	49.1880	-2.1049	Europe/Jersey		
+2204582	Labasa	Labasa	FJ	-16.4332	179.3645	Pacific/Fiji		
+1252484	Phuntsholing	Phuntsholing	BT	26.8516	89.3884	Asia/Thimphu		
+3572375	Freeport	Freeport	BS	26.5333	-78.7000	America/Nassau	ميناء حر	Freeport
+2411585	Gibraltar	Gibraltar	GI	36.1447	-5.3526	Europe/Gibraltar	جبل طارق	Cebelitarık
+4033936	Papeete	Papeete	PF	-17.5347	-149.5684	Pacific/Tahiti	بابيتي	
+3380965	Matoury	Matoury	GF	4.8492	-52.3235	America/Cayenne		
+921753	Moutsamoudou	Moutsamoudou	KM	-12.1667	44.3994	Indian/Comoro	موتسامودو	Moutsamoudou
+3042237	Douglas	Douglas	IM	54.1500	-4.4833	Europe/Isle_of_Man	دوغلاس	
+2105033	Nggosi	Nggosi	SB	-9.4306	159.9210	Pacific/Guadalcanal		
+3197753	Koper	Koper	SI	45.5482	13.7296	Europe/Ljubljana	كوبر	Koper
+4033779	Punaauia	Punaauia	PF	-17.6333	-149.6000	Pacific/Tahiti		
+2113779	Majuro	Majuro	MH	7.0897	171.3803	Pacific/Majuro		
+3576686	Gros Islet	Gros Islet	LC	14.0667	-60.9500	America/St_Lucia	جروس إيسليت	Gros Islet
+3578682	Petit-Bourg	Petit-Bourg	GP	16.1916	-61.5914	America/Guadeloupe	بيتي-بور	
+2309332	Ebebiyin	Ebebiyin	GQ	2.1522	11.3301	Africa/Malabo		
+2140066	Mont-Dore	Mont-Dore	NC	-22.2626	166.5662	Pacific/Noumea		
+13527002	Tandai	Tandai	SB	-9.4467	159.9455	Pacific/Guadalcanal		
+3577887	Kingstown	Kingstown	VC	13.1553	-61.2274	America/St_Vincent	كينغستاون	
+8521418	Espargos	Espargos	CV	16.7552	-22.9446	Atlantic/Cape_Verde	إسباركوس	Espargos
+2563191	Birkirkara	Birkirkara	MT	35.8971	14.4611	Europe/Malta	بيركيركارا	Birkirkara
+3380387	Saint-Laurent-du-Maroni	Saint-Laurent-du-Maroni	GF	5.5015	-54.0292	America/Cayenne	سان لوران دو ماروني	
+3748746	Calliaqua	Calliaqua	VC	13.1287	-61.1918	America/St_Vincent		
+3577159	Noord	Noord	AW	12.5660	-70.0320	America/Aruba		
+3381303	Kourou	Kourou	GF	5.1628	-52.6427	America/Cayenne	كوروا	
+1821294	Zhuojiacun	Zhuojiacun	MO	22.1614	113.5564	Asia/Macau		
+3570412	Le Robert	Le Robert	MQ	14.6775	-60.9423	America/Martinique		
+11703857	Providenciales	Providenciales	TC	21.7825	-72.2521	America/Grand_Turk		
+2562704	Mosta	Mosta	MT	35.9094	14.4257	Europe/Malta	موستا	Mosta
+13607830	Pontbuiten	Pontbuiten	SR	5.7881	-55.2090	America/Paramaribo		
+330546	Massawa	Massawa	ER	15.6081	39.4746	Africa/Asmara	مصوع	Massava
+241131	Victoria	Victoria	SC	-4.6200	55.4550	Indian/Mahe	فيكتوريا	
+3578466	Sainte-Anne	Sainte-Anne	GP	16.2256	-61.3810	America/Guadeloupe		
+3383188	Rainville	Rainville	SR	5.8344	-55.1377	America/Paramaribo		
+2562501	Sliema	Sliema	MT	35.9125	14.5017	Europe/Malta	سليما	Sliema
+4032402	Nuku‘alofa	Nuku'alofa	TO	-21.1368	-175.2011	Pacific/Tongatapu		
+1252608	Tsirang	Tsirang	BT	27.0219	90.1229	Asia/Thimphu	تسيرانغ	Tsirang
+1636670	Maliana	Maliana	TL	-8.9917	125.2197	Asia/Dili	ماليانا	Maliana
+1626459	Suai	Suai	TL	-9.3129	125.2565	Asia/Dili	سواي	Suai
+1252479	Punākha	Punakha	BT	27.5914	89.8774	Asia/Thimphu	بوناخا	Punakha
+3577072	Tanki Leendert	Tanki Leendert	AW	12.5391	-70.0200	America/Aruba		
+3374888	Assomada	Assomada	CV	15.1000	-23.6833	Atlantic/Cape_Verde	اسومادا	Assomada
+3581194	San Ignacio	San Ignacio	BZ	17.1588	-89.0696	America/Belize		San Ignacio
+13308487	Bandariba	Bandariba	CW	12.0926	-68.8309	America/Curacao		
+13526998	Kola'a	Kola'a	SB	-9.4411	159.9700	Pacific/Guadalcanal		
+4038794	Yigo Village	Yigo Village	GU	13.5360	144.8886	Pacific/Guam		
+3041563	Andorra la Vella	Andorra la Vella	AD	42.5078	1.5211	Europe/Andorra	أندورا لا فيلا	
+3569926	Sainte-Marie	Sainte-Marie	MQ	14.7835	-60.9923	America/Martinique		
+8347657	Dalap-Uliga-Dorrit	Dalap-Uliga-Dorrit	MH	7.0870	171.3770	Pacific/Majuro		
+3576812	Castries	Castries	LC	13.9957	-61.0061	America/St_Lucia	كاستريس	
+4795467	Charlotte Amalie	Charlotte Amalie	VI	18.3419	-64.9307	America/St_Thomas	شارلوت أمالي	
+8644037	Reykjanesbær	Reykjanesbaer	IS	63.9981	-22.5611	Atlantic/Reykjavik		
+7874631	Tamuning	Tamuning	GU	13.4875	144.7814	Pacific/Guam		
+4038659	Tamuning-Tumon-Harmon Village	Tamuning-Tumon-Harmon Village	GU	13.4877	144.7814	Pacific/Guam		
+3570429	Le François	Le Francois	MQ	14.6151	-60.9031	America/Martinique		
+3199394	Herceg Novi	Herceg Novi	ME	42.4531	18.5375	Europe/Podgorica		
+220782	Tadjoura	Tadjoura	DJ	11.7878	42.8822	Africa/Djibouti	تجرة	Tadjourah
+3193161	Pljevlja	Pljevlja	ME	43.3567	19.3584	Europe/Podgorica		
+2141394	Dumbéa	Dumbea	NC	-22.1576	166.4572	Pacific/Noumea		
+2633274	Akureyri	Akureyri	IS	65.6835	-18.0878	Atlantic/Reykjavik	أكوريري	
+1820071	Tutong	Tutong	BN	4.8028	114.6492	Asia/Brunei	توتونج	Tutong
+3380892	Rémire-Montjoly	Remire-Montjoly	GF	4.9167	-52.2667	America/Cayenne		
+1637730	Likisá	Likisa	TL	-8.5875	125.3419	Asia/Dili	ليكيسا	Likisa
+1090225	Koungou	Koungou	YT	-12.7336	45.2042	Indian/Mayotte	كونغو	Koungou
+2960634	Dudelange	Dudelange	LU	49.4806	6.0875	Europe/Luxembourg		
+3203106	Budva	Budva	ME	42.2872	18.8392	Europe/Podgorica	بودفا	Budva
+1090275	Labattoir	Labattoir	YT	-12.7770	45.2823	Indian/Mayotte		
+3572106	Killarney	Killarney	BS	25.0500	-77.4167	America/Nassau		
+3581164	San Pedro	San Pedro	BZ	17.9160	-87.9659	America/Belize		
+1651816	Aileu	Aileu	TL	-8.7281	125.5664	Asia/Dili	آيليو	Aileu
+921889	Fomboni	Fomboni	KM	-12.2876	43.7434	Indian/Comoro	فومبوني	Fomboni
+1090239	Kaouéni	Kaoueni	YT	-12.7712	45.2242	Indian/Mayotte		
+2562629	Qormi	Qormi	MT	35.8760	14.4720	Europe/Malta	قرمي	Qormi
+3575635	Roseau	Roseau	DM	15.3017	-61.3881	America/Dominica	روسو	
+3042287	Saint Peter Port	Saint Peter Port	GG	49.4598	-2.5353	Europe/Guernsey	سان بيتر بورت	
+2992741	Monte-Carlo	Monte-Carlo	MC	43.7398	7.4273	Europe/Monaco		
+1090242	Mtsapéré	Mtsapere	YT	-12.7864	45.2173	Indian/Mayotte		
+3040051	les Escaldes	les Escaldes	AD	42.5073	1.5341	Europe/Andorra	إسكالديس-إنجورداني	Escaldes-Engordany
+3580477	West Bay	West Bay	KY	19.3820	-81.3928	America/Cayman	خليج الغرب	West Bay
+3581514	Orange Walk	Orange Walk	BZ	18.0812	-88.5633	America/Belize	أورانج ووك	Orange Walk
+3577102	Santa Cruz	Santa Cruz	AW	12.5095	-69.9809	America/Aruba		
+7268049	Mangilao Village	Mangilao Village	GU	13.4476	144.8011	Pacific/Guam		
+3421319	Nuuk	Nuuk	GL	64.1835	-51.7216	America/Nuuk	نوك	Nuuk
+3582672	Belmopan	Belmopan	BZ	17.2538	-88.7640	America/Belize	بلموبان	Belmopán
+4035715	Avarua	Avarua	CK	-21.2075	-159.7755	Pacific/Rarotonga	آواروآ	
+2611396	Tórshavn	Torshavn	FO	62.0097	-6.7716	Atlantic/Faroe	توشهافن	
+3575551	Basseterre	Basseterre	KN	17.2955	-62.7250	America/St_Kitts	باستير	
+5881576	Pago Pago	Pago Pago	AS	-14.2781	-170.7025	Pacific/Pago_Pago	باغو باغو	
+3579732	Basse-Terre	Basse-Terre	GP	15.9971	-61.7321	America/Guadeloupe	باس-تير	
+3041732	Mariehamn	Mariehamn	AX	60.0973	19.9348	Europe/Mariehamn		Mariehamn
+3513563	Kralendijk	Kralendijk	BQ	12.1500	-68.2667	America/Kralendijk	كراليندايك	
+3577430	Road Town	Road Town	VG	18.4269	-64.6208	America/Tortola	رود تاون	
+3579925	Saint George's	Saint George's	GD	12.0529	-61.7523	America/Grenada		
+2081986	Palikir	Palikir	FM	6.9248	158.1611	Pacific/Pohnpei		Palikir
+2562305	Valletta	Valletta	MT	35.8997	14.5148	Europe/Malta	فاليتا	Valletta
+2110394	Funafuti	Funafuti	TV	-8.5243	179.1942	Pacific/Funafuti		
+3424934	Saint-Pierre	Saint-Pierre	PM	46.7791	-56.1773	America/Miquelon		
+3579132	Gustavia	Gustavia	BL	17.8962	-62.8498	America/St_Barthelemy		
+3578851	Marigot	Marigot	MF	18.0682	-63.0830	America/Marigot		
+3042030	Vaduz	Vaduz	LI	47.1415	9.5215	Europe/Vaduz		Vaduz
+935048	Lobamba	Lobamba	SZ	-26.4667	31.2000	Africa/Mbabane	لوبامبا	
+3168070	San Marino	San Marino	SM	43.9367	12.4464	Europe/San_Marino	سان مارينو المدينة	San Marino şehri
+3576994	Cockburn Town	Cockburn Town	TC	21.4612	-71.1419	America/Grand_Turk		
+2729907	Longyearbyen	Longyearbyen	SJ	78.2233	15.6469	Arctic/Longyearbyen	لونقييربين	Longyearbyen
+3426691	Stanley	Stanley	FK	-51.6938	-57.8570	Atlantic/Stanley	ستانلي	
+3573374	The Valley	The Valley	AI	18.2170	-63.0578	America/Anguilla		
+12226438	Ciudad de la Paz	Ciudad de la Paz	GQ	1.5925	10.8236	Africa/Malabo	سيوداد دي لا باز	Ciudad de la Paz
+3513392	Philipsburg	Philipsburg	SX	18.0260	-63.0458	America/Lower_Princes	فيليبسبورج	Philipsburg
+4034821	Mata-Utu	Mata-Utu	WF	-13.2816	-176.1745	Pacific/Wallis		
+7626461	Yaren	Yaren	NR	-0.5508	166.9252	Pacific/Nauru	ضاحية يارين	
+4044012	Hagåtña	Hagatna	GU	13.4757	144.7489	Pacific/Guam	هاغاتنيا	
+7266440	Brades	Brades	MS	16.7918	-62.2106	America/Montserrat		
+3573197	Hamilton	Hamilton	BM	32.2949	-64.7830	Atlantic/Bermuda	هاميلتون	
+2161314	Kingston	Kingston	NF	-29.0546	167.9663	Pacific/Norfolk	كينغستون	
+6691831	Vatican City	Vatican City	VA	41.9027	12.4541	Europe/Vatican		
+3370903	Jamestown	Jamestown	SH	-15.9249	-5.7182	Atlantic/St_Helena	جيمس تاون	
+4036284	Alofi	Alofi	NU	-19.0529	-169.9196	Pacific/Niue		
+2078127	Flying Fish Cove	Flying Fish Cove	CX	-10.4217	105.6791	Indian/Christmas	فلاينغ فيش كوف	
+7304591	West Island	West Island	CC	-12.1568	96.8225	Indian/Cocos		
+4030723	Adamstown	Adamstown	PN	-25.0660	-130.1015	Pacific/Pitcairn	آدمزتاون	
+1546102	Port-aux-Français	Port-aux-Francais	TF	-49.3492	70.2194	Indian/Kerguelen		
+3426466	Grytviken	Grytviken	GS	-54.2811	-36.5092	Atlantic/South_Georgia		
+8063361	Ngerulmud	Ngerulmud	PW	7.5008	134.6238	Pacific/Palau		
+3578069	Plymouth	Plymouth	MS	16.7055	-62.2129	America/Montserrat	بليموث	

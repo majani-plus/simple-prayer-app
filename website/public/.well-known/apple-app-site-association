@@ -1,0 +1,15 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": ["GFRHC2RW8U.app.simpleprayer"],
+        "components": [
+          {
+            "/": "/b/*",
+            "comment": "Buddy pairing invites open in the app rather than the browser."
+          }
+        ]
+      }
+    ]
+  }
+}

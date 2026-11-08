@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "860571319947",
+    "project_id": "simpleprayer-app",
+    "storage_bucket": "simpleprayer-app.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:860571319947:android:77db0671106a6d5bae9e8e",
+        "android_client_info": {
+          "package_name": "app.simpleprayer"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC0NoN4Fgh_TAAWoUPM_LbsSb9Ko4t3aWI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

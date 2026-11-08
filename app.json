@@ -1,0 +1,211 @@
+{
+  "expo": {
+    "name": "Simple Prayer",
+    "slug": "simple-prayer",
+    "version": "1.6.0",
+    "orientation": "portrait",
+    "icon": "./assets/images/icon.png",
+    "scheme": "simpleprayer",
+    "userInterfaceStyle": "automatic",
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "enabled": true,
+      "url": "https://u.expo.dev/e154931d-25b9-4e6e-8668-be051cb19c0d",
+      "enableBsdiffPatchSupport": true,
+      "checkAutomatically": "ON_LOAD",
+      "fallbackToCacheTimeout": 0
+    },
+    "ios": {
+      "bundleIdentifier": "app.simpleprayer",
+      "appleTeamId": "GFRHC2RW8U",
+      "icon": "./assets/appicon.icon",
+      "supportsTablet": true,
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false,
+        "NSSupportsLiveActivities": true
+      },
+      "associatedDomains": [
+        "applinks:simpleprayer.app"
+      ]
+    },
+    "android": {
+      "googleServicesFile": "./google-services.json",
+      "package": "app.simpleprayer",
+      "adaptiveIcon": {
+        "backgroundColor": "#ece1c5",
+        "foregroundImage": "./assets/images/android-icon-foreground.png",
+        "backgroundImage": "./assets/images/android-icon-background.png",
+        "monochromeImage": "./assets/images/android-icon-monochrome.png"
+      },
+      "permissions": [
+        "android.permission.ACCESS_COARSE_LOCATION",
+        "android.permission.POST_NOTIFICATIONS",
+        "android.permission.SCHEDULE_EXACT_ALARM",
+        "android.permission.VIBRATE",
+        "android.permission.RECEIVE_BOOT_COMPLETED"
+      ],
+      "blockedPermissions": [
+        "android.permission.ACCESS_FINE_LOCATION",
+        "android.permission.RECORD_AUDIO",
+        "android.permission.CAMERA",
+        "android.permission.READ_CONTACTS",
+        "android.permission.ACTIVITY_RECOGNITION"
+      ],
+      "predictiveBackGestureEnabled": false,
+      "intentFilters": [
+        {
+          "action": "VIEW",
+          "autoVerify": true,
+          "data": [
+            {
+              "scheme": "https",
+              "host": "simpleprayer.app",
+              "pathPrefix": "/b"
+            }
+          ],
+          "category": [
+            "BROWSABLE",
+            "DEFAULT"
+          ]
+        }
+      ]
+    },
+    "locales": {
+      "en": "./locales/en.json",
+      "ar": "./locales/ar.json",
+      "tr": "./locales/tr.json"
+    },
+    "plugins": [
+      "./plugins/withTimeSensitiveNotifications",
+      "./plugins/withGradleHeap",
+      "./plugins/withAppGroup",
+      "./plugins/withWearApp",
+      [
+        "expo-font",
+        {
+          "fonts": [
+            "./node_modules/@expo-google-fonts/lora/400Regular/Lora_400Regular.ttf",
+            "./node_modules/@expo-google-fonts/lora/400Regular_Italic/Lora_400Regular_Italic.ttf",
+            "./node_modules/@expo-google-fonts/lora/500Medium/Lora_500Medium.ttf",
+            "./node_modules/@expo-google-fonts/lora/500Medium_Italic/Lora_500Medium_Italic.ttf",
+            "./node_modules/@expo-google-fonts/lora/600SemiBold/Lora_600SemiBold.ttf",
+            "./node_modules/@expo-google-fonts/lora/700Bold/Lora_700Bold.ttf",
+            "./node_modules/@expo-google-fonts/amiri/400Regular/Amiri_400Regular.ttf",
+            "./node_modules/@expo-google-fonts/amiri/700Bold/Amiri_700Bold.ttf",
+            "./node_modules/@expo-google-fonts/noto-naskh-arabic/400Regular/NotoNaskhArabic_400Regular.ttf",
+            "./node_modules/@expo-google-fonts/noto-naskh-arabic/500Medium/NotoNaskhArabic_500Medium.ttf",
+            "./node_modules/@expo-google-fonts/noto-naskh-arabic/600SemiBold/NotoNaskhArabic_600SemiBold.ttf",
+            "./node_modules/@expo-google-fonts/noto-naskh-arabic/700Bold/NotoNaskhArabic_700Bold.ttf",
+            "./assets/fonts/MaterialSymbolsRounded-Filled.ttf",
+            "./assets/fonts/MaterialSymbolsRounded-Outlined.ttf"
+          ]
+        }
+      ],
+      "expo-router",
+      "expo-localization",
+      [
+        "expo-location",
+        {
+          "locationWhenInUsePermission": "Your approximate location is used to calculate prayer times and the Qibla direction. It is never sent to us — only to your phone's own map service, to name your city.",
+          "locationAlwaysAndWhenInUsePermission": false,
+          "locationAlwaysPermission": false,
+          "isIosBackgroundLocationEnabled": false,
+          "isAndroidBackgroundLocationEnabled": false,
+          "isAndroidForegroundServiceEnabled": false
+        }
+      ],
+      [
+        "expo-sensors",
+        {
+          "motionPermission": "Motion data stays on your phone. It is used only to sense how the phone is tilted, so the Qibla compass can suggest holding it flat."
+        }
+      ],
+      [
+        "expo-splash-screen",
+        {
+          "backgroundColor": "#ece1c5",
+          "image": "./assets/images/splash-icon.png",
+          "imageWidth": 128,
+          "dark": {
+            "backgroundColor": "#241b10",
+            "image": "./assets/images/splash-icon-dark.png",
+            "imageWidth": 128
+          }
+        }
+      ],
+      "expo-sqlite",
+      "expo-sharing",
+      [
+        "expo-notifications",
+        {
+          "icon": "./assets/images/notification-icon.png",
+          "color": "#8a6420",
+          "sounds": [
+            "./assets/audio/adhan_makkah_clip.caf",
+            "./assets/audio/adhan_makkah.mp3",
+            "./assets/audio/adhan_alqatami_clip.caf",
+            "./assets/audio/adhan_alqatami.mp3",
+            "./assets/audio/adhan_menk_clip.caf",
+            "./assets/audio/adhan_menk.mp3",
+            "./assets/audio/adhan_fakhry_clip.caf",
+            "./assets/audio/adhan_fakhry.mp3"
+          ]
+        }
+      ],
+      "@react-native-community/datetimepicker",
+      [
+        "@sentry/react-native",
+        {
+          "organization": "majani-plus",
+          "project": "simple-prayer",
+          "url": "https://de.sentry.io/",
+          "experimental_android": {
+            "enableAndroidGradlePlugin": true
+          }
+        }
+      ],
+      [
+        "expo-audio",
+        {
+          "microphonePermission": false,
+          "recordAudioAndroid": false,
+          "enableBackgroundPlayback": false,
+          "enableBackgroundRecording": false
+        }
+      ],
+      "expo-asset",
+      "@bacons/apple-targets",
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "enableMinifyInReleaseBuilds": true,
+            "enableShrinkResourcesInReleaseBuilds": true
+          }
+        }
+      ],
+      "expo-image",
+      "expo-web-browser",
+      "expo-background-task",
+      "expo-secure-store",
+      "expo-status-bar"
+    ],
+    "experiments": {
+      "typedRoutes": true,
+      "reactCompiler": true
+    },
+    "extra": {
+      "sentryDsn": "https://01ea206dbf22cf2e8066964c007b6104@o4510158983528448.ingest.de.sentry.io/4511936884310097",
+      "revenueCat": {
+        "ios": "appl_iGtwnnstUeCslDfQysmLnEnNITT",
+        "android": "goog_xZQQtJsILwIKIlfaydrANcaneQQ"
+      },
+      "eas": {
+        "projectId": "e154931d-25b9-4e6e-8668-be051cb19c0d"
+      }
+    },
+    "owner": "majani-plus"
+  }
+}

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+  <application>
+    <!--
+      Name fully qualified on purpose: a leading-dot name in a LIBRARY manifest expands against the
+      merged application's package, not this module's namespace.
+
+      This sits in front of expo-notifications' own service, which registers the same action at
+      android:priority="-1" so that an app can. Firebase delivers to the highest-priority match
+      only, so ours is the one that runs; it rewrites buddy marks to carry a nickname and passes
+      everything, itself included, straight on to Expo's implementation.
+    -->
+    <service
+      android:name="expo.modules.buddynicknames.BuddyMessagingService"
+      android:exported="false">
+      <intent-filter>
+        <action android:name="com.google.firebase.MESSAGING_EVENT" />
+      </intent-filter>
+    </service>
+  </application>
+</manifest>

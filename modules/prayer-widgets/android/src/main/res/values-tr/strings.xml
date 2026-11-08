@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="widget_schedule_label">Namaz vakitleri</string>
+  <string name="widget_schedule_description">Bugünün beş vakti, tek dokunuşla işaretleme.</string>
+  <string name="widget_schedule_list_label">Namaz vakitleri — tüm gün</string>
+  <string name="widget_schedule_list_description">Günün tüm vakitleri liste halinde, tek dokunuşla işaretleme.</string>
+  <string name="widget_now_label">Sıradaki namaz</string>
+  <string name="widget_now_description">Şu anki namaz ve sıradaki.</string>
+  <string name="widget_now_strip_label">Sıradaki namaz — tek satır</string>
+  <string name="widget_now_strip_description">Şu anki namaz, geri sayım ve arkadaşların, tek satırda.</string>
+  <string name="widget_empty_title">Namaz vakitleri</string>
+  <string name="widget_empty_body">Kurulum için Simple Prayer\'ı açın.</string>
+  <string name="widget_stale_title">Vakitler güncellenmeli</string>
+  <string name="widget_stale_body">Güncellemek için Simple Prayer\'ı açın.</string>
+  <string name="preview_fajr">Sabah</string>
+  <string name="preview_dhuhr">Öğle</string>
+  <string name="preview_asr">İkindi</string>
+  <string name="preview_maghrib">Akşam</string>
+  <string name="preview_isha">Yatsı</string>
+  <string name="preview_t_fajr">04:44</string>
+  <string name="preview_t_dhuhr">13:07</string>
+  <string name="preview_t_asr">16:51</string>
+  <string name="preview_t_maghrib">19:48</string>
+  <string name="preview_t_isha">21:21</string>
+  <string name="preview_countdown">1:26:08</string>
+  <string name="preview_arabic">المغرب</string>
+  <string name="preview_sunrise">06:12</string>
+  <string name="preview_until">son vakit 19:48</string>
+  <string name="preview_buddy_1">AB</string>
+  <string name="preview_buddy_2">YK</string>
+</resources>

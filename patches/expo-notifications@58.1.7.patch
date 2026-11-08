@@ -1,0 +1,30 @@
+diff --git a/node_modules/expo-notifications/.bun-tag-2fa0a9413c03da8a b/.bun-tag-2fa0a9413c03da8a
+new file mode 100644
+index 0000000000000000000000000000000000000000..e69de29bb2d1d6434b8b29ae775ad8c2e48c5391
+diff --git a/android/src/main/java/expo/modules/notifications/notifications/presentation/builders/ExpoNotificationBuilder.kt b/android/src/main/java/expo/modules/notifications/notifications/presentation/builders/ExpoNotificationBuilder.kt
+index 610d3039cefd589647538ad8ba14587d29fab338..8c425578b90a22ee5f40dcccd44c66609ea940d6 100644
+--- a/android/src/main/java/expo/modules/notifications/notifications/presentation/builders/ExpoNotificationBuilder.kt
++++ b/android/src/main/java/expo/modules/notifications/notifications/presentation/builders/ExpoNotificationBuilder.kt
+@@ -97,6 +97,22 @@ open class ExpoNotificationBuilder(
+ 
+     val content = notificationContent
+ 
++    // simple-prayer patch (D146): pass Notification.category through from the request payload.
++    // Deliberately dumb -- which category applies is decided in src/services/notifications.ts.
++    content.body?.optString("androidCategory")?.takeIf { it.isNotEmpty() }
++      ?.let { builder.setCategory(it) }
++
++    // simple-prayer patch (D165): honour the payload's own expiry. Every reminder the app
++    // schedules carries `expiresAt` (epoch ms) — the instant its row stops being true: a
++    // prayer's window end, or the next prayer's start for the sunrise note. The system enforces
++    // `setTimeoutAfter` itself, with no alarm, no permission and no app process, and it survives a
++    // reboot because it is a property of the posted row. The remaining duration is computed at
++    // post time so a late delivery still expires at the right instant, never later.
++    content.body?.optLong("expiresAt", 0L)?.takeIf { it > 0L }?.let { expiresAt ->
++      val remaining = expiresAt - System.currentTimeMillis()
++      if (remaining > 0L) builder.setTimeoutAfter(remaining)
++    }
++
+     builder.setAutoCancel(content.isAutoDismiss)
+     builder.setOngoing(content.isSticky)
+ 

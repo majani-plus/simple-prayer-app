@@ -1,0 +1,19 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+  <application>
+    <!--
+      The Undo button on the confirmation. It MUST be declared here rather than registered at
+      runtime: the press normally arrives with the app's process gone, and a runtime-registered
+      receiver dies with the process.
+
+      The name is fully qualified on purpose. A leading-dot name in a *library* manifest is
+      expanded against the merged application's package, not this module's namespace, which would
+      silently point at a class that does not exist.
+
+      Not exported: only our own PendingIntent, held by the notification, ever targets it.
+    -->
+    <receiver
+      android:name="expo.modules.prayermarks.MarkUndoReceiver"
+      android:enabled="true"
+      android:exported="false" />
+  </application>
+</manifest>

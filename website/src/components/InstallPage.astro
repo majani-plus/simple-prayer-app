@@ -1,0 +1,259 @@
+---
+import { readFileSync } from 'node:fs';
+
+import Base from '../layouts/Base.astro';
+import StoreButtons from './StoreButtons.astro';
+import { site } from '../config';
+import { pagePath, t, type Locale } from '../i18n';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const dict = t(locale);
+const d = dict.install;
+
+/**
+ * The QR code for https://simpleprayer.app/install, so someone at a computer can reach the page
+ * on the phone they would actually install on. Inlined rather than fetched: it is 1.6 KB, and a
+ * request for it would be one more thing to go wrong on a page whose whole job is to leave.
+ *
+ * Committed, not generated at build — the URL it encodes never changes. To regenerate:
+ *   uv run --with segno python -c "import segno; segno.make('https://simpleprayer.app/install', \
+ *     error='m').save('website/public/install-qr.svg', kind='svg', scale=8, border=2, \
+ *     dark='#000000', light='#ffffff', xmldecl=False, svgns=True, svgclass=None, lineclass=None)"
+ * then re-add shape-rendering="crispEdges" and check it decodes before committing.
+ *
+ * Black on white in both themes on purpose: plenty of scanners refuse a light-on-dark code, so
+ * the card stays light even at night. Nothing third-party is involved — no QR service, no image
+ * host; the file is ours and is served from here.
+ */
+const qrSvg = readFileSync(new URL('../../public/install-qr.svg', import.meta.url), 'utf8');
+---
+
+<Base
+  title={d.title}
+  description={d.description}
+  path={pagePath('install', locale)}
+  locale={locale}
+  page="install"
+  noindex
+>
+  {/*
+    Every state below is server-rendered and the page is complete before any script runs, so it
+    works with JavaScript off, for a crawler, and for anything the detection does not recognise.
+    The script only adds `data-os`, which CSS uses to show one line instead of another.
+
+    `data-ios` / `data-android` rather than define:vars — the repo rule in Base.astro: define:vars
+    forces the script inline AND un-compiled, so TypeScript would ship raw. Same mechanism as
+    `data-sw` on <html>.
+  */}
+  <section
+    class="section container install"
+    data-install
+    data-ios={site.appStoreUrl ?? ''}
+    data-android={site.playStoreUrl ?? ''}
+  >
+    <h1>{d.heading}</h1>
+
+    <p class="lead" data-when="unknown">{d.lead}</p>
+    <p class="lead" data-when="desktop">{d.onDesktop}</p>
+    <p class="lead" data-when="ios">
+      {d.onIos}
+      <span class="going">{d.goingIos}</span>
+    </p>
+    <p class="lead" data-when="android">
+      {d.onAndroid}
+      <span class="going">{d.goingAndroid}</span>
+    </p>
+    <p class="lead" data-when="noplay">{d.noPlay}</p>
+
+    <div class="qr" role="img" aria-label={d.qrAlt}>
+      <Fragment set:html={qrSvg} />
+    </div>
+
+    <StoreButtons labels={dict.chrome.stores} align="center" />
+
+    <p class="hero-browser">
+      <a class="hero-browser-link" href={pagePath('times', locale)}>{dict.home.hero.heroBrowser}</a>
+      <span class="hint hero-browser-hint">{dict.home.hero.heroBrowserHint}</span>
+    </p>
+  </section>
+
+  {/*
+    Detection and the jump. A classic inline script runs at parse time, so this fires before the
+    footer has even been parsed — and generate-headers.mjs hashes it into this route's CSP, the
+    same way it hashes the theme and language scripts in Base.astro. Nothing to add to _headers.
+
+    This does NOT need connect-src. Navigating to apps.apple.com is a navigation, not a
+    connection — the same category as the <a href> in StoreButtons.astro right above it. CSP has
+    no navigate-to directive and form-action governs only forms, so `connect-src 'none'` stays
+    exactly as it is on every other page. Please do not "fix" that.
+  */}
+  <script is:inline>
+    (function () {
+      try {
+        var el = document.querySelector('[data-install]');
+        if (!el) return;
+
+        var ua = navigator.userAgent || '';
+        var nav = performance.getEntriesByType('navigation')[0];
+
+        // Reasons to show the page and send nobody anywhere.
+        if (document.prerendering) return; // a speculative prerender must not navigate
+        if (navigator.webdriver === true) return; // Playwright, Puppeteer, Lighthouse CI
+        if (/bot|crawl|spider|slurp|preview|headless|lighthouse|pagespeed|archiver/i.test(ua)) {
+          return; // never redirect a crawler; the page it indexes is the page a person sees
+        }
+        if (
+          (window.matchMedia && matchMedia('(display-mode: standalone)').matches) ||
+          navigator.standalone === true
+        ) {
+          return; // inside the installed copy, a store is not the answer
+        }
+        // Someone pressed Back into this page. Sending them out again is a trap.
+        if (nav && nav.type === 'back_forward') return;
+        // Undocumented escape hatch for looking at the page itself: /install?stay=1
+        if (/(^|[?&])stay(=|&|$)/.test(location.search)) return;
+
+        var os;
+        if (/iPhone|iPod|iPad/.test(ua)) {
+          os = 'ios';
+        } else if (
+          // iPadOS 13+ in desktop-mode Safari reports a Mac. navigator.platform, not
+          // userAgentData.platform: UA-CH never returns the string "MacIntel", so a real
+          // Chrome-on-macOS cannot match here. The coarse pointer rules out a touchscreen Mac.
+          navigator.platform === 'MacIntel' &&
+          navigator.maxTouchPoints > 1 &&
+          window.matchMedia &&
+          matchMedia('(pointer: coarse)').matches
+        ) {
+          os = 'ios';
+        } else if (/CrOS/.test(ua)) {
+          os = 'desktop'; // a Chromebook is a computer; the web listing is the right answer
+        } else if (/Silk|KF[A-Z]{2,}/.test(ua)) {
+          os = 'noplay'; // Amazon Fire: Android with no Google Play on it
+        } else if (
+          (navigator.userAgentData && navigator.userAgentData.platform === 'Android') ||
+          /Android/.test(ua)
+        ) {
+          os = 'android';
+        } else {
+          os = 'desktop'; // Windows, Linux, macOS, and anything unrecognised
+        }
+        el.setAttribute('data-os', os);
+
+        var url = os === 'ios' ? el.dataset.ios : os === 'android' ? el.dataset.android : '';
+        // Empty when that store has no URL in config.ts. Show the page; jump nowhere.
+        if (!url) return;
+
+        // Always the https:// listing, never itms-apps:// — a custom scheme inside an in-app
+        // webview (Instagram, WhatsApp) often fails outright, while the https URL degrades to
+        // Apple's or Google's own page with a one-tap Open. One extra tap beats an error.
+        el.setAttribute('data-going', '');
+        requestAnimationFrame(function () {
+          location.replace(url);
+        });
+      } catch (e) {
+        /* The page below is already complete; leaving it alone is the correct failure. */
+      }
+    })();
+  </script>
+</Base>
+
+<style>
+  .install {
+    text-align: center;
+    max-width: 34rem;
+  }
+
+  h1 {
+    font-size: clamp(1.6rem, 4.5vw, 2.2rem);
+    margin: 0 0 0.6rem;
+  }
+
+  /* One line at a time. `display` on the selector rather than the `hidden` attribute — see the
+     note in PrayerSchedule.astro: a class's display beats the UA stylesheet's [hidden] rule. */
+  .install [data-when] {
+    display: none;
+  }
+  /* No data-os at all: JavaScript off, a crawler, or a detection that threw. */
+  .install:not([data-os]) [data-when='unknown'],
+  .install[data-os='desktop'] [data-when='desktop'],
+  .install[data-os='ios'] [data-when='ios'],
+  .install[data-os='android'] [data-when='android'],
+  .install[data-os='noplay'] [data-when='noplay'] {
+    display: block;
+  }
+
+  .lead {
+    color: var(--muted);
+    margin: 0 0 1.4rem;
+  }
+
+  /* "Opening the App Store…" appears for the one frame before the jump. It matters on iOS: when
+     the App Store app takes over and the person swipes back to Safari, the page explains itself
+     instead of looking like it did nothing. */
+  .going {
+    display: none;
+  }
+  .install[data-going] .going {
+    display: block;
+    margin-top: 0.35rem;
+    color: var(--accent-deep);
+    font-weight: 600;
+  }
+
+  /* Worth showing to someone at a computer, and to anyone we could not identify. On a phone —
+     a Fire tablet, which lands on 'noplay', included — a code for the page you are already
+     looking at is nothing but clutter, so it starts hidden and only those two states show it. */
+  .qr {
+    display: none;
+    width: 168px;
+    margin: 0 auto 1.4rem;
+    padding: 12px;
+    border-radius: 14px;
+    border: 1px solid var(--border-mid);
+    /* Fixed white, in both themes: a light-on-dark code is refused by plenty of scanners. */
+    background: #ffffff;
+    line-height: 0;
+  }
+  .install:not([data-os]) .qr,
+  .install[data-os='desktop'] .qr {
+    display: block;
+  }
+  .qr :global(svg) {
+    width: 100%;
+    height: auto;
+  }
+
+  /* Lifted from the hero (Landing.astro) so the two "or use it in your browser" links match. */
+  .hero-browser {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: center;
+    gap: 0.5rem 0.75rem;
+    margin: 1.6rem 0 0;
+  }
+  .hero-browser-link {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 8px 18px;
+    border: 1px solid var(--border-mid);
+    border-radius: 999px;
+    background: var(--card);
+    color: var(--accent-deep);
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .hero-browser-link:hover,
+  .hero-browser-link:focus-visible {
+    border-color: var(--border-strong);
+    background: var(--card-bright);
+  }
+  .hero-browser-hint {
+    margin: 0;
+  }
+</style>

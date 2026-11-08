@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  The app mark — the mosque silhouette from src/components/Logo.tsx at its MEDIUM optical size
+  (dome, finial, minarets, ground), with the viewBox CROPPED to the drawing (56×36; the source's
+  64×64 box left the mark tiny in any square view). VectorDrawable stretches to its view's
+  bounds, so hosts must keep the 28:18 aspect. Keep in sync with Logo.tsx if the mark ever
+  changes. White on purpose — the renderer tints it (see paper_shape).
+-->
+<vector xmlns:android="http://schemas.android.com/apk/res/android" android:width="56dp" android:height="36dp" android:viewportWidth="56" android:viewportHeight="36">
+  <path
+    android:strokeColor="#FFFFFFFF"
+    android:strokeWidth="4.2"
+    android:strokeLineCap="round"
+    android:pathData="M14,29 A14,14 0 0,1 42,29" />
+  <path
+    android:strokeColor="#FFFFFFFF"
+    android:strokeWidth="3.2"
+    android:strokeLineCap="round"
+    android:pathData="M28,13 L28,9" />
+  <path
+    android:fillColor="#FFFFFFFF"
+    android:pathData="M28,2 A3,3 0 1,1 27.99,2 Z" />
+  <path
+    android:strokeColor="#FFFFFFFF"
+    android:strokeWidth="4.2"
+    android:strokeLineCap="round"
+    android:pathData="M6.5,29 L6.5,16 M49.5,29 L49.5,16" />
+  <path
+    android:strokeColor="#FFFFFFFF"
+    android:strokeWidth="4.2"
+    android:strokeLineCap="round"
+    android:pathData="M3,33 L53,33" />
+</vector>

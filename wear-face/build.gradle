@@ -1,0 +1,85 @@
+// The Wear OS watch face (Milestone V, V6b) — a Watch Face Format face. Play refuses faces
+// bundled with app code, so this is its OWN application under its OWN applicationId
+// (`app.simpleprayer.face`), a separate Play listing from the phone/wear app pair. The module is
+// resource-only XML (`android:hasCode="false"` in the manifest): no Kotlin, no Compose, no code.
+// It lives at the repo root, outside the regenerated android/ directory; plugins/withWearApp.js
+// wires it into settings.gradle at prebuild once this file exists (CNG survives --clean).
+//
+// Signing (V7): EAS Build's remote signing injection only ever patches android/app/build.gradle
+// — it has no knowledge of this module, so a release build here would ship unsigned unless wired
+// up ourselves. This reads the SAME credentials.json EAS drops at the repo root during a cloud
+// build (the EAS-managed keystore), exactly like the injected android/app/eas-build.gradle does.
+// This is a separate Play listing/applicationId from the phone app, so it doesn't need to share
+// that key specifically — reusing it is just the simplest way to get a valid upload key without
+// generating and safeguarding a second one. Absent locally, so local prebuilds/dev builds fall
+// back to unsigned release rather than failing.
+
+plugins {
+  id 'com.android.application'
+}
+
+import java.nio.file.Paths
+
+def credentialsJsonFile = rootProject.file('../credentials.json')
+def hasEasCredentials = credentialsJsonFile.exists()
+
+// versionName tracks app.json's `expo.version` — the phone app's own source of truth — so this
+// module can never silently drift to a stale "1.0.0" while the phone ships 1.1.0, 1.2.0, etc.
+def appVersion = new groovy.json.JsonSlurper().parse(rootProject.file('../app.json')).expo.version
+
+android {
+  namespace 'app.simpleprayer.face'
+  compileSdk rootProject.ext.has('compileSdkVersion') ? rootProject.ext.compileSdkVersion : 36
+
+  defaultConfig {
+    applicationId 'app.simpleprayer.face'
+    // Watch Face Format needs Wear OS 4+ (API 33), and the manifest declares format version 1 to
+    // match — version 1 IS the Wear OS 4 baseline, and everything this face uses has been in the
+    // format since then. Play additionally gates delivery on the declared format version, so
+    // claiming 2 here would cost Wear OS 4 watches for no feature.
+    minSdk 33
+    targetSdk rootProject.ext.has('targetSdkVersion') ? rootProject.ext.targetSdkVersion : 36
+    // This is a separate applicationId/Play listing (app.simpleprayer.face) from the phone and
+    // wear apps, so versionCode has no shared-namespace collision risk — 1 is correct for a
+    // first release regardless of what the phone's build number is. versionName still tracks
+    // the phone's, for a consistent version number across the family.
+    versionCode 14
+    versionName appVersion
+  }
+
+  signingConfigs {
+    if (hasEasCredentials) {
+      release {
+        def credentials = new groovy.json.JsonSlurper().parse(credentialsJsonFile)
+        def keystorePath = Paths.get(credentials.android.keystore.keystorePath)
+        def storeFilePath = keystorePath.isAbsolute()
+          ? keystorePath
+          : rootProject.file('../').toPath().resolve(keystorePath)
+        storeFile storeFilePath.toFile()
+        storePassword credentials.android.keystore.keystorePassword
+        keyAlias credentials.android.keystore.keyAlias
+        keyPassword credentials.android.keystore.containsKey('keyPassword')
+          ? credentials.android.keystore.keyPassword
+          : credentials.android.keystore.keystorePassword
+      }
+    }
+  }
+
+  buildTypes {
+    // minifyEnabled in BOTH types is how the official WFF samples keep the stub classes.dex out
+    // of the APK — a face must ship no code at all. Resource shrinking must stay OFF: the face's
+    // drawables, fonts and raw XML are referenced only by the Watch Face Format runtime, which
+    // the shrinker can't see.
+    debug {
+      minifyEnabled true
+    }
+    release {
+      minifyEnabled true
+      shrinkResources false
+      if (hasEasCredentials) {
+        signingConfig signingConfigs.release
+      }
+      // Falls back to unsigned when credentials.json is absent (local/non-EAS builds).
+    }
+  }
+}

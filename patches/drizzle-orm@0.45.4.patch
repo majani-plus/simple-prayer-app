@@ -1,0 +1,190 @@
+diff --git a/expo-sqlite/session.cjs b/expo-sqlite/session.cjs
+index 1556d939bfbdf0001d7ae5680ad32bccb40a90b2..ab6a348464ee1df06dbe5d724701da4f7cf727c1 100644
+--- a/expo-sqlite/session.cjs
++++ b/expo-sqlite/session.cjs
+@@ -39,9 +39,10 @@ class ExpoSQLiteSession extends import_session.SQLiteSession {
+   static [import_entity.entityKind] = "ExpoSQLiteSession";
+   logger;
+   prepareQuery(query, fields, executeMethod, isResponseInArrayMode, customResultMapper) {
+-    const stmt = this.client.prepareSync(query.sql);
++    // PATCH (simple-prayer): no statement is prepared here. Each execution prepares its own and
++    // finalizes it right after — see ExpoSQLitePreparedQuery.withStatement.
+     return new ExpoSQLitePreparedQuery(
+-      stmt,
++      this.client,
+       query,
+       this.logger,
+       fields,
+@@ -80,30 +81,51 @@ class ExpoSQLiteTransaction extends import_sqlite_core.SQLiteTransaction {
+   }
+ }
+ class ExpoSQLitePreparedQuery extends import_session.SQLitePreparedQuery {
+-  constructor(stmt, query, logger, fields, executeMethod, _isResponseInArrayMode, customResultMapper) {
++  constructor(client, query, logger, fields, executeMethod, _isResponseInArrayMode, customResultMapper) {
+     super("sync", executeMethod, query);
+-    this.stmt = stmt;
++    this.client = client;
+     this.logger = logger;
+     this.fields = fields;
+     this._isResponseInArrayMode = _isResponseInArrayMode;
+     this.customResultMapper = customResultMapper;
+   }
+   static [import_entity.entityKind] = "ExpoSQLitePreparedQuery";
++  /**
++   * PATCH (simple-prayer): prepare, execute, finalize.
++   *
++   * Upstream prepared the statement once in `prepareQuery` and never finalized it. expo-sqlite
++   * finalizes a native `sqlite3_stmt` only on an explicit `finalizeSync()` or when the database
++   * closes — not when the JS wrapper is garbage-collected (no deinit on iOS, no destructor on
++   * Android calls it) — so every query leaked one native statement for the life of the process.
++   * A prepare costs microseconds; the leak was unbounded.
++   */
++  withStatement(fn) {
++    const stmt = this.client.prepareSync(this.query.sql);
++    try {
++      return fn(stmt);
++    } finally {
++      try {
++        stmt.finalizeSync();
++      } catch {
++        // Already finalized, or the database is closing: nothing left to release.
++      }
++    }
++  }
+   run(placeholderValues) {
+     const params = (0, import_sql.fillPlaceholders)(this.query.params, placeholderValues ?? {});
+     this.logger.logQuery(this.query.sql, params);
+-    const { changes, lastInsertRowId } = this.stmt.executeSync(params);
++    const { changes, lastInsertRowId } = this.withStatement((stmt) => stmt.executeSync(params));
+     return {
+       changes,
+       lastInsertRowId
+     };
+   }
+   all(placeholderValues) {
+-    const { fields, joinsNotNullableMap, query, logger, stmt, customResultMapper } = this;
++    const { fields, joinsNotNullableMap, query, logger, customResultMapper } = this;
+     if (!fields && !customResultMapper) {
+       const params = (0, import_sql.fillPlaceholders)(query.params, placeholderValues ?? {});
+       logger.logQuery(query.sql, params);
+-      return stmt.executeSync(params).getAllSync();
++      return this.withStatement((stmt) => stmt.executeSync(params).getAllSync());
+     }
+     const rows = this.values(placeholderValues);
+     if (customResultMapper) {
+@@ -114,9 +136,9 @@ class ExpoSQLitePreparedQuery extends import_session.SQLitePreparedQuery {
+   get(placeholderValues) {
+     const params = (0, import_sql.fillPlaceholders)(this.query.params, placeholderValues ?? {});
+     this.logger.logQuery(this.query.sql, params);
+-    const { fields, stmt, joinsNotNullableMap, customResultMapper } = this;
++    const { fields, joinsNotNullableMap, customResultMapper } = this;
+     if (!fields && !customResultMapper) {
+-      return stmt.executeSync(params).getFirstSync();
++      return this.withStatement((stmt) => stmt.executeSync(params).getFirstSync());
+     }
+     const rows = this.values(placeholderValues);
+     const row = rows[0];
+@@ -131,7 +153,7 @@ class ExpoSQLitePreparedQuery extends import_session.SQLitePreparedQuery {
+   values(placeholderValues) {
+     const params = (0, import_sql.fillPlaceholders)(this.query.params, placeholderValues ?? {});
+     this.logger.logQuery(this.query.sql, params);
+-    return this.stmt.executeForRawResultSync(params).getAllSync();
++    return this.withStatement((stmt) => stmt.executeForRawResultSync(params).getAllSync());
+   }
+   /** @internal */
+   isResponseInArrayMode() {
+diff --git a/expo-sqlite/session.js b/expo-sqlite/session.js
+index 23dcc2a7448137b64d7e54887ce5a003a413aff4..72dc7376c2b6eadb2eaee4992c80557f182b09da 100644
+--- a/expo-sqlite/session.js
++++ b/expo-sqlite/session.js
+@@ -17,9 +17,10 @@ class ExpoSQLiteSession extends SQLiteSession {
+   static [entityKind] = "ExpoSQLiteSession";
+   logger;
+   prepareQuery(query, fields, executeMethod, isResponseInArrayMode, customResultMapper) {
+-    const stmt = this.client.prepareSync(query.sql);
++    // PATCH (simple-prayer): no statement is prepared here. Each execution prepares its own and
++    // finalizes it right after — see ExpoSQLitePreparedQuery.withStatement.
+     return new ExpoSQLitePreparedQuery(
+-      stmt,
++      this.client,
+       query,
+       this.logger,
+       fields,
+@@ -58,30 +59,51 @@ class ExpoSQLiteTransaction extends SQLiteTransaction {
+   }
+ }
+ class ExpoSQLitePreparedQuery extends SQLitePreparedQuery {
+-  constructor(stmt, query, logger, fields, executeMethod, _isResponseInArrayMode, customResultMapper) {
++  constructor(client, query, logger, fields, executeMethod, _isResponseInArrayMode, customResultMapper) {
+     super("sync", executeMethod, query);
+-    this.stmt = stmt;
++    this.client = client;
+     this.logger = logger;
+     this.fields = fields;
+     this._isResponseInArrayMode = _isResponseInArrayMode;
+     this.customResultMapper = customResultMapper;
+   }
+   static [entityKind] = "ExpoSQLitePreparedQuery";
++  /**
++   * PATCH (simple-prayer): prepare, execute, finalize.
++   *
++   * Upstream prepared the statement once in `prepareQuery` and never finalized it. expo-sqlite
++   * finalizes a native `sqlite3_stmt` only on an explicit `finalizeSync()` or when the database
++   * closes — not when the JS wrapper is garbage-collected (no deinit on iOS, no destructor on
++   * Android calls it) — so every query leaked one native statement for the life of the process.
++   * A prepare costs microseconds; the leak was unbounded.
++   */
++  withStatement(fn) {
++    const stmt = this.client.prepareSync(this.query.sql);
++    try {
++      return fn(stmt);
++    } finally {
++      try {
++        stmt.finalizeSync();
++      } catch {
++        // Already finalized, or the database is closing: nothing left to release.
++      }
++    }
++  }
+   run(placeholderValues) {
+     const params = fillPlaceholders(this.query.params, placeholderValues ?? {});
+     this.logger.logQuery(this.query.sql, params);
+-    const { changes, lastInsertRowId } = this.stmt.executeSync(params);
++    const { changes, lastInsertRowId } = this.withStatement((stmt) => stmt.executeSync(params));
+     return {
+       changes,
+       lastInsertRowId
+     };
+   }
+   all(placeholderValues) {
+-    const { fields, joinsNotNullableMap, query, logger, stmt, customResultMapper } = this;
++    const { fields, joinsNotNullableMap, query, logger, customResultMapper } = this;
+     if (!fields && !customResultMapper) {
+       const params = fillPlaceholders(query.params, placeholderValues ?? {});
+       logger.logQuery(query.sql, params);
+-      return stmt.executeSync(params).getAllSync();
++      return this.withStatement((stmt) => stmt.executeSync(params).getAllSync());
+     }
+     const rows = this.values(placeholderValues);
+     if (customResultMapper) {
+@@ -92,9 +114,9 @@ class ExpoSQLitePreparedQuery extends SQLitePreparedQuery {
+   get(placeholderValues) {
+     const params = fillPlaceholders(this.query.params, placeholderValues ?? {});
+     this.logger.logQuery(this.query.sql, params);
+-    const { fields, stmt, joinsNotNullableMap, customResultMapper } = this;
++    const { fields, joinsNotNullableMap, customResultMapper } = this;
+     if (!fields && !customResultMapper) {
+-      return stmt.executeSync(params).getFirstSync();
++      return this.withStatement((stmt) => stmt.executeSync(params).getFirstSync());
+     }
+     const rows = this.values(placeholderValues);
+     const row = rows[0];
+@@ -109,7 +131,7 @@ class ExpoSQLitePreparedQuery extends SQLitePreparedQuery {
+   values(placeholderValues) {
+     const params = fillPlaceholders(this.query.params, placeholderValues ?? {});
+     this.logger.logQuery(this.query.sql, params);
+-    return this.stmt.executeForRawResultSync(params).getAllSync();
++    return this.withStatement((stmt) => stmt.executeForRawResultSync(params).getAllSync());
+   }
+   /** @internal */
+   isResponseInArrayMode() {

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <!-- A single-target (SwiftUI-lifecycle) watch app. -->
+  <key>WKApplication</key>
+  <true/>
+  <!--
+    The App Group, watch-local (an App Group never bridges devices — WCSession does that).
+    The value mirrors plugins/withAppGroup.js's APP_GROUP, which is the single source of truth;
+    apple-targets offers no infoPlist field, so the literal lives here too. The name is permanent
+    (D92i), so drift is not a live risk — but if it ever changes, change both.
+  -->
+  <key>SPAppGroupIdentifier</key>
+  <string>group.app.simpleprayer</string>
+  <!--
+    The qibla page reads the watch's own compass heading (CoreLocation heading updates), and
+    watchOS requires the usage description — and an explicit when-in-use request — before any
+    heading API. Heading never leaves the watch; the bearing itself came precomputed from the
+    phone. Wording mirrors the phone's own location string's honesty.
+  -->
+  <key>NSLocationWhenInUseUsageDescription</key>
+  <string>Your heading is used only to point the Qibla compass. It never leaves your watch.</string>
+</dict>
+</plist>

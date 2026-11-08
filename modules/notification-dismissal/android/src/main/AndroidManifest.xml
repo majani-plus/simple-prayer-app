@@ -1,0 +1,36 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+  <application>
+    <!--
+      The receiver the dismissal alarm targets. It MUST be declared here rather than registered at
+      runtime: the whole point is that it runs when the app's process is gone, and a runtime-
+      registered receiver dies with the process.
+
+      The name is fully qualified on purpose. A leading-dot name in a *library* manifest is
+      expanded against the merged application's package, not this module's namespace, which would
+      silently point at a class that does not exist.
+
+      Not exported: only our own PendingIntent, held by AlarmManager, ever targets it — and the
+      system's boot and package-replaced broadcasts, which Android delivers to an app's own
+      non-exported receivers regardless.
+
+      The intent filter is the fix for "sometimes the previous prayer is not dismissed": a reboot
+      or an app update drops every pending alarm, and `expo-notifications` re-arms its *delivery*
+      alarms on exactly these broadcasts (its manifest filters the same actions) while this module
+      did not re-arm its *dismissal* alarm — so after a reboot the reminders kept firing and none
+      of them expired until the next sync that happened to schedule something, up to a day later.
+      `RECEIVE_BOOT_COMPLETED` is already granted (app.json and expo-notifications' manifest).
+    -->
+    <receiver
+      android:name="expo.modules.notificationdismissal.NotificationDismissalReceiver"
+      android:enabled="true"
+      android:exported="false">
+      <intent-filter>
+        <action android:name="android.intent.action.BOOT_COMPLETED" />
+        <action android:name="android.intent.action.REBOOT" />
+        <action android:name="android.intent.action.QUICKBOOT_POWERON" />
+        <action android:name="com.htc.intent.action.QUICKBOOT_POWERON" />
+        <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
+      </intent-filter>
+    </receiver>
+  </application>
+</manifest>

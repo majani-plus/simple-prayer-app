@@ -1,0 +1,6 @@
+{
+  "ios": {
+    "NSLocationWhenInUseUsageDescription": "Yaklaşık konumunuz namaz vakitlerini ve kıble yönünü hesaplamak için kullanılır. Bize asla gönderilmez; yalnızca şehrinizin adını bulmak için telefonunuzun kendi harita servisine gider.",
+    "CFBundleDisplayName": "Namaz Vakitleri"
+  }
+}

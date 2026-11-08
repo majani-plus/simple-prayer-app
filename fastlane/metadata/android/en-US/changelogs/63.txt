@@ -1,0 +1,5 @@
+• Choose how you mark prayers: Simple (one tap) or Detailed (prayed, late, missed). Change it any time in Settings.
+• The widget always counts down: to Dhuhr after sunrise (Jumaa on Fridays), and quietly to the next prayer once you mark one.
+• The widget no longer counts below zero, and its text fits at large text sizes.
+• Taps answer at once. Today moves to the new day at Fajr.
+• Your buddy's prayers arrive faster and show as a banner.

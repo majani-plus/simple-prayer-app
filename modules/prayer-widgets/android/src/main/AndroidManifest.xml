@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+  <application>
+    <!--
+      All names fully qualified on purpose: a leading-dot name in a LIBRARY manifest expands
+      against the merged application's package, not this module's namespace (the audio-pause
+      module learned this first).
+
+      The widget providers. Exported with the APPWIDGET_UPDATE filter as AppWidgetProviders
+      must be; the system is the only sender that matches it.
+    -->
+    <receiver
+      android:name="expo.modules.prayerwidgets.ScheduleWidgetProvider"
+      android:exported="true"
+      android:label="@string/widget_schedule_label">
+      <intent-filter>
+        <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+      </intent-filter>
+      <meta-data
+        android:name="android.appwidget.provider"
+        android:resource="@xml/widget_schedule_info" />
+    </receiver>
+
+    <receiver
+      android:name="expo.modules.prayerwidgets.ScheduleListWidgetProvider"
+      android:exported="true"
+      android:label="@string/widget_schedule_list_label">
+      <intent-filter>
+        <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+      </intent-filter>
+      <meta-data
+        android:name="android.appwidget.provider"
+        android:resource="@xml/widget_schedule_list_info" />
+    </receiver>
+
+    <receiver
+      android:name="expo.modules.prayerwidgets.NowWidgetProvider"
+      android:exported="true"
+      android:label="@string/widget_now_label">
+      <intent-filter>
+        <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+      </intent-filter>
+      <meta-data
+        android:name="android.appwidget.provider"
+        android:resource="@xml/widget_now_info" />
+    </receiver>
+
+    <receiver
+      android:name="expo.modules.prayerwidgets.NowStripWidgetProvider"
+      android:exported="true"
+      android:label="@string/widget_now_strip_label">
+      <intent-filter>
+        <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+      </intent-filter>
+      <meta-data
+        android:name="android.appwidget.provider"
+        android:resource="@xml/widget_now_strip_info" />
+    </receiver>
+
+    <!--
+      The seal-tap receiver. Manifest-declared because the press arrives with the app's process
+      gone (the MarkUndoReceiver pattern); not exported — only our own PendingIntents, held by
+      the widget host, ever target it.
+    -->
+    <receiver
+      android:name="expo.modules.prayerwidgets.WidgetTapReceiver"
+      android:enabled="true"
+      android:exported="false" />
+
+    <!--
+      The transition redraw. BOOT (and the QUICKBOOT twin some OEMs send instead) re-arms the
+      alarm a reboot killed; an app update clears armed alarms, so MY_PACKAGE_REPLACED re-arms
+      too; clock and timezone changes move the ground under every stored boundary, so both
+      redraw. RECEIVE_BOOT_COMPLETED is already one of the app's declared permissions. Screen-on
+      and unlock cannot be declared here (Android delivers them only to runtime receivers);
+      PrayerWidgetsPackage registers those (D189).
+    -->
+    <receiver
+      android:name="expo.modules.prayerwidgets.TransitionReceiver"
+      android:enabled="true"
+      android:exported="false">
+      <intent-filter>
+        <action android:name="android.intent.action.BOOT_COMPLETED" />
+        <action android:name="android.intent.action.QUICKBOOT_POWERON" />
+        <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
+        <action android:name="android.intent.action.TIMEZONE_CHANGED" />
+        <action android:name="android.intent.action.TIME_SET" />
+      </intent-filter>
+    </receiver>
+  </application>
+</manifest>

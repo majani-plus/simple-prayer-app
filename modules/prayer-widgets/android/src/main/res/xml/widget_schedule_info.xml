@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  4×2 minimum. updatePeriodMillis is 30 minutes as a SAFETY NET (D189): redraws come from the app
+  (every snapshot write), the transition alarm, screen-on and unlock; the system tick only catches
+  the case where an OEM battery manager dropped all of those. previewLayout (API 31+) points at a self-tinted SKELETON — the live
+  layout is runtime-tinted whites and previews as a blank blob; older launchers fall back to the
+  app icon, which is honest enough.
+-->
+<appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
+  android:minWidth="250dp"
+  android:minHeight="110dp"
+  android:targetCellWidth="4"
+  android:targetCellHeight="2"
+  android:minResizeWidth="250dp"
+  android:minResizeHeight="110dp"
+  android:resizeMode="horizontal|vertical"
+  android:widgetCategory="home_screen"
+  android:updatePeriodMillis="1800000"
+  android:previewLayout="@layout/widget_schedule_preview"
+  android:description="@string/widget_schedule_description" />

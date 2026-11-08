@@ -1,0 +1,96 @@
+---
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { marked } from 'marked';
+import Base from '../layouts/Base.astro';
+import { t } from '../i18n';
+
+/**
+ * This page is RENDERED FROM docs/PRIVACY_POLICY.md at build time — never retyped. That file is
+ * the audited source both app stores' privacy-policy URLs point at, and the app's own test suite
+ * (src/__tests__/privacyClaims.test.ts) fails when it drifts from the app's real behaviour
+ * (docs/DECISIONS.md D50). If the policy changes, rebuilding the site republishes it verbatim.
+ *
+ * Two mechanical transforms, nothing more:
+ *  1. Everything above the first `---` is the file's internal preamble (a note to the repo's
+ *     maintainers, marked as such in the file itself) — not part of the publishable text.
+ *  2. Bracketed `*[Owner: …]*` paragraphs are in-file editorial reminders, likewise not policy.
+ */
+const here = path.dirname(fileURLToPath(import.meta.url));
+const source = fs.readFileSync(
+  path.resolve(here, '../../../docs/PRIVACY_POLICY.md'),
+  'utf-8',
+);
+
+const divider = source.indexOf('\n---\n');
+if (divider === -1) throw new Error('PRIVACY_POLICY.md: expected a `---` after the preamble');
+const publishable = source
+  .slice(divider + '\n---\n'.length)
+  .replace(/\n\*\[Owner:[\s\S]*?\]\*\n/g, '\n')
+  .trim();
+
+const html = marked.parse(publishable, { async: false });
+
+const title = 'Privacy Policy — Simple Prayer';
+const description =
+  "Simple Prayer's privacy policy in plain words: no ads, no account, no tracking, and the four narrow cases where anything leaves your phone.";
+
+// Deliberately English-only: this markdown is the legally-operative text, guarded by the app's
+// tests. Rather than presenting a translation as the policy, the tr/ar pages link here and these
+// short notices say, in each language, that the English text is the authoritative one.
+const notices = [
+  { lang: 'tr', dir: 'ltr' as const, text: t('tr').privacyNotice! },
+  { lang: 'ar', dir: 'rtl' as const, text: t('ar').privacyNotice! },
+];
+---
+
+<Base title={title} description={description} path="/privacy" locale="en" page="privacy">
+  <article class="section container policy">
+    <h1>Privacy Policy</h1>
+    {notices.map((n) => (
+      <p class="caption policy-notice" lang={n.lang} dir={n.dir}>{n.text}</p>
+    ))}
+    <div class="policy-body" set:html={html} />
+  </article>
+</Base>
+
+<style>
+  .policy {
+    max-width: 760px;
+  }
+  .policy h1 {
+    margin-bottom: 1.2rem;
+  }
+  .policy-notice {
+    margin: 0 0 0.4em;
+  }
+  .policy-notice[lang='ar'] {
+    font-style: normal;
+    font-family: 'Amiri', 'Geeza Pro', 'Segoe UI', Tahoma, 'Lora', serif;
+  }
+  .policy-body :global(h2) {
+    font-size: 1.4rem;
+    margin-top: 2.2em;
+    padding-top: 1.2em;
+    border-top: 1px solid var(--hairline);
+  }
+  .policy-body :global(h3) {
+    font-size: 1.1rem;
+    margin-top: 1.6em;
+  }
+  .policy-body :global(li) {
+    margin-bottom: 0.45em;
+  }
+  .policy-body :global(strong) {
+    color: var(--ink-strong);
+  }
+  .policy-body :global(hr) {
+    border: 0;
+    border-top: 1px solid var(--hairline);
+    margin: 2.5em 0;
+  }
+  .policy-body :global(em):last-child {
+    color: var(--muted);
+  }
+</style>

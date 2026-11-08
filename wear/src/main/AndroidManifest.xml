@@ -1,0 +1,101 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+  <!-- A watch app, never installable on a phone. Do NOT add required="false": that would ask for
+       the unsupported single-APK-for-both-form-factors shape. -->
+  <uses-feature android:name="android.hardware.type.watch" />
+
+  <!-- The conditional local adhan (fires only when the phone is away, checked at the alarm's own
+       moment) needs to speak, buzz, and survive a reboot. Inexact alarms only — no exact-alarm
+       permission is asked for. -->
+  <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+  <uses-permission android:name="android.permission.VIBRATE" />
+  <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
+  <!-- The launcher mark is the phone app's own adaptive icon (WO-V6/WO-V15); `ic_mosque` remains
+       the tintable monochrome the notification and complication slots ask for, and nothing else.
+       roundIcon points at the same adaptive icon: the launcher masks it to the watch's shape. -->
+  <application
+    android:label="Simple Prayer"
+    android:icon="@mipmap/ic_launcher"
+    android:roundIcon="@mipmap/ic_launcher"
+    android:theme="@android:style/Theme.DeviceDefault">
+
+    <!-- Companion architecture: the watch renders what the phone ships (D102's snapshot law).
+         standalone=false tells Play and the OS the phone app completes the experience. -->
+    <meta-data
+      android:name="com.google.android.wearable.standalone"
+      android:value="false" />
+
+    <activity
+      android:name="app.simpleprayer.wear.MainActivity"
+      android:exported="true"
+      android:taskAffinity=""
+      android:label="Simple Prayer">
+      <intent-filter>
+        <action android:name="android.intent.action.MAIN" />
+        <category android:name="android.intent.category.LAUNCHER" />
+      </intent-filter>
+    </activity>
+
+    <!-- Down: the phone's envelope. Exported for Play services, as the Data Layer requires. -->
+    <service
+      android:name="app.simpleprayer.wear.EnvelopeListenerService"
+      android:exported="true">
+      <intent-filter>
+        <action android:name="com.google.android.gms.wearable.DATA_CHANGED" />
+        <data
+          android:scheme="wear"
+          android:host="*"
+          android:pathPrefix="/simpleprayer/envelope" />
+      </intent-filter>
+    </service>
+
+    <!-- The "Now" tile, one swipe from the face. -->
+    <service
+      android:name="app.simpleprayer.wear.PrayerTileService"
+      android:exported="true"
+      android:label="@string/wear_tile_label"
+      android:icon="@drawable/ic_mosque"
+      android:permission="com.google.android.wearable.permission.BIND_TILE_PROVIDER">
+      <intent-filter>
+        <action android:name="androidx.wear.tiles.action.BIND_TILE_PROVIDER" />
+      </intent-filter>
+      <!-- WO-V10: what the tile manager shows on the watch and in the phone's Wear app before
+           anyone adds the tile. A real 1:1 capture of the hero (docs/screenshots/en/wear/tile.png),
+           not a mock-up, so the picker cannot promise something the tile does not draw. -->
+      <meta-data
+        android:name="androidx.wear.tiles.PREVIEW"
+        android:resource="@drawable/tile_preview" />
+    </service>
+
+    <!-- The complication data source: SHORT_TEXT countdown + RANGED_VALUE window gauge.
+         UPDATE_PERIOD_SECONDS=0 — the countdowns are face-ticked TimeDifference text, and pushes
+         happen only on envelope arrival. -->
+    <service
+      android:name="app.simpleprayer.wear.PrayerComplicationService"
+      android:exported="true"
+      android:label="@string/wear_complication_label"
+      android:icon="@drawable/ic_mosque"
+      android:permission="com.google.android.wearable.permission.BIND_COMPLICATION_PROVIDER">
+      <intent-filter>
+        <action android:name="android.support.wearable.complications.ACTION_COMPLICATION_UPDATE_REQUEST" />
+      </intent-filter>
+      <meta-data
+        android:name="android.support.wearable.complications.SUPPORTED_TYPES"
+        android:value="SHORT_TEXT,RANGED_VALUE" />
+      <meta-data
+        android:name="android.support.wearable.complications.UPDATE_PERIOD_SECONDS"
+        android:value="0" />
+    </service>
+
+    <!-- The conditional local adhan's moving parts (see Alerts.kt). -->
+    <receiver android:name="app.simpleprayer.wear.AlertFireReceiver" android:exported="false" />
+    <receiver android:name="app.simpleprayer.wear.AlertMarkReceiver" android:exported="false" />
+    <receiver android:name="app.simpleprayer.wear.AlertUndoReceiver" android:exported="false" />
+    <receiver android:name="app.simpleprayer.wear.BootReceiver" android:exported="true">
+      <intent-filter>
+        <action android:name="android.intent.action.BOOT_COMPLETED" />
+      </intent-filter>
+    </receiver>
+  </application>
+</manifest>

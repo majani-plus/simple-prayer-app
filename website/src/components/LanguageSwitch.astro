@@ -1,0 +1,105 @@
+---
+/**
+ * Language switcher: plain links to the same page in the other locales — they work without JS.
+ * Each link carries its own lang/hreflang so screen readers announce the names correctly.
+ *
+ * The small script below persists a click as the visitor's explicit language choice, which the
+ * auto-detect script on the root page (Base.astro) honours forever after — so someone who
+ * deliberately reads a non-browser language is never dragged back by detection.
+ */
+import { localeMeta, locales, pagePath, type Locale, type PageId } from '../i18n';
+
+interface Props {
+  locale: Locale;
+  page: PageId;
+  /** Accessible name for the nav, localized by the caller. */
+  label: string;
+}
+const { locale, page, label } = Astro.props;
+---
+
+<nav class="lang-switch" aria-label={label} data-lang-switch>
+  <ul>
+    {
+      locales.map((l) => (
+        <li>
+          <a
+            href={pagePath(page, l)}
+            data-lang={l}
+            lang={localeMeta[l].htmlLang}
+            hreflang={localeMeta[l].htmlLang}
+            dir={localeMeta[l].dir}
+            aria-current={l === locale ? 'true' : undefined}
+          >
+            {localeMeta[l].name}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</nav>
+
+<script>
+  // Persist an explicit choice ('auxclick' covers middle-click opening a new tab). The links
+  // themselves keep working without JS or storage — this only informs future auto-detection.
+  const links = document.querySelectorAll<HTMLAnchorElement>('[data-lang-switch] a[data-lang]');
+  const remember = (lang: string) => {
+    try {
+      localStorage.setItem('lang', lang);
+    } catch {
+      /* storage may be unavailable; the navigation still happens */
+    }
+  };
+  for (const a of links) {
+    a.addEventListener('click', () => remember(a.dataset.lang!));
+    a.addEventListener('auxclick', () => remember(a.dataset.lang!));
+  }
+</script>
+
+<style>
+  .lang-switch ul {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    list-style: none;
+    margin: 0;
+    padding: 2px;
+    border: 1px solid var(--border-mid);
+    border-radius: 999px;
+    background: var(--card);
+  }
+  /* The li must contribute no line box of its own: the page font's strut (Amiri's tall metrics
+     on /ar) would otherwise stretch the control past the pill and float the pill off-centre. */
+  .lang-switch li {
+    display: flex;
+  }
+  /* The pill is sized by the control, never by the label's line box — the three labels mix
+     scripts (Latin via Lora, Arabic via Amiri) with very different glyph metrics. 28px matches
+     the theme switch's buttons, so the two controls share one height (34px overall). */
+  .lang-switch a {
+    display: inline-flex;
+    align-items: center;
+    height: 28px;
+    padding: 0 12px;
+    border-radius: 999px;
+    text-decoration: none;
+    font-size: 0.76rem;
+    color: var(--header);
+    line-height: 1;
+    /* Arabic glyphs are not in Lora: pin the fallback to the app's own Arabic face instead of
+       whatever serif the OS picks. Both families are self-hosted. */
+    font-family: 'Lora', 'Amiri', 'Geeza Pro', 'Segoe UI', Tahoma, Georgia, serif;
+    transition: color 150ms, background-color 150ms;
+  }
+  .lang-switch a:hover {
+    color: var(--accent);
+  }
+  .lang-switch a[aria-current='true'] {
+    background: var(--accent);
+    color: var(--seal-fg);
+    font-weight: 600;
+    /* Names the pill for the cross-document view transition (global.css): navigating to another
+       locale glides the highlight to that locale's label instead of snapping. */
+    view-transition-name: lang-pill;
+  }
+</style>

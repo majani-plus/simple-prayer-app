@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>NSExtension</key>
+  <dict>
+    <key>NSExtensionPointIdentifier</key>
+    <string>com.apple.widgetkit-extension</string>
+  </dict>
+  <!-- Mirrors plugins/withAppGroup.js's APP_GROUP — see targets/watch/Info.plist for the note. -->
+  <key>SPAppGroupIdentifier</key>
+  <string>group.app.simpleprayer</string>
+</dict>
+</plist>

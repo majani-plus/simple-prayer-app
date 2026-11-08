@@ -1,0 +1,39 @@
+---
+/**
+ * `/times` — the prayer-times card as a page of its own.
+ *
+ * The same component the home page carries, given room and a bookmarkable URL, because someone
+ * checking the time of Maghrib should not have to scroll past a pitch to do it. That is the whole
+ * difference: no second implementation, no second set of copy.
+ */
+import Base from '../layouts/Base.astro';
+import PrayerSchedule from './PrayerSchedule.astro';
+import ToolTabs from './ToolTabs.astro';
+import { pagePath, t, type Locale } from '../i18n';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const dict = t(locale).timesPage;
+---
+
+<Base
+  title={dict.title}
+  description={dict.description}
+  path={pagePath('times', locale)}
+  locale={locale}
+  page="times"
+>
+  <div class="section container tabs-wrap"><ToolTabs locale={locale} current="times" /></div>
+  <PrayerSchedule locale={locale} variant="page" />
+</Base>
+
+<style>
+  /* The tabs sit above the card and own the top padding, so the card's own section does not add
+     a second gap under them. */
+  .tabs-wrap {
+    max-width: 640px;
+    padding-block: clamp(2.5rem, 7vw, 5rem) 0;
+  }
+</style>

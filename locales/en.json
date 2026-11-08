@@ -1,0 +1,6 @@
+{
+  "ios": {
+    "NSLocationWhenInUseUsageDescription": "Your approximate location is used to calculate prayer times and the Qibla direction. It is never sent to us — only to your phone's own map service, to name your city.",
+    "CFBundleDisplayName": "Simple Prayer"
+  }
+}
