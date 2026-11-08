@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Ask a question or share an idea
+    url: https://github.com/majani-plus/simple-prayer-app/discussions
+    about: Questions, feature ideas and general talk go in Discussions.
+  - name: Report a security problem
+    url: https://github.com/majani-plus/simple-prayer-app/security/advisories/new
+    about: Please report it privately. See SECURITY.md.
+  - name: Something about prayer times in your city
+    url: https://github.com/majani-plus/simple-prayer-app/discussions/categories/q-a
+    about: Tell us the city, the method you use, and the times your mosque gives.
