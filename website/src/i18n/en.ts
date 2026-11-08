@@ -458,7 +458,8 @@ export const en = {
       p1: 'Settings → Data saves everything the app has recorded — your prayer log, your qada counts, your excused days and your settings — as a CSV or JSON file, and hands it to your phone to share. Save it, send it, or open it anywhere you like. The app never uploads it. Because everything is kept on your phone, this file is also your backup before you move to a new phone.',
     },
     contact: {
-      p1: 'Write to {email} for help, for privacy questions, or for anything else. If a prayer time looks wrong, please tell us your city and the times your mosque uses. A crash report only tells us that the app broke. It never tells us who you are, or what went wrong for you, so we really do depend on people writing to us.',
+      p1: 'Write to {email} for help or for anything else. If a prayer time looks wrong, please tell us your city and the times your mosque uses. A crash report only tells us that the app broke. It never tells us who you are, or what went wrong for you, so we really do depend on people writing to us.',
+      privacy: 'For privacy questions, write to {email}.',
       feedbackLink: 'Send feedback or ask for a feature',
       feedbackAfter:
         ' — see what other people have asked for, add your own, and see what is planned next. No account needed. That page is not part of this site.',

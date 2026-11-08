@@ -55,8 +55,9 @@ Requirements for the page itself:
 
 ### 3. Support contact
 
-`privacy@simpleprayer.app` is named in the privacy policy. A single mailbox can serve both
-privacy and support, but **it must actually deliver mail before submission** — Google Play sends a
+Two mailboxes (D205): `hello@simpleprayer.app` is the general inbox (support, press, anything else)
+and is what the footer, `/support` and `/press` show; `privacy@simpleprayer.app` is for privacy
+questions only and is named in the privacy policy. Both **must actually deliver mail** — Google Play sends a
 verification to the listed contact address, and Apple's reviewers use it. If support is handled at
 a different address, add it to the landing page and use it in the store listings; the privacy
 address in the policy still has to work.

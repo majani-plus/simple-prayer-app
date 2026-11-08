@@ -107,4 +107,4 @@ your device.
 
 ## Contact
 
-Questions about these terms: **privacy@simpleprayer.app** — the same mailbox as everything else.
+Questions about these terms: **hello@simpleprayer.app**. Questions about privacy go to **privacy@simpleprayer.app**.

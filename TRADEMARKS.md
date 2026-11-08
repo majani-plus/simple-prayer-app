@@ -26,4 +26,4 @@ See `THIRD_PARTY_NOTICES.md`.
 
 ## Questions
 
-Write to privacy@simpleprayer.app.
+Write to hello@simpleprayer.app.

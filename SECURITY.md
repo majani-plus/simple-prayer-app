@@ -2,7 +2,7 @@
 
 ## How to report a problem
 
-Please email **privacy@simpleprayer.app**. Do not open a public issue for a security problem.
+Please email **hello@simpleprayer.app**. Do not open a public issue for a security problem.
 
 Tell us what you found, how to make it happen, and what someone could do with it. We will reply,
 tell you how the fix is going, and thank you by name when it ships if you would like that.

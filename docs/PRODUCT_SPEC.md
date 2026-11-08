@@ -757,7 +757,9 @@ both links, neither of them anything the app sends:
   what-is-planned-next is posted.
 - The same link on the website: on `/support` in all three languages, and in the **footer of every
   page**.
-- **`privacy@simpleprayer.app`**, on the website's `/support` page and in the footer.
+- **`hello@simpleprayer.app`**, on the website's `/support` page, the press kit and in the footer: the
+  general inbox. **`privacy@simpleprayer.app`** is for privacy questions only, and is the address the
+  privacy policy and the store listings name (D205).
 
 It is hosted elsewhere on purpose, and both halves of that are enforced, not merely intended. The
 site cannot host it — `docs/WEBSITE.md` forbids forms, cookies and third-party embeds, and the

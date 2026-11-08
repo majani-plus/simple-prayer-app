@@ -134,6 +134,7 @@ GitHub job exists to fail a PR before Cloudflare would.
 1. Confirm the effective date in `docs/PRIVACY_POLICY.md` and resolve its bracketed RevenueCat
    note (the site strips the note from the rendered page either way, but the §3 tip-jar section
    text itself must match whether the release ships a RevenueCat key).
-2. Make `privacy@simpleprayer.app` deliver mail (Play sends a verification to it).
+2. Make `hello@simpleprayer.app` (general) and `privacy@simpleprayer.app` (privacy only) deliver mail
+   (Play sends a verification to the support address).
 3. Point simpleprayer.app DNS at the chosen host; serve over HTTPS.
 4. Paste the store URLs into `src/config.ts` once the listings are live.

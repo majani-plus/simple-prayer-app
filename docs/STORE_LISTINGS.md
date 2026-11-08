@@ -180,8 +180,9 @@ before any device pass, and for quoting a 44pt touch floor that D55 had raised t
 → `docs/STORE_DESCRIPTIONS.md` (English · Play description)
 - **Category:** Lifestyle. **Tags:** Prayer, Religion.
 - **Privacy policy URL:** `https://simpleprayer.app/privacy` (content: `docs/PRIVACY_POLICY.md`).
-  **Support email:** `privacy@simpleprayer.app` — Play sends a verification to it, so the
-  mailbox must deliver before submission (`docs/WEBSITE.md`).
+  **Support email:** `hello@simpleprayer.app`, the general inbox (D205). It was
+  `privacy@simpleprayer.app` until 2026-11-09; change it in Play Console (Store settings →
+  Store listing contact details). Play sends a verification to it, so the mailbox must deliver.
 
 ### Data safety form — answers to enter, and why
 

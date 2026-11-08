@@ -42,7 +42,7 @@ export const locales: Locale[] = ['en', 'tr', 'ar'];
  * list and is served `noindex` (docs/DECISIONS.md D156). It still needs a path per locale so the
  * language switcher on it works and so the hreflang alternates are honest.
  */
-export type PageId = 'home' | 'times' | 'qibla' | 'install' | 'support' | 'privacy' | 'terms';
+export type PageId = 'home' | 'times' | 'qibla' | 'install' | 'support' | 'privacy' | 'terms' | 'press';
 
 export function pagePath(page: PageId, locale: Locale): string {
   if (page === 'privacy') return '/privacy';
@@ -51,6 +51,7 @@ export function pagePath(page: PageId, locale: Locale): string {
   if (page === 'times') return locale === 'en' ? '/times' : `/${locale}/times`;
   if (page === 'qibla') return locale === 'en' ? '/qibla' : `/${locale}/qibla`;
   if (page === 'install') return locale === 'en' ? '/install' : `/${locale}/install`;
+  if (page === 'press') return locale === 'en' ? '/press' : `/${locale}/press`;
   return locale === 'en' ? '/support' : `/${locale}/support`;
 }
 

@@ -6,8 +6,10 @@ export const site = {
   name: 'Simple Prayer',
   tagline: 'five a day · never missed',
   domain: 'simpleprayer.app',
-  /** Support + privacy mailbox (docs/STORE_LISTINGS.md — Play verifies it). */
-  email: 'privacy@simpleprayer.app',
+  /** The general inbox: support, press and anything that is not about privacy. */
+  email: 'hello@simpleprayer.app',
+  /** Privacy questions only. The privacy policy names it, and so do the store listings. */
+  privacyEmail: 'privacy@simpleprayer.app',
   /**
    * The public feedback board (docs/DECISIONS.md D87). Linked to, never embedded: the rules in
    * docs/WEBSITE.md forbid third-party embeds and forms, and the deployed CSP enforces it.

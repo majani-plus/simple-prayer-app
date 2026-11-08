@@ -17,7 +17,8 @@ import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import sharp from 'sharp';
 import { zipSync, type Zippable } from 'fflate';
-import { press } from '../src/press';
+import { pressContact, pressCopy } from '../src/press';
+import type { Locale } from '../src/i18n';
 
 const HERE = fileURLToPath(new URL('.', import.meta.url));
 const SITE = join(HERE, '..');
@@ -88,36 +89,38 @@ async function logos(): Promise<Zippable> {
   return z;
 }
 
-function factSheet(): string {
-  const width = Math.max(...press.facts.map(([k]) => k.length)) + 2;
+function factSheet(l: Locale): string {
+  const c = pressCopy[l];
+  const width = Math.max(...c.facts.map(([k]) => k.length)) + 2;
   const rows = (pairs: readonly (readonly [string, string])[]) =>
     pairs.map(([k, v]) => `${(k + ':').padEnd(width)}${v}`).join('\n');
+  const page = l === 'en' ? 'https://simpleprayer.app/press' : `https://simpleprayer.app/${l}/press`;
   return [
-    'SIMPLE PRAYER: FACT SHEET',
+    c.sheet.title,
     '',
-    'In one sentence',
-    press.oneLine,
+    c.oneLineLabel,
+    c.oneLine,
     '',
-    'In a paragraph',
-    press.short,
+    c.shortLabel,
+    c.short,
     '',
-    'In more detail',
-    press.long.join('\n\n'),
+    c.longLabel,
+    c.long.join('\n\n'),
     '',
-    'Facts',
-    rows(press.facts),
+    c.factsH2,
+    rows(c.facts),
     '',
-    'What stands out',
-    press.highlights.map((h) => `- ${h}`).join('\n'),
+    c.highlightsH2,
+    c.highlights.map((h) => `- ${h}`).join('\n'),
     '',
-    'Easy to get wrong',
-    press.accuracy.map(([wrong, right]) => `- Not "${wrong}". ${right}`).join('\n'),
+    c.wrongH2,
+    c.accuracy.map(([wrong, right]) => `- ${c.wrongFormat.replace('{x}', wrong)}. ${right}`).join('\n'),
     '',
-    'Links',
-    rows(press.links),
+    c.linksH2,
+    rows(c.links),
     '',
-    `Contact: ${press.contact}`,
-    'More: https://simpleprayer.app/press',
+    `${c.sheet.contact}: ${pressContact}`,
+    `${c.sheet.more}: ${page}`,
     '',
   ].join('\n');
 }
@@ -139,23 +142,26 @@ const logoZip = await logos();
 const shots = Object.fromEntries(
   await Promise.all(['en', 'ar', 'tr'].map(async (l) => [l, await screenshots(l)] as const))
 );
-const sheet = factSheet();
+const LANGS: Locale[] = ['en', 'ar', 'tr'];
 
-write('simple-prayer-fact-sheet.txt', text(sheet));
 write('simple-prayer-icon-1024.png', readFileSync(join(REPO, 'assets', 'images', 'icon.png')));
 write('simple-prayer-logos.zip', zip(logoZip));
-for (const l of ['en', 'ar', 'tr']) write(`simple-prayer-screenshots-${l}.zip`, zip(shots[l]));
-write(
-  'simple-prayer-press-kit.zip',
-  zip({
-    'simple-prayer-press-kit': {
-      'fact-sheet.txt': text(sheet),
-      logos: logoZip,
-      'screenshots-en': shots.en,
-      'link-preview-1200x630.png': readFileSync(join(SITE, 'public', 'og.png')),
-      'feature-graphic-1024x500.png': readFileSync(join(REPO, 'docs', 'screenshots', 'graphics', 'play-feature-graphic.png')),
-    },
-  })
-);
+for (const l of LANGS) {
+  const sheet = text(factSheet(l));
+  write(`simple-prayer-fact-sheet-${l}.txt`, sheet);
+  write(`simple-prayer-screenshots-${l}.zip`, zip(shots[l]));
+  write(
+    `simple-prayer-press-kit-${l}.zip`,
+    zip({
+      [`simple-prayer-press-kit-${l}`]: {
+        'fact-sheet.txt': sheet,
+        logos: logoZip,
+        [`screenshots-${l}`]: shots[l],
+        'link-preview-1200x630.png': readFileSync(join(SITE, 'public', 'og.png')),
+        'feature-graphic-1024x500.png': readFileSync(join(REPO, 'docs', 'screenshots', 'graphics', 'play-feature-graphic.png')),
+      },
+    })
+  );
+}
 console.log(`press kit built in ${((Date.now() - started) / 1000).toFixed(1)} s`);
 

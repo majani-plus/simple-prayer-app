@@ -26,6 +26,7 @@ const tocIds = [
 // The intro and contact paragraphs carry an inline link/email; split at the placeholder.
 const [introPre, introPost] = splitOnce(d.intro, d.introLinkText);
 const [contactPre, contactPost] = d.contact.p1.split('{email}');
+const [privacyPre, privacyPost] = d.contact.privacy.split('{email}');
 const [locPre, locPost] = splitOnce(d.location.bullets[2]!, d.location.privacyLink);
 
 function splitOnce(text: string, marker: string): [string, string] {
@@ -51,7 +52,7 @@ const faqAnswers: Record<TocId, string> = {
   // frontmatter as an export statement and rips the line to module scope (build breaks).
   // String forms are skipped by its scanner, so d['export'] is the safe spelling here.
   'export': d['export'].p1,
-  contact: d.contact.p1.replace('{email}', site.email),
+  contact: `${d.contact.p1.replace('{email}', site.email)} ${d.contact.privacy.replace('{email}', site.privacyEmail)}`,
 };
 // Names and links are not translated; what each one is for is (d.credits.items).
 const credits = [
@@ -187,6 +188,9 @@ const jsonLd = [
       <h2 id="contact-h">{d.toc.contact}</h2>
       <p>
         {contactPre}<a href={`mailto:${site.email}`}><strong>{site.email}</strong></a>{contactPost}
+      </p>
+      <p>
+        {privacyPre}<a href={`mailto:${site.privacyEmail}`}>{site.privacyEmail}</a>{privacyPost}
       </p>
       {
         /*

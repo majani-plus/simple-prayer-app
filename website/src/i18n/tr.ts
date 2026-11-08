@@ -37,7 +37,7 @@ export const tr: SiteDict = {
       feedback: 'Geri bildirim',
       source: 'Kaynak kodu',
       articles: 'Yazılar (İngilizce)',
-      press: 'Basın kiti (İngilizce)',
+      press: 'Basın kiti',
       madeBy: 'Majani Plus yaptı. Bütün özellikler ücretsiz.',
     },
     stores: {
@@ -444,7 +444,8 @@ export const tr: SiteDict = {
       p1: 'Ayarlar → Veri, uygulamanın kaydettiği her şeyi — namaz kaydını, kaza sayaçlarını, özel günlerini ve ayarlarını — CSV ya da JSON dosyası olarak kaydeder ve paylaşman için telefonuna verir. Dosyayı sakla, gönder ya da istediğin yerde aç. Uygulama onu hiçbir yere yüklemez. Her şey telefonunda durduğu için, yeni telefona geçmeden önceki yedeğin de bu dosyadır.',
     },
     contact: {
-      p1: 'Yardım, gizlilik soruları ya da başka her şey için {email} adresine yaz. Bir vakit yanlış görünüyorsa lütfen şehrini ve caminin kullandığı vakitleri de yaz. Çökme raporu bize yalnızca uygulamanın bozulduğunu söyler. Kim olduğunu ya da senin için neyin ters gittiğini söylemez; bu yüzden bize yazan insanlara gerçekten ihtiyacımız var.',
+      p1: 'Yardım ya da başka her şey için {email} adresine yaz. Bir vakit yanlış görünüyorsa lütfen şehrini ve caminin kullandığı vakitleri de yaz. Çökme raporu bize yalnızca uygulamanın bozulduğunu söyler. Kim olduğunu ya da senin için neyin ters gittiğini söylemez; bu yüzden bize yazan insanlara gerçekten ihtiyacımız var.',
+      privacy: 'Gizlilik soruları için {email} adresine yaz.',
       feedbackLink: 'Geri bildirim gönder ya da bir özellik iste',
       feedbackAfter:
         ' — başkalarının ne istediğini gör, kendi isteğini ekle, sırada ne olduğunu öğren. Hesap gerekmez. O sayfa bu sitenin parçası değil.',
