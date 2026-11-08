@@ -14,6 +14,8 @@ const blog = defineCollection({
     description: z.string(),
     date: z.string().regex(/^\d{4}-\d{2}-\d{2}$/, 'date must be YYYY-MM-DD'),
     tags: z.array(z.string()).optional(),
+    /** Reading order among articles published on the same day; lower comes first. */
+    order: z.number().int().optional(),
     canonical: z.string().url().optional(),
   }),
 });

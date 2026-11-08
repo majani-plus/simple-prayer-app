@@ -1,7 +1,8 @@
 ---
 title: "Native home-screen widgets from an Expo app"
 description: "How Simple Prayer draws its widgets with Kotlin RemoteViews on Android and WidgetKit on iOS, all fed by one 14-day snapshot the app writes in TypeScript."
-date: "2027-01-26"
+date: "2026-11-08"
+order: 4
 tags: [expo, widgets, android, ios, kotlin, swift]
 ---
 

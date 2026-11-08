@@ -1,7 +1,8 @@
 ---
 title: "One Expo repo, three watch surfaces"
 description: "How Simple Prayer ships an Apple Watch app, a Wear OS app and a Wear OS watch face from one Expo project, without any prayer logic on the wrist."
-date: "2027-02-02"
+date: "2026-11-08"
+order: 5
 tags: [expo, watchos, wear-os, architecture]
 ---
 

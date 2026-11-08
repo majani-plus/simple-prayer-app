@@ -4,7 +4,9 @@ import Base from '../../layouts/Base.astro';
 import { formatPostDate } from '../../lib/blog';
 
 // English-only (`page={null}`): no hreflang alternates and no language switcher, like the 404.
-const posts = (await getCollection('blog')).sort((a, b) => b.data.date.localeCompare(a.data.date));
+const posts = (await getCollection('blog')).sort(
+  (a, b) => b.data.date.localeCompare(a.data.date) || (a.data.order ?? 0) - (b.data.order ?? 0)
+);
 ---
 
 <Base

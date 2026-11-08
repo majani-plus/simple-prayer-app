@@ -1,7 +1,8 @@
 ---
 title: "Simple Prayer is now open source"
 description: "The full source of the Simple Prayer app is now public under the MIT license, so you can read it, build it and copy it."
-date: "2027-01-05"
+date: "2026-11-08"
+order: 1
 tags: [open-source, privacy, announcement]
 ---
 

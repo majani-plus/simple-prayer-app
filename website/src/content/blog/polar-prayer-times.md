@@ -1,7 +1,8 @@
 ---
 title: "Prayer times above the Arctic Circle"
 description: "What goes wrong when you calculate prayer times in Tromsø, how Simple Prayer checks and repairs the times, and how tests keep the app and the website in agreement."
-date: "2027-01-19"
+date: "2026-11-08"
+order: 3
 tags: [prayer-times, high-latitude, adhan-js, testing]
 ---
 

@@ -1,7 +1,8 @@
 ---
 title: "Auditing adhan-js, and the fixes we sent upstream"
 description: "We audited the prayer-time library behind Simple Prayer, found five defects and one packaging bug, and sent a fix for each one back to the library."
-date: "2027-01-12"
+date: "2026-11-08"
+order: 2
 tags: [adhan-js, prayer-times, open-source, upstream]
 ---
 

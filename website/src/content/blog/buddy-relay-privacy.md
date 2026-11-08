@@ -1,7 +1,8 @@
 ---
 title: "A buddy relay that knows as little as possible"
 description: "What Simple Prayer's buddy relay receives, what it stores and for how long, and why we chose not to make it end-to-end encrypted."
-date: "2027-02-09"
+date: "2026-11-08"
+order: 6
 tags: [privacy, cloudflare-workers, push-notifications, buddy-mode]
 ---
 
@@ -24,7 +25,7 @@ When you mark a prayer, the phone sends one request per buddy to `POST /send`. T
 ```json
 {
   "pairId": "3f1c…",
-  "day": "2027-02-09",
+  "day": "2026-11-08",
   "prayer": "dhuhr",
   "state": "prayed",
   "lang": "en",

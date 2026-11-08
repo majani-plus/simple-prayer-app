@@ -1,7 +1,8 @@
 ---
 title: "Arabic typography in a three-language app"
 description: "How Simple Prayer chooses Arabic fonts, sizes, digits and plural forms, and what we measured in the font files to get there."
-date: "2027-02-16"
+date: "2026-11-08"
+order: 7
 tags: [arabic, typography, i18n, rtl, react-native]
 ---
 
