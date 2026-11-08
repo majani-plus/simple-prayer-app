@@ -37,6 +37,7 @@ export const tr: SiteDict = {
       feedback: 'Geri bildirim',
       source: 'Kaynak kodu',
       articles: 'Yazılar (İngilizce)',
+      press: 'Basın kiti (İngilizce)',
       madeBy: 'Majani Plus yaptı. Bütün özellikler ücretsiz.',
     },
     stores: {

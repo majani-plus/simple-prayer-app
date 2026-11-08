@@ -40,6 +40,7 @@ export const ar: SiteDict = {
       feedback: 'الملاحظات',
       source: 'الشيفرة المصدرية',
       articles: 'مقالات (بالإنجليزية)',
+      press: 'للصحافة (بالإنجليزية)',
       madeBy: 'من صنع مجني بلس. كل الميزات مجانية.',
     },
     stores: {

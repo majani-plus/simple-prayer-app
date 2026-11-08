@@ -318,6 +318,7 @@ const jsonLdBlocks = jsonLd.map((obj) => JSON.stringify(obj).replace(/</g, '\\u0
           <li><a href={site.sourceUrl} rel="noopener">{dict.chrome.footer.source}</a></li>
           {/* The articles are English-only, so tr/ar mark the link as leading to English. */}
           <li><a href="/blog" hreflang={locale === 'en' ? undefined : 'en'}>{dict.chrome.footer.articles}</a></li>
+          <li><a href="/press" hreflang={locale === 'en' ? undefined : 'en'}>{dict.chrome.footer.press}</a></li>
           <li><a href={`mailto:${site.email}`}>{site.email}</a></li>
         </ul>
         <p class="hint">{dict.chrome.footer.madeBy}</p>

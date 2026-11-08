@@ -6,20 +6,22 @@
   "type": "module",
   "description": "Marketing + legal site for Simple Prayer (simpleprayer.app). Self-contained — not part of the app's workspace.",
   "scripts": {
-    "dev": "bun run generate && astro dev",
-    "build": "bun run generate && bun scripts/verify-times.ts && bun scripts/verify-install.ts && astro build && node scripts/generate-headers.mjs",
+    "dev": "bun run generate && bun run press && astro dev",
+    "build": "bun run generate && bun run press && bun scripts/verify-times.ts && bun scripts/verify-install.ts && astro build && node scripts/generate-headers.mjs",
     "preview": "astro preview",
     "check": "bun run generate && astro check",
     "fonts": "uv run --with fonttools --with brotli python3 scripts/build-fonts.py",
     "verify": "bun run generate && bun scripts/verify-times.ts && bun scripts/verify-install.ts",
     "generate": "bun scripts/generate-tokens.ts && bun scripts/generate-domain.ts && bun scripts/generate-cities.ts",
     "icons": "node scripts/build-icons.mjs",
-    "goldens": "bun scripts/generate-goldens.ts"
+    "goldens": "bun scripts/generate-goldens.ts",
+    "press": "bun scripts/build-press-kit.ts"
   },
   "dependencies": {
     "@astrojs/sitemap": "3.7.4",
     "adhan": "4.4.6",
     "astro": "7.4.7",
+    "fflate": "0.8.2",
     "marked": "^15.0.7",
     "sharp": "0.35.5"
   },

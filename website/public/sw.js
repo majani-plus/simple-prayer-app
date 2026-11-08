@@ -94,6 +94,10 @@ self.addEventListener('fetch', (event) => {
   // Never cache the worker itself, and never let it serve a stale copy of itself.
   if (url.pathname === '/sw.js') return;
 
+  // The press-kit downloads are large zips and full-size images for writers on a computer. The
+  // offline copy is for the tools, so they go straight to the network and are never cached here.
+  if (url.pathname.startsWith('/press/files/')) return;
+
   if (request.mode === 'navigate') {
     event.respondWith(
       fetch(request)

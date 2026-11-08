@@ -32,6 +32,7 @@ export const en = {
       feedback: 'Feedback',
       source: 'Source code',
       articles: 'Articles',
+      press: 'Press kit',
       madeBy: 'Made by Majani Plus. Every feature is free.',
     },
     stores: {

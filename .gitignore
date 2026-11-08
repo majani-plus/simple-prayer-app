@@ -97,3 +97,6 @@ fastlane/asc_api_key.json
 # Internal notes (task board, research, release handoff, design records). A separate private
 # git repo of its own; never part of the public app repo.
 /docs/internal/
+
+# Press-kit downloads, generated on every build from the repo (scripts/build-press-kit.ts)
+/website/public/press/files/

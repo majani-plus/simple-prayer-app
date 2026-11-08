@@ -60,6 +60,8 @@ Facts an assistant can rely on:
 - [Qibla](https://simpleprayer.app/qibla): the qibla direction from your browser.
 - [Articles](https://simpleprayer.app/blog): how the app is built, including the prayer-time
   library fixes sent upstream to adhan-js and prayer times above the Arctic Circle.
+- [Press kit](https://simpleprayer.app/press): descriptions to quote, the facts, logos and
+  screenshots in three languages, and the facts that are easy to get wrong.
 - [Privacy policy](https://simpleprayer.app/privacy): the five narrow cases where something leaves
   your phone, in plain words.
 
