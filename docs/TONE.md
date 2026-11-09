@@ -88,7 +88,7 @@ a word as well as a colour. Copy that says "the green ones" or "tap the red one"
 
 ## Per language
 
-Arabic and Turkish are **written, not translated**. A locale file is not a copy of the English one.
+Every language is **written for its readers**. A locale file is not a copy of the English one.
 A sentence that reads well in English is not automatically the sentence to write in another
 language.
 
@@ -102,10 +102,53 @@ Each language has its own habits to avoid:
 - **Turkish**: long chains of participles that hide the verb, stacked noun phrases, and the
   breathless voice of Turkish app listings (*hayatınızı kolaylaştıran…*). Split the long ones.
 
+- **Urdu**: the heavy Persian and Arabic register of formal writing (*مستفید ہوں*, *بخوبی*,
+  *بذریعہ*), and the opposite habit of filling sentences with English. Write the everyday Urdu of
+  a clear speaker, with آپ and polite verbs (*دبائیں*, *منتخب کریں*), never تم. Use an English
+  word only when people really say it (*ایپ*, *وجٹ*). See the glossary below.
+
 **Religious and prayer words stay exactly as people say them**, in every language: namaz, kaza,
 kıble, ezan, imsak, Diyanet, صلاة، قضاء، قبلة، أذان، الشروق، الحيض والنفاس, and the prayer names.
 Never simplify these. They are the words people actually use, and getting them right is part of
 being trusted.
+
+### Urdu glossary
+
+Urdu was first written with AI help (D208). Use these words everywhere: in the app, the widgets,
+the watches, the website and the store. If a fluent reader finds a better word, change it here
+first, then everywhere.
+
+| English | Urdu |
+|---|---|
+| Fajr, Dhuhr, Asr, Maghrib, Isha | فجر، ظہر، عصر، مغرب، عشاء |
+| Sunrise | طلوعِ آفتاب |
+| prayer (salah) | نماز |
+| prayed / late / missed | پڑھ لی / دیر سے / چھوٹ گئی |
+| qada | قضا |
+| qibla | قبلہ |
+| adhan | اذان |
+| Hijri | ہجری |
+| prayer buddy | نماز کا ساتھی (short: ساتھی) |
+| streak | لگاتار دن |
+| exempt days | مخصوص ایام |
+| menstruation, postnatal bleeding | ماہواری، نفاس |
+| the seal (the tap target) | مہر |
+| reminder, notification | یاد دہانی، اطلاع |
+| location | مقام |
+| settings | ترتیبات |
+| calculation method | حساب کا طریقہ |
+| Hanafi / the majority view (Asr) | حنفی / جمہور |
+| tip | ٹپ |
+
+Hijri months: محرم، صفر، ربیع الاول، ربیع الثانی، جمادی الاول، جمادی الثانی، رجب، شعبان،
+رمضان، شوال، ذوالقعدہ، ذوالحجہ.
+
+Rules for Urdu text:
+
+- Use the Urdu letters ی ک ہ ۃ ے, never the Arabic ي ك ه. A test checks this.
+- End a sentence with ۔ and ask with ؟. The comma is ،.
+- Digits are Western (0–9), as most Pakistani apps show them.
+- Never use عطیہ، خیرات، چندہ، صدقہ، زکوٰۃ or تعاون for the tip. A test checks this too.
 
 Turkish is usually the longest of the three, and Arabic text is drawn 15% larger. Both break a
 layout before English does, so check them, not just the English.
