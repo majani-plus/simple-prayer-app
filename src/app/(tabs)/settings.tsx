@@ -227,6 +227,7 @@ export default function SettingsScreen() {
     { value: 'en', label: t('settings.home.appearance.language.en') },
     { value: 'ar', label: t('settings.home.appearance.language.ar') },
     { value: 'tr', label: t('settings.home.appearance.language.tr') },
+    { value: 'ur', label: t('settings.home.appearance.language.ur') },
   ];
 
   return (

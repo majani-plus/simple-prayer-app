@@ -31,6 +31,7 @@ import { join } from 'path';
 import ar from '../locales/ar.json';
 import en from '../locales/en.json';
 import tr from '../locales/tr.json';
+import ur from '../locales/ur.json';
 import { SUPPORTED_LANGUAGES, type AppLanguage } from '../index';
 import { HIJRI_ERA_KEY, HIJRI_MONTH_KEYS } from '@/domain/hijri';
 import {
@@ -52,7 +53,7 @@ const LOGGABLE_STATUSES: LoggableStatus[] = ['prayed', 'late', 'missed'];
 /** The i18next plural suffixes, longest-first so `_other` never loses to a shorter match. */
 const PLURAL_SUFFIXES = ['_zero', '_one', '_two', '_few', '_many', '_other'] as const;
 
-const BUNDLES: Record<AppLanguage, unknown> = { en, ar, tr };
+const BUNDLES: Record<AppLanguage, unknown> = { en, ar, tr, ur };
 
 /** `{ a: { b: 'c' } }` → `{ 'a.b': 'c' }`. Throws on anything that is not a string leaf. */
 function flatten(value: unknown, prefix = ''): Record<string, string> {
@@ -92,6 +93,7 @@ const FLAT: Record<AppLanguage, Record<string, string>> = {
   en: flatten(en),
   ar: flatten(ar),
   tr: flatten(tr),
+  ur: flatten(ur),
 };
 
 /** Every key, with plural variants collapsed to their base. This is the set that must match. */
@@ -126,6 +128,7 @@ const SHARED_WITH_ENGLISH = new Set<string>([
   'settings.home.appearance.language.en',
   'settings.home.appearance.language.ar',
   'settings.home.appearance.language.tr',
+  'settings.home.appearance.language.ur',
   // A calculation authority's SHORT name is a proper noun — "Diyanet", "Umm al-Qura", "ISNA",
   // "Dubai" — and naming it is the whole point of the picker (our market research: the
   // authority has to be recognisable, which a translated-away name is not). Turkish and English

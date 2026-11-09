@@ -769,7 +769,8 @@
               "body": "Dili değiştirdin, ama ekranların yönü ancak uygulama yeniden açıldığında döner. İstediğin zaman yeniden başlat; hiçbir şey kaybolmaz.",
               "action": "Şimdi yeniden başlat"
             }
-          }
+          },
+          "ur": "اردو"
         },
         "numerals": {
           "label": "Rakamlar",

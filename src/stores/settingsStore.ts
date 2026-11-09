@@ -87,6 +87,7 @@ const LANGUAGE_PREFERENCES = [
   'en',
   'ar',
   'tr',
+  'ur',
 ] as const satisfies readonly LanguagePreference[];
 const NUMERAL_PREFERENCES = [
   'auto',

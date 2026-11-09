@@ -197,15 +197,16 @@ export interface CalendarMonthProps {
 /**
  * Which weekday a locale's calendar starts on.
  *
- * Only the three shipped languages need an answer, and `Intl.Locale.weekInfo` is not available on
+ * Only the shipped languages need an answer, and `Intl.Locale.weekInfo` is not available on
  * Hermes, so this is a small explicit table rather than a guess: Sunday for English and Arabic
- * (the working week in most Arabic-speaking countries starts Sunday), Monday for Turkish.
+ * (the working week in most Arabic-speaking countries starts Sunday), Monday for Turkish and Urdu
+ * (Pakistan's calendars start on Monday).
  *
  * @param language - BCP-47 tag from i18next, e.g. `"tr"` or `"en-GB"`.
  * @returns `0` for a Sunday-first week, `1` for Monday-first.
  */
 export function weekStartForLanguage(language: string): WeekStart {
-  return language.toLowerCase().startsWith('tr') ? 1 : 0;
+  return /^(tr|ur)\b/i.test(language) ? 1 : 0;
 }
 
 /** A point on the ring circle, at `degrees` clockwise from twelve o'clock. */

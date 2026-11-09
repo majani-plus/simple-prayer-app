@@ -769,7 +769,8 @@
               "body": "You changed the language, but the screens only turn around when the app starts again. Restart it whenever you like — nothing is lost.",
               "action": "Restart now"
             }
-          }
+          },
+          "ur": "اردو"
         },
         "numerals": {
           "label": "Numerals",

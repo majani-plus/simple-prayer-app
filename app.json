@@ -75,7 +75,8 @@
     "locales": {
       "en": "./locales/en.json",
       "ar": "./locales/ar.json",
-      "tr": "./locales/tr.json"
+      "tr": "./locales/tr.json",
+      "ur": "./locales/ur.json"
     },
     "plugins": [
       "./plugins/withTimeSensitiveNotifications",

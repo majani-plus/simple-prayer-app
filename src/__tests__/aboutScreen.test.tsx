@@ -152,7 +152,8 @@ describe('the typeface credits', () => {
 
     for (const font of BUNDLED_FONTS) {
       expect(screen.getByText(font.name)).toBeTruthy();
-      expect(screen.getByText(font.author)).toBeTruthy();
+      // One author can make several families (the Noto Project made both Arabic-script faces).
+      expect(screen.getAllByText(font.author).length).toBeGreaterThan(0);
     }
   });
 

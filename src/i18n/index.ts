@@ -16,6 +16,7 @@ import '@formatjs/intl-pluralrules/polyfill.js';
 import '@formatjs/intl-pluralrules/locale-data/ar.js';
 import '@formatjs/intl-pluralrules/locale-data/en.js';
 import '@formatjs/intl-pluralrules/locale-data/tr.js';
+import '@formatjs/intl-pluralrules/locale-data/ur.js';
 import { getLocales } from 'expo-localization';
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
@@ -25,8 +26,9 @@ import { createFormatter } from './formatter';
 import ar from './locales/ar.json';
 import en from './locales/en.json';
 import tr from './locales/tr.json';
+import ur from './locales/ur.json';
 
-export const SUPPORTED_LANGUAGES = ['en', 'ar', 'tr'] as const;
+export const SUPPORTED_LANGUAGES = ['en', 'ar', 'tr', 'ur'] as const;
 export type AppLanguage = (typeof SUPPORTED_LANGUAGES)[number];
 
 /**
@@ -66,7 +68,12 @@ export function initI18n() {
     .use(createFormatter())
     .use(initReactI18next)
     .init({
-      resources: { en: { translation: en }, ar: { translation: ar }, tr: { translation: tr } },
+      resources: {
+        en: { translation: en },
+        ar: { translation: ar },
+        tr: { translation: tr },
+        ur: { translation: ur },
+      },
       lng,
       fallbackLng: 'en',
       interpolation: { escapeValue: false, alwaysFormat: true },

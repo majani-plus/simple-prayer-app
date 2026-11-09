@@ -357,7 +357,7 @@ export interface PlannedNotification {
 // ---------------------------------------------------------------------------
 
 export type ThemePreference = 'system' | 'light' | 'dark';
-export type LanguagePreference = 'system' | 'en' | 'ar' | 'tr';
+export type LanguagePreference = 'system' | 'en' | 'ar' | 'tr' | 'ur';
 /**
  * Which digits Arabic renders in. `auto` is D40's region rule, which is right for almost everyone;
  * the two explicit values exist because on Android the region is a guess (D136) and the reader who

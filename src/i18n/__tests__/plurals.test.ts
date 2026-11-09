@@ -112,9 +112,9 @@ describe('Arabic counts read as Arabic', () => {
   });
 });
 
-describe('English and Turkish are untouched by the polyfill', () => {
+describe('English, Turkish and Urdu are untouched by the polyfill', () => {
   it('keeps the two-form languages on one and other', () => {
-    for (const lng of ['en', 'tr'] as const) {
+    for (const lng of ['en', 'tr', 'ur'] as const) {
       const categories = new Intl.PluralRules(lng).resolvedOptions().pluralCategories;
       expect(categories.sort()).toEqual(['one', 'other']);
     }

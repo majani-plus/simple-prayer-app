@@ -88,6 +88,8 @@ describe('numberingSystemFor', () => {
   it('never gives a non-Arabic language Arabic-Indic digits, whatever the region', () => {
     expect(numberingSystemFor('en', 'EG')).toBe('latn');
     expect(numberingSystemFor('tr', 'SA')).toBe('latn');
+    // Urdu is Arabic-script but reads Western digits, as most Pakistani apps show them (D210).
+    expect(numberingSystemFor('ur', 'PK')).toBe('latn');
     // `arabic` is not `ar`.
     expect(numberingSystemFor('arn')).toBe('latn');
   });
@@ -98,6 +100,7 @@ describe('numericLocale', () => {
     expect(numericLocale('ar-EG')).toBe('ar-EG-u-nu-arab');
     expect(numericLocale('ar-MA')).toBe('ar-MA-u-nu-latn');
     expect(numericLocale('tr')).toBe('tr-u-nu-latn');
+    expect(numericLocale('ur')).toBe('ur-u-nu-latn');
   });
 
   it('leaves a tag that already states its own extension alone', () => {

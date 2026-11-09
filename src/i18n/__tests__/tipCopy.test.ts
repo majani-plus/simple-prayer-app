@@ -31,6 +31,7 @@ import { join } from 'path';
 import ar from '../locales/ar.json';
 import en from '../locales/en.json';
 import tr from '../locales/tr.json';
+import ur from '../locales/ur.json';
 import { TIP_PRODUCT_IDS, TIP_TIERS } from '@/services/purchases';
 
 /** Every word that must never appear, and the language that would produce it. */
@@ -42,8 +43,14 @@ const FORBIDDEN: readonly { label: string; pattern: RegExp }[] = [
   { label: 'zakat/zekat/zekât (en, tr)', pattern: /zakat|zak[āa]t|zek[aâ]t/i },
   { label: 'bağış (tr)', pattern: /ba[ğg]i[şs]|ba[ğg][ıi][şs]/i },
   { label: 'تبرع (ar)', pattern: /تبرّ?ع/ },
-  { label: 'صدقة (ar)', pattern: /صدق[ةه]/ },
-  { label: 'زكاة (ar)', pattern: /زكا[ةه]/ },
+  // Arabic and Urdu spell these with different letters: Urdu writes ہ (U+06C1) and ۃ (U+06C3)
+  // where Arabic writes ه and ة, and ک (U+06A9) where Arabic writes ك. One class covers both.
+  { label: 'صدقة/صدقہ (ar, ur)', pattern: /صدق[ةهہۃ]/ },
+  { label: 'زكاة/زکوٰۃ (ar, ur)', pattern: /ز[كک](ا|وٰ?)[ةهہۃت]/ },
+  { label: 'عطیہ (ur)', pattern: /عطی[ہه]/ },
+  { label: 'خیرات (ur)', pattern: /خیرات|خيرات/ },
+  { label: 'چندہ (ur)', pattern: /چند[ہه]/ },
+  { label: 'تعاون (ur)', pattern: /تعاون/ },
 ];
 
 /** `{ a: { b: 'c' } }` → `[['a.b', 'c']]`. */
@@ -55,7 +62,7 @@ function entries(value: unknown, prefix = ''): [string, string][] {
   );
 }
 
-const BUNDLES: Record<string, unknown> = { en, ar, tr };
+const BUNDLES: Record<string, unknown> = { en, ar, tr, ur };
 
 /**
  * The Expo `locales/` directory: the strings that become `Info.plist` / Android resource values
@@ -111,6 +118,13 @@ describe('no charity wording anywhere in the localized copy', () => {
       'تبرّع للمطوّر',
       'اترك صدقة',
       'ادفع زكاة مالك',
+      'صدقہ دیں',
+      'زکوٰۃ ادا کریں',
+      'زکات',
+      'عطیہ دیں',
+      'خیرات کریں',
+      'چندہ دیں',
+      'مالی تعاون کریں',
     ];
     for (const sample of samples) {
       expect(FORBIDDEN.some(({ pattern }) => pattern.test(sample))).toBe(true);
@@ -128,6 +142,8 @@ describe('the tip copy says "tip" in every language', () => {
     ar: /إكرامي/,
     // bahşiş — likewise a gratuity. Turkish's "bağış" is a donation and is banned above.
     tr: /bahşiş/i,
+    // ٹپ — the loanword Urdu uses for what you leave a waiter.
+    ur: /ٹپ/,
   };
 
   it.each(Object.keys(BUNDLES))('%s', (language) => {

@@ -172,7 +172,7 @@ below. Search the repo for `simpleprayer` to check you found them all.
 **Name and icon**
 - [ ] `app.json`: `expo.name`, `expo.slug`
 - [ ] the icons and splash images in `assets/images/`, and `assets/appicon.icon`
-- [ ] `CFBundleDisplayName` in `locales/en.json`, `ar.json` and `tr.json` (the name under the
+- [ ] `CFBundleDisplayName` in `locales/en.json`, `ar.json`, `tr.json` and `ur.json` (the name under the
   icon on iPhone)
 - [ ] store texts and screenshots, if you reuse anything from `docs/` or `docs/store-screens/`
 

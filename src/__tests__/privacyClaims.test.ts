@@ -41,6 +41,7 @@ import { BUDDY_COLORS, BUDDY_ICONS } from '../domain/buddies';
 import ar from '../i18n/locales/ar.json';
 import en from '../i18n/locales/en.json';
 import tr from '../i18n/locales/tr.json';
+import ur from '../i18n/locales/ur.json';
 import { SUPPORTED_LANGUAGES, type AppLanguage } from '../i18n';
 import { buildOutbox } from '../services/buddyOutbox';
 import { tipJarApiKey } from '../services/purchases';
@@ -48,7 +49,12 @@ import { sentryDsn } from '../services/telemetry';
 
 const ROOT = join(__dirname, '..', '..');
 
-const BUNDLES: Record<AppLanguage, typeof en> = { en, ar: ar as typeof en, tr: tr as typeof en };
+const BUNDLES: Record<AppLanguage, typeof en> = {
+  en,
+  ar: ar as typeof en,
+  tr: tr as typeof en,
+  ur: ur as typeof en,
+};
 
 /**
  * Words that only appear in a sentence acknowledging that the *device position* — not merely a
@@ -59,6 +65,7 @@ const POSITION_MARKERS: Record<AppLanguage, RegExp> = {
   en: /approximate position|device's location|device’s location/i,
   ar: /موقع(ك)?\s+(ال)?تقريبي|موقع جهازك/,
   tr: /yaklaşık konum/i,
+  ur: /اندازاً مقام|اندازے سے مقام|فون کا مقام/,
 };
 
 /**
@@ -72,6 +79,7 @@ const OVERCLAIMS: Record<AppLanguage, RegExp> = {
   en: /never leaves (your|the|this) (device|phone)|stays on (it|your phone|this phone)\b(?!\s*for the prayer log)|never sent anywhere|nothing (about you )?(ever )?leaves (your|the|this) (device|phone)/i,
   ar: /لا يغادر جهازك|لا يُرسل إلى أي جهة|لا شيء يغادر (هذا )?(الهاتف|الجهاز|جهازك|هاتفك)/,
   tr: /cihaz[ıi]n[ıi]zdan asla (ayrılmaz|çıkmaz)|cihazından asla (ayrılmaz|çıkmaz)|hiçbir yere gönderilmiyor|hiçbir şey[^.!?]*(çıkmaz|ayrılmaz)/i,
+  ur: /(فون|آلے) سے (کبھی )?باہر نہیں (جاتا|جاتی|نکلتا)|کہیں نہیں بھیجا جاتا|کچھ بھی[^۔.!؟]*باہر نہیں/,
 };
 
 function value(language: AppLanguage, key: string): string {
@@ -138,6 +146,7 @@ const PURCHASE_MARKERS: Record<AppLanguage, RegExp> = {
   en: /tip|purchase|app store|play store/i,
   ar: /إكرامية|المتجر|الشراء/,
   tr: /bahşiş|mağaza|satın al/i,
+  ur: /ٹپ|خریداری|اسٹور|App Store|Google Play/,
 };
 
 /**
@@ -397,6 +406,7 @@ const CRASH_MARKERS: Record<AppLanguage, RegExp> = {
   en: /crash report/i,
   ar: /تقرير عطل|تقرير (ال)?أعطال|تقارير (ال)?أعطال/,
   tr: /çökme rapor/i,
+  ur: /کریش رپورٹ/,
 };
 
 /**
@@ -492,6 +502,7 @@ const BUDDY_MARKERS: Record<AppLanguage, RegExp> = {
   en: /buddy/i,
   ar: /رفيق|رفاق/,
   tr: /arkadaş/i,
+  ur: /ساتھی/,
 };
 
 /** "Three things" was true until buddy mode; a footnote still saying it has not been updated. */
@@ -499,6 +510,7 @@ const STALE_COUNT: Record<AppLanguage, RegExp> = {
   en: /\bthree things\b/i,
   ar: /ثلاثة أشياء/,
   tr: /üç şey/i,
+  ur: /تین چیزیں/,
 };
 
 describe('the pledge and buddy mode', () => {
