@@ -580,9 +580,6 @@ export const tr: SiteDict = {
     apk: {
       heading: 'Android uygulama dosyaları (APK)',
       lead: 'Android uygulamasını bir dosya olarak indirip kendiniz de kurabilirsiniz. Çoğu kişi için Google Play daha iyi bir seçimdir, çünkü uygulamayı güncel tutar.',
-      playTitle: 'Google Play sürümü',
-      playBody: 'Google Play’deki uygulamanın aynısı, Google Play tarafından imzalanmış. Kendi kendine güncellenmez. Daha sonra uygulamayı Google Play’den bunun üzerine kurabilirsiniz; namaz kaydınız silinmez.',
-      playButton: 'Google Play sürümünü indir',
       fossTitle: 'Google’sız sürüm',
       fossBody: 'Açık kaynak koddan derlenir ve Google hizmeti içermez. Çökme raporu göndermez, bahşiş seçeneği yoktur. Üç şey farklıdır:',
       fossDiffs: [

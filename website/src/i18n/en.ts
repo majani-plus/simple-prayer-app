@@ -595,9 +595,6 @@ export const en = {
     apk: {
       heading: 'Android app files (APK)',
       lead: 'You can also download the Android app as a file and install it yourself. For most people Google Play is the better choice, because it keeps the app up to date.',
-      playTitle: 'The Google Play version',
-      playBody: 'The same app as on Google Play, signed by Google Play. It does not update itself. You can install the app from Google Play over it later, and your prayer log stays.',
-      playButton: 'Download the Google Play version',
       fossTitle: 'The version without Google',
       fossBody: 'Built from the open-source code, with no Google services. It sends no crash reports and has no tip. Three things are different:',
       fossDiffs: [

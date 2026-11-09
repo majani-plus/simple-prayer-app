@@ -580,9 +580,6 @@ export const ar: SiteDict = {
     apk: {
       heading: 'ملفات تطبيق Android (APK)',
       lead: 'يمكنك أيضًا تنزيل تطبيق Android ملفًّا وتثبيته بنفسك. لكن Google Play هو الخيار الأفضل لأغلب الناس، لأنه يُبقي التطبيق محدَّثًا.',
-      playTitle: 'نسخة Google Play',
-      playBody: 'التطبيق نفسه الموجود على Google Play، وموقَّع من Google Play. لا يحدّث نفسه. ويمكنك لاحقًا تثبيت التطبيق من Google Play فوقه، ويبقى سجل صلاتك كما هو.',
-      playButton: 'نزّل نسخة Google Play',
       fossTitle: 'النسخة الخالية من Google',
       fossBody: 'مبنية من الشيفرة المفتوحة المصدر، بلا أي خدمة من Google. لا ترسل تقارير أعطال، ولا إكرامية فيها. وتختلف في ثلاثة أشياء:',
       fossDiffs: [

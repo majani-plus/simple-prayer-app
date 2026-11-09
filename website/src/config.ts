@@ -29,15 +29,10 @@ export const site = {
    * redirect for that platform — so a store can be taken down by setting one field back to null.
    */
   /**
-   * The two Android app files, on GitHub Releases (Cloudflare Pages caps a file at 25 MiB, so no
-   * APK lives in public/). `latest/download/<name>` always points at the newest release's asset.
+   * The Android app file (the version without Google), on GitHub Releases (Cloudflare Pages caps a
+   * file at 25 MiB, so no APK lives in public/). `latest/download/<name>` always points at the
+   * newest release's asset. No Google Play APK: Play's integrity protection stays on (owner, 2026-11-09).
    */
-  // The Google Play-signed APK. `null` while Play's automatic integrity protection is on: Google
-  // then adds a licence check to the APKs it builds, and a downloaded copy only opens the Play
-  // Store. Turn protection off in Play Console › App integrity, upload the APK to the GitHub
-  // release, and set this back to
-  // 'https://github.com/majani-plus/simple-prayer-app/releases/latest/download/simple-prayer-play.apk'.
-  apkPlayUrl: null as string | null,
   apkFossUrl: 'https://github.com/majani-plus/simple-prayer-app/releases/latest/download/simple-prayer-foss.apk',
   releasesUrl: 'https://github.com/majani-plus/simple-prayer-app/releases',
   appStoreUrl: 'https://apps.apple.com/us/app/simple-prayer-times-qibla/id6803004652' as string | null,

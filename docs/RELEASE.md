@@ -475,27 +475,22 @@ worked; only the counters were manual.
 Write `CHANGELOG.md` entries under `[Unreleased]` as you merge work, in language a user would
 recognise. The script only moves what is already there; it cannot invent release notes.
 
-### The two APKs on GitHub (the website's /install links)
+### The APK on GitHub (the website's /install link)
 
-`website/src/config.ts` links `.../releases/latest/download/simple-prayer-play.apk` and
-`simple-prayer-foss.apk`. Both live on the GitHub Release for the plain tag `vX.Y.Z` (never
-`release/vX.Y.Z`: GitHub's download route fails for a tag with a slash). After a release:
+`website/src/config.ts` links `.../releases/latest/download/simple-prayer-foss.apk`, the version
+without Google. We do not offer a Google Play APK: Play's automatic integrity protection stays on, and
+it makes a downloaded copy of Play's APK open the Play Store instead of the app. The FOSS APK lives
+on the GitHub Release for the plain tag `vX.Y.Z` (never `release/vX.Y.Z`: GitHub's download route
+fails for a tag with a slash). After a release:
 
 ```sh
 # FOSS: foss-android.yml builds it on the release/vX.Y.Z tag, signs it and attaches it, once the
 # FOSS_KEYSTORE_* secrets exist (docs/FDROID.md). Until then, sign the workflow artifact by hand.
 
-# Google Play: the universal APK Google builds and signs from our bundle, once Play has processed it.
-# ONLY with Play's automatic integrity protection turned off (Play Console › App integrity): while it
-# is on, Google adds a licence check (com.pairip.licensecheck) and a downloaded copy just opens the
-# Play Store. website/src/config.ts keeps apkPlayUrl null until then.
-fastlane run download_universal_apk_from_google_play package_name:app.simpleprayer \
-  version_code:N json_key:fastlane/play_service_account.json destination:simple-prayer-play.apk
-gh release upload vX.Y.Z simple-prayer-play.apk --clobber
-
-# Play release notes for the alpha release (only languages the Play listing has):
+# Play release notes for the alpha release (only languages the Play listing has: en-US, ar, tr-TR, ur).
+# This key can edit listings and testing tracks but not release to production: promote in Play Console.
 fastlane supply --package_name app.simpleprayer --json_key fastlane/play_service_account.json \
-  --track alpha --version_code N --metadata_path <dir with en-US/ar/tr-TR changelogs only> \
+  --track alpha --version_code N --metadata_path <dir with only the Play languages' changelogs> \
   --skip_upload_apk true --skip_upload_aab true --skip_upload_metadata true \
   --skip_upload_images true --skip_upload_screenshots true
 ```
