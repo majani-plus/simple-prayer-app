@@ -82,11 +82,22 @@ export function stripThirdPartyServices(config: ExpoConfig): ExpoConfig {
     plugins: [
       ...(config.plugins ?? [])
         .filter((plugin) => !FOSS_DROPPED_PLUGINS.has(pluginName(plugin) ?? ''))
-        .map((plugin): NonNullable<ExpoConfig['plugins']>[number] =>
-          Array.isArray(plugin) && plugin[0] === 'expo-notifications'
-            ? [plugin[0], { ...plugin[1], sounds: freeAdhanSounds() }]
-            : plugin
-        ),
+        .map((plugin): NonNullable<ExpoConfig['plugins']>[number] => {
+          if (!Array.isArray(plugin)) return plugin;
+          if (plugin[0] === 'expo-notifications') {
+            return [plugin[0], { ...plugin[1], sounds: freeAdhanSounds() }];
+          }
+          // Compress native libraries. The FOSS APK is one file for every ABI (GitHub, website),
+          // and stored uncompressed they made it ~134 MB. Play's bundle keeps the default.
+          if (plugin[0] === 'expo-build-properties') {
+            const options = plugin[1] ?? {};
+            return [
+              plugin[0],
+              { ...options, android: { ...options.android, useLegacyPackaging: true } },
+            ];
+          }
+          return plugin;
+        }),
       ...((config.plugins ?? []).some((plugin) => pluginName(plugin) === KEEP_SOUNDS_PLUGIN)
         ? []
         : [KEEP_SOUNDS_PLUGIN]),

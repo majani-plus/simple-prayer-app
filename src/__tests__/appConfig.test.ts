@@ -86,6 +86,18 @@ describe('app.config.ts', () => {
     expect(pluginNames(stripThirdPartyServices(without)).filter((n) => n === keep)).toHaveLength(1);
   });
 
+  it('compresses native libraries in the FOSS APK only, keeping the other build options', () => {
+    const buildProps = (c: ExpoConfig) =>
+      (c.plugins ?? []).find((p) => Array.isArray(p) && p[0] === 'expo-build-properties') as [
+        string,
+        { android?: Record<string, unknown> },
+      ];
+    const normal = buildProps(config)[1].android ?? {};
+    const foss = buildProps(stripThirdPartyServices(config))[1].android ?? {};
+    expect(normal.useLegacyPackaging).toBeUndefined();
+    expect(foss).toEqual({ ...normal, useLegacyPackaging: true });
+  });
+
   it('sets the FOSS versionCode from package.json, and the normal config has none', () => {
     expect(stripThirdPartyServices(config).android?.versionCode).toBe(packageJson.versionCode);
     expect(config.android?.versionCode).toBeUndefined();
