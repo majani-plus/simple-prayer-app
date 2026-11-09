@@ -13,6 +13,14 @@ would recognise, not commit subjects.
 
 ### Added
 
+### Changed
+
+### Fixed
+
+## [1.7.0] - 2026-11-09
+
+### Added
+
 - **Open source:** the app's code is now open source under the MIT licence. The name
   "Simple Prayer" and its icon are not part of that licence (see `TRADEMARKS.md`).
 - **Urdu:** the app, its widgets and watches, and the website now come in Urdu. In the app and on

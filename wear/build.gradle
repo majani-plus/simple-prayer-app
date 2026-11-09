@@ -45,7 +45,7 @@ android {
     // (`appVersionSource: remote`) — a shared/matching number here would either collide with a
     // future phone build or require coordinating two independently-building EAS profiles against
     // one counter. versionName has no such constraint, so it tracks the phone's.
-    versionCode 900000015
+    versionCode 900000016
     versionName appVersion
   }
 

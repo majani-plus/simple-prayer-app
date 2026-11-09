@@ -43,7 +43,7 @@ android {
     // wear apps, so versionCode has no shared-namespace collision risk — 1 is correct for a
     // first release regardless of what the phone's build number is. versionName still tracks
     // the phone's, for a consistent version number across the family.
-    versionCode 14
+    versionCode 15
     versionName appVersion
   }
 
