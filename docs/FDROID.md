@@ -1,12 +1,12 @@
-# Getting Simple Prayer into F-Droid and IzzyOnDroid
+# Getting Simple Prayer into F-Droid
 
-The version without Google (`FOSS_BUILD=1`, D212) is what both stores take. GitHub Releases
+The version without Google (`FOSS_BUILD=1`, D212) is what F-Droid takes. GitHub Releases
 already carries it: every `release/vX.Y.Z` tag gets a signed `simple-prayer-foss.apk`, on a GitHub
 Release under the plain tag `vX.Y.Z` (GitHub's download links break on a tag with a slash). The
-store text, icon and screenshots are in `fastlane/metadata/android/`, which both stores read.
+store text, icon and screenshots are in `fastlane/metadata/android/`, which F-Droid reads.
 
-Both submissions go in from the owner's own account. Nothing below needs to be done twice:
-once a store has the app, it follows new release tags by itself.
+The submission goes in from the owner's own GitLab account. It is done once: after that, F-Droid
+follows new release tags by itself.
 
 ## Our signing key
 
@@ -20,8 +20,9 @@ SHA-256 of the certificate (stores and `assetlinks.json` ask for it):
 57:2D:CE:EA:F6:81:C6:AA:FC:97:52:77:EB:99:F7:55:59:53:24:4D:3C:0C:77:11:68:3D:2D:D6:B0:98:1E:AF
 ```
 
-For CI to sign release APKs by itself, add four repository secrets once (Settings → Secrets and
-variables → Actions), or run:
+CI signs release APKs by itself: the four repository secrets (`FOSS_KEYSTORE_BASE64`,
+`FOSS_KEYSTORE_PASSWORD`, `FOSS_KEY_PASSWORD`, `FOSS_KEY_ALIAS`) were set on 2026-11-09. If they are
+ever lost, set them again from the backup:
 
 ```sh
 base64 -i ~/Backups/simple-prayer-foss-release.jks | gh secret set FOSS_KEYSTORE_BASE64
@@ -30,33 +31,16 @@ gh secret set FOSS_KEY_PASSWORD        # the same password
 printf simpleprayer-foss | gh secret set FOSS_KEY_ALIAS
 ```
 
-Until then, `foss-android.yml` builds the APK on the tag and attaches nothing; sign the CI
-artifact by hand:
+## IzzyOnDroid: not submitted
 
-```sh
-apksigner sign --ks ~/Backups/simple-prayer-foss-release.jks --ks-key-alias simpleprayer-foss \
-  --out simple-prayer-foss.apk app-release.apk
-gh release upload vX.Y.Z simple-prayer-foss.apk --clobber
-```
+IzzyOnDroid's App Inclusion Policy (https://izzyondroid.org/docs/general/AppInclusionPolicy/,
+"AI policy") rejects apps whose code is fully or partly written by generative AI tools, and much of
+this app's code was written with Claude. Submitting would mean hiding that, so we don't. Their 30 MB
+per-APK limit would also be a problem: the universal APK is about 134 MB, and arm64 alone is about
+50 MB, mostly React Native's native libraries. Requests now go to Codeberg
+(https://codeberg.org/IzzyOnDroid/repodata/issues), not GitLab.
 
-## IzzyOnDroid (fast: usually days)
-
-IzzyOnDroid takes our signed APK from GitHub Releases. Open an issue at
-<https://gitlab.com/IzzyOnDroid/repo/-/issues> with this text:
-
-> **App:** Simple Prayer (`app.simpleprayer`)
-> **Source:** https://github.com/majani-plus/simple-prayer-app (MIT)
-> **APK:** the `simple-prayer-foss.apk` asset on each GitHub release
-> (https://github.com/majani-plus/simple-prayer-app/releases)
-> **Signing certificate SHA-256:** 57:2D:CE:EA:F6:81:C6:AA:FC:97:52:77:EB:99:F7:55:59:53:24:4D:3C:0C:77:11:68:3D:2D:D6:B0:98:1E:AF
-> **Metadata:** fastlane layout in `fastlane/metadata/android/` (en-US, ar, tr-TR, ur)
->
-> Prayer times, Qibla and a gentle prayer log. This APK is built from source by our CI with no
-> Google services, no crash reporting and no tip jar (`FOSS_BUILD=1`, see
-> `.github/workflows/foss-android.yml`, which fails on any non-free dependency). The optional
-> prayer-buddy feature talks to our own relay, which is also open source (MIT):
-> https://github.com/majani-plus/simple-prayer-relay. The adhan recordings in this build are
-> CC0 / CC BY 3.0 from Wikimedia Commons (`assets/audio/CREDITS.md`).
+People who want the APK without F-Droid get it from GitHub Releases or the website's /install page.
 
 ## F-Droid main repository (slower: weeks to months)
 
@@ -85,7 +69,10 @@ Builds:
     commit: release/v1.7.1
     sudo:
       - apt-get update
-      - apt-get install -y nodejs npm openjdk-17-jdk-headless
+      - apt-get install -y openjdk-17-jdk-headless xz-utils
+      - curl -Lo node.tar.xz https://nodejs.org/dist/v24.22.2/node-v24.22.2-linux-x64.tar.xz
+      - echo "48cc0e21e048790e54c0cf5749c2725005313d652651c40b7a21feb9697aaf75  node.tar.xz" | sha256sum -c -
+      - tar xJf node.tar.xz --strip-components=1 -C /usr/local
       - npm install -g bun@1.4.3
     init: bun install --frozen-lockfile
     output: android/app/build/outputs/apk/release/app-release-unsigned.apk
@@ -93,6 +80,7 @@ Builds:
       - export FOSS_BUILD=1
       - bun scripts/foss-prepare.ts
       - bunx expo prebuild -p android --clean --no-install
+      - sed -i -e '/signingConfig signingConfigs.debug/d' android/app/build.gradle
     build:
       - export FOSS_BUILD=1
       - cd android
@@ -117,8 +105,10 @@ Questions F-Droid reviewers are likely to raise:
   `npm install` without a lockfile in `init`; versions then float within package.json's ranges.
 - **Prebuilt binaries in node_modules** (React Native's and Hermes' Maven artefacts). Other
   React Native apps are in F-Droid; their reviewers know the usual `scandelete` lines.
-- **Signing.** Expo's template signs release builds with a debug key. F-Droid re-signs, so the
-  output path may need to be `app-release.apk` rather than `-unsigned`.
+- **Signing.** Expo's template signs release builds with the debug key; the prebuild step deletes
+  that line so Gradle writes `app-release-unsigned.apk`, which F-Droid signs.
+- **Node.** The recipe installs Node 24.22.2 (the repo's pin, `website/.node-version`) from
+  nodejs.org with a checked SHA-256, since Debian's Node is too old for Expo SDK 58.
 - **Anti-features.** None should apply: no Google, no tracking, no non-free assets, and the relay
   is free software. If a reviewer asks, the relay is opt-in and only for prayer buddies.
 
