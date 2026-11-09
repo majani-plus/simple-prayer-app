@@ -8,7 +8,7 @@ import { AppText } from './AppText';
 import { Icon } from './Icon';
 import { PressableScale } from './PressableScale';
 import { SectionDivider } from './SectionDivider';
-import { backChevron, forwardChevron } from '@/i18n/direction';
+import { backChevron, forwardChevron, scriptFamilyFor } from '@/i18n/direction';
 import { formatDate, formatNumber } from '@/i18n/numerals';
 import { isFutureDay, monthGrid, parseDay, type WeekStart } from '@/domain/dates';
 import { hijriMonthSpanForGregorianMonth } from '@/domain/hijri';
@@ -569,7 +569,10 @@ export function CalendarMonth({
   const weekdayLabels = useMemo(() => {
     return Array.from({ length: 7 }, (_, column) => {
       const weekday = (column + weekStart) % 7;
-      const label = formatDate(new Date(2024, 0, 7 + weekday), locale, { weekday: 'narrow' });
+      // CLDR's narrow Urdu weekdays are Latin letters (S, M, T…), and Urdu has no initials of its
+      // own, so Urdu shows the short names, which are the full words (D210).
+      const style = scriptFamilyFor(locale) === 'urdu' ? 'short' : 'narrow';
+      const label = formatDate(new Date(2024, 0, 7 + weekday), locale, { weekday: style });
       return { weekday, label };
     });
   }, [locale, weekStart]);
