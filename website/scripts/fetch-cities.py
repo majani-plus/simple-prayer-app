@@ -21,6 +21,9 @@ DUMP = 'https://download.geonames.org/export/dump/'
 HERE = pathlib.Path(__file__).resolve().parent
 OUT = HERE.parent / 'data' / 'cities.tsv'
 
+# The localized names carried, one column each after `tz`, in this order.
+LANGS = ('ar', 'tr', 'ur')
+
 # Every capital, the five largest places per country, and the 2000 largest worldwide.
 PER_COUNTRY = 5
 GLOBAL_TOP = 2000
@@ -62,12 +65,12 @@ def main() -> None:
     chosen = {r['id']: r for r in cities if r['id'] in keep}
     print(f'  selected {len(chosen)} cities in {len({r["cc"] for r in chosen.values()})} countries')
 
-    # Best Arabic and Turkish name per city: prefer the flagged preferred name, then a short name,
+    # Best Arabic, Turkish and Urdu name per city: prefer the flagged preferred name, then a short name,
     # and never a colloquial or historic one.
     best: dict[tuple[str, str], tuple[int, str]] = {}
     for line in member(fetch('alternateNamesV2.zip'), 'alternateNamesV2.txt'):
         c = line.rstrip('\n').split('\t')
-        if len(c) < 4 or c[2] not in ('ar', 'tr') or c[1] not in chosen:
+        if len(c) < 4 or c[2] not in LANGS or c[1] not in chosen:
             continue
         if len(c) > 7 and (c[6] == '1' or c[7] == '1'):
             continue
@@ -91,14 +94,14 @@ def main() -> None:
         '# Regenerate with scripts/fetch-cities.py (needs network); the build only reads this file,',
         '# so a Cloudflare build never depends on GeoNames being up.',
         '#',
-        '# Columns: geonameid, name (local), ascii, country, lat, lon, tz, name_ar, name_tr',
-        '# Empty ar/tr means no distinct localized name exists; the site falls back to `name`.',
+        '# Columns: geonameid, name (local), ascii, country, lat, lon, tz, name_ar, name_tr, name_ur',
+        '# Empty ar/tr/ur means no distinct localized name exists; the site falls back to `name`.',
         f'# Retrieved {datetime.date.today().isoformat()} — {len(rows)} cities.',
     ]
     body = [
         '\t'.join([
             r['id'], r['name'], r['ascii'], r['cc'], f'{r["lat"]:.4f}', f'{r["lon"]:.4f}', r['tz'],
-            best.get((r['id'], 'ar'), (0, ''))[1], best.get((r['id'], 'tr'), (0, ''))[1],
+            *(best.get((r['id'], l), (0, ''))[1] for l in LANGS),
         ])
         for r in rows
     ]

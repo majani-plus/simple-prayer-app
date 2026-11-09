@@ -1,6 +1,6 @@
 /**
- * The press kit's words and facts, in one place, in all three languages. `/press`, `/ar/press` and
- * `/tr/press` render them, and `scripts/build-press-kit.ts` writes the same text into each
+ * The press kit's words and facts, in one place, in all four languages. `/press`, `/ar/press`,
+ * `/tr/press` and `/ur/press` render them, and `scripts/build-press-kit.ts` writes the same text into each
  * language's downloadable fact sheet, so a page and its file can never disagree.
  *
  * Every line here is a claim a writer may copy word for word into an article. So each one must be
@@ -10,6 +10,7 @@
  */
 import { site } from './config';
 import type { Locale } from './i18n';
+import { rtlList } from './i18n/ur';
 
 /** The person who makes the app (site.author). */
 export const developer = site.author;
@@ -88,11 +89,11 @@ export const pressCopy: Record<Locale, PressCopy> = {
     oneLine:
       'Simple Prayer is a free prayer-times and prayer-tracking app for iPhone and Android, with no ads and no account.',
     short:
-      'Simple Prayer shows the five daily prayer times, points to the qibla, and lets you mark each prayer with one tap. It works without internet. Every feature is free, there are no ads and no account, and the whole app is open source. It is in English, Arabic and Turkish.',
+      'Simple Prayer shows the five daily prayer times, points to the qibla, and lets you mark each prayer with one tap. It works without internet. Every feature is free, there are no ads and no account, and the whole app is open source. It is in English, Arabic, Turkish and Urdu.',
     long: [
       'Simple Prayer shows the five daily prayer times with a countdown to the next one, points to the qibla, and lets you mark each prayer as prayed with one tap. You can mark a prayer from the app, a home-screen widget, a notification or a watch.',
       'The times are worked out on the phone, so they work without internet. The app picks the method used in your country, such as Diyanet, ISNA, Umm al-Qura or the Egyptian authority, and you can change it. Prayer tracking is gentle: a missed day is never shown as a failure, and someone who only wants the times and the qibla never has to log anything.',
-      'Every feature is free. There are no ads, no account and no analytics, and your prayer log stays on your phone. The app is in English, Arabic and Turkish, each written by a person. It is made by Ronny Majani and owned by Majani Plus, his company in New Cairo, Egypt. Its full source code is public under the MIT licence.',
+      'Every feature is free. There are no ads, no account and no analytics, and your prayer log stays on your phone. The app is in English, Arabic, Turkish and Urdu. The Urdu was written with AI help and has not yet been checked by a native speaker. It is made by Ronny Majani and owned by Majani Plus, his company in New Cairo, Egypt. Its full source code is public under the MIT licence.',
     ],
     factsH2: 'Facts',
     facts: [
@@ -103,7 +104,7 @@ export const pressCopy: Record<Locale, PressCopy> = {
       ['Price', 'Free. Every feature is free. An optional tip in Settings unlocks nothing.'],
       ['Ads, account, analytics', 'None'],
       ['Platforms', 'iPhone, iPad and Apple Watch; Android phones and tablets, and Wear OS'],
-      ['Languages', 'English, Arabic (right to left) and Turkish'],
+      ['Languages', 'English, Arabic and Urdu (both right to left), and Turkish'],
       ['Prayer-time methods', 'Diyanet, ISNA, Umm al-Qura, Egyptian, Karachi, Muslim World League and more; Hanafi or Shafi Asr'],
       ['Works offline', 'Yes. Times are worked out on the phone.'],
       ['Licence', 'MIT (the code). The name and the mosque icon are not covered by the licence.'],
@@ -178,11 +179,11 @@ export const pressCopy: Record<Locale, PressCopy> = {
     longLabel: 'بتفصيل أكثر',
     oneLine: 'Simple Prayer تطبيق مجاني لمواقيت الصلاة ومتابعتها على آيفون وأندرويد، بلا إعلانات وبلا حساب.',
     short:
-      'يعرض Simple Prayer مواقيت الصلوات الخمس، ويدلّك على القبلة، ويتيح لك تسجيل كل صلاة بنقرة واحدة. يعمل دون إنترنت. كل الميزات مجانية، بلا إعلانات ولا حساب، وشيفرة التطبيق كلها مفتوحة المصدر. وهو متوفر بالعربية والإنجليزية والتركية.',
+      'يعرض Simple Prayer مواقيت الصلوات الخمس، ويدلّك على القبلة، ويتيح لك تسجيل كل صلاة بنقرة واحدة. يعمل دون إنترنت. كل الميزات مجانية، بلا إعلانات ولا حساب، وشيفرة التطبيق كلها مفتوحة المصدر. وهو متوفر بالعربية والإنجليزية والتركية والأردية.',
     long: [
       'يعرض Simple Prayer مواقيت الصلوات الخمس مع عدّ تنازلي للصلاة القادمة، ويدلّك على القبلة، ويتيح لك تسجيل كل صلاة بنقرة واحدة. ويمكنك تسجيل الصلاة من التطبيق، أو من أداة على الشاشة الرئيسية، أو من إشعار، أو من الساعة.',
       'تُحسب المواقيت على الهاتف نفسه، فتعمل دون إنترنت. يختار التطبيق طريقة الحساب المتّبعة في بلدك، مثل ديانت أو الجمعية الإسلامية لأمريكا الشمالية أو أم القرى أو الهيئة المصرية، ويمكنك تغييرها. والمتابعة لطيفة: لا يُعرض يوم فاتك على أنه إخفاق، ومن لا يريد إلا المواقيت والقبلة لا يُطلب منه تسجيل شيء.',
-      'كل الميزات مجانية. لا إعلانات ولا حساب ولا تحليلات، وسجلّ صلاتك يبقى على هاتفك. التطبيق بالعربية والإنجليزية والتركية، وكل لغة كتبها إنسان. صنعه روني مجني، وتملكه مجني بلس، شركته في القاهرة الجديدة بمصر. وشيفرته كاملة منشورة للجميع بترخيص MIT.',
+      'كل الميزات مجانية. لا إعلانات ولا حساب ولا تحليلات، وسجلّ صلاتك يبقى على هاتفك. التطبيق بالعربية والإنجليزية والتركية والأردية. كُتبت الأردية بمساعدة الذكاء الاصطناعي، ولم يراجعها بعد أحد من أهلها. صنعه روني مجني، وتملكه مجني بلس، شركته في القاهرة الجديدة بمصر. وشيفرته كاملة منشورة للجميع بترخيص MIT.',
     ],
     factsH2: 'الحقائق',
     facts: [
@@ -193,7 +194,7 @@ export const pressCopy: Record<Locale, PressCopy> = {
       ['السعر', 'مجاني. كل الميزات مجانية. وفي الإعدادات إكرامية اختيارية لا تفتح أي شيء.'],
       ['إعلانات، حساب، تحليلات', 'لا شيء منها'],
       ['الأجهزة', 'آيفون وآيباد وApple Watch؛ وهواتف Android وأجهزته اللوحية، وWear OS'],
-      ['اللغات', 'العربية (من اليمين إلى اليسار) والإنجليزية والتركية'],
+      ['اللغات', 'العربية والأردية (من اليمين إلى اليسار)، والإنجليزية والتركية'],
       ['طرق حساب المواقيت', 'ديانت، والجمعية الإسلامية لأمريكا الشمالية، وأم القرى، والهيئة المصرية، وكراتشي، ورابطة العالم الإسلامي، وغيرها؛ وعصر الحنفية أو الشافعية'],
       ['يعمل دون إنترنت', 'نعم. المواقيت تُحسب على الهاتف.'],
       ['الترخيص', 'MIT للشيفرة. الاسم وشعار المسجد لا يشملهما الترخيص.'],
@@ -269,11 +270,11 @@ export const pressCopy: Record<Locale, PressCopy> = {
     oneLine:
       'Simple Prayer, iPhone ve Android için ücretsiz bir namaz vakitleri ve namaz takibi uygulamasıdır. Reklam yok, hesap yok.',
     short:
-      'Simple Prayer günün beş vaktini gösterir, kıbleyi bulur ve her namazı tek dokunuşla işaretlemenizi sağlar. İnternetsiz çalışır. Bütün özellikler ücretsizdir; reklam yok, hesap yok ve uygulamanın tamamı açık kaynaktır. Türkçe, Arapça ve İngilizce kullanılabilir.',
+      'Simple Prayer günün beş vaktini gösterir, kıbleyi bulur ve her namazı tek dokunuşla işaretlemenizi sağlar. İnternetsiz çalışır. Bütün özellikler ücretsizdir; reklam yok, hesap yok ve uygulamanın tamamı açık kaynaktır. Türkçe, Arapça, İngilizce ve Urduca kullanılabilir.',
     long: [
       'Simple Prayer günün beş vaktini sıradaki vakte geri sayımla gösterir, kıbleyi bulur ve her namazı tek dokunuşla kılındı olarak işaretlemenizi sağlar. Namazı uygulamadan, ana ekrandaki bir widget’tan, bir bildirimden ya da saatten işaretleyebilirsiniz.',
       'Vakitler telefonda hesaplanır, bu yüzden internetsiz çalışır. Uygulama ülkenizde kullanılan yöntemi seçer: Diyanet, ISNA, Ümmü’l-Kurâ ya da Mısır gibi. İsterseniz değiştirebilirsiniz. Namaz takibi naziktir: kaçırılan bir gün asla başarısızlık olarak gösterilmez. Yalnızca vakitleri ve kıbleyi isteyen biri hiçbir şey işaretlemek zorunda kalmaz.',
-      'Bütün özellikler ücretsizdir. Reklam yok, hesap yok, analiz yok; namaz kaydınız telefonunuzda kalır. Uygulama Türkçe, Arapça ve İngilizcedir ve her dil bir insan tarafından yazıldı. Uygulamayı Ronny Majani yaptı; sahibi, onun Mısır’ın Yeni Kahire şehrindeki şirketi Majani Plus’tır. Kaynak kodunun tamamı MIT lisansıyla herkese açıktır.',
+      'Bütün özellikler ücretsizdir. Reklam yok, hesap yok, analiz yok; namaz kaydınız telefonunuzda kalır. Uygulama Türkçe, Arapça, İngilizce ve Urducadır. Urduca yapay zekâ yardımıyla yazıldı ve henüz anadili Urduca olan biri tarafından kontrol edilmedi. Uygulamayı Ronny Majani yaptı; sahibi, onun Mısır’ın Yeni Kahire şehrindeki şirketi Majani Plus’tır. Kaynak kodunun tamamı MIT lisansıyla herkese açıktır.',
     ],
     factsH2: 'Temel bilgiler',
     facts: [
@@ -284,7 +285,7 @@ export const pressCopy: Record<Locale, PressCopy> = {
       ['Fiyat', 'Ücretsiz. Bütün özellikler ücretsiz. Ayarlar’daki isteğe bağlı bahşiş hiçbir şeyin kilidini açmaz.'],
       ['Reklam, hesap, analiz', 'Hiçbiri yok'],
       ['Cihazlar', 'iPhone, iPad ve Apple Watch; Android telefon ve tabletler; Wear OS'],
-      ['Diller', 'Türkçe, Arapça (sağdan sola) ve İngilizce'],
+      ['Diller', 'Türkçe, Arapça ve Urduca (ikisi de sağdan sola) ve İngilizce'],
       ['Hesaplama yöntemleri', 'Diyanet, ISNA, Ümmü’l-Kurâ, Mısır, Karaçi, Muslim World League ve daha fazlası; ikindi için Hanefî ya da Şâfiî'],
       ['İnternetsiz çalışır', 'Evet. Vakitler telefonda hesaplanır.'],
       ['Lisans', 'Kod için MIT. Ad ve cami işareti lisansa dahil değildir.'],
@@ -340,6 +341,96 @@ export const pressCopy: Record<Locale, PressCopy> = {
     linksH2: 'Bağlantılar',
     links: storeLinks('Web sitesi', 'Kaynak kodu', 'Namaz arkadaşları sunucusunun kodu', 'Gizlilik politikası (İngilizce)', 'Yazılar (İngilizce)'),
     sheet: { title: 'SIMPLE PRAYER: BİLGİ NOTU', contact: 'İletişim', more: 'Daha fazlası' },
+  },
+  ur: {
+    title: 'پریس کے لیے — Simple Prayer',
+    description:
+      'Simple Prayer کے بارے میں حقائق، تعارف، لوگو اور اسکرین شاٹس، جو آپ ایپ کے بارے میں مضامین، تبصروں اور فہرستوں میں آزادی سے استعمال کر سکتے ہیں۔',
+    eyebrow: 'پریس کے لیے',
+    h1: 'Simple Prayer کے بارے میں لکھ رہے ہیں؟',
+    lead: 'آپ کی ضرورت کی ہر چیز یہاں ہے: مختصر اور لمبا تعارف، حقائق، لوگو، اور تین زبانوں میں اسکرین شاٹس۔ آپ یہ سب ایپ کے بارے میں مضامین، تبصروں اور فہرستوں میں استعمال کر سکتے ہیں۔',
+    downloadAll: 'سب کچھ ایک zip میں (اردو متن، انگریزی اسکرین شاٹس)',
+    factSheet: 'حقائق نامہ (متن)',
+    questions: 'کوئی سوال ہے، یا کوئی ایسی چیز چاہیے جو یہاں نہیں؟ {email} پر لکھیں۔',
+    describeH2: 'ایپ کا تعارف',
+    describeCaption: 'ان میں سے کوئی بھی جوں کا توں نقل کر لیں۔',
+    oneLineLabel: 'ایک جملے میں',
+    shortLabel: 'ایک پیراگراف میں',
+    longLabel: 'تفصیل سے',
+    oneLine:
+      'Simple Prayer، iPhone اور Android کے لیے نماز کے اوقات اور نمازوں کے ریکارڈ کی ایک مفت ایپ ہے، جس میں نہ اشتہار ہیں نہ اکاؤنٹ۔',
+    short:
+      'Simple Prayer پانچوں نمازوں کے اوقات دکھاتی ہے، قبلے کی سمت بتاتی ہے، اور ہر نماز ایک بار دبا کر درج کرنے دیتی ہے۔ یہ انٹرنیٹ کے بغیر چلتی ہے۔ ہر فیچر مفت ہے، نہ اشتہار ہیں نہ اکاؤنٹ، اور پوری ایپ اوپن سورس ہے۔ یہ انگریزی، عربی، ترکی اور اردو میں ہے۔',
+    long: [
+      'Simple Prayer پانچوں نمازوں کے اوقات دکھاتی ہے اور اگلی نماز تک باقی وقت گنتی ہے، قبلے کی سمت بتاتی ہے، اور ہر نماز ایک بار دبا کر "پڑھ لی" درج کرنے دیتی ہے۔ نماز ایپ سے، ہوم اسکرین کے وجٹ سے، کسی اطلاع سے، یا گھڑی سے درج کی جا سکتی ہے۔',
+      'اوقات فون پر ہی نکالے جاتے ہیں، اس لیے یہ انٹرنیٹ کے بغیر چلتے ہیں۔ ایپ وہ طریقہ چُنتی ہے جو آپ کے ملک میں چلتا ہے، جیسے Diyanet، ISNA، Umm al-Qura یا مصری طریقہ، اور آپ اسے بدل سکتے ہیں۔ نمازوں کا ریکارڈ نرمی سے رکھا جاتا ہے: چھوٹا ہوا دن کبھی ناکامی کے طور پر نہیں دکھایا جاتا، اور جو صرف اوقات اور قبلہ چاہتا ہے اسے کبھی کچھ درج نہیں کرنا پڑتا۔',
+      'ہر فیچر مفت ہے۔ نہ اشتہار ہیں، نہ اکاؤنٹ، نہ اینالیٹکس، اور نمازوں کا ریکارڈ آپ کے فون پر رہتا ہے۔ ایپ انگریزی، عربی، ترکی اور اردو میں ہے۔ اردو مصنوعی ذہانت کی مدد سے لکھی گئی ہے، اور ابھی کسی اہلِ زبان نے اسے نہیں جانچا۔ ایپ Ronny Majani نے بنائی ہے، اور یہ ان کی کمپنی Majani Plus کی ملکیت ہے، جو نیو قاہرہ، مصر میں ہے۔ اس کا پورا سورس کوڈ MIT لائسنس کے تحت سب کے لیے کھلا ہے۔',
+    ],
+    factsH2: 'حقائق',
+    facts: [
+      ['نام', 'Simple Prayer'],
+      ['اسٹورز میں نام', 'Simple Prayer: Times & Qibla'],
+      ['بنانے والے', 'Ronny Majani', 'https://ronnymajani.com'],
+      ['مالک', 'Majani Plus LLC، ان کی کمپنی'],
+      ['قیمت', 'مفت۔ ہر فیچر مفت ہے۔ ترتیبات میں اپنی مرضی کی ٹپ ہے، جس سے کچھ نہیں کھلتا۔'],
+      ['اشتہار، اکاؤنٹ، اینالیٹکس', 'کوئی نہیں'],
+      ['آلات', rtlList('iPhone، iPad اور Apple Watch؛ Android فون اور ٹیبلیٹ، اور Wear OS')],
+      ['زبانیں', 'انگریزی، ترکی، اور عربی اور اردو (دونوں دائیں سے بائیں)'],
+      ['اوقات کے طریقے', rtlList('Diyanet، ISNA، Umm al-Qura، مصری، Karachi، Muslim World League اور دوسرے؛ عصر حنفی، یا شافعی، مالکی، حنبلی')],
+      ['انٹرنیٹ کے بغیر', 'جی ہاں۔ اوقات فون پر نکالے جاتے ہیں۔'],
+      ['لائسنس', 'MIT (کوڈ کے لیے)۔ نام اور مسجد والا آئیکن اس لائسنس میں شامل نہیں۔'],
+      ['موجودہ ورژن', '1.6.0، 7 نومبر 2026'],
+      ['اوپن سورس کب سے', '8 نومبر 2026'],
+    ],
+    highlightsH2: 'نمایاں باتیں',
+    highlights: [
+      'ایک بار دبانے سے نماز "پڑھ لی" درج ہو جاتی ہے: ایپ، وجٹ، اطلاع یا گھڑی سے۔',
+      'ہر نماز کے لیے تین تک یاد دہانیاں، ہر ایک خاموش، سادہ آواز والی یا اذان والی۔',
+      'قبلہ نما جس کے لیے فون سیدھا لٹا کر پکڑنا ضروری نہیں۔',
+      'نماز کے اوقات جو قطبِ شمالی کے دائرے سے اوپر بھی چلتے ہیں، جہاں ہفتوں تک سورج نہ ڈوبے یا نہ نکلے۔',
+      'نماز کے ساتھی: جب دو لوگ اسے چلائیں تو ہر ایک دیکھ سکتا ہے کہ دوسرے نے آج نماز پڑھ لی۔ اس کے سوا ان سے کچھ نہیں بانٹا جاتا۔',
+      'ایپ بناتے ہوئے ہمیں adhan-js میں خرابیاں ملیں، جو نماز کے اوقات کی ایک اوپن سورس لائبریری ہے اور بہت سی مسلم ایپس اسے استعمال کرتی ہیں۔ ہم نے ان کی درستیاں واپس بھیجیں۔ اب وہ لائبریری کا حصہ ہیں۔',
+    ],
+    articles: [
+      'تکنیکی پہلو ',
+      'مضامین',
+      ' (انگریزی میں) میں ہیں: adhan-js کو بھیجی گئی درستیاں، قطبِ شمالی کے دائرے سے اوپر نماز کے اوقات، ایک ہی Expo ایپ سے وجٹ اور گھڑیاں، اور ساتھیوں والا سرور۔',
+    ],
+    screenshotsH2: 'اسکرین شاٹس',
+    screenshotsText:
+      'اسٹور کی تصویریں ان کی تحریر کے ساتھ، اور خود ایپ بغیر تحریر کے، روشن اور گہرے رنگ میں۔ پورے سائز میں، ہر زبان کی ایک zip فائل (اردو اسکرین شاٹس ابھی نہیں ہیں):',
+    shotAlt: {
+      today: 'آج: پانچوں نمازیں، اگلی نماز، اور باقی وقت۔',
+      watch: 'Apple Watch کی ایپ۔',
+      history: 'ریکارڈ: مہینے کا کیلنڈر۔',
+      qibla: 'قبلہ نما۔',
+      reminders: 'ہر نماز کی یاد دہانیاں۔',
+      qada: 'قضا نمازیں، گھٹتی ہوئی گنتی کے ساتھ۔',
+      pledge: 'وعدہ: نہ اشتہار، نہ اکاؤنٹ، ہر فیچر مفت۔',
+    },
+    logoH2: 'لوگو اور آئیکن',
+    logosLabel: 'لوگو اور ایپ آئیکن (zip)',
+    iconLabel: 'ایپ آئیکن، 1024 × 1024 (PNG)',
+    logoRules: [
+      'فائلیں جیسی ہیں ویسی ہی استعمال کریں۔ نشان کو دوبارہ نہ بنائیں، اس کا رنگ نہ بدلیں، اسے نہ کھینچیں، اور اس پر کوئی اثر نہ ڈالیں۔',
+      'روشن پس منظر پر سنہری، اور گہرے یا سنہری پس منظر پر کریم رنگ۔',
+      'نام لاطینی حروف میں جیسا ہے ویسا لکھیں: Simple Prayer، دو لفظ، اور دونوں کا پہلا حرف بڑا۔',
+    ],
+    trademarkRule: [
+      'نام اور مسجد والا نشان Majani Plus کی ملکیت ہیں، اور کوڈ کے MIT لائسنس میں شامل نہیں۔ آپ انہیں ایپ کے بارے میں لکھنے کے لیے استعمال کر سکتے ہیں (',
+      'ٹریڈ مارک، انگریزی میں',
+      ')۔',
+    ],
+    wrongH2: 'عام غلطیاں',
+    wrongFormat: 'یہ درست نہیں: "{x}"',
+    accuracy: [
+      ['یہ ایک غیر منافع بخش ادارہ ہے', 'Majani Plus ایک کمپنی ہے، اور Simple Prayer اس کا کمیونٹی منصوبہ ہے: مفت، نہ اشتہار نہ پیسوں والے فیچر۔'],
+      ['فون سے کبھی کچھ باہر نہیں جاتا', 'نمازوں کا ریکارڈ فون پر رہتا ہے۔ پانچ چھوٹی چیزیں انٹرنیٹ پر جاتی ہیں، اور ہر ایک پرائیویسی پالیسی میں لکھی ہے: شہر کا نام معلوم کرنا، اپ ڈیٹ کی جانچ، کریش رپورٹیں (پہلے سے چالو، بند کی جا سکتی ہیں)، ٹپ اگر آپ دیں، اور نماز کے ساتھی اگر آپ انہیں چلائیں۔'],
+      ['نماز کے ساتھیوں والا حصہ end-to-end encrypted ہے', 'ایسا نہیں ہے۔ سرور بے ترتیب شناختی نمبر اور ایک نشان (کون سی نماز، پڑھی یا نہیں) زیادہ سے زیادہ 24 گھنٹے رکھتا ہے، کسی نام کے بغیر۔'],
+    ],
+    linksH2: 'لنکس',
+    links: storeLinks('ویب سائٹ', 'سورس کوڈ', 'ساتھیوں والے سرور کا کوڈ', 'پرائیویسی پالیسی (انگریزی میں)', 'مضامین (انگریزی میں)'),
+    sheet: { title: 'Simple Prayer: حقائق نامہ', contact: 'رابطہ', more: 'مزید' },
   },
 };
 

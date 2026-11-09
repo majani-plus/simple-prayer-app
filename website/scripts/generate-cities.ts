@@ -26,7 +26,7 @@ const HERE = fileURLToPath(new URL('.', import.meta.url));
 const IN = join(HERE, '..', 'data', 'cities.tsv');
 const OUT = join(HERE, '..', 'src', 'lib', 'cities');
 
-const LOCALES = ['en', 'ar', 'tr'] as const;
+const LOCALES = ['en', 'ar', 'tr', 'ur'] as const;
 type Locale = (typeof LOCALES)[number];
 
 interface Row {
@@ -38,13 +38,14 @@ interface Row {
   tz: string;
   ar: string;
   tr: string;
+  ur: string;
 }
 
 const rows: Row[] = [];
 for (const line of readFileSync(IN, 'utf8').split('\n')) {
   if (!line || line.startsWith('#')) continue;
-  const [, name, ascii, cc, lat, lon, tz, ar, tr] = line.split('\t');
-  rows.push({ name, ascii, cc, lat: Number(lat), lon: Number(lon), tz, ar: ar ?? '', tr: tr ?? '' });
+  const [, name, ascii, cc, lat, lon, tz, ar, tr, ur] = line.split('\t');
+  rows.push({ name, ascii, cc, lat: Number(lat), lon: Number(lon), tz, ar: ar ?? '', tr: tr ?? '', ur: ur ?? '' });
 }
 if (rows.length === 0) throw new Error(`no cities parsed from ${IN}`);
 
@@ -66,6 +67,8 @@ mkdirSync(OUT, { recursive: true });
 function displayName(r: Row, locale: Locale): string {
   if (locale === 'ar' && r.ar) return r.ar;
   if (locale === 'tr' && r.tr) return r.tr;
+  // GeoNames' Urdu names occasionally use the Arabic ي ك ه; Urdu pages show the Urdu letters.
+  if (locale === 'ur' && r.ur) return r.ur.replace(/ي/g, 'ی').replace(/ك/g, 'ک').replace(/ه/g, 'ہ');
   return r.name;
 }
 

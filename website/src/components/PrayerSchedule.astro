@@ -23,6 +23,7 @@
 import LocationPicker from './LocationPicker.astro';
 import { appStrings } from '../lib/appStrings.generated';
 import { t, type Locale } from '../i18n';
+import { isArabicScript } from '../lib/format';
 import { PRAYERS } from '../lib/schedule';
 
 interface Props {
@@ -35,8 +36,8 @@ const dict = t(locale).timesPage;
 const app = appStrings[locale];
 const Heading = variant === 'page' ? 'h1' : 'h2';
 
-/** On the Arabic page the calligraphic name would only repeat the Latin column. */
-const showArabic = locale !== 'ar';
+/** On an Arabic-script page (ar, ur) the calligraphic name would only repeat the name column. */
+const showArabic = !isArabicScript(locale);
 
 /**
  * Everything the client script needs to speak this page's language, handed over in the HTML.
@@ -169,7 +170,7 @@ const strings = JSON.stringify({
     color: var(--header);
     min-height: 1.4em; /* reserved, so filling it moves nothing */
   }
-  :global(html[lang='ar']) .times-date {
+  :global(html[dir='rtl']) .times-date {
     letter-spacing: 0; /* tracking severs Arabic joins */
   }
 
@@ -231,7 +232,7 @@ const strings = JSON.stringify({
     font-style: italic;
     color: var(--muted);
   }
-  :global(html[lang='ar']) .times-row-caption {
+  :global(html[dir='rtl']) .times-row-caption {
     font-style: normal; /* no synthetic italic on Arabic */
     font-weight: 500;
   }
@@ -285,7 +286,7 @@ const strings = JSON.stringify({
     font-style: italic;
     color: var(--faint);
   }
-  :global(html[lang='ar']) .times-sunrise-mid {
+  :global(html[dir='rtl']) .times-sunrise-mid {
     font-style: normal;
   }
 

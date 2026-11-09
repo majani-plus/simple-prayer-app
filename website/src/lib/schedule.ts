@@ -10,7 +10,7 @@ import { computeDayTimes, getNextPrayer, getCurrentPrayer } from './domain/praye
 import { formatHijri, toHijri } from './domain/hijri';
 import { isJumuah } from './domain/prayerNames';
 import type { CalculationSettings, Prayer } from './domain/types';
-import { dateFormatter, fill, formatDuration, type Locale, localeTag, timeFormatter, todayInZone } from './format';
+import { dateFormatter, fill, formatDuration, isArabicScript, type Locale, localeTag, timeFormatter, todayInZone } from './format';
 import type { StoredLocation } from './location';
 
 export const PRAYERS: readonly Prayer[] = ['fajr', 'dhuhr', 'asr', 'maghrib', 'isha'];
@@ -144,7 +144,7 @@ export function buildSchedule(
     return {
       prayer,
       name: friday && prayer === 'dhuhr' ? s.prayers.jumuah : s.prayers[prayer],
-      arabicName: locale === 'ar' ? '' : s.prayersArabic[prayer],
+      arabicName: isArabicScript(locale) ? '' : s.prayersArabic[prayer],
       time: at(start),
       caption,
       captionIsLive,

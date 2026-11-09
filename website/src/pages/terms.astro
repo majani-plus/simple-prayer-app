@@ -29,6 +29,7 @@ const description =
 const notices = [
   { lang: 'tr', dir: 'ltr' as const, text: t('tr').termsNotice! },
   { lang: 'ar', dir: 'rtl' as const, text: t('ar').termsNotice! },
+  { lang: 'ur', dir: 'rtl' as const, text: t('ur').termsNotice! },
 ];
 ---
 
@@ -55,6 +56,11 @@ const notices = [
   .policy-notice[lang='ar'] {
     font-style: normal;
     font-family: 'Amiri', 'Geeza Pro', 'Segoe UI', Tahoma, 'Lora', serif;
+  }
+  .policy-notice[lang='ur'] {
+    font-style: normal;
+    font-family: 'Noto Nastaliq Urdu', 'Lora', 'Geeza Pro', 'Segoe UI', Tahoma, serif;
+    line-height: 2.2;
   }
   .policy-body :global(h2) {
     font-size: 1.4rem;

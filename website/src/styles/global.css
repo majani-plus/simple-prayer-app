@@ -59,6 +59,21 @@
   font-style: normal;
   font-display: swap;
 }
+/* Urdu pages are set in Nastaliq (only /ur uses or preloads these). */
+@font-face {
+  font-family: 'Noto Nastaliq Urdu';
+  src: url('/fonts/nastaliq-400.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Noto Nastaliq Urdu';
+  src: url('/fonts/nastaliq-700.woff2') format('woff2');
+  font-weight: 500 700;
+  font-style: normal;
+  font-display: swap;
+}
 /* Latin pages render exactly two short Amiri strings (the CTA calligraphy and the seal demo's
    Arabic prayer name), so `.arabic` tries this ~16 KB text-pinned subset first and only falls
    back to the full ~85 KB Arabic face for glyphs outside it — /ar pages keep full Amiri as
@@ -122,6 +137,21 @@ h4 {
   color: var(--ink);
   margin: 0 0 0.5em;
   text-wrap: balance;
+}
+
+/* Urdu pages: Noto Nastaliq Urdu, the style Urdu is read in. Its body letters are the same height
+   as Noto Naskh's (ہ 404/1000 against ه 408), so the Arabic size carries over. What does not carry
+   over is the line: Nastaliq words slope down from right to left, so its ink reaches about 1.8em
+   above the baseline and 0.6em below it. Lines are spaced to hold that without overlapping.
+   Lora comes second so Latin words (Simple Prayer, iPhone) get Lora, which the page loads anyway;
+   naming Noto Naskh here would make the browser fetch it just to learn it has no Latin. */
+html[lang='ur'] body {
+  font-family: 'Noto Nastaliq Urdu', 'Lora', 'Geeza Pro', 'Segoe UI', Tahoma, Georgia, serif;
+  font-size: 19.5px;
+  line-height: 2.2;
+}
+html[lang='ur'] :is(h1, h2, h3, h4) {
+  line-height: 1.9;
 }
 
 h1 {
@@ -236,7 +266,8 @@ code {
    real even when the webfont is healthy, because `font-display: swap` deliberately paints the
    fallback while Amiri is still downloading. Geeza Pro (Apple), Segoe UI (Windows) and Tahoma all
    shape Arabic properly, so the chain can no longer end anywhere that does not. */
-:lang(ar) .eyebrow {
+:lang(ar) .eyebrow,
+:lang(ur) .eyebrow {
   letter-spacing: 0;
   font-size: 0.92rem;
 }
@@ -258,8 +289,8 @@ code {
    substitution the app makes. And the size is raised for the same optical reason as the body: at
    0.8rem an Arabic body of 433/1000 shows 5.5px against Lora's 6.4px, in the faintest ink on the
    page. This is the combination D54 was written to prevent, reproduced on the site. */
-html[lang='ar'] .caption,
-html[lang='ar'] .hint {
+html[dir='rtl'] .caption,
+html[dir='rtl'] .hint {
   font-style: normal;
   font-size: 0.92rem;
   font-weight: 500;

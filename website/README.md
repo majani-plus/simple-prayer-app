@@ -18,8 +18,9 @@ are **rendered from the repo's audited sources**, so they cannot drift from the 
 | `/blog`, `/blog/<slug>` | Articles, **English-only** (no `/tr` or `/ar` copies, no language switcher, no hreflang). One markdown file per article in `src/content/blog/`; the filename is the slug. Frontmatter: `title`, `description`, `date` (`'YYYY-MM-DD'`), optional `tags`, optional `canonical` (only if first published elsewhere — by default each article is its own canonical, so cross-posts point here). Schema in `src/content.config.ts` |
 | `/404` | Not-found page (`404.html`, picked up automatically by most static hosts) |
 
-Everything except `/privacy` and `/terms` exists in three languages: English at the root, Turkish
-under `/tr`, Arabic (RTL) under `/ar`.
+Everything except `/privacy` and `/terms` exists in four languages: English at the root, Turkish
+under `/tr`, Arabic (RTL) under `/ar`, Urdu (RTL, set in Noto Nastaliq Urdu) under `/ur`. The Urdu
+was written with AI help and is waiting for a native speaker's check; the page says so.
 
 ## Single sources of truth (do not duplicate these)
 
@@ -59,7 +60,8 @@ bun run preview    # serve dist/ locally
 
 ## Fonts
 
-Lora and Amiri are **self-hosted and subsetted** (`public/fonts/*.woff2`, ~120 KB total) so the
+Lora, Amiri, Noto Naskh Arabic and Noto Nastaliq Urdu are **self-hosted and subsetted**
+(`public/fonts/*.woff2`; Nastaliq is ~120 KB a weight and only `/ur` loads it) so the
 site makes no third-party requests — the privacy pledge must be true of the site itself. They are
 generated from the same `@expo-google-fonts` packages the app bundles:
 

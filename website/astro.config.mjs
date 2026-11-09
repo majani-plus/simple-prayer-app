@@ -28,7 +28,7 @@ export default defineConfig({
     sitemap({
       i18n: {
         defaultLocale: 'en',
-        locales: { en: 'en', tr: 'tr', ar: 'ar' },
+        locales: { en: 'en', tr: 'tr', ar: 'ar', ur: 'ur' },
       },
       // /install is served `noindex` (D156) — it is a shortcut to a store, not a page worth
       // finding in search. A noindex URL listed in a sitemap is a Search Console warning, so it

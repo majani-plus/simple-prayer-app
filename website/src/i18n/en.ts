@@ -242,7 +242,7 @@ export const en = {
       h2: 'Made to be easy to read and easy to tap',
       lead: 'Many people who pray five times a day are older, or do not see well, or use a screen reader. The app is built for them too.',
       langs:
-        'The app comes in English, العربية, and Türkçe. Each translation is written by a person who knows the language, never by a machine. Arabic is fully right-to-left, in a font made for Arabic.',
+        'The app comes in English, العربية, Türkçe and اردو. Urdu was written with AI help and has not yet been checked by a native speaker, so corrections are welcome. Arabic and Urdu are fully right-to-left, each in a font made for its script.',
       translate: {
         pre: 'If you speak another language and would like to help translate the app, ',
         linkText: 'read how to help',
@@ -339,7 +339,7 @@ export const en = {
       showTranslation: true,
       h2: 'Get Simple Prayer',
       sub: 'Free on iPhone and Android. Works offline, no account needed. Open source.',
-      langsLine: 'Every feature is free · English · العربية · Türkçe',
+      langsLine: 'Every feature is free · English · العربية · Türkçe · اردو',
     },
   },
 
@@ -472,6 +472,7 @@ export const en = {
         adhan: 'Calculates the prayer times. By Batoul Apps, MIT license.',
         amiri: 'The Arabic font for prayer names, and for Arabic on this site. By Khaled Hosny, SIL Open Font License.',
         naskh: 'The Arabic font for the rest of the app. By Google, SIL Open Font License.',
+        nastaliq: 'The Urdu font, in the app and on this site. By Google, SIL Open Font License.',
         lora: 'The font for English and Turkish, in the app and on this site. By Cyreal, SIL Open Font License.',
         icu: 'Calendar data for the Hijri date. By the Unicode Consortium, Unicode License.',
         geonames: 'The list of cities. CC BY 4.0 license.',
@@ -517,7 +518,7 @@ export const en = {
         },
         {
           q: "Which calculation method does this page use?",
-          a: "The one used in your country: Diyanet in Türkiye, ISNA in North America, Umm al-Qura in Saudi Arabia, and so on. The name of the method is shown under the times. Asr follows the Shafi, Maliki and Hanbali rule: it begins when a shadow is as long as the thing itself.",
+          a: "The one used in your country: Diyanet in Türkiye, ISNA in North America, Umm al-Qura in Saudi Arabia, and so on. The name of the method is shown under the times. Asr follows your country too. In Pakistan, India, Bangladesh and Afghanistan it follows the Hanafi rule: it begins when a shadow is twice as long as the thing itself. Everywhere else it follows the Shafi, Maliki and Hanbali rule: it begins when the shadow is as long as the thing.",
         },
         {
           q: "Why are the times different from my mosque?",

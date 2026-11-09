@@ -74,7 +74,14 @@ const [madeByPre, madeByPost] = dict.chrome.footer.madeBy.split('{author}');
 // Open Graph locale tags (Facebook's identifiers; ar_AR is its pan-Arabic locale).
 // og:locale:alternate means "this page also exists in that locale", so it is emitted only for
 // pages that really have translations (not English-only /privacy, not the 404).
-const ogLocales: Record<Locale, string> = { en: 'en_US', tr: 'tr_TR', ar: 'ar_AR' };
+const ogLocales: Record<Locale, string> = { en: 'en_US', tr: 'tr_TR', ar: 'ar_AR', ur: 'ur_PK' };
+// The two faces each page paints first, preloaded. Urdu is set in Nastaliq, so only /ur fetches it.
+const preloadFonts: Record<Locale, [string, string]> = {
+  en: ['lora-400', 'lora-600'],
+  tr: ['lora-400', 'lora-600'],
+  ar: ['amiri-400', 'amiri-700'],
+  ur: ['nastaliq-400', 'nastaliq-700'],
+};
 const translatedLocales = new Set(alternates.map((a) => a.hreflang));
 const ogLocaleAlternates = (Object.keys(ogLocales) as Locale[])
   .filter((l) => l !== locale && translatedLocales.has(localeMeta[l].htmlLang))
@@ -126,20 +133,9 @@ const jsonLdBlocks = jsonLd.map((obj) => JSON.stringify(obj).replace(/</g, '\\u0
     ))}
     <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ece1c5" />
     <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#20190e" />
-    <link
-      rel="preload"
-      href={locale === 'ar' ? '/fonts/amiri-400.woff2' : '/fonts/lora-400.woff2'}
-      as="font"
-      type="font/woff2"
-      crossorigin
-    />
-    <link
-      rel="preload"
-      href={locale === 'ar' ? '/fonts/amiri-700.woff2' : '/fonts/lora-600.woff2'}
-      as="font"
-      type="font/woff2"
-      crossorigin
-    />
+    {preloadFonts[locale].map((f) => (
+      <link rel="preload" href={`/fonts/${f}.woff2`} as="font" type="font/woff2" crossorigin />
+    ))}
     {/* Palette generated from the app's src/theme/tokens.ts at build time. */}
     <style is:inline set:html={themeCss}></style>
     {/* Re-applies a persisted theme choice BEFORE first paint (no flash of the wrong theme).
@@ -175,7 +171,7 @@ const jsonLdBlocks = jsonLd.map((obj) => JSON.stringify(obj).replace(/</g, '\\u0
       <script is:inline>
         (function () {
           try {
-            var supported = { en: '/', tr: '/tr', ar: '/ar' };
+            var supported = { en: '/', tr: '/tr', ar: '/ar', ur: '/ur' };
             var has = function (l) {
               return Object.prototype.hasOwnProperty.call(supported, l);
             };
@@ -632,7 +628,7 @@ const jsonLdBlocks = jsonLd.map((obj) => JSON.stringify(obj).replace(/</g, '\\u0
     color: var(--muted);
     font-size: 0.9em;
   }
-  :global(html[lang='ar']) .footer-tagline {
+  :global(html[dir='rtl']) .footer-tagline {
     font-style: normal;
   }
   .footer-pledge {

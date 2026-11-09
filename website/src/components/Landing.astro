@@ -9,7 +9,7 @@ import PrayerSchedule from './PrayerSchedule.astro';
 import SealIcon from './SealIcon.astro';
 import StoreButtons from './StoreButtons.astro';
 import PhoneFrame from './PhoneFrame.astro';
-import { pagePath, t, type Locale } from '../i18n';
+import { locales, pagePath, t, type Locale } from '../i18n';
 
 // Real captures of the real app (docs/screenshots/README.md) — imported from the repo's audited
 // set, never copied, so the site always shows what the app actually looks like. Each locale's
@@ -93,6 +93,8 @@ const shots: Record<Locale, Record<'hero' | 'dark', ImageMetadata>> = {
   en: { hero: heroEn, dark: darkEn },
   tr: { hero: heroTr, dark: darkTr },
   ar: { hero: heroAr, dark: darkAr },
+  // No Urdu captures exist yet; until they do, /ur shows the English ones.
+  ur: { hero: heroEn, dark: darkEn },
 };
 /**
  * One capture per feature band, in the order `d.features.bands` declares them. `null` means the
@@ -103,6 +105,7 @@ const bandShots: Record<Locale, readonly (ImageMetadata | null)[]> = {
   en: [bandSealEn, bandHistoryEn, bandQiblaEn, bandQadaEn, bandTravelEn],
   tr: [bandSealTr, bandHistoryTr, bandQiblaTr, bandQadaTr, bandTravelTr],
   ar: [bandSealAr, bandHistoryAr, bandQiblaAr, bandQadaAr, bandTravelAr],
+  ur: [bandSealEn, bandHistoryEn, bandQiblaEn, bandQadaEn, bandTravelEn],
 };
 /**
  * The watch capture per locale, `null` when a locale's capture does not exist yet — the slot
@@ -112,21 +115,24 @@ const watchShots: Record<Locale, ImageMetadata | null> = {
   en: watchEn,
   tr: watchTr,
   ar: watchAr,
+  ur: watchEn,
 };
 
-const tabletShots: Record<Locale, ImageMetadata> = { en: tabletEn, tr: tabletTr, ar: tabletAr };
+const tabletShots: Record<Locale, ImageMetadata> = { en: tabletEn, tr: tabletTr, ar: tabletAr, ur: tabletEn };
 
-const notifShots: Record<Locale, ImageMetadata> = { en: notifEn, tr: notifTr, ar: notifAr };
+const notifShots: Record<Locale, ImageMetadata> = { en: notifEn, tr: notifTr, ar: notifAr, ur: notifEn };
 const wearTodayShots: Record<Locale, ImageMetadata> = {
   en: wearTodayEn,
   tr: wearTodayTr,
   ar: wearTodayAr,
+  ur: wearTodayEn,
 };
-const tileShots: Record<Locale, ImageMetadata> = { en: tileEn, tr: tileEn, ar: tileAr };
+const tileShots: Record<Locale, ImageMetadata> = { en: tileEn, tr: tileEn, ar: tileAr, ur: tileEn };
 const complicationShots: Record<Locale, ImageMetadata> = {
   en: complicationEn,
   tr: complicationEn,
   ar: complicationAr,
+  ur: complicationEn,
 };
 
 /**
@@ -194,7 +200,7 @@ const jsonLd = [
     operatingSystem: 'iOS, Android, watchOS, Wear OS',
     applicationCategory: 'LifestyleApplication',
     description: d.description,
-    inLanguage: ['en', 'tr', 'ar'],
+    inLanguage: locales,
     isAccessibleForFree: true,
     offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
     url: new URL('/', Astro.site).href,
@@ -231,7 +237,7 @@ const jsonLd = [
     '@type': 'WebSite',
     name: site.name,
     url: new URL('/', Astro.site).href,
-    inLanguage: ['en', 'tr', 'ar'],
+    inLanguage: locales,
   },
   // The visible FAQ below, verbatim — built from the same dict, so schema and page can never
   // diverge. One FAQPage per page: /support has its own, with different (post-install) questions.

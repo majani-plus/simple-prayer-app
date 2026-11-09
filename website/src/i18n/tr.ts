@@ -229,7 +229,7 @@ export const tr: SiteDict = {
       h2: 'Okunması ve dokunması kolay olsun diye',
       lead: 'Günde beş vakit namaz kılan pek çok insan ya yaşça büyük, ya az görüyor ya da ekran okuyucu kullanıyor. Uygulama onlar düşünülerek yapıldı.',
       langs:
-        'Uygulama İngilizce, العربية ve Türkçe konuşur. Her çeviri o dilde elle yazıldı; makine çevirisi değil. Arapça baştan sona sağdan sola, Arapça için yapılmış bir yazıyla.',
+        'Uygulama İngilizce, العربية, Türkçe ve اردو dillerinde. Urduca yapay zekâ yardımıyla yazıldı ve henüz anadili Urduca olan biri tarafından kontrol edilmedi; düzeltmelerinizi bekliyoruz. Arapça ve Urduca baştan sona sağdan soladır. İkisi de kendi yazısı için yapılmış bir yazı tipiyle gösterilir.',
       translate: {
         pre: 'Başka bir dil konuşuyorsan ve uygulamanın çevirisine yardım etmek istersen, ',
         linkText: 'nasıl yardım edebileceğini oku',
@@ -325,7 +325,7 @@ export const tr: SiteDict = {
       showTranslation: true,
       h2: "Simple Prayer'ı edin",
       sub: "iPhone ve Android'de ücretsiz. İnternetsiz çalışır, hesap gerekmez. Açık kaynak.",
-      langsLine: 'Bütün özellikler ücretsiz · English · العربية · Türkçe',
+      langsLine: 'Bütün özellikler ücretsiz · English · العربية · Türkçe · اردو',
     },
   },
 
@@ -458,6 +458,7 @@ export const tr: SiteDict = {
         adhan: 'Namaz vakitlerini hesaplar. Batoul Apps, MIT lisansı.',
         amiri: 'Namaz adları için Arapça yazı tipi. Bu sitedeki Arapça da onunla yazılır. Khaled Hosny, SIL Open Font License.',
         naskh: 'Uygulamadaki diğer Arapça yazılar için yazı tipi. Google, SIL Open Font License.',
+        nastaliq: 'Urduca için yazı tipi; hem uygulamada hem bu sitede. Google, SIL Open Font License.',
         lora: 'İngilizce ve Türkçe için yazı tipi; hem uygulamada hem bu sitede. Cyreal, SIL Open Font License.',
         icu: 'Hicri tarih için takvim verisi. Unicode Consortium, Unicode lisansı.',
         geonames: 'Şehir listesi. CC BY 4.0 lisansı.',
@@ -503,7 +504,7 @@ export const tr: SiteDict = {
         },
         {
           q: "Bu sayfa hangi hesaplama yöntemini kullanıyor?",
-          a: "Ülkende kullanılan yöntemi: Türkiye’de Diyanet İşleri Başkanlığı, Kuzey Amerika’da ISNA, Suudi Arabistan’da Ümmü’l-Kurâ gibi. Yöntemin adı vakitlerin altında yazar. İkindi Şâfiî, Mâlikî ve Hanbelî ölçüsüne göredir: bir şeyin gölgesi kendi boyuna ulaştığında girer.",
+          a: "Ülkende kullanılan yöntemi: Türkiye’de Diyanet İşleri Başkanlığı, Kuzey Amerika’da ISNA, Suudi Arabistan’da Ümmü’l-Kurâ gibi. Yöntemin adı vakitlerin altında yazar. İkindi de ülkene uyar. Pakistan, Hindistan, Bangladeş ve Afganistan’da Hanefî ölçüsüne göredir: gölge bir şeyin boyunun iki katına ulaştığında girer. Diğer yerlerde Şâfiî, Mâlikî ve Hanbelî ölçüsüne göredir: gölge kendi boyuna ulaştığında girer.",
         },
         {
           q: "Vakitler neden camimdekinden farklı?",

@@ -22,7 +22,7 @@
  *
  * Run automatically by `bun run build`.
  */
-import { copyFileSync, mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { copyFileSync, existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -93,7 +93,7 @@ for (const name of MODULES) {
  * only way that survives a copy edit in either place.
  * ---------------------------------------------------------------------------------------------- */
 
-const LOCALES = ['en', 'ar', 'tr'] as const;
+const LOCALES = ['en', 'ar', 'tr', 'ur'] as const;
 
 /**
  * Anything here is a sentence the app already says. The site must say it the same way — a reader
@@ -139,10 +139,34 @@ const LOCATION_KEYS = [
   'chooseCity', 'searchPlaceholder', 'searching', 'noResults', 'retry',
 ] as const;
 
+const localeFile = (locale: string) => join(REPO, 'src', 'i18n', 'locales', `${locale}.json`);
+
+/** `over` laid on `base`, key by key: what `over` lacks, `base` supplies. */
+function merge(base: any, over: any): any {
+  if (typeof base !== 'object' || base === null || typeof over !== 'object' || over === null) {
+    return over ?? base;
+  }
+  const out: any = { ...base };
+  for (const [k, v] of Object.entries(over)) out[k] = merge(base[k], v);
+  return out;
+}
+
+/**
+ * Urdu is newer than the other three and may be partial (or, before the app's file lands, absent).
+ * Missing keys fall back to English so the site always builds, and the build says so out loud.
+ */
+function readLocale(locale: string): any {
+  const own = existsSync(localeFile(locale)) ? JSON.parse(readFileSync(localeFile(locale), 'utf8')) : null;
+  if (locale !== 'ur') {
+    if (!own) throw new Error(`missing ${localeFile(locale)}`);
+    return own;
+  }
+  if (!own) console.warn(`generate-domain: ${localeFile(locale)} not found — /ur uses English app strings`);
+  return merge(JSON.parse(readFileSync(localeFile('en'), 'utf8')), own ?? {});
+}
+
 function stringsFor(locale: string): AppStrings {
-  const raw = JSON.parse(
-    readFileSync(join(REPO, 'src', 'i18n', 'locales', `${locale}.json`), 'utf8')
-  );
+  const raw = readLocale(locale);
   const { arabic, ...prayers } = raw.prayers;
   return {
     prayers,
@@ -192,7 +216,7 @@ export interface AppStrings {
   methods: Record<string, string>;
 }
 
-export const appStrings: Record<'en' | 'ar' | 'tr', AppStrings> = ${JSON.stringify(strings, null, 2)};
+export const appStrings: Record<'en' | 'ar' | 'tr' | 'ur', AppStrings> = ${JSON.stringify(strings, null, 2)};
 `;
 
 writeFileSync(join(HERE, '..', 'src', 'lib', 'appStrings.generated.ts'), stringsFile);

@@ -1,5 +1,5 @@
 /**
- * Site localisation: en (default, at /), tr (/tr/), ar (/ar/, RTL).
+ * Site localisation: en (default, at /), tr (/tr/), ar (/ar/, RTL), ur (/ur/, RTL).
  *
  * Terminology rule: concepts the app already names use the app's exact words
  * (src/i18n/locales/*.json at the repo root) — Kaza namazları / Özel günler / Esnek / Kararlı,
@@ -13,11 +13,12 @@
 import { en } from './en';
 import { tr } from './tr';
 import { ar } from './ar';
+import { ur } from './ur';
 
-export type Locale = 'en' | 'tr' | 'ar';
+export type Locale = 'en' | 'tr' | 'ar' | 'ur';
 export type SiteDict = typeof en;
 
-const dicts: Record<Locale, SiteDict> = { en, tr, ar };
+const dicts: Record<Locale, SiteDict> = { en, tr, ar, ur };
 
 export function t(locale: Locale): SiteDict {
   return dicts[locale];
@@ -30,9 +31,13 @@ export const localeMeta: Record<
   en: { htmlLang: 'en', dir: 'ltr', name: 'English' },
   tr: { htmlLang: 'tr', dir: 'ltr', name: 'Türkçe' },
   ar: { htmlLang: 'ar', dir: 'rtl', name: 'العربية' },
+  ur: { htmlLang: 'ur', dir: 'rtl', name: 'اردو' },
 };
 
-export const locales: Locale[] = ['en', 'tr', 'ar'];
+export const locales: Locale[] = ['en', 'tr', 'ar', 'ur'];
+
+/** Right-to-left pages (ar, ur). Script-level rules key off this, not off one language. */
+export const isRtl = (locale: Locale): boolean => localeMeta[locale].dir === 'rtl';
 
 /**
  * Pages that exist per locale, and where each lives. Privacy AND terms are English-only: both

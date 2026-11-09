@@ -11,7 +11,10 @@
  * page first shipped 48 KB of marketing copy nobody reads. Strings arrive as parameters, from the
  * page that already knows its own language.
  */
-export type Locale = 'en' | 'ar' | 'tr';
+export type Locale = 'en' | 'ar' | 'tr' | 'ur';
+
+/** Pages written in Arabic script (ar, ur): Arabic punctuation, no Arabic-name sidekick. */
+export const isArabicScript = (locale: Locale): boolean => locale === 'ar' || locale === 'ur';
 
 /** The duration vocabulary, lifted from the app's locale files (see appStrings.generated). */
 export interface TimeStrings {
@@ -32,8 +35,12 @@ export interface TimeStrings {
  * fall to D40's step 3 — bare `ar` means `latn`, the digits every Arabic reader can read.
  *
  * The tag is pinned either way, so a CLDR update cannot silently change what the page shows.
+ *
+ * Urdu is always Western digits (docs/TONE.md), whatever the browser's region says: `ur-IN`
+ * would otherwise resolve to Extended Arabic-Indic digits.
  */
 export function localeTag(locale: Locale): string {
+  if (locale === 'ur') return 'ur-u-nu-latn';
   if (locale !== 'ar') return locale;
   const nav = typeof navigator !== 'undefined' ? navigator.language : '';
   const region = /^ar-([A-Za-z]{2})\b/.exec(nav ?? '');

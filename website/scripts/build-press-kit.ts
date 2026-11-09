@@ -142,21 +142,23 @@ const logoZip = await logos();
 const shots = Object.fromEntries(
   await Promise.all(['en', 'ar', 'tr'].map(async (l) => [l, await screenshots(l)] as const))
 );
-const LANGS: Locale[] = ['en', 'ar', 'tr'];
+const LANGS: Locale[] = ['en', 'ar', 'tr', 'ur'];
+// There are no Urdu captures yet: the Urdu kit carries the Urdu fact sheet and the English screens.
+const shotLang = (l: Locale) => (l === 'ur' ? 'en' : l);
 
 write('simple-prayer-icon-1024.png', readFileSync(join(REPO, 'assets', 'images', 'icon.png')));
 write('simple-prayer-logos.zip', zip(logoZip));
 for (const l of LANGS) {
   const sheet = text(factSheet(l));
   write(`simple-prayer-fact-sheet-${l}.txt`, sheet);
-  write(`simple-prayer-screenshots-${l}.zip`, zip(shots[l]));
+  if (l !== 'ur') write(`simple-prayer-screenshots-${l}.zip`, zip(shots[l]));
   write(
     `simple-prayer-press-kit-${l}.zip`,
     zip({
       [`simple-prayer-press-kit-${l}`]: {
         'fact-sheet.txt': sheet,
         logos: logoZip,
-        [`screenshots-${l}`]: shots[l],
+        [`screenshots-${shotLang(l)}`]: shots[shotLang(l)],
         'link-preview-1200x630.png': readFileSync(join(SITE, 'public', 'og.png')),
         'feature-graphic-1024x500.png': readFileSync(join(REPO, 'docs', 'screenshots', 'graphics', 'play-feature-graphic.png')),
       },

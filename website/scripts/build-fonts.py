@@ -75,6 +75,10 @@ JOBS = [
     ("amiri/400Regular/Amiri_400Regular.ttf", "amiri-400.woff2", ARABIC_UNICODES, None),
     ("amiri/700Bold/Amiri_700Bold.ttf", "amiri-700.woff2", ARABIC_UNICODES, None),
     ("amiri/400Regular/Amiri_400Regular.ttf", "amiri-cta-400.woff2", None, AMIRI_CTA_TEXT),
+    # Urdu is set in Nastaliq, the script style Urdu readers expect (Naskh reads as Arabic to
+    # them). Same Arabic-block subset; only /ur pages use or preload it.
+    ("noto-nastaliq-urdu/400Regular/NotoNastaliqUrdu_400Regular.ttf", "nastaliq-400.woff2", ARABIC_UNICODES, None),
+    ("noto-nastaliq-urdu/700Bold/NotoNastaliqUrdu_700Bold.ttf", "nastaliq-700.woff2", ARABIC_UNICODES, None),
 ]
 
 

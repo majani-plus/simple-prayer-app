@@ -10,7 +10,7 @@
  * It is loaded with a dynamic `import()` — deliberately, because that is `script-src` and a
  * `fetch()` would be `connect-src`, which stays shut.
  */
-import type { Locale } from './format';
+import { isArabicScript, type Locale } from './format';
 
 export interface StoredLocation {
   /** Degrees. From the browser, or the city's own coordinates. */
@@ -110,15 +110,18 @@ export interface City {
 
 let cache: City[] | null = null;
 
+/** One lazily-imported chunk per locale (each is its own file, so /ur never downloads /tr's names). */
+const cityChunks: Record<Locale, () => Promise<{ zones: readonly string[]; packed: string }>> = {
+  en: () => import('./cities/en'),
+  tr: () => import('./cities/tr'),
+  ar: () => import('./cities/ar'),
+  ur: () => import('./cities/ur'),
+};
+
 /** Loads and parses the locale's city chunk. Cached: it is ~40 KB and never changes. */
 export async function loadCities(locale: Locale): Promise<City[]> {
   if (cache) return cache;
-  const mod =
-    locale === 'ar'
-      ? await import('./cities/ar')
-      : locale === 'tr'
-        ? await import('./cities/tr')
-        : await import('./cities/en');
+  const mod = await cityChunks[locale]();
   const zones = mod.zones;
   cache = mod.packed.split('\n').map((line) => {
     const [name, alias, countryCode, lat, lon, zoneIndex] = line.split('\t');
@@ -201,5 +204,5 @@ export function cityLabel(city: City, locale: Locale, tag: string): string {
   } catch {
     /* Intl.DisplayNames is old enough to rely on, but the code alone still reads fine. */
   }
-  return locale === 'ar' ? `${city.name}، ${country}` : `${city.name}, ${country}`;
+  return isArabicScript(locale) ? `${city.name}، ${country}` : `${city.name}, ${country}`;
 }
