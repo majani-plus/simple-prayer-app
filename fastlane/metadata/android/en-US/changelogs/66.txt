@@ -1,0 +1,5 @@
+• Simple Prayer is now in Urdu, set in Nastaliq.
+• Asr follows your country: Hanafi in Pakistan, India, Bangladesh and Afghanistan. You can change it in Settings.
+• Marking a prayer is quicker, with one crisp click.
+• The app is now open source. The link is in Settings › About.
+• Travel mode is gone for now. Your prayer log is not changed.

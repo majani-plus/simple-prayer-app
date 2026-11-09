@@ -79,9 +79,9 @@ RepoType: git
 Repo: https://github.com/majani-plus/simple-prayer-app.git
 
 Builds:
-  - versionName: 1.7.0
-    versionCode: 65
-    commit: release/v1.7.0
+  - versionName: 1.7.1
+    versionCode: 66
+    commit: release/v1.7.1
     sudo:
       - apt-get update
       - apt-get install -y nodejs npm openjdk-17-jdk-headless
@@ -102,8 +102,8 @@ AllowedAPKSigningKeys: 572dceeaf681c6aafc975277eb99f7555953244d3c0c7711683d2dd6b
 AutoUpdateMode: Version
 UpdateCheckMode: Tags ^release/v.*$
 UpdateCheckData: package.json|"versionCode":\s*(\d+)|package.json|"version":\s*"([^"]+)"
-CurrentVersion: 1.7.0
-CurrentVersionCode: 65
+CurrentVersion: 1.7.1
+CurrentVersionCode: 66
 ```
 
 (`AllowedAPKSigningKeys` is the SHA-256 above, lowercase, without colons or spaces; it only

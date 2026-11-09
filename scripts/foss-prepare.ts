@@ -43,6 +43,13 @@ import { join, resolve } from 'path';
 export const FOSS_ANDROID_EXCLUDE = [
   '@sentry/react-native',
   'expo-application',
+  // The development client. It is linked into release builds too, and with expo-updates off (the
+  // FOSS build has no update server) its launcher took over at startup and looked for Metro on
+  // 127.0.0.1:8081 instead of running the bundled app. A release APK never needs it.
+  'expo-dev-client',
+  'expo-dev-launcher',
+  'expo-dev-menu',
+  'expo-dev-menu-interface',
   'expo-location',
   'expo-store-review',
   'react-native-purchases',

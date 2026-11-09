@@ -451,9 +451,23 @@ export function AppText({
     merged.fontFamily = fonts.arabicUiSemiBold;
   }
 
+  // **Android wraps a Nastaliq label it measured as fitting** (D210). Its line breaker counts how
+  // far the last letter's swash overhangs its advance (ے، ی، ں reach ~0.4 em past it); React
+  // Native's measurement does not. A shrink-wrapped label then wraps when drawn, into a box one
+  // line tall, and its last word vanishes. A trailing figure space (U+2007: no glyph, not trimmed
+  // at a line end, never a break point) gives the swash room inside the measured width.
+  const overhangPad = resolvedScript === 'urdu' && Platform.OS === 'android' ? '\u2007' : null;
+  const content = splitTabular ? tabularSpans(children as string) : children;
   return (
     <Text style={merged} {...rest}>
-      {splitTabular ? tabularSpans(children as string) : children}
+      {overhangPad === null ? (
+        content
+      ) : (
+        <>
+          {content}
+          {overhangPad}
+        </>
+      )}
     </Text>
   );
 }

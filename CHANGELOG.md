@@ -11,11 +11,15 @@ would recognise, not commit subjects.
 
 ## [Unreleased]
 
-### Added
-
-### Changed
-
 ### Fixed
+
+- **Urdu on Android:** some labels lost their last word. Android counted how far the last letter's
+  tail reaches; the label's measured width did not. They now show in full.
+- **Adhan sound on Android, for people who already had the app:** Android keeps a reminder
+  channel's sound from the day it was made, so the adhan channels are made again, this time with
+  the recordings in them.
+- **The version without Google** started as a development build and looked for a computer to load
+  from. It now starts on its own.
 
 ## [1.7.0] - 2026-11-09
 

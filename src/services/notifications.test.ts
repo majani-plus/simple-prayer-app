@@ -950,6 +950,10 @@ describe('android channels', () => {
       false
     );
     expect(isStaleAdhanChannel('adhan-adhan-makkah-v999', 'menk')).toBe(false);
+    // An adhan channel from an older version froze a sound this build replaced (D212): stale,
+    // even for the voice in use. Older silent and system channels are still left alone.
+    expect(isStaleAdhanChannel(`adhan-adhan-makkah-v${CHANNEL_VERSION - 1}`, 'makkah')).toBe(true);
+    expect(isStaleAdhanChannel(`adhan-system-v${CHANNEL_VERSION - 1}`, 'makkah')).toBe(false);
     expect(isStaleAdhanChannel('', 'menk')).toBe(false);
   });
 

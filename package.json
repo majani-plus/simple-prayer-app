@@ -2,7 +2,7 @@
   "name": "simple-prayer-times",
   "main": "index.ts",
   "version": "1.7.0",
-  "versionCode": 65,
+  "versionCode": 66,
   "dependencies": {
     "@bacons/apple-targets": "^5.0.0",
     "@expo-google-fonts/amiri": "^0.4.1",

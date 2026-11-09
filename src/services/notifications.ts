@@ -186,8 +186,15 @@ import type {
  * the first Android build that carried them failed on the duplicate-resource bug, so the window
  * was real rather than theoretical. An owner's tester reported hearing no adhan, which is exactly
  * this. Bumping the version is the only repair; it costs a set of unused channels.
+ *
+ * **v3 — the same failure, from a different cause (D212).** Release builds shrink resources, and
+ * the shrinker deleted `res/raw/adhan_*` because expo-notifications looks them up by name, which
+ * no static analysis can see. Every Android release since shrinking was turned on therefore
+ * created its adhan channels with the default sound frozen in. `withKeepNotificationSounds` keeps
+ * the files now; this bump re-mints the channels so existing installs get the adhan too. Adhan
+ * channels of an older version are now deleted by {@link pruneStaleAdhanChannels} rather than left.
  */
-export const CHANNEL_VERSION = 2;
+export const CHANNEL_VERSION = 3;
 
 /** The Android ongoing/persistent notification's channel (PRODUCT_SPEC §11, off by default). */
 export const ONGOING_CHANNEL_ID = `ongoing-v${CHANNEL_VERSION}`;
@@ -243,7 +250,7 @@ export function channelIdFor(
  * No token in an id contains a hyphen (kinds and voices are single lowercase/camel words), so this
  * cannot mis-parse an id we produced, and anything it does not match is left strictly alone.
  */
-const ADHAN_CHANNEL_ID = new RegExp(`^[A-Za-z]+-adhan(?:-([a-z]+))?-v${CHANNEL_VERSION}$`);
+const ADHAN_CHANNEL_ID = /^[A-Za-z]+-adhan(?:-([a-z]+))?-v(\d+)$/;
 
 /**
  * Whether an existing Android channel is an adhan channel carrying a recitation nobody is using.
@@ -259,6 +266,11 @@ const ADHAN_CHANNEL_ID = new RegExp(`^[A-Za-z]+-adhan(?:-([a-z]+))?-v${CHANNEL_V
 export function isStaleAdhanChannel(id: string, voice: AdhanVoice): boolean {
   const match = ADHAN_CHANNEL_ID.exec(id);
   if (match === null) return false;
+  // A channel from an older CHANNEL_VERSION holds a frozen sound this build replaced; always stale.
+  // One from a newer version is not ours to judge (a downgrade), and is left alone.
+  const version = Number(match[2]);
+  if (version < CHANNEL_VERSION) return true;
+  if (version > CHANNEL_VERSION) return false;
   // The legacy voiceless form names a sound file this build does not ship; it is always stale.
   return match[1] !== voice;
 }
