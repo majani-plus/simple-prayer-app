@@ -486,6 +486,9 @@ recognise. The script only moves what is already there; it cannot invent release
 # FOSS_KEYSTORE_* secrets exist (docs/FDROID.md). Until then, sign the workflow artifact by hand.
 
 # Google Play: the universal APK Google builds and signs from our bundle, once Play has processed it.
+# ONLY with Play's automatic integrity protection turned off (Play Console › App integrity): while it
+# is on, Google adds a licence check (com.pairip.licensecheck) and a downloaded copy just opens the
+# Play Store. website/src/config.ts keeps apkPlayUrl null until then.
 fastlane run download_universal_apk_from_google_play package_name:app.simpleprayer \
   version_code:N json_key:fastlane/play_service_account.json destination:simple-prayer-play.apk
 gh release upload vX.Y.Z simple-prayer-play.apk --clobber
