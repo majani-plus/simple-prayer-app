@@ -1,0 +1,42 @@
+name: IndexNow
+
+# Tells Bing (and through it Copilot and ChatGPT search, plus Yandex, Naver, Seznam and Yep) that
+# the site changed, so new and edited pages are crawled within hours instead of weeks
+# (docs/DECISIONS.md D207). The key is public by design: it is the file
+# website/public/8f87fd4368e4e874baf2ccd29520796f.txt, which proves the request comes from the site's owner.
+#
+# Cloudflare Pages deploys the site from main on its own, so this waits until the live site
+# serves the commit's sitemap before pinging. Nothing secret, nothing sent but our own URLs.
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'website/**'
+      - 'docs/PRIVACY_POLICY.md'
+      - 'docs/TERMS_OF_USE.md'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Wait for the deploy
+        run: |
+          # Cloudflare Pages usually finishes in two to three minutes.
+          sleep 240
+          for i in $(seq 1 20); do
+            if curl -fsS "https://simpleprayer.app/8f87fd4368e4e874baf2ccd29520796f.txt" | grep -q "8f87fd4368e4e874baf2ccd29520796f"; then exit 0; fi
+            sleep 30
+          done
+          echo "The key file is not live yet; giving up for this push." && exit 1
+      - name: Submit every URL in the sitemap
+        run: |
+          urls=$(curl -fsS https://simpleprayer.app/sitemap-0.xml | grep -o '<loc>[^<]*</loc>' | sed -e 's/<loc>//' -e 's#</loc>##' | python3 -c 'import json,sys; print(json.dumps([l.strip() for l in sys.stdin if l.strip()]))')
+          body=$(python3 -c "import json,sys; print(json.dumps({'host':'simpleprayer.app','key':'8f87fd4368e4e874baf2ccd29520796f','keyLocation':'https://simpleprayer.app/8f87fd4368e4e874baf2ccd29520796f.txt','urlList':json.loads(sys.argv[1])}))" "$urls")
+          code=$(curl -sS -o /tmp/out -w '%{http_code}' -X POST https://api.indexnow.org/indexnow -H 'Content-Type: application/json; charset=utf-8' -d "$body")
+          echo "IndexNow answered $code"; cat /tmp/out || true
+          # 200 = accepted, 202 = accepted and the key is being checked.
+          [ "$code" = 200 ] || [ "$code" = 202 ]
