@@ -1,0 +1,65 @@
+---
+/**
+ * Plain questions and answers under a tool (/times, /qibla).
+ *
+ * The tools draw everything in the browser, so without this a crawler or an answer engine sees a
+ * heading, a city picker and nothing else. This is the same information the support page and the
+ * app already give, said once, as text, where people search for it (D208). It is static: no
+ * disclosure widgets, so every answer is readable without JavaScript.
+ *
+ * The page passes `faqJsonLd(items)` to Base, so its FAQPage data is built from the very strings
+ * shown here; nothing is in the data that is not on the page.
+ */
+interface Props {
+  heading: string;
+  items: { q: string; a: string }[];
+}
+const { heading, items } = Astro.props;
+---
+
+<section class="section tool-faq" aria-labelledby="tool-faq-heading">
+  <div class="container tool-faq-wrap">
+    <h2 id="tool-faq-heading">{heading}</h2>
+    {
+      items.map((it) => (
+        <div class="tool-faq-item">
+          <h3>{it.q}</h3>
+          <p>{it.a}</p>
+        </div>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  .tool-faq {
+    padding-top: 0;
+  }
+
+  .tool-faq-wrap {
+    max-width: 640px;
+  }
+
+  .tool-faq h2 {
+    margin: 0 0 1rem;
+  }
+
+  .tool-faq-item {
+    padding: 1rem 0;
+    border-top: 1px solid var(--border-faint);
+  }
+
+  .tool-faq-item h3 {
+    margin: 0 0 0.4rem;
+    font-size: 1.05rem;
+  }
+
+  :global(html[lang='ar']) .tool-faq-item h3 {
+    font-size: 1.2rem;
+  }
+
+  .tool-faq-item p {
+    margin: 0;
+    color: var(--muted);
+  }
+</style>

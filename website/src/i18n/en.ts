@@ -508,15 +508,44 @@ export const en = {
     noScript:
       'This page needs JavaScript to work out the times, because it does the whole calculation on your device instead of asking a server.',
     credit: 'City list from GeoNames.',
+    about: {
+      heading: "About these times",
+      items: [
+        {
+          q: "How are prayer times calculated?",
+          a: "Each time comes from where the sun is in the sky at your location. Dhuhr is just after midday, when the sun is highest. Maghrib is at sunset. Fajr and Isha begin when the sun is a set angle below the horizon, and that angle depends on the calculation method. Asr begins when a shadow reaches a set length.",
+        },
+        {
+          q: "Which calculation method does this page use?",
+          a: "The one used in your country: Diyanet in Türkiye, ISNA in North America, Umm al-Qura in Saudi Arabia, and so on. The name of the method is shown under the times. Asr follows the Shafi, Maliki and Hanbali rule: it begins when a shadow is as long as the thing itself.",
+        },
+        {
+          q: "Why are the times different from my mosque?",
+          a: "A mosque may use a different method, the Hanafi rule for Asr (about an hour later), or add a few minutes to be careful. In the Simple Prayer app you can change the method, choose Hanafi or Shafi Asr, and move each prayer by up to 30 minutes to match your mosque.",
+        },
+        {
+          q: "What about places far north?",
+          a: "In summer, in places such as northern Europe, the sky may not get dark enough for the usual Fajr and Isha angles. A special rule then sets those two times. In the app you can choose the rule yourself.",
+        },
+        {
+          q: "Does this page work offline?",
+          a: "Yes. After you open it once and choose a place, it works without a connection.",
+        },
+        {
+          q: "Does this page send my location anywhere?",
+          a: "No. The times are worked out on your device. Your location is not sent to us or to anyone else.",
+        },
+      ],
+    },
   },
 
   /** The qibla tool at /qibla. */
   qiblaPage: {
     navLabel: 'Qibla',
-    title: 'Qibla direction — Simple Prayer',
+    title: 'Qibla direction from your location — Simple Prayer',
     description:
       'Which way to face for prayer, and how far Makkah is, worked out in your browser. Your location never leaves your device.',
-    heading: 'Which way to face',
+    heading: 'Qibla direction',
     lead: 'The direction is worked out from where you are. It is correct on any device, whether or not the dial can turn.',
     enableCompass: 'Turn on the compass',
     compassBlocked:
@@ -527,6 +556,35 @@ export const en = {
     tabTimes: 'Prayer times',
     tabQibla: 'Qibla',
     toolNav: 'Prayer times and qibla',
+    about: {
+      heading: "About the qibla",
+      items: [
+        {
+          q: "What is the qibla?",
+          a: "The qibla is the direction of the Kaaba in Makkah. Muslims face it in every prayer, wherever they are in the world.",
+        },
+        {
+          q: "How is the direction worked out?",
+          a: "From your position and the position of the Kaaba (about 21.42° N, 39.83° E). The page follows the shortest path over the round earth, called a great circle. The number is measured clockwise from true north.",
+        },
+        {
+          q: "Why does the qibla point north-east from North America?",
+          a: "On a flat map, Makkah looks south-east of North America. But the earth is round, and the shortest path from there to Makkah goes over the Atlantic toward the north-east. From New York, for example, the qibla is about 58° from north. Some communities use the south-east direction from a flat map. This page follows the shortest path.",
+        },
+        {
+          q: "How do I get a good compass reading?",
+          a: "Hold the phone flat, away from metal, magnets and electrical devices. If the reading jumps, move the phone slowly in a figure eight a few times so it can correct itself. If your browser has no compass, use the number in degrees with any compass you trust.",
+        },
+        {
+          q: "Does this page send my location anywhere?",
+          a: "No. The direction is worked out on your device. Your location is not sent to us or to anyone else.",
+        },
+        {
+          q: "Is there an app?",
+          a: "Yes. Simple Prayer is free on iPhone, Android, Apple Watch and Wear OS, with no ads and no account, and it is open source. Its compass is steadier and does not need the phone flat.",
+        },
+      ],
+    },
   },
 
   /** The /install shortcut: one URL that sends each visitor to their own store (D156). */

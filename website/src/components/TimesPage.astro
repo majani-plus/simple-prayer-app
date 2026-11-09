@@ -9,6 +9,8 @@
 import Base from '../layouts/Base.astro';
 import PrayerSchedule from './PrayerSchedule.astro';
 import ToolTabs from './ToolTabs.astro';
+import ToolFaq from './ToolFaq.astro';
+import { faqJsonLd } from '../lib/faq';
 import { pagePath, t, type Locale } from '../i18n';
 
 interface Props {
@@ -24,9 +26,11 @@ const dict = t(locale).timesPage;
   path={pagePath('times', locale)}
   locale={locale}
   page="times"
+  jsonLd={[faqJsonLd(dict.about.items)]}
 >
   <div class="section container tabs-wrap"><ToolTabs locale={locale} current="times" /></div>
   <PrayerSchedule locale={locale} variant="page" />
+  <ToolFaq heading={dict.about.heading} items={dict.about.items} />
 </Base>
 
 <style>

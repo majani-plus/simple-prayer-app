@@ -494,14 +494,43 @@ export const tr: SiteDict = {
     noScript:
       'Bu sayfa vakitleri hesaplamak için JavaScript gerektirir, çünkü hesabı bir sunucuya sormak yerine senin cihazında yapar.',
     credit: 'Şehir listesi: GeoNames.',
+    about: {
+      heading: "Bu vakitler hakkında",
+      items: [
+        {
+          q: "Namaz vakitleri nasıl hesaplanıyor?",
+          a: "Her vakit, bulunduğun yerde güneşin gökyüzündeki konumundan hesaplanır. Öğle, güneşin en yüksek noktayı geçtiği andan hemen sonradır. Akşam, güneş batınca girer. Sabah ve yatsı, güneş ufkun belirli bir açı altına inince başlar; bu açı hesaplama yöntemine göre değişir. İkindi, gölge belirli bir uzunluğa ulaşınca başlar.",
+        },
+        {
+          q: "Bu sayfa hangi hesaplama yöntemini kullanıyor?",
+          a: "Ülkende kullanılan yöntemi: Türkiye’de Diyanet İşleri Başkanlığı, Kuzey Amerika’da ISNA, Suudi Arabistan’da Ümmü’l-Kurâ gibi. Yöntemin adı vakitlerin altında yazar. İkindi Şâfiî, Mâlikî ve Hanbelî ölçüsüne göredir: bir şeyin gölgesi kendi boyuna ulaştığında girer.",
+        },
+        {
+          q: "Vakitler neden camimdekinden farklı?",
+          a: "Cami farklı bir yöntem, ikindi için Hanefî ölçüsü (yaklaşık bir saat sonra) kullanabilir ya da ihtiyat için birkaç dakika ekleyebilir. Simple Prayer uygulamasında yöntemi değiştirebilir, Hanefî ya da Şâfiî ikindiyi seçebilir ve her vakti 30 dakikaya kadar kaydırarak caminle eşleştirebilirsin.",
+        },
+        {
+          q: "Çok kuzeydeki yerlerde ne oluyor?",
+          a: "Yazın, Kuzey Avrupa gibi yerlerde gökyüzü, alışılmış sabah ve yatsı açıları için yeterince kararmayabilir. O zaman bu iki vakti özel bir kural belirler. Uygulamada bu kuralı kendin seçebilirsin.",
+        },
+        {
+          q: "Bu sayfa internetsiz çalışır mı?",
+          a: "Evet. Bir kez açıp bir yer seçtikten sonra bağlantı olmadan da çalışır.",
+        },
+        {
+          q: "Bu sayfa konumumu bir yere gönderiyor mu?",
+          a: "Hayır. Vakitler cihazında hesaplanır. Konumun ne bize ne de başka birine gönderilir.",
+        },
+      ],
+    },
   },
 
   qiblaPage: {
     navLabel: 'Kıble',
-    title: 'Kıble yönü — Simple Prayer',
+    title: 'Bulunduğun yerden kıble yönü — Simple Prayer',
     description:
       'Namaz için hangi yöne döneceğin ve Mekke’nin ne kadar uzakta olduğu, tarayıcında hesaplanır. Konumun cihazından çıkmaz.',
-    heading: 'Hangi yöne dönmelisin',
+    heading: 'Kıble yönü',
     lead: 'Yön, bulunduğun yere göre hesaplanır. Kadran dönebilsin ya da dönemesin, her cihazda doğrudur.',
     enableCompass: 'Pusulayı aç',
     compassBlocked:
@@ -512,6 +541,35 @@ export const tr: SiteDict = {
     tabTimes: 'Namaz vakitleri',
     tabQibla: 'Kıble',
     toolNav: 'Namaz vakitleri ve kıble',
+    about: {
+      heading: "Kıble hakkında",
+      items: [
+        {
+          q: "Kıble nedir?",
+          a: "Kıble, Mekke’deki Kâbe’nin yönüdür. Müslümanlar dünyanın neresinde olurlarsa olsunlar her namazda bu yöne döner.",
+        },
+        {
+          q: "Yön nasıl hesaplanıyor?",
+          a: "Senin konumundan ve Kâbe’nin konumundan (yaklaşık 21,42° K, 39,83° D). Sayfa, yuvarlak dünya üzerindeki en kısa yolu izler; buna büyük daire denir. Sayı, coğrafi kuzeyden saat yönünde ölçülür.",
+        },
+        {
+          q: "Kuzey Amerika’da kıble neden kuzeydoğuyu gösteriyor?",
+          a: "Düz bir haritada Mekke, Kuzey Amerika’nın güneydoğusunda görünür. Ama dünya yuvarlaktır ve oradan Mekke’ye en kısa yol Atlas Okyanusu’nun üzerinden kuzeydoğuya gider. Örneğin New York’tan kıble, kuzeyden yaklaşık 58°’dir. Bazı topluluklar düz haritadaki güneydoğu yönünü kullanır. Bu sayfa en kısa yolu izler.",
+        },
+        {
+          q: "Pusuladan nasıl doğru bir değer alırım?",
+          a: "Telefonu düz tut; metalden, mıknatıstan ve elektrikli cihazlardan uzak dur. Değer zıplıyorsa telefonu birkaç kez yavaşça 8 çizer gibi hareket ettir, böylece kendini düzeltir. Tarayıcında pusula yoksa, derece cinsinden sayıyı güvendiğin bir pusulayla kullanın.",
+        },
+        {
+          q: "Bu sayfa konumumu bir yere gönderiyor mu?",
+          a: "Hayır. Yön cihazında hesaplanır. Konumun ne bize ne de başka birine gönderilir.",
+        },
+        {
+          q: "Uygulaması var mı?",
+          a: "Evet. Simple Prayer; iPhone, Android, Apple Watch ve Wear OS’ta ücretsizdir. Reklam ve hesap yoktur, açık kaynaktır. Pusulası daha kararlıdır ve telefonun düz durmasını gerektirmez.",
+        },
+      ],
+    },
   },
 
 
