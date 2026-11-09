@@ -105,8 +105,8 @@ decision, describe it in the PR and leave the ID to us.
 2. Make a branch from `main`. Keep each pull request to one change.
 3. Add or update tests. Logic in `src/domain/` needs unit tests.
 4. Run the checks above.
-5. If you changed text, change it in English, Arabic and Turkish, or say in the PR which
-   languages still need a fluent speaker.
+5. If you changed text, change it in every language the app ships (English, Arabic, Turkish and
+   Urdu), or say in the PR which languages still need text.
 6. Open the pull request and fill in the template. Screenshots help for anything you can see.
 
 A maintainer will review it. We may ask for changes, and we may say no to a change that does not

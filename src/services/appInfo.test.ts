@@ -127,6 +127,7 @@ describe('bundled fonts', () => {
       'Lora',
       'Amiri',
       'Noto Naskh Arabic',
+      'Noto Nastaliq Urdu',
       'Material Symbols',
     ]);
     for (const font of BUNDLED_FONTS) {

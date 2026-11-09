@@ -22,9 +22,10 @@ licence in its package.
 | Lora | The Lora Project Authors (Cyreal) | SIL Open Font License 1.1, with Reserved Font Name "Lora" | `licenses/OFL-1.1.txt` |
 | Amiri | The Amiri Project Authors (Khaled Hosny) | SIL Open Font License 1.1 | `licenses/OFL-1.1.txt` |
 | Noto Naskh Arabic | The Noto Project Authors | SIL Open Font License 1.1 | `licenses/OFL-1.1.txt` |
+| Noto Nastaliq Urdu | The Noto Project Authors | SIL Open Font License 1.1 | `licenses/OFL-1.1.txt` |
 | Material Symbols | Google | Apache License 2.0 | `licenses/Apache-2.0.txt` |
 
-Lora, Amiri and Noto Naskh Arabic come from the `@expo-google-fonts` packages. Material Symbols
+Lora, Amiri, Noto Naskh Arabic and Noto Nastaliq Urdu come from the `@expo-google-fonts` packages. Material Symbols
 comes from `@expo-google-fonts/material-symbols` and from the two Material Symbols Rounded files
 in `assets/fonts/`. The fonts are not changed. Because the name "Lora" is reserved, a changed
 version of that font could not be called "Lora".
@@ -33,6 +34,7 @@ version of that font could not be called "Lora".
   with Reserved Font Name "Lora".
 - Amiri: Copyright 2010-2022 The Amiri Project Authors (https://github.com/aliftype/amiri).
 - Noto Naskh Arabic: Copyright 2022 The Noto Project Authors (https://github.com/notofonts/arabic).
+- Noto Nastaliq Urdu: Copyright 2022 The Noto Project Authors (https://github.com/notofonts/nastaliq).
 
 ## Hijri calendar: the Umm al-Qura month table
 

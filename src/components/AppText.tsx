@@ -9,7 +9,8 @@ import {
   type TextStyle,
 } from 'react-native';
 
-import { arabicTypeScale, fonts, type as typeScale, useTheme } from '@/theme';
+import { scriptFamilyFor, type ScriptFamily } from '@/i18n/direction';
+import { fonts, type as typeScale, typeScaleFor, urduMinLeading, useTheme } from '@/theme';
 
 /** Built up field by field; RN 0.87's style types are read-only. */
 type MutableTextStyle = { -readonly [K in keyof TextStyle]: TextStyle[K] };
@@ -165,6 +166,43 @@ function arabicUiFamily(weight: AppTextWeight): string {
 }
 
 /**
+ * Urdu UI text in Noto Nastaliq Urdu (D210). Two files: 600 and up is Bold, the rest Regular.
+ * Like Arabic, no italic.
+ */
+function urduUiFamily(weight: AppTextWeight): string {
+  return weight >= 600 ? fonts.urduUiBold : fonts.urduUi;
+}
+
+/**
+ * The script a variant renders in under a UI language.
+ *
+ * The calligraphy variants (`heroArabic`, `rowArabic`, the qibla title) stay Arabic in Amiri for
+ * every language but one: in Urdu their text is Urdu (`prayers.arabic.*` holds the Urdu names in
+ * ur.json), and Nastaliq is itself the calligraphy, so they are set in it (D210).
+ */
+function scriptFor(specScript: VariantSpec['script'], language: string): ScriptFamily {
+  const family = scriptFamilyFor(language);
+  if (specScript === 'arabic') return family === 'urdu' ? 'urdu' : 'arabic';
+  return family;
+}
+
+/** The family for one resolved script; `specScript` picks Amiri over Naskh for calligraphy. */
+function familyFor(
+  script: ScriptFamily,
+  specScript: VariantSpec['script'],
+  weight: AppTextWeight,
+  italic: boolean
+): string {
+  if (script === 'urdu') return urduUiFamily(weight);
+  if (script === 'arabic') {
+    return specScript === 'arabic' ? arabicCalligraphyFamily(weight) : arabicUiFamily(weight);
+  }
+  return latinFamily(weight, italic);
+}
+
+
+
+/**
  * The family, size and alignment an `<AppText>` of this variant would resolve to — for the two
  * `TextInput`s, which cannot be `AppText`.
  *
@@ -187,14 +225,10 @@ export function useTextFieldStyle(
   const { i18n } = useTranslation();
   const spec = VARIANTS[variant];
   const resolvedWeight = weight ?? spec.weight;
-  const arabic = spec.script === 'arabic' || i18n.language.startsWith('ar');
+  const script = scriptFor(spec.script, i18n.language);
   return {
-    fontFamily: arabic
-      ? spec.script === 'arabic'
-        ? arabicCalligraphyFamily(resolvedWeight)
-        : arabicUiFamily(resolvedWeight)
-      : latinFamily(resolvedWeight, false),
-    fontSize: arabic && spec.script === 'latin' ? spec.size * arabicTypeScale : spec.size,
+    fontFamily: familyFor(script, spec.script, resolvedWeight, false),
+    fontSize: spec.script === 'latin' ? spec.size * typeScaleFor(script) : spec.size,
     textAlign: 'left',
   };
 }
@@ -253,12 +287,8 @@ export function AppText({
   const spec = VARIANTS[variant];
 
   const resolvedWeight = weight ?? spec.weight;
-  const resolvedScript =
-    script === 'auto'
-      ? spec.script === 'arabic' || i18n.language.startsWith('ar')
-        ? 'arabic'
-        : 'latin'
-      : script;
+  const resolvedScript: ScriptFamily =
+    script === 'auto' ? scriptFor(spec.script, i18n.language) : script;
   const resolvedItalic = (italic ?? spec.italic ?? false) && resolvedScript === 'latin';
 
   const tones: Record<AppTextTone, string> = {
@@ -275,12 +305,7 @@ export function AppText({
   // Calligraphy or UI: the variant decides, not the language. `heroArabic` and `rowArabic` are
   // set in Arabic whatever the UI language, and they are the two that stay in Amiri.
   const resolved: MutableTextStyle = {
-    fontFamily:
-      resolvedScript === 'arabic'
-        ? spec.script === 'arabic'
-          ? arabicCalligraphyFamily(resolvedWeight)
-          : arabicUiFamily(resolvedWeight)
-        : latinFamily(resolvedWeight, resolvedItalic),
+    fontFamily: familyFor(resolvedScript, spec.script, resolvedWeight, resolvedItalic),
     fontSize: spec.size,
     color: color ?? tones[tone ?? spec.tone],
   };
@@ -320,10 +345,11 @@ export function AppText({
   // is how the Makkah badge on the compass and the reminder-health notice ended up with their
   // kashida joins opened. Deleting it here fixes both call sites without editing either, and
   // closes the hole for the next one. Latin keeps every value it asked for.
-  if (resolvedScript === 'arabic') delete merged.letterSpacing;
-  if (resolvedScript === 'arabic' && spec.script === 'latin') {
-    merged.fontSize = (merged.fontSize ?? spec.size) * arabicTypeScale;
-    if (merged.lineHeight !== undefined) merged.lineHeight *= arabicTypeScale;
+  if (resolvedScript !== 'latin') delete merged.letterSpacing;
+  if (resolvedScript !== 'latin' && spec.script === 'latin') {
+    const scale = typeScaleFor(resolvedScript);
+    merged.fontSize = (merged.fontSize ?? spec.size) * scale;
+    if (merged.lineHeight !== undefined) merged.lineHeight *= scale;
   }
   // **A Latin leading is not a floor an Arabic line can stand on.** Latin sets its leading against
   // an x-height and a shallow descender; Arabic stacks marks above the letter and drops tails well
@@ -346,6 +372,13 @@ export function AppText({
   if (resolvedScript === 'arabic' && spec.script === 'latin' && merged.lineHeight !== undefined) {
     const size = merged.fontSize ?? spec.size;
     merged.lineHeight = Math.max(merged.lineHeight, size * ARABIC_MIN_LEADING);
+  }
+  // **Nastaliq gets a floor on every line, set or not** (D210). Its ink stacks diagonally and
+  // reaches twice as high as Naskh's (see `urduMinLeading`). Left unset, RN would take the font's
+  // own 2.5 em line box, which wastes half a line on every row; set too low, the stacks clip.
+  if (resolvedScript === 'urdu') {
+    const size = merged.fontSize ?? spec.size;
+    merged.lineHeight = Math.max(merged.lineHeight ?? 0, size * urduMinLeading);
   }
   // **Sub-13px Arabic steps up a weight** (spec-accessibility §3, owner item B, D54).
   //

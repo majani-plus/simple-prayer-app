@@ -53,6 +53,7 @@
  */
 
 import type { AppLocation, Coordinates } from '../domain/types';
+import { scriptFamilyFor } from '../i18n/script';
 
 // ---------------------------------------------------------------------------
 // Adapter contract
@@ -292,7 +293,7 @@ function placeSeparator(): string {
     // resolve, which can race startup). The same lazy-require shape `services/notifications` uses.
     // eslint-disable-next-line @typescript-eslint/no-require-imports
     const language = (require('@/i18n').default as { language?: string }).language ?? '';
-    return language.startsWith('ar') ? '\u060C ' : ', ';
+    return scriptFamilyFor(language) === 'latin' ? ', ' : '\u060C ';
   } catch {
     return ', ';
   }

@@ -1,7 +1,7 @@
 # Translating Simple Prayer
 
-Simple Prayer is in English, Arabic and Turkish. If you speak another language, or you can make
-one of these better, thank you. This page explains how.
+Simple Prayer is in English, Arabic, Turkish and Urdu. If you speak another language, or you can
+make one of these better, thank you. This page explains how.
 
 ## First step: open a translation issue
 
@@ -13,9 +13,10 @@ you in touch with others working on the same language.
 
 ## The rule
 
-**Every word is written by a fluent speaker, and checked by a second fluent speaker.** Never use
-machine translation, not even as a first draft to fix up. The website promises this to every
-reader, so we cannot accept text that breaks it.
+**Write for the reader, and say how the text was made.** A language may start from a machine or
+AI draft. Urdu did (D210). A fluent speaker's review is always welcome, and a correction from
+someone who reads the language every day is the most useful help we get. If a language has not yet
+been checked by a native speaker, the website says so plainly.
 
 Write the language the way its readers speak it. A locale file is not a copy of the English one.
 If a sentence would sound better said another way in your language, say it the other way. Keep
@@ -45,8 +46,8 @@ of why people trust the app.
 
 ## Improving an existing language
 
-1. Find the text in `src/i18n/locales/ar.json`, `tr.json` or `en.json`. Search for the English
-   words you see in the app.
+1. Find the text in `src/i18n/locales/ar.json`, `tr.json`, `ur.json` or `en.json`. Search for
+   the English words you see in the app.
 2. Change the value, not the key. Keep any `{{placeholders}}` exactly as they are.
 3. Some text also lives outside those files: widgets, watches and the website. The list below
    shows where. If the same sentence is there too, change it there as well.
@@ -66,6 +67,9 @@ or `id`). Copy what Turkish does, or Arabic if the language is written right to 
   `import '@formatjs/intl-pluralrules/locale-data/xx.js';` beside the others so plurals work.
 - `src/i18n/direction.ts`: if the language is written right to left, make sure it is in
   `RTL_LANGUAGES`.
+- `src/i18n/script.ts`: `scriptFamilyFor` decides which fonts draw the language. A new script
+  needs a font in `src/theme/typography.ts` and `app.json`, and a case in `AppText`, like Urdu's
+  Nastaliq (D210).
 - `src/i18n/numerals.ts`: decides which digits a language shows. If your readers use their own
   digits (as many Arabic readers do), check what `numberingSystemFor` does for your language.
 - `src/domain/types.ts`: add `'xx'` to `LanguagePreference`.

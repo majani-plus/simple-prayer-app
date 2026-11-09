@@ -1,5 +1,7 @@
 import { Platform } from 'react-native';
 
+import type { ScriptFamily } from '@/i18n/script';
+
 /**
  * Font families, embedded in the native app by the `expo-font` config plugin (`app.json`).
  *
@@ -9,6 +11,9 @@ import { Platform } from 'react-native';
  *   title and the watch face. Its 400 is the brand, and it stays exactly where it was.
  * - **Noto Naskh Arabic** carries Arabic *UI* text: everything a Latin-designed variant renders
  *   once the language is Arabic. It exists here because Amiri cannot do that job — see below.
+ * - **Noto Nastaliq Urdu** carries Urdu UI text (D210). Urdu readers expect Nastaliq, and read
+ *   Naskh as Arabic. Its ink is about twice as tall as Naskh's, so `AppText` gives it its own
+ *   leading floor ({@link urduMinLeading}).
  *
  * **Why the names differ per platform.** The fourteen files used to be loaded at runtime by
  * `useFonts` in the root layout, and the splash stayed up until all ~2.5 MB were read and
@@ -38,6 +43,10 @@ export const fonts = {
   arabicUiMedium: family('NotoNaskhArabic_500Medium', 'NotoNaskhArabic-Medium'),
   arabicUiSemiBold: family('NotoNaskhArabic_600SemiBold', 'NotoNaskhArabic-SemiBold'),
   arabicUiBold: family('NotoNaskhArabic_700Bold', 'NotoNaskhArabic-Bold'),
+  // Urdu UI text (D210). Two weights, not four: Nastaliq's strokes carry less weight contrast, and
+  // each file is ~0.5 MB.
+  urduUi: family('NotoNastaliqUrdu_400Regular', 'NotoNastaliqUrdu-Regular'),
+  urduUiBold: family('NotoNastaliqUrdu_700Bold', 'NotoNastaliqUrdu-Bold'),
   iconFilled: family('MaterialSymbolsRounded-Filled', 'MaterialSymbolsRounded-Regular'),
   iconOutlined: family('MaterialSymbolsRounded-Outlined', 'MaterialSymbolsOutline-Regular'),
 } as const;
@@ -72,6 +81,30 @@ export const fonts = {
  * variants (`heroArabic`, `rowArabic`) picked their sizes for Amiri already and are exempt.
  */
 export const arabicTypeScale = 1.15;
+
+/**
+ * Urdu's size step, applied in `AppText` exactly like {@link arabicTypeScale}. Nastaliq at the
+ * same nominal size already reads about as large as Lora, so it starts at 1 (D210).
+ */
+export const urduTypeScale = 1;
+
+/**
+ * The tightest leading an Urdu line may be set at, in ems (D210). Shaped Nastaliq ink, measured
+ * from the shipped TTF, reaches 1.79 em above the baseline and 0.60 em below it, against Naskh's
+ * 0.82 and 0.31. A Latin leading would clip the stacked letters, so every Urdu line gets at least
+ * this, whether or not the variant set a line height.
+ */
+export const urduMinLeading = 2;
+
+/**
+ * The size step for a Latin-designed size set in another script — the one number `AppText`, the
+ * seal pill and the tip cards all multiply by, so they can never disagree.
+ */
+export function typeScaleFor(script: ScriptFamily): number {
+  if (script === 'urdu') return urduTypeScale;
+  if (script === 'arabic') return arabicTypeScale;
+  return 1;
+}
 
 /** Key type sizes from the 2a design (at 390pt reference width), retuned for legibility (D74). */
 export const type = {

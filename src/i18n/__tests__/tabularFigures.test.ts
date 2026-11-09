@@ -156,6 +156,22 @@ describe('Noto Naskh Arabic — the face Arabic UI text is set in', () => {
   });
 });
 
+describe('Noto Nastaliq Urdu — the face Urdu UI text is set in (D210)', () => {
+  // Urdu reads Western digits, so that is the column that has to hold.
+  it.each([
+    [
+      'Noto Nastaliq 400',
+      'node_modules/@expo-google-fonts/noto-nastaliq-urdu/400Regular/NotoNastaliqUrdu_400Regular.ttf',
+    ],
+    [
+      'Noto Nastaliq 700',
+      'node_modules/@expo-google-fonts/noto-nastaliq-urdu/700Bold/NotoNastaliqUrdu_700Bold.ttf',
+    ],
+  ])('%s draws all ten Western digits at one width', (_name, path) => {
+    expect(new Set(digitAdvances(path, WESTERN)).size).toBe(1);
+  });
+});
+
 describe('Lora — the Latin face', () => {
   it.each([
     ['Lora 400', 'node_modules/@expo-google-fonts/lora/400Regular/Lora_400Regular.ttf'],

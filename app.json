@@ -94,6 +94,8 @@
             "./node_modules/@expo-google-fonts/lora/700Bold/Lora_700Bold.ttf",
             "./node_modules/@expo-google-fonts/amiri/400Regular/Amiri_400Regular.ttf",
             "./node_modules/@expo-google-fonts/amiri/700Bold/Amiri_700Bold.ttf",
+            "./node_modules/@expo-google-fonts/noto-nastaliq-urdu/400Regular/NotoNastaliqUrdu_400Regular.ttf",
+            "./node_modules/@expo-google-fonts/noto-nastaliq-urdu/700Bold/NotoNastaliqUrdu_700Bold.ttf",
             "./node_modules/@expo-google-fonts/noto-naskh-arabic/400Regular/NotoNaskhArabic_400Regular.ttf",
             "./node_modules/@expo-google-fonts/noto-naskh-arabic/500Medium/NotoNaskhArabic_500Medium.ttf",
             "./node_modules/@expo-google-fonts/noto-naskh-arabic/600SemiBold/NotoNaskhArabic_600SemiBold.ttf",

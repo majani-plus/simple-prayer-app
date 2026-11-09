@@ -39,6 +39,7 @@ import { I18nManager } from 'react-native';
 import type { TextDirection } from './bidi';
 
 export type { TextDirection };
+export { scriptFamilyFor, type ScriptFamily } from './script';
 
 /**
  * The languages this app renders right-to-left. A `Set` rather than a regex so adding Hebrew or

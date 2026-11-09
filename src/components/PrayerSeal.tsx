@@ -26,14 +26,8 @@ import { Icon, type IconName } from './Icon';
 import { PressableScale } from './PressableScale';
 import type { LoggableStatus, Prayer, PrayerStatus } from '@/domain/types';
 import { useReduceMotion } from '@/hooks/useReduceMotion';
-import {
-  arabicTypeScale,
-  contentWidth,
-  motion,
-  radius,
-  type as typeScale,
-  useTheme,
-} from '@/theme';
+import { scriptFamilyFor } from '@/i18n/direction';
+import { contentWidth, motion, radius, type as typeScale, typeScaleFor, useTheme } from '@/theme';
 import { markTap } from '@/utils/perfMarks';
 
 /**
@@ -158,7 +152,7 @@ export interface SealPillMetrics {
  * @param fontScale - The OS Dynamic Type multiplier (`useWindowDimensions().fontScale`). Values
  *   below 1 are ignored: the mockup's geometry is the floor, never something to shrink past.
  * @param opticalScale - The per-language optical multiplier `AppText` applies to the label
- *   (`arabicTypeScale` in Arabic, otherwise 1).
+ *   (`typeScaleFor` the UI language's script).
  * @param maxWidth - Hard ceiling on the pill's width; the option targets divide what is left.
  * @returns The pill's width, height and option target size, in points.
  */
@@ -342,7 +336,7 @@ export function PrayerSeal({
   const { fontScale, width: windowWidth } = useWindowDimensions();
   const pill = sealPillMetrics(
     fontScale,
-    i18n.language.startsWith('ar') ? arabicTypeScale : 1,
+    typeScaleFor(scriptFamilyFor(i18n.language)),
     contentWidth(windowWidth) * PILL_MAX_WIDTH_RATIO
   );
 

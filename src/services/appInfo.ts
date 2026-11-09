@@ -58,7 +58,7 @@ export const FEEDBACK_URL: string | null = 'https://simpleprayer.featurebase.app
 // bundle. The `ADHAN_SOURCE_*` and `CC0_LICENSE_*` constants that used to sit here belonged to the
 // CC0 recording removed on the same day, and went with it (D81).
 
-/** The SIL Open Font License 1.1 — Lora, Amiri and Noto Naskh Arabic. */
+/** The SIL Open Font License 1.1 — Lora, Amiri, Noto Naskh Arabic and Noto Nastaliq Urdu. */
 export const OFL_LICENSE_URL = 'https://openfontlicense.org/';
 
 /** The Apache License 2.0 — the Material Symbols glyphs. */
@@ -82,6 +82,7 @@ export const BUNDLED_FONTS: readonly BundledFont[] = [
   { name: 'Lora', author: 'Cyreal', licenseUrl: OFL_LICENSE_URL },
   { name: 'Amiri', author: 'Khaled Hosny', licenseUrl: OFL_LICENSE_URL },
   { name: 'Noto Naskh Arabic', author: 'The Noto Project Authors', licenseUrl: OFL_LICENSE_URL },
+  { name: 'Noto Nastaliq Urdu', author: 'The Noto Project Authors', licenseUrl: OFL_LICENSE_URL },
   { name: 'Material Symbols', author: 'Google', licenseUrl: APACHE_LICENSE_URL },
 ];
 

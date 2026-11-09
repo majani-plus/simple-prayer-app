@@ -217,7 +217,7 @@ TypeScript computes everything; native code parses, selects a segment, overlays 
 
 - TypeScript strict; no `any` in domain; exhaustive switch on status enums.
 - **Documentation discipline (D33):** every `src/domain` module gets a header comment stating its contract + JSDoc on exported functions (the semantics ARE the product — day boundary, streaks, qada math). Components get a one-line purpose comment only where non-obvious. `docs/ARCHITECTURE.md` updated whenever structure changes; `docs/PRODUCT_SPEC.md` updated whenever behavior decisions change (with a DECISIONS.md entry).
-- i18n: no hardcoded user-facing strings outside `src/i18n/locales/*`; keys namespaced (`today.`, `qada.`, `settings.`…). Arabic copy authored, not machine-mirrored; numerals via locale-aware formatter.
+- i18n: no hardcoded user-facing strings outside `src/i18n/locales/*`; keys namespaced (`today.`, `qada.`, `settings.`…). each language written for its readers, not mirrored from English word for word (AI drafts allowed, D210); numerals via locale-aware formatter.
 - Times displayed via a single `formatTime` util respecting locale + 12/24h.
 - Tests colocated `*.test.ts` next to domain modules; component tests in `__tests__/`.
 - Commits: small, self-contained, imperative mood; every commit leaves the internal task board consistent with the code.

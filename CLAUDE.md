@@ -90,7 +90,7 @@ against same files. Keep prop + call-site in same edit round.
 - Never request precise or Always location; coarse/while-using only.
 - Domain logic live in `src/domain/` — pure TS, no React/RN imports, exhaustive unit-tested.
 - Day-boundary logic ONLY in `src/domain/dates.ts` (prayer day = Fajr→next Fajr).
-- No hardcoded user-facing strings — all through i18n (en/ar/tr); Arabic/Turkish copy authored, not machine-mirrored.
+- No hardcoded user-facing strings — all through i18n (en/ar/tr/ur); each language written for its readers, never mirrored word for word. AI-written text allowed (Urdu, D210); say so honestly in public copy.
 - **All copy follow `docs/TONE.md`** — app, website, store listings, store screens, notifications.
   Read before writing user-facing word. Short version: no idioms, no catchphrases, no marketing
   voice; short sentences; warm but never childish; readable by ten-year-old or by someone whose

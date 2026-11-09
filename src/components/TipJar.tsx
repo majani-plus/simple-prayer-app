@@ -10,7 +10,8 @@ import { useAnnounceChange } from '@/hooks/useAnnounceChange';
 import { getTipJarService, type TipJarService, type TipJarState, type TipTier } from '@/services/purchases';
 import { noteSessionMoment } from '@/services/supportMoments';
 import { getTipLedger, type TipLedger, type TipLedgerStore } from '@/stores/tipLedger';
-import { arabicTypeScale, radius, spacing, useTheme } from '@/theme';
+import { scriptFamilyFor } from '@/i18n/direction';
+import { radius, spacing, typeScaleFor, useTheme } from '@/theme';
 
 import type { ReactNode } from 'react';
 
@@ -217,7 +218,7 @@ export function TipJar({
 
   // The price cards' layout has to know how big the type actually is, not how big it was designed
   // to be; see `tipTierLayout`. Arabic carries its own optical scale on top of the OS one.
-  const priceScale = fontScale * (i18n.language.startsWith('ar') ? arabicTypeScale : 1);
+  const priceScale = fontScale * typeScaleFor(scriptFamilyFor(i18n.language));
 
   if (!configured || state === null || state.status === 'disabled') return null;
 

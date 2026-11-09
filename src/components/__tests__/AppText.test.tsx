@@ -247,6 +247,31 @@ describe('AppText', () => {
     }
   });
 
+  it('sets Urdu in Nastaliq, two weights, with room for its tall letters (D210)', async () => {
+    await act(async () => {
+      await i18n.changeLanguage('ur');
+    });
+    await render(
+      <>
+        <AppText variant="rowName">نماز</AppText>
+        <AppText variant="rowName" weight={400} style={{ lineHeight: 20, letterSpacing: 1 }}>
+          مغرب
+        </AppText>
+        {/* The calligraphy variants carry Urdu text in Urdu, and Nastaliq is the calligraphy. */}
+        <AppText variant="heroArabic">عصر</AppText>
+      </>
+    );
+    const bold = styleOf('نماز');
+    const regular = styleOf('مغرب');
+    expect(bold.fontFamily).toBe(fonts.urduUiBold);
+    expect(regular.fontFamily).toBe(fonts.urduUi);
+    expect(styleOf('عصر').fontFamily).toBe(fonts.urduUi);
+    // Every Urdu line gets the floor, set by the variant or not.
+    expect(bold.lineHeight).toBeGreaterThanOrEqual((bold.fontSize ?? 0) * 2);
+    expect(regular.lineHeight).toBeGreaterThanOrEqual((regular.fontSize ?? 0) * 2);
+    expect(regular.letterSpacing).toBeUndefined();
+  });
+
   it('never sets Arabic in a synthesized italic', async () => {
     // Arabic has no italic; a slanted naskh is a Latin habit imposed on a script that rejects it.
     await act(async () => {
