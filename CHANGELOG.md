@@ -15,8 +15,17 @@ would recognise, not commit subjects.
 
 - **Open source:** the app's code is now open source under the MIT licence. The name
   "Simple Prayer" and its icon are not part of that licence (see `TRADEMARKS.md`).
+- **Urdu:** the app, its widgets and watches, and the website now come in Urdu. In the app and on
+  the website Urdu is set in Nastaliq; widgets and watches use Naskh, which fits their small
+  spaces. The Urdu was written with AI help and has not yet been checked by a native speaker.
+  Corrections are welcome.
 
 ### Changed
+
+- **Asr follows your country.** The new default, Auto, uses the Hanafi Asr in Pakistan, India,
+  Bangladesh and Afghanistan, and the majority Asr everywhere else. If you never changed the Asr
+  setting, it is now Auto. If you chose Hanafi, nothing changes. You can still choose Shafi or
+  Hanafi in Settings › Prayer times.
 
 - **Marking prayers:** tapping seals one after another no longer stutters. The seals open and
   close faster, press in like a button and spring back, and a mark gives one crisp click instead

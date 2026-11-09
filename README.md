@@ -36,8 +36,10 @@ unlocks nothing.
   and a Wear OS watch face called Manuscript.
 - **Prayer buddies.** If you and someone you choose both turn it on, each of you can see that the
   other prayed today. It is off until you turn it on.
-- **Three languages.** English, Arabic and Turkish. The Arabic and Turkish text is written for
-  its readers, not copied word for word from the English. Arabic is laid out right to left.
+- **Four languages.** English, Arabic, Turkish and Urdu. Each is written for its readers, not
+  copied word for word from the English. The Urdu was written with AI help and has not yet been
+  checked by a native speaker, so corrections are welcome. Arabic and Urdu are laid out right to
+  left, and Urdu is set in Nastaliq.
 
 ## Privacy
 
@@ -84,6 +86,8 @@ Simple Prayer is built on other people's careful work. Thank you to all of them.
   prayer names and other large Arabic words.
 - **[Noto Naskh Arabic](https://github.com/notofonts/arabic)** from the Noto project is the
   Arabic typeface for the rest of the Arabic text.
+- **[Noto Nastaliq Urdu](https://github.com/notofonts/nastaliq)** from the Noto project is the
+  Urdu typeface.
 - **[Lora](https://github.com/cyrealtype/Lora-Cyrillic)** by Cyreal is the Latin typeface.
 - **[ICU](https://icu.unicode.org/)** (International Components for Unicode) gave us the table of
   Umm al-Qura month lengths behind the Hijri date.
