@@ -58,14 +58,20 @@ jobs:
       - name: Build the release APK
         working-directory: android
         run: ./gradlew :app:assembleRelease
-      - name: Check the APK carries no unlicensed recordings and no Google services
+      # Read the resource TABLE, not file names: the release build shortens resource paths
+      # (res/raw/adhan_free_makkah.mp3 ships as something like res/Zq.mp3), so `unzip -l` cannot
+      # see which recordings are inside.
+      - name: Check the APK carries only the free adhan recordings
         run: |
           APK=android/app/build/outputs/apk/release/app-release.apk
-          if unzip -l "$APK" | grep -E 'adhan_(makkah|alqatami|menk|fakhry)(_clip)?\.|com/google/(firebase|android/gms)'; then
-            echo "::error::The APK contains a non-free file."
+          AAPT2="$(ls -d "$ANDROID_HOME"/build-tools/* | sort -V | tail -1)/aapt2"
+          "$AAPT2" dump resources "$APK" > apk-resources.txt
+          if grep -E 'raw/(assets_audio_)?adhan_(makkah|alqatami|menk|fakhry)(_clip)?$' apk-resources.txt; then
+            echo "::error::The APK contains a recording whose rights are unconfirmed."
             exit 1
           fi
-          unzip -l "$APK" | grep -E 'adhan_free_' || { echo "::error::No free adhan recordings in the APK."; exit 1; }
+          grep -E 'raw/adhan_free_' apk-resources.txt \
+            || { echo "::error::No free adhan notification sounds in the APK."; exit 1; }
       - uses: actions/upload-artifact@v4
         with:
           name: simple-prayer-foss-apk
