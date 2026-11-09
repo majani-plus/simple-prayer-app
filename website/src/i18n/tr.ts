@@ -52,13 +52,13 @@ export const tr: SiteDict = {
   home: {
     title: 'Simple Prayer: Namaz Vakitleri, Kıble ve Namaz Takibi — Reklamsız, Ücretsiz',
     description:
-      'Doğru namaz vakitleri (Diyanet dahil), nazik bir namaz takibi ve bir kıble pusulası. İnternetsiz çalışır. Bütün özellikler ücretsiz: reklam yok, hesap yok, izleme yok.',
+      'Doğru namaz vakitleri (Diyanet dahil), nazik bir namaz takibi ve bir kıble pusulası. İnternetsiz çalışır. Bütün özellikler ücretsiz: reklam yok, hesap yok, izleme yok. Açık kaynak.',
     hero: {
       h1Pre: 'Namaz vakitleri, kıble ve ',
       h1Accent: 'nazik bir namaz takibi',
       h1Post: '.',
-      sub: 'Simple Prayer bugünün beş vaktini gösterir ve sıradaki vakte geri sayar. Namazını kıldığında yanındaki yuvarlak işarete — mührüne — dokunursun, namaz kaydedilir. Bunu uygulamadan, ana ekranından, bir bildirimden ya da saatinden yapabilirsin. İnternetsiz çalışır ve sana asla reklam göstermez.',
-      chips: ['Reklam yok, hiçbir zaman', 'Hesap yok', 'İzleme yok', 'Çevrimdışı çalışır'],
+      sub: 'Simple Prayer bugünün beş vaktini gösterir ve sıradaki vakte geri sayar. Namazını kıldığında yanındaki yuvarlak işarete — mührüne — dokunursun, namaz kaydedilir. Bunu uygulamadan, ana ekranından, bir bildirimden ya da saatinden yapabilirsin. İnternetsiz çalışır ve sana asla reklam göstermez. Uygulamanın tamamı açık kaynaktır; ne yaptığını herkes kontrol edebilir.',
+      chips: ['Reklam yok, hiçbir zaman', 'Hesap yok', 'İzleme yok', 'Çevrimdışı çalışır', 'Açık kaynak'],
       chipsLabel: 'Verdiğimiz söz',
       storeHint:
         'iPhone ve Android için — telefonlar, tabletler ve akıllı saatler. App Store ve Google Play’de yayında.',
@@ -324,7 +324,7 @@ export const tr: SiteDict = {
       translation: '“Namazları koruyun.”',
       showTranslation: true,
       h2: "Simple Prayer'ı edin",
-      sub: "iPhone ve Android'de ücretsiz. İnternetsiz çalışır, hesap gerekmez.",
+      sub: "iPhone ve Android'de ücretsiz. İnternetsiz çalışır, hesap gerekmez. Açık kaynak.",
       langsLine: 'Bütün özellikler ücretsiz · English · العربية · Türkçe',
     },
   },

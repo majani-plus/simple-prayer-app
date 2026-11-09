@@ -47,13 +47,13 @@ export const en = {
   home: {
     title: 'Simple Prayer: Prayer Times, Qibla & Salah Tracker — Free, No Ads',
     description:
-      'Accurate prayer times, gentle prayer tracking, and a qibla compass. Works offline. Every feature is free: no ads, no account, no tracking.',
+      'Accurate prayer times, gentle prayer tracking, and a qibla compass. Works offline. Every feature is free: no ads, no account, no tracking. Open source.',
     hero: {
       h1Pre: 'Prayer times, the qibla, and ',
       h1Accent: 'gentle prayer tracking',
       h1Post: '.',
-      sub: "Simple Prayer shows today's five prayers and counts down to the next one. When you pray, tap the round mark beside it — its seal — and the prayer is recorded. You can do that in the app, on your home screen, from a notification, or on your watch. It works offline, and it will never show you an ad.",
-      chips: ['No ads, ever', 'No account', 'No tracking', 'Works offline'],
+      sub: "Simple Prayer shows today's five prayers and counts down to the next one. When you pray, tap the round mark beside it — its seal — and the prayer is recorded. You can do that in the app, on your home screen, from a notification, or on your watch. It works offline, and it will never show you an ad. The whole app is open source, so anyone can check what it does.",
+      chips: ['No ads, ever', 'No account', 'No tracking', 'Works offline', 'Open source'],
       chipsLabel: 'What we promise',
       storeHint:
         'For iPhone and Android — phones, tablets, and watches. Out now on the App Store and on Google Play.',
@@ -338,7 +338,7 @@ export const en = {
       translation: '“Guard the prayer.”',
       showTranslation: true,
       h2: 'Get Simple Prayer',
-      sub: 'Free on iPhone and Android. Works offline, no account needed.',
+      sub: 'Free on iPhone and Android. Works offline, no account needed. Open source.',
       langsLine: 'Every feature is free · English · العربية · Türkçe',
     },
   },
