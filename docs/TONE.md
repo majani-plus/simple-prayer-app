@@ -151,6 +151,8 @@ Rules for Urdu text:
 - Use the Urdu letters ی ک ہ ۃ ے, never the Arabic ي ك ه. A test checks this.
 - End a sentence with ۔ and ask with ؟. The comma is ،.
 - Digits are Western (0–9), as most Pakistani apps show them.
+- Nastaliq's space is narrow. Where a time in Latin digits meets an Urdu word (`{{time}}  تک`),
+  write two spaces, or the two run together.
 - Never use عطیہ، خیرات، چندہ، صدقہ، زکوٰۃ or تعاون for the tip. A test checks this too.
 
 Turkish is usually the longest of the three, and Arabic text is drawn 15% larger. Both break a

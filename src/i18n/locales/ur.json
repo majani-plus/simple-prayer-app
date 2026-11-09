@@ -58,8 +58,8 @@
     "caption": {
       "upcoming": "آنے والی",
       "next": "اگلی",
-      "dueUntil": "ابھی · {{time}} تک",
-      "dueUntilSunrise": "ابھی · طلوعِ آفتاب {{time}} تک",
+      "dueUntil": "ابھی · {{time}}  تک",
+      "dueUntilSunrise": "ابھی · طلوعِ آفتاب {{time}}  تک",
       "dueNow": "ابھی"
     },
     "sunrise": {
@@ -93,7 +93,7 @@
     "hero": {
       "a11yLabel": "اگلی نماز: {{prayer}}، {{time}} پر",
       "a11yDue": "{{prayer}} کا وقت ہو گیا ہے، {{time}} تک",
-      "until": "{{time}} تک",
+      "until": "{{time}}  تک",
       "leftToPray": "پڑھنے کے لیے {{duration}} باقی",
       "prayedIn": "{{prayer}} پڑھ لی · اگلی {{duration}} میں"
     },
