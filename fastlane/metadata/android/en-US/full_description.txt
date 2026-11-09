@@ -1,0 +1,31 @@
+Simple Prayer shows your five daily prayer times, points you to the Qibla, and records a prayer with one tap. Every feature is free. No ads, no account, no Google services, and your log stays on your phone unless you add a prayer buddy.
+
+Prayer times
+Times are calculated on your phone, so the app works with no internet at all. It picks the method used in your country: Diyanet, ISNA, Umm al-Qura, Egyptian, Karachi, Moonsighting Committee, Jafari and others. You can change it whenever you like. You can also shift any prayer by a few minutes to match your mosque. Asr follows your country too, and you can choose Hanafi or Shafi yourself. Move the Hijri date if it reads a day out. If you live far north, where the sun barely sets in summer, there is a rule for those months.
+
+Reminders
+Each prayer can have three. The adhan as its time comes in. An earlier one to help you wake for Fajr. A last call before the time runs out. Each can be silent, a simple tone, or the adhan itself, with four freely licensed recitations to choose from. Mark a prayer straight from the notification, without opening the app.
+
+Tracking
+When you pray, tap the prayer. That is all it takes. A past prayer takes one more tap: prayed, prayed late, or missed. No day is ever locked, so you can open one in History and change it.
+
+The app does not scold you. Keep a streak if you want one; missing a single prayer does not always end it. During menstruation and after childbirth, excused days mark nothing as missed and ask nothing of you. The mode ends by itself after the days you choose. If you have prayers to make up, the qada counter goes down as you pray them and shows the day you will be finished.
+
+If you only want times and the Qibla, nothing here will ever ask you to log a prayer.
+
+Qibla
+The compass shows the Kaaba on its dial and tells you which way to turn: "38° to the left." It corrects for the difference between magnetic north and the true north where you live. You do not have to hold the phone flat.
+
+Prayer buddies (optional)
+Pair with one person or a few: your wife or husband, your brother or sister, a parent, a child, a friend. You see on today's screen that they prayed, and they see the same about you. They never see a prayer you missed. There is no feed, no ranking, no score. In this version there are no push notifications, so a buddy's prayers show up when you open the app.
+
+On your home screen
+Home screen widgets carry a live countdown, and you can mark a prayer straight from the widget. An optional always-on notification keeps the current and next prayer in your shade, with the "I prayed" button on it. Tablets and foldables get two panes side by side.
+
+Privacy
+No ads, ever. No account. No analytics and no crash reporting. Your prayer record stays on your phone. Your approximate location is used on your phone; to name your city, it goes only to your phone's own geocoder, if it has one. If you add a prayer buddy, the prayers you mark travel to their phone through a small relay of ours. It deletes each one as soon as their phone has it, and keeps no name, no location and no history.
+
+This version
+It is built from the same open source code as the Google Play app, without Google services, crash reporting, the tip jar or the Wear OS watch app. It is signed with a different key, so it cannot update the Google Play version or be updated by it.
+
+Simple Prayer is in English, Arabic, Turkish and Urdu.

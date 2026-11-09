@@ -1,0 +1,31 @@
+Simple Prayer beş vakit namazın vakitlerini gösterir, kıbleyi bulur ve bir namazı tek dokunuşla kaydeder. Tüm özellikler ücretsizdir. Reklam yok, hesap yok, Google hizmetleri yok. Namaz arkadaşı eklemezsen namaz kaydın telefonunda kalır.
+
+Namaz vakitleri
+Vakitler telefonunda hesaplanır, bu yüzden uygulama internetsiz çalışır. Hesaplama yöntemi ülkene göre kendiliğinden seçilir: Diyanet, ISNA, Ümmü'l-Kurâ, Mısır, Karaçi, Hilal Gözlem Komitesi, Caferî ve diğerleri. İstediğin zaman değiştirebilirsin. Her namazı camine uysun diye birkaç dakika kaydırabilirsin. İkindi de ülkene göre ayarlanır; Hanefî ya da Şâfiî usulünü kendin de seçebilirsin. Hicri tarih bir gün kaymışsa düzeltebilirsin. Yazın güneşin neredeyse hiç batmadığı kuzey bölgelerinde yaşıyorsan, o aylar için ayrı bir kural var.
+
+Hatırlatmalar
+Her namazın üç hatırlatması olabilir: vakit girince ezan, vakitten önce bir uyandırma (çoğu kişi sabah namazı için kullanıyor) ve vakit çıkmadan son bir hatırlatma. Her biri sessiz, sade bir ses ya da ezan olabilir; özgür lisanslı dört okuyuş arasından seçersin. Namazı, uygulamayı açmadan doğrudan bildirimden işaretleyebilirsin.
+
+Takip
+Namazını kıldığında dokun, kaydedilsin. Geçmiş bir namaz bir dokunuş daha ister: kılındı, geç kılındı ya da kaçırıldı. Hiçbir gün kilitlenmez; Geçmiş'te açıp değiştirebilirsin.
+
+Uygulama seni hiç azarlamaz. İstersen günlük seri tutarsın; tek bir namazı kaçırmak seriyi her zaman bitirmez. Adet ya da lohusalık günlerinde özel günler modu hiçbir şeyi kaçırıldı yazmaz ve senden hiçbir şey istemez. Seçtiğin gün sayısı dolunca mod kendiliğinden kapanır. Kaza namazın varsa sayaç sen kıldıkça azalır ve bitireceğin günü gösterir.
+
+Yalnızca vakitler ve kıble istiyorsan, hiçbir şey senden kayıt istemez.
+
+Kıble
+Pusula Kâbe'yi kadranında gösterir ve ne tarafa döneceğini söyler: "38° sola dön." Bulunduğun yerde manyetik kuzey ile gerçek kuzey arasındaki farkı düzeltir. Telefonu düz tutman gerekmez.
+
+Namaz arkadaşları (isteğe bağlı)
+Bir kişiyle ya da birkaç kişiyle eşleşebilirsin: eşinle, kardeşinle, annenle ya da babanla, çocuğunla, bir arkadaşınla. Bugünün ekranında onun namazını kıldığını görürsün, o da seninkini görür. Kaçırdığın bir namazı asla görmez. Akış yok, sıralama yok, puan yok. Bu sürümde anlık bildirim yok; arkadaşının namazları uygulamayı açtığında görünür.
+
+Ana ekranında
+Ana ekran widget'larında canlı geri sayım var; namazı doğrudan widget'tan işaretleyebilirsin. İsteğe bağlı kalıcı bildirim, o anki ve sonraki namazı bildirim alanında tutar; "Kıldım" düğmesi üstündedir. Tablet ve katlanabilirlerde iki panel yan yana gelir.
+
+Gizlilik
+Reklam yok, hiçbir zaman. Hesap yok. Analiz yok, çökme raporu da yok. Namaz kaydın telefonunda kalır. Yaklaşık konumun telefonunda kullanılır. Şehrinin adını bulmak için yalnızca telefonunun kendi harita servisine gider, telefonunda böyle bir servis varsa. Bir namaz arkadaşı eklersen, işaretlediğin namazlar bize ait küçük bir aktarıcı üzerinden onun telefonuna gider; aktarıcı her birini telefonu aldığı anda siler ve isim, konum ya da geçmiş tutmaz.
+
+Bu sürüm
+Google Play uygulamasıyla aynı açık kaynak koddan derlenir. Google hizmetleri, çökme raporları, bahşiş kavanozu ve Wear OS saat uygulaması bu sürümde yoktur. Farklı bir anahtarla imzalanır, bu yüzden Google Play sürümünü güncelleyemez, Google Play sürümü de onu güncelleyemez.
+
+Simple Prayer Türkçe, Arapça, Urduca ve İngilizce destekler.
