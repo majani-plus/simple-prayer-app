@@ -544,7 +544,7 @@
     "welcome": {
       "title": "Selamün aleyküm",
       "body": "Bu uygulama namaza teşvik etmek için var: her namazın vaktini kolayca görürsün, kıldığını tek dokunuşla işaretlersin — o küçük sevinç de senin olur. Her şey ücretsiz. Seni hiç azarlamaz, ısrar da etmez.\n\nÖnce birkaç kısa soru, uygulama sana uysun diye. Dilediğini atla.",
-      "pledge": "Reklam yok · Hesap yok · Hiçbir şey telefonundan çıkmaz",
+      "pledge": "Reklam yok · Hesap yok · Takip yok",
       "start": "Başlayalım",
       "skip": "Kurulumu atla"
     },
@@ -881,6 +881,7 @@
       "audio": {
         "title": "Ezan kayıtları",
         "attribution": "Ezan kayıtları Nasser Alqatami, Mufti Ismail Musa Menk ve Sabah Fakhri’ye ait; bir kayıt da Mekke’den. Bildirim sesi olarak kullanılmak üzere kısaltıldı ve ses düzeyleri eşitlendi.",
+        "attributionFree": "Ezan kayıtları Wikimedia Commons’tan: Mekke kaydı Seyfula Islam’a ait, CC BY 3.0 lisanslı; İstanbul kaydı Viceskeeni2’ye, “Güzel ezan” (Beautiful adhan) Adam-synagda’ya ait, ikisi de kamu malı (CC0). Bildirim sesi olarak kullanılmak üzere kısaltıldı ve ses düzeyleri eşitlendi.",
         "choose": "Hatırlatmalarının hangisini çalacağını Ayarlar → Hatırlatmalar’dan seçersin."
       },
       "fonts": {
@@ -1151,13 +1152,16 @@
       "voice": {
         "label": "Okuyuş",
         "description": "Dört kayıt. Dinlemek için birine bas.",
+        "descriptionFree": "Üç kayıt. Dinlemek için birine bas.",
         "a11yHint": "Kaydı çalar ve hatırlatmalarının ezanı yapar",
         "playing": "{{voice}} çalıyor — durdurmak için tekrar bas.",
         "iosNote": "iPhone’da bir hatırlatma ezanın yaklaşık yarım dakikasını çalar, sonra kısılır. Apple, bildirim sesinin uzunluğunu sınırlıyor.",
         "makkah": "Mekke",
         "alqatami": "Nasser Alqatami",
         "menk": "Mufti Ismail Musa Menk",
-        "fakhry": "Sabah Fakhri"
+        "fakhry": "Sabah Fakhri",
+        "istanbul": "İstanbul",
+        "beautiful": "Güzel ezan"
       },
       "delivery": {
         "alertsOff": "Bu uygulamanın bildirimleri kapalı; hatırlatmalar ekranda görünmez.",

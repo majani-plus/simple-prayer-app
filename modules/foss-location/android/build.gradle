@@ -1,0 +1,20 @@
+plugins {
+  id 'com.android.library'
+  id 'expo-module-gradle-plugin'
+}
+
+group = 'expo.modules.fosslocation'
+version = '1.0.0'
+
+android {
+  namespace "expo.modules.fosslocation"
+  defaultConfig {
+    versionCode 1
+    versionName "1.0.0"
+  }
+}
+
+dependencies {
+  // LocationManagerCompat. Platform APIs only: no Google Play services (that is the point).
+  implementation 'androidx.core:core:1.17.0'
+}

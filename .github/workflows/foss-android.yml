@@ -1,0 +1,121 @@
+name: FOSS Android
+
+# Builds the FOSS Android APK (FOSS_BUILD=1: no Google, proprietary or tracking libraries, only
+# free adhan recordings; docs/BUILD_YOURSELF.md) and fails if a non-free library is linked. This is
+# the guard that keeps the app acceptable to F-Droid and IzzyOnDroid. Not a required check.
+#
+# On a release tag it also signs the APK with our FOSS key and attaches it to the GitHub Release.
+on:
+  push:
+    branches: [main]
+    tags: ['release/v*']
+    paths-ignore:
+      - 'website/**'
+      - '.github/workflows/website.yml'
+  workflow_dispatch:
+
+# Read-only by default; only the release job may write.
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    env:
+      FOSS_BUILD: '1'
+    steps:
+      - uses: actions/checkout@v4
+      # Pinned: this job's APK is the one the release job signs with our key.
+      - uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2.2.0
+        with:
+          bun-version: 1.4.3
+      # Expo's prebuild and Gradle's autolinking run under Node. The repo's one Node pin.
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: website/.node-version
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+      # Changes tracked files (package.json, buddy-nicknames) and deletes non-free ones. Fine here:
+      # this checkout is thrown away.
+      - name: Prepare the FOSS checkout
+        run: bun scripts/foss-prepare.ts
+      - name: Generate the Android project
+        run: bunx expo prebuild -p android --clean --no-install
+      - name: Check for non-free libraries
+        working-directory: android
+        run: |
+          ./gradlew :app:dependencies --configuration releaseRuntimeClasspath > ../foss-deps.txt
+          if grep -nE 'com\.google\.android\.gms|com\.google\.firebase|com\.android\.billingclient|com\.google\.android\.play|com\.android\.installreferrer|io\.sentry' ../foss-deps.txt; then
+            echo "::error::A non-free library is linked into the FOSS build (see the lines above)."
+            exit 1
+          fi
+          echo "No non-free libraries in releaseRuntimeClasspath."
+      - name: Build the release APK
+        working-directory: android
+        run: ./gradlew :app:assembleRelease
+      - name: Check the APK carries no unlicensed recordings and no Google services
+        run: |
+          APK=android/app/build/outputs/apk/release/app-release.apk
+          if unzip -l "$APK" | grep -E 'adhan_(makkah|alqatami|menk|fakhry)(_clip)?\.|com/google/(firebase|android/gms)'; then
+            echo "::error::The APK contains a non-free file."
+            exit 1
+          fi
+          unzip -l "$APK" | grep -E 'adhan_free_' || { echo "::error::No free adhan recordings in the APK."; exit 1; }
+      - uses: actions/upload-artifact@v4
+        with:
+          name: simple-prayer-foss-apk
+          path: |
+            android/app/build/outputs/apk/release/app-release.apk
+            foss-deps.txt
+
+  release:
+    if: startsWith(github.ref, 'refs/tags/release/v')
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: simple-prayer-foss-apk
+      - name: Sign with the FOSS key
+        id: sign
+        env:
+          KEYSTORE_BASE64: ${{ secrets.FOSS_KEYSTORE_BASE64 }}
+          KEYSTORE_PASSWORD: ${{ secrets.FOSS_KEYSTORE_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.FOSS_KEY_ALIAS }}
+          KEY_PASSWORD: ${{ secrets.FOSS_KEY_PASSWORD }}
+        run: |
+          if [ -z "$KEYSTORE_BASE64" ] || [ -z "$KEYSTORE_PASSWORD" ] || [ -z "$KEY_ALIAS" ] || [ -z "$KEY_PASSWORD" ]; then
+            echo "::warning::FOSS signing secrets are not set; the release gets no APK."
+            echo "signed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          echo "$KEYSTORE_BASE64" | base64 -d > "$RUNNER_TEMP/foss.jks"
+          APKSIGNER="$(ls -d "$ANDROID_HOME"/build-tools/* | sort -V | tail -1)/apksigner"
+          # A fixed name, so .../releases/latest/download/simple-prayer-foss.apk (linked from the
+          # website's install page) always points at the newest one.
+          OUT="simple-prayer-foss.apk"
+          # Replaces the debug signature Gradle put on it.
+          "$APKSIGNER" sign --ks "$RUNNER_TEMP/foss.jks" --ks-pass env:KEYSTORE_PASSWORD \
+            --ks-key-alias "$KEY_ALIAS" --key-pass env:KEY_PASSWORD \
+            --out "$OUT" android/app/build/outputs/apk/release/app-release.apk
+          "$APKSIGNER" verify --print-certs "$OUT"
+          rm -f "$RUNNER_TEMP/foss.jks"
+          echo "signed=true" >> "$GITHUB_OUTPUT"
+          echo "apk=$OUT" >> "$GITHUB_OUTPUT"
+      - name: Attach to the GitHub Release
+        if: steps.sign.outputs.signed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          APK: ${{ steps.sign.outputs.apk }}
+        run: |
+          gh release view "$GITHUB_REF_NAME" > /dev/null 2>&1 \
+            || gh release create "$GITHUB_REF_NAME" --verify-tag --title "Simple Prayer ${GITHUB_REF_NAME#release/v}" --notes ""
+          gh release upload "$GITHUB_REF_NAME" "$APK" --clobber

@@ -227,7 +227,7 @@ describe('useAdhanPreview', () => {
     // A recitation added to `domain/adhanVoices` without a `require` in the hook's asset table
     // fails here, rather than as a missing module on a device — Metro resolves asset paths
     // statically, so a computed path bundles nothing.
-    const source = readFileSync(join(__dirname, 'useAdhanPreview.ts'), 'utf8');
+    const source = readFileSync(join(__dirname, 'adhanAssets.ts'), 'utf8');
     for (const file of allAdhanSoundFiles()) {
       expect(source).toContain(`'${file}'`);
       expect(source).toContain(`assets/audio/${file}`);

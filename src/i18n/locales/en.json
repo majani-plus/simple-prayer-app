@@ -544,7 +544,7 @@
     "welcome": {
       "title": "Assalamu alaikum",
       "body": "This app is here to encourage prayer — to make it easy to see each prayer's time, and a small joy to mark it prayed. Everything in it is free. It will never scold you, and it will never keep asking.\n\nA few short questions first, so the app fits you. Skip any of them.",
-      "pledge": "No ads · No account · Nothing leaves your phone",
+      "pledge": "No ads · No account · No tracking",
       "start": "Get started",
       "skip": "Skip setup"
     },
@@ -881,6 +881,7 @@
       "audio": {
         "title": "Adhan recordings",
         "attribution": "Adhan recitations by Nasser Alqatami, Mufti Ismail Musa Menk and Sabah Fakhri, and a recitation from Makkah. Trimmed and level-matched for use as a notification sound.",
+        "attributionFree": "Adhan recordings from Wikimedia Commons: Makkah by Seyfula Islam, under CC BY 3.0; Istanbul by Viceskeeni2 and “Beautiful adhan” by Adam-synagda, both public domain (CC0). Trimmed and level-matched for use as a notification sound.",
         "choose": "Choose which one your reminders play in Settings → Reminders."
       },
       "fonts": {
@@ -1151,13 +1152,16 @@
       "voice": {
         "label": "Recitation",
         "description": "Four recitations. Tap one to hear it.",
+        "descriptionFree": "Three recitations. Tap one to hear it.",
         "a11yHint": "Plays it, and makes it the adhan your reminders use",
         "playing": "Playing {{voice}} — tap it again to stop.",
         "iosNote": "On an iPhone a reminder plays about half a minute of the adhan and then fades. Apple limits how long a notification sound can be.",
         "makkah": "Makkah",
         "alqatami": "Nasser Alqatami",
         "menk": "Mufti Ismail Musa Menk",
-        "fakhry": "Sabah Fakhri"
+        "fakhry": "Sabah Fakhri",
+        "istanbul": "Istanbul",
+        "beautiful": "Beautiful adhan"
       },
       "delivery": {
         "alertsOff": "Alerts are switched off for this app, so reminders will not appear on screen.",

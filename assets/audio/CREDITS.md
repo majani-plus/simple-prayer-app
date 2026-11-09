@@ -111,10 +111,108 @@ hyphen will fail the Android build.
 
 ---
 
+## The free set: the FOSS build's recitations
+
+The FOSS Android build (`FOSS_BUILD=1`, `docs/BUILD_YOURSELF.md`) is meant for F-Droid, which
+accepts only media under a free licence. It ships **none** of the four recordings above
+(`scripts/foss-prepare.ts` deletes them from the build checkout) and offers these three instead,
+from `assets/audio/free/`. All three come from Wikimedia Commons. The normal build does not ship
+them.
+
+| Voice (id) | File | Length | Licence | Author |
+|---|---|---|---|---|
+| Makkah (`makkah`) | `adhan_free_makkah.mp3` | 3:10 | CC BY 3.0 | Seyfula Islam |
+| Istanbul (`istanbul`) | `adhan_free_istanbul.mp3` | 0:50 | CC0 1.0 | Viceskeeni2 |
+| Beautiful adhan (`beautiful`) | `adhan_free_beautiful.mp3` | 2:34 | CC0 1.0 | Adam-synagda |
+
+Each licence was checked on 2026-11-09 the same way as the CC0 recording below: the Commons
+wikitext, and the Commons API (`prop=imageinfo&iiprop=extmetadata`), whose answers are quoted.
+
+**Makkah.** <https://commons.wikimedia.org/wiki/File:Adhan,_Great_Mosque_of_Mecca_-_Jan_21,_2013.webm>
+- "Adhan, Great Mosque of Mecca - Jan 21, 2013", a video (VP8/Vorbis, 3:17), recorded 2013-01-21.
+- Source: YouTube video `KYi-PuOqVnA`, “"AZAAN" in makkah”, channel Seyfula Islam.
+- Wikitext: `{{YouTube CC-BY|Seyfula Islam}}` and `{{LicenseReview|…|user=MZaplotnik|date=2018-07-19}}`:
+  a Commons reviewer confirmed the YouTube licence.
+- API: `License: cc-by-3.0`, `UsageTerms: "Creative Commons Attribution 3.0"`,
+  `AttributionRequired: true`, `Artist: Seyfula Islam`.
+
+**Istanbul.** <https://commons.wikimedia.org/wiki/File:Adhan_in_Istanbul.webm>
+- "Adhan in Istanbul", a video (VP9/Opus, 0:50), recorded 2025-09-05. Part of an adhan heard in the
+  street, not the whole call.
+- Wikitext: `{{own}}`, `{{self|cc-zero}}`.
+- API: `License: cc0`, `UsageTerms: "Creative Commons Zero, Public Domain Dedication"`,
+  `AttributionRequired: false`, `Artist: Viceskeeni2`.
+
+**Beautiful adhan.** The CC0 recording recorded in detail in the next section, now used whole
+(2:34) rather than as the 27.75 s clip that once shipped.
+
+**Not used: Konya.** <https://commons.wikimedia.org/wiki/File:Hminsec150_Konya.webm> (CC BY 3.0,
+Frans van der Vaart, from YouTube `qIsD6OOOyEQ`) was processed and then dropped on 2026-11-09: its
+Commons licence review is still open (`{{LicenseReview}}` with no reviewer), and it is only 58 s
+of an adhan.
+
+### What CC BY requires, and where we do it
+
+CC BY 3.0 asks for the author, the title or a link, the licence, and a note that the work was
+changed. The FOSS build's About screen names the author and licence
+(`settings.about.audio.attributionFree`), and says the recordings were trimmed and level-matched. This file and
+`THIRD_PARTY_NOTICES.md` carry the links. CC0 asks for nothing; the two CC0 authors are named
+anyway.
+
+### Attribution string for the FOSS build's About screen
+
+> Adhan recordings from Wikimedia Commons: Makkah by Seyfula Islam, under CC BY 3.0; Istanbul by
+> Viceskeeni2 and “Beautiful adhan” by Adam-synagda, both public domain (CC0). Trimmed and
+> level-matched for use as a notification sound.
+
+### Processing
+
+The same chain as the four above, with the loudness pass done in two passes (measure, then apply
+linearly), and the video tracks dropped:
+
+1. Downmixed to mono (both channels averaged) and resampled to 44.1 kHz.
+2. Loudness-normalised to −14 LUFS integrated, true peak −1.5 dBFS (the results measure −14.4 to
+   −14.7 LUFS).
+3. A 0.05 s fade in and a 1.4 s fade out, so neither edge clicks. The Makkah video ends right
+   after the last phrase, so the fade out matters.
+4. mp3, 96 kbps, mono. No `.caf` clip: the FOSS build is Android only, and Android plays the
+   whole file.
+
+| Voice | Trim |
+|---|---|
+| Makkah | starts at 7.3 s, where the voice begins (crowd sound before it); runs to the end |
+| Istanbul | none |
+| Beautiful adhan | none |
+
+Source files, as downloaded from `upload.wikimedia.org` on 2026-11-09 (SHA-256):
+
+```
+f4acc1bcc6e7919fce60b21162a3c794952c562a6df7b6aa7971f80d191eb5f0  Adhan,_Great_Mosque_of_Mecca_-_Jan_21,_2013.webm
+ba0d10961d2ea2ebcb5f255383ae7dc60d980e8cfe9dab425b1ac7c85eb3e99a  Adhan_in_Istanbul.webm
+35fe06b08fe80505c550c33fed8a783fa9901ddc81ac884958b4be048f5b2a79  Beautiful_adhan.ogg
+```
+
+Reproducing one, using Makkah as the example:
+
+```sh
+# pass 1: measure
+ffmpeg -ss 7.3 -i "Adhan,_Great_Mosque_of_Mecca_-_Jan_21,_2013.webm" -vn \
+  -af "pan=mono|c0=0.5*c0+0.5*c1,aresample=44100,loudnorm=I=-14:TP=-1.5:LRA=11:print_format=json" \
+  -f null -
+# pass 2: put the measured_* values from pass 1 in, then fade (the result is 189.78 s long)
+ffmpeg -ss 7.3 -i "Adhan,_Great_Mosque_of_Mecca_-_Jan_21,_2013.webm" -vn \
+  -af "pan=mono|c0=0.5*c0+0.5*c1,aresample=44100,loudnorm=I=-14:TP=-1.5:LRA=11:measured_I=…:measured_TP=…:measured_LRA=…:measured_thresh=…:offset=…:linear=true,afade=t=in:st=0:d=0.05,afade=t=out:st=188.378:d=1.4" \
+  -c:a libmp3lame -b:a 96k -ar 44100 -ac 1 adhan_free_makkah.mp3
+```
+
+---
+
 ## Removed: `adhan.wav` (“Beautiful adhan”, CC0)
 
 Shipped until 2026-08-20, then removed at the owner's request — not for any licence problem,
-but because the 27.75 s clip was only the opening takbirs rather than a full adhan.
+but because the 27.75 s clip was only the opening takbirs rather than a full adhan. Since
+2026-11-09 the whole recording is back in the FOSS build only, as `free/adhan_free_beautiful.mp3`
+(see "The free set" above).
 
 Worth knowing if it is ever wanted back: **the recording itself was not short.** The source is
 a complete 2:34 adhan; the 27.75 s was our own trim, made when a notification sound was the

@@ -40,6 +40,7 @@
  * parameter, never something this module reads for itself.
  */
 
+import { ADHAN_VOICE_SET } from './adhanVoiceSet';
 import type { AdhanVoice } from './types';
 
 /**
@@ -53,10 +54,13 @@ export type SoundPlatform = 'ios' | 'android' | 'other';
 export interface AdhanVoiceAssets {
   /** Full recitation. Android's channel sound, and in-app playback there. */
   full: string;
-  /** The opening, faded out. iOS's notification sound, and in-app playback there. */
-  clip: string;
+  /**
+   * The opening, faded out. iOS's notification sound, and in-app playback there. Absent only in the
+   * free set, which ships in the Android-only FOSS build.
+   */
+  clip?: string;
   /** Length of {@link AdhanVoiceAssets.clip} in seconds — checked against {@link IOS_SOUND_LIMIT_SECONDS}. */
-  clipSeconds: number;
+  clipSeconds?: number;
 }
 
 /**
@@ -67,10 +71,30 @@ export interface AdhanVoiceAssets {
 export const IOS_SOUND_LIMIT_SECONDS = 30;
 
 /**
- * The voices, in the order they are offered. Makkah leads because it is the recitation most people
- * recognise, and it is the default.
+ * The voices the normal build offers, in order. Makkah leads because it is the recitation most
+ * people recognise, and it is the default.
  */
-export const ADHAN_VOICES = ['makkah', 'alqatami', 'menk', 'fakhry'] as const;
+export const STANDARD_ADHAN_VOICES: readonly AdhanVoice[] = [
+  'makkah',
+  'alqatami',
+  'menk',
+  'fakhry',
+];
+
+/**
+ * The voices the FOSS build offers instead: recordings from Wikimedia Commons under CC0 or CC BY,
+ * because F-Droid accepts only free media and the standard four have no licence we could find
+ * (`assets/audio/CREDITS.md`). Android only, so mp3 only, with no iOS clip.
+ */
+export const FREE_ADHAN_VOICES: readonly AdhanVoice[] = ['makkah', 'istanbul', 'beautiful'];
+
+/**
+ * The voices this build offers. Which set is decided by `domain/adhanVoiceSet`, which the FOSS
+ * build swaps for `src/foss/adhanVoiceSet` (metro.config.js), together with the asset table in
+ * `hooks/adhanAssets`.
+ */
+export const ADHAN_VOICES: readonly AdhanVoice[] =
+  ADHAN_VOICE_SET === 'free' ? FREE_ADHAN_VOICES : STANDARD_ADHAN_VOICES;
 
 /**
  * The voice a fresh install uses, and the fallback for anything unreadable in storage.
@@ -81,13 +105,31 @@ export const ADHAN_VOICES = ['makkah', 'alqatami', 'menk', 'fakhry'] as const;
  */
 export const DEFAULT_ADHAN_VOICE: AdhanVoice = 'makkah';
 
-/** What each voice ships as. Lengths from `assets/audio/CREDITS.md`. */
-export const ADHAN_VOICE_ASSETS: Readonly<Record<AdhanVoice, AdhanVoiceAssets>> = Object.freeze({
-  makkah: { full: 'adhan_makkah.mp3', clip: 'adhan_makkah_clip.caf', clipSeconds: 28 },
-  alqatami: { full: 'adhan_alqatami.mp3', clip: 'adhan_alqatami_clip.caf', clipSeconds: 27 },
-  menk: { full: 'adhan_menk.mp3', clip: 'adhan_menk_clip.caf', clipSeconds: 28 },
-  fakhry: { full: 'adhan_fakhry.mp3', clip: 'adhan_fakhry_clip.caf', clipSeconds: 28 },
-});
+/** What each standard voice ships as. Lengths from `assets/audio/CREDITS.md`. */
+export const STANDARD_ADHAN_VOICE_ASSETS: Readonly<Partial<Record<AdhanVoice, AdhanVoiceAssets>>> =
+  Object.freeze({
+    makkah: { full: 'adhan_makkah.mp3', clip: 'adhan_makkah_clip.caf', clipSeconds: 28 },
+    alqatami: { full: 'adhan_alqatami.mp3', clip: 'adhan_alqatami_clip.caf', clipSeconds: 27 },
+    menk: { full: 'adhan_menk.mp3', clip: 'adhan_menk_clip.caf', clipSeconds: 28 },
+    fakhry: { full: 'adhan_fakhry.mp3', clip: 'adhan_fakhry_clip.caf', clipSeconds: 28 },
+  });
+
+/** What each free voice ships as, from `assets/audio/free/`. */
+export const FREE_ADHAN_VOICE_ASSETS: Readonly<Partial<Record<AdhanVoice, AdhanVoiceAssets>>> =
+  Object.freeze({
+    makkah: { full: 'adhan_free_makkah.mp3' },
+    istanbul: { full: 'adhan_free_istanbul.mp3' },
+    beautiful: { full: 'adhan_free_beautiful.mp3' },
+  });
+
+/** What each voice of this build ships as. */
+export const ADHAN_VOICE_ASSETS =
+  ADHAN_VOICE_SET === 'free' ? FREE_ADHAN_VOICE_ASSETS : STANDARD_ADHAN_VOICE_ASSETS;
+
+/** A voice this build does not ship falls back to the default, so a lookup can never miss. */
+function assetsOf(voice: AdhanVoice): AdhanVoiceAssets {
+  return ADHAN_VOICE_ASSETS[voice] ?? (ADHAN_VOICE_ASSETS[DEFAULT_ADHAN_VOICE] as AdhanVoiceAssets);
+}
 
 /**
  * Narrows an untrusted value to an {@link AdhanVoice}.
@@ -112,14 +154,14 @@ export function isAdhanVoice(value: unknown): value is AdhanVoice {
  * @returns `adhan_menk_clip.caf` on iOS, `adhan_menk.mp3` everywhere else.
  */
 export function adhanSoundFile(voice: AdhanVoice, platform: SoundPlatform): string {
-  const assets = ADHAN_VOICE_ASSETS[voice];
-  return platform === 'ios' ? assets.clip : assets.full;
+  const assets = assetsOf(voice);
+  return platform === 'ios' && assets.clip !== undefined ? assets.clip : assets.full;
 }
 
 /** Every filename this module can ever return — what the asset table in the preview must cover. */
 export function allAdhanSoundFiles(): string[] {
-  return ADHAN_VOICES.flatMap((voice) => [
-    ADHAN_VOICE_ASSETS[voice].full,
-    ADHAN_VOICE_ASSETS[voice].clip,
-  ]);
+  return ADHAN_VOICES.flatMap((voice) => {
+    const { full, clip } = assetsOf(voice);
+    return clip === undefined ? [full] : [full, clip];
+  });
 }

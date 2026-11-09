@@ -19,6 +19,10 @@ would recognise, not commit subjects.
   the website Urdu is set in Nastaliq; widgets and watches use Naskh, which fits their small
   spaces. The Urdu was written with AI help and has not yet been checked by a native speaker.
   Corrections are welcome.
+- **A version without Google.** An Android build from the open source code with no Google
+  services, crash reports or tip jar, for people who want one. It is on GitHub, and is coming to
+  F-Droid. Buddies' prayers arrive when you open the app, and its adhan recordings are freely
+  licensed ones.
 
 ### Removed
 
@@ -41,6 +45,10 @@ would recognise, not commit subjects.
 
 ### Fixed
 
+- **Adhan sound on Android.** Reminders set to an adhan played the phone's default sound instead,
+  because the release build removed the recordings as unused. They now play the adhan.
+- **Welcome screen.** It no longer says "nothing leaves your phone", which stopped being true once
+  crash reports and prayer buddies arrived.
 - **Website:** the website build runs again (adhan 4.4.6).
 
 ## [1.6.0] - 2026-11-07

@@ -1,14 +1,7 @@
 import { useFocusEffect, useRouter } from 'expo-router';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import {
-  AppState,
-  Linking,
-  Platform,
-  ScrollView,
-  View,
-  type AppStateStatus,
-} from 'react-native';
+import { AppState, Linking, Platform, ScrollView, View, type AppStateStatus } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { backChevron } from '@/i18n/direction';
@@ -23,6 +16,7 @@ import { SettingChoiceRow, type SettingChoiceOption } from '@/components/Setting
 import { SettingGroup } from '@/components/SettingGroup';
 import { SettingRow, SettingSwitchRow } from '@/components/SettingRow';
 import { ADHAN_VOICES } from '@/domain/adhanVoices';
+import { ADHAN_VOICE_SET } from '@/domain/adhanVoiceSet';
 import { PRAYERS } from '@/domain/types';
 import { useAdhanPreview } from '@/hooks/useAdhanPreview';
 import { useAnnounceChange } from '@/hooks/useAnnounceChange';
@@ -276,9 +270,7 @@ export default function RemindersSettingsScreen() {
 
   const togglePrayer = useCallback((prayer: Prayer) => {
     setOpenPrayers((current) =>
-      current.includes(prayer)
-        ? current.filter((entry) => entry !== prayer)
-        : [...current, prayer]
+      current.includes(prayer) ? current.filter((entry) => entry !== prayer) : [...current, prayer]
     );
   }, []);
 
@@ -485,9 +477,7 @@ export default function RemindersSettingsScreen() {
   const liveActivityOptions = useCallback(
     (stored: number, a11yKey: string): SettingChoiceOption<string>[] =>
       [...new Set([...LIVE_ACTIVITY_CHOICES, stored])]
-        .filter(
-          (value) => value >= MIN_LIVE_ACTIVITY_MINUTES && value <= MAX_LIVE_ACTIVITY_MINUTES
-        )
+        .filter((value) => value >= MIN_LIVE_ACTIVITY_MINUTES && value <= MAX_LIVE_ACTIVITY_MINUTES)
         .sort((a, b) => a - b)
         .map((value) => ({
           value: String(value),
@@ -702,7 +692,11 @@ export default function RemindersSettingsScreen() {
             testID="reminders-adhan-voice"
             icon="volume_up"
             label={t('settings.reminders.voice.label')}
-            description={t('settings.reminders.voice.description')}
+            description={t(
+              ADHAN_VOICE_SET === 'free'
+                ? 'settings.reminders.voice.descriptionFree'
+                : 'settings.reminders.voice.description'
+            )}
             value={t(`settings.reminders.voice.${adhanVoice}`)}
             expanded={voiceOpen}
             onPress={() => {

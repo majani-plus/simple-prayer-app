@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { Linking, ScrollView, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
+import { ADHAN_VOICE_SET } from '@/domain/adhanVoiceSet';
 import { backChevron } from '@/i18n/direction';
 import { AppText } from '@/components/AppText';
 import { Icon } from '@/components/Icon';
@@ -54,6 +55,15 @@ import { spacing, useTheme } from '@/theme';
  * "Rate the app" is here as well as in Support, and it is a **store deep link** in both places,
  * never `expo-store-review` — see `components/RateAppRow` for why that distinction matters.
  */
+
+/**
+ * The credit for the recordings this build ships. The FOSS build's free set needs its own: its
+ * Makkah recording is CC BY, which requires naming the author and the licence.
+ */
+const AUDIO_ATTRIBUTION =
+  ADHAN_VOICE_SET === 'free'
+    ? 'settings.about.audio.attributionFree'
+    : 'settings.about.audio.attribution';
 
 export default function AboutScreen() {
   const { t } = useTranslation();
@@ -147,11 +157,11 @@ export default function AboutScreen() {
             testID="about-audio-attribution"
             accessible
             accessibilityRole="text"
-            accessibilityLabel={`${t('settings.about.audio.attribution')} ${t('settings.about.audio.choose')}`}
+            accessibilityLabel={`${t(AUDIO_ATTRIBUTION)} ${t('settings.about.audio.choose')}`}
             style={{ paddingVertical: spacing.md, paddingHorizontal: spacing.lg }}
           >
             <AppText variant="caption" tone="muted">
-              {t('settings.about.audio.attribution')}
+              {t(AUDIO_ATTRIBUTION)}
             </AppText>
             {/* Where the choice lives, said once and quietly. This screen is a colophon: it
                 credits the recordings, it does not offer to change them. */}

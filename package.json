@@ -2,6 +2,7 @@
   "name": "simple-prayer-times",
   "main": "index.ts",
   "version": "1.6.0",
+  "versionCode": 65,
   "dependencies": {
     "@bacons/apple-targets": "^5.0.0",
     "@expo-google-fonts/amiri": "^0.4.1",
@@ -130,7 +131,12 @@
     "autolinking": {
       "buildFromSource": [
         "expo-notifications"
-      ]
+      ],
+      "android": {
+        "exclude": [
+          "foss-location"
+        ]
+      }
     }
   },
   "patchedDependencies": {

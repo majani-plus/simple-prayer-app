@@ -308,9 +308,11 @@ export type ReminderSound = 'silent' | 'system' | 'adhan';
  * for Asr and a different one for Maghrib, and offering it would be five questions where there is
  * one answer (CLAUDE.md: "so dumb and easy that an old person or a 7 year old could use").
  *
- * The files, the per-platform resolution and the default live in `domain/adhanVoices`.
+ * The files, the per-platform resolution and the default live in `domain/adhanVoices`. The names
+ * cover both voice sets: the normal build offers the first four, the FOSS build the free ones
+ * (`makkah` again, from a different recording, plus `istanbul` and `beautiful`).
  */
-export type AdhanVoice = 'makkah' | 'alqatami' | 'menk' | 'fakhry';
+export type AdhanVoice = 'makkah' | 'alqatami' | 'menk' | 'fakhry' | 'istanbul' | 'beautiful';
 
 export interface PrayerReminderSettings {
   /** Notification at the prayer's start time. */

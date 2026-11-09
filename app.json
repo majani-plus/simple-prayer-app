@@ -157,6 +157,7 @@
           ]
         }
       ],
+      "./plugins/withKeepNotificationSounds",
       "@react-native-community/datetimepicker",
       [
         "@sentry/react-native",

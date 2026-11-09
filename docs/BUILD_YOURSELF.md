@@ -12,6 +12,10 @@ The app we publish uses three outside services:
 You do not need any of them. One switch, `FOSS_BUILD=1`, builds the app without all three. You
 need no accounts and no keys of ours.
 
+On Android the switch goes further. It builds an app with no Google, closed or tracking libraries
+at all, and with only freely licensed adhan recordings. This is the version for F-Droid. Section 2
+shows how.
+
 ---
 
 ## 1. What you need
@@ -48,10 +52,21 @@ Keep it on for **every** step below, not only `prebuild`. The build reads the ap
 again when it packs the app. If the switch is off at that moment, our Sentry and RevenueCat
 keys are packed into your app.
 
+**For the fully free Android app** (no Google libraries, as on F-Droid), prepare the code first:
+
+```sh
+bun scripts/foss-prepare.ts
+```
+
+**Warning:** this changes and deletes files that git tracks (see "What the switch removes" below).
+Run it only in a copy of the code you can throw away, such as a fresh `git clone`. Undo it with
+git. It does nothing unless `FOSS_BUILD=1` is set. Skip it for iOS: the iOS app keeps Apple's own
+location and review services, and leaves out only our keys.
+
 Then create the native projects without the outside services:
 
 ```sh
-bunx expo prebuild --clean
+bunx expo prebuild --clean          # or: bunx expo prebuild -p android --clean
 ```
 
 This writes the `android/` and `ios/` folders.
@@ -103,11 +118,41 @@ Notes:
 | `android.googleServicesFile` | Firebase, for Android push notifications |
 | `extra.eas`, `owner`, `updates.url` | our Expo project and its app updates (updates are turned off) |
 
+With `FOSS_BUILD=1` it also, for Android:
+
+| Changed | Why |
+|---|---|
+| removes the `expo-location` plugin | Android location uses `modules/foss-location` instead (below) |
+| removes the Wear OS app (`./plugins/withWearApp`) | watch sync needs Google Play services |
+| uses the free adhan recordings as notification sounds | see section 7 |
+| adds `./plugins/withKeepNotificationSounds` | keeps those sounds when a release build shrinks its resources |
+| sets `android.versionCode` from `versionCode` in `package.json` | F-Droid reads the version from the code |
+
 Everything else in `app.json` stays the same. You can check the result:
 
 ```sh
 FOSS_BUILD=1 bunx expo config --type public
 ```
+
+`scripts/foss-prepare.ts` changes what is linked into the Android app. Each library below
+needs Google Play services, Google Play or Sentry, so it is left out. Its JavaScript is replaced by
+a stand-in in `src/foss/` (`metro.config.js`):
+
+| Left out | It was for | Instead |
+|---|---|---|
+| `expo-location` (Google's location service) | your location, the city name, the compass | `modules/foss-location`: Android's own location, geocoder and compass. Approximate location only, as before. |
+| Firebase Cloud Messaging, in `expo-notifications` and `buddy-nicknames` | buddy notifications when the app is closed | nothing; buddy marks arrive when you open the app. Prayer reminders are local notifications and work as before. |
+| `react-native-purchases` (Google Play Billing) | the tip jar | no tip jar |
+| `expo-store-review` (Google Play In-App Review) | the "rate the app" prompt | no prompt. The "Rate the app" rows still open the store page. |
+| `expo-application` (Google Play Install Referrer) | the build number on the About screen | the number from the app config |
+| `@sentry/react-native` | crash reports | none |
+| `modules/watch-sync` and the Wear OS apps | the watch app | no watch app |
+
+It also deletes the four adhan recordings we have no licence for, and `google-services.json`. The
+expo-notifications change is a patch, `patches/foss/expo-notifications@58.1.7.patch`.
+
+`.github/workflows/foss-android.yml` builds this app on every push and fails if any of these
+libraries comes back.
 
 ---
 
@@ -258,10 +303,15 @@ The app ships four adhan recordings (`assets/audio/`). `assets/audio/CREDITS.md`
 they came from: we could not find a licence for any of them. **A fork should replace them** with
 recordings it has the right to use.
 
+The FOSS Android build already does: it ships three recordings from Wikimedia Commons, under CC0
+or CC BY, from `assets/audio/free/`. `CREDITS.md` and `THIRD_PARTY_NOTICES.md` list their authors
+and licences. A fork can use these too, and must keep the credit for the CC BY ones.
+
 To change them:
 
 1. Put your files in `assets/audio/`. Each voice needs a full `.mp3` (Android) and a clip of
    30 seconds or less as `.caf` (iOS notification sounds have a 30-second limit).
 2. List the files in the `expo-notifications` plugin's `sounds` in `app.json`.
-3. Update `src/domain/adhanVoices.ts` and the `require` list in `src/hooks/useAdhanPreview.ts`.
+3. Update `src/domain/adhanVoices.ts` and the `require` list in `src/hooks/adhanAssets.ts` (for
+   the FOSS build: `src/foss/adhanAssets.ts`).
 4. Update the reciters' names in the locale files and the credits on the About screen.

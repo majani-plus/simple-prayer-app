@@ -23,6 +23,7 @@ import { Linking } from 'react-native';
 
 import AboutScreen from '../app/settings/about';
 import { ADHAN_VOICES } from '../domain/adhanVoices';
+import type { AdhanVoice } from '../domain/types';
 import { initI18n } from '../i18n';
 import { APP_WEBSITE_URL, BUNDLED_FONTS, FEEDBACK_URL } from '../services/appInfo';
 
@@ -81,18 +82,22 @@ function attributionFromCredits(): string {
  * files: a test that took its expectation from the same file it is checking would pass however
  * badly that file was edited.
  */
-const NAMES: Record<'en' | 'ar', Record<(typeof ADHAN_VOICES)[number], string>> = {
+const NAMES: Record<'en' | 'ar', Record<AdhanVoice, string>> = {
   en: {
     makkah: 'Makkah',
     alqatami: 'Nasser Alqatami',
     menk: 'Mufti Ismail Musa Menk',
     fakhry: 'Sabah Fakhri',
+    istanbul: 'Istanbul',
+    beautiful: 'Beautiful adhan',
   },
   ar: {
     makkah: 'مكة',
     alqatami: 'ناصر القطامي',
     menk: 'مفتي إسماعيل موسى منك',
     fakhry: 'صباح فخري',
+    istanbul: 'إسطنبول',
+    beautiful: 'أذان جميل',
   },
 };
 

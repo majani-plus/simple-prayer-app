@@ -475,6 +475,27 @@ worked; only the counters were manual.
 Write `CHANGELOG.md` entries under `[Unreleased]` as you merge work, in language a user would
 recognise. The script only moves what is already there; it cannot invent release notes.
 
+### The FOSS versionCode (F-Droid and the GitHub APK)
+
+The FOSS Android build (`FOSS_BUILD=1`, `docs/BUILD_YOURSELF.md`) is built by
+`.github/workflows/foss-android.yml` from the `release/vX.Y.Z` tag, and by F-Droid from the same
+tag. It cannot ask EAS for a versionCode, so it reads **`versionCode` in `package.json`**. Keep it
+equal to the Play versionCode of the same release: then F-Droid shows the same
+`fastlane/metadata/android/<locale>/changelogs/<versionCode>.txt` that Play does.
+
+Before `bun run version:bump`:
+
+1. `eas build:version:get -p android` gives the last Play versionCode. The next production build
+   gets that number plus one, N.
+2. Write `fastlane/metadata/android/<locale>/changelogs/N.txt` for every locale, and set
+   `"versionCode": N` in `package.json`, in one commit. `src/__tests__/appConfig.test.ts` fails if
+   `package.json` and the newest changelog disagree, so neither can be forgotten.
+
+The normal build never reads this field (`app.config.ts` uses it only with `FOSS_BUILD=1`), so it
+does not bring back the dead `android.versionCode` of §3. If a failed EAS build uses up N, Play gets
+N+1: rename the changelog and move `versionCode` to match, then tag again only if the FOSS APK has
+not been published yet. F-Droid needs each versionCode only to be unique and increasing.
+
 For a JS-only fix to an already-shipped build, the whole thing collapses to `eas update` — see
 below.
 

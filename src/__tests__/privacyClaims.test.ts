@@ -76,10 +76,10 @@ const POSITION_MARKERS: Record<AppLanguage, RegExp> = {
  * about everything.
  */
 const OVERCLAIMS: Record<AppLanguage, RegExp> = {
-  en: /never leaves (your|the|this) (device|phone)|stays on (it|your phone|this phone)\b(?!\s*for the prayer log)|never sent anywhere|nothing (about you )?(ever )?leaves (your|the|this) (device|phone)/i,
+  en: /never leaves (your|the|this) (device|phone)|stays on (it|your phone|this phone)\b(?!\s*(for the prayer log|[—–,-]\s*unless))|never sent anywhere|nothing (about you )?(ever )?leaves (your|the|this) (device|phone)/i,
   ar: /لا يغادر جهازك|لا يُرسل إلى أي جهة|لا شيء يغادر (هذا )?(الهاتف|الجهاز|جهازك|هاتفك)/,
   tr: /cihaz[ıi]n[ıi]zdan asla (ayrılmaz|çıkmaz)|cihazından asla (ayrılmaz|çıkmaz)|hiçbir yere gönderilmiyor|hiçbir şey[^.!?]*(çıkmaz|ayrılmaz)/i,
-  ur: /(فون|آلے) سے (کبھی )?باہر نہیں (جاتا|جاتی|نکلتا)|کہیں نہیں بھیجا جاتا|کچھ بھی[^۔.!؟]*باہر نہیں/,
+  ur: /(فون|آلے) سے (کبھی )?باہر نہیں (جاتا|جاتی|نکلتا)|کبھی کہیں نہیں بھیجا|کچھ بھی[^۔.!؟]*باہر نہیں/,
 };
 
 function value(language: AppLanguage, key: string): string {
@@ -275,6 +275,25 @@ describe('the pledge and the tip jar', () => {
     // deliberately absent, and a guard that trips on its own explanation teaches nothing.
     const fields = [...body.matchAll(/^\s{2}(\w+)\??:/gm)].map((match) => match[1]);
     expect(fields.sort()).toEqual(['color', 'initials']);
+  });
+});
+
+describe('no screen claims that nothing leaves the phone', () => {
+  // The onboarding welcome once promised "Nothing leaves your phone" in every language, long after
+  // crash reports and buddy marks made it false. Scanning only the screens someone remembered to
+  // list is how it survived, so this reads every string in every bundle.
+  const flatten = (node: unknown, prefix = ''): [string, string][] =>
+    typeof node === 'string'
+      ? [[prefix, node]]
+      : Object.entries(node as Record<string, unknown>).flatMap(([key, child]) =>
+          flatten(child, prefix === '' ? key : `${prefix}.${key}`)
+        );
+
+  it.each(SUPPORTED_LANGUAGES)('%s', (language) => {
+    const offenders = flatten(BUNDLES[language])
+      .filter(([, text]) => OVERCLAIMS[language].test(text))
+      .map(([key, text]) => `${key}: ${text}`);
+    expect(offenders).toEqual([]);
   });
 });
 

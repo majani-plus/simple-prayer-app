@@ -62,6 +62,9 @@ We change two libraries with `bun patch`. The patch files show exactly what we c
 | drizzle-orm 0.45.4 | Apache License 2.0 (`licenses/Apache-2.0.txt`) | `patches/drizzle-orm@0.45.4.patch` |
 | expo-notifications 58.1.7 | MIT, Copyright (c) 2015-present 650 Industries, Inc. (aka Expo) | `patches/expo-notifications@58.1.7.patch` |
 
+The FOSS Android build also applies `patches/foss/expo-notifications@58.1.7.patch`, which
+removes Firebase Cloud Messaging from expo-notifications (`scripts/foss-prepare.ts`).
+
 Each patch is under the licence of the library it changes.
 
 ## Agent skills: Argent
@@ -71,6 +74,22 @@ Each patch is under the licence of the library it changes.
 - **Source:** https://github.com/software-mansion/argent (version v0.31.0, see
   `skills-lock.json`).
 - **Licence:** Apache License 2.0, Software Mansion S.A. Full text: `licenses/Apache-2.0.txt`.
+
+## Adhan recordings: the free set (FOSS build)
+
+The FOSS Android build (`FOSS_BUILD=1`, for F-Droid) ships only these three, from
+`assets/audio/free/`, and none of the four recordings in the next section. All three come from
+Wikimedia Commons. We changed each one: mono, trimmed, loudness-matched, faded at both ends and
+encoded as mp3 (`assets/audio/CREDITS.md` gives the details).
+
+| File | Original | Author | Licence |
+|---|---|---|---|
+| `adhan_free_makkah.mp3` | [Adhan, Great Mosque of Mecca - Jan 21, 2013](https://commons.wikimedia.org/wiki/File:Adhan,_Great_Mosque_of_Mecca_-_Jan_21,_2013.webm) | Seyfula Islam | [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/) |
+| `adhan_free_istanbul.mp3` | [Adhan in Istanbul](https://commons.wikimedia.org/wiki/File:Adhan_in_Istanbul.webm) | Viceskeeni2 | [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/) |
+| `adhan_free_beautiful.mp3` | [Beautiful adhan](https://commons.wikimedia.org/wiki/File:Beautiful_adhan.ogg) | Adam-synagda | [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/) |
+
+Our changed versions are under the same licence as each original. The FOSS build's About screen
+names the authors and licences.
 
 ## Adhan recordings: not covered
 
