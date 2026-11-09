@@ -83,11 +83,13 @@ const d = dict.install;
       <h2 id="apk-heading">{d.apk.heading}</h2>
       <p class="apk-lead">{d.apk.lead}</p>
 
-      <div class="card apk-card">
-        <h3>{d.apk.playTitle}</h3>
-        <p>{d.apk.playBody}</p>
-        <a class="apk-download" href={site.apkPlayUrl}>{d.apk.playButton}</a>
-      </div>
+      {site.apkPlayUrl === null ? null : (
+        <div class="card apk-card">
+          <h3>{d.apk.playTitle}</h3>
+          <p>{d.apk.playBody}</p>
+          <a class="apk-download" href={site.apkPlayUrl}>{d.apk.playButton}</a>
+        </div>
+      )}
 
       <div class="card apk-card">
         <h3>{d.apk.fossTitle}</h3>
