@@ -95,7 +95,13 @@ export type CalculationMethodId = (typeof CALCULATION_METHODS)[number];
 /** Methods that can actually be computed (i.e. everything except the `auto` sentinel). */
 export type ConcreteMethodId = Exclude<CalculationMethodId, 'auto'>;
 
-export type Madhab = 'shafi' | 'hanafi';
+/**
+ * Which Asr the user follows. `'auto'` resolves per country (`resolveMadhab` in methods.ts):
+ * Hanafi where local calendars use it, the majority (one shadow length) everywhere else.
+ */
+export type Madhab = 'auto' | 'shafi' | 'hanafi';
+/** A madhab that can actually be computed (everything except the `auto` sentinel). */
+export type ConcreteMadhab = Exclude<Madhab, 'auto'>;
 
 export type HighLatitudeRuleId = 'auto' | 'middleOfTheNight' | 'seventhOfTheNight' | 'twilightAngle';
 

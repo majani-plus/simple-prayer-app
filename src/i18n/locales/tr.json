@@ -961,10 +961,12 @@
         "footer": "İkisi de sahihtir. Mezhebine uygun olanı seç.",
         "a11yHint": "İkindinin başlangıç vaktini değiştirir",
         "option": {
+          "auto": "Otomatik ({{school}})",
           "shafi": "Şâfiî, Mâlikî, Hanbelî",
           "hanafi": "Hanefî"
         },
         "description": {
+          "auto": "Ülkendeki takvimlerin çoğuna uyar.",
           "shafi": "İkindi, bir şeyin gölgesi kendi boyuna ulaştığında girer.",
           "hanafi": "İkindi, gölge kendi boyunun iki katına ulaştığında girer — yaklaşık bir saat sonra."
         }

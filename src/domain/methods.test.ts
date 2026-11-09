@@ -9,6 +9,7 @@ import {
   isMethodSupported,
   JAFARI_ANGLES,
   listMethods,
+  resolveMadhab,
   METHOD_DESCRIPTION_KEYS,
   METHOD_LABEL_KEYS,
   methodLabelKey,
@@ -433,6 +434,37 @@ describe('buildParameters (jafari)', () => {
     expect(buildParameters('jafari', { madhab: 'shafi', highLatitudeRule: 'auto' }).fajrAngle).toBe(
       16
     );
+  });
+});
+
+// ---------------------------------------------------------------------------
+// resolveMadhab (D209)
+// ---------------------------------------------------------------------------
+
+describe('resolveMadhab', () => {
+  it('gives the Hanafi Asr in South Asia and the majority Asr elsewhere', () => {
+    for (const code of ['PK', 'IN', 'BD', 'AF', ' pk ']) {
+      expect(resolveMadhab('auto', code)).toBe('hanafi');
+    }
+    for (const code of ['TR', 'SA', 'EG', 'GB', 'ID', '', 'XX']) {
+      expect(resolveMadhab('auto', code)).toBe('shafi');
+    }
+    expect(resolveMadhab('auto')).toBe('shafi');
+  });
+
+  it('keeps a choice the user made, whatever the country', () => {
+    expect(resolveMadhab('shafi', 'PK')).toBe('shafi');
+    expect(resolveMadhab('hanafi', 'TR')).toBe('hanafi');
+  });
+
+  it('never gives the Hanafi Asr to the Shia methods', () => {
+    expect(resolveMadhab('auto', 'PK', 'jafari')).toBe('shafi');
+    expect(resolveMadhab('auto', 'PK', 'tehran')).toBe('shafi');
+    expect(resolveMadhab('auto', 'PK', 'karachi')).toBe('hanafi');
+  });
+
+  it('falls back to the majority Asr for an unknown stored value', () => {
+    expect(resolveMadhab('maliki' as never, 'PK')).toBe('shafi');
   });
 });
 

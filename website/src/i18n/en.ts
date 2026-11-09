@@ -398,7 +398,7 @@ export const en = {
       p1: 'Prayer times are calculated on your phone, from your approximate location. From the start, the app picks the calculation method used in your country. The name is always shown, for example “Auto (Diyanet)”, and you can change it at any time.',
       steps: [
         'Settings → Prayer times → Calculation method. The full list includes Diyanet (Turkey), ISNA (North America), Umm al-Qura, Egyptian, Karachi, Moonsighting Committee, Dubai, Kuwait, Qatar, Singapore, Tehran, Jafari, and Muslim World League.',
-        'Asr madhab: Shafi (the default) or Hanafi. This is the most common reason an Asr time looks wrong.',
+        'Asr madhab: Auto (the default) follows your country, so Hanafi in Pakistan, India, Bangladesh and Afghanistan, and Shafi elsewhere. You can also choose Shafi or Hanafi yourself. This is the most common reason an Asr time looks wrong.',
         'Per-prayer adjustments: each prayer can be moved from −30 to +30 minutes. If your mosque follows a printed calendar with safety margins (temkin), match it here, one prayer at a time.',
         'A high-latitude rule for summers in the far north, and a Hijri date offset (±2 days) if your community sees the new moon on a different day.',
       ],

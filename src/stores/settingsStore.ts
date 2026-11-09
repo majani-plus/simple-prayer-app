@@ -73,7 +73,7 @@ import {
 export type TimeFormatPreference = AppSettings['timeFormat'];
 
 const STREAK_MODES = ['soft', 'hard'] as const satisfies readonly StreakMode[];
-const MADHABS = ['shafi', 'hanafi'] as const satisfies readonly Madhab[];
+const MADHABS = ['auto', 'shafi', 'hanafi'] as const satisfies readonly Madhab[];
 const HIGH_LATITUDE_RULES = [
   'auto',
   'middleOfTheNight',
@@ -190,7 +190,8 @@ export function createDefaultSettings(): AppSettings {
     calculation: {
       // Resolved from the user's country at computation time (methods.ts).
       method: 'auto',
-      madhab: 'shafi',
+      // Resolved from the user's country at computation time, like `method` (D209).
+      madhab: 'auto',
       highLatitudeRule: 'auto',
       offsets: defaultOffsets(),
       hijriOffset: 0,
@@ -592,21 +593,29 @@ export const SETTINGS_STORAGE_KEY = 'settings';
  * a bump — {@link sanitizeSettings} already fills new fields with their default) and add the
  * corresponding step to {@link migrateSettings}.
  */
-export const SETTINGS_PERSIST_VERSION = 1;
+export const SETTINGS_PERSIST_VERSION = 2;
 
 /**
  * Migrates a payload written by an older (or newer) build into the current shape.
  *
- * Version 1 is the initial schema, so there is no historical transform yet; every payload is
- * simply re-validated. Future versions add their stepwise transform here BEFORE the final
- * sanitize, e.g. `if (fromVersion < 2) renameField(draft)`.
+ * Steps run in order, BEFORE the final sanitize:
+ *
+ * - **v1 → v2 (D209):** `calculation.madhab` gained `'auto'`. Version 1 stored `'shafi'` both for
+ *   people who chose it and for everyone who never opened the setting, and the two cannot be told
+ *   apart. The owner chose to move every stored `'shafi'` to `'auto'`: outside the Hanafi-default
+ *   countries it resolves to the same Asr, so only those countries see a change. `'hanafi'` was
+ *   always a deliberate choice and is kept.
  *
  * @param persisted - The stored state as read back from storage; untrusted.
  * @param fromVersion - The version stamped on the stored payload.
  * @returns A complete, valid `AppSettings`.
  */
 export function migrateSettings(persisted: unknown, fromVersion: number): AppSettings {
-  void fromVersion;
+  if (fromVersion < 2 && isRecord(persisted) && isRecord(persisted.calculation)) {
+    if (persisted.calculation.madhab === 'shafi') {
+      persisted = { ...persisted, calculation: { ...persisted.calculation, madhab: 'auto' } };
+    }
+  }
   return sanitizeSettings(persisted);
 }
 

@@ -53,7 +53,7 @@
 import * as adhan from 'adhan';
 
 import { addDays, parseDay, resolvePrayerDayForInstant, toDayString } from './dates';
-import { buildParameters, resolveMethod } from './methods';
+import { buildParameters, resolveMadhab, resolveMethod } from './methods';
 import { WINDOW_END_MARKER } from './windows';
 import {
   PRAYERS,
@@ -207,7 +207,7 @@ function computeRaw(
   const startOfDay = parseDay(day);
   const method = resolveMethod(settings.method, location.countryCode);
   const parameters = buildParameters(method, {
-    madhab: settings.madhab,
+    madhab: resolveMadhab(settings.madhab, location.countryCode, method),
     highLatitudeRule: settings.highLatitudeRule,
     coordinates: { latitude: location.latitude, longitude: location.longitude },
   });

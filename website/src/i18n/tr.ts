@@ -384,7 +384,7 @@ export const tr: SiteDict = {
       p1: 'Vakitler, yaklaşık konumundan telefonunda hesaplanır. Uygulama başlangıçta ülkende kullanılan hesap kurumunu seçer ve bunu açıkça gösterir; örneğin “Otomatik (Diyanet)”. İstediğin zaman değiştirebilirsin.',
       steps: [
         "Ayarlar → Namaz vakitleri → Hesaplama yöntemi. Tam listede Diyanet (Türkiye), ISNA (Kuzey Amerika), Ümmü'l-Kurâ, Mısır, Karaçi, Moonsighting Committee, Dubai, Kuveyt, Katar, Singapur, Tahran, Caferî ve Muslim World League var.",
-        'İkindi mezhebi: Şâfiî (varsayılan) ya da Hanefî — bir ikindi vaktinin “yanlış görünmesinin” en yaygın sebebi budur.',
+        'İkindi mezhebi: varsayılan “Otomatik” ülkene uyar. Pakistan, Hindistan, Bangladeş ve Afganistan’da Hanefî, diğer yerlerde Şâfiî olur. İstersen Şâfiî ya da Hanefî’yi kendin seç. Bir ikindi vaktinin “yanlış görünmesinin” en yaygın sebebi budur.',
         'Vakit başına düzeltme: her vakit −30 ile +30 dakika arasında kaydırılabilir. Camin, güvenlik payı (temkin) eklenmiş basılı bir takvim kullanıyorsa, burada vakit vakit ona uydur.',
         'Kuzey yazları için yüksek enlem kuralı; topluluğunun hilal görmesi farklıysa hicri tarih düzeltmesi (±2 gün).',
       ],

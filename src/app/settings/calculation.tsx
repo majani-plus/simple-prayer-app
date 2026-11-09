@@ -20,7 +20,12 @@ import { SettingRow } from '@/components/SettingRow';
 import { SettingStepperRow } from '@/components/SettingStepperRow';
 import { todayDay } from '@/domain/dates';
 import { MAX_HIJRI_OFFSET, formatHijri, toHijri } from '@/domain/hijri';
-import { METHOD_DESCRIPTION_KEYS, METHOD_LABEL_KEYS, resolveMethod } from '@/domain/methods';
+import {
+  METHOD_DESCRIPTION_KEYS,
+  METHOD_LABEL_KEYS,
+  resolveMadhab,
+  resolveMethod,
+} from '@/domain/methods';
 import { computeDayTimes, getCurrentPrayerDay } from '@/domain/prayerTimes';
 import { PRAYERS } from '@/domain/types';
 import {
@@ -87,8 +92,8 @@ const HIGH_LATITUDE_RULES: readonly HighLatitudeRuleId[] = [
   'twilightAngle',
 ];
 
-/** The two Asr schools, Shafi first (the default). */
-const MADHABS: readonly Madhab[] = ['shafi', 'hanafi'];
+/** Auto first (the default, D209), then the two Asr schools. */
+const MADHABS: readonly Madhab[] = ['auto', 'shafi', 'hanafi'];
 
 /** All-zero offsets — what "reset" writes. */
 function zeroOffsets(): PrayerOffsets {
@@ -135,6 +140,10 @@ export default function CalculationSettingsScreen() {
   );
 
   const resolvedMethod = resolveMethod(calculation.method, location?.countryCode);
+  // "Auto (Hanafi)": like the method, the automatic Asr always names the school it chose.
+  const autoMadhabSchool = t(
+    `settings.calculation.madhab.option.${resolveMadhab('auto', location?.countryCode, resolvedMethod)}`
+  );
   const countryName = useMemo(() => {
     const code = location?.countryCode;
     if (code === undefined) return undefined;
@@ -178,6 +187,7 @@ export default function CalculationSettingsScreen() {
   const currentTimes = useMemo(() => timesFor({}), [timesFor]);
   const asrByMadhab = useMemo(
     () => ({
+      auto: timesFor({ madhab: 'auto' })?.asr ?? null,
       shafi: timesFor({ madhab: 'shafi' })?.asr ?? null,
       hanafi: timesFor({ madhab: 'hanafi' })?.asr ?? null,
     }),
@@ -371,7 +381,11 @@ export default function CalculationSettingsScreen() {
               <OptionCard
                 key={madhab}
                 testID={`calculation-madhab-${madhab}`}
-                label={t(`settings.calculation.madhab.option.${madhab}`)}
+                label={
+                  madhab === 'auto'
+                    ? t('settings.calculation.madhab.option.auto', { school: autoMadhabSchool })
+                    : t(`settings.calculation.madhab.option.${madhab}`)
+                }
                 description={t(`settings.calculation.madhab.description.${madhab}`)}
                 value={showTime(asrByMadhab[madhab])}
                 selected={calculation.madhab === madhab}

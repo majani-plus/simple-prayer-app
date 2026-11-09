@@ -190,7 +190,7 @@ describe('DEFAULT_SETTINGS', () => {
       useAutoLocation: true,
       calculation: {
         method: 'auto',
-        madhab: 'shafi',
+        madhab: 'auto',
         highLatitudeRule: 'auto',
         offsets: { fajr: 0, dhuhr: 0, asr: 0, maghrib: 0, isha: 0 },
         hijriOffset: 0,
@@ -787,7 +787,7 @@ describe('persistence', () => {
     expect(state.location).toBeNull();
     expect(state.useAutoLocation).toBe(DEFAULT_SETTINGS.useAutoLocation);
     expect(state.calculation.method).toBe('auto');
-    expect(state.calculation.madhab).toBe('shafi');
+    expect(state.calculation.madhab).toBe('auto');
     expect(state.calculation.highLatitudeRule).toBe('auto');
     expect(state.calculation.offsets.fajr).toBe(MAX_PRAYER_OFFSET_MINUTES);
     expect(state.calculation.offsets.dhuhr).toBe(0);
@@ -870,6 +870,26 @@ describe('sanitizeSettings', () => {
 });
 
 describe('migrateSettings', () => {
+  // D209: version 1 could not tell a chosen Shafi Asr from the untouched default, and the owner
+  // chose to move every stored 'shafi' to 'auto'. A deliberate 'hanafi' stays.
+  it('moves a version-1 Shafi Asr to auto, and keeps Hanafi', () => {
+    const v1 = (madhab: string) => ({ calculation: { method: 'karachi', madhab } });
+    expect(migrateSettings(v1('shafi'), 1).calculation).toMatchObject({
+      method: 'karachi',
+      madhab: 'auto',
+    });
+    expect(migrateSettings(v1('hanafi'), 1).calculation.madhab).toBe('hanafi');
+    // A current payload is never rewritten: 'shafi' chosen after D209 is a real choice.
+    expect(migrateSettings(v1('shafi'), 2).calculation.madhab).toBe('shafi');
+  });
+
+  it('migrates a stored version-1 payload end to end', () => {
+    const { store } = makeStore(
+      seedWith({ version: 1, state: { calculation: { method: 'auto', madhab: 'shafi' } } })
+    );
+    expect(store.getState().calculation.madhab).toBe('auto');
+  });
+
   it('produces a complete settings object from any version', () => {
     expect(migrateSettings({ theme: 'dark' }, 0)).toEqual({
       ...createDefaultSettings(),

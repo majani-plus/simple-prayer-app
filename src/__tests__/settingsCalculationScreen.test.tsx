@@ -146,9 +146,11 @@ describe('the Asr madhab', () => {
 
   it('writes the chosen school through the store', async () => {
     await renderScreen();
-    expect(calculation().madhab).toBe('shafi');
+    expect(calculation().madhab).toBe('auto');
     await press('calculation-madhab-hanafi');
     expect(calculation().madhab).toBe('hanafi');
+    await press('calculation-madhab-auto');
+    expect(calculation().madhab).toBe('auto');
   });
 });
 

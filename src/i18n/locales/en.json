@@ -961,10 +961,12 @@
         "footer": "Both are sound. Choose the one your community follows.",
         "a11yHint": "Changes when Asr begins",
         "option": {
+          "auto": "Auto ({{school}})",
           "shafi": "Shafi, Maliki, Hanbali",
           "hanafi": "Hanafi"
         },
         "description": {
+          "auto": "Follows what most calendars in your country use.",
           "shafi": "Asr begins when a shadow grows to the object’s own length.",
           "hanafi": "Asr begins when a shadow grows to twice the object’s length — roughly an hour later."
         }

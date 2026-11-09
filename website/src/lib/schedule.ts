@@ -18,14 +18,15 @@ export const PRAYERS: readonly Prayer[] = ['fajr', 'dhuhr', 'asr', 'maghrib', 'i
 /**
  * What the site computes with.
  *
- * Not configurable here, deliberately. `auto` resolves the authority from the country code the way
- * the app does (D10) — Diyanet in Türkiye, ISNA in North America, and so on — and anyone who needs
- * a different madhab, a high-latitude rule or a per-prayer offset needs the app. Saying that once,
+ * Not configurable here, deliberately. `auto` resolves the authority and the Asr from the country
+ * code the way the app does (D10, D209) — Diyanet in Türkiye, ISNA in North America, the Hanafi Asr
+ * in Pakistan, and so on — and anyone who needs a different madhab, a high-latitude rule or a
+ * per-prayer offset needs the app. Saying that once,
  * plainly, is better than a settings panel on a page whose whole promise is that it is quick.
  */
 export const WEB_SETTINGS: CalculationSettings = {
   method: 'auto',
-  madhab: 'shafi',
+  madhab: 'auto',
   highLatitudeRule: 'auto',
   offsets: { fajr: 0, dhuhr: 0, asr: 0, maghrib: 0, isha: 0 },
   hijriOffset: 0,

@@ -44,6 +44,7 @@ import * as adhan from 'adhan';
 import {
   CALCULATION_METHODS,
   type CalculationMethodId,
+  type ConcreteMadhab,
   type ConcreteMethodId,
   type Coordinates,
   type HighLatitudeRuleId,
@@ -179,6 +180,41 @@ export function isMethodSupported(id: string): id is CalculationMethodId {
 /** Whether `id` is a method that can actually be computed (i.e. supported and not `auto`). */
 export function isConcreteMethod(id: string): id is ConcreteMethodId {
   return id !== 'auto' && isMethodSupported(id);
+}
+
+/**
+ * Countries whose prayer calendars use the Hanafi Asr (shadow twice an object's length), for the
+ * `'auto'` madhab (D209). Everywhere else resolves to the majority view, one shadow length.
+ * Türkiye is Hanafi but stays off this list on purpose: Diyanet's official ikindi is asr-ı evvel,
+ * the one-length Asr, and the Diyanet goldens pin that.
+ */
+export const COUNTRY_MADHAB_MAP: Readonly<Record<string, ConcreteMadhab>> = Object.freeze({
+  PK: 'hanafi',
+  IN: 'hanafi',
+  BD: 'hanafi',
+  AF: 'hanafi',
+});
+
+/**
+ * Resolve the user's Asr setting to the one to compute with.
+ *
+ * - `'shafi'` / `'hanafi'` pass through unchanged.
+ * - `'auto'` → {@link COUNTRY_MADHAB_MAP} on `countryCode` (trimmed, upper-cased), else `'shafi'`.
+ *   The Shia methods (`jafari`, `tehran`) always resolve to `'shafi'`: their Asr is one shadow
+ *   length whatever the country.
+ * - Defensive: any other stored value yields `'shafi'`, the pre-D209 default.
+ *
+ * Never returns `'auto'`. Pure.
+ */
+export function resolveMadhab(
+  madhab: Madhab,
+  countryCode?: string,
+  method?: ConcreteMethodId
+): ConcreteMadhab {
+  if (madhab === 'shafi' || madhab === 'hanafi') return madhab;
+  if (madhab !== 'auto' || method === 'jafari' || method === 'tehran') return 'shafi';
+  const code = typeof countryCode === 'string' ? countryCode.trim().toUpperCase() : '';
+  return COUNTRY_MADHAB_MAP[code] ?? 'shafi';
 }
 
 /**
@@ -324,7 +360,8 @@ export const JAFARI_ANGLES = Object.freeze({ fajr: 16, isha: 14, maghrib: 4 });
 
 /** Inputs `buildParameters` needs beyond the method itself. */
 export interface BuildParametersOptions {
-  madhab: Madhab;
+  /** Already resolved: call {@link resolveMadhab} first, `'auto'` is not accepted. */
+  madhab: ConcreteMadhab;
   highLatitudeRule: HighLatitudeRuleId;
   /**
    * The location the times will be computed for. Only used to resolve
@@ -374,7 +411,7 @@ function baseParameters(methodId: ConcreteMethodId): adhan.CalculationParameters
   }
 }
 
-function adhanMadhab(madhab: Madhab) {
+function adhanMadhab(madhab: ConcreteMadhab) {
   return madhab === 'hanafi' ? adhan.Madhab.Hanafi : adhan.Madhab.Shafi;
 }
 
