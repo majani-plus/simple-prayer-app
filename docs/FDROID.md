@@ -36,8 +36,8 @@ printf simpleprayer-foss | gh secret set FOSS_KEY_ALIAS
 IzzyOnDroid's App Inclusion Policy (https://izzyondroid.org/docs/general/AppInclusionPolicy/,
 "AI policy") rejects apps whose code is fully or partly written by generative AI tools, and much of
 this app's code was written with Claude. Submitting would mean hiding that, so we don't. Their 30 MB
-per-APK limit would also be a problem: the universal APK is about 134 MB, and arm64 alone is about
-50 MB, mostly React Native's native libraries. Requests now go to Codeberg
+per-APK limit would also be a problem: the universal APK is about 63 MB even with its native
+libraries compressed (134 MB without), mostly React Native's native code for four ABIs. Requests now go to Codeberg
 (https://codeberg.org/IzzyOnDroid/repodata/issues), not GitLab.
 
 People who want the APK without F-Droid get it from GitHub Releases or the website's /install page.
@@ -51,7 +51,7 @@ below. GitLab wants identity verification (phone or card) before CI runs on the 
 a maintainer to start it. Answer reviewers there and edit the file on that branch.
 
 The recipe builds three APKs, one per processor type (armeabi-v7a, arm64-v8a, x86_64), because the
-universal APK is about 134 MB. Their versionCodes are 10 × ours + 1, 2 or 3 (661, 662, 663 for 66),
+universal APK is about 63 MB (native libraries compressed since 2026-11-09; 134 MB before). Their versionCodes are 10 × ours + 1, 2 or 3 (661, 662, 663 for 66),
 set by `VercodeOperation` and a `sed` on package.json. So F-Droid looks for
 `changelogs/661.txt` and so on, not `66.txt`. Their
 reviewers often ask for changes; the open questions are noted after the recipe.
