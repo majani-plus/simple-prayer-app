@@ -26,8 +26,8 @@ unlocks nothing.
 - **Reminders.** Up to three for each prayer: the adhan, an earlier one, and a last one before the
   time ends. Each can be silent, a tone, or the adhan.
 - **The log.** Tap a prayer to mark it as prayed. You can also mark one as late or missed, and
-  change any day later in History. Streaks, excused days, travel mode and a qada counter are all
-  there if you want them. If you only want the times, nothing asks you to log anything.
+  change any day later in History. Streaks, excused days and a qada counter are all there if
+  you want them. If you only want the times, nothing asks you to log anything.
 - **Qibla.** A compass that shows the Kaaba and tells you which way to turn. You do not have to
   hold the phone flat.
 - **Widgets.** Home screen widgets on both platforms, and Lock Screen widgets, StandBy and a Live

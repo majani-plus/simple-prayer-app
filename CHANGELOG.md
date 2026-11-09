@@ -20,6 +20,11 @@ would recognise, not commit subjects.
   spaces. The Urdu was written with AI help and has not yet been checked by a native speaker.
   Corrections are welcome.
 
+### Removed
+
+- **Travel mode.** It did little beyond one label, so it is gone for now. If you had it on, the
+  app simply stops showing it. Your prayer log is not changed.
+
 ### Changed
 
 - **Asr follows your country.** The new default, Auto, uses the Hanafi Asr in Pakistan, India,

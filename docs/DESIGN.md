@@ -152,7 +152,7 @@ Buddies list, and 22 on the large widget and on the one-row Now strip (D182).
 ### Sheets: a tappable row always wears a surface (D143)
 
 Every row a finger can press inside a bottom sheet is a **radius-14 card with a hairline** — the
-menu actions of the ⋯ sheet, the excused and travel sheets, the day pickers, all of it. Never a
+menu actions of the ⋯ sheet, the excused-days sheets, the day pickers, all of it. Never a
 bare line of text with a press handler on it. Owner's rule, 2026-08-30: *"Sure it looks nice being
 just text, but without some visual guide it's not accessible when you don't see a visual
 button/clickable area."* The card draws the edge the eye aims at and the margin the thumb needs;

@@ -29,7 +29,6 @@ src/
   domain/                  # PURE TypeScript. No React/RN imports. Exhaustively unit-tested.
     prayerTimes.ts         # the ONLY adhan caller: day times, windows, current/next prayer
     windows.ts             # window-end markers, isWindowClosed, prayedStatusAt (auto-late, D71)
-    travel.ts              # travel combining windows (D116)
     methods.ts             # country→method auto-map (incl. Jafari config); method metadata/labels
     prayerNames.ts         # display names; Friday Dhuhr → Jumu'ah (display only, id stays dhuhr)
     streaks.ts             # soft/hard engines; day closes at next Fajr; exempt bridging
@@ -149,7 +148,7 @@ All synchronous, on the JS thread, inside the press handler:
 
 1. `PrayerSeal.handleFacePress` / pill option → `handlePick` → `onPick` (through memoised `PrayerRow`).
 2. `TodayScreen.handlePick` (`(tabs)/index.tsx`): close the seal; a direct `prayed` after the
-   window shut is rewritten to `late` (`windows.prayedStatusAt` / `travel.travelPrayedStatusAt`);
+   window shut is rewritten to `late` (`windows.prayedStatusAt`);
    `confirmHaptic()` fires **before** the write.
 3. `trackingStore.toggleStatus` (same status again = unlogged) → `setStatus`: guards (valid day,
    not future, not exempt) → **one transaction**: `queries.setPrayerStatus` (unlogged deletes the
