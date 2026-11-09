@@ -121,7 +121,11 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           GH_REPO: ${{ github.repository }}
           APK: ${{ steps.sign.outputs.apk }}
+        # The GitHub Release lives on a plain vX.Y.Z tag at the same commit: GitHub's download route
+        # (/releases/download/<tag>/<file>) fails for a tag with a slash in it, which broke the
+        # website's .../releases/latest/download/simple-prayer-foss.apk link.
         run: |
-          gh release view "$GITHUB_REF_NAME" > /dev/null 2>&1 \
-            || gh release create "$GITHUB_REF_NAME" --verify-tag --title "Simple Prayer ${GITHUB_REF_NAME#release/v}" --notes ""
-          gh release upload "$GITHUB_REF_NAME" "$APK" --clobber
+          TAG="v${GITHUB_REF_NAME#release/v}"
+          gh release view "$TAG" > /dev/null 2>&1 \
+            || gh release create "$TAG" --target "$GITHUB_SHA" --title "Simple Prayer ${TAG#v}" --notes ""
+          gh release upload "$TAG" "$APK" --clobber

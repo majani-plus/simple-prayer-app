@@ -475,6 +475,28 @@ worked; only the counters were manual.
 Write `CHANGELOG.md` entries under `[Unreleased]` as you merge work, in language a user would
 recognise. The script only moves what is already there; it cannot invent release notes.
 
+### The two APKs on GitHub (the website's /install links)
+
+`website/src/config.ts` links `.../releases/latest/download/simple-prayer-play.apk` and
+`simple-prayer-foss.apk`. Both live on the GitHub Release for the plain tag `vX.Y.Z` (never
+`release/vX.Y.Z`: GitHub's download route fails for a tag with a slash). After a release:
+
+```sh
+# FOSS: foss-android.yml builds it on the release/vX.Y.Z tag, signs it and attaches it, once the
+# FOSS_KEYSTORE_* secrets exist (docs/FDROID.md). Until then, sign the workflow artifact by hand.
+
+# Google Play: the universal APK Google builds and signs from our bundle, once Play has processed it.
+fastlane run download_universal_apk_from_google_play package_name:app.simpleprayer \
+  version_code:N json_key:fastlane/play_service_account.json destination:simple-prayer-play.apk
+gh release upload vX.Y.Z simple-prayer-play.apk --clobber
+
+# Play release notes for the alpha release (only languages the Play listing has):
+fastlane supply --package_name app.simpleprayer --json_key fastlane/play_service_account.json \
+  --track alpha --version_code N --metadata_path <dir with en-US/ar/tr-TR changelogs only> \
+  --skip_upload_apk true --skip_upload_aab true --skip_upload_metadata true \
+  --skip_upload_images true --skip_upload_screenshots true
+```
+
 ### The FOSS versionCode (F-Droid and the GitHub APK)
 
 The FOSS Android build (`FOSS_BUILD=1`, `docs/BUILD_YOURSELF.md`) is built by

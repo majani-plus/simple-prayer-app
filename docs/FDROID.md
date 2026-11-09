@@ -1,7 +1,8 @@
 # Getting Simple Prayer into F-Droid and IzzyOnDroid
 
 The version without Google (`FOSS_BUILD=1`, D212) is what both stores take. GitHub Releases
-already carries it: every `release/vX.Y.Z` tag gets a signed `simple-prayer-foss.apk`. The
+already carries it: every `release/vX.Y.Z` tag gets a signed `simple-prayer-foss.apk`, on a GitHub
+Release under the plain tag `vX.Y.Z` (GitHub's download links break on a tag with a slash). The
 store text, icon and screenshots are in `fastlane/metadata/android/`, which both stores read.
 
 Both submissions go in from the owner's own account. Nothing below needs to be done twice:
@@ -35,7 +36,7 @@ artifact by hand:
 ```sh
 apksigner sign --ks ~/Backups/simple-prayer-foss-release.jks --ks-key-alias simpleprayer-foss \
   --out simple-prayer-foss.apk app-release.apk
-gh release upload release/vX.Y.Z simple-prayer-foss.apk --clobber
+gh release upload vX.Y.Z simple-prayer-foss.apk --clobber
 ```
 
 ## IzzyOnDroid (fast: usually days)
