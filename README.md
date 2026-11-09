@@ -1,10 +1,12 @@
 # Simple Prayer
 
-Simple Prayer is a prayer times and prayer tracking app for iPhone and Android. It shows your five
-daily prayer times, points you to the qibla, and lets you mark a prayer with one tap.
+Simple Prayer is an open-source Muslim prayer times, qibla and salah tracking app for iPhone,
+Android, Apple Watch and Wear OS. It shows your five daily prayer times, points you to the qibla,
+and lets you mark a prayer with one tap.
 
-It is free, with no ads and no paid features. It is open for anyone to build and copy. There is
-an optional tip jar, and a tip unlocks nothing.
+It is free, with no ads, no account and no paid features. The code is open source under the MIT
+license, so anyone can read it, build it and learn from it. There is an optional tip jar, and a tip
+unlocks nothing.
 
 <p>
   <img src="docs/store-screens/en/01-today.png" alt="The Today screen: today's five prayers, the next prayer and a countdown" width="240">
