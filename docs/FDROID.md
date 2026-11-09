@@ -84,7 +84,7 @@ Builds:
         | sha256sum -c -
       - tar xJf node.tar.xz --strip-components=1 -C /usr/local
       - npm install -g bun@1.4.3
-    init: bun install --frozen-lockfile
+    init: bun install --frozen-lockfile --ignore-scripts
     output: android/app/build/outputs/apk/release/app-release-unsigned.apk
     prebuild:
       - export FOSS_BUILD=1
@@ -108,7 +108,7 @@ Builds:
         | sha256sum -c -
       - tar xJf node.tar.xz --strip-components=1 -C /usr/local
       - npm install -g bun@1.4.3
-    init: bun install --frozen-lockfile
+    init: bun install --frozen-lockfile --ignore-scripts
     output: android/app/build/outputs/apk/release/app-release-unsigned.apk
     prebuild:
       - export FOSS_BUILD=1
@@ -132,7 +132,7 @@ Builds:
         | sha256sum -c -
       - tar xJf node.tar.xz --strip-components=1 -C /usr/local
       - npm install -g bun@1.4.3
-    init: bun install --frozen-lockfile
+    init: bun install --frozen-lockfile --ignore-scripts
     output: android/app/build/outputs/apk/release/app-release-unsigned.apk
     prebuild:
       - export FOSS_BUILD=1
