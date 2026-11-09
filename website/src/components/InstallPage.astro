@@ -77,6 +77,30 @@ const d = dict.install;
       <a class="hero-browser-link" href={pagePath('times', locale)}>{dict.home.hero.heroBrowser}</a>
       <span class="hint hero-browser-hint">{dict.home.hero.heroBrowserHint}</span>
     </p>
+
+    {/* The Android app files: a second choice, below the stores. Hidden on iPhone and iPad. */}
+    <section class="apk" aria-labelledby="apk-heading">
+      <h2 id="apk-heading">{d.apk.heading}</h2>
+      <p class="apk-lead">{d.apk.lead}</p>
+
+      <div class="card apk-card">
+        <h3>{d.apk.playTitle}</h3>
+        <p>{d.apk.playBody}</p>
+        <a class="apk-download" href={site.apkPlayUrl}>{d.apk.playButton}</a>
+      </div>
+
+      <div class="card apk-card">
+        <h3>{d.apk.fossTitle}</h3>
+        <p>{d.apk.fossBody}</p>
+        <ul>
+          {d.apk.fossDiffs.map((line) => <li>{line}</li>)}
+        </ul>
+        <p class="apk-warning">{d.apk.fossWarning}</p>
+        <a class="apk-download" href={site.apkFossUrl}>{d.apk.fossButton}</a>
+      </div>
+
+      <p class="apk-releases"><a href={site.releasesUrl} hreflang="en">{d.apk.releases}</a></p>
+    </section>
   </section>
 
   {/*
@@ -254,5 +278,65 @@ const d = dict.install;
   }
   .hero-browser-hint {
     margin: 0;
+  }
+
+  /* The APK section: left/right-aligned reading text inside the centred page. On iOS a file for
+     Android is only clutter, so it is hidden once detection says so. */
+  .apk {
+    margin: 3rem 0 0;
+    padding-top: 2rem;
+    border-top: 1px solid var(--hairline);
+    text-align: start;
+  }
+  .install[data-os='ios'] .apk {
+    display: none;
+  }
+  .apk h2 {
+    font-size: 1.3rem;
+    text-align: center;
+  }
+  .apk-lead {
+    color: var(--muted);
+    margin: 0 0 1.2rem;
+  }
+  .apk-card {
+    margin: 0 0 1rem;
+  }
+  .apk-card h3 {
+    font-size: 1.08rem;
+    margin: 0 0 0.4rem;
+  }
+  .apk-card p,
+  .apk-card ul {
+    margin: 0 0 0.8rem;
+  }
+  .apk-card ul {
+    padding-inline-start: 1.2rem;
+  }
+  /* The one sentence that can cost someone their log. Set apart by a rule, not by colour alone:
+     the words say what it is. */
+  .apk-warning {
+    border-inline-start: 3px solid var(--border-strong);
+    padding-inline-start: 12px;
+  }
+  .apk-download {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 8px 18px;
+    border: 1px solid var(--border-mid);
+    border-radius: 14px; /* a pill looks broken when a long label wraps to two lines */
+    background: var(--card-bright);
+    color: var(--accent-deep);
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .apk-download:hover,
+  .apk-download:focus-visible {
+    border-color: var(--border-strong);
+  }
+  .apk-releases {
+    text-align: center;
+    margin: 1.2rem 0 0;
   }
 </style>

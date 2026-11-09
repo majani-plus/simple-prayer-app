@@ -39,8 +39,6 @@ export const en = {
     stores: {
       downloadOn: 'Download on',
       comingSoonTo: 'Coming soon to',
-      apkLabel: 'Or download the Android app file directly',
-      apkHint: 'Version {version} · {size} MB · for Android phones without Google Play',
     },
   },
 
@@ -593,6 +591,24 @@ export const en = {
     qrAlt: 'A code you can scan with your phone camera. It opens this page.',
     goingIos: 'Opening the App Store…',
     goingAndroid: 'Opening Google Play…',
+    /** Direct Android downloads, below the store badges. Both files live on GitHub Releases. */
+    apk: {
+      heading: 'Android app files (APK)',
+      lead: 'You can also download the Android app as a file and install it yourself. For most people Google Play is the better choice, because it keeps the app up to date.',
+      playTitle: 'The Google Play version',
+      playBody: 'The same app as on Google Play, signed by Google Play. It does not update itself. You can install the app from Google Play over it later, and your prayer log stays.',
+      playButton: 'Download the Google Play version',
+      fossTitle: 'The version without Google',
+      fossBody: 'Built from the open-source code, with no Google services. It sends no crash reports and has no tip. Three things are different:',
+      fossDiffs: [
+        'Your prayer buddies’ prayers show up when you open the app. You get no notification when they pray.',
+        'There is no Wear OS watch app, and nothing is shared with a watch.',
+        'The adhan voices are different recordings, with free licences.',
+      ],
+      fossWarning: 'It is signed with a different key. It cannot update the Google Play version, and the Google Play version cannot update it. To switch between them, you must uninstall the app first, and uninstalling deletes the prayer log on your phone. To keep a copy, export it first in Settings · Data.',
+      fossButton: 'Download the version without Google',
+      releases: 'All releases and checksums',
+    },
   },
 
   /** Strings for the installable copy. The name and mark stay the app's; the description is where

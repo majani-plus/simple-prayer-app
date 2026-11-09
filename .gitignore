@@ -75,10 +75,6 @@ modules/*/android/build/
 /wear-face/build/
 /wear/.cxx/
 
-# The side-loadable APK and its generated metadata (scripts/publish-apk.sh writes both).
-/website/public/simple-prayer.apk
-/website/src/apk.generated.json
-
 # Generated into the website at build time from the app (scripts/generate-domain.ts,
 # scripts/generate-cities.ts). Committing them would put a second, editable copy of the
 # app's domain code in the history. `bun run build` regenerates both.

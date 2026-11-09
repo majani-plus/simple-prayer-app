@@ -1,24 +1,16 @@
 ---
 import { site } from '../config';
 
-interface ApkMeta {
-  version: string;
-  sizeMb: number;
-  file: string;
-}
-
 /**
  * Store badges. The app is not published yet, so with no URL configured these render an honest
  * "coming soon" state instead of dead links. Set the URLs in src/config.ts at launch.
  */
 interface Props {
   align?: 'start' | 'center';
-  /** Localized badge captions; the two `apk*` fields appear only where the APK row is wanted. */
+  /** Localized badge captions. */
   labels: {
     downloadOn: string;
     comingSoonTo: string;
-    apkLabel?: string;
-    apkHint?: string;
   };
 }
 const { align = 'start', labels } = Astro.props;
@@ -35,23 +27,6 @@ const stores = [
   { label: 'App Store', url: site.appStoreUrl, glyph: glyphs.apple },
   { label: 'Google Play', url: site.playStoreUrl, glyph: glyphs.play },
 ];
-
-/**
- * The direct Android download, for people who do not use Google Play (owner, 2026-08-28). The
- * file itself is fetched into `website/public/` by `scripts/publish-apk.sh`, which also writes
- * `src/apk.generated.json` — so this row appears only when an APK is really there, and states
- * the version and size read from the artifact rather than typed by hand.
- */
-/**
- * `import.meta.glob` rather than a plain import or a file read: the metadata only exists after
- * `scripts/publish-apk.sh` has run, and this is the one form that compiles to `{}` when the file
- * is absent instead of failing the build (a file read cannot work — the bundler rewrites
- * `import.meta.url` into `dist/`).
- */
-const apkModules = import.meta.glob<{ default: ApkMeta }>('../apk.generated.json', {
-  eager: true,
-});
-const apk: ApkMeta | null = Object.values(apkModules)[0]?.default ?? null;
 ---
 
 <div class:list={['stores', { center: align === 'center' }]}>
@@ -75,16 +50,6 @@ const apk: ApkMeta | null = Object.values(apkModules)[0]?.default ?? null;
         </span>
       ),
     )
-  }
-  {
-    apk && labels.apkHint ? (
-      <a class="apk-btn" href={apk.file} download>
-        <span class="apk-line">{labels.apkLabel}</span>
-        <span class="apk-hint">
-          {labels.apkHint.replace('{version}', apk.version).replace('{size}', String(apk.sizeMb))}
-        </span>
-      </a>
-    ) : null
   }
 </div>
 
@@ -141,31 +106,5 @@ const apk: ApkMeta | null = Object.values(apkModules)[0]?.default ?? null;
   .store-name {
     font-weight: 600;
     font-size: 0.98rem;
-  }
-
-  /* The direct download sits under the badges, quieter than them: it is the alternative route,
-     not the recommended one. Full width so it reads as a footnote to both buttons. */
-  .apk-btn {
-    flex-basis: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 1px;
-    text-decoration: none;
-    color: var(--muted);
-    padding: 6px 2px 0;
-  }
-  .stores.center .apk-btn {
-    text-align: center;
-  }
-  .apk-line {
-    font-size: 0.9rem;
-    color: var(--ink);
-    text-decoration: underline;
-    text-decoration-color: var(--border-strong);
-    text-underline-offset: 3px;
-  }
-  .apk-hint {
-    font-size: 0.74rem;
-    font-style: italic;
   }
 </style>

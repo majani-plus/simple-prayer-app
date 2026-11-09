@@ -28,6 +28,13 @@ export const site = {
    * renders the dashed "coming soon" badge in StoreButtons.astro, and /install simply does not
    * redirect for that platform — so a store can be taken down by setting one field back to null.
    */
+  /**
+   * The two Android app files, on GitHub Releases (Cloudflare Pages caps a file at 25 MiB, so no
+   * APK lives in public/). `latest/download/<name>` always points at the newest release's asset.
+   */
+  apkPlayUrl: 'https://github.com/majani-plus/simple-prayer-app/releases/latest/download/simple-prayer-play.apk',
+  apkFossUrl: 'https://github.com/majani-plus/simple-prayer-app/releases/latest/download/simple-prayer-foss.apk',
+  releasesUrl: 'https://github.com/majani-plus/simple-prayer-app/releases',
   appStoreUrl: 'https://apps.apple.com/us/app/simple-prayer-times-qibla/id6803004652' as string | null,
   playStoreUrl: 'https://play.google.com/store/apps/details?id=app.simpleprayer' as string | null,
 } as const;

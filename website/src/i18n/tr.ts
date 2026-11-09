@@ -44,8 +44,6 @@ export const tr: SiteDict = {
     stores: {
       downloadOn: 'İndir:',
       comingSoonTo: 'Çok yakında:',
-      apkLabel: 'Ya da Android kurulum dosyasını doğrudan indir',
-      apkHint: 'Sürüm {version} · {size} MB · Google Play’siz Android telefonlar için',
     },
   },
 
@@ -579,6 +577,23 @@ export const tr: SiteDict = {
     qrAlt: 'Telefon kameranızla okutabileceğiniz bir kod. Bu sayfayı açar.',
     goingIos: 'App Store açılıyor…',
     goingAndroid: 'Google Play açılıyor…',
+    apk: {
+      heading: 'Android uygulama dosyaları (APK)',
+      lead: 'Android uygulamasını bir dosya olarak indirip kendiniz de kurabilirsiniz. Çoğu kişi için Google Play daha iyi bir seçimdir, çünkü uygulamayı güncel tutar.',
+      playTitle: 'Google Play sürümü',
+      playBody: 'Google Play’deki uygulamanın aynısı, Google Play tarafından imzalanmış. Kendi kendine güncellenmez. Daha sonra uygulamayı Google Play’den bunun üzerine kurabilirsiniz; namaz kaydınız silinmez.',
+      playButton: 'Google Play sürümünü indir',
+      fossTitle: 'Google’sız sürüm',
+      fossBody: 'Açık kaynak koddan derlenir ve Google hizmeti içermez. Çökme raporu göndermez, bahşiş seçeneği yoktur. Üç şey farklıdır:',
+      fossDiffs: [
+        'Namaz arkadaşlarınızın namazları uygulamayı açtığınızda görünür. Onlar kıldığında bildirim gelmez.',
+        'Wear OS saat uygulaması yoktur, saatle hiçbir şey paylaşılmaz.',
+        'Ezan sesleri farklı kayıtlardır; özgür lisanslıdır.',
+      ],
+      fossWarning: 'Başka bir anahtarla imzalanmıştır. Google Play sürümünü güncelleyemez, Google Play sürümü de onu güncelleyemez. Birinden diğerine geçmek için önce uygulamayı kaldırmanız gerekir. Uygulamayı kaldırmak, telefonunuzdaki namaz kaydını siler. Bir kopyasını saklamak isterseniz önce Ayarlar · Veri bölümünden dışa aktarın.',
+      fossButton: 'Google’sız sürümü indir',
+      releases: 'Bütün sürümler ve sağlama toplamları',
+    },
   },
 
   pwa: {
