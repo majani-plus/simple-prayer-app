@@ -21,6 +21,7 @@ import { join } from 'node:path';
 import {
   DERIVED_LAYOUTS,
   NO_ARABIC_VARIANT,
+  PREVIEW_DIRS,
   WEIGHT_BUMP_BELOW_SP,
   deriveArabic,
 } from '../../scripts/arabic-layout-source';
@@ -78,7 +79,7 @@ const sizeSp = (value: string | undefined) =>
   value !== undefined && value.endsWith('sp') ? Number(value.slice(0, -2)) : null;
 
 const SOURCES = DERIVED_LAYOUTS.map((layout) => layout.source);
-/** Layouts that draw Arabic: the derived twins in layout/, plus everything in layout-ar/. */
+/** Layouts that draw Arabic script: the derived twins in layout/, plus layout-ar/ and layout-ur/. */
 const ARABIC_LAYOUTS = DERIVED_LAYOUTS.map((layout) => ({ dir: layout.dir, name: layout.name }));
 
 describe('the derived Arabic layouts', () => {
@@ -98,11 +99,11 @@ describe('the derived Arabic layouts', () => {
     expect(xmlNames('layout').filter((name) => !accounted.has(name))).toEqual([]);
   });
 
-  it('puts exactly the picker previews in layout-ar/', () => {
-    const expected = DERIVED_LAYOUTS.filter((l) => l.dir === 'layout-ar')
+  it.each(PREVIEW_DIRS)('puts exactly the picker previews in %s/', (dir) => {
+    const expected = DERIVED_LAYOUTS.filter((l) => l.dir === dir)
       .map((l) => l.name)
       .sort();
-    expect(xmlNames('layout-ar')).toEqual(expected);
+    expect(xmlNames(dir)).toEqual(expected);
   });
 
   it('pairs no Arabic text with a Latin font', () => {
@@ -121,13 +122,14 @@ describe('the derived Arabic layouts', () => {
 
   it('pairs no Arabic sample string with a Latin font, in any locale a layout is resolved under', () => {
     // A layout in `layout/` is only ever inflated under a non-Arabic configuration once its
-    // `layout-ar/` twin exists — so it answers for values/ and values-tr/, and the twin answers
-    // for values-ar/.
+    // `layout-ar/` twin exists — so it answers for values/ and values-tr/, and the twins answer
+    // for values-ar/ and values-ur/.
     const tables = {
       layout: [strings('values'), strings('values-tr')],
       'layout-ar': [strings('values-ar')],
+      'layout-ur': [strings('values-ur')],
     };
-    for (const dir of ['layout', 'layout-ar'] as const) {
+    for (const dir of ['layout', ...PREVIEW_DIRS] as const) {
       for (const name of xmlNames(dir)) {
         for (const element of elements(read(dir, name))) {
           const ref = /^@string\/(.+)$/.exec(element.attrs['android:text'] ?? '');
@@ -145,11 +147,9 @@ describe('the derived Arabic layouts', () => {
     }
   });
 
-  it('gives every layout whose Arabic strings exist a layout-ar twin', () => {
-    const arabicTable = strings('values-ar');
-    const twins = new Set(
-      DERIVED_LAYOUTS.filter((l) => l.dir === 'layout-ar').map((l) => l.source)
-    );
+  it.each(PREVIEW_DIRS)('gives every layout whose Arabic-script strings exist a %s twin', (dir) => {
+    const arabicTable = strings(dir.replace('layout', 'values'));
+    const twins = new Set(DERIVED_LAYOUTS.filter((l) => l.dir === dir).map((l) => l.source));
     for (const name of xmlNames('layout')) {
       const usesArabicResource = elements(read('layout', name)).some((element) => {
         const ref = /^@string\/(.+)$/.exec(element.attrs['android:text'] ?? '');
@@ -157,8 +157,8 @@ describe('the derived Arabic layouts', () => {
       });
       // The previews slipped through for exactly this reason: they read `@string/preview_*`,
       // whose values-ar entries are Arabic names and Arabic-Indic times, out of a Lora TextView.
-      expect(`${name} draws values-ar strings: ${usesArabicResource}, has twin: ${twins.has(name)}`)
-        .toBe(`${name} draws values-ar strings: ${usesArabicResource}, has twin: ${usesArabicResource}`);
+      expect(`${name} draws ${dir} strings: ${usesArabicResource}, has twin: ${twins.has(name)}`)
+        .toBe(`${name} draws ${dir} strings: ${usesArabicResource}, has twin: ${usesArabicResource}`);
     }
   });
 
@@ -196,7 +196,7 @@ describe('the derived Arabic layouts', () => {
       .map((f) => f.replace(/\.(ttf|otf|xml)$/, ''))
       .sort();
     const referenced = new Set<string>();
-    for (const dir of ['layout', 'layout-ar'] as const) {
+    for (const dir of ['layout', ...PREVIEW_DIRS] as const) {
       for (const name of xmlNames(dir)) {
         for (const element of elements(read(dir, name))) {
           const font = fontFile(element.attrs['android:fontFamily']);

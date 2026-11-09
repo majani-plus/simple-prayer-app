@@ -132,7 +132,7 @@ class PrayerTileService : TileService() {
 
   private fun heroLayout(bank: ImageBank, face: TodayModel.Face.Today): LayoutElementBuilders.LayoutElement {
     val snapshot = face.snapshot
-    val arabicPrimary = snapshot.language == "ar"
+    val arabicPrimary = usesArabicScript(snapshot.language)
     val column = LayoutElementBuilders.Column.Builder()
       .setHorizontalAlignment(LayoutElementBuilders.HORIZONTAL_ALIGN_CENTER)
 
@@ -289,7 +289,7 @@ class PrayerTileService : TileService() {
     // envelope (D103), so the face cannot come from the envelope either — there may be no envelope
     // at all. `getString` resolved them through the resource qualifiers, and the font follows the
     // SAME locale that chose values-ar/, read from the configuration rather than from a snapshot.
-    val arabicSystem = resources.configuration.locales[0].language == "ar"
+    val arabicSystem = usesArabicScript(resources.configuration.locales[0].language)
     val titleFont =
       if (arabicSystem) ImageBank.FontKind.NOTO_NASKH_SEMIBOLD else ImageBank.FontKind.LORA_SEMIBOLD
     // Under 13sp: [ImageBank] steps the Arabic body up a rung on its own (D54/D135).

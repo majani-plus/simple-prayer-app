@@ -4,7 +4,7 @@ import Foundation
  The watch's words for the two states no envelope can describe — first install before the phone
  app ever synced, and an envelope past its horizon. The same sanctioned D103 exception the widget
  targets carry (its amendment is recorded in the Milestone V docs pass), with the watch's own
- wording: the fix is on the PHONE, so the words say so. Keyed to the SYSTEM locale; en/ar/tr
+ wording: the fix is on the PHONE, so the words say so. Keyed to the SYSTEM locale; en/ar/ur/tr
  authored per docs/TONE.md, anything else reads English. Twin of `targets/widget/BundledStrings`.
 
  BYTE-FOR-BYTE TWIN of `targets/watch/WatchBundledStrings.swift` — the extension cannot import
@@ -12,7 +12,7 @@ import Foundation
  */
 enum WatchBundledStrings {
   struct Table {
-    /// The language these words are in — `ar`, `tr` or `en`, resolved from the SYSTEM locale.
+    /// The language these words are in — `ar`, `ur`, `tr` or `en`, resolved from the SYSTEM locale.
     ///
     /// It has to travel with them. These four strings are the one place on the watch where the
     /// text does NOT come from the envelope, so their language is whatever the watch is set to,
@@ -39,6 +39,14 @@ enum WatchBundledStrings {
         emptyBody: "افتح التطبيق على هاتفك لإكمال الإعداد.",
         staleTitle: "الأوقات تحتاج إلى تحديث",
         staleBody: "افتح التطبيق على هاتفك لتحديثها."
+      )
+    case "ur":
+      return Table(
+        language: "ur",
+        emptyTitle: "نماز کے اوقات",
+        emptyBody: "ترتیب مکمل کرنے کے لیے اپنے فون پر ایپ کھولیں۔",
+        staleTitle: "اوقات کو تازہ کرنا ہے",
+        staleBody: "انہیں تازہ کرنے کے لیے اپنے فون پر ایپ کھولیں۔"
       )
     case "tr":
       return Table(

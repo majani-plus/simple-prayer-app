@@ -60,7 +60,7 @@ internal fun QiblaScreen(qibla: Envelope.Qibla, language: String) {
   val view = LocalView.current
   // D41: direction and script follow the APP language, which rode in on the envelope — never the
   // watch's own locale.
-  val arabic = language == "ar"
+  val arabic = usesArabicScript(language)
 
   var heading by remember { mutableFloatStateOf(Float.NaN) }
   var aligned by remember { mutableStateOf(false) }

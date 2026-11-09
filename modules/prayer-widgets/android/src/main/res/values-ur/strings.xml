@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="widget_schedule_label">نماز کے اوقات</string>
+  <string name="widget_schedule_description">آج کی پانچ نمازیں، اور انہیں نشان لگانے کے لیے ایک ٹیپ۔</string>
+  <string name="widget_schedule_list_label">نماز کے اوقات — پورا دن</string>
+  <string name="widget_schedule_list_description">دن کی سب نمازیں ایک فہرست میں، اور انہیں نشان لگانے کے لیے ایک ٹیپ۔</string>
+  <string name="widget_now_label">اگلی نماز</string>
+  <string name="widget_now_description">موجودہ نماز اور اس کے بعد والی۔</string>
+  <string name="widget_now_strip_label">اگلی نماز — ایک سطر</string>
+  <string name="widget_now_strip_description">موجودہ نماز، باقی وقت اور آپ کے ساتھی، ایک سطر میں۔</string>
+  <string name="widget_empty_title">نماز کے اوقات</string>
+  <string name="widget_empty_body">ترتیب مکمل کرنے کے لیے ایپ کھولیں۔</string>
+  <string name="widget_stale_title">اوقات کو تازہ کرنا ہے</string>
+  <string name="widget_stale_body">انہیں تازہ کرنے کے لیے ایپ کھولیں۔</string>
+  <string name="preview_fajr">فجر</string>
+  <string name="preview_dhuhr">ظہر</string>
+  <string name="preview_asr">عصر</string>
+  <string name="preview_maghrib">مغرب</string>
+  <string name="preview_isha">عشاء</string>
+  <string name="preview_t_fajr">4:44</string>
+  <string name="preview_t_dhuhr">1:07</string>
+  <string name="preview_t_asr">4:51</string>
+  <string name="preview_t_maghrib">7:48</string>
+  <string name="preview_t_isha">9:21</string>
+  <string name="preview_countdown">1:26:08</string>
+  <string name="preview_arabic"></string>
+  <string name="preview_sunrise">6:12</string>
+  <string name="preview_until">7:48 تک</string>
+  <string name="preview_buddy_1">اح</string>
+  <string name="preview_buddy_2">یس</string>
+</resources>

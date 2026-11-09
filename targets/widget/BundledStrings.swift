@@ -6,12 +6,12 @@ import Foundation
  travels pre-translated in the snapshot" (they exist precisely when none does), the same
  exception the Android module's `res/values*` strings carry. Keyed to the SYSTEM locale — the
  app language lives in the snapshot we do not have. Authored per docs/TONE.md: short, calm,
- never an error voice. en/ar/tr, mirroring `src/i18n/locales`; anything else reads English,
+ never an error voice. en/ar/ur/tr, mirroring `src/i18n/locales`; anything else reads English,
  which for a user who has not yet opened the app is the store language they installed from.
  */
 enum BundledStrings {
   struct Table {
-    /// The language these words are in — `ar`, `tr` or `en`, resolved from the SYSTEM locale.
+    /// The language these words are in — `ar`, `ur`, `tr` or `en`, resolved from the SYSTEM locale.
     ///
     /// It has to travel with them. These four strings are the one place on the widget where the
     /// text does NOT come from the snapshot, so their language is whatever the phone is set to,
@@ -38,6 +38,14 @@ enum BundledStrings {
         emptyBody: "افتح التطبيق لإكمال الإعداد.",
         staleTitle: "الأوقات تحتاج إلى تحديث",
         staleBody: "افتح التطبيق لتحديثها."
+      )
+    case "ur":
+      return Table(
+        language: "ur",
+        emptyTitle: "نماز کے اوقات",
+        emptyBody: "ترتیب مکمل کرنے کے لیے ایپ کھولیں۔",
+        staleTitle: "اوقات کو تازہ کرنا ہے",
+        staleBody: "انہیں تازہ کرنے کے لیے ایپ کھولیں۔"
       )
     case "tr":
       return Table(

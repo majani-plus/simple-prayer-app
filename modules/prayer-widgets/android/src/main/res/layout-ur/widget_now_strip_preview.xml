@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Widget-picker preview ONLY — the one-row strip (D185, its upright rule D186) with sample content, self-tinted in the
+     light palette (the live layout is runtime-tinted whites; see D103 for why the sample
+     strings are module resources). Two sample buddies, because they are what this face adds.
+     The Arabic twin in res/layout-ar/ (same basename, so previewLayout needs no edit) is
+     DERIVED — regenerate with `bun scripts/derive-arabic-layouts.ts`; never edit it by hand. -->
+<!-- DERIVED by scripts/derive-arabic-layouts.ts — edit the Lora original, then regenerate. -->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layoutDirection="locale"
+  tools:ignore="HardcodedText"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent">
+
+  <ImageView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:scaleType="fitXY"
+    android:importantForAccessibility="no"
+    android:src="@drawable/paper_shape"
+    android:tint="#ECE1C5" />
+
+  <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    android:paddingStart="20dp"
+    android:paddingEnd="16dp"
+    android:paddingTop="8dp"
+    android:paddingBottom="8dp">
+
+    <LinearLayout
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_weight="1"
+      android:orientation="vertical">
+      <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+        <ImageView
+          android:layout_width="27dp"
+          android:layout_height="17dp"
+          android:layout_marginEnd="8dp"
+          android:importantForAccessibility="no"
+          android:src="@drawable/glyph_mosque"
+          android:tint="#8A6420" />
+        <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:fontFamily="@font/noto_naskh_arabic_600semibold"
+          android:textStyle="bold"
+          android:textSize="23sp"
+          android:textColor="#2B2115"
+          android:includeFontPadding="false"
+          android:maxLines="1"
+          android:text="@string/preview_maghrib" />
+        <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="8dp"
+          android:fontFamily="@font/amiri_400regular"
+          android:textSize="18sp"
+          android:textColor="#716241"
+          android:includeFontPadding="false"
+          android:maxLines="1"
+          android:text="@string/preview_arabic" />
+      </LinearLayout>
+      <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
+        android:orientation="horizontal"
+        android:baselineAligned="true">
+        <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:fontFamily="@font/noto_naskh_arabic_700bold"
+          android:textStyle="bold"
+          android:textSize="41.5sp"
+          android:textColor="#5A4413"
+          android:includeFontPadding="false"
+          android:maxLines="1"
+          android:text="@string/preview_countdown" />
+        <TextView
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_weight="1"
+          android:layout_marginStart="10dp"
+          android:fontFamily="@font/noto_naskh_arabic_400regular"
+          android:textStyle="italic"
+          android:textSize="18.5sp"
+          android:textColor="#8A6420"
+          android:includeFontPadding="false"
+          android:maxLines="1"
+          android:ellipsize="end"
+          android:text="@string/preview_until" />
+      </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+      android:layout_width="wrap_content"
+      android:layout_height="match_parent"
+      android:layout_marginStart="12dp"
+      android:layout_marginTop="4dp"
+      android:layout_marginBottom="4dp"
+      android:orientation="vertical"
+      android:gravity="center_horizontal">
+      <ImageView
+        android:layout_width="1dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:scaleType="fitXY"
+        android:src="@drawable/card_shape"
+        android:tint="#59A67C2E" />
+      <ImageView
+        android:layout_width="7dp"
+        android:layout_height="7dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:src="@drawable/glyph_diamond"
+        android:tint="#A2792C" />
+      <ImageView
+        android:layout_width="1dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:scaleType="fitXY"
+        android:src="@drawable/card_shape"
+        android:tint="#59A67C2E" />
+    </LinearLayout>
+
+    <FrameLayout
+      android:layout_width="22dp"
+      android:layout_height="22dp"
+      android:layout_marginStart="10dp">
+      <ImageView
+        android:layout_width="22dp"
+        android:layout_height="22dp"
+        android:importantForAccessibility="no"
+        android:src="@drawable/seal_fill"
+        android:tint="#4072A4" />
+      <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:fontFamily="@font/noto_naskh_arabic_700bold"
+        android:textSize="10.5sp"
+        android:textColor="#FAF4E4"
+        android:text="@string/preview_buddy_1" />
+    </FrameLayout>
+    <FrameLayout
+      android:layout_width="22dp"
+      android:layout_height="22dp"
+      android:layout_marginStart="-6dp">
+      <ImageView
+        android:layout_width="22dp"
+        android:layout_height="22dp"
+        android:importantForAccessibility="no"
+        android:src="@drawable/seal_fill"
+        android:tint="#B74750" />
+      <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:fontFamily="@font/noto_naskh_arabic_700bold"
+        android:textSize="10.5sp"
+        android:textColor="#FAF4E4"
+        android:text="@string/preview_buddy_2" />
+    </FrameLayout>
+
+    <FrameLayout
+      android:layout_width="54dp"
+      android:layout_height="54dp"
+      android:layout_marginStart="10dp">
+      <ImageView
+        android:layout_width="54dp"
+        android:layout_height="54dp"
+        android:importantForAccessibility="no"
+        android:src="@drawable/seal_ring_dashed"
+        android:tint="#8A6420" />
+      <ImageView
+        android:layout_width="26dp"
+        android:layout_height="26dp"
+        android:layout_gravity="center"
+        android:importantForAccessibility="no"
+        android:src="@drawable/glyph_check"
+        android:tint="#B38A4F" />
+    </FrameLayout>
+  </LinearLayout>
+</FrameLayout>

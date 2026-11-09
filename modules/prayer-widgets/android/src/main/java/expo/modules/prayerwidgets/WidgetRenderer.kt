@@ -78,7 +78,7 @@ internal object WidgetRenderer {
     val night = isNight(context, usable.snapshot.theme)
     val strings = usable.snapshot.strings
 
-    val arabic = usable.snapshot.language == "ar"
+    val arabic = usesArabicScript(usable.snapshot.language)
     val layout =
       when {
         asRows && arabic -> R.layout.widget_schedule_rows_arabic
@@ -250,7 +250,7 @@ internal object WidgetRenderer {
     val night = isNight(context, usable.snapshot.theme)
     val strings = usable.snapshot.strings
 
-    val arabic = usable.snapshot.language == "ar"
+    val arabic = usesArabicScript(usable.snapshot.language)
     val layout =
       when {
         strip && arabic -> R.layout.widget_now_strip_arabic
@@ -620,15 +620,21 @@ internal object WidgetRenderer {
     }
 
   /**
-   * Whether `context.getString` will resolve this module's bundled strings out of `values-ar/`.
+   * Whether `context.getString` will resolve this module's bundled strings out of `values-ar/` or `values-ur/`.
    * Read from the same `Configuration` the resource system matches against, so the bundled
    * sentence and the layout that draws it always come from one answer — including under an
    * Android 13 per-app language, which moves both together.
    */
   private fun isArabicConfiguration(context: Context): Boolean {
     val locales = context.resources.configuration.locales
-    return !locales.isEmpty() && locales.get(0).language == "ar"
+    return !locales.isEmpty() && usesArabicScript(locales.get(0).language)
   }
+
+  /**
+   * Arabic and Urdu share the Arabic script, so both take the Noto Naskh `_arabic` twins (fonts and
+   * RTL together). Urdu's Nastaliq is the phone app's face, not the widgets'.
+   */
+  private fun usesArabicScript(language: String): Boolean = language == "ar" || language == "ur"
 
   /** src-over compositing of a translucent card onto the paper, so tints stay opaque. */
   private fun composite(bg: Int, over: Int): Int {

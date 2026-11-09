@@ -116,6 +116,13 @@ enum WidgetFonts {
    weight and tone, which is how Arabic typography carries it.
    */
   static func ui(_ language: String, _ size: CGFloat, weight: Font.Weight = .regular, italic: Bool = false) -> Font {
-    language == "ar" ? arabicUI(size, weight: weight) : lora(size, weight: weight, italic: italic)
+    isArabicScript(language) ? arabicUI(size, weight: weight) : lora(size, weight: weight, italic: italic)
+  }
+
+  /// Languages written in the Arabic script. Urdu shares Arabic's Noto Naskh face, scale and
+  /// sizing on these surfaces (Nastaliq is the phone app's face, not the widgets'); its digits
+  /// stay Latin because they arrive pre-formatted.
+  static func isArabicScript(_ language: String) -> Bool {
+    language == "ar" || language == "ur"
   }
 }

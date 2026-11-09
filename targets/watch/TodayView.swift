@@ -129,7 +129,7 @@ private struct HeroBlock: View {
     // is 19.55 against Latin's 19.
     // D173: the hijri header left the hero (it is the first line under it now) and the space
     // went to the centre — the name and the countdown each grew two to three points.
-    let nameSize: CGFloat = language == "ar" ? 19 : 21
+    let nameSize: CGFloat = WidgetFonts.isArabicScript(language) ? 19 : 21
     VStack(spacing: 0) {
       if let subject {
         // The hero's first line points one page UP — the qibla lives above the hero now (D171),
@@ -210,7 +210,7 @@ private struct HeroBlock: View {
     VStack(spacing: 1) {
       if let target {
         Text(timerInterval: Date()...Date(timeIntervalSince1970: target / 1000), countsDown: true)
-          .font(WidgetFonts.ui(language, (language == "ar" ? 29 : 31) * scale, weight: .semibold))
+          .font(WidgetFonts.ui(language, (WidgetFonts.isArabicScript(language) ? 29 : 31) * scale, weight: .semibold))
           .foregroundStyle(c("inkStrong"))
           .lineLimit(1)
           .minimumScaleFactor(0.6)

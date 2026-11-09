@@ -119,6 +119,13 @@ internal fun essentialSp(sizeSp: Float): Float = maxOf(sizeSp, WEAR_MIN_ESSENTIA
 internal fun ornamentSp(sizeSp: Float): Float = maxOf(sizeSp, WEAR_MIN_ORNAMENT_SP)
 
 /**
+ * Whether a language is written in the Arabic script. Urdu takes Arabic's faces and sizes on the
+ * watch (Noto Naskh, Amiri for calligraphy; Nastaliq is the phone app's face, not the watch's) —
+ * but keeps Latin digits, see [numericLocale].
+ */
+internal fun usesArabicScript(language: String): Boolean = language == "ar" || language == "ur"
+
+/**
  * The one selector for UI text on the watch: Lora for Latin, Noto Naskh for Arabic, and the
  * sub-13sp weight step-up applied HERE so no call site can forget it — the same single choke point
  * `AppText` is on the phone.

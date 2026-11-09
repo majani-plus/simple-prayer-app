@@ -114,7 +114,7 @@ private fun TodayFace(
   // The hero was tuned on a 227dp display; smaller rounds (192dp small-round) get every hero
   // dimension scaled by the same factor so the page-fit holds on any watch by construction.
   val k = (configuration.screenHeightDp / 227f).coerceAtMost(1f)
-  val arabicPrimary = face.snapshot.language == "ar"
+  val arabicPrimary = usesArabicScript(face.snapshot.language)
   val focusRequester = remember { FocusRequester() }
   LaunchedEffect(Unit) { focusRequester.requestFocus() }
 
@@ -653,7 +653,7 @@ internal fun EmptyFace(stale: Boolean, scroll: ScrollState) {
   // resolved them through the resource qualifiers, and the font has to follow the same locale it
   // was handed. Read from the configuration rather than Locale.getDefault() so it is literally
   // the locale that chose values-ar/.
-  val arabicSystem = LocalConfiguration.current.locales[0].language == "ar"
+  val arabicSystem = usesArabicScript(LocalConfiguration.current.locales[0].language)
   val screenHeight = LocalConfiguration.current.screenHeightDp.dp
   val focusRequester = remember { FocusRequester() }
   LaunchedEffect(Unit) { focusRequester.requestFocus() }
@@ -714,8 +714,15 @@ internal fun EmptyFace(stale: Boolean, scroll: ScrollState) {
  */
 // The app's Arabic uses Arabic-Indic numerals (the phone's numericLocale convention); a bare
 // "ar" tag resolves to Latin digits on some Android builds, so the numbering system is explicit.
+// Urdu is the opposite: Western digits (docs/TONE.md), pinned so a "ur-IN" default can't switch.
 internal fun numericLocale(language: String): Locale =
-  Locale.forLanguageTag(if (language == "ar") "ar-u-nu-arab" else language)
+  Locale.forLanguageTag(
+    when (language) {
+      "ar" -> "ar-u-nu-arab"
+      "ur" -> "ur-u-nu-latn"
+      else -> language
+    }
+  )
 
 internal fun formatCountdown(remainingMs: Long, language: String): String {
   val total = (remainingMs.coerceAtLeast(0L)) / 1000

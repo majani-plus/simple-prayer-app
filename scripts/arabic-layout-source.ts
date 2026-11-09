@@ -11,7 +11,7 @@
  * pipeline says `arabic`.
  */
 
-import { arabicTypeScale } from '../src/theme/typography';
+import { arabicTypeScale } from '../src/theme/scriptScale';
 
 /**
  * Live widget layouts. The renderer picks the twin from the SNAPSHOT language (D41: the APP
@@ -45,11 +45,18 @@ export const PREVIEW_SOURCES = [
   'widget_schedule_list_preview',
 ] as const;
 
+/**
+ * Locale qualifiers that get the picker-preview twins. Urdu is written in the Arabic script and
+ * these native surfaces draw it in the same Noto Naskh as Arabic (Nastaliq is the app's choice,
+ * not the widgets'), so `layout-ur/` is byte-identical to `layout-ar/`; only `values-ur/` differs.
+ */
+export const PREVIEW_DIRS = ['layout-ar', 'layout-ur'] as const;
+
 export type DerivedLayout = {
   /** Basename of the Lora original in `res/layout/`. */
   source: string;
   /** Resource directory the derived file is written to. */
-  dir: 'layout' | 'layout-ar';
+  dir: 'layout' | (typeof PREVIEW_DIRS)[number];
   /** Basename of the derived file. */
   name: string;
 };
@@ -58,7 +65,9 @@ export const DERIVED_LAYOUTS: readonly DerivedLayout[] = [
   ...[...LIVE_SOURCES, ...BUNDLED_SOURCES].map(
     (source): DerivedLayout => ({ source, dir: 'layout', name: `${source}_arabic` })
   ),
-  ...PREVIEW_SOURCES.map((source): DerivedLayout => ({ source, dir: 'layout-ar', name: source })),
+  ...PREVIEW_DIRS.flatMap((dir) =>
+    PREVIEW_SOURCES.map((source): DerivedLayout => ({ source, dir, name: source }))
+  ),
 ];
 
 /**

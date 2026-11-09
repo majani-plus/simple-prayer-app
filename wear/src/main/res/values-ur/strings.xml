@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="wear_empty_title">نماز کے اوقات</string>
+  <string name="wear_empty_body">ترتیب مکمل کرنے کے لیے اپنے فون پر ایپ کھولیں۔</string>
+  <string name="wear_stale_title">اوقات کو تازہ کرنا ہے</string>
+  <string name="wear_stale_body">انہیں تازہ کرنے کے لیے اپنے فون پر ایپ کھولیں۔</string>
+  <string name="wear_tile_label">اگلی نماز</string>
+  <string name="wear_complication_label">اگلی نماز</string>
+  <string name="wear_channel_name">نماز کے وقت کی یاد دہانی</string>
+  <string name="wear_channel_description">نماز کا وقت شروع ہونے پر آتی ہے۔</string>
+  <string name="preview_prayer">عصر</string>
+  <string name="preview_countdown">1:12</string>
+</resources>
