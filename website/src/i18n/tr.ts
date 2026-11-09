@@ -174,11 +174,6 @@ export const tr: SiteDict = {
           body: 'Bir namazı kaçtı diye işaretlediğinde, uygulama onu o vaktin sayacına ekler. Kaza ettikçe sayaç azalır. Ekran ne kadar hızlı gittiğini ve hangi tarihte bitireceğini gösterir. İstersen bütün sayacı silip yeniden başlayabilirsin; fikrini değiştirmek için 30 günün olur.',
           alt: 'Kaza ekranı: azalan vakit başına sayaçlar, son hız ve öngörülen bitiş tarihi.',
         },
-        {
-          title: 'Yolculuk modu',
-          body: 'Yolculukta öğle, ikindi ve yatsıyı iki rekât kılabilirsin. Öğleyi ikindiyle, akşamı da yatsıyla birlikte kılabilirsin. Yolculuk modunu Bugün ekranının üstündeki menüden açarsın. Açıkken uygulama, birleştirdiğin namazı geç saymaz. Namaz vakitleri değişmez; beş namazın hepsi yine senin işaretlemen için orada. Kaç gün süreceğini seçebilirsin; süresi dolunca kendiliğinden kapanır.',
-          alt: 'Bugün ekranı, yolculuk modu açık: geri sayımın altında namazların kısaltılıp birleştirilebileceğini söyleyen sakin bir şerit.',
-        },
       ],
       /** Ekran görüntüsü henüz çekilmemiş bir bandın telefon çerçevesinde görünür. */
       shotPending: 'Ekran görüntüsü yakında',
@@ -282,10 +277,6 @@ export const tr: SiteDict = {
         {
           q: 'Namaz kılamadığım günlerde ne olur?',
           a: 'Özel günler modu âdet ve lohusalık günleri içindir. O günler senden bir şey istemez: hiçbir şey kaçırılmış görünmez, serin bozulmadan devam eder. Hatırlatmalar durur; istersen açık da bırakabilirsin. O günler için kaza namazı gerekmez.',
-        },
-        {
-          q: 'Yolculuktayken ne olur?',
-          a: 'Yolculuk modunu açarsın, uygulama da yolcunun ruhsatına uyar: öğle, ikindi ve yatsı iki rekât kılınabilir; öğle ikindiyle, akşam yatsıyla birlikte kılınabilir. Birleştirdiğin namaz geç sayılmaz. Bu namazlar yine borcundur ve yine işaretlenir — yolculuk, özel günlerle aynı şey değildir. Modun ne zaman başlayıp biteceğine sen karar verirsin; uygulama nerede olduğuna hiç bakmaz.',
         },
         {
           q: 'Saatimde çalışıyor mu?',

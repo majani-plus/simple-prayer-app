@@ -52,7 +52,6 @@ travel, qada, pledge). Raw capture files per locale/theme:
 | `03-qibla.png` | Qibla, aligned (green dial) | heading pinned to Istanbul's bearing |
 | `04-reminders.png` | Settings → Reminders, voices open | |
 | `05-qada.png` | Qada: 52 owed, 46 made up, projected clear date | |
-| `07-travel.png` | Today with the travel banner (light only) | the website's travel band + store slot 06 |
 
 ### Localized captions
 
@@ -67,23 +66,6 @@ namazları`, `قضاء الفوائت`) so the listing and the product never dis
 | 4 | Kıbleyi gönül rahatlığıyla bul | اتّجه إلى القبلة بثقة |
 | 5 | Kaza namazlarını usulca tamamla | اقضِ فوائتك برفق |
 | 6 | Reklam yok. Hesap yok. Bütün özellikler ücretsiz. | بلا إعلانات. بلا حساب. كل الميزات مجانية. |
-
----
-
-## Website-only captures, outside the store narrative
-
-The marketing site imports these same trees for its feature bands, and it needs one screen the
-store slots above do not cover. Numbered from 07 deliberately, so nothing here is mistaken for a
-store slot.
-
-| # | File | Screen | Wanted by |
-|---|---|---|---|
-| 7 | `07-travel.png` | **NOT SHOT YET.** Today with travel mode on: the quiet travel banner under the countdown, prayer rows below it unchanged. Turn it on from Today's ⋯ → "I'm travelling" → "Until I end it". | `website/src/components/Landing.astro` — the travel band |
-
-`07-travel.png` is needed in all three locales, `light/6.5/`, like its siblings. Until it exists the
-band renders a labelled placeholder ("App screenshot coming soon"), so the copy is already live;
-dropping the three files in and replacing the three `null`s in `Landing.astro`'s `bandShots` is the
-whole remaining job — the band's title, body and alt text are authored in all three languages.
 
 ---
 

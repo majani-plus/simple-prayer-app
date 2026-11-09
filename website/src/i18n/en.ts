@@ -158,7 +158,7 @@ export const en = {
       /**
        * The photogenic features, each beside a phone-shaped screenshot slot. The captures live in
        * `docs/screenshots/{locale}/light/6.5/` and are imported by `Landing.astro`, in this order:
-       * `01-today-seal`, `02-history`, `03-qibla`, `05-qada`, and — **not shot yet** — travel mode.
+       * `01-today-seal`, `02-history`, `03-qibla`, `05-qada`.
        *
        * A band whose capture is missing renders the labelled placeholder instead
        * (`features.shotPending`), so its copy is live either way. The `alt` is authored now, which
@@ -184,11 +184,6 @@ export const en = {
           title: 'Missed prayers (qada)',
           body: 'When you mark a prayer as missed, the app adds it to a count for that prayer. The count goes down as you make the prayers up. The screen shows how fast you are going and the date you should be finished. You can also clear the whole count and start again, and you have 30 days to change your mind.',
           alt: 'The qada screen: descending per-prayer counters with progress, recent pace, and a projected debt-free date.',
-        },
-        {
-          title: 'Travel mode',
-          body: 'When you are travelling, you may pray Dhuhr, Asr and Isha as two rakats. You may also pray Dhuhr together with Asr, or Maghrib together with Isha. Turn travel mode on from the menu at the top of the Today screen. The app then stops calling a joined prayer late. Prayer times do not change, and all five prayers are still yours to mark. You can set it for a number of days, and it ends by itself.',
-          alt: 'The Today screen with travel mode on: a quiet banner under the countdown, saying prayers may be shortened and combined.',
         },
       ],
       /** Shown inside the phone frame of a band whose screenshot has not been taken yet. */
@@ -296,10 +291,6 @@ export const en = {
         {
           q: "What happens on days I can't pray?",
           a: 'Excused days are for menstruation and the days after childbirth. On those days the app asks nothing from you: nothing is shown as missed, and your streak continues. Reminders pause by default, and you can choose to keep them on. No prayers need to be made up for those days.',
-        },
-        {
-          q: 'What if I am travelling?',
-          a: 'Turn on travel mode and the app follows the traveller’s allowance: Dhuhr, Asr and Isha may be prayed as two rakats, and Dhuhr may be prayed with Asr, or Maghrib with Isha. A prayer you combine is not counted as late. These prayers are still owed and still marked — travelling is not the same as an excused day. You decide when travel mode starts and ends, and the app never watches where you are.',
         },
         {
           q: 'Does it work on my watch?',

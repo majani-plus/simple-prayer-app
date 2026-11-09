@@ -28,11 +28,6 @@ import heroAr from '../../../docs/screenshots/ar/light/6.5/01-today-seal.png';
 import darkEn from '../../../docs/screenshots/en/dark/6.5/02-history.png';
 import darkTr from '../../../docs/screenshots/tr/dark/6.5/02-history.png';
 import darkAr from '../../../docs/screenshots/ar/dark/6.5/02-history.png';
-// Travel mode's band capture — the Today screen with the travel banner up (shot by the capture
-// rig's travel_on state, light theme, all three locales).
-import bandTravelEn from '../../../docs/screenshots/en/light/6.5/07-travel.png';
-import bandTravelTr from '../../../docs/screenshots/tr/light/6.5/07-travel.png';
-import bandTravelAr from '../../../docs/screenshots/ar/light/6.5/07-travel.png';
 
 // The hero family's supporting devices: the iPad two-pane Today board sits centred BEHIND the
 // phone, and the Apple Watch app overlaps in front (owner, 2026-08-28 — tablet behind, Apple
@@ -64,11 +59,8 @@ import watchTr from '../../../docs/screenshots/tr/watch/today.png';
 import watchAr from '../../../docs/screenshots/ar/watch/today.png';
 
 // The feature bands, in the order `d.features.bands` declares them: the seal, History, the qibla,
-// making up missed prayers, and travel mode. Travel has NO capture yet — its slot is `null` below
-// and renders the labelled placeholder instead. To finish it: shoot
-// `docs/screenshots/{locale}/light/6.5/07-travel.png` in all three locales, import the three files
-// here, and replace the three `null`s in `bandShots`. Nothing else needs touching — the copy and
-// the alt text are already authored (`features.bands`).
+// and making up missed prayers. A band whose slot is `null` in `bandShots` renders the labelled
+// placeholder instead.
 import bandSealEn from '../../../docs/screenshots/en/light/6.5/01-today-seal.png';
 import bandSealTr from '../../../docs/screenshots/tr/light/6.5/01-today-seal.png';
 import bandSealAr from '../../../docs/screenshots/ar/light/6.5/01-today-seal.png';
@@ -102,10 +94,10 @@ const shots: Record<Locale, Record<'hero' | 'dark', ImageMetadata>> = {
  * so a band's copy never waits on a capture.
  */
 const bandShots: Record<Locale, readonly (ImageMetadata | null)[]> = {
-  en: [bandSealEn, bandHistoryEn, bandQiblaEn, bandQadaEn, bandTravelEn],
-  tr: [bandSealTr, bandHistoryTr, bandQiblaTr, bandQadaTr, bandTravelTr],
-  ar: [bandSealAr, bandHistoryAr, bandQiblaAr, bandQadaAr, bandTravelAr],
-  ur: [bandSealEn, bandHistoryEn, bandQiblaEn, bandQadaEn, bandTravelEn],
+  en: [bandSealEn, bandHistoryEn, bandQiblaEn, bandQadaEn],
+  tr: [bandSealTr, bandHistoryTr, bandQiblaTr, bandQadaTr],
+  ar: [bandSealAr, bandHistoryAr, bandQiblaAr, bandQadaAr],
+  ur: [bandSealEn, bandHistoryEn, bandQiblaEn, bandQadaEn],
 };
 /**
  * The watch capture per locale, `null` when a locale's capture does not exist yet — the slot
@@ -169,14 +161,14 @@ const s = shots[locale];
 const accessShot = locale === 'ar' ? heroEn : heroAr;
 /**
  * One Arabic word per feature band, in the order the dict declares them: the seal, History, the
- * qibla, making up missed prayers, travel. Ornament rather than information — the same register the
+ * qibla, making up missed prayers. Ornament rather than information — the same register the
  * app uses above its own hero, and the store screens above their captions — so it is the same word
  * in every locale and hidden from screen readers, which would otherwise read it as a stray heading.
  *
  * These are set in the full-range Amiri subset (`.band-arabic` in the CSS below), so a new word
  * needs no font rebuild — unlike the text-pinned `Amiri CTA` face.
  */
-const BAND_ARABIC = ['الخَتْم', 'السِّجِلّ', 'القِبْلَة', 'القَضاء', 'السَّفَر'] as const;
+const BAND_ARABIC = ['الخَتْم', 'السِّجِلّ', 'القِبْلَة', 'القَضاء'] as const;
 
 // Icons for the compact cards, in the same order as the dict's iconCards. Not translatable.
 const cardIcons = ['mosque', 'bell', 'calendar', 'export', 'grid'] as const;

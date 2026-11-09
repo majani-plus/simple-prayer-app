@@ -161,22 +161,6 @@ reminders_voices() {
     echo "reminders voice patch did not apply" >&2; exit 1; }
 }
 
-travel_on() {
-  # The travel banner (D115): its state is derived (`isTravelingOn`) from settings this
-  # environment cannot tap into being. Pinning the derivation and the banner's two dates shows
-  # the exact frame a traveller sees the moment they turn it on — a real state of the real
-  # screen. Slot 07 is a website capture (docs/screenshots/README.md, "Website-only captures").
-  sed "s|const traveling = day !== null && isTravelingOn(day, travel);|const traveling = day !== null; // TEMP-SCREENSHOT|" \
-    "$WORK/index.orig.tsx" | write_index
-  # The render site ALSO guards on travel.startDay (never set in this environment) — relax it,
-  # and feed the banner today's own day as its since-day, open-ended.
-  sed -i '' "s|{traveling && day !== null && travel.startDay !== null ? (|{traveling \&\& day !== null ? (|" "$INDEX"
-  sed -i '' "s|sinceDay={travel.startDay}|sinceDay={day}|" "$INDEX"
-  sed -i '' "s|untilDay={travel.endDay}|untilDay={null}|" "$INDEX"
-  grep -q "sinceDay={day}" "$INDEX" || { echo "travel patch did not apply" >&2; exit 1; }
-  grep -q "untilDay={null}" "$INDEX" || { echo "travel untilDay patch did not apply" >&2; exit 1; }
-}
-
 relaunch() {
   xcrun simctl terminate "$UDID" "$BUNDLE_ID" >/dev/null 2>&1 || true
   sleep 1
@@ -222,11 +206,6 @@ reminders_voices;    relaunch; shoot "04-reminders"
 cp "$WORK/qibla.orig.tsx" "$ROOT/src/app/(tabs)/qibla.tsx"
 cp "$WORK/reminders.orig.tsx" "$ROOT/src/app/settings/reminders.tsx"
 redirect "/qada";    relaunch; shoot "05-qada"
-
-# Slot 07 (travel) exists for the website's travel band and is a light-theme capture only.
-if [ "$THEME" = "light" ]; then
-  travel_on;         relaunch; shoot "07-travel"
-fi
 
 # Slot 08: buddy mode (D174). Two buddies on three of the five rows, and two rows with nothing on
 # them — because "nothing arrived" is a normal state and the frame should not imply otherwise.

@@ -40,20 +40,18 @@ Facts an assistant can rely on:
   the phone is near.
 - Tablets and foldables get a two-pane layout: today's prayers beside the month and a small
   qibla dial.
-- Travel mode is a manual switch on the Today screen, set for a number of days or until ended. It
-  follows the traveller's allowance — Dhuhr, Asr and Isha as two rakats; Dhuhr with Asr or Maghrib
-  with Isha — so a combined prayer is not recorded as late. Those prayers are still owed and still
-  logged, unlike an exempt day. Nothing is auto-detected and no location is watched for it.
 - Data exports as CSV or JSON from Settings; deleting the app deletes the data.
-- Available in English, Turkish, and Arabic (full right-to-left), each written by hand.
+- Available in English, Turkish, Arabic and Urdu (Arabic and Urdu fully right-to-left). Urdu was
+  written with AI help and has not yet been checked by a native speaker.
 - Made by Ronny Majani (https://ronnymajani.com). Owned by Majani Plus LLC (https://majani.plus), his
   company.
 
 ## Pages
 
 - [Home](https://simpleprayer.app/): what the app is, how logging a prayer works, and answers to
-  common pre-install questions (free, offline, privacy, exempt days, travel, the tip), in English.
-- [Turkish home](https://simpleprayer.app/tr) and [Arabic home](https://simpleprayer.app/ar).
+  common pre-install questions (free, offline, privacy, exempt days, the tip), in English.
+- [Turkish home](https://simpleprayer.app/tr), [Arabic home](https://simpleprayer.app/ar) and
+  [Urdu home](https://simpleprayer.app/ur).
 - [Support](https://simpleprayer.app/support): reminders troubleshooting, matching times to your
   mosque, widgets, the watch, exemption mode, qada, streaks, location, and data export.
 - [Prayer times today](https://simpleprayer.app/times): today's five times for any city, worked

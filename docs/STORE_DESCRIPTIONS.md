@@ -14,7 +14,7 @@ Platform truth, so the split below never drifts:
   button visible on it**, the Wear OS app / tile / complications, the Manuscript watch face,
   watch-local adhan, the tablet/foldable layout.
 - Both have: times/methods/adjustments, all tracking (streaks, history, insights, excused days,
-  travel mode, qada), the tilt-tolerant qibla compass, en/ar/tr/ur (Urdu: App Store locale
+  qada), the tilt-tolerant qibla compass, en/ar/tr/ur (Urdu: App Store locale
   `ur-PK`, Play `ur`).
 
 ---
@@ -67,7 +67,7 @@ Each prayer can have three. The adhan as its time comes in. An earlier one to he
 Tracking
 When you pray, tap the prayer. That is all it takes. A past prayer takes one more tap: prayed, prayed late, or missed. No day is ever locked, so you can open one in History and change it.
 
-The app does not scold you. Keep a streak if you want one; missing a single prayer does not always end it. During menstruation and after childbirth, excused days mark nothing as missed and ask nothing of you. The mode ends by itself after the days you choose. Travel mode understands shortened and joined prayers, so a joined prayer is never called late. If you have prayers to make up, the qada counter goes down as you pray them and shows the day you will be finished.
+The app does not scold you. Keep a streak if you want one; missing a single prayer does not always end it. During menstruation and after childbirth, excused days mark nothing as missed and ask nothing of you. The mode ends by itself after the days you choose. If you have prayers to make up, the qada counter goes down as you pray them and shows the day you will be finished.
 
 If you only want times and the Qibla, nothing here will ever ask you to log a prayer.
 
@@ -259,7 +259,7 @@ Each prayer can have three. The adhan as its time comes in. An earlier one to he
 Tracking
 When you pray, tap the prayer. That is all it takes. A past prayer takes one more tap: prayed, prayed late, or missed. No day is ever locked, so you can open one in History and change it.
 
-The app does not scold you. Keep a streak if you want one; missing a single prayer does not always end it. During menstruation and after childbirth, excused days mark nothing as missed and ask nothing of you. The mode ends by itself after the days you choose. Travel mode understands shortened and joined prayers, so a joined prayer is never called late. If you have prayers to make up, the qada counter goes down as you pray them and shows the day you will be finished.
+The app does not scold you. Keep a streak if you want one; missing a single prayer does not always end it. During menstruation and after childbirth, excused days mark nothing as missed and ask nothing of you. The mode ends by itself after the days you choose. If you have prayers to make up, the qada counter goes down as you pray them and shows the day you will be finished.
 
 If you only want times and the Qibla, nothing here will ever ask you to log a prayer.
 
@@ -492,7 +492,7 @@ Her namazın üç hatırlatması olabilir: vakit girince ezan, vakitten önce bi
 Takip
 Namazını kıldığında dokun, kaydedilsin. Geçmiş bir namaz bir dokunuş daha ister: kılındı, geç kılındı ya da kaçırıldı. Her şeyi sonradan Geçmiş'te değiştirebilirsin. İstersen günlük seri tutar, günlerini takvimde görür, dürüst istatistiklere bakarsın.
 
-Uygulama seni hiç azarlamaz. Adet ya da lohusalık günlerinde özel günler modunu açarsın: hiçbir şey kaçırıldı yazmaz, hiçbir hatırlatma gelmez. İstersen gün sayısını seçersin, süre bitince mod kendiliğinden kapanır. Yolculuktayken yolculuk modu kısaltmayı ve cem etmeyi anlar; cem ettiğin namaz yanlışlıkla geç yazılmaz. Kaza namazın varsa sayaç sen kıldıkça azalır ve bitireceğin günü gösterir. İstersen sayacı bir kenara bırakıp sıfırdan başlarsın.
+Uygulama seni hiç azarlamaz. Adet ya da lohusalık günlerinde özel günler modunu açarsın: hiçbir şey kaçırıldı yazmaz, hiçbir hatırlatma gelmez. İstersen gün sayısını seçersin, süre bitince mod kendiliğinden kapanır. Kaza namazın varsa sayaç sen kıldıkça azalır ve bitireceğin günü gösterir. İstersen sayacı bir kenara bırakıp sıfırdan başlarsın.
 
 Takip her yerde isteğe bağlıdır. Yalnızca vakitler ve kıble istiyorsan, hiçbir şey senden kayıt istemez.
 
@@ -594,7 +594,7 @@ Her namazın üç hatırlatması olabilir: vakit girince ezan, vakitten önce bi
 Takip
 Namazını kıldığında dokun, kaydedilsin. Geçmiş bir namaz bir dokunuş daha ister: kılındı, geç kılındı ya da kaçırıldı. Her şeyi sonradan Geçmiş'te değiştirebilirsin. İstersen günlük seri tutar, günlerini takvimde görür, dürüst istatistiklere bakarsın.
 
-Uygulama seni hiç azarlamaz. Adet ya da lohusalık günlerinde özel günler modunu açarsın: hiçbir şey kaçırıldı yazmaz, hiçbir hatırlatma gelmez. İstersen gün sayısını seçersin, süre bitince mod kendiliğinden kapanır. Yolculuktayken yolculuk modu kısaltmayı ve cem etmeyi anlar; cem ettiğin namaz yanlışlıkla geç yazılmaz. Kaza namazın varsa sayaç sen kıldıkça azalır ve bitireceğin günü gösterir. İstersen sayacı bir kenara bırakıp sıfırdan başlarsın.
+Uygulama seni hiç azarlamaz. Adet ya da lohusalık günlerinde özel günler modunu açarsın: hiçbir şey kaçırıldı yazmaz, hiçbir hatırlatma gelmez. İstersen gün sayısını seçersin, süre bitince mod kendiliğinden kapanır. Kaza namazın varsa sayaç sen kıldıkça azalır ve bitireceğin günü gösterir. İstersen sayacı bir kenara bırakıp sıfırdan başlarsın.
 
 Takip her yerde isteğe bağlıdır. Yalnızca vakitler ve kıble istiyorsan, hiçbir şey senden kayıt istemez.
 
@@ -690,7 +690,7 @@ Simple Prayer artık uygulamanın dışında da yaşıyor:
 المتابعة
 حين تصلي، انقر على الصلاة فتُسجَّل. الصلاة الماضية تحتاج نقرة أخرى: صُلِّيت، أو صُلِّيت متأخرة، أو فاتت. وكل شيء قابل للتعديل لاحقًا من السجل. هناك تتابع يومي إن أحببته، وتقويم لأيامك، وإحصاءات صادقة.
 
-التطبيق لا يلومك أبدًا. في أيام العذر الشرعي شغّلي وضع العذر: لا يُحتسب شيء فائتًا، ولا يصلك تذكير، وينتهي الوضع من تلقاء نفسه بعد المدة التي تختارينها. وفي السفر، يفهم وضع السفر القصر والجمع، فلا تُسجَّل الصلاة المجموعة متأخرة خطأً. وإن كان عليك فوائت، فعدّاد القضاء يتناقص كلما قضيت صلاة ويريك يوم انتهائك. أو ضع العدد جانبًا وابدأ من جديد.
+التطبيق لا يلومك أبدًا. في أيام العذر الشرعي شغّلي وضع العذر: لا يُحتسب شيء فائتًا، ولا يصلك تذكير، وينتهي الوضع من تلقاء نفسه بعد المدة التي تختارينها. وإن كان عليك فوائت، فعدّاد القضاء يتناقص كلما قضيت صلاة ويريك يوم انتهائك. أو ضع العدد جانبًا وابدأ من جديد.
 
 المتابعة اختيارية في كل مكان. إن أردت المواقيت والقبلة فقط، فلن يطلب منك شيء أن تسجّل صلاة.
 
@@ -792,7 +792,7 @@ Simple Prayer artık uygulamanın dışında da yaşıyor:
 المتابعة
 حين تصلي، انقر على الصلاة فتُسجَّل. الصلاة الماضية تحتاج نقرة أخرى: صُلِّيت، أو صُلِّيت متأخرة، أو فاتت. وكل شيء قابل للتعديل لاحقًا من السجل. هناك تتابع يومي إن أحببته، وتقويم لأيامك، وإحصاءات صادقة.
 
-التطبيق لا يلومك أبدًا. في أيام العذر الشرعي شغّلي وضع العذر: لا يُحتسب شيء فائتًا، ولا يصلك تذكير، وينتهي الوضع من تلقاء نفسه بعد المدة التي تختارينها. وفي السفر، يفهم وضع السفر القصر والجمع، فلا تُسجَّل الصلاة المجموعة متأخرة خطأً. وإن كان عليك فوائت، فعدّاد القضاء يتناقص كلما قضيت صلاة ويريك يوم انتهائك. أو ضع العدد جانبًا وابدأ من جديد.
+التطبيق لا يلومك أبدًا. في أيام العذر الشرعي شغّلي وضع العذر: لا يُحتسب شيء فائتًا، ولا يصلك تذكير، وينتهي الوضع من تلقاء نفسه بعد المدة التي تختارينها. وإن كان عليك فوائت، فعدّاد القضاء يتناقص كلما قضيت صلاة ويريك يوم انتهائك. أو ضع العدد جانبًا وابدأ من جديد.
 
 المتابعة اختيارية في كل مكان. إن أردت المواقيت والقبلة فقط، فلن يطلب منك شيء أن تسجّل صلاة.
 
@@ -888,7 +888,7 @@ Simple Prayer پانچوں نمازوں کے اوقات دکھاتی ہے، قب
 نمازوں کا اندراج
 نماز پڑھ لیں تو اسے دبا دیں۔ بس اتنا ہی۔ گزری ہوئی نماز کے لیے ایک بار اور دبانا ہوتا ہے: پڑھ لی، دیر سے، یا چھوٹ گئی۔ کوئی دن کبھی بند نہیں ہوتا، اسے بعد میں بھی بدلا جا سکتا ہے۔
 
-ایپ آپ کو کبھی نہیں ڈانٹتی۔ چاہیں تو لگاتار دنوں کی گنتی رکھیں۔ ایک نماز چھوٹ جانے سے یہ گنتی ہمیشہ ختم نہیں ہوتی۔ ماہواری اور نفاس کے دنوں میں مخصوص ایام چالو کریں: کوئی نماز چھوٹی ہوئی نہیں گنی جاتی، اور آپ سے کچھ نہیں مانگا جاتا۔ یہ آپ کے چنے ہوئے دنوں کے بعد خود ختم ہو جاتے ہیں۔ سفر کی ترتیب قصر اور جمع کو سمجھتی ہے، اس لیے جمع کی گئی نماز کو کبھی دیر سے نہیں کہا جاتا۔ قضا نمازوں کی گنتی ہر قضا پڑھنے پر کم ہوتی ہے، اور بتاتی ہے کہ کب تک پوری ہوں گی۔
+ایپ آپ کو کبھی نہیں ڈانٹتی۔ چاہیں تو لگاتار دنوں کی گنتی رکھیں۔ ایک نماز چھوٹ جانے سے یہ گنتی ہمیشہ ختم نہیں ہوتی۔ ماہواری اور نفاس کے دنوں میں مخصوص ایام چالو کریں: کوئی نماز چھوٹی ہوئی نہیں گنی جاتی، اور آپ سے کچھ نہیں مانگا جاتا۔ یہ آپ کے چنے ہوئے دنوں کے بعد خود ختم ہو جاتے ہیں۔ قضا نمازوں کی گنتی ہر قضا پڑھنے پر کم ہوتی ہے، اور بتاتی ہے کہ کب تک پوری ہوں گی۔
 
 اگر آپ کو صرف اوقات اور قبلہ چاہیے، تو یہاں کوئی چیز کبھی آپ سے نماز درج کرنے کو نہیں کہے گی۔
 
@@ -937,7 +937,7 @@ Simple Prayer پانچوں نمازوں کے اوقات دکھاتی ہے، قب
 نمازوں کا اندراج
 نماز پڑھ لیں تو اسے دبا دیں۔ بس اتنا ہی۔ گزری ہوئی نماز کے لیے ایک بار اور دبانا ہوتا ہے: پڑھ لی، دیر سے، یا چھوٹ گئی۔ کوئی دن کبھی بند نہیں ہوتا، اسے بعد میں بھی بدلا جا سکتا ہے۔
 
-ایپ آپ کو کبھی نہیں ڈانٹتی۔ چاہیں تو لگاتار دنوں کی گنتی رکھیں۔ ایک نماز چھوٹ جانے سے یہ گنتی ہمیشہ ختم نہیں ہوتی۔ ماہواری اور نفاس کے دنوں میں مخصوص ایام چالو کریں: کوئی نماز چھوٹی ہوئی نہیں گنی جاتی، اور آپ سے کچھ نہیں مانگا جاتا۔ یہ آپ کے چنے ہوئے دنوں کے بعد خود ختم ہو جاتے ہیں۔ سفر کی ترتیب قصر اور جمع کو سمجھتی ہے، اس لیے جمع کی گئی نماز کو کبھی دیر سے نہیں کہا جاتا۔ قضا نمازوں کی گنتی ہر قضا پڑھنے پر کم ہوتی ہے، اور بتاتی ہے کہ کب تک پوری ہوں گی۔
+ایپ آپ کو کبھی نہیں ڈانٹتی۔ چاہیں تو لگاتار دنوں کی گنتی رکھیں۔ ایک نماز چھوٹ جانے سے یہ گنتی ہمیشہ ختم نہیں ہوتی۔ ماہواری اور نفاس کے دنوں میں مخصوص ایام چالو کریں: کوئی نماز چھوٹی ہوئی نہیں گنی جاتی، اور آپ سے کچھ نہیں مانگا جاتا۔ یہ آپ کے چنے ہوئے دنوں کے بعد خود ختم ہو جاتے ہیں۔ قضا نمازوں کی گنتی ہر قضا پڑھنے پر کم ہوتی ہے، اور بتاتی ہے کہ کب تک پوری ہوں گی۔
 
 اگر آپ کو صرف اوقات اور قبلہ چاہیے، تو یہاں کوئی چیز کبھی آپ سے نماز درج کرنے کو نہیں کہے گی۔
 
