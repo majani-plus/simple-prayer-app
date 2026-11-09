@@ -4,7 +4,7 @@ Namaz vakitleri
 Vakitler telefonunda hesaplanır, bu yüzden uygulama internetsiz çalışır. Hesaplama yöntemi ülkene göre kendiliğinden seçilir: Diyanet, ISNA, Ümmü'l-Kurâ, Mısır, Karaçi, Hilal Gözlem Komitesi, Caferî ve diğerleri. İstediğin zaman değiştirebilirsin. Her namazı camine uysun diye birkaç dakika kaydırabilirsin. İkindi de ülkene göre ayarlanır; Hanefî ya da Şâfiî usulünü kendin de seçebilirsin. Hicri tarih bir gün kaymışsa düzeltebilirsin. Yazın güneşin neredeyse hiç batmadığı kuzey bölgelerinde yaşıyorsan, o aylar için ayrı bir kural var.
 
 Hatırlatmalar
-Her namazın üç hatırlatması olabilir: vakit girince ezan, vakitten önce bir uyandırma (çoğu kişi sabah namazı için kullanıyor) ve vakit çıkmadan son bir hatırlatma. Her biri sessiz, sade bir ses ya da ezan olabilir; özgür lisanslı dört okuyuş arasından seçersin. Namazı, uygulamayı açmadan doğrudan bildirimden işaretleyebilirsin.
+Her namazın üç hatırlatması olabilir: vakit girince ezan, vakitten önce bir uyandırma (çoğu kişi sabah namazı için kullanıyor) ve vakit çıkmadan son bir hatırlatma. Her biri sessiz, sade bir ses ya da ezan olabilir; özgür lisanslı üç okuyuş arasından seçersin. Namazı, uygulamayı açmadan doğrudan bildirimden işaretleyebilirsin.
 
 Takip
 Namazını kıldığında dokun, kaydedilsin. Geçmiş bir namaz bir dokunuş daha ister: kılındı, geç kılındı ya da kaçırıldı. Hiçbir gün kilitlenmez; Geçmiş'te açıp değiştirebilirsin.

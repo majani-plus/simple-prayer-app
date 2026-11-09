@@ -4,7 +4,7 @@ Prayer times
 Times are calculated on your phone, so the app works with no internet at all. It picks the method used in your country: Diyanet, ISNA, Umm al-Qura, Egyptian, Karachi, Moonsighting Committee, Jafari and others. You can change it whenever you like. You can also shift any prayer by a few minutes to match your mosque. Asr follows your country too, and you can choose Hanafi or Shafi yourself. Move the Hijri date if it reads a day out. If you live far north, where the sun barely sets in summer, there is a rule for those months.
 
 Reminders
-Each prayer can have three. The adhan as its time comes in. An earlier one to help you wake for Fajr. A last call before the time runs out. Each can be silent, a simple tone, or the adhan itself, with four freely licensed recitations to choose from. Mark a prayer straight from the notification, without opening the app.
+Each prayer can have three. The adhan as its time comes in. An earlier one to help you wake for Fajr. A last call before the time runs out. Each can be silent, a simple tone, or the adhan itself, with three freely licensed recitations to choose from. Mark a prayer straight from the notification, without opening the app.
 
 Tracking
 When you pray, tap the prayer. That is all it takes. A past prayer takes one more tap: prayed, prayed late, or missed. No day is ever locked, so you can open one in History and change it.
