@@ -594,6 +594,8 @@ const jsonLd = [
       <h2 id="cta-title" class="cta-title">{d.cta.h2}</h2>
       <p class="cta-sub">{d.cta.sub}</p>
       <StoreButtons align="center" labels={dict.chrome.stores} />
+      {/* ?stay=1: /install otherwise forwards Android visitors to Google Play before they see it. */}
+      <p class="hint"><a href={`${pagePath('install', locale)}?stay=1#apk-heading`}>{d.cta.apkLink}</a></p>
       <p class="hint">{d.cta.langsLine}</p>
     </div>
   </section>

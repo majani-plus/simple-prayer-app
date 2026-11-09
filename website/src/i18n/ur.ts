@@ -326,6 +326,7 @@ export const ur: SiteDict = {
       h2: 'Simple Prayer حاصل کریں',
       sub: 'iPhone اور Android پر مفت۔ انٹرنیٹ کے بغیر چلتی ہے، اکاؤنٹ کی ضرورت نہیں۔ اوپن سورس۔',
       langsLine: 'ہر فیچر مفت ہے · English · العربية · Türkçe · اردو',
+      apkLink: 'Google Play کے بغیر اینڈرائیڈ؟ APK ڈاؤن لوڈ کریں۔',
     },
   },
 

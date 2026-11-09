@@ -317,6 +317,7 @@ export const ar: SiteDict = {
       h2: 'احصل على Simple Prayer',
       sub: 'مجاني على آيفون وأندرويد. يعمل دون إنترنت، ولا يحتاج إلى حساب. ومفتوح المصدر.',
       langsLine: 'كل الميزات مجانية · English · العربية · Türkçe · اردو',
+      apkLink: 'أندرويد بدون Google Play؟ نزّل ملف APK.',
     },
   },
 

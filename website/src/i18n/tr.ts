@@ -315,6 +315,7 @@ export const tr: SiteDict = {
       h2: "Simple Prayer'ı edin",
       sub: "iPhone ve Android'de ücretsiz. İnternetsiz çalışır, hesap gerekmez. Açık kaynak.",
       langsLine: 'Bütün özellikler ücretsiz · English · العربية · Türkçe · اردو',
+      apkLink: 'Google Play olmadan Android mi? APK dosyasını indir.',
     },
   },
 

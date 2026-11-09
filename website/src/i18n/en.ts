@@ -329,6 +329,7 @@ export const en = {
       h2: 'Get Simple Prayer',
       sub: 'Free on iPhone and Android. Works offline, no account needed. Open source.',
       langsLine: 'Every feature is free · English · العربية · Türkçe · اردو',
+      apkLink: 'Android without Google Play? Download the APK.',
     },
   },
 
