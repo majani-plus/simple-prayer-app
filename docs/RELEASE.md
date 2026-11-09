@@ -484,8 +484,10 @@ on the GitHub Release for the plain tag `vX.Y.Z` (never `release/vX.Y.Z`: GitHub
 fails for a tag with a slash). After a release:
 
 ```sh
-# FOSS: foss-android.yml builds it on the release/vX.Y.Z tag, signs it and attaches it, once the
-# FOSS_KEYSTORE_* secrets exist (docs/FDROID.md). Until then, sign the workflow artifact by hand.
+# FOSS: foss-android.yml builds it on the release/vX.Y.Z tag, signs it with the FOSS_KEYSTORE_*
+# secrets (set 2026-11-09) and attaches it to the vX.Y.Z release. Never re-run that workflow for a
+# tag made before a workflow change: a re-run uses the tag's old copy of the workflow (1.7.1's created
+# a second release on release/v1.7.1 and stole "Latest", breaking the website link).
 
 # Play release notes for the alpha release (only languages the Play listing has: en-US, ar, tr-TR, ur).
 # This key can edit listings and testing tracks but not release to production: promote in Play Console.
