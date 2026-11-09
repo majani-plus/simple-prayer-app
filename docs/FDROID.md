@@ -58,7 +58,8 @@ reviewers often ask for changes; the open questions are noted after the recipe.
 
 ```yaml
 Categories:
-  - Time
+  - Habit Tracker
+  - Religion
 License: MIT
 AuthorName: Ronny Majani
 WebSite: https://simpleprayer.app
@@ -77,12 +78,14 @@ Builds:
     commit: d922847b5ce17c8411ebaea5d9e105e6b99c909f
     sudo:
       - apt-get update
-      - apt-get install -y openjdk-17-jdk-headless xz-utils
+      - apt-get install -y openjdk-21-jdk-headless xz-utils
       - curl -Lo node.tar.xz https://nodejs.org/dist/v24.22.2/node-v24.22.2-linux-x64.tar.xz
-      - echo "48cc0e21e048790e54c0cf5749c2725005313d652651c40b7a21feb9697aaf75  node.tar.xz" | sha256sum -c -
+      - echo "48cc0e21e048790e54c0cf5749c2725005313d652651c40b7a21feb9697aaf75  node.tar.xz"
+        | sha256sum -c -
       - tar xJf node.tar.xz --strip-components=1 -C /usr/local
       - npm install -g bun@1.4.3
     init: bun install --frozen-lockfile
+    output: android/app/build/outputs/apk/release/app-release-unsigned.apk
     prebuild:
       - export FOSS_BUILD=1
       - sed -i -e 's/\("versionCode":\) *[0-9]*/\1 $$VERCODE$$/' package.json
@@ -93,19 +96,20 @@ Builds:
       - export FOSS_BUILD=1
       - cd android
       - gradle :app:assembleRelease -PreactNativeArchitectures=armeabi-v7a
-    output: android/app/build/outputs/apk/release/app-release-unsigned.apk
 
   - versionName: 1.7.1
     versionCode: 662
     commit: d922847b5ce17c8411ebaea5d9e105e6b99c909f
     sudo:
       - apt-get update
-      - apt-get install -y openjdk-17-jdk-headless xz-utils
+      - apt-get install -y openjdk-21-jdk-headless xz-utils
       - curl -Lo node.tar.xz https://nodejs.org/dist/v24.22.2/node-v24.22.2-linux-x64.tar.xz
-      - echo "48cc0e21e048790e54c0cf5749c2725005313d652651c40b7a21feb9697aaf75  node.tar.xz" | sha256sum -c -
+      - echo "48cc0e21e048790e54c0cf5749c2725005313d652651c40b7a21feb9697aaf75  node.tar.xz"
+        | sha256sum -c -
       - tar xJf node.tar.xz --strip-components=1 -C /usr/local
       - npm install -g bun@1.4.3
     init: bun install --frozen-lockfile
+    output: android/app/build/outputs/apk/release/app-release-unsigned.apk
     prebuild:
       - export FOSS_BUILD=1
       - sed -i -e 's/\("versionCode":\) *[0-9]*/\1 $$VERCODE$$/' package.json
@@ -116,19 +120,20 @@ Builds:
       - export FOSS_BUILD=1
       - cd android
       - gradle :app:assembleRelease -PreactNativeArchitectures=arm64-v8a
-    output: android/app/build/outputs/apk/release/app-release-unsigned.apk
 
   - versionName: 1.7.1
     versionCode: 663
     commit: d922847b5ce17c8411ebaea5d9e105e6b99c909f
     sudo:
       - apt-get update
-      - apt-get install -y openjdk-17-jdk-headless xz-utils
+      - apt-get install -y openjdk-21-jdk-headless xz-utils
       - curl -Lo node.tar.xz https://nodejs.org/dist/v24.22.2/node-v24.22.2-linux-x64.tar.xz
-      - echo "48cc0e21e048790e54c0cf5749c2725005313d652651c40b7a21feb9697aaf75  node.tar.xz" | sha256sum -c -
+      - echo "48cc0e21e048790e54c0cf5749c2725005313d652651c40b7a21feb9697aaf75  node.tar.xz"
+        | sha256sum -c -
       - tar xJf node.tar.xz --strip-components=1 -C /usr/local
       - npm install -g bun@1.4.3
     init: bun install --frozen-lockfile
+    output: android/app/build/outputs/apk/release/app-release-unsigned.apk
     prebuild:
       - export FOSS_BUILD=1
       - sed -i -e 's/\("versionCode":\) *[0-9]*/\1 $$VERCODE$$/' package.json
@@ -139,7 +144,6 @@ Builds:
       - export FOSS_BUILD=1
       - cd android
       - gradle :app:assembleRelease -PreactNativeArchitectures=x86_64
-    output: android/app/build/outputs/apk/release/app-release-unsigned.apk
 
 AutoUpdateMode: Version
 UpdateCheckMode: Tags ^release/v.*$
@@ -163,6 +167,7 @@ Questions F-Droid reviewers are likely to raise:
   React Native apps are in F-Droid; their reviewers know the usual `scandelete` lines.
 - **Signing.** Expo's template signs release builds with the debug key; the prebuild step deletes
   that line so Gradle writes `app-release-unsigned.apk`, which F-Droid signs.
+- **JDK.** F-Droid's build server runs Debian trixie, which has no OpenJDK 17; the recipe installs 21.
 - **Node.** The recipe installs Node 24.22.2 (the repo's pin, `website/.node-version`) from
   nodejs.org with a checked SHA-256, since Debian's Node is too old for Expo SDK 58.
 - **Anti-features.** None should apply: no Google, no tracking, no non-free assets, and the relay
