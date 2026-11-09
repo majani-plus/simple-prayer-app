@@ -50,7 +50,13 @@ export const fonts = {
   iconOutlined: family('MaterialSymbolsRounded-Outlined', 'MaterialSymbolsOutline-Regular'),
 } as const;
 
-export { arabicTypeScale, typeScaleFor, urduMinLeading, urduTypeScale } from './scriptScale';
+export {
+  arabicTypeScale,
+  nastaliqOverflow,
+  typeScaleFor,
+  urduMinLeading,
+  urduTypeScale,
+} from './scriptScale';
 
 
 /** Key type sizes from the 2a design (at 390pt reference width), retuned for legibility (D74). */

@@ -34,7 +34,7 @@ import { immer } from 'zustand/middleware/immer';
 import { useShallow } from 'zustand/react/shallow';
 
 import { ADHAN_VOICES, DEFAULT_ADHAN_VOICE } from '../domain/adhanVoices';
-import { isAfterDay, isValidDay } from '../domain/dates';
+import { isValidDay } from '../domain/dates';
 import { clampHijriOffset } from '../domain/hijri';
 import { isMethodSupported } from '../domain/methods';
 import {

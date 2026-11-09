@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
+  Platform,
   StyleSheet,
   Text,
   type ColorValue,
@@ -10,7 +11,14 @@ import {
 } from 'react-native';
 
 import { scriptFamilyFor, type ScriptFamily } from '@/i18n/direction';
-import { fonts, type as typeScale, typeScaleFor, urduMinLeading, useTheme } from '@/theme';
+import {
+  fonts,
+  nastaliqOverflow,
+  type as typeScale,
+  typeScaleFor,
+  urduMinLeading,
+  useTheme,
+} from '@/theme';
 
 /** Built up field by field; RN 0.87's style types are read-only. */
 type MutableTextStyle = { -readonly [K in keyof TextStyle]: TextStyle[K] };
@@ -264,6 +272,40 @@ function tabularSpans(text: string): ReactNode {
   );
 }
 
+/** A style edge as a plain number, or `null` when it is a percentage or `auto` we cannot add to. */
+function edge(...values: unknown[]): number | null {
+  for (const value of values) {
+    if (value === undefined) continue;
+    return typeof value === 'number' ? value : null;
+  }
+  return 0;
+}
+
+/**
+ * Adds `room` (in ems) of padding above and below, and takes it back out of the margins, so the
+ * text view's ink area grows while its place in the layout stays put. Leaves the style alone when
+ * a margin or padding is not a plain number.
+ */
+function growForNastaliq(
+  style: MutableTextStyle,
+  room: { top: number; bottom: number },
+  size: number
+): void {
+  const paddingTop = edge(style.paddingTop, style.paddingVertical, style.padding);
+  const paddingBottom = edge(style.paddingBottom, style.paddingVertical, style.padding);
+  const marginTop = edge(style.marginTop, style.marginVertical, style.margin);
+  const marginBottom = edge(style.marginBottom, style.marginVertical, style.margin);
+  if (paddingTop === null || paddingBottom === null || marginTop === null || marginBottom === null) {
+    return;
+  }
+  const top = room.top * size;
+  const bottom = room.bottom * size;
+  style.paddingTop = paddingTop + top;
+  style.paddingBottom = paddingBottom + bottom;
+  style.marginTop = marginTop - top;
+  style.marginBottom = marginBottom - bottom;
+}
+
 /**
  * Themed text bound to the design's type scale.
  *
@@ -379,6 +421,14 @@ export function AppText({
   if (resolvedScript === 'urdu') {
     const size = merged.fontSize ?? spec.size;
     merged.lineHeight = Math.max(merged.lineHeight ?? 0, size * urduMinLeading);
+    // **iOS clips Nastaliq's tallest letters at the text view's edge** (D210). It centres the
+    // font's 2.5 em box in the 2 em line and draws only inside the view, so the kaf's top stroke
+    // and the deepest tails were cut off on the first and last lines. Android lets text ink spill
+    // past the view. The view grows by exactly the missing room, and equal negative margins hand
+    // that room back, so nothing around it moves.
+    if (Platform.OS === 'ios') {
+      growForNastaliq(merged, nastaliqOverflow(merged.lineHeight / size), size);
+    }
   }
   // **Sub-13px Arabic steps up a weight** (spec-accessibility §3, owner item B, D54).
   //

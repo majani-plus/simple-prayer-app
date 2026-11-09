@@ -272,6 +272,31 @@ describe('AppText', () => {
     expect(regular.letterSpacing).toBeUndefined();
   });
 
+  it('gives Urdu room above and below on iOS, without moving it (D210)', async () => {
+    // iOS draws only inside the text view, and the kaf's top stroke reaches past a 2 em line.
+    const { Platform } = jest.requireActual<typeof import('react-native')>('react-native');
+    const original = Platform.OS;
+    Object.defineProperty(Platform, 'OS', { value: 'ios', configurable: true });
+    try {
+      await act(async () => {
+        await i18n.changeLanguage('ur');
+      });
+      await render(
+        <AppText variant="rowName" style={{ marginTop: 4 }}>
+          علیکم
+        </AppText>
+      );
+      const style = styleOf('علیکم');
+      expect(style.paddingTop).toBeGreaterThan(0);
+      expect(style.paddingBottom).toBeGreaterThan(0);
+      // The padding is handed back through the margins, so the layout does not move.
+      expect((style.marginTop as number) + (style.paddingTop as number)).toBeCloseTo(4);
+      expect((style.marginBottom as number) + (style.paddingBottom as number)).toBeCloseTo(0);
+    } finally {
+      Object.defineProperty(Platform, 'OS', { value: original, configurable: true });
+    }
+  });
+
   it('never sets Arabic in a synthesized italic', async () => {
     // Arabic has no italic; a slanted naskh is a Latin habit imposed on a script that rejects it.
     await act(async () => {

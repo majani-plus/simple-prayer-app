@@ -52,6 +52,39 @@ export const urduTypeScale = 1;
 export const urduMinLeading = 2;
 
 /**
+ * Noto Nastaliq Urdu's vertical metrics, in ems, read from the shipped TTF: the font's own box
+ * (hhea ascent 1.904, descent 0.596) and the furthest its shaped ink reaches (the kaf's top stroke
+ * in «علیکم» at 2.02 above the baseline in Bold; tails at 0.68 below). `AppText` uses them on iOS,
+ * which centres the glyphs in a line shorter than the font box and clips at the text view's edge.
+ */
+export const NASTALIQ_METRICS = Object.freeze({
+  ascent: 1.904,
+  descent: 0.596,
+  inkTop: 2.05,
+  inkBottom: 0.7,
+});
+
+/**
+ * The extra room, in ems, an Urdu text view needs above its first line and below its last on iOS,
+ * so the tallest Nastaliq letters are not cut off. Only the view's two outer edges clip; the lines
+ * inside may overlap each other's spare space freely.
+ *
+ * iOS places the font's box centred in the line (React Native's baseline offset), so a line
+ * shorter than the box loses half the difference at each end.
+ *
+ * @param lineHeightEm - The line height in ems.
+ * @returns Room to add at the top and at the bottom, never negative.
+ */
+export function nastaliqOverflow(lineHeightEm: number): { top: number; bottom: number } {
+  const { ascent, descent, inkTop, inkBottom } = NASTALIQ_METRICS;
+  const shift = (ascent + descent - lineHeightEm) / 2;
+  return {
+    top: Math.max(0, inkTop - (ascent - shift)),
+    bottom: Math.max(0, inkBottom - (descent - shift)),
+  };
+}
+
+/**
  * The size step for a Latin-designed size set in another script — the one number `AppText`, the
  * seal pill and the tip cards all multiply by, so they can never disagree.
  */
