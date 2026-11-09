@@ -1,7 +1,7 @@
 {
   "name": "simple-prayer-times",
   "main": "index.ts",
-  "version": "1.7.0",
+  "version": "1.7.1",
   "versionCode": 66,
   "dependencies": {
     "@bacons/apple-targets": "^5.0.0",

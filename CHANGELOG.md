@@ -11,6 +11,14 @@ would recognise, not commit subjects.
 
 ## [Unreleased]
 
+### Added
+
+### Changed
+
+### Fixed
+
+## [1.7.1] - 2026-11-09
+
 ### Fixed
 
 - **Urdu on Android:** some labels lost their last word. Android counted how far the last letter's
