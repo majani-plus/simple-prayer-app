@@ -84,14 +84,30 @@ Builds:
         | sha256sum -c -
       - tar xJf node.tar.xz --strip-components=1 -C /usr/local
       - npm install -g bun@1.4.3
-    init: bun install --frozen-lockfile --ignore-scripts
+    init:
+      - bun install --frozen-lockfile --ignore-scripts
+      - find node_modules -type d -name local-maven-repo -prune -exec rm -rf {} +
     output: android/app/build/outputs/apk/release/app-release-unsigned.apk
     prebuild:
       - export FOSS_BUILD=1
       - sed -i -e 's/\("versionCode":\) *[0-9]*/\1 $$VERCODE$$/' package.json
       - bun scripts/foss-prepare.ts
+      - node -e 'const fs=require("fs");const p=JSON.parse(fs.readFileSync("package.json"));p.expo??={};p.expo.autolinking??={};p.expo.autolinking.android={...p.expo.autolinking.android,buildFromSource:[".*"]};fs.writeFileSync("package.json",JSON.stringify(p,null,2))'
+      - find node_modules -type f \( -name "*.gradle" -o -name "*.gradle.kts" -o -name
+        "*.kt" \) -exec sed -i -e 's/JavaVersion.VERSION_17/JavaVersion.VERSION_21/g'
+        -e 's/jvmToolchain(17)/jvmToolchain(21)/g' -e 's/JvmTarget.fromTarget("17")/JvmTarget.fromTarget("21")/g'
+        -e 's/JvmTarget.JVM_17/JvmTarget.JVM_21/g' {} +
       - bunx expo prebuild -p android --clean --no-install
-      - sed -i -e '/signingConfig signingConfigs.debug/d' android/app/build.gradle
+      - sed -i -e '/signingConfig /d' android/app/build.gradle
+    scanignore:
+      - node_modules/hermes-compiler/hermesc/linux64-bin/hermesc
+      - node_modules/expo-modules-core/android/ExpoModulesCorePlugin.gradle
+      - node_modules/react-native-safe-area-context/android/build.gradle
+      - node_modules/react-native-screens/android/build.gradle
+      - node_modules/react-native-svg/android/build.gradle
+      - node_modules/@react-native-masked-view/masked-view/android/build.gradle
+    scandelete:
+      - node_modules
     build:
       - export FOSS_BUILD=1
       - cd android
@@ -108,14 +124,30 @@ Builds:
         | sha256sum -c -
       - tar xJf node.tar.xz --strip-components=1 -C /usr/local
       - npm install -g bun@1.4.3
-    init: bun install --frozen-lockfile --ignore-scripts
+    init:
+      - bun install --frozen-lockfile --ignore-scripts
+      - find node_modules -type d -name local-maven-repo -prune -exec rm -rf {} +
     output: android/app/build/outputs/apk/release/app-release-unsigned.apk
     prebuild:
       - export FOSS_BUILD=1
       - sed -i -e 's/\("versionCode":\) *[0-9]*/\1 $$VERCODE$$/' package.json
       - bun scripts/foss-prepare.ts
+      - node -e 'const fs=require("fs");const p=JSON.parse(fs.readFileSync("package.json"));p.expo??={};p.expo.autolinking??={};p.expo.autolinking.android={...p.expo.autolinking.android,buildFromSource:[".*"]};fs.writeFileSync("package.json",JSON.stringify(p,null,2))'
+      - find node_modules -type f \( -name "*.gradle" -o -name "*.gradle.kts" -o -name
+        "*.kt" \) -exec sed -i -e 's/JavaVersion.VERSION_17/JavaVersion.VERSION_21/g'
+        -e 's/jvmToolchain(17)/jvmToolchain(21)/g' -e 's/JvmTarget.fromTarget("17")/JvmTarget.fromTarget("21")/g'
+        -e 's/JvmTarget.JVM_17/JvmTarget.JVM_21/g' {} +
       - bunx expo prebuild -p android --clean --no-install
-      - sed -i -e '/signingConfig signingConfigs.debug/d' android/app/build.gradle
+      - sed -i -e '/signingConfig /d' android/app/build.gradle
+    scanignore:
+      - node_modules/hermes-compiler/hermesc/linux64-bin/hermesc
+      - node_modules/expo-modules-core/android/ExpoModulesCorePlugin.gradle
+      - node_modules/react-native-safe-area-context/android/build.gradle
+      - node_modules/react-native-screens/android/build.gradle
+      - node_modules/react-native-svg/android/build.gradle
+      - node_modules/@react-native-masked-view/masked-view/android/build.gradle
+    scandelete:
+      - node_modules
     build:
       - export FOSS_BUILD=1
       - cd android
@@ -132,14 +164,30 @@ Builds:
         | sha256sum -c -
       - tar xJf node.tar.xz --strip-components=1 -C /usr/local
       - npm install -g bun@1.4.3
-    init: bun install --frozen-lockfile --ignore-scripts
+    init:
+      - bun install --frozen-lockfile --ignore-scripts
+      - find node_modules -type d -name local-maven-repo -prune -exec rm -rf {} +
     output: android/app/build/outputs/apk/release/app-release-unsigned.apk
     prebuild:
       - export FOSS_BUILD=1
       - sed -i -e 's/\("versionCode":\) *[0-9]*/\1 $$VERCODE$$/' package.json
       - bun scripts/foss-prepare.ts
+      - node -e 'const fs=require("fs");const p=JSON.parse(fs.readFileSync("package.json"));p.expo??={};p.expo.autolinking??={};p.expo.autolinking.android={...p.expo.autolinking.android,buildFromSource:[".*"]};fs.writeFileSync("package.json",JSON.stringify(p,null,2))'
+      - find node_modules -type f \( -name "*.gradle" -o -name "*.gradle.kts" -o -name
+        "*.kt" \) -exec sed -i -e 's/JavaVersion.VERSION_17/JavaVersion.VERSION_21/g'
+        -e 's/jvmToolchain(17)/jvmToolchain(21)/g' -e 's/JvmTarget.fromTarget("17")/JvmTarget.fromTarget("21")/g'
+        -e 's/JvmTarget.JVM_17/JvmTarget.JVM_21/g' {} +
       - bunx expo prebuild -p android --clean --no-install
-      - sed -i -e '/signingConfig signingConfigs.debug/d' android/app/build.gradle
+      - sed -i -e '/signingConfig /d' android/app/build.gradle
+    scanignore:
+      - node_modules/hermes-compiler/hermesc/linux64-bin/hermesc
+      - node_modules/expo-modules-core/android/ExpoModulesCorePlugin.gradle
+      - node_modules/react-native-safe-area-context/android/build.gradle
+      - node_modules/react-native-screens/android/build.gradle
+      - node_modules/react-native-svg/android/build.gradle
+      - node_modules/@react-native-masked-view/masked-view/android/build.gradle
+    scandelete:
+      - node_modules
     build:
       - export FOSS_BUILD=1
       - cd android
@@ -163,8 +211,13 @@ Questions F-Droid reviewers are likely to raise:
 
 - **bun.** Their build server may refuse a tool installed from npm. The fallback is
   `npm install` without a lockfile in `init`; versions then float within package.json's ranges.
-- **Prebuilt binaries in node_modules** (React Native's and Hermes' Maven artefacts). Other
-  React Native apps are in F-Droid; their reviewers know the usual `scandelete` lines.
+- **Prebuilt binaries in node_modules.** F-Droid's scanner rejects Expo's precompiled
+  `local-maven-repo` AARs, iOS prebuilds and assorted binaries. The recipe follows the Expo apps
+  already in fdroiddata (e.g. `com.guiforge.bati`, `knightloader.halleluja.design`): build every Expo
+  module from source (`expo.autolinking.android.buildFromSource`), delete `local-maven-repo`,
+  `scandelete: node_modules`, and `scanignore` only hermesc and the few `build.gradle` files that
+  point at React Native's local Maven folder. It also moves Java 17 settings to 21 for the same
+  reason as the JDK note below.
 - **Signing.** Expo's template signs release builds with the debug key; the prebuild step deletes
   that line so Gradle writes `app-release-unsigned.apk`, which F-Droid signs.
 - **JDK.** F-Droid's build server runs Debian trixie, which has no OpenJDK 17; the recipe installs 21.
