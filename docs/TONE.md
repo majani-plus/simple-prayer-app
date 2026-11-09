@@ -124,6 +124,8 @@ first, then everywhere.
 | Sunrise | طلوعِ آفتاب |
 | prayer (salah) | نماز |
 | prayed / late / missed | پڑھ لی / دیر سے / چھوٹ گئی |
+| mark (log) a prayer | درج کرنا (noun: اندراج) |
+| History (tab), your record | ریکارڈ، آپ کا ریکارڈ |
 | qada | قضا |
 | qibla | قبلہ |
 | adhan | اذان |
@@ -137,7 +139,8 @@ first, then everywhere.
 | location | مقام |
 | settings | ترتیبات |
 | calculation method | حساب کا طریقہ |
-| Hanafi / the majority view (Asr) | حنفی / جمہور |
+| Asr schools | حنفی / شافعی، مالکی، حنبلی |
+| automatic | خودکار |
 | tip | ٹپ |
 
 Hijri months: محرم، صفر، ربیع الاول، ربیع الثانی، جمادی الاول، جمادی الثانی، رجب، شعبان،
