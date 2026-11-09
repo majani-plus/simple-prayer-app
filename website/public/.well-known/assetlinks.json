@@ -5,7 +5,10 @@
       "namespace": "android_app",
       "package_name": "app.simpleprayer",
       "sha256_cert_fingerprints":
-        ["F4:DE:1D:8B:E5:FC:B6:07:17:89:3D:DA:1C:C5:18:63:A9:DD:12:6C:B5:6C:F1:BB:12:B1:A2:88:51:A1:9E:7F"]
+        [
+          "F4:DE:1D:8B:E5:FC:B6:07:17:89:3D:DA:1C:C5:18:63:A9:DD:12:6C:B5:6C:F1:BB:12:B1:A2:88:51:A1:9E:7F",
+          "57:2D:CE:EA:F6:81:C6:AA:FC:97:52:77:EB:99:F7:55:59:53:24:4D:3C:0C:77:11:68:3D:2D:D6:B0:98:1E:AF"
+        ]
     }
   }
 ]
