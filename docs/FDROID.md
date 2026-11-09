@@ -92,11 +92,12 @@ Builds:
       - export FOSS_BUILD=1
       - sed -i -e 's/\("versionCode":\) *[0-9]*/\1 $$VERCODE$$/' package.json
       - bun scripts/foss-prepare.ts
-      - node -e 'const fs=require("fs");const p=JSON.parse(fs.readFileSync("package.json"));p.expo??={};p.expo.autolinking??={};p.expo.autolinking.android={...p.expo.autolinking.android,buildFromSource:[".*"]};fs.writeFileSync("package.json",JSON.stringify(p,null,2))'
+      - sed -i -e 's/"android":\s{/"android":{"buildFromSource":[".*"],/' package.json
       - find node_modules -type f \( -name "*.gradle" -o -name "*.gradle.kts" -o -name
         "*.kt" \) -exec sed -i -e 's/JavaVersion.VERSION_17/JavaVersion.VERSION_21/g'
         -e 's/jvmToolchain(17)/jvmToolchain(21)/g' -e 's/JvmTarget.fromTarget("17")/JvmTarget.fromTarget("21")/g'
-        -e 's/JvmTarget.JVM_17/JvmTarget.JVM_21/g' {} +
+        -e 's/JvmTarget.JVM_17/JvmTarget.JVM_21/g' -e "s/jvmTarget = '17'/jvmTarget
+        = '21'/g" {} +
       - bunx expo prebuild -p android --clean --no-install
       - sed -i -e '/signingConfig /d' android/app/build.gradle
     scanignore:
@@ -132,11 +133,12 @@ Builds:
       - export FOSS_BUILD=1
       - sed -i -e 's/\("versionCode":\) *[0-9]*/\1 $$VERCODE$$/' package.json
       - bun scripts/foss-prepare.ts
-      - node -e 'const fs=require("fs");const p=JSON.parse(fs.readFileSync("package.json"));p.expo??={};p.expo.autolinking??={};p.expo.autolinking.android={...p.expo.autolinking.android,buildFromSource:[".*"]};fs.writeFileSync("package.json",JSON.stringify(p,null,2))'
+      - sed -i -e 's/"android":\s{/"android":{"buildFromSource":[".*"],/' package.json
       - find node_modules -type f \( -name "*.gradle" -o -name "*.gradle.kts" -o -name
         "*.kt" \) -exec sed -i -e 's/JavaVersion.VERSION_17/JavaVersion.VERSION_21/g'
         -e 's/jvmToolchain(17)/jvmToolchain(21)/g' -e 's/JvmTarget.fromTarget("17")/JvmTarget.fromTarget("21")/g'
-        -e 's/JvmTarget.JVM_17/JvmTarget.JVM_21/g' {} +
+        -e 's/JvmTarget.JVM_17/JvmTarget.JVM_21/g' -e "s/jvmTarget = '17'/jvmTarget
+        = '21'/g" {} +
       - bunx expo prebuild -p android --clean --no-install
       - sed -i -e '/signingConfig /d' android/app/build.gradle
     scanignore:
@@ -172,11 +174,12 @@ Builds:
       - export FOSS_BUILD=1
       - sed -i -e 's/\("versionCode":\) *[0-9]*/\1 $$VERCODE$$/' package.json
       - bun scripts/foss-prepare.ts
-      - node -e 'const fs=require("fs");const p=JSON.parse(fs.readFileSync("package.json"));p.expo??={};p.expo.autolinking??={};p.expo.autolinking.android={...p.expo.autolinking.android,buildFromSource:[".*"]};fs.writeFileSync("package.json",JSON.stringify(p,null,2))'
+      - sed -i -e 's/"android":\s{/"android":{"buildFromSource":[".*"],/' package.json
       - find node_modules -type f \( -name "*.gradle" -o -name "*.gradle.kts" -o -name
         "*.kt" \) -exec sed -i -e 's/JavaVersion.VERSION_17/JavaVersion.VERSION_21/g'
         -e 's/jvmToolchain(17)/jvmToolchain(21)/g' -e 's/JvmTarget.fromTarget("17")/JvmTarget.fromTarget("21")/g'
-        -e 's/JvmTarget.JVM_17/JvmTarget.JVM_21/g' {} +
+        -e 's/JvmTarget.JVM_17/JvmTarget.JVM_21/g' -e "s/jvmTarget = '17'/jvmTarget
+        = '21'/g" {} +
       - bunx expo prebuild -p android --clean --no-install
       - sed -i -e '/signingConfig /d' android/app/build.gradle
     scanignore:
