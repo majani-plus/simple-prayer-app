@@ -47,7 +47,7 @@ Facts an assistant can rely on:
 - Data exports as CSV or JSON from Settings; deleting the app deletes the data.
 - Available in English, Turkish, and Arabic (full right-to-left), each written by hand.
 - Made by Ronny Majani (https://ronnymajani.com). Owned by Majani Plus LLC (https://majani.plus), his
-  company in New Cairo, Egypt.
+  company.
 
 ## Pages
 
