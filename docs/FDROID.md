@@ -75,7 +75,6 @@ Builds:
       - tar xJf node.tar.xz --strip-components=1 -C /usr/local
       - npm install -g bun@1.4.3
     init: bun install --frozen-lockfile
-    output: android/app/build/outputs/apk/release/app-release-unsigned.apk
     prebuild:
       - export FOSS_BUILD=1
       - bun scripts/foss-prepare.ts
@@ -85,8 +84,7 @@ Builds:
       - export FOSS_BUILD=1
       - cd android
       - gradle :app:assembleRelease
-
-AllowedAPKSigningKeys: 572dceeaf681c6aafc975277eb99f7555953244d3c0c7711683d2dd6b0981eaf
+    output: android/app/build/outputs/apk/release/app-release-unsigned.apk
 
 AutoUpdateMode: Version
 UpdateCheckMode: Tags ^release/v.*$
@@ -95,9 +93,8 @@ CurrentVersion: 1.7.1
 CurrentVersionCode: 66
 ```
 
-(`AllowedAPKSigningKeys` is the SHA-256 above, lowercase, without colons or spaces; it only
-matters if F-Droid later builds reproducibly and ships our signature. Remove the line if
-reviewers prefer to sign with F-Droid's own key, the default.)
+F-Droid signs the APK with its own key (the default). If they later build reproducibly and want to
+ship our signature, add `AllowedAPKSigningKeys:` with the SHA-256 above, lowercase, no colons.
 
 Questions F-Droid reviewers are likely to raise:
 
