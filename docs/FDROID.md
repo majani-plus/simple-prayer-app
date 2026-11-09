@@ -44,8 +44,16 @@ People who want the APK without F-Droid get it from GitHub Releases or the websi
 
 ## F-Droid main repository (slower: weeks to months)
 
-F-Droid builds from source on its own servers. Fork <https://gitlab.com/fdroid/fdroiddata>,
-add `metadata/app.simpleprayer.yml` with the content below, and open a merge request. Their
+F-Droid builds from source on its own servers. **Submitted 2026-11-09:**
+<https://gitlab.com/fdroid/fdroiddata/-/merge_requests/56516>, from the fork
+`gitlab.com/majani-plus/fdroiddata`, branch `app.simpleprayer`, with `metadata/app.simpleprayer.yml` as
+below. GitLab wants identity verification (phone or card) before CI runs on the fork, so the MR asks
+a maintainer to start it. Answer reviewers there and edit the file on that branch.
+
+The recipe builds three APKs, one per processor type (armeabi-v7a, arm64-v8a, x86_64), because the
+universal APK is about 134 MB. Their versionCodes are 10 × ours + 1, 2 or 3 (661, 662, 663 for 66),
+set by `VercodeOperation` and a `sed` on package.json. So F-Droid looks for
+`changelogs/661.txt` and so on, not `66.txt`. Their
 reviewers often ask for changes; the open questions are noted after the recipe.
 
 ```yaml
@@ -65,8 +73,8 @@ Repo: https://github.com/majani-plus/simple-prayer-app.git
 
 Builds:
   - versionName: 1.7.1
-    versionCode: 66
-    commit: release/v1.7.1
+    versionCode: 661
+    commit: d922847b5ce17c8411ebaea5d9e105e6b99c909f
     sudo:
       - apt-get update
       - apt-get install -y openjdk-17-jdk-headless xz-utils
@@ -77,20 +85,71 @@ Builds:
     init: bun install --frozen-lockfile
     prebuild:
       - export FOSS_BUILD=1
+      - sed -i -e 's/\("versionCode":\) *[0-9]*/\1 $$VERCODE$$/' package.json
       - bun scripts/foss-prepare.ts
       - bunx expo prebuild -p android --clean --no-install
       - sed -i -e '/signingConfig signingConfigs.debug/d' android/app/build.gradle
     build:
       - export FOSS_BUILD=1
       - cd android
-      - gradle :app:assembleRelease
+      - gradle :app:assembleRelease -PreactNativeArchitectures=armeabi-v7a
+    output: android/app/build/outputs/apk/release/app-release-unsigned.apk
+
+  - versionName: 1.7.1
+    versionCode: 662
+    commit: d922847b5ce17c8411ebaea5d9e105e6b99c909f
+    sudo:
+      - apt-get update
+      - apt-get install -y openjdk-17-jdk-headless xz-utils
+      - curl -Lo node.tar.xz https://nodejs.org/dist/v24.22.2/node-v24.22.2-linux-x64.tar.xz
+      - echo "48cc0e21e048790e54c0cf5749c2725005313d652651c40b7a21feb9697aaf75  node.tar.xz" | sha256sum -c -
+      - tar xJf node.tar.xz --strip-components=1 -C /usr/local
+      - npm install -g bun@1.4.3
+    init: bun install --frozen-lockfile
+    prebuild:
+      - export FOSS_BUILD=1
+      - sed -i -e 's/\("versionCode":\) *[0-9]*/\1 $$VERCODE$$/' package.json
+      - bun scripts/foss-prepare.ts
+      - bunx expo prebuild -p android --clean --no-install
+      - sed -i -e '/signingConfig signingConfigs.debug/d' android/app/build.gradle
+    build:
+      - export FOSS_BUILD=1
+      - cd android
+      - gradle :app:assembleRelease -PreactNativeArchitectures=arm64-v8a
+    output: android/app/build/outputs/apk/release/app-release-unsigned.apk
+
+  - versionName: 1.7.1
+    versionCode: 663
+    commit: d922847b5ce17c8411ebaea5d9e105e6b99c909f
+    sudo:
+      - apt-get update
+      - apt-get install -y openjdk-17-jdk-headless xz-utils
+      - curl -Lo node.tar.xz https://nodejs.org/dist/v24.22.2/node-v24.22.2-linux-x64.tar.xz
+      - echo "48cc0e21e048790e54c0cf5749c2725005313d652651c40b7a21feb9697aaf75  node.tar.xz" | sha256sum -c -
+      - tar xJf node.tar.xz --strip-components=1 -C /usr/local
+      - npm install -g bun@1.4.3
+    init: bun install --frozen-lockfile
+    prebuild:
+      - export FOSS_BUILD=1
+      - sed -i -e 's/\("versionCode":\) *[0-9]*/\1 $$VERCODE$$/' package.json
+      - bun scripts/foss-prepare.ts
+      - bunx expo prebuild -p android --clean --no-install
+      - sed -i -e '/signingConfig signingConfigs.debug/d' android/app/build.gradle
+    build:
+      - export FOSS_BUILD=1
+      - cd android
+      - gradle :app:assembleRelease -PreactNativeArchitectures=x86_64
     output: android/app/build/outputs/apk/release/app-release-unsigned.apk
 
 AutoUpdateMode: Version
 UpdateCheckMode: Tags ^release/v.*$
+VercodeOperation:
+  - 10*%c+1
+  - 10*%c+2
+  - 10*%c+3
 UpdateCheckData: package.json|"versionCode":\s*(\d+)|package.json|"version":\s*"([^"]+)"
 CurrentVersion: 1.7.1
-CurrentVersionCode: 66
+CurrentVersionCode: 663
 ```
 
 F-Droid signs the APK with its own key (the default). If they later build reproducibly and want to
