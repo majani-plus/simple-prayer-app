@@ -1441,33 +1441,6 @@
       "bodyAlone": "Its time has passed"
     }
   },
-  "travel": {
-    "overflow": {
-      "begin": "I’m travelling",
-      "end": "End travelling"
-    },
-    "begin": {
-      "title": "Travelling",
-      "note": "While travelling, Dhuhr, Asr and Isha are prayed as two rakats. Dhuhr may be prayed together with Asr, and Maghrib together with Isha, in either one’s time. Prayer times do not change — mark your prayers as usual.",
-      "howLong": "How long",
-      "untilIEnd": "Until I end it",
-      "days_one": "{{count}} day — until {{date}}",
-      "days_other": "{{count}} days — until {{date}}",
-      "pickCount": "A different number of days…",
-      "stepper_one": "{{count}} day",
-      "stepper_other": "{{count}} days",
-      "confirmCount": "Start — until {{date}}",
-      "dayFewer": "One day fewer",
-      "dayMore": "One day more",
-      "notNow": "Not now"
-    },
-    "banner": {
-      "body": "Travelling — shortened and combined prayers count as on time.",
-      "bodyUntil": "Travelling until {{date}} — shortened and combined prayers count as on time.",
-      "end": "End",
-      "stillOn": "Still travelling? End it here whenever you’re back — there’s no rush."
-    }
-  },
   "sheet": {
     "dismiss": "Close"
   },

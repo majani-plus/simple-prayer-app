@@ -101,9 +101,6 @@ function snapshot(store: Store): AppSettings {
     exemptionModeEnabled: s.exemptionModeEnabled,
   exemptionMuteReminders: true,
     exemptDaysPerMonth: s.exemptDaysPerMonth,
-    travelActive: s.travelActive,
-    travelStartDay: s.travelStartDay,
-    travelEndDay: s.travelEndDay,
     reminders: s.reminders,
     adhanVoice: s.adhanVoice,
     nudgeLeadMinutes: s.nudgeLeadMinutes,
@@ -158,9 +155,6 @@ describe('DEFAULT_SETTINGS', () => {
         'exemptionModeEnabled',
         'exemptionMuteReminders',
         'exemptDaysPerMonth',
-        'travelActive',
-        'travelStartDay',
-        'travelEndDay',
         'reminders',
         'adhanVoice',
         'nudgeLeadMinutes',
@@ -489,87 +483,19 @@ describe('clamping', () => {
     expect(store.getState().calculation.hijriOffset).toBe(1);
   });
 
-  it('startTravel and endTravel own the three travel fields together', () => {
-    const { store } = makeStore();
-    const { startTravel, endTravel } = store.getState();
-
-    startTravel('2026-08-19', null);
-    expect(snapshot(store)).toMatchObject({
+  it('drops the fields travel mode left behind (D211), and nothing else', () => {
+    // Travel mode was removed. A payload written while it existed still carries its three fields;
+    // they are simply not read back, and the rest of the payload survives untouched.
+    const result = sanitizeSettings({
+      theme: 'dark',
       travelActive: true,
       travelStartDay: '2026-08-19',
       travelEndDay: null,
     });
-
-    // A second call overwrites, which is also how a stale state gets cleaned up: nothing runs in
-    // the background to do it.
-    startTravel('2026-09-01', '2026-09-03');
-    expect(snapshot(store)).toMatchObject({
-      travelActive: true,
-      travelStartDay: '2026-09-01',
-      travelEndDay: '2026-09-03',
-    });
-
-    endTravel();
-    expect(snapshot(store)).toMatchObject({
-      travelActive: false,
-      travelStartDay: null,
-      travelEndDay: null,
-    });
-  });
-
-  it('startTravel drops an unusable end day rather than the whole journey', () => {
-    const { store } = makeStore();
-    const { startTravel } = store.getState();
-
-    // The user did say they were travelling; "until I end it" is the merciful reading.
-    startTravel('2026-08-19', '2026-08-17');
-    expect(snapshot(store)).toMatchObject({ travelActive: true, travelEndDay: null });
-
-    startTravel('2026-08-19', 'not-a-day' as never);
-    expect(snapshot(store)).toMatchObject({ travelActive: true, travelEndDay: null });
-  });
-
-  it('startTravel refuses a malformed start day, leaving travel as it was', () => {
-    const { store } = makeStore();
-    const { startTravel } = store.getState();
-
-    startTravel('2026-02-30' as never, null);
-    expect(snapshot(store)).toMatchObject({ travelActive: false, travelStartDay: null });
-  });
-
-  it('persists travel across a reload, and rebuilds a state that describes nothing', () => {
-    const { store, storage } = makeStore();
-    store.getState().startTravel('2026-08-19', '2026-08-21');
-
-    const reloaded = createSettingsStore(storage).getState();
-    expect(reloaded.travelActive).toBe(true);
-    expect(reloaded.travelStartDay).toBe('2026-08-19');
-    expect(reloaded.travelEndDay).toBe('2026-08-21');
-  });
-
-  it('reads a corrupt travel payload as OFF, never as travelling', () => {
-    // The asymmetry that matters: travel wrongly off costs a correctly-late mark, travel wrongly
-    // on would tell somebody a prayer counted on time when it did not.
-    expect(
-      sanitizeSettings({ travelActive: true, travelStartDay: null, travelEndDay: '2026-08-21' })
-    ).toMatchObject({ travelActive: false, travelStartDay: null, travelEndDay: null });
-
-    expect(
-      sanitizeSettings({ travelActive: true, travelStartDay: 'nonsense', travelEndDay: null })
-    ).toMatchObject({ travelActive: false });
-
-    expect(
-      sanitizeSettings({
-        travelActive: true,
-        travelStartDay: '2026-08-19',
-        travelEndDay: '2026-08-17',
-      })
-    ).toMatchObject({ travelActive: false });
-
-    // Active with a good start and a lost end stays travelling, open-ended.
-    expect(
-      sanitizeSettings({ travelActive: true, travelStartDay: '2026-08-19', travelEndDay: 7 })
-    ).toMatchObject({ travelActive: true, travelStartDay: '2026-08-19', travelEndDay: null });
+    expect(result.theme).toBe('dark');
+    expect(result).not.toHaveProperty('travelActive');
+    expect(result).not.toHaveProperty('travelStartDay');
+    expect(result).not.toHaveProperty('travelEndDay');
   });
 
   it('clamps exempt days per month at both bounds', () => {

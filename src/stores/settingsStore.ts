@@ -42,7 +42,6 @@ import {
   MAX_NUDGE_LEAD_MINUTES,
   MIN_NUDGE_LEAD_MINUTES,
 } from '../domain/notificationPlan';
-import type { TravelState } from '../domain/travel';
 import {
   PRAYERS,
   TRACKING_MODES,
@@ -209,10 +208,6 @@ export function createDefaultSettings(): AppSettings {
     // Excused days silence the reminders unless she chooses otherwise on the begin sheet.
     exemptionMuteReminders: true,
     exemptDaysPerMonth: 7,
-    // Off, and holding no days: travel is a state somebody puts themselves into from Today's ⋯.
-    travelActive: false,
-    travelStartDay: null,
-    travelEndDay: null,
     reminders: defaultReminders(),
     // The recitation from the Haram — the one most people will recognise. See
     // `domain/adhanVoices` for why the default is a place rather than a named reciter.
@@ -439,33 +434,6 @@ function sanitizeReminders(input: unknown, fallback: ReminderSettings): Reminder
  * @param input - Anything: a parsed JSON payload, `undefined`, a string, an array…
  * @returns A fresh, complete, mutable `AppSettings`.
  */
-/**
- * Travel's three fields, read back as a set rather than one at a time, because only the
- * combinations mean anything.
- *
- * Every doubtful payload lands on **off**, and the asymmetry is deliberate: travel that is wrongly
- * off costs a correctly-late mark, while travel wrongly on would tell somebody a prayer counted
- * on time when it did not. So a state with no start day, or one whose end precedes its start, is
- * not repaired — it is dropped.
- *
- * @param input - The stored settings record.
- * @returns The three travel fields, mutually consistent.
- */
-function sanitizeTravel(
-  input: Record<string, unknown>
-): Pick<AppSettings, 'travelActive' | 'travelStartDay' | 'travelEndDay'> {
-  const off = { travelActive: false, travelStartDay: null, travelEndDay: null } as const;
-  if (input.travelActive !== true) return off;
-  const startDay = input.travelStartDay;
-  if (!isValidDay(startDay)) return off;
-  const endDay = input.travelEndDay;
-  // An unusable end day leaves travel open-ended rather than off: the user did say they were
-  // travelling, and "until I end it" is the merciful reading of a lost end date.
-  if (!isValidDay(endDay)) return { travelActive: true, travelStartDay: startDay, travelEndDay: null };
-  if (isAfterDay(startDay, endDay)) return off;
-  return { travelActive: true, travelStartDay: startDay, travelEndDay: endDay };
-}
-
 export function sanitizeSettings(input: unknown): AppSettings {
   const defaults = createDefaultSettings();
   if (!isRecord(input)) return defaults;
@@ -493,7 +461,6 @@ export function sanitizeSettings(input: unknown): AppSettings {
       input.exemptDaysPerMonth,
       defaults.exemptDaysPerMonth
     ),
-    ...sanitizeTravel(input),
     reminders: sanitizeReminders(input.reminders, defaults.reminders),
     // An unknown voice falls back to the default rather than being kept: the value names a file
     // that has to exist in the bundle, and a payload written by a build that shipped a different
@@ -555,9 +522,6 @@ function selectSettings(state: SettingsStore): AppSettings {
     exemptionModeEnabled: state.exemptionModeEnabled,
     exemptionMuteReminders: state.exemptionMuteReminders,
     exemptDaysPerMonth: state.exemptDaysPerMonth,
-    travelActive: state.travelActive,
-    travelStartDay: state.travelStartDay,
-    travelEndDay: state.travelEndDay,
     reminders: state.reminders,
     adhanVoice: state.adhanVoice,
     nudgeLeadMinutes: state.nudgeLeadMinutes,
@@ -756,15 +720,6 @@ export interface SettingsActions {
    * {@link MIN_EXEMPT_DAYS_PER_MONTH}…{@link MAX_EXEMPT_DAYS_PER_MONTH}.
    */
   setExemptDaysPerMonth(days: number): void;
-  /**
-   * Turns travel mode on from `startDay`. `endDay` is the **last** travel day, or `null` for
-   * "until I end it" — an end before the start is dropped to `null` rather than refused, because
-   * the user did say they were travelling. Overwrites any earlier travel state, which is also how
-   * a stale one gets cleaned up: nothing runs in the background to do it.
-   */
-  startTravel(startDay: PrayerDay, endDay: PrayerDay | null): void;
-  /** Turns travel mode off and forgets its days. */
-  endTravel(): void;
   /** Merges a partial reminder change for one prayer, clamping `preReminderMinutes`. */
   setReminder(prayer: Prayer, patch: Partial<PrayerReminderSettings>): void;
   /** Applies the same partial reminder change to all five prayers (bulk toggles). */
@@ -922,28 +877,6 @@ export function createSettingsStore(
         setExemptDaysPerMonth(days) {
           set((state) => {
             state.exemptDaysPerMonth = clampExemptDaysPerMonth(days, state.exemptDaysPerMonth);
-          });
-        },
-
-        startTravel(startDay, endDay) {
-          set((state) => {
-            // A malformed start leaves travel exactly as it was; an unusable end drops only the
-            // end, so "I'm travelling" is never silently ignored.
-            if (!isValidDay(startDay)) return;
-            state.travelActive = true;
-            state.travelStartDay = startDay;
-            state.travelEndDay =
-              endDay !== null && isValidDay(endDay) && !isAfterDay(startDay, endDay)
-                ? endDay
-                : null;
-          });
-        },
-
-        endTravel() {
-          set((state) => {
-            state.travelActive = false;
-            state.travelStartDay = null;
-            state.travelEndDay = null;
           });
         },
 
@@ -1185,24 +1118,9 @@ export const useExemptionSettings = () =>
     }))
   );
 
-/**
- * @returns Travel mode as `domain/travel` wants it. Whether it applies to a given day is that
- * module's `isTravelingOn`, not a flag read here — which is what lets the end date need no timer.
- */
-export const useTravelSettings = (): TravelState =>
-  useSettingsStore(
-    useShallow((s) => ({
-      active: s.travelActive,
-      startDay: s.travelStartDay,
-      endDay: s.travelEndDay,
-    }))
-  );
-
 const selectActions = (s: SettingsStore): SettingsActions => ({
   setLocation: s.setLocation,
   setUseAutoLocation: s.setUseAutoLocation,
-  startTravel: s.startTravel,
-  endTravel: s.endTravel,
   setCalculation: s.setCalculation,
   setPrayerOffset: s.setPrayerOffset,
   setHijriOffset: s.setHijriOffset,

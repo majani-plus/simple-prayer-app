@@ -1441,33 +1441,6 @@
       "bodyAlone": "Vakti geçti"
     }
   },
-  "travel": {
-    "overflow": {
-      "begin": "Yolculuktayım",
-      "end": "Yolculuğu bitir"
-    },
-    "begin": {
-      "title": "Yolculuk",
-      "note": "Yolculukta öğle, ikindi ve yatsı iki rekât kılınır. Öğle ile ikindi, akşam ile yatsı, ikisinin vaktinden birinde birlikte kılınabilir. Namaz vakitleri değişmez — namazlarını her zamanki gibi işaretle.",
-      "howLong": "Ne kadar",
-      "untilIEnd": "Ben bitirene kadar",
-      "days_one": "{{count}} gün — {{date}} tarihine kadar",
-      "days_other": "{{count}} gün — {{date}} tarihine kadar",
-      "pickCount": "Farklı bir gün sayısı…",
-      "stepper_one": "{{count}} gün",
-      "stepper_other": "{{count}} gün",
-      "confirmCount": "Başlat — {{date}} tarihine kadar",
-      "dayFewer": "Bir gün azalt",
-      "dayMore": "Bir gün artır",
-      "notNow": "Şimdi değil"
-    },
-    "banner": {
-      "body": "Yolculuk — kısaltılan ve birleştirilen namazlar vaktinde sayılır.",
-      "bodyUntil": "{{date}} tarihine kadar yolculuk — kısaltılan ve birleştirilen namazlar vaktinde sayılır.",
-      "end": "Bitir",
-      "stillOn": "Yolculuk sürüyor mu? Döndüğünde buradan bitirebilirsin — acele yok."
-    }
-  },
   "sheet": {
     "dismiss": "Kapat"
   },

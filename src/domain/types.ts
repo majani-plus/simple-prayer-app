@@ -394,16 +394,6 @@ export interface AppSettings {
   exemptionMuteReminders: boolean;
   /** Average exempt days per month, used by the qada estimator. */
   exemptDaysPerMonth: number;
-  /**
-   * Travel mode, as the user set it. Whether it applies to a given day is *derived* from these
-   * three (`domain/travel.isTravelingOn`), so the end date needs nothing scheduled: see that
-   * module for what travel changes and what it deliberately does not.
-   */
-  travelActive: boolean;
-  /** First travel day, or `null` when travel is off. */
-  travelStartDay: PrayerDay | null;
-  /** Last travel day, inclusive; `null` means "until I end it". */
-  travelEndDay: PrayerDay | null;
   reminders: ReminderSettings;
   /**
    * Which recitation the `adhan` sound plays, for every prayer that uses it. One choice, not five

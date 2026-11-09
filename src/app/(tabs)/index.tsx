@@ -15,8 +15,6 @@ import { ExemptionBanner } from '@/components/ExemptionBanner';
 import { BeginExemptionSheet, EndExemptionSheet } from '@/components/ExemptionSheets';
 import { LocationPromptCard, type LocationPromptState } from '@/components/LocationPromptCard';
 import { TodayOverflowSheet } from '@/components/TodayOverflowSheet';
-import { TravelBanner } from '@/components/TravelBanner';
-import { BeginTravelSheet } from '@/components/TravelSheets';
 import { PaperBackground } from '@/components/PaperBackground';
 import { PrayerRow } from '@/components/PrayerRow';
 import type { SealPickMeta } from '@/components/PrayerSeal';
@@ -29,7 +27,6 @@ import { TwoPaneLayout } from '@/components/TwoPaneLayout';
 import { YesterdayCard } from '@/components/YesterdayCard';
 import { addDays } from '@/domain/dates';
 import { findOngoingPeriod } from '@/domain/exemptions';
-import { isTravelingOn, travelPrayedStatusAt } from '@/domain/travel';
 import { afterSheetDismissed } from '@/utils/sheetTransition';
 import { prayerNameKey } from '@/domain/prayerNames';
 import { computeDayTimes } from '@/domain/prayerTimes';
@@ -55,7 +52,6 @@ import {
   useExemptionSettings,
   useLocation,
   useSettingsActions,
-  useTravelSettings,
 } from '@/stores/settingsStore';
 import { useBuddiesByPrayer, useBuddyEnabled } from '@/stores/buddyStore';
 import {
@@ -92,13 +88,8 @@ import { spacing } from '@/theme';
 /** The gap between prayer rows in the mockup (9px, tighter than the 16px section rhythm). */
 const ROW_GAP = 9;
 
-/**
- * The sheet the screen is showing, if any. Exactly one at a time.
- *
- * Ending travel has no sheet: unlike an exempt period there is no per-day record to backdate, so
- * the tap in the menu is the whole gesture (D117).
- */
-type TodaySheet = 'none' | 'overflow' | 'begin' | 'end' | 'travelBegin';
+/** The sheet the screen is showing, if any. Exactly one at a time. */
+type TodaySheet = 'none' | 'overflow' | 'begin' | 'end';
 
 export default function TodayScreen() {
   const { t } = useTranslation();
@@ -144,7 +135,7 @@ export default function TodayScreen() {
   // nothing. What the mode flag still gates is everything that has weight — the banner, the
   // paused reminders, the inert seals — none of which appears until somebody actually begins.
   const { enabled: exemptionEnabled } = useExemptionSettings();
-  const { setExemptionModeEnabled, setExemptionMuteReminders, startTravel, endTravel } = useSettingsActions();
+  const { setExemptionModeEnabled, setExemptionMuteReminders } = useSettingsActions();
   const exemptPeriods = useExemptPeriods();
   // "Ongoing", not "open-ended": a period may have been begun with an end date, and it counts as
   // current until its last day is past — after which it stops on its own, with nothing scheduled.
@@ -154,8 +145,8 @@ export default function TodayScreen() {
   /**
    * A sheet's dismissal closes ONLY that sheet. The ⋯ menu unmounts when it hands off to
    * another sheet, and the library reports that dismissal afterwards — a blanket "close
-   * everything" handler then shut the sheet the menu had just opened, so choosing "I'm
-   * travelling" flashed the travel sheet and closed it (owner, 2026-08-28). Identities are
+   * everything" handler then shut the sheet the menu had just opened, so choosing a menu row
+   * flashed its sheet and closed it (owner, 2026-08-28). Identities are
    * stable, so the sheets do not re-render on every keystroke of the screen above them.
    */
   const closeSheetIf = useMemo(() => {
@@ -165,7 +156,6 @@ export default function TodayScreen() {
       overflow: make('overflow'),
       begin: make('begin'),
       end: make('end'),
-      travelBegin: make('travelBegin'),
     };
   }, []);
 
@@ -196,28 +186,6 @@ export default function TodayScreen() {
     },
     [endExemptPeriod]
   );
-
-  // Travel mode (D115). Whether it applies is derived per day rather than read as a flag, which is
-  // what lets an end date need no timer: when the day rolls past the last travel day this simply
-  // answers `false`, the banner unmounts, and the menu offers to begin again.
-  const travel = useTravelSettings();
-  const traveling = day !== null && isTravelingOn(day, travel);
-
-  const handleBeginTravel = useCallback(
-    (lastDay: PrayerDay | null) => {
-      if (day === null) return;
-      setSheet('none');
-      startTravel(day, lastDay);
-      markHaptic();
-    },
-    [day, startTravel]
-  );
-
-  const handleEndTravel = useCallback(() => {
-    setSheet('none');
-    endTravel();
-    markHaptic();
-  }, [endTravel]);
 
   // ── Yesterday (owner request, 2026-08-24): the morning-after way to finish marking last
   // night's prayers without a trip through History. A quiet card below the rows, opening the
@@ -351,19 +319,12 @@ export default function TodayScreen() {
       // and someone logging a Fajr they prayed on time but only opened the app at nine must be
       // able to say so. Rewriting their pick would also make the pill's own Late option dead
       // (D71).
-      //
-      // While TRAVELLING the deadline is the jam' partner's instead (Dhuhr's runs to Maghrib,
-      // Maghrib's to the next Fajr), because praying a combined pair there is praying it on time —
-      // see `domain/travel`. This is the only thing travel mode changes about marking, and it can
-      // only ever forgive lateness, never invent it.
       const resolved =
         meta.direct && status === 'prayed' && !meta.clears
-          ? traveling
-            ? travelPrayedStatusAt(today.windows, prayer, Date.now())
-            : prayedStatusAt(
-                today.windows.find((candidate) => candidate.prayer === prayer),
-                Date.now()
-              )
+          ? prayedStatusAt(
+              today.windows.find((candidate) => candidate.prayer === prayer),
+              Date.now()
+            )
           : status;
       // `toggleStatus` IS the seal's semantics: picking the status a prayer already has clears it.
       // The confirm lands with the tap rather than after the write: a refused write is rare (and
@@ -372,7 +333,7 @@ export default function TodayScreen() {
       (meta.clears ? tickHaptic : markHaptic)();
       toggleStatus(day, prayer, resolved);
     },
-    [day, toggleStatus, toggleSimpleStatus, simple, closeSeal, today.windows, traveling]
+    [day, toggleStatus, toggleSimpleStatus, simple, closeSeal, today.windows]
   );
 
   // One pair of callbacks per prayer, minted only when the handlers above change. Written inline
@@ -574,21 +535,6 @@ export default function TodayScreen() {
         />
       ) : null}
 
-      {/* Travel's own banner, under exemption's when both are on (a woman may travel during
-              her period). Exemption first because it is the more consequential state — it decides
-              whether the prayers are owed at all — and travel is then a note about something that
-              stays true underneath it. No precedence logic is needed: the rows are already inert
-              under exemption, so travel's marking rule never gets a chance to apply. */}
-      {traveling && day !== null && travel.startDay !== null ? (
-        <TravelBanner
-          testID="travel-banner"
-          sinceDay={travel.startDay}
-          untilDay={travel.endDay}
-          today={day}
-          onEnd={handleEndTravel}
-        />
-      ) : null}
-
       {/* The clock/zone mismatch, said HERE rather than only two screens deep in Settings.
               When the chosen city's zone and the phone's clock disagree by more than a few hours,
               every time on this screen looks wrong — Fajr at 3 pm, Dhuhr near midnight — and the
@@ -701,17 +647,12 @@ export default function TodayScreen() {
             visible={sheet === 'overflow'}
             hasOngoingPeriod={ongoingPeriod !== null}
             modeEnabled={exemptionEnabled}
-            traveling={traveling}
             onBegin={() => {
               setSheet('begin');
             }}
             onEndPeriod={() => {
               setSheet('end');
             }}
-            onBeginTravel={() => {
-              setSheet('travelBegin');
-            }}
-            onEndTravel={handleEndTravel}
             onOpenSettings={() => {
               setSheet('none');
               router.push('/settings/exemption');
@@ -723,12 +664,6 @@ export default function TodayScreen() {
             today={day}
             onBegin={handleBeginExemption}
             onClose={closeSheetIf.begin}
-          />
-          <BeginTravelSheet
-            visible={sheet === 'travelBegin'}
-            today={day}
-            onBegin={handleBeginTravel}
-            onClose={closeSheetIf.travelBegin}
           />
           {ongoingPeriod !== null ? (
             <EndExemptionSheet

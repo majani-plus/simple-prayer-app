@@ -1509,41 +1509,6 @@
       "bodyAlone": "خرج وقتها"
     }
   },
-  "travel": {
-    "overflow": {
-      "begin": "بدء السفر",
-      "end": "إنهاء السفر"
-    },
-    "begin": {
-      "title": "السفر",
-      "note": "في السفر تصلّى الظهر والعصر والعشاء ركعتين. ويجوز جمع الظهر مع العصر، والمغرب مع العشاء، في وقت أي منهما. مواقيت الصلاة لا تتغيّر — والتسجيل يمضي كالمعتاد.",
-      "howLong": "مدة السفر",
-      "untilIEnd": "إلى أن أنهيه",
-      "days_zero": "{{count}} يوم — حتى {{date}}",
-      "days_one": "{{count}} يوم — حتى {{date}}",
-      "days_two": "{{count}} يوم — حتى {{date}}",
-      "days_few": "{{count}} أيام — حتى {{date}}",
-      "days_many": "{{count}} يومًا — حتى {{date}}",
-      "days_other": "{{count}} يوم — حتى {{date}}",
-      "pickCount": "عدد آخر من الأيام…",
-      "stepper_zero": "{{count}} يوم",
-      "stepper_one": "{{count}} يوم",
-      "stepper_two": "{{count}} يوم",
-      "stepper_few": "{{count}} أيام",
-      "stepper_many": "{{count}} يومًا",
-      "stepper_other": "{{count}} يوم",
-      "confirmCount": "بدء — حتى {{date}}",
-      "dayFewer": "إنقاص يوم",
-      "dayMore": "زيادة يوم",
-      "notNow": "ليس الآن"
-    },
-    "banner": {
-      "body": "سفر — الصلاة المقصورة والمجموعة تحتسب في وقتها.",
-      "bodyUntil": "سفر حتى {{date}} — الصلاة المقصورة والمجموعة تحتسب في وقتها.",
-      "end": "إنهاء",
-      "stillOn": "أما زال السفر مستمرًا؟ يمكنك إنهاؤه هنا عند عودتك — لا عجلة."
-    }
-  },
   "sheet": {
     "dismiss": "إغلاق"
   },
