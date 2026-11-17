@@ -2,7 +2,7 @@
 """
 Composes the App Store / Play store screens from the captured device frames.
 
-    scripts/build-store-screens.py [--locale en|tr|ar] [--out docs/store-screens]
+    scripts/build-store-screens.py [--locale en|tr|ar|ur] [--out docs/store-screens]
 
 Each screen is a caption, the brand's diamond ornament, and one real device capture on the
 app's own paper — a phone for most slots, the watch for one, and the pledge card for the
@@ -19,6 +19,10 @@ Two things worth knowing before editing:
   so Arabic needs its letters joined and the run reversed before drawing. `arabic_reshaper`
   and `python-bidi` do that; without them the Arabic caption would render as disconnected
   letters in the wrong order, which is worse than not shipping it, so the script refuses.
+* **Urdu is shaped by HarfBuzz.** Nastaliq needs real OpenType shaping (its letters stack and
+  slope), which presentation forms cannot give. Pillow does it through raqm, and raqm needs
+  fribidi at runtime: run with `DYLD_FALLBACK_LIBRARY_PATH=/opt/homebrew/lib` (`brew install
+  fribidi`). The other locales stay on Pillow's basic layout, so their output does not change.
 """
 
 from __future__ import annotations
@@ -27,7 +31,7 @@ import argparse
 import sys
 from pathlib import Path
 
-from PIL import Image, ImageDraw, ImageFilter, ImageFont
+from PIL import Image, ImageDraw, ImageFilter, ImageFont, features
 
 ROOT = Path(__file__).resolve().parent.parent
 FONTS = ROOT / "node_modules" / "@expo-google-fonts"
@@ -57,6 +61,7 @@ T = 1.0
 # eye on the screen itself, and the ~7% that leaves the canvas is tab bar, which every one of the
 # five frames repeats anyway.
 DEVICE_TOP = 604
+URDU_DEVICE_TOP = 790
 DEVICE_W = 1030
 CORNER = 66
 
@@ -175,6 +180,29 @@ CAPTIONS = {
             "İnternet olmadan da çalışır.",
         ],
     },
+    "ur": {
+        "today": "آج کی پانچ نمازیں۔\nدرج کرنے کے لیے ایک کو دبائیں۔",
+        "watch": "آپ کی نمازیں، آپ کی کلائی پر۔",
+        "history": "دیکھیں مہینہ کیسا گزرا",
+        "qibla": "جانیں کہ کس طرف رخ کرنا ہے",
+        "reminders": "ہر نماز کے لیے یاد دہانی",
+        "qada": "جو نمازیں چھوٹ گئیں،\nانہیں ایک ایک کر کے پورا کریں",
+        "pledge": "نہ اشتہار، نہ اکاؤنٹ۔\nہر سہولت مفت ہے۔",
+        "wordmark": "Simple Prayer",
+        "tagline": "دن میں پانچ نمازیں · کوئی نہ چھوٹے",
+        "pill_today": "انٹرنیٹ کے بغیر بھی چلتی ہے",
+        "pill_watch": "فون کے بغیر، گھڑی سے بھی نماز درج کر سکتے ہیں",
+        "pill_history": "کوئی بھی دن بعد میں بدل سکتے ہیں",
+        "pill_qibla": "یہ جانتا ہے کہ آپ نے فون کیسے پکڑا ہے",
+        "pill_reminders": "نماز اطلاع سے ہی درج کر سکتے ہیں",
+        "pill_qada": "گنتی صرف کم ہوتی ہے",
+        "pledge_lines": [
+            "کوئی اشتہار نہیں، اور کبھی نہیں ہوگا۔",
+            "نہ اکاؤنٹ، نہ سائن اپ۔",
+            "آپ کی نمازوں کا ریکارڈ آپ کے فون پر رہتا ہے۔",
+            "انٹرنیٹ کے بغیر بھی چلتی ہے۔",
+        ],
+    },
     "ar": {
         "today": "صلوات اليوم الخمس.\nنقرة واحدة تسجّلها.",
         "watch": "صلاتك على معصمك.",
@@ -204,7 +232,18 @@ CAPTIONS = {
 
 
 def font(locale: str, size: int, bold: bool = False) -> ImageFont.FreeTypeFont:
-    """Amiri for Arabic, Lora everywhere else — the app's own two faces."""
+    """Amiri for Arabic, Nastaliq for Urdu, Lora everywhere else — the app's own faces."""
+    if locale == "ur":
+        weight = "600SemiBold" if bold else "400Regular"
+        path = FONTS / "noto-nastaliq-urdu" / weight / f"NotoNastaliqUrdu_{weight}.ttf"
+        if not path.exists():
+            sys.exit(f"missing font: {path}")
+        if not features.check("raqm"):
+            sys.exit(
+                "Urdu needs Pillow's raqm layout (HarfBuzz) for Nastaliq. Install fribidi and run\n"
+                "with DYLD_FALLBACK_LIBRARY_PATH=/opt/homebrew/lib."
+            )
+        return ImageFont.truetype(str(path), size, layout_engine=ImageFont.Layout.RAQM)
     if locale == "ar":
         name = "Amiri_700Bold.ttf" if bold else "Amiri_400Regular.ttf"
         path = FONTS / "amiri" / ("700Bold" if bold else "400Regular") / name
@@ -213,11 +252,11 @@ def font(locale: str, size: int, bold: bool = False) -> ImageFont.FreeTypeFont:
         path = FONTS / "lora" / ("600SemiBold" if bold else "500Medium") / name
     if not path.exists():
         sys.exit(f"missing font: {path}")
-    return ImageFont.truetype(str(path), size)
+    return ImageFont.truetype(str(path), size, layout_engine=ImageFont.Layout.BASIC)
 
 
 def shape(text: str, locale: str) -> str:
-    """Join and reorder Arabic. A no-op for the Latin locales."""
+    """Join and reorder Arabic. A no-op for the Latin locales and for Urdu (raqm shapes it)."""
     if locale != "ar":
         return text
     try:
@@ -229,6 +268,11 @@ def shape(text: str, locale: str) -> str:
             "as disconnected letters in the wrong order. Install them and re-run."
         )
     return get_display(arabic_reshaper.reshape(text))
+
+
+def tx(locale: str) -> dict:
+    """Extra text arguments: raqm draws Urdu right to left with Urdu shaping rules."""
+    return {"direction": "rtl", "language": "ur"} if locale == "ur" else {}
 
 
 PAPER = (236, 225, 197)  # theme `bg`, the app's light paper
@@ -285,13 +329,13 @@ def paper() -> Image.Image:
     return canvas.copy()
 
 
-def wrap(draw: ImageDraw.ImageDraw, text: str, fnt, max_w: int) -> list[str]:
+def wrap(draw: ImageDraw.ImageDraw, text: str, fnt, max_w: int, locale: str = "") -> list[str]:
     lines: list[str] = []
     for paragraph in text.split("\n"):
         words, line = paragraph.split(), ""
         for word in words:
             trial = f"{line} {word}".strip()
-            if draw.textlength(trial, font=fnt) <= max_w or not line:
+            if draw.textlength(trial, font=fnt, **tx(locale)) <= max_w or not line:
                 line = trial
             else:
                 lines.append(line)
@@ -304,13 +348,22 @@ def draw_caption(canvas: Image.Image, text: str, locale: str, size: int, top: in
     """Draws the caption centred under the eyebrow; returns the y below it."""
     draw = ImageDraw.Draw(canvas)
     fnt = font(locale, size, bold=True)
-    raw_lines = wrap(draw, text, fnt, CAPTION_MAX_W)
+    raw_lines = wrap(draw, text, fnt, CAPTION_MAX_W, locale)
+    if locale == "ur":
+        # Nastaliq's ink sits far from its nominal box (deep descents, tall ascenders), so lines
+        # are placed by their ink: each starts where the last one's ink ended, plus a gap.
+        y = top
+        for line in raw_lines:
+            left, ink_top, right, ink_bottom = draw.textbbox((0, 0), line, font=fnt, **tx(locale))
+            draw.text(((W - (right - left)) / 2 - left, y - ink_top), line, font=fnt, fill=INK, **tx(locale))
+            y += ink_bottom - ink_top + int(size * 0.42)
+        return y
     line_h = int(size * 1.34)
     y = top
     for line in raw_lines:
         shaped = shape(line, locale)
-        w = draw.textlength(shaped, font=fnt)
-        draw.text(((W - w) / 2, y), shaped, font=fnt, fill=INK)
+        w = draw.textlength(shaped, font=fnt, **tx(locale))
+        draw.text(((W - w) / 2, y), shaped, font=fnt, fill=INK, **tx(locale))
         y += line_h
     return y
 
@@ -362,13 +415,19 @@ def draw_pill(canvas: Image.Image, text: str, locale: str, y: int) -> int:
     # It never reaches the floor with the current copy; the floor only guards a future line.
     for size in range(round(40 * T), round(29 * T), -2):
         fnt = font(locale, size)
-        tw = draw.textlength(shaped, font=fnt)
+        tw = draw.textlength(shaped, font=fnt, **tx(locale))
         if tw + pad_x * 2 <= CAPTION_MAX_W:
             break
     box_w = tw + pad_x * 2
     x0 = (W - box_w) / 2
     draw.rounded_rectangle([x0, y, x0 + box_w, y + h], h / 2, outline=(206, 188, 150), width=3)
-    draw.text(((W - tw) / 2, y + (h - fnt.size * 1.32) / 2), shaped, font=fnt, fill=MUTED)
+    if locale == "ur":
+        # Nastaliq's ascent and descent are far from Lora's, so centre on the ink itself.
+        top, bottom = draw.textbbox((0, 0), shaped, font=fnt, **tx(locale))[1::2]
+        ty = y + (h - (bottom - top)) / 2 - top
+    else:
+        ty = y + (h - fnt.size * 1.32) / 2
+    draw.text(((W - tw) / 2, ty), shaped, font=fnt, fill=MUTED, **tx(locale))
     return y + h
 
 
@@ -523,7 +582,7 @@ def draw_pledge(canvas: Image.Image, locale: str, top: int) -> None:
     """
     draw = ImageDraw.Draw(canvas)
     lines = CAPTIONS[locale]["pledge_lines"]
-    rtl = locale == "ar"
+    rtl = locale in ("ar", "ur")
 
     card_w, card_h, gap = 968, 168, 26
     x0 = (W - card_w) / 2
@@ -536,7 +595,7 @@ def draw_pledge(canvas: Image.Image, locale: str, top: int) -> None:
     fnt = font(locale, 52)
     for size in range(52, 33, -2):
         fnt = font(locale, size)
-        if max(draw.textlength(shape(line, locale), font=fnt) for line in lines) <= text_room:
+        if max(draw.textlength(shape(line, locale), font=fnt, **tx(locale)) for line in lines) <= text_room:
             break
 
     mark_path = ROOT / "assets" / "images" / "splash-icon.png"
@@ -546,7 +605,8 @@ def draw_pledge(canvas: Image.Image, locale: str, top: int) -> None:
         mark_h = int(probe.height * 210 / probe.width) + 110
 
     # The wordmark and its line close the screen, so they are part of the block being centred.
-    name_fnt = font(locale, 62, bold=True)
+    # Urdu sets the Latin name in Lora: Nastaliq has Latin letters, but not the brand's.
+    name_fnt = font("en" if locale == "ur" else locale, 62, bold=True)
     tag_fnt = font(locale, 40)
     tail_h = 150
 
@@ -564,9 +624,14 @@ def draw_pledge(canvas: Image.Image, locale: str, top: int) -> None:
         draw.polygon([(mx, cy - d), (mx + d, cy), (mx, cy + d), (mx - d, cy)], fill=ACCENT)
 
         shaped = shape(line, locale)
-        tw = draw.textlength(shaped, font=fnt)
-        tx = x0 + card_w - 106 - tw if rtl else x0 + 106
-        draw.text((tx, cy - fnt.size * 0.72), shaped, font=fnt, fill=INK)
+        tw = draw.textlength(shaped, font=fnt, **tx(locale))
+        text_x = x0 + card_w - 106 - tw if rtl else x0 + 106
+        if locale == "ur":
+            top, bottom = draw.textbbox((0, 0), shaped, font=fnt, **tx(locale))[1::2]
+            text_y = cy - (bottom - top) / 2 - top
+        else:
+            text_y = cy - fnt.size * 0.72
+        draw.text((text_x, text_y), shaped, font=fnt, fill=INK, **tx(locale))
         y += card_h + gap
 
     if mark_path.exists():
@@ -582,8 +647,8 @@ def draw_pledge(canvas: Image.Image, locale: str, top: int) -> None:
     draw.text(((W - nw) / 2, y + 34), name, font=name_fnt, fill=INK)
 
     tag = shape(CAPTIONS[locale]["tagline"], locale)
-    tw = draw.textlength(tag, font=tag_fnt)
-    draw.text(((W - tw) / 2, y + 34 + 84), tag, font=tag_fnt, fill=MUTED)
+    tw = draw.textlength(tag, font=tag_fnt, **tx(locale))
+    draw.text(((W - tw) / 2, y + 34 + 84), tag, font=tag_fnt, fill=MUTED, **tx(locale))
 
 
 # The iPad set never says "phone" about the device in the reader's hands (owner, 2026-08-28).
@@ -591,6 +656,7 @@ IPAD_PILLS = {
     "en": {"pill_qibla": "It even senses how you hold the tablet"},
     "tr": {"pill_qibla": "Tableti nasıl tuttuğunu bile fark eder"},
     "ar": {"pill_qibla": "حتى إنه يلاحظ كيف تمسك جهازك اللوحي"},
+    "ur": {"pill_qibla": "یہ جانتا ہے کہ آپ نے ٹیبلٹ کیسے پکڑا ہے"},
 }
 
 
@@ -638,14 +704,17 @@ def build(locale: str, out_root: Path, device: str = "phone") -> None:
             if source == "watch":
                 draw_watch_device(canvas, shot, pill_bottom + 40)
             elif T == 1.0:
-                # The phone canvas keeps its fixed, already-shipped device line.
-                draw_device(canvas, shot, DEVICE_TOP)
+                # The phone canvas keeps one fixed device line per locale. Urdu's sits lower: its
+                # two-line Nastaliq captions need the room, and one line for every slide keeps the
+                # set even.
+                top = DEVICE_TOP if locale != "ur" else max(URDU_DEVICE_TOP, pill_bottom + 48)
+                draw_device(canvas, shot, top)
             else:
                 draw_device(canvas, shot, max(DEVICE_TOP, pill_bottom + round(64 * T)))
 
         target = out / f"{index:02d}-{key}.png"
         canvas.save(target, "PNG", optimize=True)
-        print(f"  → {target.relative_to(ROOT)}")
+        print(f"  → {target}")
 
     # The Play listing shows the watch slide with a ROUND Wear case (the watch a Play user
     # will wear); swap it in for 02-watch.png when uploading to Play (handoff §3).
@@ -661,7 +730,7 @@ def build(locale: str, out_root: Path, device: str = "phone") -> None:
             draw_wear_device(canvas, wear_shot, pill_bottom + 40)
             target = out / "02-watch-play.png"
             canvas.save(target, "PNG", optimize=True)
-            print(f"  → {target.relative_to(ROOT)}")
+            print(f"  → {target}")
         else:
             print(f"  !! skipping 02-watch-play: no capture at {wear_shot.relative_to(ROOT)}")
 
@@ -670,19 +739,19 @@ def build(locale: str, out_root: Path, device: str = "phone") -> None:
     for stale in sorted(out.glob("*.png")):
         if stale.name not in expected:
             stale.unlink()
-            print(f"  ×  removed stale {stale.relative_to(ROOT)}")
+            print(f"  ×  removed stale {stale}")
 
 
 def main() -> int:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--locale", choices=["en", "tr", "ar", "all"], default="all")
+    ap.add_argument("--locale", choices=["en", "tr", "ar", "ur", "all"], default="all")
     ap.add_argument("--device", choices=["phone", "ipad", "all"], default="all")
     ap.add_argument("--out", default="docs/store-screens")
     args = ap.parse_args()
     out_root = ROOT / args.out
     devices = ["phone", "ipad"] if args.device == "all" else [args.device]
     for device in devices:
-        for locale in (["en", "tr", "ar"] if args.locale == "all" else [args.locale]):
+        for locale in (["en", "tr", "ar", "ur"] if args.locale == "all" else [args.locale]):
             print(f"building {locale} ({device})")
             build(locale, out_root, device)
     return 0

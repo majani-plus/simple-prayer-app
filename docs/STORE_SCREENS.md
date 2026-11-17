@@ -100,29 +100,30 @@ registered on both — D92/D105). The wording claims the act, not the button's p
 ### Localized captions
 
 Authored in each language, not translated, and using the words the app itself uses — `kaza
-namazları`, `قضاء الفوائت`, `ezan`, `أذان` — so the listing and the product never disagree.
+namazları`, `قضاء الفوائت`, `ezan`, `أذان` — so the listing and the product never disagree. The Urdu was written with AI help, like the
+rest of the Urdu (D210), using the Urdu glossary in `docs/TONE.md`.
 
-| # | Türkçe | العربية |
-|---|---|---|
-| 1 | Bugünün beş vakti. İşaretlemek için birine dokun. | صلوات اليوم الخمس. نقرة واحدة تسجّلها. |
-| 2 | Namazın, bileğinde. | صلاتك على معصمك. |
-| 3 | Ay nasıl geçti, gör | كيف مضى الشهر |
-| 4 | Ne tarafa döneceğini bil | إلى أين تتّجه |
-| 5 | Her vakit için bir hatırlatma | تذكير لكل صلاة |
-| 6 | Kaçırdıklarını teker teker tamamla | قضاء ما فات، واحدة تلو الأخرى |
-| 7 | Reklam yok. Hesap yok. Bütün özellikler ücretsiz. | بلا إعلانات. بلا حساب. كل الميزات مجانية. |
+| # | Türkçe | العربية | اردو |
+|---|---|---|---|
+| 1 | Bugünün beş vakti. İşaretlemek için birine dokun. | صلوات اليوم الخمس. نقرة واحدة تسجّلها. | آج کی پانچ نمازیں۔ درج کرنے کے لیے ایک کو دبائیں۔ |
+| 2 | Namazın, bileğinde. | صلاتك على معصمك. | آپ کی نمازیں، آپ کی کلائی پر۔ |
+| 3 | Ay nasıl geçti, gör | كيف مضى الشهر | دیکھیں مہینہ کیسا گزرا |
+| 4 | Ne tarafa döneceğini bil | إلى أين تتّجه | جانیں کہ کس طرف رخ کرنا ہے |
+| 5 | Her vakit için bir hatırlatma | تذكير لكل صلاة | ہر نماز کے لیے یاد دہانی |
+| 6 | Kaçırdıklarını teker teker tamamla | قضاء ما فات، واحدة تلو الأخرى | جو نمازیں چھوٹ گئیں، انہیں ایک ایک کر کے پورا کریں |
+| 7 | Reklam yok. Hesap yok. Bütün özellikler ücretsiz. | بلا إعلانات. بلا حساب. كل الميزات مجانية. | نہ اشتہار، نہ اکاؤنٹ۔ ہر سہولت مفت ہے۔ |
 
 And the pills:
 
-| # | Türkçe | العربية |
-|---|---|---|
-| 1 | İnternetsiz çalışır | يعمل بلا إنترنت |
-| 2 | Namazı saatten, telefon yanında olmadan da işaretleyebilirsin | يمكنك تسجيل الصلاة من الساعة، من دون هاتفك |
-| 3 | Her günü sonradan değiştirebilirsin | يمكنك تعديل أي يوم لاحقًا |
-| 4 | Telefonu nasıl tuttuğunu bile fark eder | حتى إنه يلاحظ كيف تمسك هاتفك |
-| 5 | Namazı bildirimin üzerinden de işaretleyebilirsin | يمكنك تسجيل الصلاة من الإشعار نفسه |
-| 6 | Sayı yalnızca azalır | الرقم ينقص فقط |
-| 7 | — | — |
+| # | Türkçe | العربية | اردو |
+|---|---|---|---|
+| 1 | İnternetsiz çalışır | يعمل بلا إنترنت | انٹرنیٹ کے بغیر بھی چلتی ہے |
+| 2 | Namazı saatten, telefon yanında olmadan da işaretleyebilirsin | يمكنك تسجيل الصلاة من الساعة، من دون هاتفك | فون کے بغیر، گھڑی سے بھی نماز درج کر سکتے ہیں |
+| 3 | Her günü sonradan değiştirebilirsin | يمكنك تعديل أي يوم لاحقًا | کوئی بھی دن بعد میں بدل سکتے ہیں |
+| 4 | Telefonu nasıl tuttuğunu bile fark eder | حتى إنه يلاحظ كيف تمسك هاتفك | یہ جانتا ہے کہ آپ نے فون کیسے پکڑا ہے |
+| 5 | Namazı bildirimin üzerinden de işaretleyebilirsin | يمكنك تسجيل الصلاة من الإشعار نفسه | نماز اطلاع سے ہی درج کر سکتے ہیں |
+| 6 | Sayı yalnızca azalır | الرقم ينقص فقط | گنتی صرف کم ہوتی ہے |
+| 7 | — | — | — |
 
 ---
 

@@ -5,7 +5,7 @@
  *
  * Usage:
  *   bun --preload ./scripts/preload-native-mocks.ts scripts/make-watch-envelope.ts \
- *     [--lang en|ar|tr] [--lat 41.0082] [--lng 28.9784] [--h24] > envelope.json
+ *     [--lang en|ar|tr|ur] [--lat 41.0082] [--lng 28.9784] [--h24] > envelope.json
  *
  * Past prayers of the current prayer day are marked `prayed` (the honest common case a
  * screenshot should show — CLAUDE.md's merciful default, not an audit).
@@ -18,6 +18,7 @@ import { getCurrentPrayerDay, getCurrentPrayer } from '../src/domain/prayerTimes
 import en from '../src/i18n/locales/en.json';
 import ar from '../src/i18n/locales/ar.json';
 import tr from '../src/i18n/locales/tr.json';
+import ur from '../src/i18n/locales/ur.json';
 
 const args = process.argv.slice(2);
 const flag = (name: string): string | undefined => {
@@ -30,7 +31,7 @@ const language = flag('lang') ?? 'en';
 // machine's timezone family (times render in the HOST zone; a mismatched city shows shifted clocks).
 const latitude = Number(flag('lat') ?? 41.0082);
 const longitude = Number(flag('lng') ?? 28.9784);
-const tables: Record<string, unknown> = { en, ar, tr };
+const tables: Record<string, unknown> = { en, ar, tr, ur };
 const table = tables[language] ?? en;
 
 /** The app's i18next usage, minimally: dotted lookup + `{{param}}` interpolation. */
@@ -86,7 +87,8 @@ const snapshot = buildWidgetSnapshot(
     // WITHOUT switching the calendar — 'ar-SA' defaults to Umm al-Qura and turned the
     // gregorian date line hijri.
     numericLocale: language === 'ar' ? 'ar-u-nu-arab' : language,
-    rtl: language === 'ar',
+    // Not isRtlLanguage: src/i18n/direction imports react-native, which bun cannot load here.
+    rtl: language === 'ar' || language === 'ur',
     timeFormat: args.includes('--h24') ? '24h' : 'system',
     theme: 'system',
     hijriOffset: calculation.hijriOffset,

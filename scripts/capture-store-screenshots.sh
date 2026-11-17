@@ -7,7 +7,7 @@
 #   ./scripts/capture-store-screenshots.sh <udid> <locale> <theme> <out-dir>
 #
 #   udid    a BOOTED simulator running a dev build of the app, with Metro up
-#   locale  en | ar | tr
+#   locale  en | ar | tr | ur
 #   theme   light | dark
 #
 # Prerequisites (see docs/screenshots/README.md for the full runbook):
@@ -27,7 +27,7 @@
 set -euo pipefail
 
 UDID="${1:?usage: capture-store-screenshots.sh <udid> <locale> <theme> <out-dir>}"
-LOCALE="${2:?locale: en|ar|tr}"
+LOCALE="${2:?locale: en|ar|tr|ur}"
 THEME="${3:?theme: light|dark}"
 OUT="${4:?out dir}"
 
@@ -42,6 +42,7 @@ case "$LOCALE" in
   en) APPLE_LOCALE="en_GB" ;;
   ar) APPLE_LOCALE="ar_SA" ;;
   tr) APPLE_LOCALE="tr_TR" ;;
+  ur) APPLE_LOCALE="ur_PK" ;;
   *) echo "unknown locale: $LOCALE" >&2; exit 1 ;;
 esac
 
@@ -57,7 +58,7 @@ cp "$INDEX" "$WORK/index.orig.tsx"
 # capture run starts from a reset install (that reset is what puts the streak mode back to
 # the shipped default). Onboarding is a real screen with its own tests; it is simply not one
 # of the six frames, so the redirect is neutralised for the run and restored with the file.
-grep -q "if (!onboardingCompleted) router.replace('/onboarding');" "$LAYOUT" || {
+grep -q "      router.replace('/onboarding');" "$LAYOUT" || {
   echo "$LAYOUT does not carry the onboarding redirect this script expects." >&2
   exit 1
 }
@@ -67,15 +68,27 @@ cp "$ROOT/src/app/settings/reminders.tsx" "$WORK/reminders.orig.tsx"
 # The same patched line also pins the location to Istanbul (the set's canonical city — chosen
 # because it matches the capture host's timezone family, README §scenario): a fresh container
 # has no location, and without one every screen shows the honest empty state instead of times.
-sed "s|if (!onboardingCompleted) router.replace('/onboarding');|void onboardingCompleted; require('@/stores/settingsStore').getSettingsActions().setLocation({ latitude: 41.0082, longitude: 28.9784, label: 'Istanbul', countryCode: 'TR', source: 'manual', resolvedAt: 1 }); // TEMP-SCREENSHOT|" \
+sed "s|      router.replace('/onboarding');|      require('@/stores/settingsStore').getSettingsActions().setLocation({ latitude: 41.0082, longitude: 28.9784, label: 'Istanbul', countryCode: 'TR', source: 'manual', resolvedAt: 1 }); // TEMP-SCREENSHOT|" \
   "$WORK/layout.orig.tsx" >"$LAYOUT"
 
+# The simulator cannot grant notification permission (simctl privacy has no such service), and
+# without it Today and Settings → Reminders show their "notifications are off" states. A phone the
+# frames depict has granted it, so the service reports it granted for the run.
+NOTIF="$ROOT/src/services/notifications.ts"
+grep -q "      return await adapter.getPermission();" "$NOTIF" || {
+  echo "$NOTIF does not read the permission the way this script expects." >&2
+  exit 1
+}
+cp "$NOTIF" "$WORK/notifications.orig.ts"
+sed -i '' "s|      return await adapter.getPermission();|      return { status: 'granted', granted: true, canAskAgain: true }; // TEMP-SCREENSHOT|" "$NOTIF"
+
 restore() {
+  cp "$WORK/notifications.orig.ts" "$NOTIF"
   cp "$WORK/index.orig.tsx" "$INDEX"
   cp "$WORK/layout.orig.tsx" "$LAYOUT"
   cp "$WORK/qibla.orig.tsx" "$ROOT/src/app/(tabs)/qibla.tsx"
   cp "$WORK/reminders.orig.tsx" "$ROOT/src/app/settings/reminders.tsx"
-  echo "restored the four patched files"
+  echo "restored the five patched files"
 }
 trap restore EXIT
 
@@ -164,7 +177,9 @@ reminders_voices() {
 relaunch() {
   xcrun simctl terminate "$UDID" "$BUNDLE_ID" >/dev/null 2>&1 || true
   sleep 1
-  xcrun simctl launch "$UDID" "$BUNDLE_ID" \
+  # --initialUrl makes the dev launcher load Metro straight away; opening the dev-client deep
+  # link instead puts an "Open in …?" system prompt in front of it that nothing here can tap.
+  xcrun simctl launch "$UDID" "$BUNDLE_ID" --initialUrl "${DEV_URL:-http://localhost:8081}" \
     -AppleLanguages "($LOCALE)" -AppleLocale "$APPLE_LOCALE" >/dev/null 2>&1
   sleep "$SETTLE"
 }
@@ -191,10 +206,22 @@ xcrun simctl status_bar "$UDID" override \
   --cellularMode active --cellularBars 4 \
   --batteryState charged --batteryLevel 100 >/dev/null 2>&1 || true
 
+# A host outside Istanbul's timezone runs the app with SIMCTL_CHILD_TZ=Europe/Istanbul (simctl
+# passes SIMCTL_CHILD_* to the app). The status bar still shows the host clock then, so it is
+# pinned to the app's time and the two agree.
+if [ -n "${SIMCTL_CHILD_TZ:-}" ]; then
+  xcrun simctl status_bar "$UDID" override --time "$(TZ="$SIMCTL_CHILD_TZ" date +%-H:%M)" >/dev/null 2>&1 || true
+fi
+
 xcrun simctl ui "$UDID" appearance "$THEME" >/dev/null 2>&1
 
+# Dev-client chrome kept out of the frames: the "This is the developer menu" sheet it opens on
+# its first load, and its floating gear button.
+xcrun simctl spawn "$UDID" defaults write "$BUNDLE_ID" EXDevMenuIsOnboardingFinished -bool YES >/dev/null 2>&1 || true
+xcrun simctl spawn "$UDID" defaults write "$BUNDLE_ID" EXDevMenuShowFloatingActionButton -bool NO >/dev/null 2>&1 || true
+
 # A first launch in a new language only WRITES the OS layout-direction flag; React Native
-# reads it at startup, so Arabic needs a second launch before the layout is actually RTL.
+# reads it at startup, so Arabic and Urdu need a second launch before the layout is actually RTL.
 relaunch
 
 echo "capturing $LOCALE/$THEME → $OUT"

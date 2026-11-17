@@ -19,7 +19,8 @@ docs/screenshots/
   phase-a-ios-today.png                       NOT a store asset — the M0 scaffold record
 ```
 
-- **locale** — `en`, `ar`, `tr` (the three release languages).
+- **locale** — `en`, `ar`, `tr`, `ur`. Urdu (2026-11) has the light set, the iPad set and the
+  watch only; no dark set and no Wear captures yet.
 - **theme** — `light` (paper) and `dark` (night paper).
 - **size** — `6.5/` is the SLOT name, not the capture device: one set serves both stores through
   the composed 1242×2688 store screens (`scripts/build-store-screens.py`, which scales the
@@ -171,6 +172,22 @@ run is only valid if all three are reverted afterwards.
 6. **Revert** the three temporary changes and confirm with `bun run typecheck && bun run lint &&
    bun run test`, plus `git status` being clean apart from `docs/screenshots/`.
 7. Leave the simulator in **light** appearance and with no forced language.
+
+**Notes from the Urdu run (2026-11-17)**, which used a fresh Debug build (`xcodebuild … -configuration
+Debug -destination 'generic/platform=iOS Simulator'`; adding `-sdk iphonesimulator` breaks the watch
+widget target):
+
+- **Capture host outside Istanbul time:** export `SIMCTL_CHILD_TZ=Europe/Istanbul` before running
+  the capture script. The app then keeps Istanbul time, and the script pins the status-bar clock to
+  match. The watch's status bar cannot be pinned, so shoot the watch on host time instead.
+- **No taps needed:** the script launches with `--initialUrl http://localhost:8081`, so the dev
+  launcher loads Metro straight away. Opening the dev-client deep link instead shows an "Open
+  in …?" system prompt that stays on screen.
+- **Things the script now pins for the run:** notification permission reads as granted (simctl
+  cannot grant it), and the dev menu's intro sheet and floating button are switched off.
+- **Composing Urdu** needs Pillow's raqm layout for Nastaliq: `brew install fribidi`, then
+  `DYLD_FALLBACK_LIBRARY_PATH=/opt/homebrew/lib uv run --with pillow --with arabic-reshaper
+  --with python-bidi python3 scripts/build-store-screens.py --locale ur`.
 
 ---
 
