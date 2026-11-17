@@ -486,6 +486,10 @@ Türkçe, Arapça ve İngilizceyi destekler.
 
 ---
 
+### اردو (App Store `ur-PK`, Play `ur`)
+
+- **Keywords (≤100):** `namaz,salah,qibla,azan,ramadan,muslim,فجر,ظہر,عصر,مغرب,عشاء,رمضان,قضا,مسجد,ہجری,حنفی,مسلمان,اسلام` (97). No word from the Name or Subtitle. Latin `namaz,salah,qibla,azan` because many Pakistani users search in Roman Urdu or English. The Name already carries the brand, so `simple,prayer` is not needed here. Written with AI help, like the rest of the Urdu (D210).
+
 ## Conversion principles (both stores)
 
 1. First screenshot + first description line carry the whole pitch: two-tap tracking + every feature is free + no ads.

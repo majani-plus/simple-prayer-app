@@ -91,6 +91,56 @@ The app and its relay are open source. Anyone can read the code to see what they
 Simple Prayer is in English, Arabic, Turkish and Urdu.
 ```
 
+### App Store — What's New (1.7.1)
+
+> The first iOS release since 1.4.4, so it also carries what 1.5.0 and 1.6.0 brought.
+
+```
+• Simple Prayer is now in Urdu, set in Nastaliq.
+• Asr follows your country: Hanafi in Pakistan, India, Bangladesh and Afghanistan. You can change it in Settings.
+• Choose how you mark prayers. Simple: one tap marks a prayer as prayed. Detailed: prayed, prayed late or missed. You can change it any time in Settings.
+• Marking a prayer is quicker, with one crisp click.
+• The Now widget always counts down to something. After sunrise it counts to Dhuhr, or to Jumu'ah on Fridays. Once you mark a prayer, it counts quietly to the next one. It no longer counts below zero, and its text fits when your text size is large.
+• The app is now open source. The link is in Settings › About.
+• Travel mode is gone for now. Your prayer log is not changed.
+```
+
+Arabic:
+
+```
+• التطبيق متوفر الآن بالأردية، بخط النستعليق.
+• وقت العصر يتبع بلدك: على المذهب الحنفي في باكستان والهند وبنغلاديش وأفغانستان. ويمكنك تغييره من الإعدادات.
+• اختر طريقة تسجيل صلواتك. البسيطة: لمسة واحدة تسجّل الصلاة على أنها صُلِّيت. المفصّلة: صُلِّيت، أو صُلِّيت متأخّرةً، أو فاتت. ويمكنك تغييرها متى شئت من الإعدادات.
+• تسجيل الصلاة أسرع، بنقرة واحدة واضحة.
+• أداة «الآن» تعدّ دائمًا إلى شيء. بعد الشروق تعدّ إلى الظهر، وإلى الجمعة يوم الجمعة. وبعد أن تسجّل صلاة، تعدّ بهدوء إلى الصلاة التالية. ولم تعد تعدّ إلى ما دون الصفر، ويتّسع نصّها حين يكون حجم الخط كبيرًا.
+• شيفرة التطبيق مفتوحة المصدر الآن. الرابط في الإعدادات › عن التطبيق.
+• أُزيل وضع السفر حاليًا. سجلّ صلواتك لم يتغيّر.
+```
+
+Turkish:
+
+```
+• Uygulama artık Urduca da var, nestalik yazıyla.
+• İkindi vakti ülkene uyar: Pakistan, Hindistan, Bangladeş ve Afganistan'da Hanefî. Ayarlar'dan değiştirebilirsin.
+• Namazları nasıl işaretleyeceğini seç. Basit: tek dokunuş namazı kılındı olarak işaretler. Ayrıntılı: kılındı, geç kılındı ya da kaçırıldı. İstediğin zaman Ayarlar'dan değiştirebilirsin.
+• Namaz işaretlemek daha hızlı, tek ve net bir tıkla.
+• Şimdi widget'ı her zaman bir şeye geri sayıyor. Güneş doğduktan sonra Öğle'ye, cuma günleri Cuma'ya sayıyor. Bir namazı işaretleyince bir sonrakine sakin bir şekilde sayıyor. Artık sıfırın altına inmiyor ve yazı boyutun büyük olduğunda metni sığıyor.
+• Uygulama artık açık kaynak. Bağlantı Ayarlar › Hakkında'da.
+• Yolculuk modu şimdilik kaldırıldı. Namaz kaydın değişmedi.
+```
+
+Urdu:
+
+```
+• Simple Prayer اب اردو میں بھی ہے، نستعلیق میں۔
+• عصر کا وقت اب آپ کے ملک کے مطابق ہے: پاکستان، ہندوستان، بنگلہ دیش اور افغانستان میں حنفی۔ آپ اسے ترتیبات میں بدل سکتے ہیں۔
+• چنیں کہ نمازیں کیسے درج کریں۔ سادہ: ایک بار دبانے سے نماز پڑھی ہوئی درج ہو جاتی ہے۔ تفصیلی: پڑھ لی، دیر سے پڑھی، یا چھوٹ گئی۔ آپ اسے جب چاہیں ترتیبات میں بدل سکتے ہیں۔
+• نماز درج کرنا اب زیادہ تیز ہے، ایک صاف سی آواز کے ساتھ۔
+• ہوم اسکرین کا وجٹ اب ہمیشہ کسی نہ کسی وقت کی الٹی گنتی دکھاتا ہے۔ طلوعِ آفتاب کے بعد ظہر تک، اور جمعہ کو جمعہ کی نماز تک۔ نماز درج کرنے کے بعد یہ خاموشی سے اگلی نماز تک گنتی کرتا ہے۔ یہ اب صفر سے نیچے نہیں جاتا، اور بڑے فونٹ میں بھی اس کا متن پورا آتا ہے۔
+• ایپ کا کوڈ اب اوپن سورس ہے۔ لنک ترتیبات › ایپ کے بارے میں ہے۔
+• سفر موڈ فی الحال ہٹا دیا گیا ہے۔ آپ کی نمازوں کا ریکارڈ نہیں بدلا۔
+```
+
 ### App Store — What's New (1.6.0)
 
 > 1.5.0 was bumped and tagged but never built; 1.6.0 ships its changes too.
