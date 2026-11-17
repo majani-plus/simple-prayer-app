@@ -19,8 +19,8 @@ docs/screenshots/
   phase-a-ios-today.png                       NOT a store asset — the M0 scaffold record
 ```
 
-- **locale** — `en`, `ar`, `tr`, `ur`. Urdu (2026-11) has the light set, the iPad set and the
-  watch only; no dark set and no Wear captures yet.
+- **locale** — `en`, `ar`, `tr`, `ur`. Urdu (2026-11) has the light set, the iPad set, the
+  Apple Watch, and the Wear today and qibla pages. It has no dark set and no Wear tile yet.
 - **theme** — `light` (paper) and `dark` (night paper).
 - **size** — `6.5/` is the SLOT name, not the capture device: one set serves both stores through
   the composed 1242×2688 store screens (`scripts/build-store-screens.py`, which scales the
@@ -199,7 +199,7 @@ debug build — `adb run-as` only works on debuggable installs.
 
 1. `cd android && ./gradlew :wear:assembleDebug`, then
    `adb install -r wear/build/outputs/apk/debug/wear-debug.apk`.
-2. Seed a locale's REAL envelope and relaunch: `./scripts/seed-wear-envelope.sh <en|tr|ar>
+2. Seed a locale's REAL envelope and relaunch: `./scripts/seed-wear-envelope.sh <en|tr|ar|ur>
    [adb-serial]` (builds the envelope with make-watch-envelope.ts, writes it into the app's
    SharedPreferences via run-as, force-stops and relaunches). First launch asks the
    notifications permission — tap Allow once.
@@ -214,3 +214,8 @@ debug build — `adb run-as` only works on debuggable installs.
    `--es operation set-watchface --es watchFaceId app.simpleprayer.face`; ambient is
    `input keyevent KEYCODE_SLEEP`, wake with KEYCODE_WAKEUP.
 5. The tile and face read the SAME seeded envelope, so one seed serves all three surfaces.
+6. Run `adb shell svc power stayon true` first. Otherwise the watch drops into its dim state
+   within seconds: the capture comes out greyed, and the first swipe only wakes it.
+7. The tile's countdown uses the watch's SYSTEM locale for its digits, not the app's language.
+   Set the emulator's language to match the set being shot. The Google Wear images refuse
+   `adb root`, so this has to be done in the watch's Settings.

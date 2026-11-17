@@ -2,9 +2,9 @@
 # Seeds a language's REAL envelope (make-watch-envelope.ts) into the Wear app's SharedPreferences
 # on a connected Wear emulator, via run-as (debug builds only), and restarts the app.
 #
-#   ./scripts/seed-wear-envelope.sh <lang en|tr|ar> [adb-serial]
+#   ./scripts/seed-wear-envelope.sh <lang en|tr|ar|ur> [adb-serial]
 set -euo pipefail
-LANG_ARG="${1:?lang: en|tr|ar}"
+LANG_ARG="${1:?lang: en|tr|ar|ur}"
 SERIAL="${2:-}"
 ADB="$HOME/Library/Android/sdk/platform-tools/adb"
 [ -n "$SERIAL" ] && ADB="$ADB -s $SERIAL"

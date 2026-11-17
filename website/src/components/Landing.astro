@@ -22,6 +22,7 @@ import { locales, pagePath, t, type Locale } from '../i18n';
 import heroEn from '../../../docs/screenshots/en/light/6.5/01-today-seal.png';
 import heroTr from '../../../docs/screenshots/tr/light/6.5/01-today-seal.png';
 import heroAr from '../../../docs/screenshots/ar/light/6.5/01-today-seal.png';
+import heroUr from '../../../docs/screenshots/ur/light/6.5/01-today-seal.png';
 // The night-paper section is "If you miss a day" — about streaks and the month behind you — so
 // it shows History, where the streak actually lives. It used to repeat the Today hero, which
 // illustrated nothing the section was talking about.
@@ -35,6 +36,7 @@ import darkAr from '../../../docs/screenshots/ar/dark/6.5/02-history.png';
 import tabletEn from '../../../docs/screenshots/en/light/ipad13/01-today-seal.png';
 import tabletTr from '../../../docs/screenshots/tr/light/ipad13/01-today-seal.png';
 import tabletAr from '../../../docs/screenshots/ar/light/ipad13/01-today-seal.png';
+import tabletUr from '../../../docs/screenshots/ur/light/ipad13/01-today-seal.png';
 
 // The everywhere gallery (owner, 2026-08-28: "we show everything"): the live notification
 // banner crops, the Wear surfaces, and the Manuscript face. Locales missing a capture fall
@@ -45,6 +47,7 @@ import notifAr from '../../../docs/screenshots/ar/crops/notification.png';
 import wearTodayEn from '../../../docs/screenshots/en/wear/today.png';
 import wearTodayTr from '../../../docs/screenshots/tr/wear/today.png';
 import wearTodayAr from '../../../docs/screenshots/ar/wear/today.png';
+import wearTodayUr from '../../../docs/screenshots/ur/wear/today.png';
 import faceEn from '../../../docs/screenshots/en/wear/face.png';
 import tileEn from '../../../docs/screenshots/en/wear/tile.png';
 import tileAr from '../../../docs/screenshots/ar/wear/tile.png';
@@ -57,6 +60,7 @@ import smartStackEn from '../../../docs/screenshots/en/watch/smart-stack.png';
 import watchEn from '../../../docs/screenshots/en/watch/today.png';
 import watchTr from '../../../docs/screenshots/tr/watch/today.png';
 import watchAr from '../../../docs/screenshots/ar/watch/today.png';
+import watchUr from '../../../docs/screenshots/ur/watch/today.png';
 
 // The feature bands, in the order `d.features.bands` declares them: the seal, History, the qibla,
 // and making up missed prayers. A band whose slot is `null` in `bandShots` renders the labelled
@@ -64,15 +68,19 @@ import watchAr from '../../../docs/screenshots/ar/watch/today.png';
 import bandSealEn from '../../../docs/screenshots/en/light/6.5/01-today-seal.png';
 import bandSealTr from '../../../docs/screenshots/tr/light/6.5/01-today-seal.png';
 import bandSealAr from '../../../docs/screenshots/ar/light/6.5/01-today-seal.png';
+import bandSealUr from '../../../docs/screenshots/ur/light/6.5/01-today-seal.png';
 import bandHistoryEn from '../../../docs/screenshots/en/light/6.5/02-history.png';
 import bandHistoryTr from '../../../docs/screenshots/tr/light/6.5/02-history.png';
 import bandHistoryAr from '../../../docs/screenshots/ar/light/6.5/02-history.png';
+import bandHistoryUr from '../../../docs/screenshots/ur/light/6.5/02-history.png';
 import bandQiblaEn from '../../../docs/screenshots/en/light/6.5/03-qibla.png';
 import bandQiblaTr from '../../../docs/screenshots/tr/light/6.5/03-qibla.png';
 import bandQiblaAr from '../../../docs/screenshots/ar/light/6.5/03-qibla.png';
+import bandQiblaUr from '../../../docs/screenshots/ur/light/6.5/03-qibla.png';
 import bandQadaEn from '../../../docs/screenshots/en/light/6.5/05-qada.png';
 import bandQadaTr from '../../../docs/screenshots/tr/light/6.5/05-qada.png';
 import bandQadaAr from '../../../docs/screenshots/ar/light/6.5/05-qada.png';
+import bandQadaUr from '../../../docs/screenshots/ur/light/6.5/05-qada.png';
 
 interface Props {
   locale: Locale;
@@ -85,8 +93,8 @@ const shots: Record<Locale, Record<'hero' | 'dark', ImageMetadata>> = {
   en: { hero: heroEn, dark: darkEn },
   tr: { hero: heroTr, dark: darkTr },
   ar: { hero: heroAr, dark: darkAr },
-  // No Urdu captures exist yet; until they do, /ur shows the English ones.
-  ur: { hero: heroEn, dark: darkEn },
+  // Urdu has no night-paper capture yet, so the dark section shows the English one.
+  ur: { hero: heroUr, dark: darkEn },
 };
 /**
  * One capture per feature band, in the order `d.features.bands` declares them. `null` means the
@@ -97,7 +105,7 @@ const bandShots: Record<Locale, readonly (ImageMetadata | null)[]> = {
   en: [bandSealEn, bandHistoryEn, bandQiblaEn, bandQadaEn],
   tr: [bandSealTr, bandHistoryTr, bandQiblaTr, bandQadaTr],
   ar: [bandSealAr, bandHistoryAr, bandQiblaAr, bandQadaAr],
-  ur: [bandSealEn, bandHistoryEn, bandQiblaEn, bandQadaEn],
+  ur: [bandSealUr, bandHistoryUr, bandQiblaUr, bandQadaUr],
 };
 /**
  * The watch capture per locale, `null` when a locale's capture does not exist yet — the slot
@@ -107,17 +115,17 @@ const watchShots: Record<Locale, ImageMetadata | null> = {
   en: watchEn,
   tr: watchTr,
   ar: watchAr,
-  ur: watchEn,
+  ur: watchUr,
 };
 
-const tabletShots: Record<Locale, ImageMetadata> = { en: tabletEn, tr: tabletTr, ar: tabletAr, ur: tabletEn };
+const tabletShots: Record<Locale, ImageMetadata> = { en: tabletEn, tr: tabletTr, ar: tabletAr, ur: tabletUr };
 
 const notifShots: Record<Locale, ImageMetadata> = { en: notifEn, tr: notifTr, ar: notifAr, ur: notifEn };
 const wearTodayShots: Record<Locale, ImageMetadata> = {
   en: wearTodayEn,
   tr: wearTodayTr,
   ar: wearTodayAr,
-  ur: wearTodayEn,
+  ur: wearTodayUr,
 };
 const tileShots: Record<Locale, ImageMetadata> = { en: tileEn, tr: tileEn, ar: tileAr, ur: tileEn };
 const complicationShots: Record<Locale, ImageMetadata> = {
@@ -158,7 +166,7 @@ const wristShots: { img: ImageMetadata; kind: string }[] = [
 ];
 const s = shots[locale];
 // The languages section demonstrates "the other" script: Arabic to Latin readers, and vice versa.
-const accessShot = locale === 'ar' ? heroEn : heroAr;
+const accessShot = locale === 'ar' || locale === 'ur' ? heroEn : heroAr;
 /**
  * One Arabic word per feature band, in the order the dict declares them: the seal, History, the
  * qibla, making up missed prayers. Ornament rather than information — the same register the
