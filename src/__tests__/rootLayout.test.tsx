@@ -69,11 +69,14 @@ jest.mock('../db/client', () => ({
 }));
 
 const mockHydrate = jest.fn();
+const mockLoadRange = jest.fn();
 const mockRelease = jest.fn();
 const mockSetTodayDayResolver = jest.fn<() => void, [(() => string) | null]>(() => mockRelease);
 jest.mock('../stores/trackingStore', () => ({
   getTrackingActions: () => ({
     hydrate: mockHydrate,
+    todayDay: () => '2026-11-07',
+    loadRange: mockLoadRange,
     setTodayDayResolver: mockSetTodayDayResolver,
   }),
   // `useNotificationSync` (wired at the root) reads the store imperatively rather than selecting,
@@ -176,6 +179,7 @@ describe('RootLayout startup wiring', () => {
     mockRunMigrations.mockReset();
     mockRunMigrations.mockResolvedValue(undefined);
     mockHydrate.mockReset();
+    mockLoadRange.mockClear();
     mockSetTodayDayResolver.mockClear();
     mockRelease.mockClear();
     mockHideAsync.mockClear();
@@ -229,6 +233,9 @@ describe('RootLayout startup wiring', () => {
 
     expect(mockRunMigrations).toHaveBeenCalledTimes(1);
     expect(mockHydrate).toHaveBeenCalledTimes(1);
+    // Today and yesterday are in the cache before the splash hides, so Today's first frame is
+    // already settled.
+    expect(mockLoadRange).toHaveBeenCalledWith('2026-11-06', '2026-11-07');
     expect(mockHideAsync).toHaveBeenCalled();
     expect(getByTestId('stack')).toBeTruthy();
   });

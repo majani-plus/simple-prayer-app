@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 import { runMigrations } from '@/db/client';
+import { addDays } from '@/domain/dates';
 import { useBackgroundRefresh } from '@/hooks/useBackgroundRefresh';
 import { useLocationRefresh } from '@/hooks/useLocationRefresh';
 import { useNotificationSync } from '@/hooks/useNotificationSync';
@@ -85,7 +86,13 @@ function useStartup(): { done: boolean; error: Error | null } {
       .then(() => {
         if (cancelled) return;
         // Hydration reads through the same connection the migrations just prepared.
-        getTrackingActions().hydrate();
+        const tracking = getTrackingActions();
+        tracking.hydrate();
+        // Today and yesterday are read now, behind the splash, so Today's first frame already
+        // shows them: no unlogged flash, and no revision bumps re-running the history summaries
+        // just as the screen appears. `loadRange` fills the cache without bumping.
+        const today = tracking.todayDay();
+        tracking.loadRange(addDays(today, -1), today);
         finish();
       })
       .catch(finish);

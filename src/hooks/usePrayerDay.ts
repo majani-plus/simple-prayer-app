@@ -39,7 +39,7 @@
  * database) and no user-facing strings.
  */
 
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { AppState, type AppStateStatus } from 'react-native';
 
 import {
@@ -272,10 +272,16 @@ export function usePrayerDay(): PrayerDayView {
   // the store's `syncExemptionMode`, which drops the stale cache.
   const cached = useDayRecord(day ?? '');
   const { enabled: exemptionMode } = useExemptionSettings();
+  // A day already cached (startup preloads today) is not re-read on mount: the re-read only bumped
+  // `revision` and re-ran every summary right after the splash. A miss, or an exemption flip, is.
+  const loadedUnder = useRef(exemptionMode);
   useEffect(() => {
     if (!hydrated || day === null) return;
+    const flipped = loadedUnder.current !== exemptionMode;
+    loadedUnder.current = exemptionMode;
+    if (cached !== undefined && !flipped) return;
     loadDay(day);
-  }, [hydrated, day, loadDay, exemptionMode]);
+  }, [hydrated, day, cached, loadDay, exemptionMode]);
 
   const record = cached ?? (day === null ? null : unloggedDayRecord(day));
 
