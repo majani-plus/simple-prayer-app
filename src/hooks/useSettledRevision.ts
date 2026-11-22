@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useLayoutEffect, useState } from 'react';
 
 import { useTrackingStore } from '@/stores/trackingStore';
 
@@ -26,6 +26,15 @@ export const SETTLE_MS = 600;
 export function useSettledRevision(active = true): number {
   const revision = useTrackingStore((state) => (active ? state.revision : 0));
   const [settled, setSettled] = useState(revision);
+  // A hidden `Activity` (History's tab) drops effects and keeps state, so on re-show `settled` is
+  // whatever it was when the tab was left, and the summaries visibly jumped a beat later. No burst
+  // can be pending on a screen that was not on screen: catch up before the first paint. On a
+  // plain mount this sets the value it already holds, which React skips.
+  useLayoutEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- the re-render before paint IS the point
+    setSettled(revision);
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- runs on (re)show only, by design
+  }, []);
   useEffect(() => {
     if (revision === settled) return;
     const timer = setTimeout(() => setSettled(revision), SETTLE_MS);
