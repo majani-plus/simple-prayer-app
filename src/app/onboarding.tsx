@@ -20,6 +20,7 @@ import {
   type TrackingMode,
 } from '@/domain/types';
 import { useNotificationPermission } from '@/hooks/useNotificationPermission';
+import { useOpenOnWatch, useWatchOffer, type WatchOffer } from '@/hooks/useWatchOffer';
 import { rebuildNotificationsFromStores } from '@/hooks/useNotificationSync';
 import {
   currentOemFamily,
@@ -75,17 +76,22 @@ import { radius, spacing, useTheme } from '@/theme';
  * ## Order
  *
  * Location (the one thing the app cannot work without) → theme (instant, visible, free) →
- * reminders → battery reliability (Android, and only when reminders can actually fire) → how
- * prayers are marked (D192) → streak → qada. The heavier questions come last, once the app has already given something back.
+ * reminders → battery reliability (Android, and only when reminders can actually fire) → the
+ * watch (only when one is really there, never in the FOSS build) → how prayers are marked (D192)
+ * → streak → qada. The heavier questions come last, once the app has already given something back.
  */
 
-/** The steps, in order. `battery` only exists on Android and only when reminders can fire. */
+/**
+ * The steps, in order. `battery` only exists on Android and only when reminders can fire; `watch`
+ * only when a watch was found while the welcome step was on screen.
+ */
 type StepId =
   | 'welcome'
   | 'location'
   | 'theme'
   | 'notifications'
   | 'battery'
+  | 'watch'
   | 'tracking'
   | 'streak'
   | 'qada';
@@ -124,6 +130,14 @@ export default function OnboardingScreen() {
   // was. Simple is offered first and pre-selected — it is the one-tap way the feel bar asks for.
   const [trackingDraft, setTrackingDraft] = useState<TrackingMode>('simple');
 
+  // The watch step, decided while the welcome step is on screen and then fixed. The answer
+  // usually arrives within milliseconds; one that comes later is ignored, so the step count never
+  // changes under someone already moving through the flow. Unknown means no step.
+  const watchOffer = useWatchOffer();
+  const watchOpen = useOpenOnWatch();
+  const [watchStep, setWatchStep] = useState<WatchOffer>(null);
+  if (current === 'welcome' && watchStep !== watchOffer) setWatchStep(watchOffer);
+
   /** Which reminder choice the stored settings currently amount to. */
   const reminderChoice: ReminderChoice = useMemo(() => {
     const silent = PRAYERS.every(
@@ -152,11 +166,12 @@ export default function OnboardingScreen() {
       'theme',
       'notifications',
       ...(showBattery ? (['battery'] as const) : []),
+      ...(watchStep !== null ? (['watch'] as const) : []),
       'tracking',
       'streak',
       'qada',
     ],
-    [showBattery]
+    [showBattery, watchStep]
   );
 
   const index = Math.max(0, steps.indexOf(current));
@@ -522,6 +537,54 @@ export default function OnboardingScreen() {
     );
   }
 
+  /* -------------------------------------------------------------------------------- WATCH */
+  if (current === 'watch') {
+    // Android opens each Play listing ON the watch, never on the phone (owner, 2026-11-23). iOS
+    // can only say where watchOS keeps the install switch: the same words Settings uses.
+    return (
+      <OnboardingScaffold
+        {...common}
+        icon="schedule"
+        title={t('onboarding.watch.title')}
+        body={
+          watchStep === 'ios' ? t('settings.home.watch.description') : t('onboarding.watch.body')
+        }
+        footnote={t('onboarding.watch.footnote')}
+        primary={{
+          testID: 'onboarding-watch-continue',
+          label: t('onboarding.continue'),
+          onPress: goNext,
+        }}
+      >
+        {watchStep === 'android'
+          ? (['app', 'face'] as const).map((listing) => {
+              const result = watchOpen.results[listing];
+              return (
+                <View key={listing} style={{ alignItems: 'center', gap: spacing.sm }}>
+                  <OutlinedAction
+                    testID={`onboarding-watch-${listing}`}
+                    icon="open_in_new"
+                    label={t(`onboarding.watch.${listing}`)}
+                    onPress={() => watchOpen.open(listing)}
+                  />
+                  {result === undefined ? null : (
+                    <AppText
+                      testID={`onboarding-watch-${listing}-${result}`}
+                      variant="caption"
+                      tone="header"
+                      style={{ textAlign: 'center' }}
+                    >
+                      {t(`settings.home.watch.${result}`)}
+                    </AppText>
+                  )}
+                </View>
+              );
+            })
+          : null}
+      </OnboardingScaffold>
+    );
+  }
+
   /* ----------------------------------------------------------------------------- TRACKING */
   if (current === 'tracking') {
     const modes: { value: TrackingMode; label: string; description: string }[] = [
@@ -661,7 +724,13 @@ function LocationStep({ step, total, onBack, onNext, location }: LocationStepPro
   const { requestAndResolve } = useLocationActions();
 
   const promptState: LocationPromptState =
-    status === 'denied' ? (canAskAgain ? 'denied' : 'blocked') : status === 'error' ? 'error' : 'idle';
+    status === 'denied'
+      ? canAskAgain
+        ? 'denied'
+        : 'blocked'
+      : status === 'error'
+        ? 'error'
+        : 'idle';
 
   const handleAction = useCallback(() => {
     if (status === 'denied' && !canAskAgain) {
@@ -746,7 +815,7 @@ function OutlinedAction({
   onPress,
   testID,
 }: {
-  icon: 'settings' | 'search' | 'my_location' | 'alarm' | 'notifications';
+  icon: 'settings' | 'search' | 'my_location' | 'alarm' | 'notifications' | 'open_in_new';
   label: string;
   onPress: () => void;
   testID: string;

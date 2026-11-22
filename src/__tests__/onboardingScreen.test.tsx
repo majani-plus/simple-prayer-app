@@ -83,7 +83,8 @@ jest.mock('@/stores/locationStore', () => {
   const actions = {
     requestAndResolve: () => mockRequestAndResolve(),
     refresh: () => Promise.resolve(null),
-    syncPermission: () => Promise.resolve({ status: 'undetermined', granted: false, canAskAgain: true }),
+    syncPermission: () =>
+      Promise.resolve({ status: 'undetermined', granted: false, canAskAgain: true }),
     searchCity: () => mockSearchCity(),
     selectManualLocation: (location: unknown) => mockSelectManualLocation(location),
     clearLocation: () => undefined,
@@ -123,6 +124,18 @@ const mockOpenExactAlarms = jest.fn(() => Promise.resolve('opened'));
 jest.mock('@/services/exactAlarms', () => ({
   readExactAlarmState: () => Promise.resolve(mockExactAlarms),
   openExactAlarmSettings: () => mockOpenExactAlarms(),
+}));
+
+/**
+ * The watch bridge. `hasWatch` is a function so a test can hold the answer back and release it
+ * after the welcome step, which is exactly the race the step has to lose gracefully.
+ */
+let mockHasWatch: () => Promise<boolean> = () => Promise.resolve(false);
+const mockOpenOnWatch = jest.fn((_uri: string) => Promise.resolve(true));
+jest.mock('../../modules/watch-sync', () => ({
+  hasWatch: () => mockHasWatch(),
+  watchState: () => Promise.resolve({ paired: false, appInstalled: false }),
+  openOnWatch: (uri: string) => mockOpenOnWatch(uri),
 }));
 
 /** The rebuild the flow owes anyone who allows exact alarms while it is running. */
@@ -391,9 +404,9 @@ describe('the reminder step', () => {
     }
     // Nothing to permit, so nothing is asked, and the button says what it does.
     expect(mockRequestNotifications).not.toHaveBeenCalled();
-    expect(
-      screen.getByTestId('onboarding-notifications-primary').props.accessibilityLabel
-    ).toBe('Continue');
+    expect(screen.getByTestId('onboarding-notifications-primary').props.accessibilityLabel).toBe(
+      'Continue'
+    );
   });
 
   it('turns the adhan on for all five and asks the OS in the same tap', async () => {
@@ -690,9 +703,7 @@ describe('the frame', () => {
 
     // Seven steps on iOS: welcome, location, theme, reminders, tracking, streak, qada. The
     // Android-only battery step is the eighth and must not be counted here.
-    expect(screen.getByTestId('onboarding-progress').props.accessibilityLabel).toBe(
-      'Step 1 of 7'
-    );
+    expect(screen.getByTestId('onboarding-progress').props.accessibilityLabel).toBe('Step 1 of 7');
     expect(screen.getByTestId('onboarding-progress').props.accessibilityValue).toEqual({
       min: 1,
       max: 7,
@@ -700,9 +711,7 @@ describe('the frame', () => {
     });
 
     await press('onboarding-start');
-    expect(screen.getByTestId('onboarding-progress').props.accessibilityLabel).toBe(
-      'Step 2 of 7'
-    );
+    expect(screen.getByTestId('onboarding-progress').props.accessibilityLabel).toBe('Step 2 of 7');
   });
 
   it('has no way back from the first step, and one from every step after it', async () => {
@@ -793,12 +802,13 @@ describe('the battery step (Android)', () => {
   // schedule — which for a brand new install is days away.
   it('rebuilds the reminders when the user comes back having allowed them', async () => {
     const foregrounds: ((status: string) => void)[] = [];
-    jest
-      .spyOn(AppState, 'addEventListener')
-      .mockImplementation(((_type: string, handler: (status: string) => void) => {
-        foregrounds.push(handler);
-        return { remove: () => undefined };
-      }) as never);
+    jest.spyOn(AppState, 'addEventListener').mockImplementation(((
+      _type: string,
+      handler: (status: string) => void
+    ) => {
+      foregrounds.push(handler);
+      return { remove: () => undefined };
+    }) as never);
 
     mockExactAlarms = 'inexact';
     await toBattery();
@@ -829,6 +839,88 @@ describe('the battery step (Android)', () => {
       now: 4,
     });
     await advance();
+    expect(screen.getByTestId('onboarding-tracking-continue')).toBeTruthy();
+  });
+});
+
+/**
+ * The watch step (owner, 2026-11-23): only for someone whose watch was found while the welcome
+ * step was on screen, never a gate, and on Android it opens the listings ON the watch.
+ */
+describe('the watch step (Android)', () => {
+  let restore: (() => void) | null = null;
+
+  beforeAll(() => {
+    const original = Platform.OS;
+    Object.defineProperty(Platform, 'OS', { configurable: true, get: () => 'android' });
+    restore = () => {
+      Object.defineProperty(Platform, 'OS', { configurable: true, get: () => original });
+    };
+  });
+
+  afterAll(() => {
+    restore?.();
+    mockHasWatch = () => Promise.resolve(false);
+  });
+
+  beforeEach(() => {
+    mockOpenOnWatch.mockClear();
+  });
+
+  async function toWatch() {
+    // No reminders, so the battery step stays out and the watch step follows the reminders.
+    await renderFlow({ notificationPermission: GRANTED });
+    await press('onboarding-start');
+    await press('onboarding-location-skip');
+    await advance(); // theme
+    await press('onboarding-reminders-off');
+    await advance(); // reminders
+  }
+
+  it('appears when a watch is connected, opens both listings on the watch, and moves on', async () => {
+    mockHasWatch = () => Promise.resolve(true);
+    await toWatch();
+
+    expect(screen.getByTestId('onboarding-progress').props.accessibilityLabel).toBe('Step 5 of 8');
+    await press('onboarding-watch-app');
+    expect(mockOpenOnWatch).toHaveBeenLastCalledWith('market://details?id=app.simpleprayer');
+    expect(screen.getByTestId('onboarding-watch-app-sent')).toBeTruthy();
+
+    mockOpenOnWatch.mockImplementationOnce(() => Promise.resolve(false));
+    await press('onboarding-watch-face');
+    expect(mockOpenOnWatch).toHaveBeenLastCalledWith('market://details?id=app.simpleprayer.face');
+    expect(screen.getByTestId('onboarding-watch-face-failed')).toBeTruthy();
+
+    await press('onboarding-watch-continue');
+    expect(screen.getByTestId('onboarding-tracking-continue')).toBeTruthy();
+  });
+
+  it('is not there without a watch', async () => {
+    mockHasWatch = () => Promise.resolve(false);
+    await toWatch();
+
+    expect(screen.queryByTestId('onboarding-watch-continue')).toBeNull();
+    expect(screen.getByTestId('onboarding-tracking-continue')).toBeTruthy();
+  });
+
+  it('stays out when the answer comes only after the welcome step', async () => {
+    let answer: (value: boolean) => void = () => undefined;
+    mockHasWatch = () =>
+      new Promise<boolean>((resolve) => {
+        answer = resolve;
+      });
+    await renderFlow({ notificationPermission: GRANTED });
+    await press('onboarding-start');
+    await act(async () => {
+      answer(true);
+    });
+
+    // Eight counts the battery step (reminders are still on here); a ninth would be the watch.
+    expect(screen.getByTestId('onboarding-progress').props.accessibilityLabel).toBe('Step 2 of 8');
+    await press('onboarding-location-skip');
+    await advance(); // theme
+    await press('onboarding-reminders-off');
+    await advance(); // reminders
     expect(screen.getByTestId('onboarding-tracking-continue')).toBeTruthy();
   });
 });

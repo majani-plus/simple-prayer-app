@@ -77,7 +77,7 @@ final class WatchSessionManager: NSObject, WCSessionDelegate {
   /// paired but our app is not on it. watchOS installs a companion app by itself when "Automatic
   /// App Install" is on (its default), so anyone who turned that off — or who installed the phone
   /// app before pairing a watch — has to add it by hand and has no way of knowing that. There is
-  /// no API to install it for them, so the app can only say so; see `useWatchInstallHint`.
+  /// no API to install it for them, so the app can only say so; see `useWatchOffer`.
   func watchState() -> (paired: Bool, appInstalled: Bool) {
     guard WCSession.isSupported() else { return (false, false) }
     let session = WCSession.default

@@ -78,7 +78,8 @@ export function stripThirdPartyServices(config: ExpoConfig): ExpoConfig {
     android: { ...android, versionCode: fossVersionCode() },
     // Without our EAS project there is nowhere to fetch updates from.
     updates: { ...updates, enabled: false },
-    extra,
+    // Read at runtime by `isFossBuild()` (services/appInfo): no store links, no watch offers.
+    extra: { ...extra, foss: true },
     plugins: [
       ...(config.plugins ?? [])
         .filter((plugin) => !FOSS_DROPPED_PLUGINS.has(pluginName(plugin) ?? ''))

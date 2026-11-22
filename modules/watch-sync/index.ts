@@ -29,6 +29,8 @@ interface WatchSyncNativeModule {
   hasWatch(): Promise<boolean>;
   /** The same two facts kept apart, for the "paired but not installed" case. iOS only. */
   watchState(): Promise<{ paired: boolean; appInstalled: boolean }>;
+  /** Opens a URI (a Play listing) on the connected watch. Android only. */
+  openOnWatch(uri: string): Promise<boolean>;
 }
 
 /** What the phone knows about the wrist. Both `false` wherever there is no bridge at all. */
@@ -96,5 +98,23 @@ export async function watchState(): Promise<WatchState> {
   } catch {
     // An older build of the native module: say nothing rather than guess.
     return { paired: false, appInstalled: false };
+  }
+}
+
+/**
+ * Opens a Play listing on the watch itself (Wear OS), so its owner installs from the wrist with no
+ * detour through the phone's Play Store.
+ *
+ * @param uri - A `market://details?id=…` URI (`services/appInfo` WATCH_LISTINGS).
+ * @returns `true` once the watch accepted the request. `false` everywhere else: iOS, the FOSS
+ *   build (no native module), Jest, no watch connected, or any failure.
+ */
+export async function openOnWatch(uri: string): Promise<boolean> {
+  const native = nativeModule();
+  if (native?.openOnWatch === undefined) return false;
+  try {
+    return (await native.openOnWatch(uri)) === true;
+  } catch {
+    return false;
   }
 }

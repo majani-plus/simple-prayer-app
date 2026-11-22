@@ -26,6 +26,7 @@ import {
   appBuild,
   appVersion,
   displayHost,
+  isFossBuild,
 } from '@/services/appInfo';
 import { spacing, useTheme } from '@/theme';
 
@@ -208,7 +209,8 @@ export default function AboutScreen() {
             accessibilityHint={t('settings.about.website.a11yHint')}
             onPress={() => openLink('https://github.com/majani-plus/simple-prayer-app')}
           />
-          <RateAppRow testID="about-rate" />
+          {/* A store link, so not in the FOSS build, which ships outside the stores. */}
+          {isFossBuild() ? null : <RateAppRow testID="about-rate" />}
           {/*
             The second home of the feedback row, on the same reasoning that already puts
             "Rate the app" in both places: someone hunting for a way to reach the developer looks

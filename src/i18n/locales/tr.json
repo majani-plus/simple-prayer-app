@@ -585,6 +585,13 @@
       "exactOpen": "Alarm ve hatırlatmalara izin ver",
       "footnote": "Bunu sonra da yapabilirsin — Ayarlar › Hatırlatmalar › Hatırlatma güvenilirliği."
     },
+    "watch": {
+      "title": "Saatinde",
+      "body": "Simple Prayer’ın saatin için bir uygulaması ve bir kadranı da var. Aşağıdan birine dokun. Play Store saatinde açılır.",
+      "footnote": "Bunu daha sonra Ayarlar’dan da yapabilirsin.",
+      "app": "Saat uygulamasını yükle",
+      "face": "Saat kadranını al"
+    },
     "tracking": {
       "title": "Namazları nasıl işaretlemek istersin?",
       "body": "Sana uyan yolu seç.",
@@ -737,7 +744,18 @@
         "title": "Saatin",
         "label": "Simple Prayer’ı saatine ekle",
         "description": "Apple Watch’unda uygulama henüz yok. Bu iPhone’da Watch uygulamasını aç, aşağı kaydırıp Mevcut Uygulamalar’a gel ve Simple Prayer’ın yanındaki Yükle’ye dokun.",
-        "a11yHint": "Uygulamanın Apple Watch’a nasıl yükleneceğini anlatır."
+        "a11yHint": "Uygulamanın Apple Watch’a nasıl yükleneceğini anlatır.",
+        "app": {
+          "label": "Saatinde Simple Prayer",
+          "description": "Uygulamayı saatine yükle. Play Store saatinde açılır."
+        },
+        "face": {
+          "label": "Manuscript saat kadranı",
+          "description": "Sonraki namazı gösteren bir kadran. Play Store saatinde açılır."
+        },
+        "openA11yHint": "Saatinde Play Store’u açar.",
+        "sent": "Gönderildi. Yüklemek için saatine bak.",
+        "failed": "Saatin cevap vermedi. Saatinde Play Store’u aç ve Simple Prayer diye ara."
       },
       "appearance": {
         "title": "Görünüm ve dil",

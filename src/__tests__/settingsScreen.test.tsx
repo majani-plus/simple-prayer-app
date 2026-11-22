@@ -16,7 +16,7 @@
  */
 
 import { act, cleanup, fireEvent, render, screen, within } from '@testing-library/react-native';
-import { Alert } from 'react-native';
+import { Alert, Platform } from 'react-native';
 
 import SettingsScreen from '../app/(tabs)/settings';
 import { addDays } from '../domain/dates';
@@ -79,6 +79,20 @@ const ISTANBUL = {
   source: 'manual' as const,
   resolvedAt: 0,
 };
+
+/** The FOSS switch and the watch bridge, so the watch rows and the store link can be pinned. */
+let mockFoss = false;
+jest.mock('@/services/appInfo', () => ({
+  ...jest.requireActual<typeof import('../services/appInfo')>('../services/appInfo'),
+  isFossBuild: () => mockFoss,
+}));
+let mockHasWatch = false;
+const mockOpenOnWatch = jest.fn((_uri: string) => Promise.resolve(true));
+jest.mock('../../modules/watch-sync', () => ({
+  hasWatch: () => Promise.resolve(mockHasWatch),
+  watchState: () => Promise.resolve({ paired: false, appInstalled: false }),
+  openOnWatch: (uri: string) => mockOpenOnWatch(uri),
+}));
 
 beforeAll(() => {
   initI18n();
@@ -480,5 +494,70 @@ describe('appearance and language', () => {
 
     expect(await screen.findByText('Ayarlar')).toBeTruthy();
     expect(screen.queryByText('Settings')).toBeNull();
+  });
+});
+
+/**
+ * The watch rows (owner, 2026-11-23): on Android, while a watch is connected, the two Play
+ * listings open ON the watch. The FOSS build shows no watch rows and no store link at all.
+ */
+describe('the watch group and store links', () => {
+  let restore: (() => void) | null = null;
+
+  beforeAll(() => {
+    const original = Platform.OS;
+    Object.defineProperty(Platform, 'OS', { configurable: true, get: () => 'android' });
+    restore = () => {
+      Object.defineProperty(Platform, 'OS', { configurable: true, get: () => original });
+    };
+  });
+
+  afterAll(() => {
+    restore?.();
+  });
+
+  afterEach(() => {
+    mockFoss = false;
+    mockHasWatch = false;
+    mockOpenOnWatch.mockClear();
+  });
+
+  it('opens both listings on the watch and says how it went, in words', async () => {
+    mockHasWatch = true;
+    await render(<SettingsScreen />);
+
+    const app = await screen.findByTestId('settings-row-watch-app');
+    await act(async () => {
+      fireEvent.press(app);
+    });
+    expect(mockOpenOnWatch).toHaveBeenLastCalledWith('market://details?id=app.simpleprayer');
+    expect(screen.getByText('Sent. Look at your watch to install it.')).toBeTruthy();
+
+    mockOpenOnWatch.mockImplementationOnce(() => Promise.resolve(false));
+    await act(async () => {
+      fireEvent.press(screen.getByTestId('settings-row-watch-face'));
+    });
+    expect(mockOpenOnWatch).toHaveBeenLastCalledWith('market://details?id=app.simpleprayer.face');
+    expect(
+      screen.getByText(
+        'Your watch did not answer. Open the Play Store on your watch and search for Simple Prayer.'
+      )
+    ).toBeTruthy();
+    expect(screen.getByTestId('settings-row-rate')).toBeTruthy();
+  });
+
+  it('shows no watch group without a watch', async () => {
+    await render(<SettingsScreen />);
+    await act(async () => undefined);
+    expect(screen.queryByTestId('settings-group-watch')).toBeNull();
+  });
+
+  it('shows no watch rows and no store link in the FOSS build', async () => {
+    mockFoss = true;
+    mockHasWatch = true;
+    await render(<SettingsScreen />);
+    await act(async () => undefined);
+    expect(screen.queryByTestId('settings-group-watch')).toBeNull();
+    expect(screen.queryByTestId('settings-row-rate')).toBeNull();
   });
 });

@@ -96,6 +96,21 @@ function constants(): typeof import('expo-constants').default | null {
   }
 }
 
+/**
+ * Whether this is the FOSS build (`FOSS_BUILD=1`, docs/BUILD_YOURSELF.md), which sets
+ * `extra.foss` in app.config.ts. That build ships outside Google Play, so it shows no store links
+ * and nothing about watches (its Wear apps are removed).
+ */
+export function isFossBuild(): boolean {
+  return constants()?.expoConfig?.extra?.foss === true;
+}
+
+/** The Play listings a Wear OS owner can open on the watch itself (Settings, first-run setup). */
+export const WATCH_LISTINGS = {
+  app: `market://details?id=${APP_PACKAGE_NAME}`,
+  face: `market://details?id=${APP_PACKAGE_NAME}.face`,
+} as const;
+
 /** Loads `expo-application` lazily, on the same terms as {@link constants}. */
 function application(): typeof import('expo-application') | null {
   try {

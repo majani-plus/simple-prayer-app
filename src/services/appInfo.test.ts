@@ -16,8 +16,16 @@ import {
   UNKNOWN_VERSION,
   appVersion,
   displayHost,
+  isFossBuild,
   storeReviewUrl,
 } from './appInfo';
+
+describe('isFossBuild', () => {
+  it('is false for the normal build (jest-expo has no `extra.foss`)', () => {
+    // The FOSS side is pinned in src/__tests__/appConfig.test.ts, which sets the flag.
+    expect(isFossBuild()).toBe(false);
+  });
+});
 
 describe('storeReviewUrl', () => {
   it('sends Android straight to the listing, with an https fallback', () => {

@@ -20,4 +20,7 @@ dependencies {
   // without Play services every call fails with an ApiException — caught, because a watch is an
   // enhancement, never a dependency.
   implementation 'com.google.android.gms:play-services-wearable:19.0.0'
+  // RemoteActivityHelper: opens a Play listing ON the watch (openOnWatch), so a Wear OS owner
+  // installs the watch app or the face without a detour through the phone's Play Store.
+  implementation 'androidx.wear:wear-remote-interactions:1.2.0'
 }

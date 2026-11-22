@@ -585,6 +585,13 @@
       "exactOpen": "Allow alarms and reminders",
       "footnote": "You can do this later — Settings › Reminders › Reminder reliability."
     },
+    "watch": {
+      "title": "On your watch",
+      "body": "Simple Prayer also has an app and a watch face for your watch. Tap one below and the Play Store opens on the watch.",
+      "footnote": "You can also do this later in Settings.",
+      "app": "Install the watch app",
+      "face": "Get the watch face"
+    },
     "tracking": {
       "title": "How do you want to mark prayers?",
       "body": "Pick the way that suits you.",
@@ -737,7 +744,18 @@
         "title": "Your watch",
         "label": "Add Simple Prayer to your watch",
         "description": "Your Apple Watch does not have the app yet. Open the Watch app on this iPhone, scroll down to Available Apps, and tap Install beside Simple Prayer.",
-        "a11yHint": "Explains how to install the app on your Apple Watch."
+        "a11yHint": "Explains how to install the app on your Apple Watch.",
+        "app": {
+          "label": "Simple Prayer on your watch",
+          "description": "Install the app on your watch. The Play Store opens on the watch."
+        },
+        "face": {
+          "label": "Manuscript watch face",
+          "description": "A watch face that shows the next prayer. The Play Store opens on the watch."
+        },
+        "openA11yHint": "Opens the Play Store on your watch.",
+        "sent": "Sent. Look at your watch to install it.",
+        "failed": "Your watch did not answer. Open the Play Store on your watch and search for Simple Prayer."
       },
       "appearance": {
         "title": "Appearance & language",

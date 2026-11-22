@@ -37,6 +37,8 @@ describe('app.config.ts', () => {
     expect(foss.owner).toBeUndefined();
     expect(foss.updates?.url).toBeUndefined();
     expect(foss.updates?.enabled).toBe(false);
+    // The runtime switch for the store links and the watch offers (isFossBuild).
+    expect(foss.extra?.foss).toBe(true);
     // Everything else survives: the strip is surgical.
     expect(foss.android?.package).toBe(config.android?.package);
     expect(foss.android?.permissions).toEqual(config.android?.permissions);

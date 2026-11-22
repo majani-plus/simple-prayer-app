@@ -4,7 +4,7 @@
  * watch to go and install something (owner, 2026-08-29).
  */
 
-import { shouldOfferWatchInstall } from './useWatchInstallHint';
+import { decideWatchOffer, shouldOfferWatchInstall } from './useWatchOffer';
 
 describe('shouldOfferWatchInstall', () => {
   it('offers when a watch is paired and the app is not on it — the only actionable case', () => {
@@ -26,5 +26,48 @@ describe('shouldOfferWatchInstall', () => {
   it('never offers on the nonsense state a broken bridge could report', () => {
     // "Installed on a watch that is not paired" cannot be acted on, so it stays quiet.
     expect(shouldOfferWatchInstall({ paired: false, appInstalled: true })).toBe(false);
+  });
+});
+
+describe('decideWatchOffer', () => {
+  const base = { foss: false, androidHasWatch: null, iosState: null } as const;
+
+  it('offers the watch listings on Android when a watch is connected', () => {
+    expect(decideWatchOffer({ ...base, platform: 'android', androidHasWatch: true })).toBe(
+      'android'
+    );
+  });
+
+  it('offers nothing on Android without a watch, or while the answer is unknown', () => {
+    expect(decideWatchOffer({ ...base, platform: 'android', androidHasWatch: false })).toBeNull();
+    expect(decideWatchOffer({ ...base, platform: 'android' })).toBeNull();
+  });
+
+  it('offers the iOS hint only for a paired watch missing the app', () => {
+    const paired = { paired: true, appInstalled: false };
+    expect(decideWatchOffer({ ...base, platform: 'ios', iosState: paired })).toBe('ios');
+    expect(
+      decideWatchOffer({ ...base, platform: 'ios', iosState: { ...paired, appInstalled: true } })
+    ).toBeNull();
+    expect(decideWatchOffer({ ...base, platform: 'ios' })).toBeNull();
+  });
+
+  it('never offers anything in the FOSS build, even with a watch connected', () => {
+    // Owner, 2026-11-23: the FOSS build has no store links and no watch UI anywhere.
+    expect(
+      decideWatchOffer({ ...base, foss: true, platform: 'android', androidHasWatch: true })
+    ).toBeNull();
+    expect(
+      decideWatchOffer({
+        ...base,
+        foss: true,
+        platform: 'ios',
+        iosState: { paired: true, appInstalled: false },
+      })
+    ).toBeNull();
+  });
+
+  it('offers nothing on a platform with no watch', () => {
+    expect(decideWatchOffer({ ...base, platform: 'web', androidHasWatch: true })).toBeNull();
   });
 });

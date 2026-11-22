@@ -19,9 +19,10 @@ import { findOngoingPeriod } from '@/domain/exemptions';
 import { methodLabelKey, resolveMethod } from '@/domain/methods';
 import { PRAYERS } from '@/domain/types';
 import { formatDate } from '@/i18n/numerals';
+import { isFossBuild } from '@/services/appInfo';
 import { sentryDsn } from '@/services/telemetry';
 import { HealthNotice } from '@/components/HealthNotice';
-import { useWatchInstallHint } from '@/hooks/useWatchInstallHint';
+import { useOpenOnWatch, useWatchOffer, type WatchListing } from '@/hooks/useWatchOffer';
 import { useLanguageSwitch } from '@/i18n/useLanguageSwitch';
 import { useBuddyEnabled } from '@/stores/buddyStore';
 import { useExemptPeriods, useTrackingStore } from '@/stores/trackingStore';
@@ -111,8 +112,9 @@ const ROUTES = {
 
 export default function SettingsScreen() {
   const { t, i18n } = useTranslation();
-  // Speaks only when a paired watch is missing the app; silent everywhere else.
-  const watchInstallWanted = useWatchInstallHint();
+  // Speaks only when a watch is really there (and never in the FOSS build); silent elsewhere.
+  const watchOffer = useWatchOffer();
+  const watchOpen = useOpenOnWatch();
   const insets = useSafeAreaInsets();
   const { contentClampPadding } = useLayout();
   const router = useRouter();
@@ -377,19 +379,43 @@ export default function SettingsScreen() {
         </SettingGroup>
 
         {/* --------------------------------------------------------------------- WATCH */}
-        {/* Only when a paired watch is genuinely missing the app: watchOS installs companion
+        {/* iOS: only when a paired watch is genuinely missing the app. watchOS installs companion
             apps by itself unless "Automatic App Install" is off, and there is no API to do it
             for anyone it misses — so this says where the switch lives, once, in Settings, where
-            nobody meets it uninvited (owner, 2026-08-29). */}
-        {watchInstallWanted ? (
+            nobody meets it uninvited (owner, 2026-08-29).
+            Android: while a watch is connected, the two Play listings, opened ON the watch and
+            never on the phone (owner, 2026-11-23). The result is said in the row, in words. */}
+        {watchOffer !== null ? (
           <SettingGroup testID="settings-group-watch" title={t('settings.home.watch.title')}>
-            <SettingRow
-              testID="settings-row-watch-install"
-              icon="schedule"
-              label={t('settings.home.watch.label')}
-              description={t('settings.home.watch.description')}
-              accessibilityHint={t('settings.home.watch.a11yHint')}
-            />
+            {watchOffer === 'ios' ? (
+              <SettingRow
+                testID="settings-row-watch-install"
+                icon="schedule"
+                label={t('settings.home.watch.label')}
+                description={t('settings.home.watch.description')}
+                accessibilityHint={t('settings.home.watch.a11yHint')}
+              />
+            ) : (
+              (['app', 'face'] as const satisfies readonly WatchListing[]).map((listing) => {
+                const result = watchOpen.results[listing];
+                return (
+                  <SettingRow
+                    key={listing}
+                    testID={`settings-row-watch-${listing}`}
+                    icon={listing === 'app' ? 'schedule' : 'open_in_new'}
+                    label={t(`settings.home.watch.${listing}.label`)}
+                    description={
+                      result === undefined
+                        ? t(`settings.home.watch.${listing}.description`)
+                        : t(`settings.home.watch.${result}`)
+                    }
+                    accessibilityRole="button"
+                    accessibilityHint={t('settings.home.watch.openA11yHint')}
+                    onPress={() => watchOpen.open(listing)}
+                  />
+                );
+              })
+            )}
           </SettingGroup>
         ) : null}
 
@@ -491,7 +517,8 @@ export default function SettingsScreen() {
             tipping is switched on (see docs/TIP_JAR_RUNBOOK.md).
           */}
           <TipJar testID="settings-row-tip" framed={false} showNoAds={false} />
-          <RateAppRow testID="settings-row-rate" />
+          {/* A store link, so not in the FOSS build, which ships outside the stores. */}
+          {isFossBuild() ? null : <RateAppRow testID="settings-row-rate" />}
           {/*
             "Send feedback" sits beside "Rate the app" because they are the same kind of row — both
             hand the user to somewhere outside the app, and both exist because an app with no ads
@@ -511,7 +538,6 @@ export default function SettingsScreen() {
             onPress={() => router.push(ROUTES.about)}
           />
         </SettingGroup>
-
       </ScrollView>
     </PaperBackground>
   );
