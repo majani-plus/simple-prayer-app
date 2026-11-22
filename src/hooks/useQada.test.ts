@@ -16,6 +16,8 @@
 import { act, renderHook } from '@testing-library/react-native';
 
 import { useQada } from './useQada';
+import { SETTLE_MS } from './useSettledRevision';
+import { useQadaShownDebts } from './useTrackingModeView';
 import { FORGIVE_UNDO_WINDOW_DAYS } from '@/domain/qada';
 import type { QadaDebts } from '@/domain/types';
 import { useSettingsStore } from '@/stores/settingsStore';
@@ -200,6 +202,25 @@ describe('useQada in simple tracking mode (D192)', () => {
       expect(result.current.forgive()).toBe(true);
     });
     expect(useSettingsStore.getState().simpleQadaMadeUp.fajr).toBe(2);
+  });
+
+  it('re-reads the shown misses once taps settle, not inside each tap (D197)', async () => {
+    jest.useFakeTimers();
+    try {
+      const { rerender } = await renderHook(() => useQadaShownDebts());
+      mockState.qadaShownDebts.mockClear();
+
+      mockState.revision += 1;
+      await rerender({});
+      expect(mockState.qadaShownDebts).not.toHaveBeenCalled();
+
+      await act(async () => {
+        jest.advanceTimersByTime(SETTLE_MS);
+      });
+      expect(mockState.qadaShownDebts).toHaveBeenCalled();
+    } finally {
+      jest.useRealTimers();
+    }
   });
 });
 

@@ -12,6 +12,7 @@
 import { useMemo } from 'react';
 
 import { useNow } from './useNow';
+import { useSettledRevision } from './useSettledRevision';
 import { modeViewFor, modeViewKey, type ModeView } from '@/domain/trackingMode';
 import type { QadaDebts } from '@/domain/types';
 import {
@@ -72,7 +73,9 @@ export function useQadaShownDebts(): QadaDebts {
   const hydrated = useTrackingHydrated();
   const stored = useQadaDebts();
   const simple = view.mode === 'simple';
-  const revision = useTrackingStore((state) => (simple ? state.revision : 0));
+  // Settled, not raw: the read flushes the queued write to SQLite, and doing that inside the
+  // render of every seal tap is what made a burst of taps stutter (D197).
+  const revision = useSettledRevision(simple);
   const read = useTrackingStore((state) => (simple ? state.qadaShownDebts : null));
   return useMemo(() => {
     void revision;

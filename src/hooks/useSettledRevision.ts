@@ -19,9 +19,12 @@ export const SETTLE_MS = 600;
  *
  * The summaries themselves read the store's CURRENT state when they run, so a settled revision is
  * never stale data, only a later trigger.
+ *
+ * @param active - `false` pins it at 0 and subscribes to nothing, for a caller that only needs the
+ *   revision in some modes.
  */
-export function useSettledRevision(): number {
-  const revision = useTrackingStore((state) => state.revision);
+export function useSettledRevision(active = true): number {
+  const revision = useTrackingStore((state) => (active ? state.revision : 0));
   const [settled, setSettled] = useState(revision);
   useEffect(() => {
     if (revision === settled) return;
