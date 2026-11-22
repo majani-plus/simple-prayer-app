@@ -81,6 +81,9 @@ const SECONDS_PER_HOUR = 3600;
 // space is tiny and bounded: {locale} × {12h, 24h}. Number formatters are cached by
 // `i18n/numerals`, which owns them for the whole app.
 const timeFormatters = new Map<string, Intl.DateTimeFormat>();
+// The locale's own hour cycle, per locale. Building a formatter just to read it cost one Intl
+// construction per `formatTime` call; the widget snapshot alone makes hundreds.
+const localeHour12 = new Map<string, boolean>();
 
 function activeLocale(locale?: string): string {
   return locale ?? i18n.resolvedLanguage ?? i18n.language ?? 'en';
@@ -134,11 +137,15 @@ export function resolveHour12(
   if (timeFormat === '12h') return true;
   if (timeFormat === '24h') return false;
   if (typeof uses24HourClock === 'boolean') return !uses24HourClock;
-  const resolved = new Intl.DateTimeFormat(activeLocale(locale), {
-    hour: 'numeric',
-  }).resolvedOptions();
-  // `hour12` is optional in the resolved options; the hour cycle is the reliable signal.
-  return resolved.hourCycle === 'h11' || resolved.hourCycle === 'h12' || resolved.hour12 === true;
+  const tag = activeLocale(locale);
+  let hour12 = localeHour12.get(tag);
+  if (hour12 === undefined) {
+    const resolved = new Intl.DateTimeFormat(tag, { hour: 'numeric' }).resolvedOptions();
+    // `hour12` is optional in the resolved options; the hour cycle is the reliable signal.
+    hour12 = resolved.hourCycle === 'h11' || resolved.hourCycle === 'h12' || resolved.hour12 === true;
+    localeHour12.set(tag, hour12);
+  }
+  return hour12;
 }
 
 // ---------------------------------------------------------------------------

@@ -80,6 +80,17 @@ describe('resolveHour12', () => {
     expect(resolveHour12('12h', 'en', true)).toBe(true);
     expect(resolveHour12('24h', 'tr', false)).toBe(false);
   });
+
+  it('builds the locale probe once per locale, not once per call', () => {
+    resolveHour12('system', 'ur');
+    const spy = jest.spyOn(Intl, 'DateTimeFormat');
+    try {
+      expect(resolveHour12('system', 'ur')).toBe(resolveHour12('system', 'ur'));
+      expect(spy).not.toHaveBeenCalled();
+    } finally {
+      spy.mockRestore();
+    }
+  });
 });
 
 describe('formatTime', () => {
