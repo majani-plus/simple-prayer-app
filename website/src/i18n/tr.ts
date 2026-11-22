@@ -136,14 +136,14 @@ export const tr: SiteDict = {
     wrist: {
       eyebrow: 'Saat',
       h2: 'Bileğinde',
-      lead: 'Uygulama saatinde de var: bugünün vakitleri, tek dokunuşla mühür ve kıble. Kadranın üzerinde küçük bir gösterge içinde bulunduğun vakti yazar; halkası vakit geçtikçe dolar. Kadranın altından yukarı kaydırırsan bir kart sıradaki vakte geri sayar. İkisine de dokununca uygulama açılır. Wear OS’ta kadrandan bir kaydırma uzaklıkta bir kart var. Kendi yaptığımız kadran, Manuscript, çok yakında. Saat iki haftalık vakti hazır tutar; telefonun başka odada olsa da doğru kalır — telefon uzaktayken ezanı kendisi de okuyabilir. Saatte işaretlediğin namaz uygulamaya işlenir.',
+      lead: 'Uygulama saatinde de var: bugünün vakitleri, tek dokunuşla mühür ve kıble. Kadranın üzerinde küçük bir gösterge içinde bulunduğun vakti yazar; halkası vakit geçtikçe dolar. Kadranın altından yukarı kaydırırsan bir kart sıradaki vakte geri sayar. İkisine de dokununca uygulama açılır. Wear OS’ta kadrandan bir kaydırma uzaklıkta bir kart var. Kendi yaptığımız bir kadran da var: Manuscript. Google Play’den ayrıca ve ücretsiz indirilir; çalışması için uygulamanın hem telefonda hem saatte olması gerekir. Saat iki haftalık vakti hazır tutar; telefonun başka odada olsa da doğru kalır — telefon uzaktayken ezanı kendisi de okuyabilir. Saatte işaretlediğin namaz uygulamaya işlenir.',
       items: [
         'Apple Watch’ta uygulama',
         'Kadrandaki gösterge',
         'Kadranın altındaki kart',
         'Wear OS’ta uygulama',
         'Wear OS kartı',
-        'Manuscript kadranı — çok yakında',
+        'Manuscript kadranı, Google Play’de ücretsiz',
       ],
       hint: 'devamı için kaydır',
     },
@@ -278,7 +278,8 @@ export const tr: SiteDict = {
         },
         {
           q: 'Saatimde çalışıyor mu?',
-          a: 'Evet. Apple Watch’ta uygulama bugünün vakitlerini, tek dokunuşlu mührü ve kıbleyi gösterir; sıradaki vakit saat kadranına eklenebilir. Wear OS’te aynı uygulama ve bir kart var; kendi yaptığımız Manuscript kadranı çok yakında. Saatte işaretlediğin namaz uygulamaya işlenir.',
+          a: 'Evet. Apple Watch’ta uygulama bugünün vakitlerini, tek dokunuşlu mührü ve kıbleyi gösterir; sıradaki vakit saat kadranına eklenebilir. Wear OS’te aynı uygulama ve bir kart var. Kendi yaptığımız Manuscript kadranı da var. Ayrıca ve ücretsiz indirilir; çalışması için Simple Prayer’ın hem telefonda hem saatte olması gerekir. Saatte işaretlediğin namaz uygulamaya işlenir.',
+          links: [{ text: 'Google Play’de Manuscript', href: site.faceStoreUrl }],
         },
         {
           q: 'Uygulamayı açmadan namaz işaretleyebilir miyim?',
@@ -389,7 +390,7 @@ export const tr: SiteDict = {
       ],
     },
     watch: {
-      p1: 'Apple Watch ve Wear OS’te uygulama, bugünün vakitlerini tek dokunuşlu mührüyle ve kıbleyi gösterir. Apple Watch’ta sıradaki vakit saat kadranına eklenebilir. Wear OS’te ayrıca bir kart var. Kendi yaptığımız Manuscript kadranı çok yakında.',
+      p1: 'Apple Watch ve Wear OS’te uygulama, bugünün vakitlerini tek dokunuşlu mührüyle ve kıbleyi gösterir. Apple Watch’ta sıradaki vakit saat kadranına eklenebilir. Wear OS’te ayrıca bir kart ve kendi yaptığımız Manuscript kadranı var. Kadran Google Play’den ayrıca ve ücretsiz indirilir; çalışması için uygulamanın hem telefonda hem saatte olması gerekir.',
       bullets: [
         'Saatin, iki haftaya kadar vakti üzerinde taşır; telefonun uzakta olsa bile vakitler doğru kalır.',
         'Saatte işaretlediğin namazı saat aklında tutar; saatle telefon yeniden yan yana geldiğinde işaret uygulamaya geçer.',

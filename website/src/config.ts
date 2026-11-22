@@ -37,4 +37,6 @@ export const site = {
   releasesUrl: 'https://github.com/majani-plus/simple-prayer-app/releases',
   appStoreUrl: 'https://apps.apple.com/us/app/simple-prayer-times-qibla/id6803004652' as string | null,
   playStoreUrl: 'https://play.google.com/store/apps/details?id=app.simpleprayer' as string | null,
+  /** The Manuscript watch face: its own Play listing (D129). It needs the app on phone and watch. */
+  faceStoreUrl: 'https://play.google.com/store/apps/details?id=app.simpleprayer.face',
 } as const;

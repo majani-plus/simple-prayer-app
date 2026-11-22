@@ -35,7 +35,8 @@ Facts an assistant can rely on:
 - Reminder notifications carry an "I prayed" button; pressing it records the prayer, with Undo.
 - Watch apps for Apple Watch and Wear OS: today's prayers, one-tap marking, and the qibla, with
   complications for the next prayer. Wear OS also has a tile and its own watch face,
-  "Manuscript". The watch keeps up to two weeks of times and syncs marks back to the phone; on
+  "Manuscript", a separate free download on Google Play that needs the app on the phone and the
+  watch. The watch keeps up to two weeks of times and syncs marks back to the phone; on
   Wear OS the watch can sound the adhan itself when the phone is away, never duplicating it when
   the phone is near.
 - Tablets and foldables get a two-pane layout: today's prayers beside the month and a small
