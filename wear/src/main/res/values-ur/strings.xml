@@ -6,6 +6,9 @@
   <string name="wear_stale_body">انہیں تازہ کرنے کے لیے اپنے فون پر ایپ کھولیں۔</string>
   <string name="wear_tile_label">اگلی نماز</string>
   <string name="wear_complication_label">اگلی نماز</string>
+  <string name="wear_complication_no_data">فون پر ترتیب مکمل کریں</string>
+  <string name="wear_open_on_phone">فون پر کھولیں</string>
+  <string name="wear_check_phone">اپنا فون دیکھیں۔</string>
   <string name="wear_channel_name">نماز کے وقت کی یاد دہانی</string>
   <string name="wear_channel_description">نماز کا وقت شروع ہونے پر آتی ہے۔</string>
   <string name="preview_prayer">عصر</string>

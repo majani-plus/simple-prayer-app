@@ -1,6 +1,7 @@
 package app.simpleprayer.wear
 
 import android.content.ComponentName
+import android.content.Context
 import androidx.wear.tiles.TileService
 import androidx.wear.watchface.complications.datasource.ComplicationDataSourceUpdateRequester
 import com.google.android.gms.wearable.DataEvent
@@ -30,10 +31,15 @@ class EnvelopeListenerService : WearableListenerService() {
     // A fresh envelope carries the drained truth: local render copies it reflects can go.
     EnvelopeStore.load(this)?.let { WearPendingMarks.gcAgainst(this, it) }
 
-    TileService.getUpdater(this).requestUpdate(PrayerTileService::class.java)
-    ComplicationDataSourceUpdateRequester
-      .create(this, ComponentName(this, PrayerComplicationService::class.java))
-      .requestUpdateAll()
+    requestSurfaceUpdates(this)
     AlertScheduler.rearm(this)
   }
+}
+
+/** Tile and complications re-read [EnvelopeStore]. Call after every store of a new envelope. */
+internal fun requestSurfaceUpdates(context: Context) {
+  TileService.getUpdater(context).requestUpdate(PrayerTileService::class.java)
+  ComplicationDataSourceUpdateRequester
+    .create(context, ComponentName(context, PrayerComplicationService::class.java))
+    .requestUpdateAll()
 }

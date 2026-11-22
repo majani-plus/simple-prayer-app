@@ -6,6 +6,9 @@
   <string name="wear_stale_body">افتح التطبيق على هاتفك لتحديثها.</string>
   <string name="wear_tile_label">الصلاة القادمة</string>
   <string name="wear_complication_label">الصلاة القادمة</string>
+  <string name="wear_complication_no_data">أكمل الإعداد على هاتفك</string>
+  <string name="wear_open_on_phone">افتح على الهاتف</string>
+  <string name="wear_check_phone">انظر إلى هاتفك.</string>
   <string name="wear_channel_name">تذكيرات دخول الوقت</string>
   <string name="wear_channel_description">تصل عند دخول وقت الصلاة.</string>
   <string name="preview_prayer">العصر</string>

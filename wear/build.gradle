@@ -45,7 +45,7 @@ android {
     // (`appVersionSource: remote`) — a shared/matching number here would either collide with a
     // future phone build or require coordinating two independently-building EAS profiles against
     // one counter. versionName has no such constraint, so it tracks the phone's.
-    versionCode 900000017
+    versionCode 900000018
     versionName appVersion
   }
 
@@ -134,6 +134,9 @@ dependencies {
 
   // Complication data source service (V6).
   implementation 'androidx.wear.watchface:watchface-complications-data-source-ktx:1.2.1'
+
+  // The never-set-up screen's "Open on phone": opens the phone app's Play page on the phone.
+  implementation 'androidx.wear:wear-remote-interactions:1.2.0'
 
   // TileService speaks ListenableFuture; this is the adapter that answers one immediately.
   implementation 'androidx.concurrent:concurrent-futures:1.2.0'

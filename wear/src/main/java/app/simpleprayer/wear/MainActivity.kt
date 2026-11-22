@@ -181,6 +181,9 @@ class MainActivity : ComponentActivity() {
           if (item.uri.path?.startsWith(WearWire.ENVELOPE_PATH) != true) continue
           val json = DataMapItem.fromDataItem(item.freeze()).dataMap.getString(WearWire.KEY_JSON) ?: continue
           EnvelopeStore.store(this, json)
+          // The listener never fired for this envelope, so nothing else will tell the tile
+          // and the face's slots that data now exists.
+          requestSurfaceUpdates(this)
           AlertScheduler.rearm(this)
           break
         }

@@ -6,6 +6,9 @@
   <string name="wear_stale_body">Güncellemek için telefonunuzda Simple Prayer\'ı açın.</string>
   <string name="wear_tile_label">Sıradaki namaz</string>
   <string name="wear_complication_label">Sıradaki namaz</string>
+  <string name="wear_complication_no_data">Telefonda kurun</string>
+  <string name="wear_open_on_phone">Telefonda aç</string>
+  <string name="wear_check_phone">Telefonunuza bakın.</string>
   <string name="wear_channel_name">Vakit hatırlatmaları</string>
   <string name="wear_channel_description">Namaz vakti girdiğinde gelir.</string>
   <string name="preview_prayer">İkindi</string>

@@ -86,6 +86,14 @@
       <meta-data
         android:name="android.support.wearable.complications.UPDATE_PERIOD_SECONDS"
         android:value="0" />
+      <!-- Our own face may read this source without the RECEIVE_COMPLICATION_DATA prompt.
+           ComplicationDataSourceService reference: "a comma separated list of watch faces or
+           packages ... An entry can also be a package name ... in which case any watch face
+           under the app with that package name will be considered safe." A package, not a
+           component: a Watch Face Format face has no service class of its own. -->
+      <meta-data
+        android:name="android.support.wearable.complications.SAFE_WATCH_FACES"
+        android:value="app.simpleprayer.face" />
     </service>
 
     <!-- The conditional local adhan's moving parts (see Alerts.kt). -->

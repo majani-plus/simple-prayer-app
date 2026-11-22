@@ -16,6 +16,12 @@
   <string name="wear_stale_body">Open Simple Prayer on your phone.</string>
   <string name="wear_tile_label">Next prayer</string>
   <string name="wear_complication_label">Next prayer</string>
+  <!-- The text complication when there is nothing to show yet. Other faces cut a text slot
+       at about seven characters, so keep it as short as the language allows. -->
+  <string name="wear_complication_no_data">Set up on phone</string>
+  <!-- The never-set-up screen's button: opens the Play Store page on the paired phone. -->
+  <string name="wear_open_on_phone">Open on phone</string>
+  <string name="wear_check_phone">Look at your phone.</string>
   <string name="wear_channel_name">Prayer-time reminders</string>
   <string name="wear_channel_description">Arrives when a prayer\'s time begins.</string>
   <string name="preview_prayer">Asr</string>

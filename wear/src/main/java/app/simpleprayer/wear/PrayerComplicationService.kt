@@ -1,5 +1,7 @@
 package app.simpleprayer.wear
 
+import android.app.PendingIntent
+import android.content.Intent
 import android.graphics.drawable.Icon
 import androidx.wear.watchface.complications.data.ComplicationData
 import androidx.wear.watchface.complications.data.ComplicationType
@@ -50,7 +52,7 @@ class PrayerComplicationService : SuspendingComplicationDataSourceService() {
 
   override suspend fun onComplicationRequest(request: ComplicationRequest): ComplicationData? {
     val now = System.currentTimeMillis()
-    val subject = resolve(now) ?: return NoDataComplicationData()
+    val subject = resolve(now) ?: return nothingYet(request.complicationType)
     val countdown = TimeDifferenceComplicationText.Builder(
       TimeDifferenceStyle.SHORT_DUAL_UNIT,
       CountDownTimeReference(Instant.ofEpochMilli(subject.target))
@@ -61,6 +63,7 @@ class PrayerComplicationService : SuspendingComplicationDataSourceService() {
         ShortTextComplicationData.Builder(countdown, name)
           .setTitle(name)
           .setMonochromaticImage(mark())
+          .setTapAction(openApp())
           .build()
       ComplicationType.RANGED_VALUE -> {
         // Span-relative seconds rather than raw epoch floats: Float32 cannot carry an epoch
@@ -100,6 +103,30 @@ class PrayerComplicationService : SuspendingComplicationDataSourceService() {
       else -> null
     }
   }
+
+  /**
+   * No envelope yet, or one past its horizon. A blank slot read as a broken face (a 1-star review
+   * said exactly that), so the text slot says where the fix is and opens the watch app, whose
+   * screen says the rest. No title: our own face then draws the text alone. The ring stays
+   * NoData, a quiet track, never a gauge of nothing.
+   */
+  private fun nothingYet(type: ComplicationType): ComplicationData {
+    if (type != ComplicationType.SHORT_TEXT) return NoDataComplicationData()
+    val hint = PlainComplicationText.Builder(getString(R.string.wear_complication_no_data)).build()
+    return ShortTextComplicationData.Builder(hint, hint)
+      .setMonochromaticImage(mark())
+      .setTapAction(openApp())
+      .build()
+  }
+
+  // Deliberately not on RANGED_VALUE: on our own face that slot is the whole dial, and a tap
+  // anywhere on the face opening the app is not what anyone means.
+  private fun openApp(): PendingIntent =
+    PendingIntent.getActivity(
+      this, 0,
+      Intent(this, MainActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK),
+      PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
+    )
 
   private fun mark(): MonochromaticImage =
     MonochromaticImage.Builder(Icon.createWithResource(this, R.drawable.ic_mosque)).build()

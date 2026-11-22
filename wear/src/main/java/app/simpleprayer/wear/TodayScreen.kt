@@ -1,5 +1,8 @@
 package app.simpleprayer.wear
 
+import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.background
@@ -23,19 +26,24 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.layout.Placeable
 import androidx.compose.ui.layout.SubcomposeLayout
 import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.text.PlatformTextStyle
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.rememberTextMeasurer
 import androidx.compose.ui.text.style.LineHeightStyle
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Constraints
@@ -45,6 +53,7 @@ import androidx.compose.ui.unit.sp
 import androidx.wear.compose.foundation.rotary.RotaryScrollableDefaults
 import androidx.wear.compose.foundation.rotary.rotaryScrollable
 import androidx.wear.compose.material.Text
+import androidx.wear.remote.interactions.RemoteActivityHelper
 import java.text.NumberFormat
 import java.util.Locale
 import kotlin.math.sqrt
@@ -703,8 +712,53 @@ internal fun EmptyFace(stale: Boolean, scroll: ScrollState) {
         textAlign = TextAlign.Center,
         modifier = Modifier.padding(top = 4.dp)
       )
+      // Never set up: maybe the phone has no Simple Prayer at all (the face and this app can be
+      // installed from the watch alone). One tap opens its Play page on the phone. Not offered
+      // once the phone has synced: then the app is there and only needs opening.
+      if (!stale) OpenOnPhoneButton(arabicSystem)
     }
   }
+}
+
+@Composable
+private fun OpenOnPhoneButton(arabicSystem: Boolean) {
+  val context = LocalContext.current
+  var sent by remember { mutableStateOf(false) }
+  val size = essentialSp(13f)
+  val face = uiFace(arabicSystem, size, weight = FontWeight.SemiBold)
+  val shape = RoundedCornerShape(24.dp)
+  Box(
+    contentAlignment = Alignment.Center,
+    modifier = Modifier
+      .padding(top = 10.dp)
+      .heightIn(min = 48.dp)
+      .background(pal("card"), shape)
+      .border(1.dp, pal("borderStrong"), shape)
+      .clickable(enabled = !sent, role = Role.Button) {
+        sent = true
+        openPlayOnPhone(context) { sent = false }
+      }
+      .padding(horizontal = 16.dp, vertical = 6.dp)
+  ) {
+    Text(
+      text = androidx.compose.ui.res.stringResource(
+        if (sent) R.string.wear_check_phone else R.string.wear_open_on_phone
+      ),
+      fontFamily = face.family,
+      fontWeight = face.weight,
+      fontSize = size.sp,
+      color = pal("ink"),
+      textAlign = TextAlign.Center
+    )
+  }
+}
+
+/** The phone app's Play page, on the paired phone. [onFailed] runs if the phone never got it. */
+private fun openPlayOnPhone(context: Context, onFailed: () -> Unit) {
+  val intent = Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=app.simpleprayer"))
+    .addCategory(Intent.CATEGORY_BROWSABLE)
+  val future = RemoteActivityHelper(context).startRemoteActivity(intent, null)
+  future.addListener({ runCatching { future.get() }.onFailure { onFailed() } }, context.mainExecutor)
 }
 
 /**
