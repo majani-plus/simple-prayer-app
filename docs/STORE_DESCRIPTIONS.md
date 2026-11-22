@@ -322,7 +322,7 @@ Praying is easier when you know someone else is praying too. Pair with one perso
 They never see a prayer you missed, or one you have not marked yet. There is no feed, no ranking, no score. It stays off until you turn it on, and either of you can end it whenever you want.
 
 On your home screen, in your notifications and on your wrist
-Home screen widgets carry a live countdown, and you can mark a prayer straight from the widget. An optional always-on notification keeps the current and next prayer in your shade, with the "I prayed" button on it. The Wear OS app has today's prayers, one-tap marking and the Qibla, and holds two weeks of times for when your phone is not nearby. There is a tile one swipe away, complications for any face, and our own watch face, Manuscript, showing the next prayer and a live countdown. When your phone is away, the watch can sound the azan itself. Tablets and foldables get two panes side by side.
+Home screen widgets carry a live countdown, and you can mark a prayer straight from the widget. An optional always-on notification keeps the current and next prayer in your shade, with the "I prayed" button on it. The Wear OS app has today's prayers, one-tap marking and the Qibla, and holds two weeks of times for when your phone is not nearby. There is a tile one swipe away, complications for any face, and our own watch face, Manuscript, showing the next prayer and a live countdown. Manuscript is a separate free download: search Google Play for Manuscript Simple Prayer. When your phone is away, the watch can sound the azan itself. Tablets and foldables get two panes side by side.
 
 Our pledge
 No ads, ever. No account. No analytics. Your prayer record stays on your phone, and your approximate location only goes to your phone's own map service, to name your city. If you add a prayer buddy, the prayers you mark travel to their phone through a small relay of ours. It deletes each one as soon as their phone has it, and keeps no name, no location and no history. If the app crashes, an anonymous report helps us fix it, and you can switch that off in Settings. If the app helps you, there is an optional tip jar in Settings.
@@ -655,7 +655,7 @@ Kıble
 Pusula Kâbe'yi kadranında gösterir ve ne tarafa döneceğini söyler: "38° sola dön." Kıbleye döndüğünde de kuşkuya yer bırakmadan onaylar. Yön, bulunduğun yere göre gerçek kuzeyden hesaplanır, yalnız manyetik kuzeyden değil. Telefonu düz tutman gerekmez: nasıl tuttuğunu fark eder ve doğru kalır.
 
 Ana ekranında, bildirimlerinde ve bileğinde
-Ana ekran widget'larında canlı geri sayım var; namazı doğrudan widget'tan işaretleyebilirsin. İsteğe bağlı kalıcı bildirim, o anki ve sonraki namazı bildirim alanında tutar; "Kıldım" düğmesi üstündedir. Wear OS uygulamasında günün namazları, tek dokunuşla işaretleme ve kıble var; telefon yanında olmasa da iki haftalık vakti hazır tutar. Kadrandan bir kaydırma uzaklıkta bir kart var, her kadran için komplikasyonlar var, bir de kendi kadranımız Manuscript: sonraki namaz ve canlı geri sayım. Telefon uzaktayken ezanı saat kendisi okuyabilir. Tablet ve katlanabilirlerde iki panel yan yana gelir.
+Ana ekran widget'larında canlı geri sayım var; namazı doğrudan widget'tan işaretleyebilirsin. İsteğe bağlı kalıcı bildirim, o anki ve sonraki namazı bildirim alanında tutar; "Kıldım" düğmesi üstündedir. Wear OS uygulamasında günün namazları, tek dokunuşla işaretleme ve kıble var; telefon yanında olmasa da iki haftalık vakti hazır tutar. Kadrandan bir kaydırma uzaklıkta bir kart var, her kadran için komplikasyonlar var, bir de kendi kadranımız Manuscript: sonraki namaz ve canlı geri sayım. Manuscript ayrı ve ücretsiz bir indirmedir. Google Play'de Manuscript Simple Prayer diye arayabilirsin. Telefon uzaktayken ezanı saat kendisi okuyabilir. Tablet ve katlanabilirlerde iki panel yan yana gelir.
 
 Sözümüz
 Reklam yok, hiçbir zaman. Hesap yok. Analiz yok. Namaz kaydın telefonunda kalır; yaklaşık konumun yalnızca şehrinin adını bulmak için telefonunun kendi harita servisine gider. Bir namaz arkadaşı eklersen, işaretlediğin namazlar bize ait küçük bir aktarıcı üzerinden onun telefonuna gider; aktarıcı her birini telefonu aldığı anda siler ve isim, konum ya da geçmiş tutmaz. Uygulama çökerse kimliksiz bir çökme raporu düzeltmemize yardım eder; bunu Ayarlar'dan kapatabilirsin. Uygulama işine yaradıysa Ayarlar'da isteğe bağlı bir bahşiş kavanozu var.
@@ -853,7 +853,7 @@ Simple Prayer artık uygulamanın dışında da yaşıyor:
 تعرض البوصلة الكعبة على قرصها وتقول لك بوضوح إلى أين تستدير: «استدر 38° إلى اليسار». ثم تؤكد لك بلا لبس أنك صرت مستقبل القبلة. الاتجاه محسوب من الشمال الحقيقي بحسب موقعك، لا من الشمال المغناطيسي وحده. وخلافًا لأكثر تطبيقات الصلاة، لا يلزمك إمساك الهاتف مبسوطًا: يلاحظ التطبيق كيف تمسكه ويبقى ثابتًا ودقيقًا على كل حال.
 
 على شاشتك الرئيسية وفي إشعاراتك وعلى معصمك
-تطبيقات الشاشة الرئيسية المصغّرة تحمل عدًّا تنازليًا حيًّا، وتستطيع تسجيل الصلاة من الأداة نفسها. إشعار دائم اختياري يُبقي الصلاة الحاضرة والتالية أمامك، وزر «صَلَّيْتُ» عليه. تطبيق Wear OS فيه صلوات اليوم والتسجيل بنقرة والقبلة، ويحفظ مواقيت أسبوعين ليبقى صحيحًا وهاتفك بعيد؛ وهناك بطاقة على بُعد سحبة من واجهة الساعة، ومعلومات حية لأي واجهة، وواجهة ساعة من صنعنا اسمها «مخطوطة» تعرض الصلاة التالية بعدّ تنازلي حي. وحين يبعد هاتفك ترفع الساعة الأذان بنفسها، ولا تكرره أبدًا والهاتف قريب. وعلى الأجهزة اللوحية والقابلة للطي يستفيد التطبيق من المساحة بواجهة من لوحين.
+تطبيقات الشاشة الرئيسية المصغّرة تحمل عدًّا تنازليًا حيًّا، وتستطيع تسجيل الصلاة من الأداة نفسها. إشعار دائم اختياري يُبقي الصلاة الحاضرة والتالية أمامك، وزر «صَلَّيْتُ» عليه. تطبيق Wear OS فيه صلوات اليوم والتسجيل بنقرة والقبلة، ويحفظ مواقيت أسبوعين ليبقى صحيحًا وهاتفك بعيد؛ وهناك بطاقة على بُعد سحبة من واجهة الساعة، ومعلومات حية لأي واجهة، وواجهة ساعة من صنعنا اسمها Manuscript تعرض الصلاة التالية بعدّ تنازلي حي، وهي تنزيل مجاني منفصل: ابحث في Google Play عن Manuscript Simple Prayer. وحين يبعد هاتفك ترفع الساعة الأذان بنفسها، ولا تكرره أبدًا والهاتف قريب. وعلى الأجهزة اللوحية والقابلة للطي يستفيد التطبيق من المساحة بواجهة من لوحين.
 
 وعدنا لك
 بلا إعلانات أبدًا. بلا حساب. بلا تحليلات. سجل صلاتك يبقى على هاتفك، وموقعك التقريبي لا يذهب إلا إلى خدمة الخرائط في هاتفك نفسه ليعرف اسم مدينتك. وإن أضفت رفيق صلاة، فإن الصلوات التي تسجّلها تصل إلى هاتفه عبر خادم وسيط صغير لنا، يحذف كل إشارة فور وصولها إليه، ولا يحتفظ باسم ولا موقع ولا تاريخ. وإن تعطّل التطبيق، يساعدنا تقرير عطل مجهول الهوية على إصلاحه، ويمكنك إيقافه من الإعدادات. وإن نفعك التطبيق، ففي الإعدادات إكرامية اختيارية.
@@ -1000,7 +1000,7 @@ Simple Prayer پانچوں نمازوں کے اوقات دکھاتی ہے، قب
 وہ کبھی وہ نماز نہیں دیکھتے جو آپ سے چھوٹ گئی، نہ وہ جو آپ نے ابھی درج نہیں کی۔ نہ سرگرمیوں کی کوئی فہرست ہے، نہ درجہ بندی، نہ اسکور۔ جب تک آپ اسے چالو نہ کریں، یہ بند رہتا ہے، اور آپ دونوں میں سے کوئی بھی جب چاہے اسے ختم کر سکتا ہے۔
 
 ہوم اسکرین، اطلاعات اور کلائی پر
-ہوم اسکرین کے وجٹ پر وقت کی الٹی گنتی چلتی رہتی ہے، اور آپ وجٹ سے ہی نماز درج کر سکتے ہیں۔ ایک اختیاری مستقل اطلاع موجودہ اور اگلی نماز دکھاتی ہے، "میں نے پڑھ لی" کے بٹن کے ساتھ۔ Wear OS کی ایپ میں آج کی نمازیں، ایک بار دبا کر اندراج اور قبلہ ہے۔ فون پاس نہ ہو تو بھی اس میں دو ہفتوں کے اوقات رہتے ہیں۔ ٹائل اور کمپلیکیشنز بھی ہیں، اور ہمارا اپنا واچ فیس Manuscript، جو اگلی نماز اور الٹی گنتی دکھاتا ہے۔ جب فون پاس نہ ہو، تو گھڑی خود اذان سنا سکتی ہے۔ ٹیبلٹ اور فولڈ فون پر دو حصے ساتھ ساتھ دکھتے ہیں۔
+ہوم اسکرین کے وجٹ پر وقت کی الٹی گنتی چلتی رہتی ہے، اور آپ وجٹ سے ہی نماز درج کر سکتے ہیں۔ ایک اختیاری مستقل اطلاع موجودہ اور اگلی نماز دکھاتی ہے، "میں نے پڑھ لی" کے بٹن کے ساتھ۔ Wear OS کی ایپ میں آج کی نمازیں، ایک بار دبا کر اندراج اور قبلہ ہے۔ فون پاس نہ ہو تو بھی اس میں دو ہفتوں کے اوقات رہتے ہیں۔ ٹائل اور کمپلیکیشنز بھی ہیں، اور ہمارا اپنا واچ فیس Manuscript، جو اگلی نماز اور الٹی گنتی دکھاتا ہے۔ یہ الگ سے مفت ملتا ہے: Google Play میں Manuscript Simple Prayer تلاش کریں۔ جب فون پاس نہ ہو، تو گھڑی خود اذان سنا سکتی ہے۔ ٹیبلٹ اور فولڈ فون پر دو حصے ساتھ ساتھ دکھتے ہیں۔
 
 ہمارا وعدہ
 اشتہار کبھی نہیں۔ کوئی اکاؤنٹ نہیں۔ استعمال کا کوئی تجزیہ نہیں۔ آپ کی نمازوں کا ریکارڈ آپ کے فون پر رہتا ہے۔ آپ کا اندازاً مقام صرف آپ کے فون کی اپنی نقشہ سروس کو جاتا ہے، تاکہ آپ کے شہر کا نام معلوم ہو۔ اگر آپ نماز کا کوئی ساتھی شامل کریں، تو جو نمازیں آپ درج کریں وہ ہمارے ایک چھوٹے سے درمیانی سرور کے ذریعے ان کے فون تک جاتی ہیں۔ ان کے فون پر پہنچتے ہی سرور ہر ایک کو مٹا دیتا ہے، اور نہ کوئی نام رکھتا ہے، نہ مقام، نہ پچھلا ریکارڈ۔ اگر ایپ کریش ہو جائے، تو ایک گمنام رپورٹ ہمیں اسے ٹھیک کرنے میں مدد دیتی ہے، اور آپ اسے ترتیبات میں بند کر سکتے ہیں۔ ایپ کام آئے تو ترتیبات میں اختیاری ٹپ دے سکتے ہیں۔
@@ -1022,29 +1022,137 @@ Simple Prayer انگریزی، عربی، ترکی اور اردو میں دست
 
 ## Google Play — the Manuscript watch face (`app.simpleprayer.face`)
 
-### Title, short descriptions
+The face cannot work alone. Its prayer line and ring come from the Simple Prayer Wear OS app, and
+that app gets its times from the phone app. So every language opens with what to install, and
+then the steps. In the watch's own list of faces it is called "Simple Prayer"
+(`wear-face/.../strings.xml`), and the steps say so.
+
+The same text is in `fastlane/metadata/android-face/<locale>/` and is pushed with:
+
+```sh
+fastlane supply --package_name app.simpleprayer.face --json_key fastlane/play_service_account.json \
+  --metadata_path fastlane/metadata/android-face --skip_upload_apk true --skip_upload_aab true \
+  --skip_upload_images true --skip_upload_screenshots true --skip_upload_changelogs true
+```
+
+### English (en-US)
+
+Title (30), short description (80):
 
 ```
 Manuscript · Simple Prayer
 ```
 ```
-A calm watch face with prayer times: the next prayer, a live countdown, Hijri date.
-```
-```
-Sade bir kadran: sonraki namaz, canlı geri sayım ve hicri tarih.
-```
-```
-واجهة ساعة هادئة: الصلاة التالية، عدّ تنازلي حي، والتاريخ الهجري.
+Prayer watch face. Needs the free Simple Prayer app on your phone and watch.
 ```
 
-### Full description (en)
+Full description:
 
 ```
-Manuscript is a watch face for people who pray. It shows the time, the Hijri date, the next prayer with a live countdown, and a quiet ring that fills as the prayer's time passes.
+Manuscript needs the free Simple Prayer app on your phone and on your watch. The phone works out the prayer times and sends them to the watch. Without the app, the face shows only the time and the Hijri date.
 
-It is calm on purpose: warm dark paper, a serif clock, and nothing that flashes or nags. The always-on display keeps just the time and the next prayer.
+How to set it up
+1. Install Simple Prayer on your Android phone from Google Play.
+2. Open it once and go through the first steps.
+3. Install Simple Prayer on your watch too. In Google Play on your phone, the Simple Prayer page lets you choose your watch. You can also find it in Google Play on the watch.
+4. Install Manuscript and choose it as your watch face. In the watch's list of faces, it is called Simple Prayer.
 
-The prayer data comes from the free Simple Prayer app for Wear OS. Without it, Manuscript still works as a clean watch face — install Simple Prayer on your watch to fill the complications.
+What it shows
+The time, the Hijri date, and the next prayer with a live countdown. A thin ring fills as the time of the current prayer passes.
+
+It is calm on purpose: warm dark paper, a serif clock, and nothing that flashes. When the screen dims, it keeps only the time and the next prayer.
 
 No ads. No account. Free.
+```
+
+### Türkçe (tr-TR)
+
+Title (30), short description (80):
+
+```
+Manuscript · Simple Prayer
+```
+```
+Namaz vakitli kadran. Telefonda ve saatte Simple Prayer uygulaması gerekir.
+```
+
+Full description:
+
+```
+Manuscript için ücretsiz Simple Prayer uygulaması hem telefonunda hem saatinde kurulu olmalı. Namaz vakitlerini telefon hesaplar ve saate gönderir. Uygulama olmadan kadran yalnızca saati ve hicri tarihi gösterir.
+
+Kurulum
+1. Simple Prayer'ı Google Play'den Android telefonuna yükle.
+2. Uygulamayı bir kez aç ve ilk adımları tamamla.
+3. Simple Prayer'ı saatine de yükle. Telefondaki Google Play'de Simple Prayer sayfasından saatini seçebilirsin. Saatteki Google Play'de de bulabilirsin.
+4. Manuscript'i yükle ve saat kadranı olarak seç. Saatin kadran listesinde adı Simple Prayer'dır.
+
+Neler gösterir
+Saati, hicri tarihi, sonraki namazı ve ona kalan süreyi. İnce bir halka, o anki namazın vakti geçtikçe dolar.
+
+Sakin olsun diye böyle yapıldı: sıcak, koyu bir zemin ve yanıp sönen hiçbir şey yok. Ekran kısılınca yalnızca saat ve sonraki namaz kalır.
+
+Reklam yok. Hesap yok. Ücretsiz.
+```
+
+### العربية (ar)
+
+Title (30), short description (80):
+
+```
+Manuscript · Simple Prayer
+```
+```
+واجهة ساعة للصلاة. تحتاج تطبيق Simple Prayer المجاني على الهاتف والساعة.
+```
+
+Full description:
+
+```
+تحتاج واجهة Manuscript إلى تطبيق Simple Prayer المجاني على هاتفك وعلى ساعتك. الهاتف يحسب مواقيت الصلاة ويرسلها إلى الساعة. ومن دون التطبيق لا تعرض الواجهة إلا الوقت والتاريخ الهجري.
+
+طريقة التشغيل
+1. ثبّت Simple Prayer على هاتف أندرويد من Google Play. اسمه في المتجر بالعربية «مواقيت الصلاة، قبلة وقضاء».
+2. افتحه مرة واحدة وأكمل خطوات البداية.
+3. ثبّت Simple Prayer على ساعتك أيضًا. في Google Play على هاتفك تتيح لك صفحة التطبيق اختيار ساعتك. ويمكنك أيضًا أن تجده في Google Play على الساعة.
+4. ثبّت Manuscript واخترها واجهةً لساعتك. اسمها في قائمة الواجهات على الساعة Simple Prayer.
+
+ماذا تعرض
+الوقت، والتاريخ الهجري، والصلاة التالية مع عدّ تنازلي حي. وحلقة رفيعة تمتلئ مع مرور وقت الصلاة الحاضرة.
+
+تصميمها هادئ عن قصد: خلفية داكنة دافئة، ولا شيء يومض. وحين تخفت الشاشة يبقى الوقت والصلاة التالية فقط.
+
+بلا إعلانات. بلا حساب. مجانية.
+```
+
+### اردو (ur)
+
+Title (30), short description (80):
+
+```
+Manuscript · Simple Prayer
+```
+```
+نماز کے اوقات والا واچ فیس۔ فون اور گھڑی پر مفت Simple Prayer ایپ ضروری ہے۔
+```
+
+Full description:
+
+```
+Manuscript کے لیے مفت Simple Prayer ایپ آپ کے فون اور آپ کی گھڑی، دونوں پر ہونی چاہیے۔ نماز کے اوقات فون نکالتا ہے اور گھڑی کو بھیجتا ہے۔ ایپ کے بغیر یہ واچ فیس صرف وقت اور ہجری تاریخ دکھاتا ہے۔
+
+اسے کیسے چلائیں
+1. اپنے Android فون پر Google Play سے Simple Prayer انسٹال کریں۔
+2. ایپ ایک بار کھولیں اور شروع کے مراحل پورے کریں۔
+3. Simple Prayer اپنی گھڑی پر بھی انسٹال کریں۔ فون کے Google Play میں Simple Prayer کے صفحے پر آپ اپنی گھڑی منتخب کر سکتے ہیں۔ یا گھڑی کے Google Play میں اسے تلاش کریں۔
+4. Manuscript انسٹال کریں، پھر اسے اپنا واچ فیس منتخب کریں۔ گھڑی پر واچ فیس کی فہرست میں اس کا نام Simple Prayer ہے۔
+
+یہ کیا دکھاتا ہے
+وقت، ہجری تاریخ، اور اگلی نماز تک کی الٹی گنتی۔ ایک پتلا دائرہ موجودہ نماز کا وقت گزرنے کے ساتھ بھرتا جاتا ہے۔
+
+یہ جان بوجھ کر پرسکون رکھا گیا ہے: گہرا، گرم رنگ، اور کوئی چیز چمکتی نہیں۔ جب اسکرین مدھم ہو تو صرف وقت اور اگلی نماز رہتی ہے۔
+
+اشتہار نہیں۔ اکاؤنٹ نہیں۔ مفت۔
+
+اردو متن مصنوعی ذہانت کی مدد سے لکھا گیا ہے۔
 ```

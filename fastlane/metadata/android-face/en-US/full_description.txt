@@ -1,0 +1,14 @@
+Manuscript needs the free Simple Prayer app on your phone and on your watch. The phone works out the prayer times and sends them to the watch. Without the app, the face shows only the time and the Hijri date.
+
+How to set it up
+1. Install Simple Prayer on your Android phone from Google Play.
+2. Open it once and go through the first steps.
+3. Install Simple Prayer on your watch too. In Google Play on your phone, the Simple Prayer page lets you choose your watch. You can also find it in Google Play on the watch.
+4. Install Manuscript and choose it as your watch face. In the watch's list of faces, it is called Simple Prayer.
+
+What it shows
+The time, the Hijri date, and the next prayer with a live countdown. A thin ring fills as the time of the current prayer passes.
+
+It is calm on purpose: warm dark paper, a serif clock, and nothing that flashes. When the screen dims, it keeps only the time and the next prayer.
+
+No ads. No account. Free.

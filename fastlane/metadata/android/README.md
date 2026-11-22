@@ -11,3 +11,11 @@ These folders serve two readers:
 
 So never run `fastlane supply` against Play without the three `--skip_upload_*` flags above, or the
 Play listing would be overwritten with the F-Droid text.
+
+To push the Play listing text itself, build a separate folder from `docs/STORE_DESCRIPTIONS.md`
+(per locale: `title.txt`, `short_description.txt`, `full_description.txt`) and point
+`--metadata_path` at it, with `--skip_upload_images true --skip_upload_screenshots true
+--skip_upload_changelogs true`. Never point it at this folder.
+
+`../android-face/` is the Play listing of the Manuscript watch face (`app.simpleprayer.face`). It
+is Play text, not F-Droid text; the push command is in `docs/STORE_DESCRIPTIONS.md`.
