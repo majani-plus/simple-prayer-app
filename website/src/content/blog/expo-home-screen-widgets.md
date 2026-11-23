@@ -108,15 +108,14 @@ views.setChronometer(
 The layout sets `android:countDown="true"` on the view.
 
 There are two kinds of countdown (D190). If the current prayer is not marked, the widget counts
-down to the end of its time, in strong ink, with seconds. If it is marked, it counts down to the
-start of the next prayer, in a muted colour, with hours and minutes only (D198). The two also differ
-in words, so neither one depends on colour alone.
+down to the end of its time, in strong ink. If it is marked, it counts down to the start of the
+next prayer, in a muted colour and a lighter weight. The two also differ in words, so neither one
+depends on colour alone.
 
-The calm countdown cannot use a `Chronometer`, because a `Chronometer` cannot hide seconds. On
-Android it is plain text, and a non-waking alarm redraws it each time the minute changes. On iOS,
-we measured the system timer styles, and none of them shows only hours and minutes. So the calm
-countdown is plain text there too. The widget's timeline gets one entry per minute, up to 120, and
-reloads after the last one.
+For a while the calm countdown showed hours and minutes only (D198). That made "0:45" (45
+minutes) and "45:12" (45 minutes, 12 seconds) look alike, and you could not tell which was which.
+Now both are `Chronometer`s (on iOS, both are `Text(timerInterval:)`) with the same digits in the
+same places (D214). Only the ink and the weight change.
 
 ## Transition alarms
 
@@ -185,4 +184,4 @@ covered the snapshot well, but they could not show us a filled ring or a negativ
 - [modules/prayer-widgets/contract/overlay-cases.json](https://github.com/majani-plus/simple-prayer-app/blob/main/modules/prayer-widgets/contract/overlay-cases.json)
 - [targets/widget/Provider.swift](https://github.com/majani-plus/simple-prayer-app/blob/main/targets/widget/Provider.swift)
 - [targets/widget/expo-target.config.js](https://github.com/majani-plus/simple-prayer-app/blob/main/targets/widget/expo-target.config.js)
-- [docs/DECISIONS.md](https://github.com/majani-plus/simple-prayer-app/blob/main/docs/DECISIONS.md) (D100, D102, D106, D108, D109, D180, D182, D189, D190, D198)
+- [docs/DECISIONS.md](https://github.com/majani-plus/simple-prayer-app/blob/main/docs/DECISIONS.md) (D100, D102, D106, D108, D109, D180, D182, D189, D190, D198, D214)

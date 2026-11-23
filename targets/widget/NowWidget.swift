@@ -16,7 +16,7 @@ import WidgetKit
  */
 struct NowWidget: Widget {
   var body: some WidgetConfiguration {
-    StaticConfiguration(kind: "SPNowWidget", provider: PrayerTimelineProvider(minuteEntries: true)) { entry in
+    StaticConfiguration(kind: "SPNowWidget", provider: PrayerTimelineProvider()) { entry in
       NowEntryView(entry: entry)
         // Widgets are fixed-size boxes: past this size the largest text sizes only clip.
         .dynamicTypeSize(...DynamicTypeSize.xxLarge)
@@ -47,11 +47,11 @@ struct NowEntryView: View {
       let night = isNight(snapshot.theme, colorScheme)
       switch family {
       case .systemSmall:
-        NowSmallView(snapshot: snapshot, day: day, segment: segment, effective: effective, night: night, date: entry.date)
+        NowSmallView(snapshot: snapshot, day: day, segment: segment, effective: effective, night: night)
           .environment(\.layoutDirection, snapshot.rtl ? .rightToLeft : .leftToRight)
           .modifier(PaperGround(night: night))
       case .systemMedium:
-        NowStripView(snapshot: snapshot, day: day, segment: segment, effective: effective, night: night, date: entry.date)
+        NowStripView(snapshot: snapshot, day: day, segment: segment, effective: effective, night: night)
           .environment(\.layoutDirection, snapshot.rtl ? .rightToLeft : .leftToRight)
           .modifier(PaperGround(night: night))
       default:
@@ -71,8 +71,6 @@ struct NowSmallView: View {
   let segment: WidgetSnapshot.Segment
   let effective: [String: String]
   let night: Bool
-  /// The timeline entry's date — what the calm H:MM is counted from (D198), never `Date()`.
-  let date: Date
 
   private var current: WidgetSnapshot.DayPrayer? {
     segment.current.flatMap { name in day.prayers.first { $0.prayer == name } }
@@ -181,7 +179,7 @@ struct NowSmallView: View {
       // the deadline's strong ink and accent — with the recorded status kept in words: "Prayed ·
       // until Asr". Fajr marked stays "prayed" until sunrise, counting to Dhuhr / Jumu'ah (D190).
       VStack(spacing: 3) {
-        calmTimer(to: next, from: date, size: 26, c: c, language: language)
+        calmTimer(to: next, size: 26, c: c, language: language)
           .multilineTextAlignment(.center)
         HStack(spacing: 9) {
           Text("\(captionFor(status: status, isCurrent: true, isFuture: false, strings: strings)) · \(next.untilStartText ?? next.name)")
@@ -209,7 +207,7 @@ struct NowSmallView: View {
       VStack(spacing: 3) {
         HStack(spacing: 7) {
           GlyphSun(color: c("soft"))
-          calmTimer(to: subject, from: date, size: 24, c: c, language: language)
+          calmTimer(to: subject, size: 24, c: c, language: language)
         }
         Text(subject.untilStartText ?? subject.name)
           .font(WidgetFonts.ui(language, 13, italic: true))
@@ -311,8 +309,6 @@ struct NowStripView: View {
   let segment: WidgetSnapshot.Segment
   let effective: [String: String]
   let night: Bool
-  /// The timeline entry's date — what the calm H:MM is counted from (D198), never `Date()`.
-  let date: Date
 
   private var current: WidgetSnapshot.DayPrayer? {
     segment.current.flatMap { name in day.prayers.first { $0.prayer == name } }
@@ -425,7 +421,7 @@ struct NowStripView: View {
         caption(current.untilText ?? strings.leftToPray, color: c("accent"), language: language)
       } else if let current, let status = currentStatus, let next, next.at > nowMs {
         // Marked: the calm countdown to the next prayer's start, status kept in words (D190).
-        calmTimer(to: next, from: date, size: 30, c: c, language: language)
+        calmTimer(to: next, size: 30, c: c, language: language)
           .multilineTextAlignment(.leading)
         caption(
           "\(captionFor(status: status, isCurrent: true, isFuture: false, strings: strings)) · \(next.untilStartText ?? next.name)",
@@ -443,7 +439,7 @@ struct NowStripView: View {
         HStack(spacing: 9) {
           GlyphSun(color: c("soft"))
             .scaleEffect(1.4)
-          calmTimer(to: subject, from: date, size: 28, c: c, language: language)
+          calmTimer(to: subject, size: 28, c: c, language: language)
             .multilineTextAlignment(.leading)
         }
         caption(subject.untilStartText ?? subject.name, color: c("muted"), language: language)
@@ -608,17 +604,16 @@ struct AccessoryEmptyView: View {
   }
 }
 
-/// The calm countdown (D190): time until the next prayer STARTS, in muted ink — never the
-/// deadline's strong ink, so the two can't be mistaken for each other. Hours and minutes only
-/// (D198): static text, kept current by the timeline's minute entries (`Provider`).
+/// The calm countdown (D190): time until the next prayer STARTS. It ticks in the same H:MM:SS as
+/// the deadline countdown, so minutes and seconds always sit in the same places (D214); it is
+/// only quieter — muted ink and semibold, never the deadline's strong ink and bold.
 func calmTimer(
   to prayer: WidgetSnapshot.DayPrayer,
-  from date: Date,
   size: CGFloat,
   c: (String) -> Color,
   language: String
 ) -> some View {
-  Text(calmClock(prayer.at - date.timeIntervalSince1970 * 1000, sample: prayer.timeText))
+  Text(timerInterval: countdownRange(to: Date(timeIntervalSince1970: prayer.at / 1000)), countsDown: true)
     .font(WidgetFonts.ui(language, size, weight: .semibold))
     .foregroundStyle(c("muted"))
     .lineLimit(1)

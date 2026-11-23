@@ -18,6 +18,7 @@ import android.content.Intent
  */
 internal object TransitionAlarms {
   private const val REQUEST_CODE = 200
+  // The retired calm-countdown minute tick (D198, undone by D214); [cancel] still clears it.
   private const val MINUTE_REQUEST_CODE = 201
 
   fun armNext(context: Context, snapshot: Snapshot?, now: Long) {
@@ -54,39 +55,6 @@ internal object TransitionAlarms {
       }
     }
     alarmManager.setAndAllowWhileIdle(AlarmManager.RTC, triggerAt, pending)
-  }
-
-  /**
-   * The calm countdown's minute tick (D198): it shows H:MM as plain text, so it is redrawn when
-   * the shown minute changes — only while one is showing ([calmTarget] non-null); otherwise the
-   * tick is cancelled and never re-armed. NON-wakeup (`RTC`): a sleeping phone is not woken to
-   * repaint a widget nobody sees; the tick lands when it next wakes, and screen-on / unlock
-   * redraw anyway (D189). Same receiver as the boundary alarm, since a redraw is a redraw.
-   */
-  fun armMinute(context: Context, calmTarget: Long?, now: Long) {
-    val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as? AlarmManager ?: return
-    val pending = pendingIntent(context, MINUTE_REQUEST_CODE)
-    if (calmTarget == null || calmTarget <= now) {
-      alarmManager.cancel(pending)
-      return
-    }
-    // The text rounds minutes up, so it changes when the time left drops to a whole minute.
-    val shown = (calmTarget - now + 59_999) / 60_000
-    val triggerAt = calmTarget - (shown - 1) * 60_000 + 500
-    val canExact =
-      android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.S ||
-        alarmManager.canScheduleExactAlarms()
-    if (canExact) {
-      try {
-        alarmManager.setExact(AlarmManager.RTC, triggerAt, pending)
-        return
-      } catch (_: SecurityException) {
-        // Revoked between the check and the call: fall through to the window.
-      }
-    }
-    // ponytail: Android 12+ may stretch a short window toward 10 minutes without the exact grant;
-    // screen-on / unlock still redraw, so the minute is right whenever somebody looks.
-    alarmManager.setWindow(AlarmManager.RTC, triggerAt, 10_000, pending)
   }
 
   fun cancel(context: Context) {

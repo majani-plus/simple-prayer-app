@@ -47,17 +47,13 @@ internal object WidgetRenderer {
     if (listIds.isNotEmpty()) {
       manager.updateAppWidget(listIds, buildSchedule(context, snapshot, now, asRows = true))
     }
-    // The calm countdown's target, if any Now face is showing one: it has no seconds and no
-    // Chronometer, so it needs a redraw each minute (D198).
-    var calmTarget: Long? = null
     if (nowIds.isNotEmpty()) {
-      manager.updateAppWidget(nowIds, buildNow(context, snapshot, now, strip = false) { calmTarget = it })
+      manager.updateAppWidget(nowIds, buildNow(context, snapshot, now, strip = false))
     }
     if (stripIds.isNotEmpty()) {
-      manager.updateAppWidget(stripIds, buildNow(context, snapshot, now, strip = true) { calmTarget = it })
+      manager.updateAppWidget(stripIds, buildNow(context, snapshot, now, strip = true))
     }
     TransitionAlarms.armNext(context, snapshot, now)
-    TransitionAlarms.armMinute(context, calmTarget, now)
   }
 
   fun hasWidgets(context: Context): Boolean {
@@ -242,8 +238,7 @@ internal object WidgetRenderer {
     context: Context,
     snapshot: Snapshot?,
     now: Long,
-    strip: Boolean,
-    onCalm: (target: Long) -> Unit
+    strip: Boolean
   ): RemoteViews {
     val usable = usableSnapshot(context, snapshot, now) ?: return buildEmpty(context, stale = snapshot != null)
     val (day, segment) = usable
@@ -332,15 +327,15 @@ internal object WidgetRenderer {
       )
       views.setTextColor(R.id.countdown, palette("inkStrong", night))
     }
-    // The calm one is hours and minutes only (owner, 2026-11-07: "no seconds counter needed"),
-    // so it is plain text, not a Chronometer, and the caller re-arms a minute redraw (D198).
+    // The calm one ticks in the same H:MM:SS as the deadline, so minutes and seconds never
+    // trade places between the two (D214); it is only quieter — its own semibold Chronometer in
+    // muted ink.
     fun showCalm(target: Long) {
       views.setViewVisibility(R.id.big, android.view.View.GONE)
       views.setViewVisibility(R.id.countdown, android.view.View.GONE)
       views.setViewVisibility(R.id.calm, android.view.View.VISIBLE)
-      views.setTextViewText(R.id.calm, calmClock(target - now, subject.timeText))
+      views.setChronometer(R.id.calm, android.os.SystemClock.elapsedRealtime() + (target - now), null, true)
       views.setTextColor(R.id.calm, palette("muted", night))
-      onCalm(target)
     }
     fun showCap(text: String, color: Int) {
       views.setTextViewText(R.id.cap, text)
@@ -597,18 +592,6 @@ internal object WidgetRenderer {
   private fun palette(role: String, night: Boolean): Int = WidgetPalette.color(role, night)
 
   private fun buddyColor(name: String, night: Boolean): Int = WidgetPalette.buddyColor(name, night)
-
-  /**
-   * The calm countdown as "H:MM" — minutes rounded UP, so the last minute reads 0:01, never 0:00
-   * while there is still time. Digits follow the app's own choice (D40) as the snapshot already
-   * applied it to [sample] (a pre-formatted time): Arabic-Indic there, Arabic-Indic here.
-   */
-  internal fun calmClock(remainingMs: Long, sample: String): String {
-    val minutes = ((remainingMs.coerceAtLeast(0) + 59_999) / 60_000).toInt()
-    val text = "${minutes / 60}:${(minutes % 60).toString().padStart(2, '0')}"
-    if (sample.none { it in '\u0660'..'\u0669' }) return text
-    return text.map { if (it in '0'..'9') '\u0660' + (it - '0') else it }.joinToString("")
-  }
 
   private fun isNight(context: Context, theme: String): Boolean =
     when (theme) {

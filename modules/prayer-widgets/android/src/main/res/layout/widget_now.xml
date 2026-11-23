@@ -148,12 +148,13 @@
         android:visibility="gone"
         android:includeFontPadding="false"
         android:maxLines="1" />
-      <!-- The calm countdown (D198): H:MM, no seconds, redrawn each minute by TransitionAlarms. -->
-      <TextView
+      <!-- The calm countdown (D190/D214): ticks like the deadline one, semibold, tinted muted at runtime. -->
+      <Chronometer
         android:id="@+id/calm"
+        android:countDown="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/lora_700bold"
+        android:fontFamily="@font/lora_600semibold"
         android:fontFeatureSettings="tnum"
         android:textSize="32dp"
         android:visibility="gone"
