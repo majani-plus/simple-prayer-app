@@ -2,4 +2,5 @@
   <!-- Phrasing follows the app's authored Arabic ("الصلاة التالية", src/i18n/locales/ar.json). -->
   <string name="slot_next_prayer">الصلاة التالية</string>
   <string name="slot_prayer_window">حلقة الوقت</string>
+  <string name="face_add_prayer_times">أضف أوقات الصلاة</string>
 </resources>

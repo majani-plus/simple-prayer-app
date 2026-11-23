@@ -2,4 +2,5 @@
   <!-- Phrasing follows the app's authored Turkish ("Sıradaki namaz", src/i18n/locales/tr.json). -->
   <string name="slot_next_prayer">Sıradaki namaz</string>
   <string name="slot_prayer_window">Zaman halkası</string>
+  <string name="face_add_prayer_times">Namaz vakitlerini ekle</string>
 </resources>

@@ -147,16 +147,36 @@
       </TimeText>
     </DigitalClock>
 
-    <!-- Slot 1 — the next-prayer line, locked to the app's provider. Falls back to the
-         system's day-of-week text when the Simple Prayer wear app is not installed. -->
+    <!-- Slot 1 — the next-prayer line, locked to the app's provider. Without the Simple Prayer
+         wear app it is EMPTY and draws a quiet "Add prayer times" line that opens the app (Play
+         offers the install when it is missing). It used to fall back to the day of the week,
+         which made the face look finished while it had no prayer data at all ("doesn't work",
+         a 1-star review). EMPTY is in supportedTypes for the same device-only reason as slot 2.
+         When the app is there but has nothing yet, its provider sends a title-less SHORT_TEXT
+         hint, which the <Default> branch below draws alone. -->
     <ComplicationSlot x="60" y="288" width="330" height="44" slotId="1" name="next_prayer"
-      displayName="slot_next_prayer" supportedTypes="SHORT_TEXT" isCustomizable="FALSE">
+      displayName="slot_next_prayer" supportedTypes="SHORT_TEXT EMPTY" isCustomizable="FALSE">
       <BoundingBox x="0" y="0" width="330" height="44" />
       <DefaultProviderPolicy
         primaryProvider="app.simpleprayer/app.simpleprayer.wear.PrayerComplicationService"
         primaryProviderType="SHORT_TEXT"
-        defaultSystemProvider="DAY_OF_WEEK"
-        defaultSystemProviderType="SHORT_TEXT" />
+        defaultSystemProvider="EMPTY"
+        defaultSystemProviderType="EMPTY" />
+      <!-- <Launch> is a v1 element (AbstractPartType in the v1 XSD; docs: "Introduced in Wear OS
+           4", target "com.example.starter/com.example.starter.MainActivity", "Prompts user to
+           install from the Play Store if not installed"). Interactive only.
+           The Font's text is a BARE string resource name, resolved per locale from values-*/
+           (developer.android.com/training/wearables/wff/text, "Work with resources"). No
+           "@string/" and no whitespace inside the tags, or the lookup fails and the name shows. -->
+      <Complication type="EMPTY">
+        <PartText x="0" y="5" width="330" height="34">
+          <Variant mode="AMBIENT" target="alpha" value="0" />
+          <Launch target="app.simpleprayer/app.simpleprayer.wear.MainActivity" />
+          <Text align="CENTER" ellipsis="TRUE">
+            <Font family="face_regular" size="26" color="#ffad9a6e">face_add_prayer_times</Font>
+          </Text>
+        </PartText>
+      </Complication>
       <Complication type="SHORT_TEXT">
         <Condition>
           <Expressions>

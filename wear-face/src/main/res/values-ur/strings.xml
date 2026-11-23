@@ -2,4 +2,5 @@
   <!-- Phrasing follows the app's Urdu glossary (docs/TONE.md). -->
   <string name="slot_next_prayer">اگلی نماز</string>
   <string name="slot_prayer_window">وقت کا دائرہ</string>
+  <string name="face_add_prayer_times">نماز کے اوقات شامل کریں</string>
 </resources>
