@@ -460,17 +460,12 @@ It deliberately does **not** touch `ios.buildNumber` or `android.versionCode` in
 `appVersionSource: "remote"` those fields are dead (see §3), and writing them would only manufacture
 something that looks authoritative and is not.
 
-It **does** step the `versionCode` in `wear/build.gradle` and `wear-face/build.gradle`, because
-nothing else will. Those are custom Gradle modules outside the CNG-managed tree, so EAS's remote
-counter never reaches them: each carries a hardcoded number, and Play refuses a duplicate. The
-rejection lands at **upload**, long after a green build — 1.2.0 hit exactly that and had to be
-patched by hand (`f68283f`). Each counter steps by one, and they are deliberately unrelated: `wear/`
-shares the phone's `applicationId` so it lives in a 9xx-million block that can never collide with
-EAS's remote numbers, while `wear-face/` is its own Play listing counting up from 1.
-
-Their `versionName` needs no help — both `build.gradle` files already parse `expo.version` out of
-`app.json` at build time, so the marketing version follows the bump for free. That half has always
-worked; only the counters were manual.
+The two Wear `versionCode`s are not stepped by anything any more (since 1.7.2, owner 2026-11-23).
+Both read `versionCode` from `package.json`, the phone's Play code that §"The FOSS versionCode"
+already keeps equal to Play's: `wear/` uses 900000000 + it (it shares the phone's applicationId,
+so its codes must stay in their own block), `wear-face/` uses it as is (its own listing). Phone
+68 ships Wear 900000068 and face 68, all named 1.7.2. A Wear-only fix therefore needs a new
+`package.json` versionCode too, which keeps the whole family on one number.
 
 Write `CHANGELOG.md` entries under `[Unreleased]` as you merge work, in language a user would
 recognise. The script only moves what is already there; it cannot invent release notes.

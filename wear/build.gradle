@@ -28,6 +28,7 @@ def hasEasCredentials = credentialsJsonFile.exists()
 // versionName tracks app.json's `expo.version` — the phone app's own source of truth — so this
 // module can never silently drift to a stale "1.0.0" while the phone ships 1.1.0, 1.2.0, etc.
 def appVersion = new groovy.json.JsonSlurper().parse(rootProject.file('../app.json')).expo.version
+def phoneVersionCode = new groovy.json.JsonSlurper().parse(rootProject.file('../package.json')).versionCode as int
 
 android {
   namespace 'app.simpleprayer.wear'
@@ -38,14 +39,11 @@ android {
     applicationId 'app.simpleprayer'
     minSdk 30
     targetSdk rootProject.ext.has('targetSdkVersion') ? rootProject.ext.targetSdkVersion : 36
-    // Disjoint from the phone's EAS-remote versionCodes forever: the 9xx-million block is Wear's.
-    // This must NOT be made to match the phone's versionCode: Play requires unique, strictly
-    // increasing versionCodes across every artifact sharing this applicationId (phone + wear
-    // both ship as `app.simpleprayer`), and the phone's is auto-incremented remotely by EAS
-    // (`appVersionSource: remote`) — a shared/matching number here would either collide with a
-    // future phone build or require coordinating two independently-building EAS profiles against
-    // one counter. versionName has no such constraint, so it tracks the phone's.
-    versionCode 900000019
+    // 900000000 + the phone's Play versionCode (`versionCode` in package.json, kept equal to Play's;
+    // docs/RELEASE.md). Play needs unique, rising codes across everything sharing this
+    // applicationId, so the Wear block stays disjoint from the phone's, yet follows it: phone 68 ->
+    // Wear 900000068 (owner, 2026-11-23: Wear in sync with the app). versionName is the phone's.
+    versionCode 900000000 + phoneVersionCode
     versionName appVersion
   }
 

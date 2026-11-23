@@ -26,6 +26,7 @@ def hasEasCredentials = credentialsJsonFile.exists()
 // versionName tracks app.json's `expo.version` — the phone app's own source of truth — so this
 // module can never silently drift to a stale "1.0.0" while the phone ships 1.1.0, 1.2.0, etc.
 def appVersion = new groovy.json.JsonSlurper().parse(rootProject.file('../app.json')).expo.version
+def phoneVersionCode = new groovy.json.JsonSlurper().parse(rootProject.file('../package.json')).versionCode as int
 
 android {
   namespace 'app.simpleprayer.face'
@@ -39,11 +40,10 @@ android {
     // claiming 2 here would cost Wear OS 4 watches for no feature.
     minSdk 33
     targetSdk rootProject.ext.has('targetSdkVersion') ? rootProject.ext.targetSdkVersion : 36
-    // This is a separate applicationId/Play listing (app.simpleprayer.face) from the phone and
-    // wear apps, so versionCode has no shared-namespace collision risk — 1 is correct for a
-    // first release regardless of what the phone's build number is. versionName still tracks
-    // the phone's, for a consistent version number across the family.
-    versionCode 17
+    // Its own listing (app.simpleprayer.face), so no collision with the phone: it simply uses the
+    // phone's Play versionCode (`versionCode` in package.json), so the whole family shares one
+    // build number (owner, 2026-11-23). versionName is the phone's too.
+    versionCode phoneVersionCode
     versionName appVersion
   }
 

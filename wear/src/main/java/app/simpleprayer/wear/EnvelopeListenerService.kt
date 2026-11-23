@@ -38,8 +38,19 @@ class EnvelopeListenerService : WearableListenerService() {
 
 /** Tile and complications re-read [EnvelopeStore]. Call after every store of a new envelope. */
 internal fun requestSurfaceUpdates(context: Context) {
-  TileService.getUpdater(context).requestUpdate(PrayerTileService::class.java)
+  requestTileUpdate(context)
+  val app = context.applicationContext
   ComplicationDataSourceUpdateRequester
-    .create(context, ComponentName(context, PrayerComplicationService::class.java))
+    .create(app, ComponentName(app, PrayerComplicationService::class.java))
     .requestUpdateAll()
+}
+
+/**
+ * Asks the tile to re-read. Always through the APPLICATION context: the updater binds to the
+ * system's tile service, and a BroadcastReceiver's context refuses bindService with
+ * ReceiverCallNotAllowedException — the Wear crash Play reported from AlertMarkReceiver
+ * (92 reports, 900000009..900000016).
+ */
+internal fun requestTileUpdate(context: Context) {
+  TileService.getUpdater(context.applicationContext).requestUpdate(PrayerTileService::class.java)
 }

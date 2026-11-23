@@ -10,7 +10,6 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.drawable.Icon
-import androidx.wear.tiles.TileService
 import com.google.android.gms.tasks.Tasks
 import java.util.concurrent.TimeUnit
 
@@ -145,7 +144,7 @@ class AlertMarkReceiver : BroadcastReceiver() {
     val envelope = EnvelopeStore.load(context)
 
     val markId = WearPendingMarks.appendTap(context, day, prayer, clears = false)
-    TileService.getUpdater(context).requestUpdate(PrayerTileService::class.java)
+    requestTileUpdate(context)
 
     val manager = context.getSystemService(NotificationManager::class.java) ?: return
     manager.cancel(AlertScheduler.ADHAN_NOTIFICATION_ID)
@@ -180,7 +179,7 @@ class AlertUndoReceiver : BroadcastReceiver() {
     val prayer = intent.getStringExtra(AlertScheduler.EXTRA_PRAYER) ?: return
     val markId = intent.getStringExtra(AlertScheduler.EXTRA_MARK_ID) ?: return
     WearPendingMarks.appendAnnul(context, day, prayer, targetId = markId)
-    TileService.getUpdater(context).requestUpdate(PrayerTileService::class.java)
+    requestTileUpdate(context)
     context.getSystemService(NotificationManager::class.java)
       ?.cancel(AlertScheduler.CONFIRM_NOTIFICATION_ID)
   }

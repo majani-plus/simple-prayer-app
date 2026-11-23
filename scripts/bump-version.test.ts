@@ -9,7 +9,6 @@
  */
 
 import {
-  bumpGradleVersionCode,
   bumpVersion,
   parseVersion,
   rollChangelog,
@@ -111,64 +110,5 @@ describe('rollChangelog', () => {
     const withoutLinks = '# Changelog\n\n## [Unreleased]\n\n- pending\n';
     const result = rollChangelog(withoutLinks, '1.1.0', '1.0.0', '2026-09-01');
     expect(result).toContain('## [1.1.0] - 2026-09-01');
-  });
-});
-
-describe('bumpGradleVersionCode', () => {
-  // The shape of the real files, comments included — those comments are the reason this needs a
-  // line-anchored regex rather than a bare /versionCode (\d+)/.
-  const WEAR = `android {
-  defaultConfig {
-    // Disjoint from the phone's EAS-remote versionCodes forever: the 9xx-million block is Wear's.
-    // This must NOT be made to match the phone's versionCode, and a shared/matching number here
-    // would either collide with a future phone build or require coordinating one counter.
-    versionCode 900000002
-    versionName appVersion
-  }
-}
-`;
-
-  it('steps the counter by one', () => {
-    const { content, from, to } = bumpGradleVersionCode(WEAR);
-    expect(from).toBe(900000002);
-    expect(to).toBe(900000003);
-    expect(content).toContain('versionCode 900000003');
-  });
-
-  it('leaves the rest of the file untouched, comments included', () => {
-    const { content } = bumpGradleVersionCode(WEAR);
-    expect(content).toBe(WEAR.replace('versionCode 900000002', 'versionCode 900000003'));
-  });
-
-  it('does not mistake prose about versionCode for a declaration', () => {
-    // Every line here mentions versionCode; only one declares it. A naive regex takes the comment
-    // on line 3 and writes a number into the middle of a sentence.
-    const { content, to } = bumpGradleVersionCode(WEAR);
-    expect(to).toBe(900000003);
-    expect(content).toContain("the phone's EAS-remote versionCodes forever");
-    expect(content).toContain("match the phone's versionCode, and a shared");
-  });
-
-  it('preserves the existing indentation and spacing', () => {
-    const tabbed = 'android {\n\t\tversionCode   7\n}\n';
-    expect(bumpGradleVersionCode(tabbed).content).toBe('android {\n\t\tversionCode   8\n}\n');
-  });
-
-  it('steps the watch face counter, which is a small number of its own', () => {
-    // wear-face is a separate Play listing, so it counts from 1 rather than the 9xx-million block.
-    const face = 'defaultConfig {\n    versionCode 2\n    versionName appVersion\n}\n';
-    expect(bumpGradleVersionCode(face).to).toBe(3);
-  });
-
-  it('refuses a file with no versionCode rather than silently doing nothing', () => {
-    // Silence here would mean a green build and a rejected upload a day later.
-    expect(() => bumpGradleVersionCode('android {\n  versionName appVersion\n}\n')).toThrow(
-      /found 0/
-    );
-  });
-
-  it('refuses a file with more than one, rather than guessing which', () => {
-    const twoFlavours = 'a {\n  versionCode 1\n}\nb {\n  versionCode 2\n}\n';
-    expect(() => bumpGradleVersionCode(twoFlavours)).toThrow(/found 2/);
   });
 });

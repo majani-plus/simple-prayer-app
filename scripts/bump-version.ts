@@ -11,17 +11,9 @@
  *   `appVersionSource: "remote"`, so EAS owns the PHONE's build counter server-side and those
  *   `app.json` fields are dead (docs/RELEASE.md). Writing them would only create something that
  *   looks authoritative and is not.
- * - **It DOES step the two Wear `versionCode` literals**, because nothing else does. `wear/` and
- *   `wear-face/` are custom Gradle modules outside the CNG-managed tree, so EAS's remote counter
- *   never reaches them — their `versionCode` is a hardcoded number in each `build.gradle`, and Play
- *   refuses a duplicate. That failure arrives at UPLOAD, long after a green build, which is the
- *   worst place to learn it: 1.2.0 hit it and had to be fixed by hand (commit `f68283f`, "Both Wear
- *   versionCodes step, because Play only tells you by rejecting the upload"). Their `versionName`
- *   needs no help — both `build.gradle` files already read `expo.version` out of `app.json` at
- *   build time, so the marketing version follows this script for free.
- *   The two counters are independent and deliberately unrelated: `wear/` shares the phone's
- *   applicationId and so lives in a 9xx-million block that can never collide with EAS's remote
- *   numbers, while `wear-face/` is its own Play listing counting up from 1. Both simply step by one.
+ * - **It does not touch the two Wear `versionCode`s.** Since 1.7.2 they derive from `versionCode` in
+ *   `package.json` (the phone's Play code, see docs/RELEASE.md): `wear/` is 900000000 + it, and
+ *   `wear-face/` is it, so they follow the phone without a literal to step (owner, 2026-11-23).
  * - **It runs the release checks before tagging.** The original aborted the bump if a generated
  *   artefact failed to rebuild, on the principle that a tag should never point at something broken.
  *   The equivalent here is `bun run pre-release` (lint + typecheck + test). `--skip-checks` exists
@@ -60,14 +52,8 @@ interface VersionParts {
   patch: number;
 }
 
-/**
- * The Wear modules' `build.gradle` files, whose `versionCode` literals this script steps.
- * EAS's remote counter does not reach them (see the header note), so they are ours to move.
- */
-const WEAR_GRADLE_FILES = ['wear/build.gradle', 'wear-face/build.gradle'] as const;
-
 /** Files this script may stage. Anything else in the tree is left alone. */
-const OWNED_FILES = ['app.json', 'package.json', CHANGELOG_PATH, ...WEAR_GRADLE_FILES] as const;
+const OWNED_FILES = ['app.json', 'package.json', CHANGELOG_PATH] as const;
 
 const CHANGELOG = CHANGELOG_PATH;
 
@@ -159,54 +145,6 @@ export function updateVersionInFile(
   node[keys[keys.length - 1]] = newVersion;
   writeFileSync(filePath, `${JSON.stringify(json, null, 2)}\n`);
   log(`updated ${filePath}: ${versionPath} -> ${newVersion}`, 'green');
-}
-
-/**
- * Steps the `versionCode` literal in a Gradle module by one.
- *
- * Pure, so the regex can be pinned by tests rather than trusted — this number is the difference
- * between an upload Play accepts and one it rejects, and the rejection only happens after a build.
- *
- * The match is anchored to a whole line so it cannot hit the several COMMENTS in these files that
- * discuss `versionCode` in prose (`wear/build.gradle` has four). Exactly one declaration must
- * match: zero means the file changed shape and the caller must look, and more than one means the
- * file has per-flavour codes this function is too simple to reason about. Both throw rather than
- * guess, because guessing produces a plausible number and a failed upload a day later.
- *
- * @param content - The `build.gradle` source.
- * @returns The rewritten source and the numbers it moved between.
- * @throws If the file does not contain exactly one `versionCode` declaration.
- */
-export function bumpGradleVersionCode(content: string): {
-  content: string;
-  from: number;
-  to: number;
-} {
-  const declaration = /^([ \t]*)versionCode([ \t]+)(\d+)[ \t]*$/gm;
-  const matches = [...content.matchAll(declaration)];
-  if (matches.length !== 1) {
-    throw new Error(
-      `expected exactly one versionCode declaration, found ${matches.length}. ` +
-        `Step it by hand and fix this script — Play only reports a duplicate at upload.`
-    );
-  }
-  const [line, indent, gap, digits] = matches[0];
-  const from = Number.parseInt(digits, 10);
-  const to = from + 1;
-  return {
-    content: content.replace(line, `${indent}versionCode${gap}${to}`),
-    from,
-    to,
-  };
-}
-
-/** Steps the `versionCode` in each Wear module on disk, logging each move. */
-function bumpWearVersionCodes(): void {
-  for (const file of WEAR_GRADLE_FILES) {
-    const { content, from, to } = bumpGradleVersionCode(readFileSync(file, 'utf8'));
-    writeFileSync(file, content);
-    log(`updated ${file}: versionCode ${from} -> ${to}`, 'green');
-  }
 }
 
 /**
@@ -398,7 +336,6 @@ function main(): void {
     updateVersionInFile('app.json', 'expo.version', newVersion);
     updateVersionInFile('package.json', 'version', newVersion);
     // Both Wear modules carry their own hardcoded counter; EAS's remote one never reaches them.
-    bumpWearVersionCodes();
 
     const date = new Date().toISOString().slice(0, 10);
     writeFileSync(
