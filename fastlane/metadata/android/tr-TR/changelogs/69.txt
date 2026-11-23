@@ -1,0 +1,1 @@
+• Widget'taki geri sayım namazdan önce ve sonra aynı görünüyor; dakika ve saniye hep aynı yerde. Namazdan sonra daha sade duruyor.

@@ -91,6 +91,30 @@ The app and its relay are open source. Anyone can read the code to see what they
 Simple Prayer is in English, Arabic, Turkish and Urdu.
 ```
 
+### App Store — What's New (1.7.3)
+
+```
+• The widget countdown looks the same before and after you pray, so minutes and seconds are always in the same place. After you pray, it is quieter.
+```
+
+Arabic:
+
+```
+• عدّاد الأداة على الشاشة يظهر بالشكل نفسه قبل الصلاة وبعدها، فتبقى الدقائق والثواني في مكانها دائمًا. بعد الصلاة يصبح أهدأ.
+```
+
+Turkish:
+
+```
+• Widget'taki geri sayım namazdan önce ve sonra aynı görünüyor; dakika ve saniye hep aynı yerde. Namazdan sonra daha sade duruyor.
+```
+
+Urdu:
+
+```
+• وجٹ کی الٹی گنتی نماز سے پہلے اور بعد ایک جیسی دکھتی ہے، اس لیے منٹ اور سیکنڈ ہمیشہ اپنی جگہ رہتے ہیں۔ نماز کے بعد یہ ہلکی دکھتی ہے۔
+```
+
 ### App Store — What's New (1.7.2)
 
 ```
