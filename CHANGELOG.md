@@ -17,6 +17,14 @@ would recognise, not commit subjects.
 
 ### Fixed
 
+## [1.7.3] - 2026-11-23
+
+### Added
+
+### Changed
+
+### Fixed
+
 - **Widget countdown:** after you mark a prayer, the Now widget's countdown to the next prayer
   shows minutes and seconds in the same places as the countdown before you pray. It is only
   quieter, in a lighter ink and weight. The hours-and-minutes-only version could be misread.
