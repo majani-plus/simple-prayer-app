@@ -1049,13 +1049,15 @@ Prayer watch face. Needs the free Simple Prayer app on your phone and watch.
 Full description:
 
 ```
-Manuscript needs the free Simple Prayer app on your phone and on your watch. The phone works out the prayer times and sends them to the watch. Without the app, the face shows only the time and the Hijri date.
+Manuscript needs the free Simple Prayer app on your phone and on your watch. The phone works out the prayer times and sends them to the watch. Without the app, the face shows the time, the Hijri date and the day of the week, but no prayer times.
 
 How to set it up
 1. Install Simple Prayer on your Android phone from Google Play.
 2. Open it once and go through the first steps.
 3. Install Simple Prayer on your watch too. In Google Play on your phone, the Simple Prayer page lets you choose your watch. You can also find it in Google Play on the watch.
-4. Install Manuscript and choose it as your watch face. In the watch's list of faces, it is called Simple Prayer.
+4. Then install Manuscript and choose it as your watch face. In the watch's list of faces, it is called Simple Prayer.
+
+If you chose Manuscript before Simple Prayer was on your watch, it keeps showing the day of the week. Remove it from your watch faces and add it again.
 
 What it shows
 The time, the Hijri date, and the next prayer with a live countdown. A thin ring fills as the time of the current prayer passes.
@@ -1079,13 +1081,15 @@ Namaz vakitli kadran. Telefonda ve saatte Simple Prayer uygulaması gerekir.
 Full description:
 
 ```
-Manuscript için ücretsiz Simple Prayer uygulaması hem telefonunda hem saatinde kurulu olmalı. Namaz vakitlerini telefon hesaplar ve saate gönderir. Uygulama olmadan kadran yalnızca saati ve hicri tarihi gösterir.
+Manuscript için ücretsiz Simple Prayer uygulaması hem telefonunda hem saatinde kurulu olmalı. Namaz vakitlerini telefon hesaplar ve saate gönderir. Uygulama olmadan kadran saati, hicri tarihi ve haftanın gününü gösterir, namaz vakitlerini göstermez.
 
 Kurulum
 1. Simple Prayer'ı Google Play'den Android telefonuna yükle. Mağazadaki Türkçe adı "Namaz Vakitleri, Kıble, Kaza"dır.
 2. Uygulamayı bir kez aç ve ilk adımları tamamla.
 3. Simple Prayer'ı saatine de yükle. Telefondaki Google Play'de Simple Prayer sayfasından saatini seçebilirsin. Saatteki Google Play'de de bulabilirsin.
-4. Manuscript'i yükle ve saat kadranı olarak seç. Saatin kadran listesinde adı Simple Prayer'dır.
+4. Sonra Manuscript'i yükle ve saat kadranı olarak seç. Saatin kadran listesinde adı Simple Prayer'dır.
+
+Manuscript'i, Simple Prayer saatine yüklenmeden önce seçtiysen kadran haftanın gününü göstermeye devam eder. Kadranı saatindeki kadranlardan kaldır ve yeniden ekle.
 
 Neler gösterir
 Saati, hicri tarihi, sonraki namazı ve ona kalan süreyi. İnce bir halka, o anki namazın vakti geçtikçe dolar.
@@ -1109,13 +1113,15 @@ Manuscript · Simple Prayer
 Full description:
 
 ```
-تحتاج واجهة Manuscript إلى تطبيق Simple Prayer المجاني على هاتفك وعلى ساعتك. الهاتف يحسب مواقيت الصلاة ويرسلها إلى الساعة. ومن دون التطبيق لا تعرض الواجهة إلا الوقت والتاريخ الهجري.
+تحتاج واجهة Manuscript إلى تطبيق Simple Prayer المجاني على هاتفك وعلى ساعتك. الهاتف يحسب مواقيت الصلاة ويرسلها إلى الساعة. ومن دون التطبيق تعرض الواجهة الوقت والتاريخ الهجري واسم اليوم، ولا تعرض مواقيت الصلاة.
 
 طريقة التشغيل
 1. ثبّت Simple Prayer على هاتف أندرويد من Google Play. اسمه في المتجر بالعربية «مواقيت الصلاة، قبلة وقضاء».
 2. افتحه مرة واحدة وأكمل خطوات البداية.
 3. ثبّت Simple Prayer على ساعتك أيضًا. في Google Play على هاتفك تتيح لك صفحة التطبيق اختيار ساعتك. ويمكنك أيضًا أن تجده في Google Play على الساعة.
-4. ثبّت Manuscript واخترها واجهةً لساعتك. اسمها في قائمة الواجهات على الساعة Simple Prayer.
+4. بعد ذلك ثبّت Manuscript واخترها واجهةً لساعتك. اسمها في قائمة الواجهات على الساعة Simple Prayer.
+
+إن اخترت Manuscript قبل أن يصل Simple Prayer إلى ساعتك، فستبقى تعرض اسم اليوم. احذفها من واجهات ساعتك ثم أضفها من جديد.
 
 ماذا تعرض
 الوقت، والتاريخ الهجري، والصلاة التالية مع عدّ تنازلي حي. وحلقة رفيعة تمتلئ مع مرور وقت الصلاة الحاضرة.
@@ -1139,13 +1145,15 @@ Manuscript · Simple Prayer
 Full description:
 
 ```
-Manuscript کے لیے مفت Simple Prayer ایپ آپ کے فون اور آپ کی گھڑی، دونوں پر ہونی چاہیے۔ نماز کے اوقات فون نکالتا ہے اور گھڑی کو بھیجتا ہے۔ ایپ کے بغیر یہ واچ فیس صرف وقت اور ہجری تاریخ دکھاتا ہے۔
+Manuscript کے لیے مفت Simple Prayer ایپ آپ کے فون اور آپ کی گھڑی، دونوں پر ہونی چاہیے۔ نماز کے اوقات فون نکالتا ہے اور گھڑی کو بھیجتا ہے۔ ایپ کے بغیر یہ واچ فیس وقت، ہجری تاریخ اور ہفتے کا دن دکھاتا ہے، مگر نماز کے اوقات نہیں۔
 
 اسے کیسے چلائیں
 1. اپنے Android فون پر Google Play سے Simple Prayer انسٹال کریں۔
 2. ایپ ایک بار کھولیں اور شروع کے مراحل پورے کریں۔
 3. Simple Prayer اپنی گھڑی پر بھی انسٹال کریں۔ فون کے Google Play میں Simple Prayer کے صفحے پر آپ اپنی گھڑی منتخب کر سکتے ہیں۔ یا گھڑی کے Google Play میں اسے تلاش کریں۔
-4. Manuscript انسٹال کریں، پھر اسے اپنا واچ فیس منتخب کریں۔ گھڑی پر واچ فیس کی فہرست میں اس کا نام Simple Prayer ہے۔
+4. اس کے بعد Manuscript انسٹال کریں اور اسے اپنا واچ فیس منتخب کریں۔ گھڑی پر واچ فیس کی فہرست میں اس کا نام Simple Prayer ہے۔
+
+اگر آپ نے گھڑی پر Simple Prayer آنے سے پہلے Manuscript لگا لیا تھا، تو یہ ہفتے کا دن ہی دکھاتا رہے گا۔ اسے اپنے واچ فیس کی فہرست سے ہٹائیں اور دوبارہ شامل کریں۔
 
 یہ کیا دکھاتا ہے
 وقت، ہجری تاریخ، اور اگلی نماز تک کی الٹی گنتی۔ ایک پتلا دائرہ موجودہ نماز کا وقت گزرنے کے ساتھ بھرتا جاتا ہے۔

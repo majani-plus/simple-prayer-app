@@ -1,10 +1,12 @@
-Manuscript için ücretsiz Simple Prayer uygulaması hem telefonunda hem saatinde kurulu olmalı. Namaz vakitlerini telefon hesaplar ve saate gönderir. Uygulama olmadan kadran yalnızca saati ve hicri tarihi gösterir.
+Manuscript için ücretsiz Simple Prayer uygulaması hem telefonunda hem saatinde kurulu olmalı. Namaz vakitlerini telefon hesaplar ve saate gönderir. Uygulama olmadan kadran saati, hicri tarihi ve haftanın gününü gösterir, namaz vakitlerini göstermez.
 
 Kurulum
 1. Simple Prayer'ı Google Play'den Android telefonuna yükle. Mağazadaki Türkçe adı "Namaz Vakitleri, Kıble, Kaza"dır.
 2. Uygulamayı bir kez aç ve ilk adımları tamamla.
 3. Simple Prayer'ı saatine de yükle. Telefondaki Google Play'de Simple Prayer sayfasından saatini seçebilirsin. Saatteki Google Play'de de bulabilirsin.
-4. Manuscript'i yükle ve saat kadranı olarak seç. Saatin kadran listesinde adı Simple Prayer'dır.
+4. Sonra Manuscript'i yükle ve saat kadranı olarak seç. Saatin kadran listesinde adı Simple Prayer'dır.
+
+Manuscript'i, Simple Prayer saatine yüklenmeden önce seçtiysen kadran haftanın gününü göstermeye devam eder. Kadranı saatindeki kadranlardan kaldır ve yeniden ekle.
 
 Neler gösterir
 Saati, hicri tarihi, sonraki namazı ve ona kalan süreyi. İnce bir halka, o anki namazın vakti geçtikçe dolar.

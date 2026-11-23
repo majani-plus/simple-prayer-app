@@ -292,7 +292,7 @@ export const en = {
         },
         {
           q: 'Does it work on my watch?',
-          a: 'Yes. On Apple Watch the app shows today’s prayers, the one-tap seal, and the qibla, and the next prayer can sit on your watch face. On Wear OS there is the same app and a tile. For Wear OS there is also a watch face of our own, called Manuscript. It is a separate free download, and it needs the Simple Prayer app on your phone and on your watch. A prayer you mark on the watch is recorded in the app.',
+          a: 'Yes. On Apple Watch the app shows today’s prayers, the one-tap seal, and the qibla, and the next prayer can sit on your watch face. On Wear OS there is the same app and a tile. For Wear OS there is also a watch face of our own, called Manuscript. It is a separate free download, and it needs the Simple Prayer app on your phone and on your watch. Install the app first, then choose the face. If you chose the face first, remove it and add it again. A prayer you mark on the watch is recorded in the app.',
           links: [{ text: 'Manuscript on Google Play', href: site.faceStoreUrl }],
         },
         {
@@ -410,6 +410,7 @@ export const en = {
         'A prayer you mark on the watch is kept on the watch, and lands in the app the next time the watch and the phone are near each other.',
         'On Wear OS, when the phone is away, the watch itself can sound the adhan at prayer time. When the phone is near, the phone’s own reminder appears on the watch instead — you never get the same reminder twice.',
         'The watch works together with the phone app: the phone calculates the times and the watch shows them, so the two always agree.',
+        'If you chose Manuscript before the app was on your watch, it shows the day of the week instead of the next prayer. Remove it from your watch faces and add it again.',
       ],
     },
     exemption: {
