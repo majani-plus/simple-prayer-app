@@ -5,6 +5,4 @@
        (isCustomizable="FALSE"), so these appear rarely — but never untranslated. -->
   <string name="slot_next_prayer">Next prayer</string>
   <string name="slot_prayer_window">Time ring</string>
-  <!-- Slot 1 without the wear app: a tap opens it, or Play offers the install. -->
-  <string name="face_add_prayer_times">Add prayer times</string>
 </resources>
