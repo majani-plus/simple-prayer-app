@@ -270,6 +270,21 @@ describe('RootLayout startup wiring', () => {
     consoleError.mockRestore();
   });
 
+  it('treats a failed preload as a lost head start, not a broken database', async () => {
+    mockLoadRange.mockImplementationOnce(() => {
+      throw new Error('preload exploded');
+    });
+    jest.mocked(reportHandledError).mockClear();
+    const consoleWarn = jest.spyOn(console, 'warn').mockImplementation(() => {});
+
+    const { getByTestId } = await renderRootLayout();
+
+    expect(jest.mocked(reportHandledError)).not.toHaveBeenCalled();
+    expect(consoleWarn).toHaveBeenCalledWith('[startup] preloading today failed', expect.any(Error));
+    expect(getByTestId('stack')).toBeTruthy();
+    consoleWarn.mockRestore();
+  });
+
   it('feeds the settings theme preference into the theme context', async () => {
     await updateSettings(() => useSettingsStore.getState().setTheme('dark'));
     await renderRootLayout();

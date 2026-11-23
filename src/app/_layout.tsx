@@ -91,8 +91,13 @@ function useStartup(): { done: boolean; error: Error | null } {
         // Today and yesterday are read now, behind the splash, so Today's first frame already
         // shows them: no unlogged flash, and no revision bumps re-running the history summaries
         // just as the screen appears. `loadRange` fills the cache without bumping.
-        const today = tracking.todayDay();
-        tracking.loadRange(addDays(today, -1), today);
+        try {
+          const today = tracking.todayDay();
+          tracking.loadRange(addDays(today, -1), today);
+        } catch (preloadError) {
+          // Only a head start: the screens read their days themselves on a cache miss.
+          console.warn('[startup] preloading today failed', preloadError);
+        }
         finish();
       })
       .catch(finish);
