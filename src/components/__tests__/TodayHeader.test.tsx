@@ -4,6 +4,7 @@ import { StyleSheet, type TextStyle } from 'react-native';
 import { TodayHeader } from '../TodayHeader';
 import i18n, { initI18n } from '@/i18n';
 import { useSettingsStore } from '@/stores/settingsStore';
+import { useTrackingStore } from '@/stores/trackingStore';
 import { ThemePreferenceContext, fonts, nightPaper, paperLight } from '@/theme';
 
 // `react-native-mmkv` is a native module and cannot load under Jest; the settings singleton
@@ -137,5 +138,28 @@ describe('the ⋯ overflow affordance (spec-exemption §2b)', () => {
 
     fireEvent.press(button);
     expect(onPress).toHaveBeenCalledTimes(1);
+  });
+});
+
+describe('the store streak', () => {
+  it('re-reads at the prayer-day boundary, which bumps no revision when the day is cached', async () => {
+    const original = useTrackingStore.getState();
+    let today = DAY;
+    const streakSummary = jest.fn(() => ({ current: today === DAY ? 5 : 0 }));
+    useTrackingStore.setState({
+      hydrated: true,
+      todayDay: () => today,
+      streakSummary: streakSummary as unknown as typeof original.streakSummary,
+    });
+    try {
+      const { rerender } = await render(<TodayHeader day={DAY} />);
+      expect(screen.getByText('5')).toBeTruthy();
+
+      today = '2025-07-12';
+      await rerender(<TodayHeader day="2025-07-12" />);
+      expect(screen.getByText('0')).toBeTruthy();
+    } finally {
+      useTrackingStore.setState(original, true);
+    }
   });
 });

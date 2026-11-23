@@ -65,14 +65,16 @@ function useCurrentStreak(): number {
   // itself. Settled (D197): the streak recomputes once the taps stop, not under each one.
   const revision = useSettledRevision();
   const streakSummary = useTrackingStore((state) => state.streakSummary);
+  // The streak resets at Fajr, and a day already cached gets no revision bump at the boundary:
+  // the prayer day itself is a dependency, exactly as History's summaries have it.
+  const today = useTrackingStore((state) => state.todayDay());
 
   // Before hydration the database has not been opened; asking for a summary would read through
   // to SQLite during the very first render.
   return useMemo(() => {
-    void revision;
-    void mode;
+    void [revision, mode, today];
     return hydrated ? streakSummary().current : 0;
-  }, [hydrated, streakSummary, revision, mode]);
+  }, [hydrated, streakSummary, revision, mode, today]);
 }
 
 /**

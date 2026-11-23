@@ -132,6 +132,16 @@ const mockStreak = {
 const mockWindowStats: { current: unknown } = { current: null };
 const mockLifetimeStats: { current: unknown } = { current: null };
 
+/**
+ * The yesterday card asks for a 7-day window and only reads `totalTracked`; the dashboard's
+ * record card asks for both windows and renders them, so each gets the shape it needs. One stable
+ * function, as the real store's action is: a fresh one per render would hide a stale memo.
+ */
+const mockStatsFor = (windowDays: number | null) =>
+  windowDays === null
+    ? (mockLifetimeStats.current ?? mockRecentStats.current)
+    : (mockWindowStats.current ?? mockRecentStats.current);
+
 jest.mock('../stores/trackingStore', () => ({
   useTrackingHydrated: () => true,
   useDayRecord: () => mockRecord.current,
@@ -143,12 +153,7 @@ jest.mock('../stores/trackingStore', () => ({
       revision: 0,
       dayRecords: mockDayRecords.current,
       todayDay: () => mockTodayDay.current,
-      // The yesterday card asks for a 7-day window and only reads `totalTracked`; the dashboard's
-      // record card asks for both windows and renders them, so each gets the shape it needs.
-      statsFor: (windowDays: number | null) =>
-        windowDays === null
-          ? (mockLifetimeStats.current ?? mockRecentStats.current)
-          : (mockWindowStats.current ?? mockRecentStats.current),
+      statsFor: mockStatsFor,
       streakSummary: () => mockStreak.current,
       qadaProgress: () => ({
         debts: mockDebts.current,
@@ -1008,6 +1013,27 @@ describe('the yesterday card (owner request, 2026-08-24)', () => {
     });
     expect(mockActions.toggleStatus).toHaveBeenCalledWith(YESTERDAY, 'isha', 'missed');
     expect(Haptics.impactAsync).toHaveBeenCalledWith(Haptics.ImpactFeedbackStyle.Rigid);
+  });
+
+  it('re-asks the logger gate when Fajr starts a new day, which bumps no revision', async () => {
+    // Overnight on `DAY`: nothing logged this week yet, so no card.
+    mockDayRecords.current = { [DAY]: unloggedDayRecord(DAY) };
+    const now = afterMidnight();
+    await renderScreen(now);
+    expect(screen.queryByTestId('yesterday-card')).toBeNull();
+
+    // A log the week now holds (say, marked from the watch) reached the store without a bump;
+    // Fajr then moves the window, and the gate must read it again.
+    actAsLogger();
+    const nextFajr = getPrayerWindows(
+      addDays(DAY, 1),
+      LOCATION,
+      useSettingsStore.getState().calculation
+    )[0].start;
+    await act(async () => {
+      jest.advanceTimersByTime(nextFajr.getTime() - now.getTime() + 2000);
+    });
+    expect(screen.getByTestId('yesterday-card')).toBeTruthy();
   });
 });
 

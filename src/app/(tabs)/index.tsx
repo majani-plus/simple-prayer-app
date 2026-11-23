@@ -214,11 +214,12 @@ export default function TodayScreen() {
   const statsRevision = useSettledRevision();
   const statsFor = useTrackingStore((state) => state.statsFor);
   const recentStats = useMemo(() => {
-    void statsRevision;
+    // `day` too: the 7-day window moves at Fajr, which bumps no revision when the day is cached.
+    void [statsRevision, day];
     // `detailed`: the gate asks whether this person LOGS, so it reads the stored log. In simple
     // mode the shown misses would otherwise open it for someone who has never tapped a seal.
     return hydrated ? statsFor(7, 'detailed') : null;
-  }, [hydrated, statsFor, statsRevision]);
+  }, [hydrated, statsFor, statsRevision, day]);
   const loggerGate = recentStats !== null && recentStats.totalTracked > 0;
 
   const [yesterdayOpen, setYesterdayOpen] = useState(false);
