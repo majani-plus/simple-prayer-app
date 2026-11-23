@@ -475,6 +475,24 @@ worked; only the counters were manual.
 Write `CHANGELOG.md` entries under `[Unreleased]` as you merge work, in language a user would
 recognise. The script only moves what is already there; it cannot invent release notes.
 
+### Store steps without the consoles (1.7.2, 2026-11-23)
+
+Both stores share one build number: the EAS remote counters for iOS and Android are kept equal
+(`eas build:version:get -p ios|android`), so `eas build --platform all` gives both the same N.
+The fastlane Ruby has the Google and Apple client gems; run these with
+`GEM_HOME=<fastlane libexec> GEM_PATH=<same> <fastlane's ruby>` (see `head -1 $(which fastlane)`).
+
+- `scripts/store/play_tracks.rb fastlane/play_service_account.json <package>` lists every Play
+  track and release (read-only).
+- Play notes onto alpha N: the `fastlane supply ... --track alpha --version_code N` command above.
+- Promote: `fastlane supply --package_name app.simpleprayer --json_key ... --track alpha
+  --track_promote_to production --version_code N` plus every `--skip_upload_*` flag. The Wear app:
+  `--track wear:internal --track_promote_to wear:production --version_code 9000000NN`.
+- iOS: `scripts/store/asc_release.rb fastlane/asc_api_key.json <notes.json> <version> <N> [submit]`
+  creates the App Store version (release after approval), sets What's New per locale from a
+  `{"en-US","ar-SA","tr","ur-PK"}` JSON, attaches build N once it is VALID, and with `submit` sends
+  it for review.
+
 ### The APK on GitHub (the website's /install link)
 
 `website/src/config.ts` links `.../releases/latest/download/simple-prayer-foss.apk`, the version
