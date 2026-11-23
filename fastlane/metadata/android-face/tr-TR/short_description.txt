@@ -1,1 +1,1 @@
-Namaz vakitli kadran. Telefonda ve saatte Simple Prayer uygulaması gerekir.
+Simple Prayer uygulamasının kadranı. Uygulama telefonda ve saatte gerekir.

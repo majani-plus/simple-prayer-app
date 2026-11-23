@@ -1,4 +1,4 @@
-Manuscript için ücretsiz Simple Prayer uygulaması hem telefonunda hem saatinde kurulu olmalı. Namaz vakitlerini telefon hesaplar ve saate gönderir. Uygulama olmadan kadran saati, hicri tarihi ve haftanın gününü gösterir, namaz vakitlerini göstermez.
+Manuscript, ücretsiz Simple Prayer uygulamasının kadranıdır ve onunla birlikte çalışır. Uygulama hem telefonunda hem saatinde kurulu olmalı. Namaz vakitlerini telefon hesaplar ve saate gönderir. Uygulama olmadan kadran saati, hicri tarihi ve haftanın gününü gösterir, namaz vakitlerini göstermez.
 
 Kurulum
 1. Simple Prayer'ı Google Play'den Android telefonuna yükle. Mağazadaki Türkçe adı "Namaz Vakitleri, Kıble, Kaza"dır.

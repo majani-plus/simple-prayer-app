@@ -1,4 +1,4 @@
-Manuscript needs the free Simple Prayer app on your phone and on your watch. The phone works out the prayer times and sends them to the watch. Without the app, the face shows the time, the Hijri date and the day of the week, but no prayer times.
+Manuscript is the watch face of the free Simple Prayer app, made to go with it. It needs Simple Prayer on your phone and on your watch. The phone works out the prayer times and sends them to the watch. Without the app, the face shows the time, the Hijri date and the day of the week, but no prayer times.
 
 How to set it up
 1. Install Simple Prayer on your Android phone from Google Play.
