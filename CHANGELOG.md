@@ -13,6 +13,14 @@ would recognise, not commit subjects.
 
 ### Added
 
+### Changed
+
+### Fixed
+
+## [1.7.2] - 2026-11-23
+
+### Added
+
 - **Your watch, from the phone (Android):** when a Wear OS watch is connected, Settings shows
   Simple Prayer for the watch and the Manuscript watch face. A tap opens the install page on the
   watch itself. Setup offers the same, once. The version without Google shows none of this, and
