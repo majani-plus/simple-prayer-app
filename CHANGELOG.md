@@ -13,9 +13,25 @@ would recognise, not commit subjects.
 
 ### Added
 
+- **Your watch, from the phone (Android):** when a Wear OS watch is connected, Settings shows
+  Simple Prayer for the watch and the Manuscript watch face. A tap opens the install page on the
+  watch itself. Setup offers the same, once. The version without Google shows none of this, and
+  no store links at all.
+- **Wear OS, before the phone has synced:** the watch face line says to set up on the phone
+  instead of staying blank, and the watch app has an "Open on phone" button.
+
 ### Changed
 
+- **Faster start:** today and yesterday are read before the app appears, so Today is ready at
+  once and does not redraw a moment later.
+- **Smoother taps:** in simple mode, marking prayers no longer reads the database during the tap.
+- **History** no longer changes a moment after you open it.
+- **Widgets and watches** format each time once when they update, instead of several times.
+
 ### Fixed
+
+- **Wear OS:** opening the watch app for the first time after the phone has synced now fills the
+  watch face and tile straight away.
 
 ## [1.7.1] - 2026-11-09
 

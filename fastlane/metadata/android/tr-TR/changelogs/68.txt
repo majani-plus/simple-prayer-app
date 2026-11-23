@@ -1,0 +1,4 @@
+• Uygulama daha hızlı açılıyor ve gördüğün anda hazır.
+• Birkaç namazı art arda işaretlemek akıcı kalıyor.
+• Geçmiş ekranı, açtıktan bir an sonra artık değişmiyor.
+• Widget'lar daha az işle güncelleniyor, uygulama akıcı kalıyor.

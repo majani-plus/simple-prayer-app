@@ -1,0 +1,4 @@
+• The app opens faster and is ready as soon as you see it.
+• Marking several prayers in a row stays smooth.
+• History no longer changes a moment after you open it.
+• Widgets update with less work, so the app stays smooth.
