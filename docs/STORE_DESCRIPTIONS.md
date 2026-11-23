@@ -98,7 +98,6 @@ Simple Prayer is in English, Arabic, Turkish and Urdu.
 • Marking several prayers in a row stays smooth.
 • History no longer changes a moment after you open it.
 • Widgets update with less work, so the app stays smooth.
-• If your Apple Watch is paired but Simple Prayer is not on it, setup now tells you where to turn it on.
 ```
 
 Arabic:
@@ -108,7 +107,6 @@ Arabic:
 • تسجيل عدة صلوات متتالية يبقى سلسًا.
 • صفحة السجلّ لم تعد تتغيّر بعد لحظة من فتحها.
 • تتحدّث الأدوات على الشاشة بجهد أقل، فيبقى التطبيق سلسًا.
-• إن كانت ساعة Apple مقترنة وليس عليها Simple Prayer، يخبرك الإعداد الآن أين تفعّله.
 ```
 
 Turkish:
@@ -118,7 +116,6 @@ Turkish:
 • Birkaç namazı art arda işaretlemek akıcı kalıyor.
 • Geçmiş ekranı, açtıktan bir an sonra artık değişmiyor.
 • Widget'lar daha az işle güncelleniyor, uygulama akıcı kalıyor.
-• Apple Watch'un eşliyse ama Simple Prayer üzerinde yoksa, kurulum artık onu nereden açacağını söylüyor.
 ```
 
 Urdu:
@@ -128,7 +125,6 @@ Urdu:
 • کئی نمازیں ایک کے بعد ایک درج کرنا اب بھی ہموار رہتا ہے۔
 • تاریخ کا صفحہ کھلنے کے ایک لمحے بعد اب نہیں بدلتا۔
 • وجٹ اب کم محنت سے اپ ڈیٹ ہوتے ہیں، اس لیے ایپ ہموار رہتی ہے۔
-• اگر آپ کی Apple Watch جڑی ہے مگر اس پر Simple Prayer نہیں، تو سیٹ اپ اب بتاتا ہے کہ اسے کہاں سے آن کریں۔
 ```
 
 ### App Store — What's New (1.7.1)
