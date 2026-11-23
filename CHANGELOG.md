@@ -22,8 +22,8 @@ would recognise, not commit subjects.
 
 ### Changed
 
-- **Faster start:** today and yesterday are read before the app appears, so Today is ready at
-  once and does not redraw a moment later.
+- **Start:** today and yesterday are read before the app appears, so Today is ready at once and
+  does not redraw a moment later.
 - **Smoother taps:** in simple mode, marking prayers no longer reads the database during the tap.
 - **History** no longer changes a moment after you open it.
 - **Widgets and watches** format each time once when they update, instead of several times.

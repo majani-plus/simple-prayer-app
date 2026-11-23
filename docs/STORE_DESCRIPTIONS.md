@@ -91,6 +91,46 @@ The app and its relay are open source. Anyone can read the code to see what they
 Simple Prayer is in English, Arabic, Turkish and Urdu.
 ```
 
+### App Store — What's New (1.7.2)
+
+```
+• Today is ready as soon as the app opens.
+• Marking several prayers in a row stays smooth.
+• History no longer changes a moment after you open it.
+• Widgets update with less work, so the app stays smooth.
+• If your Apple Watch is paired but Simple Prayer is not on it, setup now tells you where to turn it on.
+```
+
+Arabic:
+
+```
+• شاشة اليوم جاهزة فور فتح التطبيق.
+• تسجيل عدة صلوات متتالية يبقى سلسًا.
+• صفحة السجلّ لم تعد تتغيّر بعد لحظة من فتحها.
+• تتحدّث الأدوات على الشاشة بجهد أقل، فيبقى التطبيق سلسًا.
+• إن كانت ساعة Apple مقترنة وليس عليها Simple Prayer، يخبرك الإعداد الآن أين تفعّله.
+```
+
+Turkish:
+
+```
+• Bugün ekranı, uygulama açılır açılmaz hazır.
+• Birkaç namazı art arda işaretlemek akıcı kalıyor.
+• Geçmiş ekranı, açtıktan bir an sonra artık değişmiyor.
+• Widget'lar daha az işle güncelleniyor, uygulama akıcı kalıyor.
+• Apple Watch'un eşliyse ama Simple Prayer üzerinde yoksa, kurulum artık onu nereden açacağını söylüyor.
+```
+
+Urdu:
+
+```
+• آج کا صفحہ ایپ کھلتے ہی تیار ہوتا ہے۔
+• کئی نمازیں ایک کے بعد ایک درج کرنا اب بھی ہموار رہتا ہے۔
+• تاریخ کا صفحہ کھلنے کے ایک لمحے بعد اب نہیں بدلتا۔
+• وجٹ اب کم محنت سے اپ ڈیٹ ہوتے ہیں، اس لیے ایپ ہموار رہتی ہے۔
+• اگر آپ کی Apple Watch جڑی ہے مگر اس پر Simple Prayer نہیں، تو سیٹ اپ اب بتاتا ہے کہ اسے کہاں سے آن کریں۔
+```
+
 ### App Store — What's New (1.7.1)
 
 > The first iOS release since 1.4.4, so it also carries what 1.5.0 and 1.6.0 brought.
