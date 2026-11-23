@@ -1068,15 +1068,20 @@ The same text is in `fastlane/metadata/android-face/<locale>/` and is pushed wit
 ```sh
 fastlane supply --package_name app.simpleprayer.face --json_key fastlane/play_service_account.json \
   --metadata_path fastlane/metadata/android-face --skip_upload_apk true --skip_upload_aab true \
-  --skip_upload_images true --skip_upload_screenshots true --skip_upload_changelogs true
+  --skip_upload_images true --skip_upload_screenshots true --skip_upload_changelogs true \
+  --track wear:production --version_code <the face's live versionCode, 15 in 2026-11>
 ```
+
+Without `--track wear:production --version_code`, supply stops with "Could not find release for
+version code". Pushed 2026-11-23 (en/ar/tr/ur). The title stays the owner's live one, "Simple
+Prayer Watch Face", in every language.
 
 ### English (en-US)
 
 Title (30), short description (80):
 
 ```
-Manuscript · Simple Prayer
+Simple Prayer Watch Face
 ```
 ```
 Prayer watch face. Needs the free Simple Prayer app on your phone and watch.
@@ -1108,7 +1113,7 @@ No ads. No account. Free.
 Title (30), short description (80):
 
 ```
-Manuscript · Simple Prayer
+Simple Prayer Watch Face
 ```
 ```
 Namaz vakitli kadran. Telefonda ve saatte Simple Prayer uygulaması gerekir.
@@ -1140,7 +1145,7 @@ Reklam yok. Hesap yok. Ücretsiz.
 Title (30), short description (80):
 
 ```
-Manuscript · Simple Prayer
+Simple Prayer Watch Face
 ```
 ```
 واجهة ساعة للصلاة. تحتاج تطبيق Simple Prayer المجاني على الهاتف والساعة.
@@ -1172,7 +1177,7 @@ Full description:
 Title (30), short description (80):
 
 ```
-Manuscript · Simple Prayer
+Simple Prayer Watch Face
 ```
 ```
 نماز کے اوقات والا واچ فیس۔ فون اور گھڑی پر مفت Simple Prayer ایپ ضروری ہے۔
