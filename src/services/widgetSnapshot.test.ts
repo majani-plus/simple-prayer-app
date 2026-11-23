@@ -19,6 +19,7 @@ import {
   type WidgetSnapshotDeps,
 } from './widgetSnapshot';
 import type { TimesLocation } from '../domain/prayerTimes';
+import * as formatTimeModule from '../utils/formatTime';
 import { PRAYERS, type CalculationSettings, type Prayer, type PrayerDay, type PrayerStatus } from '../domain/types';
 
 const AMSTERDAM: TimesLocation = { latitude: 52.3676, longitude: 4.9041, countryCode: 'NL' };
@@ -251,6 +252,18 @@ describe('buildWidgetSnapshot', () => {
   it('honors a shorter horizon for tests', () => {
     const snapshot = build({}, 3);
     expect(snapshot?.days.length).toBe(4);
+  });
+
+  it('formats each instant once per build, however many captions quote it', () => {
+    const spy = jest.spyOn(formatTimeModule, 'formatTime');
+    try {
+      const snapshot = build();
+      const instants = new Set(spy.mock.calls.map(([date]) => date.getTime()));
+      expect(snapshot).not.toBeNull();
+      expect(spy.mock.calls.length).toBe(instants.size);
+    } finally {
+      spy.mockRestore();
+    }
   });
 });
 

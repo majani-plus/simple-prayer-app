@@ -290,8 +290,18 @@ export function buildWidgetSnapshot(
     }
   }
 
-  const timeText = (date: Date): string =>
-    formatTime(date, { timeFormat: deps.timeFormat, locale: deps.numericLocale });
+  // Each instant is quoted up to four times (row time, due caption, hero deadline, the next day's
+  // Fajr): formatting it once cuts ~240 formatTime calls per build to ~90 (SIMPLE-PRAYER-F).
+  const formatted = new Map<number, string>();
+  const timeText = (date: Date): string => {
+    const at = date.getTime();
+    let text = formatted.get(at);
+    if (text === undefined) {
+      text = formatTime(date, { timeFormat: deps.timeFormat, locale: deps.numericLocale });
+      formatted.set(at, text);
+    }
+    return text;
+  };
 
   const days: WidgetDay[] = [];
   const dayList = [...allTimes.keys()];
