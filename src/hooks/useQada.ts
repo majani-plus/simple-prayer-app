@@ -123,6 +123,7 @@ export function useQada(paceWindowDays: number = DEFAULT_PACE_WINDOW_DAYS): Qada
   const trackingMode = useTrackingMode();
   const shownDebts = useQadaShownDebts();
   const readDerived = useTrackingStore((state) => state.qadaDerivedMisses);
+  const readShown = useTrackingStore((state) => state.qadaShownDebts);
 
   // Corrupt or partially-written counters must not be able to take this screen down; the domain
   // sanitiser is cheap and total, so it runs on the way in rather than at every call site.
@@ -157,14 +158,22 @@ export function useQada(paceWindowDays: number = DEFAULT_PACE_WINDOW_DAYS): Qada
   const makeUp = useCallback(
     (prayer: Prayer) => {
       if (trackingMode !== 'simple') return tickQada(prayer);
-      const source = makeUpSource(storedDebts, debts, prayer);
+      // The store's answer now, not the render's: the shown counters re-read only once taps settle
+      // (D197), so a quick second tap would otherwise spend a make-up that is already gone.
+      let shown = debts;
+      try {
+        shown = normalizeDebts(readShown());
+      } catch {
+        // A database that cannot answer decides from what the screen shows.
+      }
+      const source = makeUpSource(storedDebts, shown, prayer);
       if (source === 'stored') return tickQada(prayer);
       if (source === null) return false;
       const madeUp = getSettingsSnapshot().simpleQadaMadeUp[prayer];
       setSimpleQadaMadeUp(prayer, Math.min(madeUp, readDerived()[prayer]) + 1);
       return true;
     },
-    [trackingMode, storedDebts, debts, tickQada, readDerived, setSimpleQadaMadeUp]
+    [trackingMode, storedDebts, debts, tickQada, readShown, readDerived, setSimpleQadaMadeUp]
   );
 
   const putBack = useCallback(

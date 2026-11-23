@@ -167,6 +167,19 @@ describe('useQada in simple tracking mode (D192)', () => {
     expect(mockState.setQadaDebts).not.toHaveBeenCalled();
   });
 
+  it('decides a make-up from the store now, not from a render that has not settled yet', async () => {
+    mockState.qadaShownDebts.mockReturnValue({ ...zero(), asr: 1 });
+    const { result } = await renderHook(() => useQada());
+    expect(result.current.total).toBe(1);
+
+    // The first tap spent it; the shown counters re-read only after the burst settles (D197).
+    mockState.qadaShownDebts.mockReturnValue(zero());
+    await act(async () => {
+      expect(result.current.makeUp('asr')).toBe(false);
+    });
+    expect(useSettingsStore.getState().simpleQadaMadeUp.asr).toBe(0);
+  });
+
   it('makes up the stored debt first', async () => {
     mockState.debts = { ...zero(), asr: 1 };
     mockState.qadaShownDebts.mockReturnValue({ ...zero(), asr: 3 });
